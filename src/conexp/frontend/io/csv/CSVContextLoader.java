@@ -53,7 +53,7 @@ public class CSVContextLoader implements DocumentLoader {
 	public ContextDocument loadDocument( Reader reader, DataFormatErrorHandler errorHandler)
 		throws IOException, DataFormatException {
 		CSVContextCreator cc = new CSVContextCreator(getSeparator());
-        Context context = cc.createContext(reader);		
+        Context context = cc.parseContext(reader);
 		ContextDocument contextDocument = new ContextDocument(context);
 		return contextDocument;
 	}

@@ -17,7 +17,7 @@ import java.beans.PropertyChangeSupport;
 import java.beans.VetoableChangeListener;
 import java.beans.VetoableChangeSupport;
 
-public class LatticePainterDrawParams extends BasicDrawParams implements ParamsProvider {
+public class LatticePainterDrawParams extends BasicDrawParams implements ParamsProvider, DrawParamsProperties {
     private BoundedIntValue maxNodeRadius;
     private BoundedIntValue gridSizeX;
     private BoundedIntValue gridSizeY;
@@ -49,7 +49,7 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
 
     synchronized BoundedIntValue getGridSizeXValue() {
         if (null == gridSizeX) {
-            gridSizeX = makeBoundedIntValue("gridSizeX", DEFAULT_GRID_SIZE_X, MIN_GRID_SIZE_X, MAX_GRID_SIZE_X);
+            gridSizeX = makeBoundedIntValue(GRID_SIZE_X_PROPERTY, DEFAULT_GRID_SIZE_X, MIN_GRID_SIZE_X, MAX_GRID_SIZE_X);
         }
         return gridSizeX;
     }
@@ -60,7 +60,7 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
 
     synchronized BoundedIntValue getGridSizeYValue() {
         if (null == gridSizeY) {
-            gridSizeY = makeBoundedIntValue("gridSizeY", DEFAULT_GRID_SIZE_Y, MIN_GRID_SIZE_Y, MAX_GRID_SIZE_Y);
+            gridSizeY = makeBoundedIntValue(GRID_SIZE_Y_PROPERTY, DEFAULT_GRID_SIZE_Y, MIN_GRID_SIZE_Y, MAX_GRID_SIZE_Y);
         }
         return gridSizeY;
     }
@@ -76,7 +76,7 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
 
     synchronized BoundedIntValue getMaxNodeRadiusValue() {
         if (null == maxNodeRadius) {
-            maxNodeRadius = makeBoundedIntValue("maxNodeRadius", DEFAULT_MAX_NODE_RADIUS, MIN_MAX_NODE_RADIUS, MAX_MAX_NODE_RADIUS);
+            maxNodeRadius = makeBoundedIntValue(MAX_NODE_RADIUS_PROPERTY, DEFAULT_MAX_NODE_RADIUS, MIN_MAX_NODE_RADIUS, MAX_MAX_NODE_RADIUS);
         }
         return maxNodeRadius;
     }

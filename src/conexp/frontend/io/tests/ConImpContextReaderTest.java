@@ -10,6 +10,7 @@ package conexp.frontend.io.tests;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.io.ConImpContextLoader;
+import conexp.frontend.io.ContextReader;
 import junit.framework.TestCase;
 import util.StringUtil;
 import util.testing.TestUtil;
@@ -64,9 +65,9 @@ public class ConImpContextReaderTest extends TestCase {
 
     private void doTestReading(String[] data, ExtendedContextEditingInterface expectedContext) {
         StringReader reader = new StringReader(buildString(data));
-        ConImpContextLoader loader = new ConImpContextLoader();
+        ContextReader loader = new ConImpContextLoader();
         try {
-            ExtendedContextEditingInterface cxt = loader.loadContext(reader);
+            ExtendedContextEditingInterface cxt = loader.parseContext(reader);
             assertEquals(expectedContext, cxt);
         } catch (Exception e) {
             TestUtil.reportUnexpectedException(e);

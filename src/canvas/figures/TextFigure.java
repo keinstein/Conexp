@@ -9,13 +9,11 @@ package canvas.figures;
 
 import canvas.CanvasScheme;
 
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 
-public abstract class TextFigure extends BaseTextFigure{
+public abstract class TextFigure extends BaseTextFigure {
 
     protected TextFigure() {
         setColorTransformer(ColorTransformerWithFadeOut.getInstance());
@@ -23,23 +21,36 @@ public abstract class TextFigure extends BaseTextFigure{
 
     public void draw(Graphics g, CanvasScheme opt) {
         Graphics2D g2D = (Graphics2D) g;
-        FontMetrics fm = g.getFontMetrics();
-        final int xTextOffset = 10;
-        final int yTextOffset = 4;
+        Font paintFont = opt.getLabelsFont(g);
+        Font oldFont = g.getFont();
+        try {
+            g.setFont(paintFont);
+            FontMetrics fm = getFontMetrics(g, opt);
 
-        setWidth(fm.stringWidth(getString()) + xTextOffset);
-        setHeight(fm.getHeight() + yTextOffset);
+            int xTextOffset = 10;
+            int yTextOffset = 4;
 
-        Rectangle2D rect = new Rectangle2D.Double();
-        boundingBox(rect);
+            setWidth(fm.stringWidth(getString()) + xTextOffset);
+            setHeight(fm.getHeight() + yTextOffset);
 
-        g.setColor(getBackground(opt));
-        g2D.fill(rect);
+            Rectangle2D rect = new Rectangle2D.Double();
+            boundingBox(rect);
 
-        g2D.setColor(getBorderColor(opt));
-        g2D.draw(rect);
-        g2D.setColor(getTextColor(opt));
-        g2D.drawString(getString(), (float) (getCenterX() - (getWidth() - xTextOffset) / 2), (float) ((getCenterY() - (getHeight() - yTextOffset) / 2) + fm.getAscent()));
+            g.setColor(getBackground(opt));
+            g2D.fill(rect);
+
+            g2D.setColor(getBorderColor(opt));
+            g2D.draw(rect);
+            g2D.setColor(getTextColor(opt));
+            g2D.drawString(getString(), (float) (getCenterX() - (getWidth() - xTextOffset) / 2), (float) ((getCenterY() - (getHeight() - yTextOffset) / 2) + fm.getAscent()));
+        } finally {
+            g.setFont(oldFont);
+        }
+
+    }
+
+    private FontMetrics getFontMetrics(Graphics g, CanvasScheme opt) {
+        return opt.getLabelsFontMetrics(g);
     }
 
     protected abstract String getString();

@@ -9,6 +9,11 @@
 package conexp.frontend.latticeeditor;
 
 
+/**
+ * todo: specify responsibilities division
+ * between DrawParams, and CanvasScheme
+ */
+
 public interface DrawParameters {
     int getGridSizeX();
 

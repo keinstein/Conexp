@@ -42,16 +42,6 @@ public class PainterOptionsPaneEditor extends javax.swing.JPanel {
     }
 
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (17.01.01 22:39:31)
-     * @return conexp.frontend.latticeeditor.LatticePainterOptions
-     */
-    private LatticePainterOptions getOpt() {
-        return opt;
-    }
-
-
     private ParamEditorTable layoutParams;
 
     /**
@@ -65,7 +55,10 @@ public class PainterOptionsPaneEditor extends javax.swing.JPanel {
         if (null != latticeDrawingOptions) {
             table.getParamsModel().addParams(latticeDrawingOptions);
         }
-        table.getParamsModel().addParams(getOpt().getLatticePainterDrawStrategyContext().getParams());
+        table.getParamsModel().addParams(opt.getLatticePainterDrawStrategyContext().getParams());
+        //todo: write check on update, when params changing and correct listener setup
+        table.getParamsModel().addParams(opt.getParams());
+
         table.getParamsModel().addParams(latticeDrawParams.getParams());
         paneDrawing.add(table);
 
@@ -87,7 +80,7 @@ public class PainterOptionsPaneEditor extends javax.swing.JPanel {
         layoutPane.add(layoutParams);
         layoutPane.setViewportView(layoutParams);
 
-        getOpt().addPropertyChangeListener("layout", new PropertyChangeListener() {
+        opt.addPropertyChangeListener("layout", new PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent ev) {
                 setLayouterParams();
             }
@@ -100,6 +93,6 @@ public class PainterOptionsPaneEditor extends javax.swing.JPanel {
      * Creation date: (30.03.01 0:21:35)
      */
     private void setLayouterParams() {
-        layoutParams.getParamsModel().setParams(getOpt().getLatticePainterDrawStrategyContext().getLayouter().getParams());
+        layoutParams.getParamsModel().setParams(opt.getLatticePainterDrawStrategyContext().getLayouter().getParams());
     }
 }

@@ -31,21 +31,30 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
 
     public void testGetUpMoveConstraintForConcept() {
         final LatticeCanvasScheme options = new LatticeCanvasScheme() {
-                    public canvas.CanvasColorScheme getColorScheme() {
-                        return null;
-                    }
+            public canvas.CanvasColorScheme getColorScheme() {
+                return null;
+            }
 
-                    DrawParameters drawParams = new DefaultDrawParams();
-                    DrawStrategiesContext drawStrategiesContext = new LatticeCanvasDrawStrategiesContext(new DefaultDrawStrategiesModelsFactory(drawParams), null);
+            DrawParameters drawParams = new DefaultDrawParams();
+            DrawStrategiesContext drawStrategiesContext = new LatticeCanvasDrawStrategiesContext(new DefaultDrawStrategiesModelsFactory(drawParams), null);
 
-                    public DrawStrategiesContext getDrawStrategiesContext() {
-                        return drawStrategiesContext;
-                    }
+            public DrawStrategiesContext getDrawStrategiesContext() {
+                return drawStrategiesContext;
+            }
 
-                    public IHighlightStrategy getHighlightStrategy() {
-                        return drawStrategiesContext.getHighlightStrategy();
-                    }
-                };
+            public IHighlightStrategy getHighlightStrategy() {
+                return drawStrategiesContext.getHighlightStrategy();
+            }
+
+            public Font getLabelsFont(Graphics g) {
+                return g.getFont();
+            }
+
+            public FontMetrics getLabelsFontMetrics(Graphics g) {
+                return g.getFontMetrics(getLabelsFont(g));
+            }
+
+        };
 
         LatticeCanvas latCanvas = new LatticeCanvas(options) {
             protected double findMinimalYDistanceToPredecessorsFiguresCenters(AbstractConceptCorrespondingFigure f, IFigurePredicate includeInComputation) {
@@ -63,10 +72,10 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
         Lattice lattice = drawing.getLattice();
 
         LatticeElement concept = lattice.findElementWithIntent(SetBuilder.makeSet(new int[]{1, 1, 0, 0}));
-        AbstractConceptCorrespondingFigure figure =drawing.getFigureForConcept(concept);
+        AbstractConceptCorrespondingFigure figure = drawing.getFigureForConcept(concept);
 
         double upConstraint = canvas.getUpMoveConstraintForConcept(figure, TrueFigurePredicate.getInstance());
-        double downConstraint = canvas.getDownMoveConstraintForConcept((ConceptFigure)figure);
+        double downConstraint = canvas.getDownMoveConstraintForConcept((ConceptFigure) figure);
         assertEquals(40.0, upConstraint, TestDataHolder.PRECISION);
         assertEquals(60.0, downConstraint, TestDataHolder.PRECISION);
 

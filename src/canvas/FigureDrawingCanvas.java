@@ -194,7 +194,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     protected void initPaint() {
     }
 
-    protected void drawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform) {
+    protected void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform) {
         initPaint();
         drawBlankImage(g, d);
         drawLineDiagram(g, scalingTransform);

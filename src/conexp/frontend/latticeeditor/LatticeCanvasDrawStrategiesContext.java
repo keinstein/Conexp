@@ -15,7 +15,7 @@ import conexp.util.gui.strategymodel.StrategyValueItem;
 import java.beans.PropertyChangeSupport;
 
 
-public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext implements DrawStrategiesContext {
+public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext implements DrawStrategiesContext, LatticeCanvasDrawStrategiesContextProperties {
 
     public Layouter getLayouter() {
         return (Layouter) getLayoutStrategyItem().getStrategy();
@@ -25,7 +25,7 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
 
     synchronized StrategyValueItem getLayoutStrategyItem() {
         if (null == layoutStrategy) {
-            layoutStrategy = makeStrategyValueItem("layout", factory.makeLayoutStrategiesModel());
+            layoutStrategy = makeStrategyValueItem(LAYOUT_PROPERTY, factory.makeLayoutStrategiesModel());
         }
         return layoutStrategy;
     }
@@ -56,7 +56,7 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
 
     synchronized StrategyValueItem getEdgeSizeCalcStrategyItem() {
         if (null == edgeSizeCalcStrategy) {
-            edgeSizeCalcStrategy = makeStrategyValueItem("edgeDrawStrategy", factory.makeEdgeSizeStrategiesModel());
+            edgeSizeCalcStrategy = makeStrategyValueItem(EDGE_DRAW_STRATEGY_PROPERTY, factory.makeEdgeSizeStrategiesModel());
         }
         return edgeSizeCalcStrategy;
     }
@@ -67,11 +67,10 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
 
     synchronized StrategyValueItem getHighlightStrategyItem() {
         if (null == highlightStrategy) {
-            highlightStrategy = makeStrategyValueItem("highlightStrategy", factory.makeHighlightStrategiesModel());
+            highlightStrategy = makeStrategyValueItem(HIGHLIGHT_STRATEGY_PROPERTY, factory.makeHighlightStrategiesModel());
         }
         return highlightStrategy;
     }
-
 
     public FigureDimensionCalcStrategy getFigureDimensionCalcStrategy() {
         return (FigureDimensionCalcStrategy) getNodeRadiusStrategyItem().getStrategy();
@@ -79,7 +78,7 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
 
     public synchronized StrategyValueItem getNodeRadiusStrategyItem() {
         if (null == nodeRadiusStrategy) {
-            nodeRadiusStrategy = makeStrategyValueItem("nodeDrawStrategy", factory.makeNodeRadiusStrategiesModel());
+            nodeRadiusStrategy = makeStrategyValueItem(NODE_DRAW_STRATEGY_PROPERTY, factory.makeNodeRadiusStrategiesModel());
         }
         return nodeRadiusStrategy;
     }

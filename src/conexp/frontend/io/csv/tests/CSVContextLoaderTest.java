@@ -20,14 +20,6 @@ import conexp.frontend.io.csv.CSVContextCreator;
 
 public class CSVContextLoaderTest extends TestCase {
 
-	public CSVContextLoaderTest(){
-		 
-	}
-	
-	protected void setUp(){
-		
-	}
-
 	protected ContextCreator getCreator(){
 		return new CSVContextCreator();
 	}
@@ -80,7 +72,7 @@ public class CSVContextLoaderTest extends TestCase {
 	private void doTestReading(String[] data, ExtendedContextEditingInterface expectedContext) {
 		StringReader reader = new StringReader(buildString(data));
 		try {
-			ExtendedContextEditingInterface cxt = getCreator().createContext((Object)reader);
+			ExtendedContextEditingInterface cxt = getCreator().createContext(reader);
 			assertEquals(expectedContext, cxt);
 		} catch (Exception e) {
 			TestUtil.reportUnexpectedException(e);

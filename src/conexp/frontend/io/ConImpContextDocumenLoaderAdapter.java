@@ -17,9 +17,17 @@ import java.io.IOException;
 import java.io.Reader;
 
 public class ConImpContextDocumenLoaderAdapter implements DocumentLoader {
+    private ContextReader loader;
+
+    public ConImpContextDocumenLoaderAdapter(ContextReader loader) {
+        this.loader = loader;
+    }
+
+    public ConImpContextDocumenLoaderAdapter() {
+        this(new ConImpContextLoader());
+    }
 
     public ContextDocument loadDocument(Reader r, DataFormatErrorHandler errorHandler) throws IOException, DataFormatException {
-        ConImpContextLoader loader = new ConImpContextLoader();
-        return new ContextDocument(loader.loadContext(r));
+        return new ContextDocument(loader.parseContext(r));
     }
 }

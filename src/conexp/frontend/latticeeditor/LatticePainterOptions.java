@@ -10,10 +10,18 @@ package conexp.frontend.latticeeditor;
 import canvas.IHighlightStrategy;
 import conexp.core.layout.Layouter;
 import conexp.util.valuemodels.BoundedIntValue;
+import conexp.util.gui.paramseditor.ParamInfo;
+import conexp.util.gui.paramseditor.ParamsProvider;
+import conexp.util.gui.paramseditor.BoundedIntValueParamInfo;
 import util.BaseVetoablePropertyChangeSupplier;
 
+import java.awt.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+
 //todo: rename to LatticeCanvasSchemeWithOptions
-public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier implements LatticeCanvasScheme {
+
+public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier implements LatticeCanvasScheme, ParamsProvider, LatticeCanvasSchemeProperties {
     private BoundedIntValue smallGridSize;
 
 
@@ -22,16 +30,16 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
     private canvas.CanvasColorScheme colorScheme = new canvas.DefaultColorScheme();
 
     private ModelsFactory factory;
+    private ParamInfo[] paramInfos;
 
-    public LatticePainterOptions(DrawParameters drawParams){
+    public LatticePainterOptions(DrawParameters drawParams) {
         factory = makeDrawStrategiesFactory(drawParams);
     }
 
     //for testing
-    public LatticePainterOptions(){
+    public LatticePainterOptions() {
         this(new DefaultDrawParams());
     }
-
 
 
     protected ModelsFactory makeDrawStrategiesFactory(DrawParameters drawParams) {
@@ -68,14 +76,73 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
 
     synchronized BoundedIntValue getSmallGridSizeValue() {
         if (null == smallGridSize) {
-            smallGridSize = new BoundedIntValue("smallGridSize", 8, 2, 20);
-            smallGridSize.setPropertyChange(getPropertyChangeSupport());
-            smallGridSize.setVetoPropertyChange(getVetoPropertyChange());
+            smallGridSize = makeBoundedIntValue(SMALL_GRID_SIZE_PROPERTY, 8, 2, 20);
         }
         return smallGridSize;
+    }
+
+    private BoundedIntValue makeBoundedIntValue(final String propName, final int initialValue, final int minimalValue, final int maximalValue) {
+        BoundedIntValue boundedIntValue = new BoundedIntValue(propName, initialValue, minimalValue, maximalValue);
+        boundedIntValue.setPropertyChange(getPropertyChangeSupport());
+        boundedIntValue.setVetoPropertyChange(getVetoPropertyChange());
+        return boundedIntValue;
     }
 
     public boolean setFigureDrawingStrategy(String key) {
         return getLatticePainterDrawStrategyContext().getNodeRadiusStrategyItem().setValueByKey(key);
     }
+
+    public int getLabelsFontSize() {
+        return getLabelsFontSizeValue().getValue();
+    }
+
+    BoundedIntValue labelsFontSize;
+
+    synchronized BoundedIntValue getLabelsFontSizeValue() {
+        if (null == labelsFontSize) {
+            labelsFontSize = makeBoundedIntValue(LABELS_FONT_SIZE_PROPERTY, 12, 6, 50);
+            labelsFontSize.addPropertyChangeListener(new PropertyChangeListener(){
+                public void propertyChange(PropertyChangeEvent evt) {
+                    if(LABELS_FONT_SIZE_PROPERTY.equals(evt.getPropertyName())){
+                        clearCachedFont();
+                    }
+                }
+            });
+        }
+        return labelsFontSize;
+    }
+
+    private void clearCachedFont() {
+        cachedFont=null;
+    }
+
+
+    Font cachedFont = null;
+
+    public Font getLabelsFont(Graphics g) {
+        if(cachedFont==null){
+            cachedFont = g.getFont().deriveFont((float)labelsFontSize.getValue());
+        }
+        return cachedFont;
+    }
+
+    public FontMetrics getLabelsFontMetrics(Graphics g) {
+        return g.getFontMetrics(getLabelsFont(g));
+    }
+
+
+    public ParamInfo[] getParams() {
+        if (null == paramInfos) {
+            paramInfos = makeParamInfo();
+        }
+        return paramInfos;
+    }
+
+    private ParamInfo[] makeParamInfo() {
+        return new ParamInfo[]{
+            new BoundedIntValueParamInfo("Label font size ", getLabelsFontSizeValue())
+        };
+    }
 }
+
+

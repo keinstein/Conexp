@@ -200,7 +200,7 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
             if (evt.getSource() == LatticePainterPanel.this.getPainterOptions()) {
                 Trace.gui.eventm("Get message for lattice painter", evt.getPropertyName());
                 String propertyName = evt.getPropertyName();
-                if (propertyName.equals("layout")) {
+                if (LatticeCanvasDrawStrategiesContextProperties.LAYOUT_PROPERTY.equals(propertyName)) {
                     getLatticeDrawing().layoutLattice();
                 }
             }
@@ -212,13 +212,13 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
         public void propertyChange(PropertyChangeEvent evt) {
             Trace.gui.eventm("Get message for lattice painter", evt.getPropertyName());
             String propertyName = evt.getPropertyName();
-            if (propertyName.equals("gridSizeY")) {
+            if (DrawParamsProperties.GRID_SIZE_Y_PROPERTY.equals(propertyName)) {
                 rescaleByYCoord();
             }
-            if (propertyName.equals("gridSizeX")) {
+            if (DrawParamsProperties.GRID_SIZE_X_PROPERTY.equals(propertyName)) {
                 handleXGridChange(evt);
             }
-            if(propertyName.equals("maxNodeRadius")){
+            if(DrawParamsProperties.MAX_NODE_RADIUS_PROPERTY.equals(propertyName)){
                 refresh();
             }
         }

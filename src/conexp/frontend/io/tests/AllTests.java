@@ -18,6 +18,9 @@ public class AllTests extends TestCase {
         suite.addTestSuite(ConExpXMLReaderWriterTest.class);
         suite.addTestSuite(ConImpContextReaderWriterTest.class);
         suite.addTestSuite(ConImpContextReaderTest.class);
+
+        suite.addTest(conexp.frontend.io.csv.tests.AllTests.suite());
+        suite.addTest(conexp.frontend.io.objattrlist.tests.AllTests.suite());
         return suite;
     }
 }

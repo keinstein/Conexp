@@ -9,6 +9,8 @@ package canvas;
 
 import canvas.highlightstrategies.NullHighlightStrategy;
 
+import java.awt.*;
+
 
 public class DefaultCanvasScheme implements CanvasScheme {
     CanvasColorScheme colorScheme = new DefaultColorScheme();
@@ -30,6 +32,14 @@ public class DefaultCanvasScheme implements CanvasScheme {
 
     public void setHighlightStrategy(IHighlightStrategy highlightStrategy) {
         this.highlightStrategy = highlightStrategy;
+    }
+
+    public Font getLabelsFont(Graphics g) {
+        return g.getFont();
+    }
+
+    public FontMetrics getLabelsFontMetrics(Graphics g) {
+        return g.getFontMetrics();
     }
 
 

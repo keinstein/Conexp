@@ -14,24 +14,8 @@ import conexp.core.Set;
 import conexp.frontend.latticeeditor.ConceptQuery;
 
 public abstract class ConceptRelatedTextFigure extends TextFigure{
-//    conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider figureDimensionProvider;
 
     protected ConceptQuery concept;
-
-/*
-    public void setFigureDimensionCalcStrategyProvider(conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider figureDimensionProvider) {
-        this.figureDimensionProvider = figureDimensionProvider;
-    }
-
-    protected FigureDimensionCalcStrategyProvider getFigureDimensionProvider() {
-        return this.figureDimensionProvider;
-    }
-
-    protected FigureDimensionCalcStrategy getDimensionCalcStrategy() {
-        return getFigureDimensionProvider().getFigureDimensionCalcStrategy();
-    }
-*/
-
 
     public ConceptRelatedTextFigure(ConceptQuery conceptQuery) {
         this.concept = conceptQuery;
@@ -44,15 +28,5 @@ public abstract class ConceptRelatedTextFigure extends TextFigure{
     public Set getIntentQuery() {
         return concept.getQueryIntent();
     }
-
-    public boolean hasCollision() {
-        //collisions are not detected for now
-        return false;
-    }
-
-    public void setCollision(boolean value) {
-        //collisions are not detected for now
-    }
-
 
 }

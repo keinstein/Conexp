@@ -50,7 +50,6 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
     }
 
 
-
     public double getZoom() {
         return zoom;
     }
@@ -67,7 +66,7 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
 
     private void doSetZoom(double newZoom) {
         double oldValue = getZoom();
-        System.out.println("ZoomableCanvas.doSetZoom "+newZoom);
+        System.out.println("ZoomableCanvas.doSetZoom " + newZoom);
         if (newZoom != oldValue) {
             this.zoom = newZoom;
             Dimension viewDimension = getViewportSize();
@@ -84,7 +83,7 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         Dimension newDimension = new Dimension(getDrawingDimension());
         int newWidth = (int) Math.max(viewDimension.getWidth(), newDimension.getWidth() * getZoom());
         int newHeight = (int) Math.max(viewDimension.getHeight(), newDimension.getHeight() * getZoom());
-        System.out.println("new width "+newWidth+" new height:"+newHeight);
+        System.out.println("new width " + newWidth + " new height:" + newHeight);
         newDimension.setSize(newWidth, newHeight); //due to bug in jdk1.3
         return newDimension;
     }
@@ -140,7 +139,7 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
     }
 
     public void setFitToSize(boolean fitToSize) {
-        System.out.println("ZoomableCanvas.setFitToSize:"+fitToSize);
+        System.out.println("ZoomableCanvas.setFitToSize:" + fitToSize);
         if (this.fitToSize != fitToSize) {
             this.fitToSize = fitToSize;
             if (fitToSize) {
@@ -160,7 +159,7 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         return fitToSize;
     }
 
-    protected void switchViewportToScrollMode(){
+    protected void switchViewportToScrollMode() {
         System.out.println("ZoomableCanvas.switchViewportToScrollMode");
         Component c = getParent();
         if (c instanceof JViewport) {
@@ -177,8 +176,7 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         }
     }
 
-    protected void switchViewportToNoScrollerMode(){
-        System.out.println("ZoomableCanvas.switchViewportToNoScrollerMode");
+    protected void switchViewportToNoScrollerMode() {
         Component c = getParent();
         if (c instanceof JViewport) {
             JViewport viewport = (JViewport) c;
@@ -218,7 +216,23 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         }
     }
 
-    protected abstract void drawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform);
+    protected abstract void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform);
+
+    protected void drawOnGraphicsWithDimension(Graphics g, Dimension dimension, AffineTransform scalingTransform){
+        if (g instanceof Graphics2D) {
+            Graphics2D g2D = (Graphics2D) g;
+            Object oldAntiAlias = g2D.getRenderingHint(RenderingHints.KEY_ANTIALIASING);
+            try {
+                g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, AntiAlias);
+                doDrawOnGraphicsWithDimension(g, dimension, scalingTransform);
+            } finally {
+                g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, oldAntiAlias);
+            }
+        } else {
+            doDrawOnGraphicsWithDimension(g, dimension, scalingTransform);
+        }
+    }
+
 
     public BufferedImage getScreenImage() {
         Dimension dim = getDrawingDimension();
@@ -227,8 +241,21 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         return doubleBuffer;
     }
 
+    boolean antiAlias = true;
+    Object AntiAlias = RenderingHints.VALUE_ANTIALIAS_ON;
+
+    public boolean isAntiAlias() {
+        return antiAlias;
+    }
+
+    public void setAntiAlias(boolean antiAlias) {
+        this.antiAlias = antiAlias;
+        this.AntiAlias = (antiAlias ? RenderingHints.VALUE_ANTIALIAS_ON : RenderingHints.VALUE_ANTIALIAS_OFF);
+    }
+
+
     protected void paintComponent(Graphics g) {
-        drawOnGraphicsWithDimension(g, getSize(), scalingTransform);
+        drawOnGraphicsWithDimension(g, getSize(), this.scalingTransform);
     }
 
 }

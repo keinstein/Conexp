@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 
-public class ConImpContextLoader {
+public class ConImpContextLoader implements ContextReader {
     private BufferedReader reader;
 
     protected LocalizedMessageSupplier getLocalizedMessageSupplier() {
@@ -39,7 +39,7 @@ public class ConImpContextLoader {
 
     LocalizedMessageSupplier localizedMessageSupplier;
 
-    public Context loadContext(Reader r) throws IOException, DataFormatException {
+    public Context parseContext(Reader r) throws IOException, DataFormatException {
         reader = new BufferedReader(r);
 
         String str = getNextLine();

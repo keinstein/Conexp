@@ -32,6 +32,7 @@ public class LineFigure extends AbstractFigure implements ConnectionFigure {
     }
 
     ColorTransformer colorTransformer = DefaultColorTransformer.getInstance();
+
     public void setColorTransformer(ColorTransformer colorTransformer) {
         this.colorTransformer = colorTransformer;
     }
@@ -104,8 +105,16 @@ public class LineFigure extends AbstractFigure implements ConnectionFigure {
     }
 
     protected boolean isValidLine(Point2D startPoint, Point2D endPoint) {
-        return (!endFigure.contains(startPoint.getX(), startPoint.getY()) &&
-                !startFigure.contains(endPoint.getX(), endPoint.getY()));
+        if (startPoint.equals(endPoint)) {
+            return false;
+        }
+        if (endFigure.contains(startPoint.getX(), startPoint.getY())) {
+            return false;
+        }
+        if (startFigure.contains(endPoint.getX(), endPoint.getY())) {
+            return false;
+        }
+        return true;
     }
 
     protected Point2D getStartPoint() {
@@ -141,15 +150,15 @@ public class LineFigure extends AbstractFigure implements ConnectionFigure {
     public void setCoords(double x, double y) {
     }
 
-    public Line2D getLine(){
+    public Line2D getLine() {
         return new Line2D.Double(getStartPoint(), getEndPoint());
     }
 
-    public boolean containsFigure(Figure f){
-        if(startFigure==f){
+    public boolean containsFigure(Figure f) {
+        if (startFigure == f) {
             return true;
         }
-        if(endFigure==f){
+        if (endFigure == f) {
             return true;
         }
         return false;
@@ -163,15 +172,19 @@ public class LineFigure extends AbstractFigure implements ConnectionFigure {
         if (!isValidLine(startPoint, endPoint)) {
             return;
         }
+        Stroke oldStroke = g2D.getStroke();
         g2D.setColor(getLineColor(opt));
         float thickness = getLineThickness(opt);
         if (thickness <= 0.01) {
             return;
         }
 
-        Stroke oldStroke = g2D.getStroke();
-        g2D.setStroke(getLineStroke(thickness));
-        g2D.draw(new Line2D.Double(startPoint, endPoint));
-        g2D.setStroke(oldStroke);
+        try {
+            g2D.setStroke(getLineStroke(thickness));
+            g2D.draw(new Line2D.Double(startPoint, endPoint));
+        } finally {
+            g2D.setStroke(oldStroke);
+        }
+
     }
 }
