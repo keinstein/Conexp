@@ -52,7 +52,7 @@ public abstract class QueryBase implements ConceptQuery {
 
     public int getStability() {
         if (!stabilityCalculated) {
-            cachedStability = ContextFunctions.stability(getQueryIntent(), cxt);
+            cachedStability = ContextFunctions.stabilityToDesctruction(getQueryIntent(), cxt);
             stabilityCalculated = true;
         }
         return cachedStability;

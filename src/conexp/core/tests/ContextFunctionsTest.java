@@ -29,9 +29,9 @@ public class ContextFunctionsTest extends TestCase {
                                                                                  {1, 1, 0},
                                                                                  {1, 1, 1},
                                                                                  {1, 1, 1}});
-        assertEquals(1, ContextFunctions.stability(SetBuilder.makeSet(new int[]{1, 0, 0}), cxt));
-        assertEquals(2, ContextFunctions.stability(SetBuilder.makeSet(new int[]{0, 1, 1}), cxt));
-        assertEquals(1, ContextFunctions.stability(SetBuilder.makeSet(new int[]{0, 1, 0}), cxt));
-        assertEquals(2, ContextFunctions.stability(SetBuilder.makeSet(new int[]{1, 1, 1}), cxt));
+        assertEquals(1, ContextFunctions.stabilityToDesctruction(SetBuilder.makeSet(new int[]{1, 0, 0}), cxt));
+        assertEquals(2, ContextFunctions.stabilityToDesctruction(SetBuilder.makeSet(new int[]{0, 1, 1}), cxt));
+        assertEquals(1, ContextFunctions.stabilityToDesctruction(SetBuilder.makeSet(new int[]{0, 1, 0}), cxt));
+        assertEquals(2, ContextFunctions.stabilityToDesctruction(SetBuilder.makeSet(new int[]{1, 1, 1}), cxt));
     }
 }

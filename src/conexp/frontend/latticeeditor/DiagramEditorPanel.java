@@ -12,13 +12,12 @@ import canvas.*;
 import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.LineFigure;
 import canvas.util.ToolAction;
-import conexp.frontend.latticeeditor.figures.BorderCalculatingLineDiagramFigure;
 import conexp.frontend.latticeeditor.figures.ConnectorEndFigure;
 import conexp.frontend.latticeeditor.figures.LineFigureWithFigureDimensionCalcStrategyProvider;
 import util.collection.CollectionFactory;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
@@ -114,7 +113,7 @@ public abstract class DiagramEditorPanel extends FigureDrawingCanvas {
                     connectorFigure);
 
             if (f != null) {
-                if (f instanceof BorderCalculatingLineDiagramFigure) {
+                if (isConnectable(f)) {
                     BorderCalculatingFigure connectableFigure = (BorderCalculatingFigure) f;
                     if (hasStartFigure()) {
                         //do connect f and start figure
@@ -143,6 +142,10 @@ public abstract class DiagramEditorPanel extends FigureDrawingCanvas {
                 resetState();
                 repaint();
             }
+        }
+
+        protected boolean isConnectable(Figure f) {
+            return f instanceof BorderCalculatingFigure;
         }
 
 

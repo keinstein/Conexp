@@ -24,6 +24,7 @@ import conexp.frontend.ui.ViewManagerException;
 import conexp.frontend.util.ActionChainUtil;
 import conexp.frontend.util.ResourceManager;
 import conexp.frontend.util.ToolBuilder;
+import conexp.frontend.latticeeditor.CEDiagramEditorPanel;
 import util.Assert;
 import util.FormatUtil;
 import util.StringUtil;
@@ -51,8 +52,8 @@ public class ContextDocument implements ActionChainBearer, Document {
 
 /*
     private static final String NESTED_LINE_DIAGRAM_TYPE = "NESTED_LINE_DIAGRAM_VIEW";
-    private static final String DIAGRAM_CREATOR_TYPE = "DIAGRAM_CREATOR_VIEW";
 */
+    private static final String DIAGRAM_CREATOR_TYPE = "DIAGRAM_CREATOR_VIEW";
 
 
     static {
@@ -131,7 +132,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         new CalcImplicationsNCS(),
         new CalcAssociationRules(),
 //        new BuildNestedLineDiagram(),
-//        new ShowDiagramEditor()
+        new ShowDiagramEditor()
     };
 
 
@@ -284,7 +285,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 */
 
-/*
+
     class ShowDiagramEditor extends AbstractAction {
         public ShowDiagramEditor() {
             super("showDiagramEditor");
@@ -294,7 +295,6 @@ public class ContextDocument implements ActionChainBearer, Document {
             activateView(VIEW_DIAGRAM_CREATOR);
         }
     }
-*/
 
     //----------------------------------------------------------
 
@@ -480,7 +480,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     public static final String VIEW_ASSOCIATIONS = "Associations";//$NON-NLS-1$
     public static final String VIEW_LATTICE = "Lattice";
 //    public static final String VIEW_NESTED = "NestedLineDiagram";
-//    public static final String VIEW_DIAGRAM_CREATOR = "DiagramCreator";
+    public static final String VIEW_DIAGRAM_CREATOR = "DiagramCreator";
 
 
     protected void registerViews() {
@@ -491,7 +491,7 @@ public class ContextDocument implements ActionChainBearer, Document {
             viewManager.registerView(VIEW_ASSOCIATIONS, ASSOCIATIONS_VIEW_TYPE, resContextDocument.getString("AssociationRulesViewCaption"));//$NON-NLS-1$
 
 //            viewManager.registerView(VIEW_NESTED, NESTED_LINE_DIAGRAM_TYPE, "Test for nested line diagram");
-//            viewManager.registerView(VIEW_DIAGRAM_CREATOR, DIAGRAM_CREATOR_TYPE, "Diagram creator");
+            viewManager.registerView(VIEW_DIAGRAM_CREATOR, DIAGRAM_CREATOR_TYPE, "Diagram creator");
 
 
         } catch (ViewManagerException ex) {
@@ -521,12 +521,10 @@ public class ContextDocument implements ActionChainBearer, Document {
                         return makeNestedLineDiagramView();
                     }
 */
-/*
+
                     if (DIAGRAM_CREATOR_TYPE.equals(type)) {
                         return makeDiagramCreatorView();
                     }
-*/
-
                     return null;
                 }
             };
@@ -541,7 +539,6 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
 
-/*
     private View makeDiagramCreatorView() {
         CEDiagramEditorPanel diagramEditorPanel = new CEDiagramEditorPanel();
         diagramEditorPanel.setDocument(this);
@@ -558,7 +555,6 @@ public class ContextDocument implements ActionChainBearer, Document {
 
         return main;
     }
-*/
 
 /*
     private View makeNestedLineDiagramView() {

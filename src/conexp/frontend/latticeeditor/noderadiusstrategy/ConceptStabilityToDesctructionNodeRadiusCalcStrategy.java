@@ -25,7 +25,7 @@ public class ConceptStabilityToDesctructionNodeRadiusCalcStrategy extends Concep
     //TODO: change calculation of maximal value of query on calculation by figure drawing,
     // not by conexp set
 
-    protected int calculateMaximalValue(ConceptsCollection conceptSet) {
+    protected double calculateMaximalValue(ConceptsCollection conceptSet) {
         ExtendedContextEditingInterface context = conceptSet.getContext();
         final MaxParamValueConceptVisitor visitor = new MaxStabilityToDestructionConceptVisitor(context);
         conceptSet.forEach(visitor);

@@ -20,7 +20,7 @@ public class OwnObjectsVolumeNodeRadiusCalcStrategy extends ConceptDependentRadi
         return query.getOwnObjectsCount() / getMaximalValue();
     }
 
-    protected int calculateMaximalValue(conexp.core.ConceptsCollection conceptSet) {
+    protected double calculateMaximalValue(conexp.core.ConceptsCollection conceptSet) {
         final MaxParamValueConceptVisitor visitor = new MaxOwnObjectCountConceptVisitor();
         conceptSet.forEach(visitor);
         return visitor.getMaxValue();

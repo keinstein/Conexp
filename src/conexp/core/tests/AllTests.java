@@ -30,7 +30,7 @@ public class AllTests extends TestCase {
         suite.addTest(ImplicationTest.suite());
         suite.addTest(DependencySetTest.suite());
 
-        suite.addTest(LatticeDiagramCheckerTest.suite());
+        suite.addTestSuite(LatticeDiagramCheckerTest.class);
 
         suite.addTest(conexp.core.associations.tests.AllTests.suite());
         suite.addTest(conexp.core.attrexplorationimpl.tests.AttributeExplorerTest.suite());
@@ -39,6 +39,8 @@ public class AllTests extends TestCase {
         suite.addTest(conexp.core.enumerators.tests.AllTests.suite());
         suite.addTest(conexp.core.layout.tests.AllTests.suite());
         suite.addTest(conexp.core.layoutengines.tests.AllTests.suite());
+        suite.addTest(conexp.core.stability.tests.AllTests.suite());
+        suite.addTest(conexp.core.utils.tests.AllTests.suite());
 
         return suite;
     }

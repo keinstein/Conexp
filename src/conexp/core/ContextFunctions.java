@@ -13,7 +13,7 @@ import util.Assert;
 
 public class ContextFunctions {
     //TODO: think about variant with attribute mask
-    public static int stability(Set s, ExtendedContextEditingInterface cxt) {
+    public static int stabilityToDesctruction(Set s, ExtendedContextEditingInterface cxt) {
 
         BinaryRelation rel = cxt.getRelation();
         final int colCount = rel.getColCount();

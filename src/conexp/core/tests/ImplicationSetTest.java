@@ -114,7 +114,7 @@ public class ImplicationSetTest extends TestCase {
         assertEquals(10, impSet.getImplication(0).getObjectCount());
         assertEquals(5, impSet.getImplication(1).getObjectCount());
 
-        //checking stability of sorting
+        //checking stabilityToDesctruction of sorting
         impSet.sort(ImplicationSet.supportDescComparator);
         assertEquals(10, impSet.getImplication(0).getObjectCount());
         assertEquals(5, impSet.getImplication(1).getObjectCount());

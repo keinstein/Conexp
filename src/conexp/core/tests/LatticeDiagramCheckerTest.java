@@ -8,18 +8,10 @@
 package conexp.core.tests;
 
 import conexp.core.LatticeDiagramChecker;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class LatticeDiagramCheckerTest extends TestCase {
-    private static final Class THIS = LatticeDiagramCheckerTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     protected LatticeDiagramChecker checker;
 
     protected void setUp() {
@@ -94,6 +86,13 @@ public class LatticeDiagramCheckerTest extends TestCase {
         assertEquals(true, checker.isDiagramOfLattice());
         assertEquals(true, checker.isDiagramOfSemilattice());
 
+    }
+
+    public void testGetContext(){
+        checker.setNodeCount(3);
+        checker.setLessThan(1, 0);
+        checker.setLessThan(2, 0);
+        assertNotNull(checker.getContext());
     }
 
 }

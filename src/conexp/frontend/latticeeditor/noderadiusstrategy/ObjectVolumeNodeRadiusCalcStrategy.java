@@ -21,7 +21,7 @@ public class ObjectVolumeNodeRadiusCalcStrategy extends ConceptDependentRadiusCa
         return query.getExtentSize() / getMaximalValue();
     }
 
-    protected int calculateMaximalValue(ConceptsCollection conceptSet) {
+    protected double calculateMaximalValue(ConceptsCollection conceptSet) {
         return conceptSet.getContext().getObjectCount();
     }
 }

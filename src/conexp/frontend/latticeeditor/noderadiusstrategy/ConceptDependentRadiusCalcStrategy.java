@@ -45,7 +45,7 @@ public abstract class ConceptDependentRadiusCalcStrategy extends AbstractNodeRad
         }
     }
 
-    protected abstract int calculateMaximalValue(ConceptsCollection conceptSet);
+    protected abstract double calculateMaximalValue(ConceptsCollection conceptSet);
 
     protected double getMaximalValue() {
         return maximalValue;

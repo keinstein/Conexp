@@ -12,26 +12,16 @@ import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.DrawParameters;
 
 
-public class StabilityLabelingStrategy extends SimpleConceptLabelingStrategy {
-    /**
-     * OwnObjectsCountLabelingStrategy constructor comment.
-     * @param opt conexp.frontend.latticeeditor.LatticePainterOptions
-     */
-    public StabilityLabelingStrategy(DrawParameters opt) {
+public class StabilityToDesctructionLabelingStrategy extends SimpleConceptLabelingStrategy {
+    public StabilityToDesctructionLabelingStrategy(DrawParameters opt) {
         super(opt);
     }
 
-    /**
-     * accept method comment.
-     */
     public boolean accept(ConceptQuery conceptQuery) {
         return conceptQuery.isInnermost();
     }
 
-    /**
-     * getDescriptionString method comment.
-     */
     protected String getDescriptionString(ConceptQuery conceptQuery) {
-        return "" + ContextFunctions.stability(conceptQuery.getQueryIntent(), cxt);
+        return "" + ContextFunctions.stabilityToDesctruction(conceptQuery.getQueryIntent(), cxt);
     }
 }

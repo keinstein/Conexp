@@ -15,7 +15,7 @@ import junit.framework.TestSuite;
 public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(NodeRadiusStrategyModelTest.suite());
+        suite.addTestSuite(NodeRadiusStrategyModelTest.class);
         return suite;
     }
 }

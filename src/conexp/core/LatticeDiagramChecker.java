@@ -107,19 +107,26 @@ public class LatticeDiagramChecker {
 
     private Lattice getLattice() {
         if (null == lattice) {
-            ModifiableBinaryRelation lessThanEqualRelation = getLessThanRelation().makeModifiableCopy();
-            for (int i = 0; i < nodeCount; i++) {
-                lessThanEqualRelation.setRelationAt(i, i, true);
-            }
-            //*DBG*/ BinaryRelationUtils.logRelation(lessThanCoverRelation, new PrintWriter(System.out, true));
-            context = FCAEngineRegistry.makeContext(lessThanEqualRelation);
+            buildContextOfRelation();
             lattice = FCAEngineRegistry.buildLattice(context);
         }
         return lattice;
     }
 
+    private void buildContextOfRelation() {
+        ModifiableBinaryRelation lessThanEqualRelation = getLessThanRelation().makeModifiableCopy();
+        for (int i = 0; i < nodeCount; i++) {
+            lessThanEqualRelation.setRelationAt(i, i, true);
+        }
+        //*DBG*/ BinaryRelationUtils.logRelation(lessThanCoverRelation, new PrintWriter(System.out, true));
+        context = FCAEngineRegistry.makeContext(lessThanEqualRelation);
+    }
+
 
     public ExtendedContextEditingInterface getContext() {
+        if(null==context){
+           buildContextOfRelation();
+        }
         return context;
     }
 

@@ -8,25 +8,25 @@
 package conexp.frontend.latticeeditor.noderadiusstrategy;
 
 import conexp.core.ConceptsCollection;
-import conexp.core.stability.PointAndIntegralStabilityCalculator;
+import conexp.core.stability.BruteForceIntegralStabilityCalculator;
+import conexp.core.stability.IntegralStabilityCalculator;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.DrawParameters;
 
-public class ConceptPointStabilityNodeRadiusCalcStrategy extends ConceptDependentRadiusCalcStrategy{
-    PointAndIntegralStabilityCalculator  stabilityCalculator = new PointAndIntegralStabilityCalculator();
+public class ConceptIntegralStabilityNodeRadiusCalcStrategy extends ConceptDependentRadiusCalcStrategy  {
+    IntegralStabilityCalculator  stabilityCalculator = new BruteForceIntegralStabilityCalculator();
 
-    public ConceptPointStabilityNodeRadiusCalcStrategy(DrawParameters opt) {
+    public ConceptIntegralStabilityNodeRadiusCalcStrategy(DrawParameters opt) {
         super(opt);
     }
 
     protected double calculatePercents(ConceptQuery query) {
-        return stabilityCalculator.getPointStabilityOfSet(query.getQueryIntent());
+        return stabilityCalculator.getIntegralStabilityForSet(query.getQueryIntent());
     }
 
     protected double calculateMaximalValue(ConceptsCollection conceptSet) {
         stabilityCalculator.setRelation(conceptSet.getContext().getRelation());
         return 1;
     }
-
 
 }

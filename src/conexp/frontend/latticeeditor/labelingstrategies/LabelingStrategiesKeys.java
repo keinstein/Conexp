@@ -16,5 +16,8 @@ public interface LabelingStrategiesKeys {
     String ALL_OBJECTS_LABELING_STRATEGY = "AllObjectsLabelsStrategy";
     String OWN_OBJECTS_COUNT_LABEL_STRATEGY = "OwnObjectsCountLabelsStrategy";
     String OBJECTS_COUNT_LABEL_STRATEGY = "ObjectsCountLabelsStrategy";
-    String STABILITY_LABEL_STRATEGY = "StabilityLabelsStrategy";
+    String STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY = "StabilityLabelsStrategy";
+
+    String POINT_STABILITY_LABEL_STRATEGY = "PointStabilityLabelsStrategy";
+    String INTEGRAL_STABILITY_LABEL_STRATEGY = "IntegralStabilityLabelsStrategy";
 }

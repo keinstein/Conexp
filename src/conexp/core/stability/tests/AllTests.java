@@ -8,7 +8,7 @@ public class AllTests extends TestCase {
 
     public static Test suite() {
         TestSuite test = new TestSuite();
-        test.addTestSuite(StabilityCalculatorTest.class);
+        test.addTestSuite(BruteForceStabilityCalculatorTest.class);
         test.addTestSuite(OneConceptPointStabilityCalculatorTest.class);
         return test;
     }

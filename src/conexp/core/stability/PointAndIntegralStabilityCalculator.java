@@ -13,7 +13,7 @@ import java.util.Map;
  * Please read license.txt for licensing issues.
  */
 
-public class StabilityCalculator extends DefaultBinaryRelationProcessor implements PointStabilityCalculator{
+public class PointAndIntegralStabilityCalculator extends DefaultBinaryRelationProcessor implements PointStabilityCalculator, IntegralStabilityCalculator{
     private int powerOfObjectCount;
 
     public void setRelation(BinaryRelation relation) {
@@ -73,9 +73,9 @@ public class StabilityCalculator extends DefaultBinaryRelationProcessor implemen
         ModifiableSet nextIntersection = intersectionsByDepth[currentDepth];
         nextIntersection.copy(currentIntersection);
         int nextDepth = currentDepth + 1;
-        //calc stability without current object
+        //calc stabilityToDesctruction without current object
         doCalcStabilityOfSubsets(nextDepth, nextIntersection);
-        //calc stability of subsets with current object
+        //calc stabilityToDesctruction of subsets with current object
         nextIntersection.and(currentObjectIntent);
 
         doCalcStabilityOfSubsets(nextDepth, nextIntersection);
@@ -104,6 +104,12 @@ public class StabilityCalculator extends DefaultBinaryRelationProcessor implemen
 
     public String toString() {
         return setToOccurencesMap.toString();
+    }
+
+    public void tearDown() {
+        super.tearDown();
+        setToOccurencesMap.clear();
+        setToSumOfOccurencesMap.clear();
     }
 
 }
