@@ -9,7 +9,7 @@
 package conexp.frontend;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 
 public interface Document {
     void addViewChangeListener(ViewChangeListener optionPaneViewChangeListener);

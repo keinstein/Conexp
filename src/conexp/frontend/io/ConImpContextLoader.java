@@ -12,13 +12,13 @@ import conexp.core.Context;
 import conexp.core.FCAEngineRegistry;
 import conexp.core.LocalizedMessageSupplier;
 import util.DataFormatException;
-import util.StringUtil;
 import util.FormatUtil;
+import util.StringUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
 import java.io.LineNumberReader;
+import java.io.Reader;
 
 
 public class ConImpContextLoader implements ContextReader {

@@ -7,10 +7,8 @@
 
 package conexp.core.calculationstrategies;
 
-import conexp.core.ContextFactoryRegistry;
-import conexp.core.LatticeCalcStrategy;
-import conexp.core.ModifiableSet;
-import conexp.core.Set;
+import conexp.core.*;
+import conexp.core.enumcallbacks.NextClosedSetLatticeBuilderCallback;
 import util.Assert;
 
 
@@ -22,6 +20,10 @@ public class NextClosedSetCalculator extends NextClosedSetClosureSystemGenerator
 
     protected ModifiableSet closedObjects;
 
+
+    public void setLattice(Lattice lattice) {
+        setCallback(new NextClosedSetLatticeBuilderCallback(lattice));
+    }
 
     protected int getAttributeCount() {
         return rel.getColCount();

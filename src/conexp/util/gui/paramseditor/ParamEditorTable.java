@@ -9,7 +9,7 @@ package conexp.util.gui.paramseditor;
 
 import util.gui.JTableX;
 
-import java.awt.*;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 public class ParamEditorTable extends JTableX {

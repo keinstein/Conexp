@@ -1,9 +1,9 @@
 package conexp.frontend.ruleview;
 
-import javax.swing.text.StyledDocument;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.BadLocationException;
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyledDocument;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

@@ -5,8 +5,6 @@ import conexp.core.ConceptEnumCallback;
 import conexp.core.enumcallbacks.ConceptNumCallback;
 import conexp.core.enumcallbacks.ConceptNumExperimentCallback;
 
-import javax.sound.sampled.EnumControl;
-
 
 /**
  * Insert the type's description here.

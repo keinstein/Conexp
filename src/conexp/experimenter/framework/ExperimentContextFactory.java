@@ -1,13 +1,13 @@
 package conexp.experimenter.framework;
 
-import conexp.experimenter.setdecorator.CountingSetDecorator;
-import conexp.experimenter.setdecorator.OperationStatistic;
-import conexp.experimenter.setdecorator.OperationCountHolder;
-import conexp.core.bitset.BitSet;
 import conexp.core.ContextFactory;
 import conexp.core.ModifiableBinaryRelation;
-import conexp.core.SetRelation;
 import conexp.core.ModifiableSet;
+import conexp.core.SetRelation;
+import conexp.core.bitset.BitSet;
+import conexp.experimenter.setdecorator.CountingSetDecorator;
+import conexp.experimenter.setdecorator.OperationCountHolder;
+import conexp.experimenter.setdecorator.OperationStatistic;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

@@ -1,7 +1,7 @@
 package conexp.experimenter.experiments.tests;
 
-import conexp.experimenter.experiments.ExperimentSuite;
 import conexp.experimenter.experiments.ConceptSetExperimentSuite;
+import conexp.experimenter.experiments.ExperimentSuite;
 import conexp.experimenter.framework.ExperimentSet;
 import conexp.experimenter.framework.IExperiment;
 import conexp.experimenter.framework.RelationSequence;

@@ -1,6 +1,6 @@
 package conexp.core.compareutils;
 
-import conexp.core.compareutils.BaseComparator;
+
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

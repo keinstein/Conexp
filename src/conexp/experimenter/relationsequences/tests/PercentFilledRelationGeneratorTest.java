@@ -1,9 +1,7 @@
 package conexp.experimenter.relationsequences.tests;
 
 import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 /**
  * JUnit test case for PercentFilledRelationGeneratorTest

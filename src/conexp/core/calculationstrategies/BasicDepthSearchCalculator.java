@@ -7,9 +7,7 @@
 
 package conexp.core.calculationstrategies;
 
-import conexp.core.ContextFactoryRegistry;
 import conexp.core.LatticeElement;
-import conexp.core.ModifiableSet;
 import conexp.core.Set;
 import util.Assert;
 

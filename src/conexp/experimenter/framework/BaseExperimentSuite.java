@@ -1,9 +1,8 @@
 package conexp.experimenter.framework;
 
-import conexp.experimenter.experiments.ExperimentSuite;
-import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
 import conexp.core.ContextFactoryRegistry;
 import conexp.core.bitset.BitSetFactory;
+import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
 
 import java.io.PrintWriter;
 

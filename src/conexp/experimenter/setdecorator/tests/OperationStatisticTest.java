@@ -1,9 +1,9 @@
 package conexp.experimenter.setdecorator.tests;
 
-import junit.framework.TestCase;
-import conexp.experimenter.setdecorator.OperationStatistic;
 import conexp.experimenter.setdecorator.OperationCodes;
 import conexp.experimenter.setdecorator.OperationCountHolder;
+import conexp.experimenter.setdecorator.OperationStatistic;
+import junit.framework.TestCase;
 import util.testing.TestUtil;
 
 /**

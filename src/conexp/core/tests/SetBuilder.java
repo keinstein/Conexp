@@ -17,8 +17,8 @@ import util.Assert;
 import util.collection.CollectionFactory;
 import util.testing.UniqueExpectationSet;
 
-import java.util.List;
 import java.util.Collection;
+import java.util.List;
 
 
 public class SetBuilder {

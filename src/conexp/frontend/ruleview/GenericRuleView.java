@@ -13,7 +13,7 @@ import conexp.frontend.DependencySetSupplier;
 import conexp.frontend.ViewChangePanel;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
 
 
 public abstract class GenericRuleView extends ViewChangePanel implements DependencySetConsumer {

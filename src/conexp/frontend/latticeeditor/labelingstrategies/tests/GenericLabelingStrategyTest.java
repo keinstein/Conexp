@@ -19,7 +19,7 @@ import conexp.frontend.latticeeditor.labelingstrategies.GenericLabelingStrategy;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import junit.framework.TestCase;
 
-import java.awt.*;
+import java.awt.Dimension;
 
 
 public abstract class GenericLabelingStrategyTest extends TestCase {

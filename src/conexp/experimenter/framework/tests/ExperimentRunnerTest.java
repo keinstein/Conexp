@@ -2,15 +2,14 @@ package conexp.experimenter.framework.tests;
 
 import conexp.core.BinaryRelation;
 import conexp.core.ContextFactoryRegistry;
-import conexp.experimenter.framework.ExperimentContextFactory;
 import conexp.core.bitset.BitSetFactory;
 import conexp.core.tests.SetBuilder;
 import conexp.experimenter.experiments.BasicExperiment;
 import conexp.experimenter.framework.*;
 import conexp.experimenter.relationsequences.BinaryRelationBasedRelationSequence;
-import junit.framework.TestCase;
-import conexp.experimenter.setdecorator.OperationStatistic;
 import conexp.experimenter.setdecorator.OperationCodes;
+import conexp.experimenter.setdecorator.OperationStatistic;
+import junit.framework.TestCase;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

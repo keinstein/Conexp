@@ -12,7 +12,7 @@ import canvas.figures.ColorTransformerWithFadeOut;
 import canvas.figures.LineFigure;
 import conexp.core.Set;
 
-import java.awt.*;
+import java.awt.BasicStroke;
 
 public class NodeObjectConnectionFigure extends LineFigure {
     public NodeObjectConnectionFigure(AbstractConceptCorrespondingFigure start, BorderCalculatingFigure end) {

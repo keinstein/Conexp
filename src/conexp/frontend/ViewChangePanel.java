@@ -12,7 +12,7 @@ import conexp.frontend.util.IResourceManager;
 import conexp.frontend.util.ResourceManager;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 import java.util.ResourceBundle;
 
 

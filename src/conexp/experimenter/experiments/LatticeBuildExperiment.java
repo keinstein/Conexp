@@ -1,13 +1,9 @@
 package conexp.experimenter.experiments;
 
-import conexp.core.*;
-import conexp.core.calculationstrategies.DepthSearchCalculator;
-import conexp.core.calculationstrategies.NextClosedSetCalculator;
-import research.conexp.core.calculationstrategies.AddAtomCalcStrategy;
-import conexp.core.enumcallbacks.NextClosedSetLatticeBuilderCallback;
+import conexp.core.Lattice;
+import conexp.core.LatticeCalcStrategy;
 import conexp.experimenter.framework.MeasurementProtocol;
 import conexp.experimenter.framework.MeasurementSet;
-import conexp.experimenter.experiments.ConceptSetExperiment;
 
 /**
  * Insert the type's description here.
@@ -22,28 +18,8 @@ public class LatticeBuildExperiment extends ConceptSetExperiment {
 
     protected void doLocalSetup() {
         super.doLocalSetup();
-        if (strategy instanceof NextClosedSetCalculator) {
-
-            ConceptEnumCallback callback = new NextClosedSetLatticeBuilderCallback((Lattice) coll);
-            ((NextClosedSetCalculator) strategy).setCallback(callback);
-            return;
-        }
-        if (strategy instanceof ConceptSetNeedingCalcStrategy) {
-            ConceptSetNeedingCalcStrategy calcStrategy = (ConceptSetNeedingCalcStrategy) strategy;
-            calcStrategy.setConceptSet((ConceptsCollection) coll);
-            return;
-        }
-        if (strategy instanceof DepthSearchCalculator) {
-            DepthSearchCalculator calc = (DepthSearchCalculator) strategy;
-            calc.setLattice((Lattice) coll);
-            return;
-        }
-        if(strategy instanceof AddAtomCalcStrategy){
-           AddAtomCalcStrategy calc = (AddAtomCalcStrategy) strategy;
-            calc.setLattice((Lattice)coll);
-            return;
-        }
-
+        LatticeCalcStrategy calc = (LatticeCalcStrategy) strategy;
+        calc.setLattice((Lattice) coll);
     }
 
     protected static final String EDGE_COUNT = "Edge count";

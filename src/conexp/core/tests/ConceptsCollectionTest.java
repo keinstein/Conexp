@@ -1,8 +1,8 @@
 package conexp.core.tests;
 
+import conexp.core.ConceptsCollection;
 import junit.framework.TestCase;
 import util.testing.TestUtil;
-import conexp.core.ConceptsCollection;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

@@ -8,7 +8,9 @@
 
 package canvas;
 
-import java.awt.*;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 
 public interface CanvasScheme {
     CanvasColorScheme getColorScheme();

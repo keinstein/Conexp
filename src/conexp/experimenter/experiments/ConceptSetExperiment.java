@@ -1,10 +1,6 @@
 package conexp.experimenter.experiments;
 
-import conexp.core.BinaryRelationProcessor;
-import conexp.core.ConceptCalcStrategy;
 import conexp.core.ConceptsCollection;
-import conexp.experimenter.experiments.BaseConceptsExperiment;
-import util.StringUtil;
 
 /**
  * Insert the type's description here.

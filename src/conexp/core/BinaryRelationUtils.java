@@ -7,11 +7,11 @@
 
 package conexp.core;
 
-import util.DoubleUtil;
 import util.Assert;
+import util.DoubleUtil;
 
-import java.util.LinkedList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 
 public class BinaryRelationUtils {

@@ -1,7 +1,7 @@
 package canvas.util;
 
-import canvas.IFigurePopupMenuProvider;
 import canvas.Figure;
+import canvas.IFigurePopupMenuProvider;
 
 import javax.swing.*;
 

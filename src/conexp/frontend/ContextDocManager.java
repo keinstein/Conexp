@@ -18,7 +18,7 @@ import util.gui.fileselector.FileSelectorService;
 import util.gui.fileselector.GenericFileFilter;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

@@ -13,7 +13,7 @@ import canvas.tests.FigureTest;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.geom.Point2D;
 
 public class RectangularFigureTest extends FigureTest {

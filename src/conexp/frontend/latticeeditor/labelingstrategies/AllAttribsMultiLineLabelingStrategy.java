@@ -1,12 +1,8 @@
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import canvas.figures.BorderCalculatingFigure;
-import canvas.figures.MultiLineTextFigure;
-import conexp.core.ContextEntity;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
-
-import java.util.Iterator;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

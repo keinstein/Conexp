@@ -15,7 +15,9 @@ import conexp.util.gui.paramseditor.ParamsProvider;
 import conexp.util.valuemodels.BoundedIntValue;
 import util.BaseVetoablePropertyChangeSupplier;
 
-import java.awt.*;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 

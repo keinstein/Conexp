@@ -1,11 +1,11 @@
 package conexp.experimenter.relationsequences;
 
-import conexp.experimenter.framework.RelationSequence;
-import conexp.experimenter.framework.MeasurementProtocol;
-import conexp.experimenter.framework.MeasurementSet;
-import conexp.experimenter.framework.IMeasurementProtocol;
 import conexp.core.BinaryRelation;
 import conexp.core.BinaryRelationUtils;
+import conexp.experimenter.framework.IMeasurementProtocol;
+import conexp.experimenter.framework.MeasurementProtocol;
+import conexp.experimenter.framework.MeasurementSet;
+import conexp.experimenter.framework.RelationSequence;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

@@ -15,7 +15,7 @@ import junit.framework.TestSuite;
 import util.collection.CollectionFactory;
 import util.testing.SimpleMockPropertyChangeListener;
 
-import java.awt.*;
+import java.awt.Dimension;
 import java.util.Arrays;
 import java.util.List;
 

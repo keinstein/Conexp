@@ -1,7 +1,6 @@
 package conexp.experimenter.experiments;
 
 import conexp.core.ConceptCalcStrategy;
-import conexp.experimenter.experiments.ConceptSetExperiment;
 
 
 /**

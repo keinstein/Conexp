@@ -22,7 +22,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import java.awt.*;
+import java.awt.Toolkit;
 import java.awt.datatransfer.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;

@@ -17,7 +17,10 @@ import conexp.frontend.util.IResourceManager;
 import conexp.frontend.util.ResourceManager;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;

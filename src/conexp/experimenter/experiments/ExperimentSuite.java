@@ -1,9 +1,9 @@
 package conexp.experimenter.experiments;
 
 import conexp.experimenter.framework.BaseExperimentSuite;
+import conexp.experimenter.framework.ExperimentSet;
 import conexp.experimenter.framework.RelationSequence;
 import conexp.experimenter.framework.RelationSequenceSet;
-import conexp.experimenter.framework.ExperimentSet;
 import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
 
 /**

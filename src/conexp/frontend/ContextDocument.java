@@ -31,7 +31,9 @@ import util.FormatUtil;
 import util.StringUtil;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.util.ResourceBundle;

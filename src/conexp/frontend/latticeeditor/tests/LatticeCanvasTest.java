@@ -24,7 +24,10 @@ import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
 import util.testing.TestUtil;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 
 public class LatticeCanvasTest extends junit.framework.TestCase {
 

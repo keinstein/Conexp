@@ -8,8 +8,8 @@
  */
 package conexp.experimenter.experiments;
 
-import conexp.experimenter.framework.*;
 import conexp.core.compareutils.IComparatorFactory;
+import conexp.experimenter.framework.*;
 import util.ReflectHelper;
 import util.StringUtil;
 

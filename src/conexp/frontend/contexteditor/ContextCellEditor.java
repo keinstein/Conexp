@@ -10,7 +10,8 @@ package conexp.frontend.contexteditor;
 
 import javax.swing.*;
 import javax.swing.event.CellEditorListener;
-import java.awt.*;
+import java.awt.AWTEvent;
+import java.awt.Component;
 import java.awt.event.*;
 import java.io.Serializable;
 import java.util.EventObject;

@@ -9,7 +9,7 @@ package canvas.tests;
 
 import canvas.figures.RectangularFigure;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class MockFigure extends RectangularFigure {
     public MockFigure(double x, double y) {

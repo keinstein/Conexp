@@ -7,7 +7,10 @@
 
 package conexp.core.calculationstrategies;
 
-import conexp.core.*;
+import conexp.core.Lattice;
+import conexp.core.LatticeCalcStrategy;
+import conexp.core.LatticeElement;
+import conexp.core.Set;
 
 
 /**

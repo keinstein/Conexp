@@ -10,7 +10,8 @@ package conexp.frontend.util;
 import conexp.frontend.ResourceLoader;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Insets;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ResourceBundle;

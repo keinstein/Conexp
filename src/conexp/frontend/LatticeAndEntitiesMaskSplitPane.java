@@ -14,7 +14,9 @@ import conexp.frontend.util.IResourceManager;
 import util.gui.JSplitPaneWithFixedRightPane;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;

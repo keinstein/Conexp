@@ -1,7 +1,7 @@
 package conexp.experimenter.experiments;
 
-import conexp.core.ConceptCalcStrategy;
 import conexp.core.BinaryRelationProcessor;
+import conexp.core.ConceptCalcStrategy;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
