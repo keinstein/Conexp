@@ -1,0 +1,12 @@
+package conexp.core;
+
+/**
+ *  Description of the Interface
+ *
+ *@author     Sergey
+ *@created    8 Èþíü 2000 ã.
+ */
+public interface ConceptCalcStrategy extends BinaryRelationProcessor {
+    public void setCallback(ConceptEnumCallback _callback);
+    public void calculateConceptSet();
+}
