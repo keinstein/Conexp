@@ -40,7 +40,7 @@ public class StorageFormatLoader {
 		try {
 		 keys=resources.getString(STORAGE_FORMAT_LIST_KEY);
 		} catch (RuntimeException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return getStringArray(keys, ","); 
@@ -58,7 +58,7 @@ public class StorageFormatLoader {
 		return (String[]) list.toArray(new String[0]);
 	}
 
-	public Class loadClass(String classtoload)throws ClassNotFoundException{
+	private Class loadClass(String classtoload)throws ClassNotFoundException{
 		return Class.forName(classtoload);
 	}
 
