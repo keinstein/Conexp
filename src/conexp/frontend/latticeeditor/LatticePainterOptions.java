@@ -98,7 +98,7 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
 
     BoundedIntValue labelsFontSize;
 
-    synchronized BoundedIntValue getLabelsFontSizeValue() {
+    public synchronized BoundedIntValue getLabelsFontSizeValue() {
         if (null == labelsFontSize) {
             labelsFontSize = makeBoundedIntValue(LABELS_FONT_SIZE_PROPERTY, 12, 6, 50);
             labelsFontSize.addPropertyChangeListener(new PropertyChangeListener(){

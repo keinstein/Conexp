@@ -21,23 +21,6 @@ import java.io.StringReader;
 
 public class ObjectListContextCreatorTest extends TestCase {
 
-	final static String simpleattributesstring = ";attr1;attr2;attr3;attr4;attr5";
-	final static  int attributecount = 5;
-	final static String[] objectstrings = {
-		"obj1;1;0;1;1;",
-		"obj2;1;0;1;1;",
-		"obj3;0;0;1;1;1",
-		"obj4;0;0;0;1;",
-	};
-	
-	public ObjectListContextCreatorTest(){
-		 
-	}
-	
-	protected void setUp(){
-		
-	}
-
 	protected DocumentLoader getLoader(){
 		return new ObjectListContextCreator();
 	}

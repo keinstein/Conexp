@@ -23,6 +23,8 @@ import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 
 import java.awt.geom.Point2D;
 
+import util.testing.TestUtil;
+
 public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     protected DocumentLoader makeDocumentLoader() {
         return new ConExpXMLReader();
@@ -106,6 +108,18 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         doTestWriteAndReadForDocWithLattice(doc, cxt);
     }
 
+    public void testLoadSaveLabelsSize()
+    {
+        setUpFullLatticeCase();
+        try {
+            doc.getLatticeComponent().getDrawing().getPainterOptions().getLabelsFontSizeValue().setValue(16);
+        } catch (java.beans.PropertyVetoException e) {
+            TestUtil.reportUnexpectedException(e);
+        }
+        ContextDocument loadedDoc = doTestWriteAndReadForDocWithLattice(doc, cxt);
+        assertEquals(16, loadedDoc.getLatticeComponent().getDrawing().getPainterOptions().getLabelsFontSizeValue().getValue());
+    }
+
 
     public void testLoadSavePartialObjectLattice(){
         setUpPartialObjectLatticeCase();
@@ -145,6 +159,8 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
                 loadedDrawing.getLabelForObject(loadedContext.getObject(0)).getCenter());
     }
 
+
+
     private void doTestWriteAndReadForDocumentWithConceptsLabels(ContextDocument doc, ExtendedContextEditingInterface cxt) {
         Lattice lattice = doc.getLatticeComponent().getLattice();
 
@@ -176,7 +192,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
                 loadedDrawing.getLabelForConcept(loadedLattice.getZero()).getCenter());
     }
 
-    private void doTestWriteAndReadForDocWithLattice(ContextDocument doc, ExtendedContextEditingInterface cxt) {
+    private ContextDocument doTestWriteAndReadForDocWithLattice(ContextDocument doc, ExtendedContextEditingInterface cxt) {
         Lattice lattice = doc.getLatticeComponent().getLattice();
 
         ContextDocument loadedDoc = writeAndReadContextDoc(doc);
@@ -186,6 +202,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         Lattice loadedLattice = loadedDoc.getLatticeComponent().getLattice();
         assertTrue("Lattice should be restored", !loadedLattice.isEmpty());
         assertTrue("Lattice should be equal to saved", lattice.isEqual(loadedLattice));
+        return loadedDoc;
     }
 
 

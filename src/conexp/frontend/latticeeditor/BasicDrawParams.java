@@ -25,7 +25,7 @@ public abstract class BasicDrawParams implements DrawParameters {
     protected static final int MIN_MAX_NODE_RADIUS = 2;
     protected static final int MAX_MAX_NODE_RADIUS = 40;
 
-    protected static final float DEFAULT_MAX_EDGE_STROKE = 2.5f;
+    protected static final float DEFAULT_MAX_EDGE_STROKE = 4.0f;
 
     public int getMinGapX() {
         return GAP_X + getMaxNodeRadius();

@@ -246,6 +246,21 @@ public class ConExpXMLReader implements DocumentLoader {
         if (!drawing.setObjectLabelingStrategyKey(objectLabelsDisplayMode.getAttributeValue(ConExpXMLElements.VALUE_ATTRIBUTE))) {
             XMLHelper.throwDataFormatError("Unspecified object display mode");
         }
+        Element labelsFontSizeElement = lineDiagramSetting.getChild(ConExpXMLElements.LABEL_FONT_SIZE);
+        if(null==labelsFontSizeElement){
+            return;
+        }
+        String value = labelsFontSizeElement.getAttributeValue(ConExpXMLElements.VALUE_ATTRIBUTE);
+        if(StringUtil.isEmpty(value)){
+            return;
+        }
+        try {
+            drawing.getPainterOptions().getLabelsFontSizeValue().setValue(Integer.valueOf(value).intValue());
+        } catch (java.beans.PropertyVetoException e) {
+            XMLHelper.throwDataFormatError("Wrong value of labels font size:"+e);
+        } catch (NumberFormatException e) {
+            XMLHelper.throwDataFormatError("Wrong value of labels font size:"+e);
+        }
     }
 
     interface FigureConceptMapper {

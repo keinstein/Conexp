@@ -10,7 +10,6 @@ package canvas;
 
 import java.awt.*;
 
-
 public interface CanvasScheme {
     CanvasColorScheme getColorScheme();
 

@@ -25,6 +25,7 @@ public interface ConExpXMLElements {
     String LATTICE_DIAGRAM_SETTINGS = "LineDiagramSettings";
     String ATTRIBUTE_LABEL_DISPLAY_MODE = "AttributeLabelsDisplayMode";
     String OBJECT_LABEL_STRATEGY_DISPLAY_MODE = "ObjectLabelsDisplayMode";
+    String LABEL_FONT_SIZE = "LabelFontSize";
 
     String VALUE_ATTRIBUTE = "Value";
     String CONCEPT_FIGURES_ELEMENT = "ConceptFigures";
