@@ -43,7 +43,6 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
         rightPanel.setMinimumSize(preferredSize);
         setRightComponent(rightPanel);
 
-
         LatticeSupplierConsumerBinder binder = new LatticeSupplierConsumerBinder(latticeSupplier);
         try {
             binder.addLatticeConsumer(latticePanel);
@@ -53,40 +52,27 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
     }
 
     private JComponent makeAttributeSelectionPane(LatticeComponent latticeSupplier) {
-
         JSplitPane ret  = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 
         ret.setOneTouchExpandable(true);
         ret.setResizeWeight(0.5);
-        //todo: remove duplication
 
-        final SetProvidingEntitiesMask attributeMask = latticeSupplier.getAttributeMask();
+        ret.setTopComponent(buildMaskEditorPane(latticeSupplier.getAttributeMask(), "Select all attributes"));
+        ret.setBottomComponent(buildMaskEditorPane(latticeSupplier.getObjectMask(), "Select all objects"));
+        return ret;
+    }
+
+    private JPanel buildMaskEditorPane(final SetProvidingEntitiesMask entitiesMask, String selectAllText) {
         JPanel attributeSelectionPane = new JPanel(new BorderLayout());
-        attributeSelectionPane.add(new EntitiesMaskScrollPane(attributeMask), BorderLayout.CENTER);
-        final JButton button = new JButton("Select all attributes");
+        attributeSelectionPane.add(new EntitiesMaskScrollPane(entitiesMask), BorderLayout.CENTER);
+        final JButton button = new JButton(selectAllText);
         button.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                attributeMask.selectAll();
+                entitiesMask.selectAll();
             }
         });
         attributeSelectionPane.add(button, BorderLayout.SOUTH);
-
-        ret.setTopComponent(attributeSelectionPane);
-
-
-        final SetProvidingEntitiesMask objectMask = latticeSupplier.getObjectMask();
-        JPanel objectSelectionPane = new JPanel(new BorderLayout());
-        objectSelectionPane.add(new EntitiesMaskScrollPane(objectMask), BorderLayout.CENTER);
-        final JButton selectAllObjectsButton = new JButton("Select all objects");
-        selectAllObjectsButton.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent e) {
-                objectMask.selectAll();
-            }
-        });
-        objectSelectionPane.add(selectAllObjectsButton, BorderLayout.SOUTH);
-
-        ret.setBottomComponent(objectSelectionPane);
-        return ret;
+        return attributeSelectionPane;
     }
 
     public Component getViewComponent() {

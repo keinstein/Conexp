@@ -13,6 +13,8 @@ import java.util.EventObject;
 public class ContextChangeEvent extends EventObject {
     public final static int ATTRIBUTE_REMOVED = 1;
     public final static int ATTRIBUTE_ADDED = ATTRIBUTE_REMOVED + 1;
+	public final static int OBJECT_REMOVED = 1;
+	public final static int OBJECT_ADDED = OBJECT_REMOVED + 1;
 
     public ContextChangeEvent(Object source, int type, int column) {
         super(source);

@@ -13,10 +13,10 @@ import conexp.frontend.EntitiesMask;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class AttributeMaskChangeController implements PropertyChangeListener {
+public class EntityMaskChangeController implements PropertyChangeListener {
     private LatticeComponent latticeComponent;
 
-    public AttributeMaskChangeController(LatticeComponent latticeComponent) {
+    public EntityMaskChangeController(LatticeComponent latticeComponent) {
         this.latticeComponent = latticeComponent;
     }
 

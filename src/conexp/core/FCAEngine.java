@@ -21,7 +21,7 @@ public interface FCAEngine {
 
     ConceptsCollection buildConceptSet(Context cxt);
 
-    Lattice buildPartialLattice(Context cxt, Set featureMask);
+    Lattice buildPartialLattice(Context cxt, Set attributeMask, Set objectsMask);
 
     Lattice buildIcebergLattice(Context cxt, int minSupport);
 

@@ -7,24 +7,13 @@
 
 package conexp.core.calculationstrategies.tests;
 
-import conexp.core.BinaryRelation;
-import conexp.core.ConceptsCollection;
-import conexp.core.Lattice;
-import conexp.core.ModifiableSet;
+import conexp.core.*;
 import conexp.core.calculationstrategies.DepthSearchCalculatorWithFeatureMask;
 import conexp.core.searchconstraints.MinSupportConstrainer;
 import conexp.core.tests.SetBuilder;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 
 public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBuildingDepthSearchCalculatorTest {
-    private static final Class THIS = DepthSearchCalcWithFeatureMaskLatticeBuildingTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     protected conexp.core.ConceptCalcStrategy makeCalcStrategy() {
         return new DepthSearchCalculatorWithFeatureMask();
     }
@@ -39,15 +28,17 @@ public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBu
     }
 
     private void doTestCalcStrategyWithFeatureMask(int[][] context, int[] featureMask, int[][] expOutputIntent, final int[][] expOutputExtents, final int expectedEdgeCount) {
-        final ModifiableSet featureMaskSet = SetBuilder.makeSet(featureMask);
-        getRealStrategy().setFeatureMask(featureMaskSet);
+        final ModifiableSet attributesMask = SetBuilder.makeSet(featureMask);
+        final ModifiableSet objectsMask = ContextFactoryRegistry.createSet(context.length);
+        objectsMask.fill();
+        getRealStrategy().setFeatureMasks(attributesMask, objectsMask);
         doTestCalcStrategyForExpectedIntentsAndExtents(context,
                 expOutputIntent,
                 expOutputExtents,
                 expectedEdgeCount
         );
         doTestCalcStrategyForExpectedSizeForFullLatticeCase(context, expOutputIntent.length);
-        assertEquals(featureMaskSet, getLattice().getFeatureMask());
+        assertEquals(attributesMask, getLattice().getAttributesMask());
     }
 
 
@@ -55,8 +46,9 @@ public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBu
         int[][] context = new int[][]{{0, 1},
                                       {1, 0}};
 
-        int[] featureMask = new int[]{1, 0};
-        getRealStrategy().setFeatureMask(SetBuilder.makeSet(featureMask));
+        int[] attributeMask = new int[]{1, 0};
+        int[] objectMask = new int[]{1, 1};
+        getRealStrategy().setFeatureMasks(SetBuilder.makeSet(attributeMask),SetBuilder.makeSet(objectMask));
 
         int[][] expOutputIntent = new int[][]{{0, 0},
                                               {1, 0}};
@@ -65,7 +57,7 @@ public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBu
                                                      {0, 1}};
 
 
-        doTestCalcStrategyWithFeatureMask(context, featureMask, expOutputIntent,
+        doTestCalcStrategyWithFeatureMask(context, attributeMask, expOutputIntent,
                 expOutputExtents, 1);
     }
 

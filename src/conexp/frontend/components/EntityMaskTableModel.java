@@ -16,10 +16,10 @@ import javax.swing.table.AbstractTableModel;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class AttributeMaskTableModel extends AbstractTableModel {
-    EntitiesMask attributeMask;
+public class EntityMaskTableModel extends AbstractTableModel {
+    EntitiesMask entitiesMask;
 
-    class AttributeMaskPropertyChangeListener implements PropertyChangeListener {
+    class EntityMaskPropertyChangeListener implements PropertyChangeListener {
         public void propertyChange(PropertyChangeEvent evt) {
             final String propertyName = evt.getPropertyName();
 
@@ -36,19 +36,19 @@ public class AttributeMaskTableModel extends AbstractTableModel {
         }
     };
 
-    public AttributeMaskTableModel(EntitiesMask attributeMask) {
-        setAttributeMask(attributeMask);
+    public EntityMaskTableModel(EntitiesMask attributeMask) {
+        setEntitiesMask(attributeMask);
     }
 
-    public void setAttributeMask(EntitiesMask attributeMask) {
-        this.attributeMask = attributeMask;
-        attributeMask.addPropertyChangeListener(new AttributeMaskPropertyChangeListener());
+    public void setEntitiesMask(EntitiesMask entitiesMask) {
+        this.entitiesMask = entitiesMask;
+        entitiesMask.addPropertyChangeListener(new EntityMaskPropertyChangeListener());
         fireTableDataChanged();
         fireTableStructureChanged();
     }
 
     public int getRowCount() {
-        return attributeMask.getCount();
+        return entitiesMask.getCount();
     }
 
     public int getColumnCount() {
@@ -56,36 +56,36 @@ public class AttributeMaskTableModel extends AbstractTableModel {
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
-        if (isAttributesNamesColumn(columnIndex)) {
-            return attributeMask.getName(rowIndex);
+        if (isNamesColumn(columnIndex)) {
+            return entitiesMask.getName(rowIndex);
         } else {
-            return BooleanUtil.valueOf(attributeMask.isSelected(rowIndex));
+            return BooleanUtil.valueOf(entitiesMask.isSelected(rowIndex));
         }
     }
 
-    private boolean isAttributesNamesColumn(int columnIndex) {
+    private boolean isNamesColumn(int columnIndex) {
         return 0 == columnIndex;
     }
 
     public Class getColumnClass(int columnIndex) {
-        if (isAttributesNamesColumn(columnIndex)) {
+        if (isNamesColumn(columnIndex)) {
             return String.class;
         }
         return Boolean.class;
     }
 
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return !isAttributesNamesColumn(columnIndex);
+        return !isNamesColumn(columnIndex);
     }
 
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        Assert.isTrue(!isAttributesNamesColumn(columnIndex));
+        Assert.isTrue(!isNamesColumn(columnIndex));
         if (aValue instanceof Boolean) {
-            attributeMask.setSelected(rowIndex, ((Boolean) aValue).booleanValue());
+            entitiesMask.setSelected(rowIndex, ((Boolean) aValue).booleanValue());
         }
     }
 
     public String getColumnName(int column) {
-        return isAttributesNamesColumn(column) ? "Attribute" : "Is selected";
+        return isNamesColumn(column) ? "Name" : "Is selected";
     }
 }

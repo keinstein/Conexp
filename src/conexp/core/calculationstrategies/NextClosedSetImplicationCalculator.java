@@ -11,10 +11,12 @@ import conexp.core.*;
 import util.Assert;
 
 
-public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBase implements ImplicationCalcStrategy{
+public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBase implements ImplicationCalcStrategy {
     //-----------------------------------------------------
     int objInImpl;
     protected ImplicationSet implSet;
+    protected ModifiableSet closedObjects;
+
 
     //----------------------------------------------------
     public void setImplications(ImplicationSet implSet) {
@@ -164,14 +166,36 @@ public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBa
         return nextClosure.equals(set);
     }
 
+    public int getObjectCount(){
+        return rel.getRowCount();
+    }
+
+    protected int getAttributeCount() {
+        return rel.getColCount();
+    }
+
     //-----------------------------------------------------
     protected void zeroClosureAttr() {
-        super.zeroClosureAttr();
-        objInImpl = rel.getRowCount();
+        int numObj = getObjectCount();
+        attrSet.copy(allAttrSet);
+        for (int j = numObj; --j >= 0;) {
+            attrSet.and(rel.getSet(j));
+        }
+        closedObjects.fill();
+        objInImpl = getObjectCount();
     }
+
+    protected void startCalc() {
+        super.startCalc();
+        closedObjects = ContextFactoryRegistry.createSet(getObjectCount());
+    }
+
 
     public void tearDown() {
         super.tearDown();
+        closedObjects = null;
         implSet = null;
     }
+
+
 }

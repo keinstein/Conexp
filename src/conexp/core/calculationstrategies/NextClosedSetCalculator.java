@@ -17,6 +17,39 @@ public class NextClosedSetCalculator extends NextClosedSetClosureSystemGenerator
         super();
     }
 
+    protected ModifiableSet closedObjects;
+
+
+    protected int getAttributeCount() {
+        return rel.getColCount();
+    }
+
+    //-----------------------------------------------------
+    protected void startCalc() {
+        super.startCalc();
+        closedObjects = ContextFactoryRegistry.createSet(getObjectCount());
+    }
+
+    protected int getObjectCount() {
+        return rel.getRowCount();
+    }
+
+    public void tearDown() {
+        super.tearDown();
+        closedObjects = null;
+    }
+
+
+    //-----------------------------------------------------
+    protected void zeroClosureAttr() {
+        int numObj = getObjectCount();
+        attrSet.copy(allAttrSet);
+        for (int j = numObj; --j >= 0;) {
+            attrSet.and(rel.getSet(j));
+        }
+        closedObjects.fill();
+    }
+
     //-----------------------------------------------------
     protected boolean closureAttr(ModifiableSet set, int j, ModifiableSet notJ) {
         nextClosure.copy(allAttrSet);

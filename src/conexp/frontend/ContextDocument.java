@@ -13,8 +13,7 @@ import conexp.core.attrexplorationimpl.AttributeExplorerImplementation;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import conexp.core.enumcallbacks.ConceptNumCallback;
 import conexp.frontend.attributeexploration.AttributeExplorationUserCallbackImplementation;
-import conexp.frontend.components.AttributeMaskChangeController;
-import conexp.frontend.components.ObjectMaskChangeController;
+import conexp.frontend.components.EntityMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.contexteditor.ContextViewPanel;
 import conexp.frontend.latticeeditor.CEDiagramEditorPanel;
@@ -269,8 +268,9 @@ public class ContextDocument implements ActionChainBearer, Document {
     //------------------------------------------------------------
     private View makeLatticeView() {
         LatticeComponent latticeSupplier = getLatticeComponent();
-        latticeSupplier.getAttributeMask().addPropertyChangeListener(new AttributeMaskChangeController(latticeSupplier));
-    	latticeSupplier.getObjectMask().addPropertyChangeListener(new ObjectMaskChangeController(latticeSupplier));
+        EntityMaskChangeController entityMaskChangeController = new EntityMaskChangeController(latticeSupplier);
+        latticeSupplier.getAttributeMask().addPropertyChangeListener(entityMaskChangeController);
+    	latticeSupplier.getObjectMask().addPropertyChangeListener(entityMaskChangeController);
         LatticeAndEntitiesMaskSplitPane latticeSplitPane = new LatticeAndEntitiesMaskSplitPane(latticeSupplier, getActionChain());
         return new ToolbarComponentDecorator(latticeSplitPane, false);
     }

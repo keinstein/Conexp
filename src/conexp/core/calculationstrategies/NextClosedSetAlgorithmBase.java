@@ -10,10 +10,9 @@ import conexp.core.ModifiableSet;
  * Please read license.txt for licensing issues.
  */
 
-public class NextClosedSetAlgorithmBase extends AbstractConceptCalcStrategy {
+public abstract class NextClosedSetAlgorithmBase extends AbstractConceptCalcStrategy {
     //-----------------------------------------------------
     protected ModifiableSet attrSet;
-    protected ModifiableSet closedObjects;
     protected ModifiableSet nextClosure;
     protected ModifiableSet nextElementInLecticalOrder;
     protected ModifiableSet allAttrSet;
@@ -23,7 +22,6 @@ public class NextClosedSetAlgorithmBase extends AbstractConceptCalcStrategy {
      */
     protected void startCalc() {
         int col = getAttributeCount();
-        closedObjects = ContextFactoryRegistry.createSet(getObjectCount());
         attrSet = ContextFactoryRegistry.createSet(col);
         allAttrSet = ContextFactoryRegistry.createSet(col);
         allAttrSet.fill();
@@ -31,30 +29,17 @@ public class NextClosedSetAlgorithmBase extends AbstractConceptCalcStrategy {
         nextElementInLecticalOrder = ContextFactoryRegistry.createSet(col);
     }
 
-    private int getObjectCount() {
-        return rel.getRowCount();
-    }
-
-    private int getAttributeCount() {
-        return rel.getColCount();
-    }
+    protected abstract int getAttributeCount();
 
     public void tearDown() {
         super.tearDown();
         attrSet = null;
-        closedObjects = null;
         nextClosure = null;
         nextElementInLecticalOrder = null;
         allAttrSet = null;
     }
 
     //-----------------------------------------------------
-    protected void zeroClosureAttr() {
-        int numObj = getObjectCount();
-        closedObjects.fill();
-        attrSet.copy(allAttrSet);
-        for (int j = numObj; --j >= 0;) {
-            attrSet.and(rel.getSet(j));
-        }
-    }
+    protected abstract void zeroClosureAttr() ;
+
 }

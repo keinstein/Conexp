@@ -98,7 +98,7 @@ public class NestedLineDiagramDrawing extends ConceptSetDrawing {
         outerLattice.forEach(new Lattice.LatticeElementVisitor() {
             public void visitNode(LatticeElement node) {
                 NestedDiagramNodeFigure f = new NestedDiagramNodeFigure(innerDiagram,
-                        new ConceptNodeQuery(outerLattice.getContext(), node, false, outerLattice.getFeatureMask())
+                        new ConceptNodeQuery(outerLattice.getContext(), node, false, outerLattice.getAttributesMask())
                         , null, node == outerLattice.getOne());
                 //later this can be change for explicit pointing, whether this is top node or not
                 //for more levels of nesting

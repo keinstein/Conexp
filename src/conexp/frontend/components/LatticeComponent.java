@@ -24,7 +24,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     protected Context context;
     protected LatticeDrawing latticeDrawing;
     protected ContextAttributeMask attributeMask;
-	protected ContextObjectMask objectMask;
+    protected ContextObjectMask objectMask;
     protected Lattice lattice;
 
     public LatticeComponent() {
@@ -38,17 +38,17 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     public void setContext(Context cxt) {
         this.context = cxt;
         attributeMask = new ContextAttributeMask(cxt);
-    	objectMask = new ContextObjectMask(cxt);
+        objectMask = new ContextObjectMask(cxt);
         clearLattice();
     }
 
     public SetProvidingEntitiesMask getAttributeMask() {
         return attributeMask;
     }
-    
-	public SetProvidingEntitiesMask getObjectMask() {
-			return objectMask;
-		}
+
+    public SetProvidingEntitiesMask getObjectMask() {
+        return objectMask;
+    }
 
     protected Context getContext() {
         return context;
@@ -103,8 +103,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     }
 
     public void calculatePartialLattice() {
-    	System.out.println("number of selected objects"+getSelectedObjectsSet().size());
-        lattice = FCAEngineRegistry.buildPartialLattice(getContext(), getSelectedFeaturesSet(), getSelectedObjectsSet());
+        lattice = FCAEngineRegistry.buildPartialLattice(getContext(), getSelectedAttributes(), getSelectedObjects());
         getDrawing().setLattice(getLattice());
         fireLatticeRecalced();
     }
@@ -114,13 +113,13 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         getDrawing().layoutLattice();
     }
 
-    private Set getSelectedFeaturesSet() {
+    private Set getSelectedAttributes() {
         return attributeMask.toSet();
     }
-    
-	private Set getSelectedObjectsSet() {
-			return objectMask.toSet();
-		}
+
+    private Set getSelectedObjects() {
+        return objectMask.toSet();
+    }
 
 
     public void calculateAndLayoutLattice() {

@@ -26,7 +26,7 @@ public class AllTests extends TestCase {
         suite.addTest(EdgeTest.suite());
         suite.addTest(LatticeTest.suite());
 
-        suite.addTest(ImplicationSetTest.suite());
+        suite.addTestSuite(ImplicationSetTest.class);
         suite.addTest(ImplicationTest.suite());
         suite.addTest(DependencySetTest.suite());
 

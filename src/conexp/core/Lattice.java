@@ -47,14 +47,20 @@ public class Lattice extends ConceptsCollection {
     protected LatticeElement one;
     protected LatticeElement zero;
 
-    private Set featureMask;
+    private Set attributesMask;
+	private Set objectsMask;
 
-    public Set getFeatureMask() {
-        return featureMask;
+    public Set getAttributesMask() {
+        return attributesMask;
     }
 
-    public void setFeatureMask(Set featureMask) {
-        this.featureMask = featureMask;
+	public Set getObjectsMask() {
+			return objectsMask;
+		}
+
+    public void setFeatureMasks(Set attributesMask, Set objectsMask) {
+        this.attributesMask = attributesMask;
+    	this.objectsMask = objectsMask;
     }
 
     //------------------------------------------
@@ -137,9 +143,9 @@ public class Lattice extends ConceptsCollection {
         Assert.isTrue(null != curr, "One in findElement can't be null");
         //*DBG*/System.out.println("curr="+(BitSet)_curr.attribs);
         //*DBG*/System.out.println("compare="+_attribs+" "+_curr.attribs+"["+_attribs.compare(_curr.attribs)+"]");
-        if (null != getFeatureMask()) {
+        if (null != getAttributesMask()) {
             ModifiableSet maskedAttribs = attribs.makeModifiableSetCopy();
-            maskedAttribs.and(getFeatureMask());
+            maskedAttribs.and(getAttributesMask());
             attribs = maskedAttribs;
         }
         boolean find = (Set.EQUAL == attribs.compare(curr.getAttribs()));

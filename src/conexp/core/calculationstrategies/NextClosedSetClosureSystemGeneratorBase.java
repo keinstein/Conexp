@@ -11,7 +11,7 @@ import conexp.core.Set;
  */
 
 public abstract class NextClosedSetClosureSystemGeneratorBase extends NextClosedSetAlgorithmBase {
-    //-----------------------------------------------------
+
     protected abstract boolean closureAttr(ModifiableSet set, int j, ModifiableSet notJ);
 
     protected abstract void onFinishCalc();
@@ -20,7 +20,7 @@ public abstract class NextClosedSetClosureSystemGeneratorBase extends NextClosed
 
     //-----------------------------------------------------
     protected void nextClosedSetAttr() {
-        final int numAttr = rel.getColCount();
+        final int numAttr = getAttributeCount();
         ModifiableSet notJ = ContextFactoryRegistry.createSet(numAttr);
         zeroClosureAttr();
         addZeroElement(attrSet);

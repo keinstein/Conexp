@@ -8,19 +8,10 @@
 package conexp.core.tests;
 
 import conexp.core.*;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class ImplicationSetTest extends TestCase {
-    protected static final Class THIS = ImplicationSetTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
-
     ImplicationSet impSet;
     Implication imp;
 
@@ -34,7 +25,12 @@ public class ImplicationSetTest extends TestCase {
         impSet.addDependency(imp);
     }
 
-    public void testDuquenneGuiguies() {
+    public void testMakeDuquenneGuigues() {
+        final MockAttributeInformationSupplier attrInfo = new MockAttributeInformationSupplier(4);
+        impSet = SetBuilder.makeImplicationSet(attrInfo, new int[][][]{
+            {{1, 0, 0, 0},{0, 1, 0, 0}},
+            {{0, 1, 0, 0}, {0, 0, 1, 0}}
+        });
         impSet.makeDuquenneGuigues();
         assertEquals(2, impSet.getSize());
 
@@ -46,8 +42,26 @@ public class ImplicationSetTest extends TestCase {
         imp = makeImplication(new int[]{0, 1, 0, 0}, new int[]{0, 0, 0, 1});
         impSet.addDependency(imp);
         impSet.makeDuquenneGuigues();
-        assertEquals(SetBuilder.makeSet(new int[]{0, 1, 1, 0}), imp.getPremise());
+        assertEquals(impSet, SetBuilder.makeImplicationSet(attrInfo,
+                new int[][][]{
+                    {{1, 0, 0, 0},{0, 1, 1, 1}},
+                    {{0, 1, 0, 0}, {0, 0, 1, 1}},
+                }));
     }
+
+    public void testMakeDuquenneGuigues2() {
+        MockAttributeInformationSupplier supplier = new MockAttributeInformationSupplier(2);
+        ImplicationSet implications =SetBuilder.makeImplicationSet(supplier, new int[][][]{
+            {{0, 0}, {0, 1}},
+            {{0, 1}, {1, 0}}
+        });
+        implications.makeDuquenneGuigues();
+        ImplicationSet expected = SetBuilder.makeImplicationSet(supplier, new int[][][]{
+            {{0, 0}, {1, 1}}
+        });
+        assertEquals(expected, implications);
+    }
+
 
     public void testIsDerived() {
         assertTrue(impSet.isDerived(imp));
@@ -169,4 +183,5 @@ public class ImplicationSetTest extends TestCase {
     public void testMakeCompatibleDependencySet() {
         assertTrue(impSet.makeCompatibleDependencySet() instanceof ImplicationSet);
     }
+
 }

@@ -8,12 +8,20 @@
 package conexp.core;
 
 import util.StringUtil;
+import util.BasePropertyChangeSupplier;
 import util.collection.CollectionFactory;
 
 import java.util.*;
 
 
-public class DependencySet {
+public class DependencySet extends BasePropertyChangeSupplier{
+
+    public static final String DEPENDENCY_ADDED = "DependencyAdded";
+    public static final String DEPENDENCY_REMOVED = "DependencyRemoved";
+    public static final String DEPENDENCY_UPDATED = "DependencyUpdated";
+    public static final String DEPENDENCY_SET_CHANGED = "DependencySetChanged";
+
+
 
     public interface DependencyProcessor {
         void processDependency(Dependency dependency);
@@ -23,10 +31,6 @@ public class DependencySet {
 
     protected List dependencies;
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (01.05.01 19:18:02)
-     */
     public DependencySet(AttributeInformationSupplier attrInfo) {
         dependencies = CollectionFactory.createDefaultList();
         this.attrInfo = attrInfo;
@@ -35,12 +39,14 @@ public class DependencySet {
 //---------------------------------------
     public void addDependency(Dependency dep) {
         dependencies.add(dep);
+        firePropertyChange(DEPENDENCY_ADDED, null, dep);
     }
 
 
 //---------------------------------------
     public void clear() {
         dependencies.clear();
+        firePropertyChange(DEPENDENCY_SET_CHANGED, null, null);
     }
 
 
@@ -49,17 +55,11 @@ public class DependencySet {
     }
 
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (08.05.01 21:45:38)
-     * @return conexp.core.Context
-     */
     public AttributeInformationSupplier getAttributesInformation() {
         return attrInfo;
     }
 
 
-//---------------------------------------
     public Dependency getDependency(int i) {
         return (Dependency) dependencies.get(i);
     }
@@ -74,10 +74,12 @@ public class DependencySet {
 //---------------------------------------
     public void removeDependency(Dependency impl) {
         dependencies.remove(impl);
+
     }
 
     public void removeDependency(int index) {
-        dependencies.remove(index);
+        Dependency dependency = (Dependency)dependencies.remove(index);
+        firePropertyChange(DEPENDENCY_REMOVED, null, dependency);
     }
 
     public void removeAll(DependencySet toRemove){
@@ -93,19 +95,13 @@ public class DependencySet {
         }
     }
 
-
-//---------------------------------------
     public int getSize() {
         return dependencies.size();
     }
-//---------------------------------------
-    /**
-     * Insert the method's description here.
-     * Creation date: (22.11.00 23:45:53)
-     * @param comp java.util.Comparator
-     */
+
     public void sort(Comparator comp) {
         Collections.sort(dependencies, comp);
+        firePropertyChange(DEPENDENCY_SET_CHANGED, null, null);
     }
 
 
@@ -145,7 +141,6 @@ public class DependencySet {
         return true;
     }
 
-
     public boolean equals(Object obj) {
         if (!(obj instanceof DependencySet)) {
             return false;
@@ -163,6 +158,11 @@ public class DependencySet {
 
     public int hashCode() {
         return dependencies.hashCode();
+    }
+
+    public void setDependency(int selectedIndex, Dependency newValue) {
+        Dependency oldValue = (Dependency)dependencies.set(selectedIndex, newValue);
+        firePropertyChange(DEPENDENCY_UPDATED, oldValue, newValue);
     }
 
 }

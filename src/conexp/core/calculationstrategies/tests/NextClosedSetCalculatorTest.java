@@ -15,15 +15,9 @@ import junit.framework.TestSuite;
 
 
 public class NextClosedSetCalculatorTest extends EnumerativeCalcStrategyTest {
-    private static final Class THIS = NextClosedSetCalculatorTest.class;
 
     protected conexp.core.ConceptCalcStrategy makeCalcStrategy() {
         return new NextClosedSetCalculator();
-    }
-
-
-    public static Test suite() {
-        return new TestSuite(THIS);
     }
 
     public void testOrder() {

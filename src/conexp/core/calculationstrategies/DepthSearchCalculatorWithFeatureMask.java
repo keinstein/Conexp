@@ -19,11 +19,14 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
         removeAllSearchConstraints();
     }
 
-    public void setFeatureMask(Set featureMask) {
-        this.featureMask = featureMask;
+    public void setFeatureMasks(Set attributesMask, Set objectsMask) {
+        this.attributesMask = attributesMask;
+        this.objectsMask = objectsMask;
     }
 
-    Set featureMask;
+
+    Set attributesMask;
+    Set objectsMask;
 
     protected ModifiableSet calcDescAttr(int depth, Set objects, Set attribs) {
         ModifiableSet ret = super.calcDescAttr(depth, objects, attribs);
@@ -31,22 +34,45 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
         return ret;
     }
 
+    protected ModifiableSet allObjSet;
+
     protected void initObjectsAndAttribs() {
         super.initObjectsAndAttribs();
+        allObjSet = ContextFactoryRegistry.createSet(getRelation().getRowCount());
+        allObjSet.fill();
         if (hasFeatureMask()) {
-            allAttrSet.and(featureMask);
+            allAttrSet.and(attributesMask);
         }
+
+        if(objectsMask!=null){
+            allObjSet.and(objectsMask);
+        }
+    }
+
+
+    protected void calcOne() {
+        newIntent.copy(allAttrSet);
+        newExtent.fill();
+        newExtent.and(allObjSet);
+        for (int objId = allObjSet.firstIn(); objId != Set.NOT_IN_SET; objId = allObjSet.nextIn(objId)) {
+            newIntent.and(rel.getSet(objId));
+        }
+    }
+
+    public void tearDown() {
+        super.tearDown();
+        allObjSet = null;
     }
 
     public void buildLattice() {
         if (hasFeatureMask()) {
-            lattice.setFeatureMask(featureMask);
+            lattice.setFeatureMasks(attributesMask, objectsMask);
         }
         super.buildLattice();
     }
 
     private boolean hasFeatureMask() {
-        return null != featureMask;
+        return (null != attributesMask || null != objectsMask);
     }
 
     public void removeAllSearchConstraints() {

@@ -42,19 +42,23 @@ public class FCAEngineImplementation implements FCAEngine {
         return conceptSet;
     }
 
-    public Lattice buildPartialLattice(Context cxt, Set featureMask) {
-        Assert.isTrue(cxt.getAttributeCount() == featureMask.size());
+    public Lattice buildPartialLattice(Context cxt, Set attributeMask, Set objectsMask) {
+        System.out.println("FCAEngineImplementation.buildPartialLattice");
+        System.out.println("attribute mask:"+attributeMask);
+        System.out.println("object mask:"+objectsMask);
+        Assert.isTrue(cxt.getAttributeCount() == attributeMask.size());
         DepthSearchCalculatorWithFeatureMask calc = new DepthSearchCalculatorWithFeatureMask();
-        calc.setFeatureMask(featureMask);
+        calc.setFeatureMasks(attributeMask, objectsMask);
 
         Lattice result = makeLatticeForContext(cxt);
         calc.setLattice(result);
         calc.setRelation(cxt.getRelation());
         calc.buildLattice();
-        cxt.locateElementsConcepts(result, featureMask);
+        cxt.locateElementsConcepts(result, attributeMask, objectsMask);
         result.calcHeight();
         return result;
     }
+
 
     public Lattice buildIcebergLattice(Context cxt, int minSupport) {
         DepthSearchCalculatorWithFeatureMask latticeCalc = new DepthSearchCalculatorWithFeatureMask();

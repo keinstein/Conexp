@@ -14,19 +14,19 @@ import javax.swing.*;
 
 public class EntityMaskTable extends JTable {
     public EntityMaskTable(EntitiesMask attributeMask) {
-        super(new AttributeMaskTableModel(attributeMask));
+        super(new EntityMaskTableModel(attributeMask));
         setRowSelectionAllowed(false);
         setColumnSelectionAllowed(false);
         getTableHeader().setReorderingAllowed(false);
         setBackground(javax.swing.UIManager.getColor("control"));
     }
 
-    protected AttributeMaskTableModel getAttributeMaskTableModel() {
-        return (AttributeMaskTableModel) getModel();
+    protected EntityMaskTableModel getAttributeMaskTableModel() {
+        return (EntityMaskTableModel) getModel();
     }
 
     public void setAttributeMask(EntitiesMask newMask) {
-        getAttributeMaskTableModel().setAttributeMask(newMask);
+        getAttributeMaskTableModel().setEntitiesMask(newMask);
     }
 
 }

@@ -4,24 +4,17 @@
  * Please read license.txt for licensing issues.
  **/
 
-
+//*
 package conexp.core.calculationstrategies.tests;
 
+import conexp.core.ContextFactoryRegistry;
 import conexp.core.ModifiableSet;
 import conexp.core.calculationstrategies.DepthSearchCalculatorWithFeatureMask;
 import conexp.core.searchconstraints.MinSupportConstrainer;
 import conexp.core.tests.SetBuilder;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 
 public class DepthSearchCalculatorWithFeatureMaskTest extends EnumerativeCalcStrategyTest {
-
-    private static final Class THIS = DepthSearchCalculatorWithFeatureMaskTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
     protected conexp.core.ConceptCalcStrategy makeCalcStrategy() {
         return new DepthSearchCalculatorWithFeatureMask();
@@ -33,8 +26,10 @@ public class DepthSearchCalculatorWithFeatureMaskTest extends EnumerativeCalcStr
     }
 
     private void doTestCalcStrategyWithFeatureMask(int[][] context, int[] featureMask, int[][] expOutputIntent, final int[][] expOutputExtents, final int expectedEdgeCount) {
-        final ModifiableSet featureMaskSet = SetBuilder.makeSet(featureMask);
-        getRealStrategy().setFeatureMask(featureMaskSet);
+        final ModifiableSet attributesMask = SetBuilder.makeSet(featureMask);
+    	final ModifiableSet objectsMask = ContextFactoryRegistry.createSet(context.length);
+        objectsMask.fill();
+        getRealStrategy().setFeatureMasks(attributesMask, objectsMask);
         doTestCalcStrategyForExpectedIntentsAndExtents(context,
                 expOutputIntent,
                 expOutputExtents,
@@ -48,8 +43,11 @@ public class DepthSearchCalculatorWithFeatureMaskTest extends EnumerativeCalcStr
         int[][] context = new int[][]{{0, 1},
                                       {1, 0}};
 
-        int[] featureMask = new int[]{1, 0};
-        getRealStrategy().setFeatureMask(SetBuilder.makeSet(featureMask));
+        int[] attributeMask = new int[]{1, 0};
+    	int[] objectsMask = new int[] {1, 1};
+
+
+        getRealStrategy().setFeatureMasks(SetBuilder.makeSet(attributeMask),SetBuilder.makeSet(objectsMask));
 
         int[][] expOutputIntent = new int[][]{{0, 0},
                                               {1, 0}};
@@ -58,7 +56,7 @@ public class DepthSearchCalculatorWithFeatureMaskTest extends EnumerativeCalcStr
                                                      {0, 1}};
 
 
-        doTestCalcStrategyWithFeatureMask(context, featureMask, expOutputIntent,
+        doTestCalcStrategyWithFeatureMask(context, attributeMask, expOutputIntent,
                 expOutputExtents, 1);
     }
 

@@ -41,7 +41,7 @@ public class NestedDiagramNodeFigureTest extends TestCase {
 
         final ConceptNodeQuery nativeConceptQuery = new ConceptNodeQuery(inner.getContext(),
                 inner.getZero(),
-                inner.getFeatureMask());
+                inner.getAttributesMask());
 
         NestedDiagramNodeFigure figure = new NestedDiagramNodeFigure(
                 innerMostDrawing, nativeConceptQuery,

@@ -29,9 +29,14 @@ public class FCAEngineRegistry {
         return getFcaEngine().buildLattice(cxt);
     }
 
-    public static Lattice buildPartialLattice(Context cxt, Set featureMask) {
-        return getFcaEngine().buildPartialLattice(cxt, featureMask);
+    public static Lattice buildPartialLattice(Context cxt, Set attributesMask, Set objectsMask) {
+        return getFcaEngine().buildPartialLattice(cxt, attributesMask, objectsMask);
     }
+    
+    /*
+	public static Lattice buildPartialLattice(Context cxt, Set featureMask, Set featureMaskO) {
+		return getFcaEngine().buildPartialLattice(cxt, featureMask, featureMaskO);
+	}*/
 
     public static Lattice buildIcebergLattice(Context cxt, int minSupport) {
         return getFcaEngine().buildIcebergLattice(cxt, minSupport);

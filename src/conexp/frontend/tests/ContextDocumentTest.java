@@ -14,7 +14,7 @@ import conexp.core.tests.ContextReductionTest;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.ContextDocument;
 import conexp.frontend.ToolbarComponentDecorator;
-import conexp.frontend.components.AttributeMaskChangeController;
+import conexp.frontend.components.EntityMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.contexteditor.ContextViewPanel;
 import junit.framework.TestCase;
@@ -142,7 +142,7 @@ public class ContextDocumentTest extends TestCase {
         doc.calculateLattice();
         LatticeComponent latticeComponent = doc.getLatticeComponent();
         assertEquals(latticeComponent.getLattice().conceptsCount(), 8);
-        latticeComponent.getAttributeMask().addPropertyChangeListener(new AttributeMaskChangeController(latticeComponent));
+        latticeComponent.getAttributeMask().addPropertyChangeListener(new EntityMaskChangeController(latticeComponent));
         latticeComponent.getAttributeMask().setSelected(2, false);
         assertEquals(4, latticeComponent.getLattice().conceptsCount());
         doc.calculateLattice();

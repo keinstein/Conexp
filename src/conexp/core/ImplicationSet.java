@@ -92,6 +92,11 @@ public class ImplicationSet extends DependencySet {
     }
 
     private void removeRedundantAndFindClosure() {
+        for(int j=dependencies.size(); --j>=0;){
+            Implication imp = getImplication(j);
+            imp.conclusion.or(imp.getPremise());
+            setClosure(imp.conclusion);
+        }
         for (int j = dependencies.size(); --j >= 0;) {
             Implication imp = getImplication(j);
             dependencies.remove(j);

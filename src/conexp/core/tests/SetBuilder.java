@@ -146,12 +146,12 @@ public class SetBuilder {
         return makeLatticeWithContext(relation, new DepthSearchCalculator());
     }
 
-    public static Lattice makeLatticeWithContextAndFeatureMask(int[][] relation, int[] featureMaskDescription) {
-        return FCAEngineRegistry.buildPartialLattice(makeContext(relation), makeSet(featureMaskDescription));
+    public static Lattice makeLatticeWithContextAndFeatureMask(int[][] relation, int[] featureMaskDescription, int[] featureMaskODescription) {
+        return FCAEngineRegistry.buildPartialLattice(makeContext(relation), makeSet(featureMaskDescription),makeSet(featureMaskODescription));
     }
 
-    public static Lattice makeLatticeWithContextAndFeatureMask(Context cxt, int[] featureMaskDescription) {
-        return FCAEngineRegistry.buildPartialLattice(cxt, makeSet(featureMaskDescription));
+    public static Lattice makeLatticeWithContextAndFeatureMask(Context cxt, int[] featureMaskDescription, int[] featureMaskODescription) {
+        return FCAEngineRegistry.buildPartialLattice(cxt, makeSet(featureMaskDescription), makeSet(featureMaskODescription));
     }
 
 

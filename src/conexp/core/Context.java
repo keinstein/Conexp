@@ -351,9 +351,9 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         }
     }
 
-    public void locateElementsConcepts(Lattice lattice, Set attributeMask) {
+    public void locateElementsConcepts(Lattice lattice, Set attributeMask, Set objectMask) {
         if (!lattice.isEmpty()) {
-            findObjectsConcepts(lattice);
+            findObjectsConcepts(lattice, objectMask);
             findAttributesConcepts(lattice, attributeMask);
         }
     }
@@ -383,12 +383,24 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     /******************************************************************
      * for objects from core find correpondent concepts
      *****************************************************************/
-    private void findObjectsConcepts(Lattice lattice) {
+	private void findObjectsConcepts(Lattice lattice) {
+			Assert.isTrue(null != lattice);
+			for (int j = getObjectCount(); --j >= 0;) {			
+					LatticeElement concept = lattice.findLatticeElementFromOne(rel.getSet(j));
+					Assert.isTrue(null != concept);
+					concept.addOwnObject(getObject(j));				
+			}
+		}
+
+		//---------------------------------------------------------------
+    private void findObjectsConcepts(Lattice lattice, Set objectMask) {
         Assert.isTrue(null != lattice);
         for (int j = getObjectCount(); --j >= 0;) {
-            LatticeElement concept = lattice.findLatticeElementFromOne(rel.getSet(j));
-            Assert.isTrue(null != concept);
-            concept.addOwnObject(getObject(j));
+        	if (objectMask.in(j)) {
+		        LatticeElement concept = lattice.findLatticeElementFromOne(rel.getSet(j));
+		        Assert.isTrue(null != concept);
+		        concept.addOwnObject(getObject(j));
+        	}
         }
     }
 

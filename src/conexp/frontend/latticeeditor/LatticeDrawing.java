@@ -163,7 +163,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
         elementFigureMap = new ConceptFigure[lattice.conceptsCount()];
         lattice.forEach(new Lattice.LatticeElementVisitor() {
             public void visitNode(LatticeElement node) {
-                ConceptFigure f = new ConceptFigure(new ConceptNodeQuery(lattice.getContext(), node, lattice.getFeatureMask()));
+                ConceptFigure f = new ConceptFigure(new ConceptNodeQuery(lattice.getContext(), node, lattice.getAttributesMask()));
                 elementFigureMap[node.getIndex()] = f;
                 addFigure(f);
             }
