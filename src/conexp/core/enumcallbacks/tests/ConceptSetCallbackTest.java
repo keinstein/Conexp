@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.enumcallbacks.tests;
 
 import conexp.core.ConceptsCollection;
@@ -8,9 +14,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/**
- * JUnit test case for ConceptSetCallbackTest
- */
 
 public class ConceptSetCallbackTest extends TestCase {
     private static final Class THIS = ConceptSetCallbackTest.class;

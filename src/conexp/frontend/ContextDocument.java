@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend;
 
 import com.visibleworkings.trace.Trace;
@@ -22,17 +28,13 @@ import util.FormatUtil;
 import util.StringUtil;
 
 import javax.swing.*;
-import java.awt.Component;
-import java.awt.Container;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.util.ResourceBundle;
 import java.util.TooManyListenersException;
 
-/**
- *@author     Sergey
- *created    8 N=L 2000 3.
- */
+
 public class ContextDocument implements ActionChainBearer, Document {
     //todo: refactor me
     // problems with setting lattice component( you can't set for now lattice component,
@@ -130,7 +132,6 @@ public class ContextDocument implements ActionChainBearer, Document {
 //        new BuildNestedLineDiagram(),
 //        new ShowDiagramEditor()
     };
-
 
 
     class CalcConceptCountDS extends AbstractAction {
@@ -532,7 +533,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         return viewFactory;
     }
 
-    static class JPanelView extends JPanel implements View{
+    static class JPanelView extends JPanel implements View {
         public void initialUpdate() {
             repaint();
         }

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core;
 
 import util.Assert;
@@ -41,11 +47,11 @@ public class LatticeElement extends Concept {
         return height;
     }
 
-    static abstract class EdgeIteratorWrapper implements ConceptIterator{
+    static abstract class EdgeIteratorWrapper implements ConceptIterator {
 
         protected Iterator edgeIterator;
 
-        EdgeIteratorWrapper(Iterator edgeIterator){
+        EdgeIteratorWrapper(Iterator edgeIterator) {
             this.edgeIterator = edgeIterator;
         }
 
@@ -64,18 +70,18 @@ public class LatticeElement extends Concept {
 
     }
 
-    public ConceptIterator predecessorElements(){
-        return new EdgeIteratorWrapper(predessors()){
+    public ConceptIterator predecessorElements() {
+        return new EdgeIteratorWrapper(predessors()) {
             public LatticeElement nextConcept() {
-                return ((Edge)edgeIterator.next()).getStart();
+                return ((Edge) edgeIterator.next()).getStart();
             }
         };
     }
 
-    public ConceptIterator successorElements(){
-        return new EdgeIteratorWrapper(successors()){
+    public ConceptIterator successorElements() {
+        return new EdgeIteratorWrapper(successors()) {
             public LatticeElement nextConcept() {
-                return ((Edge)edgeIterator.next()).getEnd();
+                return ((Edge) edgeIterator.next()).getEnd();
             }
         };
     }
@@ -133,10 +139,10 @@ public class LatticeElement extends Concept {
      * for test purposes only
      */
     public boolean equals(Object obj) {
-        if (!super.equals(obj)){
+        if (!super.equals(obj)) {
             return false;
         }
-        if(!(obj instanceof LatticeElement)){
+        if (!(obj instanceof LatticeElement)) {
             return true;
         }
         LatticeElement that = (LatticeElement) obj;

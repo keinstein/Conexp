@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.enumerators.tests;
 
 import com.mockobjects.ExpectationSet;
@@ -11,9 +17,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/**
- * JUnit test case for FilterEnumeratorTest
- */
 
 public class FilterEnumeratorTest extends TestCase {
     private static final Class THIS = FilterEnumeratorTest.class;

@@ -1,15 +1,17 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.util.gui;
 
 import javax.swing.undo.AbstractUndoableEdit;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: Dec 28, 2002
- * Time: 12:47:08 AM
- */
-public abstract class CommandBase extends AbstractUndoableEdit implements Command{
+
+public abstract class CommandBase extends AbstractUndoableEdit implements Command {
     String name;
 
     public CommandBase(String name) {
@@ -20,7 +22,7 @@ public abstract class CommandBase extends AbstractUndoableEdit implements Comman
         return name;
     }
 
-    public void performCommand(){
+    public void performCommand() {
         doCommand();
     }
 

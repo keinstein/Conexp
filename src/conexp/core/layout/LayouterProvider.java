@@ -1,9 +1,11 @@
-/*
- * Date: Feb 26, 2002
- * Time: 5:31:15 PM
- */
-package conexp.core.layout;
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 
+
+package conexp.core.layout;
 
 
 public interface LayouterProvider {

@@ -1,20 +1,10 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout;
-
-/* Point3D.java	(c) Ralph Freese 97/01/07
-
- * I am adding code which saves the last force calculation and takes the
- * dot product with the new force. If this is positive the movement is
- * increased but if it is negative it is decreased. This should prevent
- * wild oscillations. The formula I am using is to multiply v_new
- * (the new force) by
- *
- *                v_new \cdot v_old
- *        1 + 0.5 -----------------
- *                |v_new| * |v_old|
- *
- * 0.5 is the constant named factor; there is nothing scientific about it;
- * it just seems to work well.
- */
 
 
 public class Point3D extends Point2D {

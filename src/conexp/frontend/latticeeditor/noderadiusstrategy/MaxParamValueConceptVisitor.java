@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Jun 3, 2002
- * Time: 1:47:50 AM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor.noderadiusstrategy;
 
 import conexp.core.Concept;
@@ -17,7 +19,7 @@ public abstract class MaxParamValueConceptVisitor implements ConceptsCollection.
 
     public void visitConcept(Concept node) {
         int currValue = calcCurrentValue(node);
-        if(currValue>maxValue){
+        if (currValue > maxValue) {
             maxValue = currValue;
         }
     }

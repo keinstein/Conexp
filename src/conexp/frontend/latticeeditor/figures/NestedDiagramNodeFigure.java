@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Jun 2, 2002
- * Time: 4:02:24 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.BaseFigureVisitor;
@@ -18,7 +20,7 @@ import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
 import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -49,15 +51,14 @@ public class NestedDiagramNodeFigure extends ConceptCorrespondingFigure {
     }
 
 
-
     public ConceptQuery getConceptQuery() {
-        if(null==outerConceptQuery){
+        if (null == outerConceptQuery) {
             return nativeConceptQuery;
         }
         return outerConceptQuery;
     }
 
-    class InnerFigureCenterPointLocator implements CenterPointLocator{
+    class InnerFigureCenterPointLocator implements CenterPointLocator {
         AbstractConceptCorrespondingFigure innerFigure;
         CenterPointLocator innerFigureCenterPointLocator;
 
@@ -71,14 +72,14 @@ public class NestedDiagramNodeFigure extends ConceptCorrespondingFigure {
 
             Rectangle2D innerBounds = innerDiagram.getUserBoundsRect();
             double innerFigureCenterX = innerFigureCenterPointLocator.getCenterX();
-            return outerFigureCenterX+(innerFigureCenterX - innerBounds.getCenterX());
+            return outerFigureCenterX + (innerFigureCenterX - innerBounds.getCenterX());
         }
 
         public double getCenterY() {
             final double outerFigureCenterY = NestedDiagramNodeFigure.this.getCenterY();
             Rectangle2D innerBounds = innerDiagram.getUserBoundsRect();
             double innerFigureCenterY = innerFigureCenterPointLocator.getCenterY();
-            return outerFigureCenterY+(innerFigureCenterY - innerBounds.getCenterY());
+            return outerFigureCenterY + (innerFigureCenterY - innerBounds.getCenterY());
         }
 
         public void setCenterCoords(double x, double y) {
@@ -117,14 +118,14 @@ public class NestedDiagramNodeFigure extends ConceptCorrespondingFigure {
         Lattice lattice = innerDiagram.getLattice();
         elementFigureMap = new AbstractConceptCorrespondingFigure[lattice.conceptsCount()];
 
-        lattice.forEach(new Lattice.LatticeElementVisitor(){
+        lattice.forEach(new Lattice.LatticeElementVisitor() {
             public void visitNode(LatticeElement node) {
                 AbstractConceptCorrespondingFigure innerDiagramNodeFigure = innerDiagram.getFigureForConcept(node);
                 NestedDiagramDecoratingFigure nestedNodeFigure =
                         new NestedDiagramDecoratingFigure(innerDiagramNodeFigure, getConceptQuery(), isTop);
                 nestedNodeFigure.setCenterPointLocator(new InnerFigureCenterPointLocator(innerDiagramNodeFigure));
                 innerFigures.addFigure(nestedNodeFigure);
-                elementFigureMap[node.getIndex()]= nestedNodeFigure;
+                elementFigureMap[node.getIndex()] = nestedNodeFigure;
             }
         });
         makeEdgeFigures();
@@ -182,12 +183,11 @@ public class NestedDiagramNodeFigure extends ConceptCorrespondingFigure {
     }
 
     public canvas.Figure findFigureInside(double x, double y) {
-        if(innerFigures.contains(x, y)){
+        if (innerFigures.contains(x, y)) {
             return innerFigures.findFigureInside(x, y);
         }
         return super.findFigureInside(x, y);
     }
-
 
 
     public void visit(BaseFigureVisitor visitor) {

@@ -1,10 +1,18 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core;
 
 import contingencytable.IExtendedContingencyTable;
 
 public interface Dependency {
     Set getConclusion();
+
     int getConclusionLength();
+
     Set getPremise();
 
 
@@ -13,7 +21,9 @@ public interface Dependency {
     boolean isExact();
 
     int getPremiseSupport();
+
     int getRuleSupport();
+
     double getConfidence();
 
 

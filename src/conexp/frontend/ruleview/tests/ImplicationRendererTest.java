@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.ruleview.tests;
 
 import conexp.core.Implication;
@@ -7,9 +13,6 @@ import conexp.frontend.ruleview.RuleRenderer;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-/**
- * JUnit test case for ImplicationRenderer
- */
 
 public class ImplicationRendererTest extends GenericRuleRendererTest {
     private static final Class THIS = ImplicationRendererTest.class;

@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Feb 2, 2002
- * Time: 10:17:39 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.io;
 
 public interface ConExpXMLElements {
@@ -15,7 +17,7 @@ public interface ConExpXMLElements {
 
     String LATTICE_COLLECTION = "Lattices";
     String LATTICE_ELEMENT = "Lattice";
-    String ATTRIBUTE_MASK_ELEMENT="AttributeMask";
+    String ATTRIBUTE_MASK_ELEMENT = "AttributeMask";
     String LATTICE_DIAGRAM = "LineDiagram";
     String LATTICE_DIAGRAM_SETTINGS = "LineDiagramSettings";
     String ATTRIBUTE_LABEL_DISPLAY_MODE = "AttributeLabelsDisplayMode";
@@ -33,7 +35,7 @@ public interface ConExpXMLElements {
     String ATTRIBUTE_LABEL_FIGURE_TYPE = "AttributeLabel";
     String OBJECT_LABEL_FIGURE_TYPE = "ObjectLabel";
     String CONCEPT_FIGURE_TYPE = "Concept";
-    String CONCEPT_LABEL_FIGURE_TYPE="ConceptLabel";
+    String CONCEPT_LABEL_FIGURE_TYPE = "ConceptLabel";
 
 
     String FIGURE_COORDS = "FigureCooords";
@@ -44,7 +46,7 @@ public interface ConExpXMLElements {
 
     String OBJECT_COLLECTION = "Objects";
     String OBJECT_ELEMENT = "Object";
-    String OBJECT_REFERENCE="ObjectReference";
+    String OBJECT_REFERENCE = "ObjectReference";
 
     String INTENT = "Intent";
 

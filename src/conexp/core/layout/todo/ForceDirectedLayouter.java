@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout.todo;
 
 import conexp.core.Edge;
@@ -23,8 +29,8 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
         }
 
         void addDeltaToCurrPosWithFactor(double factor) {
-            coords.x = coords.getX() + deltaMove.getX() *(float) factor;
-            coords.y = coords.getY() + deltaMove.getY() * (float)factor;
+            coords.x = coords.getX() + deltaMove.getX() * (float) factor;
+            coords.y = coords.getY() + deltaMove.getY() * (float) factor;
             coords.z += deltaMove.z * factor;
         }
     };
@@ -54,7 +60,7 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
             float angle = 2 * PI / j;
 
             for (int k = 0; k < j; k++) {
-                Point3D pt  = getConceptInfo(topSorted[i + k]).coords;
+                Point3D pt = getConceptInfo(topSorted[i + k]).coords;
                 //			pt.z = rank*params.;
                 pt.x = drawParams.getGridSizeX()
                         * j

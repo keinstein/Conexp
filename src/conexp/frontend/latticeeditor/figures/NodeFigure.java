@@ -1,24 +1,25 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Aug 16, 2002
- * Time: 4:19:41 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.FigureUtils;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-public class NodeFigure extends AbstractLineDiagramFigure implements BorderCalculatingFigure{
+public class NodeFigure extends AbstractLineDiagramFigure implements BorderCalculatingFigure {
     private int radius = 10;
-    protected int id=-1;
+    protected int id = -1;
 
-    public void setId(int id){
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -35,11 +36,11 @@ public class NodeFigure extends AbstractLineDiagramFigure implements BorderCalcu
         FigureUtils.calcEllipseBorder(getRadius(),
                 getCenterX(), getCenterY(),
                 outPoint, result
-                );
+        );
     }
 
     public void draw(Graphics g, canvas.CanvasScheme opt) {
-        Graphics2D g2D = (Graphics2D)g;
+        Graphics2D g2D = (Graphics2D) g;
         g2D.setColor(opt.getColorScheme().getNodeBorderColor());
         Ellipse2D ellipse = getFigureEllipse();
         g2D.draw(ellipse);
@@ -47,7 +48,7 @@ public class NodeFigure extends AbstractLineDiagramFigure implements BorderCalcu
         String tmp = Integer.toString(id);
         double w = g2D.getFontMetrics().stringWidth(tmp);
         double h = g2D.getFontMetrics().getHeight();
-        g2D.drawString(tmp, (float)(getCenterX()- w / 2), (float)(getCenterY()+h/4));
+        g2D.drawString(tmp, (float) (getCenterX() - w / 2), (float) (getCenterY() + h / 4));
     }
 
 
@@ -57,7 +58,7 @@ public class NodeFigure extends AbstractLineDiagramFigure implements BorderCalcu
 
 
     protected Ellipse2D getFigureEllipse() {
-        return new Ellipse2D.Double(getCenterX()-getRadius(), getCenterY()-getRadius(), 2*getRadius(), 2*getRadius());
+        return new Ellipse2D.Double(getCenterX() - getRadius(), getCenterY() - getRadius(), 2 * getRadius(), 2 * getRadius());
     }
 
     protected int getRadius() {
@@ -69,7 +70,7 @@ public class NodeFigure extends AbstractLineDiagramFigure implements BorderCalcu
     }
 
     public String toString() {
-        return super.toString()+"[id="+id+"]";
+        return super.toString() + "[id=" + id + "]";
     }
 
 

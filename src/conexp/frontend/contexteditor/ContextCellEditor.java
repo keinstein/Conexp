@@ -1,20 +1,20 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.contexteditor;
 
-/**
- * ContextCellEditor.java
- * Created: Mon Jan 03 22:39:50 2000
- * @author Serhiy Yevtushenko
- */
 
 import javax.swing.*;
 import javax.swing.event.CellEditorListener;
-import java.awt.AWTEvent;
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.*;
 import java.io.Serializable;
 import java.util.EventObject;
 
-public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor{
+public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
     protected Component editorComponent;
     protected JButton crossEditorComponent = new JButton();
     protected JTextField textEditorComponent = new JTextField();

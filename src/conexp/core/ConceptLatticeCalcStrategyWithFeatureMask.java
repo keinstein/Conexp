@@ -1,10 +1,12 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 30.04.2002
- * Time: 20:13:17
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core;
 
-public interface ConceptLatticeCalcStrategyWithFeatureMask extends ConceptCalcStrategy, LatticeCalcStrategy{
+public interface ConceptLatticeCalcStrategyWithFeatureMask extends ConceptCalcStrategy, LatticeCalcStrategy {
     public void setFeatureMask(Set featureMask);
 }

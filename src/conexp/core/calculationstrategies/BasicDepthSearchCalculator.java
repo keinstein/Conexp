@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies;
 
 import conexp.core.ContextFactoryRegistry;
@@ -40,6 +46,7 @@ public abstract class BasicDepthSearchCalculator extends LatticeNeedingCalcStrat
         descEntitiesCopy = null;
         prohibitedSets = null;
     }
+
     //----------------------------------------------------------------------------
     protected abstract LatticeElement findLatticeElementFromOne(Set attribs);
 

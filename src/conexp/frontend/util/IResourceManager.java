@@ -1,10 +1,12 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.util;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: 14.01.2003
- * Time: 23:34:56
- */
+
 public interface IResourceManager {
 
     String getCommandLabel(String key);

@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: Jan 7, 2002
- * Time: 9:12:54 PM
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core;
 
 import conexp.core.registries.FCAEngineImplementation;
@@ -25,19 +24,19 @@ public class FCAEngineRegistry {
         return getFcaEngine().makeArrowCalculator();
     }
 
-    public static Lattice buildLattice(Context cxt){
+    public static Lattice buildLattice(Context cxt) {
         return getFcaEngine().buildLattice(cxt);
     }
 
-    public static Lattice buildPartialLattice(Context cxt, Set featureMask){
+    public static Lattice buildPartialLattice(Context cxt, Set featureMask) {
         return getFcaEngine().buildPartialLattice(cxt, featureMask);
     }
 
-    public static Lattice buildIcebergLattice(Context cxt, int minSupport){
+    public static Lattice buildIcebergLattice(Context cxt, int minSupport) {
         return getFcaEngine().buildIcebergLattice(cxt, minSupport);
     }
 
-    public static ConceptsCollection buildIcebergConceptSet(ExtendedContextEditingInterface cxt, int minSupport){
+    public static ConceptsCollection buildIcebergConceptSet(ExtendedContextEditingInterface cxt, int minSupport) {
         return getFcaEngine().buildIcebergConceptSet(cxt, minSupport);
     }
 
@@ -45,15 +44,15 @@ public class FCAEngineRegistry {
         getFcaEngine().buildIcebergConceptSet(cxt, minSupport, callback);
     }
 
-    public static Lattice makeLatticeForContext(Context cxt){
+    public static Lattice makeLatticeForContext(Context cxt) {
         return getFcaEngine().makeLatticeForContext(cxt);
     }
 
-    public static Context makeContext(int rows, int columns){
+    public static Context makeContext(int rows, int columns) {
         return getFcaEngine().makeContext(rows, columns);
     }
 
-    public static Context makeContext(ModifiableBinaryRelation relation){
+    public static Context makeContext(ModifiableBinaryRelation relation) {
         return getFcaEngine().makeContext(relation);
     }
 

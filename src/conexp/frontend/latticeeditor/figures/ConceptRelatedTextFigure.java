@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Jan 27, 2002
- * Time: 7:14:05 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.IHighlightStrategy;
@@ -12,7 +14,7 @@ import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
 import conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider;
 
-public abstract class ConceptRelatedTextFigure extends TextFigure implements BorderCalculatingLineDiagramFigure{
+public abstract class ConceptRelatedTextFigure extends TextFigure implements BorderCalculatingLineDiagramFigure {
     conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider figureDimensionProvider;
 
 
@@ -22,7 +24,7 @@ public abstract class ConceptRelatedTextFigure extends TextFigure implements Bor
         this.figureDimensionProvider = figureDimensionProvider;
     }
 
-    protected FigureDimensionCalcStrategyProvider getFigureDimensionProvider(){
+    protected FigureDimensionCalcStrategyProvider getFigureDimensionProvider() {
         return this.figureDimensionProvider;
     }
 

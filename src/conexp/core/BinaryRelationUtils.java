@@ -1,12 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core;
 
 import java.util.LinkedList;
 
-/**
- * Insert the type's description here.
- * Creation date: (09.03.01 23:30:36)
- * @author Serhiy Yevtushenko
- */
+
 public class BinaryRelationUtils {
     /**
      * Insert the method's description here.
@@ -195,8 +197,8 @@ public class BinaryRelationUtils {
     }
 
     public static int indexOfSet(BinaryRelation rel, Set temp) {
-        for(int k=0; k<rel.getRowCount(); k++){
-            if(temp.equals(rel.getSet(k))){
+        for (int k = 0; k < rel.getRowCount(); k++) {
+            if (temp.equals(rel.getSet(k))) {
                 return k;
             }
         }
@@ -208,11 +210,11 @@ public class BinaryRelationUtils {
         ModifiableSet tempClosure = ContextFactoryRegistry.createSet(colCount);
         tempClosure.fillByOne(colCount);
         int rowCount = relation.getRowCount();
-        for(int k=0; k<rowCount; k++){
+        for (int k = 0; k < rowCount; k++) {
             Set set = relation.getSet(k);
-            if(set.isSupersetOf(objectToClose)){
-               tempClosure.and(set);
-           }
+            if (set.isSupersetOf(objectToClose)) {
+                tempClosure.and(set);
+            }
         }
         return tempClosure;
     }

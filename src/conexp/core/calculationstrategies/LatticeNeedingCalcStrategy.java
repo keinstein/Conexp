@@ -1,13 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies;
 
 import conexp.core.*;
 
 
-/**
- * Insert the type's description here.
- * Creation date: (23.02.01 22:42:43)
- * @author
- */
 public abstract class LatticeNeedingCalcStrategy extends DepthSearchBinaryRelationAlgorithm implements ConceptCalcStrategy, LatticeCalcStrategy {
     protected Lattice lattice;
     protected ConceptEnumCallback callback;

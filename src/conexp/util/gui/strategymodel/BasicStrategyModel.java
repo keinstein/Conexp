@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 07.03.2002
- * Time: 4:09:28
-  */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.util.gui.strategymodel;
 
 import conexp.util.GenericStrategy;
@@ -12,8 +14,8 @@ import util.StringUtil;
 public abstract class BasicStrategyModel implements StrategyModel {
     public int findStrategyIndex(String strategyName) {
         int strategyCount = getStrategiesCount();
-        for(int i=0; i<strategyCount; i++){
-            if(getStrategyName(i).equals(strategyName)){
+        for (int i = 0; i < strategyCount; i++) {
+            if (getStrategyName(i).equals(strategyName)) {
                 return i;
             }
         }
@@ -24,7 +26,7 @@ public abstract class BasicStrategyModel implements StrategyModel {
         return StringUtil.extractClassName(genericstrategy.getClass().toString());
     }
 
-    protected GenericStrategy makeGenericStrategyByClassName(String className) throws ConfigFatalError{
+    protected GenericStrategy makeGenericStrategyByClassName(String className) throws ConfigFatalError {
         GenericStrategy genericStrategy;
         try {
             genericStrategy = (GenericStrategy) Class.forName(className).newInstance();

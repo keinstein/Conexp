@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: Jan 7, 2002
- * Time: 9:14:50 PM
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core.registries;
 
 import conexp.core.*;
@@ -34,7 +33,7 @@ public class FCAEngineImplementation implements FCAEngine {
     }
 
     public Lattice buildPartialLattice(Context cxt, Set featureMask) {
-        Assert.isTrue(cxt.getAttributeCount()==featureMask.size());
+        Assert.isTrue(cxt.getAttributeCount() == featureMask.size());
         DepthSearchCalculatorWithFeatureMask calc = new DepthSearchCalculatorWithFeatureMask();
         calc.setFeatureMask(featureMask);
 
@@ -47,7 +46,7 @@ public class FCAEngineImplementation implements FCAEngine {
         return result;
     }
 
-    public Lattice buildIcebergLattice(Context cxt, int minSupport){
+    public Lattice buildIcebergLattice(Context cxt, int minSupport) {
         DepthSearchCalculatorWithFeatureMask latticeCalc = new DepthSearchCalculatorWithFeatureMask();
         latticeCalc.setSearchConstrainter(new MinSupportConstrainer(minSupport));
         Lattice result = makeLatticeForContext(cxt);

@@ -1,10 +1,12 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout.todo;
 
-/**
- * Insert the type's description here.
- * Creation date: (03.03.01 18:54:34)
- * @author
- */
+
 public class ForceDirectParams {
     protected int D = 20;
     private conexp.core.Lattice lattice;

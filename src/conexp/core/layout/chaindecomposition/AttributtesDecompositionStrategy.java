@@ -1,12 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout.chaindecomposition;
 
 import conexp.core.BinaryRelationUtils;
 
-/**
- * Insert the type's description here.
- * Creation date: (09.03.01 19:10:14)
- * @author
- */
+
 public class AttributtesDecompositionStrategy implements ChainDecompositionStrategy {
     private conexp.core.ExtendedContextEditingInterface cxt;
 

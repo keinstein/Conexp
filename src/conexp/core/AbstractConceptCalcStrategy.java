@@ -1,12 +1,12 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core;
 
 
-/**
- *  Description of the Class
- *
- *@author     Sergey
- * created    8 Èþíü 2000 ã.
- */
 public class AbstractConceptCalcStrategy extends DefaultBinaryRelationProcessor implements ConceptCalcStrategy {
 
     protected ConceptEnumCallback callback;

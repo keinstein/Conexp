@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.ModifiableSet;
@@ -7,9 +13,6 @@ import conexp.core.tests.SetBuilder;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-/**
- * JUnit test case for DepthSearchCalculatorTest
- */
 
 public class DepthSearchCalculatorWithFeatureMaskTest extends EnumerativeCalcStrategyTest {
 
@@ -113,14 +116,14 @@ public class DepthSearchCalculatorWithFeatureMaskTest extends EnumerativeCalcStr
     }
 
 
-    public void testBuildIcebergLattice(){
+    public void testBuildIcebergLattice() {
 
-        int[][] relation=new int[][]{
-                {1, 0, 1, 1, 0},
-                {0, 1, 1, 0, 1},
-                {1, 1, 1, 0, 1},
-                {0, 1, 0, 0, 1},
-                {1, 1, 1, 0, 1}
+        int[][] relation = new int[][]{
+            {1, 0, 1, 1, 0},
+            {0, 1, 1, 0, 1},
+            {1, 1, 1, 0, 1},
+            {0, 1, 0, 0, 1},
+            {1, 1, 1, 0, 1}
         };
 
         getRealStrategy().setSearchConstrainter(new MinSupportConstrainer(6));

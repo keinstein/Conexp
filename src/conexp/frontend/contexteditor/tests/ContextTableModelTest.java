@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.contexteditor.tests;
 
 import conexp.core.ContextEditingInterface;
@@ -14,7 +20,7 @@ import util.testing.MockTableModelListener;
 import util.testing.MockUndoableEditListener;
 import util.testing.TestUtil;
 
-public class ContextTableModelTest extends TestCase{
+public class ContextTableModelTest extends TestCase {
     private static final Class THIS = ContextTableModelTest.class;
 
     public static Test suite() {
@@ -122,51 +128,51 @@ public class ContextTableModelTest extends TestCase{
     }
 
     public void testCanDeleteColumns() {
-         assertEquals(3, tableModel.getAttribCountModel().getValue());
-         assertEquals("No columns are specified for deletion", false, tableModel.canProcessColumns(new int[0]));
-         assertEquals("can delete attribute column",true, tableModel.canProcessColumns(new int[]{1}));
-         assertEquals("can't delete names column" ,false, tableModel.canProcessColumns(new int[]{0}));
-         assertEquals("can't delete names column", false, tableModel.canProcessColumns(new int[] {0,1}));
-         assertEquals("can delete columns, when at least one attribute column left", true, tableModel.canProcessColumns(new int[]{1, 3}));
-         assertEquals("can't delete all attribute columns",  false, tableModel.canProcessColumns(new int[]{1, 2, 3}));
+        assertEquals(3, tableModel.getAttribCountModel().getValue());
+        assertEquals("No columns are specified for deletion", false, tableModel.canProcessColumns(new int[0]));
+        assertEquals("can delete attribute column", true, tableModel.canProcessColumns(new int[]{1}));
+        assertEquals("can't delete names column", false, tableModel.canProcessColumns(new int[]{0}));
+        assertEquals("can't delete names column", false, tableModel.canProcessColumns(new int[]{0, 1}));
+        assertEquals("can delete columns, when at least one attribute column left", true, tableModel.canProcessColumns(new int[]{1, 3}));
+        assertEquals("can't delete all attribute columns", false, tableModel.canProcessColumns(new int[]{1, 2, 3}));
     }
 
-    public void testRemoveColumns(){
+    public void testRemoveColumns() {
         assertEquals(3, tableModel.getAttribCountModel().getValue());
         tableModel.removeColumns(new int[]{1, 3});
         assertEquals(1, tableModel.getAttribCountModel().getValue());
-        assertEquals(Boolean.FALSE, tableModel.getValueAt(1,1));
+        assertEquals(Boolean.FALSE, tableModel.getValueAt(1, 1));
     }
 
-    public void testCanDeleteRows(){
+    public void testCanDeleteRows() {
         assertEquals(2, tableModel.getObjectCountModel().getValue());
         assertEquals("No rows are specified for deletion", false, tableModel.canDeleteRows(new int[0]));
         assertEquals("Can't delete names row", false, tableModel.canDeleteRows(new int[]{0}));
         assertEquals("Can delete object row", true, tableModel.canDeleteRows(new int[]{2}));
         assertEquals("Can't delete names row", false, tableModel.canDeleteRows(new int[]{0, 2}));
-        assertEquals("Can't delete all objects rows", false, tableModel.canDeleteRows(new int[]{1,2}));
+        assertEquals("Can't delete all objects rows", false, tableModel.canDeleteRows(new int[]{1, 2}));
     }
 
-    public void testDeleteRows(){
+    public void testDeleteRows() {
         tableModel = new ContextTableModel(SetBuilder.makeContext(new int[][]{
-        {0,1},
-        {1,0},
-        {0,1}
+            {0, 1},
+            {1, 0},
+            {0, 1}
         }));
         assertEquals(3, tableModel.getObjectCountModel().getValue());
-        tableModel.removeRows(new int[]{1,3});
+        tableModel.removeRows(new int[]{1, 3});
     }
 
-    public void testHasAtLeastOneNonHeaderCell(){
-         assertEquals(3, tableModel.getAttribCountModel().getValue());
-         assertEquals(2, tableModel.getObjectCountModel().getValue());
-         assertEquals(false, tableModel.hasAtLeastOneNonHeaderCell(new int[0], new int[0]));
-         assertEquals(true, tableModel.hasAtLeastOneNonHeaderCell(new int[]{1}, new int[]{1}));
-         assertEquals(false, tableModel.hasAtLeastOneNonHeaderCell(new int[]{0}, new int[]{1}));
-         assertEquals(false, tableModel.hasAtLeastOneNonHeaderCell(new int[]{2}, new int[]{0}));
+    public void testHasAtLeastOneNonHeaderCell() {
+        assertEquals(3, tableModel.getAttribCountModel().getValue());
+        assertEquals(2, tableModel.getObjectCountModel().getValue());
+        assertEquals(false, tableModel.hasAtLeastOneNonHeaderCell(new int[0], new int[0]));
+        assertEquals(true, tableModel.hasAtLeastOneNonHeaderCell(new int[]{1}, new int[]{1}));
+        assertEquals(false, tableModel.hasAtLeastOneNonHeaderCell(new int[]{0}, new int[]{1}));
+        assertEquals(false, tableModel.hasAtLeastOneNonHeaderCell(new int[]{2}, new int[]{0}));
     }
 
-    public void testApplyOperationForSelection(){
+    public void testApplyOperationForSelection() {
         tableModel = new ContextTableModel(SetBuilder.makeContext(new int[][]{{0, 0}}));
         tableModel.applyCellTransformerToNonHeaderCells(new int[]{1}, new int[]{1, 2}, new FillByValueCellTransformer(Boolean.TRUE));
         assertEquals(Boolean.TRUE, tableModel.getValueAt(1, 1));
@@ -177,21 +183,21 @@ public class ContextTableModelTest extends TestCase{
         tableModel.applyCellTransformerToNonHeaderCells(new int[]{1}, new int[]{1, 2}, new InverseValueCellTransformer());
         assertEquals(Boolean.TRUE, tableModel.getValueAt(1, 1));
         assertEquals(Boolean.FALSE, tableModel.getValueAt(1, 2));
-   }
+    }
 
-   interface ContextTableModifier{
-       void modifyTable(ContextTableModel tableModel);
-   }
+    interface ContextTableModifier {
+        void modifyTable(ContextTableModel tableModel);
+    }
 
-   public void testUndoCommandOnSetObjectName(){
-       ContextTableModifier modifier = new ContextTableModifier(){
-           public void modifyTable(ContextTableModel tableModel) {
-               tableModel.setValueAt("One", 1, 0); //Object name for first object
-           }
-       };
+    public void testUndoCommandOnSetObjectName() {
+        ContextTableModifier modifier = new ContextTableModifier() {
+            public void modifyTable(ContextTableModel tableModel) {
+                tableModel.setValueAt("One", 1, 0); //Object name for first object
+            }
+        };
 
-       doTestDoUndoCommand(modifier);
-   }
+        doTestDoUndoCommand(modifier);
+    }
 
 
     private void doTestDoUndoCommand(ContextTableModifier modifier) {
@@ -228,25 +234,25 @@ public class ContextTableModelTest extends TestCase{
         tableModelListener.verify();
     }
 
-    public void testUndoCommandOnSetAttributeName(){
-       doTestDoUndoCommand(new ContextTableModifier(){
-           public void modifyTable(ContextTableModel tableModel) {
-               tableModel.setValueAt("AttrOne", 0, 1);
-           }
-       });
-   }
+    public void testUndoCommandOnSetAttributeName() {
+        doTestDoUndoCommand(new ContextTableModifier() {
+            public void modifyTable(ContextTableModel tableModel) {
+                tableModel.setValueAt("AttrOne", 0, 1);
+            }
+        });
+    }
 
-    public void testUndoCommandOnSetRelationValue(){
+    public void testUndoCommandOnSetRelationValue() {
         assertFalse(tableModel.getContext().getRelationAt(1, 0));
-        doTestDoUndoCommand(new ContextTableModifier(){
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.setValueAt(BooleanUtil.valueOf(true), 2, 1);
             }
         });
     }
 
-    public void testUndoOnCellTransformer(){
-        doTestDoUndoCommand(new ContextTableModifier(){
+    public void testUndoOnCellTransformer() {
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.applyCellTransformerToNonHeaderCells(
                         new int[]{0, 1},
@@ -257,36 +263,36 @@ public class ContextTableModelTest extends TestCase{
         });
     }
 
-    public void testUndoOnRemoveColumns(){
-        doTestDoUndoCommand(new ContextTableModifier(){
+    public void testUndoOnRemoveColumns() {
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.removeColumns(new int[]{1, 2});
             }
         });
     }
 
-    public void testUndoOnRemoveObject(){
-        doTestDoUndoCommand(new ContextTableModifier(){
+    public void testUndoOnRemoveObject() {
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.removeRows(new int[]{1});
             }
         });
     }
 
-   public void testUndoOnSetObjectCount(){
-       doTestDoUndoCommand(new ContextTableModifier(){
-           public void modifyTable(ContextTableModel tableModel) {
-               try {
-                   tableModel.getObjectCountModel().setValue(5);
-               } catch (java.beans.PropertyVetoException e) {
-                   TestUtil.reportUnexpectedException(e);
-               }
-           }
-       });
-   }
+    public void testUndoOnSetObjectCount() {
+        doTestDoUndoCommand(new ContextTableModifier() {
+            public void modifyTable(ContextTableModel tableModel) {
+                try {
+                    tableModel.getObjectCountModel().setValue(5);
+                } catch (java.beans.PropertyVetoException e) {
+                    TestUtil.reportUnexpectedException(e);
+                }
+            }
+        });
+    }
 
-    public void testUndoOnSetAttributeCount(){
-        doTestDoUndoCommand(new ContextTableModifier(){
+    public void testUndoOnSetAttributeCount() {
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 try {
                     tableModel.getAttribCountModel().setValue(5);
@@ -297,23 +303,23 @@ public class ContextTableModelTest extends TestCase{
         });
     }
 
-    public void testUndoOnTransposeContext(){
-        doTestDoUndoCommand(new ContextTableModifier(){
+    public void testUndoOnTransposeContext() {
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.performCommand(tableModel.new TransposeContextCommand());
             }
         });
     }
 
-    public void testUndoOnPurifyContext(){
-        doTestDoUndoCommand(new ContextTableModifier(){
+    public void testUndoOnPurifyContext() {
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.performCommand(tableModel.new PurifyContextCommand());
             }
         });
     }
 
-    public void testUndoOnPurifyObjects(){
+    public void testUndoOnPurifyObjects() {
         tableModel = new ContextTableModel(
                 SetBuilder.makeContext(
                         new int[][]{
@@ -323,30 +329,30 @@ public class ContextTableModelTest extends TestCase{
                         }
                 ));
 
-        doTestDoUndoCommand(new ContextTableModifier(){
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.performCommand(tableModel.new PurifyObjectsCommand());
             }
         });
     }
 
-    public void testUndoOnPurifyAttributes(){
-        doTestDoUndoCommand(new ContextTableModifier(){
+    public void testUndoOnPurifyAttributes() {
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.performCommand(tableModel.new PurifyAttributesCommand());
             }
         });
     }
 
-    public void testUndoOnReduceContext(){
-        doTestDoUndoCommand(new ContextTableModifier(){
+    public void testUndoOnReduceContext() {
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.performCommand(tableModel.new ReduceContextCommand());
             }
         });
     }
 
-    public void testUndoOnReduceObjects(){
+    public void testUndoOnReduceObjects() {
         tableModel = new ContextTableModel(
                 SetBuilder.makeContext(
                         new int[][]{
@@ -356,15 +362,15 @@ public class ContextTableModelTest extends TestCase{
                         }
                 ));
 
-        doTestDoUndoCommand(new ContextTableModifier(){
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.performCommand(tableModel.new ReduceObjectsCommand());
             }
         });
     }
 
-    public void testUndoOnReduceAttributes(){
-        doTestDoUndoCommand(new ContextTableModifier(){
+    public void testUndoOnReduceAttributes() {
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.performCommand(tableModel.new ReduceAttributesCommand());
             }
@@ -372,16 +378,16 @@ public class ContextTableModelTest extends TestCase{
     }
 
 
-    public void testUndoOnAddAttrib(){
-        doTestDoUndoCommand(new ContextTableModifier(){
+    public void testUndoOnAddAttrib() {
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.performCommand(tableModel.new AddAttribCommand());
             }
         });
     }
 
-    public void testUndoOnAddObject(){
-        doTestDoUndoCommand(new ContextTableModifier(){
+    public void testUndoOnAddObject() {
+        doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.performCommand(tableModel.new AddRowCommand());
             }

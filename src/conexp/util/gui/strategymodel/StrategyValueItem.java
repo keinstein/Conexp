@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.util.gui.strategymodel;
 
 import com.visibleworkings.trace.Trace;
@@ -24,7 +30,7 @@ public class StrategyValueItem implements ActionListener {
     public void actionPerformed(ActionEvent actionevent) {
         JComboBox jcombobox = (JComboBox) actionevent.getSource();
         int i = jcombobox.getSelectedIndex();
-        if (-1 != i){
+        if (-1 != i) {
             setValue(i);
         }
     }
@@ -38,8 +44,8 @@ public class StrategyValueItem implements ActionListener {
     }
 
     public void setValue(int newValue) {
-        if(newValue<0 || newValue>=model.getStrategiesCount()){
-            Trace.gui.errorm("attempt to set bad value "+newValue+" for property " + propertyName + "]", this);
+        if (newValue < 0 || newValue >= model.getStrategiesCount()) {
+            Trace.gui.errorm("attempt to set bad value " + newValue + " for property " + propertyName + "]", this);
             return;
         }
         if (newValue != value) {
@@ -62,11 +68,11 @@ public class StrategyValueItem implements ActionListener {
         return getDescription()[value];
     }
 
-    public String getStrategyKey(){
+    public String getStrategyKey() {
         return model.getStrategyName(value);
     }
 
-    public int findStrategyByKey(String key){
+    public int findStrategyByKey(String key) {
         return model.findStrategyIndex(key);
     }
 
@@ -77,9 +83,9 @@ public class StrategyValueItem implements ActionListener {
         return propertyChange;
     }
 
-    public boolean setValueByKey(String key){
+    public boolean setValueByKey(String key) {
         int index = findStrategyByKey(key);
-        if(-1==index){
+        if (-1 == index) {
             return false;
         }
         setValue(index);

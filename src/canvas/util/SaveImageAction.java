@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.util;
 
 import canvas.IScreenImageProvider;
@@ -9,17 +15,13 @@ import util.imagecodecs.ImageCodec;
 import util.imagecodecs.ImageCodecsFactory;
 
 import javax.swing.*;
-import java.awt.Frame;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: Nov 22, 2002
- * Time: 6:38:35 PM
- */
+
 public class SaveImageAction extends AbstractAction {
     private IScreenImageProvider screenImageProvider;
     private String title;

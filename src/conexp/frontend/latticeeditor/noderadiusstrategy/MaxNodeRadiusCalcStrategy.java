@@ -1,12 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.noderadiusstrategy;
 
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.DrawParameters;
 
-/**
- * Insert the type's description here.
- * Creation date: (11.10.00 21:44:17)
- */
+
 public class MaxNodeRadiusCalcStrategy extends AbstractNodeRadiusCalcStrategy {
     /**
      * Insert the method's description here.

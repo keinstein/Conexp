@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.tests;
 
 import conexp.core.*;
@@ -145,7 +151,7 @@ public class ImplicationSetTest extends TestCase {
         assertEquals(false, implicationSet1.equalsToIsomorphism(implicationSet2));
     }
 
-    public void testEquals(){
+    public void testEquals() {
         MockAttributeInformationSupplier supplier = new MockAttributeInformationSupplier(3);
         ImplicationSet one = new ImplicationSet(supplier);
         ImplicationSet two = new ImplicationSet(supplier);
@@ -154,12 +160,12 @@ public class ImplicationSetTest extends TestCase {
         assertEquals(false, one.equals(new Object()));
 
 
-        one.addImplication(makeImplication(new int[] {0,0, 0}, new int[]{1,1,1}));
+        one.addImplication(makeImplication(new int[]{0, 0, 0}, new int[]{1, 1, 1}));
         assertEquals(false, one.equals(two));
 
     }
 
-    public void testMakeCompatibleDependencySet(){
+    public void testMakeCompatibleDependencySet() {
         assertTrue(impSet.makeCompatibleDependencySet() instanceof ImplicationSet);
     }
 }

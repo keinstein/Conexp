@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas;
 
 import util.Assert;
@@ -6,8 +12,7 @@ import util.collection.CollectionFactory;
 import util.collection.ReverseListIterator;
 import util.gui.GraphicObjectsFactory;
 
-import java.awt.Dimension;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeEvent;
@@ -15,7 +20,7 @@ import java.beans.PropertyChangeListener;
 import java.util.Collection;
 import java.util.Iterator;
 
-public class FigureDrawing extends BasePropertyChangeSupplier{
+public class FigureDrawing extends BasePropertyChangeSupplier {
 
     public static final String BOUNDS_BOX_PROPERTY = "BoundsBox";
 
@@ -23,9 +28,9 @@ public class FigureDrawing extends BasePropertyChangeSupplier{
 
     public FigureDrawing() {
         super();
-        addPropertyChangeListener(BOUNDS_BOX_PROPERTY, new PropertyChangeListener(){
+        addPropertyChangeListener(BOUNDS_BOX_PROPERTY, new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent evt) {
-                Rectangle2D newBounds = (Rectangle2D)evt.getNewValue();
+                Rectangle2D newBounds = (Rectangle2D) evt.getNewValue();
                 setDimension(makeDrawingDimension((int) newBounds.getWidth(), (int) newBounds.getHeight()));
             }
         });
@@ -130,7 +135,7 @@ public class FigureDrawing extends BasePropertyChangeSupplier{
         return findContainingFigure(new ReverseListIterator(figures), x, y);
     }
 
-    public Figure findFigureInReverseOrderExceptFor(double x, double y, Figure toExclude){
+    public Figure findFigureInReverseOrderExceptFor(double x, double y, Figure toExclude) {
         Figure ret = findContainingFigureExceptFor(new ReverseListIterator(foreground), x, y, toExclude);
         if (null != ret)
             return ret;
@@ -151,7 +156,7 @@ public class FigureDrawing extends BasePropertyChangeSupplier{
     private Figure findContainingFigureExceptFor(Iterator iter, double x, double y, Figure toExclude) {
         while (iter.hasNext()) {
             Figure curr = (Figure) iter.next();
-            if(curr!=toExclude && curr.contains(x, y)) {
+            if (curr != toExclude && curr.contains(x, y)) {
                 return curr.findFigureInsideExceptFor(x, y, toExclude);
             }
         }
@@ -290,7 +295,7 @@ public class FigureDrawing extends BasePropertyChangeSupplier{
 
     private void setBounds(Rectangle2D rectangle) {
         makeBoundsRectClear();
-        if(null==bounds || !bounds.equals(rectangle)){
+        if (null == bounds || !bounds.equals(rectangle)) {
             Rectangle2D oldValue = bounds;
             bounds = rectangle;
             firePropertyChange(BOUNDS_BOX_PROPERTY, oldValue, bounds);
@@ -327,11 +332,12 @@ public class FigureDrawing extends BasePropertyChangeSupplier{
 
     public Collection selectFiguresInRect(final Rectangle2D selectionRect) {
         final java.util.List ret = CollectionFactory.createDefaultList();
-        forAllFigures(new FigureBlock(){
+        forAllFigures(new FigureBlock() {
             Rectangle2D workingRect = GraphicObjectsFactory.makeRectangle2D();
+
             public void exec(Figure f) {
                 f.boundingBox(workingRect);
-                if(selectionRect.contains(workingRect)){
+                if (selectionRect.contains(workingRect)) {
                     ret.add(f);
                 }
             }

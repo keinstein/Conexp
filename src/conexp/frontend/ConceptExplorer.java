@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend;
 
 import com.visibleworkings.trace.Trace;
@@ -5,8 +11,7 @@ import com.visibleworkings.trace.TraceController;
 import util.StringUtil;
 
 import javax.swing.*;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
 
 public class ConceptExplorer {
     private static java.util.ResourceBundle resConceptExplorer = java.util.ResourceBundle.getBundle("conexp/frontend/resources/ConceptExplorer");  //$NON-NLS-1$

@@ -1,14 +1,16 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.util;
 
 import util.gui.ActionWithKey;
 
 import java.awt.event.ActionEvent;
 
-/*
- * User: Serhiy Yevtushenko
- * Date: 14.10.2002
- * Time: 15:40:36
- */
+
 public class ToolAction extends ActionWithKey {
     canvas.Tool tool;
     private canvas.FigureDrawingCanvas drawing;

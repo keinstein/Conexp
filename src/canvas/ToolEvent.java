@@ -1,14 +1,15 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 14.10.2002
- * Time: 20:30:54
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 
 package canvas;
 
 import java.util.EventObject;
 
-public class ToolEvent extends EventObject{
+public class ToolEvent extends EventObject {
 
     public ToolEvent(Object source, int type) {
         super(source);
@@ -30,16 +31,16 @@ public class ToolEvent extends EventObject{
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof ToolEvent)){
+        if (!(obj instanceof ToolEvent)) {
             return false;
         }
 
         final ToolEvent that = (ToolEvent) obj;
 
-        if(this.getSource()!=that.getSource()){
+        if (this.getSource() != that.getSource()) {
             return false;
         }
-        if (type != that.type){
+        if (type != that.type) {
             return false;
         }
         return true;

@@ -1,14 +1,16 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core;
 
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.EventObject;
 
-/**
- * Insert the type's description here.
- * Creation date: (19.04.01 22:58:26)
- * @author
- */
+
 public class ContextListenerSupport {
     private transient java.util.ArrayList listeners;
     private final ExtendedContextEditingInterface cxt;
@@ -44,7 +46,7 @@ public class ContextListenerSupport {
             }
         }
 
-        protected EventObject getEvent(){
+        protected EventObject getEvent() {
             return null;
         }
 
@@ -99,7 +101,7 @@ public class ContextListenerSupport {
     }
 
     public void fireContextTransposed() {
-        eventFireHelper(new ContextListenerEventBinder(){
+        eventFireHelper(new ContextListenerEventBinder() {
             protected void fireEventFor(ContextListener listener, EventObject evt) {
                 listener.contextTransposed();
             }
@@ -126,7 +128,7 @@ public class ContextListenerSupport {
             }
 
             protected void fireEventFor(ContextListener listener, EventObject evt) {
-                listener.objectNameChanged((PropertyChangeEvent)evt);
+                listener.objectNameChanged((PropertyChangeEvent) evt);
             }
         });
     }
@@ -138,7 +140,7 @@ public class ContextListenerSupport {
             }
 
             protected void fireEventFor(ContextListener listener, EventObject evt) {
-                listener.attributeNameChanged((PropertyChangeEvent)evt);
+                listener.attributeNameChanged((PropertyChangeEvent) evt);
             }
         });
     }
@@ -167,14 +169,14 @@ public class ContextListenerSupport {
         listeners.remove(lst);
     }
 
-    static class  AttributeEventBinder extends ContextListenerEventBinder{
+    static class AttributeEventBinder extends ContextListenerEventBinder {
         protected void fireEventFor(ContextListener listener, EventObject evt) {
-            listener.attributeChanged((ContextChangeEvent)evt);
+            listener.attributeChanged((ContextChangeEvent) evt);
         }
     }
 
     public void fireAttributeInserted(final int j) {
-        eventFireHelper(new AttributeEventBinder(){
+        eventFireHelper(new AttributeEventBinder() {
             protected EventObject getEvent() {
                 return ContextChangeEvent.makeAttributeInsertedEvent(cxt, j);
             }
@@ -183,7 +185,7 @@ public class ContextListenerSupport {
     }
 
     public void fireAttributeRemoved(final int index) {
-        eventFireHelper(new AttributeEventBinder(){
+        eventFireHelper(new AttributeEventBinder() {
             protected EventObject getEvent() {
                 return ContextChangeEvent.makeAttributeRemovedEvent(cxt, index);
             }

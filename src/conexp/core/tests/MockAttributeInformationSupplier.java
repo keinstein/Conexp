@@ -1,7 +1,10 @@
-/*
- * Date: Dec 2, 2001
- * Time: 11:55:30
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core.tests;
 
 import conexp.core.AttributeInformationSupplier;

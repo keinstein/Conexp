@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.ConceptsCollection;
@@ -7,10 +13,7 @@ import conexp.core.enumcallbacks.NextClosedSetLatticeBuilderCallback;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-/**
- * Creation date: (12.07.01 16:16:04)
- * @author sergey
- */
+
 public class NextClosedSetCalcBuildLatTest extends LatticeBuildingDepthSearchCalculatorTest {
     private static final Class THIS = NextClosedSetCalcBuildLatTest.class;
 

@@ -1,13 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.io;
 
 import conexp.frontend.DataFormatErrorHandler;
 import util.DataFormatException;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: Dec 11, 2002
- * Time: 10:03:51 PM
- */
+
 public abstract class DataFormatErrorHandlerBase implements DataFormatErrorHandler {
     public void handleCriticalError(DataFormatException ex) throws DataFormatException {
         throw ex;

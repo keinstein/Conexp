@@ -1,9 +1,13 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.contexteditor;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
+import java.awt.*;
 
 class CrossIcon implements Icon {
     final int height = 16;
@@ -34,11 +38,7 @@ class CrossIcon implements Icon {
         g.drawLine(x + 1, y + height, x + width, y + 1);
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (22.04.01 21:39:16)
-     * @return javax.swing.Icon
-     */
+
     public static Icon getCross() {
         if (null == cross) {
             cross = new CrossIcon();

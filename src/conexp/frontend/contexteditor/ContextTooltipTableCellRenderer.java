@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.contexteditor;
 
 import conexp.core.ContextEditingInterface;
@@ -8,7 +14,7 @@ import conexp.util.gui.strategymodel.StrategyValueItem;
 import javax.swing.*;
 import javax.swing.table.TableModel;
 
-public class ContextTooltipTableCellRenderer extends util.gui.celleditors.MyDefaultCellRenderer implements ParamsProvider{
+public class ContextTooltipTableCellRenderer extends util.gui.celleditors.MyDefaultCellRenderer implements ParamsProvider {
 
 
     protected StrategyValueItem drawStrategy;

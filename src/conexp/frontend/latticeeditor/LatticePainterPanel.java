@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor;
 
 import canvas.util.SaveImageAction;
@@ -11,18 +17,12 @@ import conexp.frontend.util.IResourceManager;
 import conexp.frontend.util.ResourceManager;
 
 import javax.swing.*;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.ResourceBundle;
 
-/**
- *@author     Sergey
- *created    8 Èþíü 2000 ã.
- */
+
 public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewChangeInterfaceWithConfig {
 
     protected LatticeDrawing getLatticeDrawing() {
@@ -34,7 +34,7 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
         return getLatticeDrawing().getLattice();
     }
 
-    class PanningTool extends canvas.DefaultTool{
+    class PanningTool extends canvas.DefaultTool {
         int xDiff = 0;
         int yDiff = 0;
 
@@ -146,7 +146,7 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
         }
 
         public void actionPerformed(ActionEvent e) {
-            setZoom(getZoom()*1.1);
+            setZoom(getZoom() * 1.1);
         }
     }
 
@@ -156,7 +156,7 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
         }
 
         public void actionPerformed(ActionEvent e) {
-            setZoom(getZoom()/1.1);
+            setZoom(getZoom() / 1.1);
         }
     }
 

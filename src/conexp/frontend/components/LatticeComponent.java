@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.components;
 
 import conexp.core.Context;
@@ -12,10 +18,7 @@ import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.LayoutEngine;
 import util.BasePropertyChangeSupplier;
 
-/**
- *@author     Sergey
- *@created    8 N=L 2000 3.
- */
+
 public class LatticeComponent extends BasePropertyChangeSupplier implements LatticeDrawingProvider, LatticeCalculator {
     protected Context context;
     protected LatticeDrawing latticeDrawing;
@@ -23,7 +26,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     protected Lattice lattice;
 
     public LatticeComponent() {
-        this(FCAEngineRegistry.makeContext(0,0));
+        this(FCAEngineRegistry.makeContext(0, 0));
     }
 
     public LatticeComponent(Context cxt) {
@@ -54,7 +57,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     }
 
     public synchronized Lattice getLattice() {
-        if(null==lattice){
+        if (null == lattice) {
             createNewLattice();
         }
         return lattice;
@@ -79,7 +82,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         if (null == latticeDrawing) {
             latticeDrawing = new LatticeDrawing();
             latticeDrawing.setLattice(getLattice());
-            if(null!=layoutEngine){
+            if (null != layoutEngine) {
                 latticeDrawing.setLayoutEngine(layoutEngine);
             }
         }

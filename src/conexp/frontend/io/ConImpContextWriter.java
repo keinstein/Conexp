@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: Nov 27, 2001
- * Time: 11:56:16 PM
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.io;
 
 import conexp.core.ExtendedContextEditingInterface;
@@ -20,10 +19,10 @@ public class ConImpContextWriter implements DocumentWriter {
     private static final String newline = System.getProperty("line.separator");
 
     public void storeDocument(Document document, Writer w) throws IOException {
-        if(!(document instanceof ContextDocument)){
-            throw new IOException("Can't process documents of type: "+document);
+        if (!(document instanceof ContextDocument)) {
+            throw new IOException("Can't process documents of type: " + document);
         }
-        ContextDocument contextDocument = (ContextDocument)document;
+        ContextDocument contextDocument = (ContextDocument) document;
         ExtendedContextEditingInterface cxt = contextDocument.getContext();
         try {
             w.write("B" + newline);//$NON-NLS-1$

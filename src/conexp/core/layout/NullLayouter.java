@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout;
 
 import conexp.core.ItemSet;
@@ -20,12 +26,7 @@ public class NullLayouter extends NonIncrementalLayouter {
     public void initLayout(conexp.core.Lattice l, DrawParameters drawParams) {
     }
 
-    public void calcInitialPlacement() {
-    }
-
-    public void improveOnce() {
-    }
-
+//calcInitialPlacement and improveOnce are already empty in GenericLayouter
     public void performLayout() {
     }
 

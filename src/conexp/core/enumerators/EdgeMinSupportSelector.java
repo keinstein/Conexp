@@ -1,10 +1,11 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.enumerators;
 
-/**
- * Insert the type's description here.
- * Creation date: (04.05.01 21:16:53)
- * @author Serhiy Yevtushenko
- */
 
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;

@@ -1,17 +1,18 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.figures;
 
 import canvas.CanvasScheme;
 
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-/**
- * Creation date: (17.12.00 22:41:48)
- * @author sergey
- */
-public abstract class TextFigure extends BaseTextFigure implements BorderCalculatingFigure{
+
+public abstract class TextFigure extends BaseTextFigure implements BorderCalculatingFigure {
 
     protected TextFigure() {
         setColorTransformer(ColorTransformerWithFadeOut.getInstance());

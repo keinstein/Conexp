@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.contexteditor;
 
 import conexp.core.ContextEditingInterface;
@@ -27,7 +33,7 @@ public class ArrowRelDrawStrategy extends SimpleContextDrawStrategy {
             boolean isDownArrow = arrowCxt.hasDownArrow(row - 1, col - 1);
             boolean isUpArrow = arrowCxt.hasUpArrow(row - 1, col - 1);
             if (isDownArrow) {
-                icon = isUpArrow ? doubleArrow: downArrow;
+                icon = isUpArrow ? doubleArrow : downArrow;
             } else if (isUpArrow) {
                 icon = upArrow;
             }

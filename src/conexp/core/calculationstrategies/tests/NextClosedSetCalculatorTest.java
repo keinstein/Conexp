@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.ItemSet;
@@ -6,10 +12,6 @@ import conexp.core.tests.SetBuilder;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-
-/**
- * JUnit test case for NextClosedSetCalculatorTest
- */
 
 public class NextClosedSetCalculatorTest extends EnumerativeCalcStrategyTest {
     private static final Class THIS = NextClosedSetCalculatorTest.class;

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.tests;
 
 import conexp.core.AttributeIterator;
@@ -7,9 +13,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/**
- * JUnit test case for ContextTest
- */
 
 public class AttributeIteratorTest extends TestCase {
     private static final Class THIS = AttributeIteratorTest.class;
@@ -21,7 +24,7 @@ public class AttributeIteratorTest extends TestCase {
 
     public void testIterator() {
         ExtendedContextEditingInterface cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
-                                                         {1, 1, 0}});
+                                                                                 {1, 1, 0}});
         Set attributes = SetBuilder.makeSet(new int[]{0, 0, 0});
         AttributeIterator iter = new AttributeIterator(cxt, attributes);
         assertEquals(false, iter.hasNext());

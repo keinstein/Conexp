@@ -1,7 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: May 28, 2002
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend;
 
 import util.PropertyChangeSupplier;
@@ -16,5 +19,6 @@ public interface AttributeMask extends PropertyChangeSupplier {
     boolean isAttributeSelected(int index);
 
     void setAttributeSelected(int index, boolean attributeSelected);
+
     String getAttributeName(int index);
 }

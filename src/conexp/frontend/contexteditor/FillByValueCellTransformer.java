@@ -1,13 +1,15 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 09.04.2002
- * Time: 13:15:18
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.contexteditor;
 
-public class FillByValueCellTransformer implements CellTransformer{
+public class FillByValueCellTransformer implements CellTransformer {
 
-    public FillByValueCellTransformer(Object fillValue){
+    public FillByValueCellTransformer(Object fillValue) {
         this.fillValue = fillValue;
     }
 

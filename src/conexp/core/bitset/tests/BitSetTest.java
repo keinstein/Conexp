@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.bitset.tests;
 
 import conexp.core.ModifiableSet;
@@ -558,7 +564,7 @@ public class BitSetTest extends TestCase {
         assertEquals(Set.NOT_IN_SET, i);
     }
 
-    public void testLengthSizeInteraction(){
+    public void testLengthSizeInteraction() {
         temp = new BitSet(3);
         temp.fillByOne(3);
         assertEquals(3, temp.size());

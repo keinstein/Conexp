@@ -1,13 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas;
 
 import canvas.highlightstrategies.NullHighlightStrategy;
 
-/*
- * User: Serhiy Yevtushenko
- * Date: Oct 19, 2002
- * Time: 9:47:02 PM
- */
-public class DefaultCanvasScheme implements CanvasScheme{
+
+public class DefaultCanvasScheme implements CanvasScheme {
     CanvasColorScheme colorScheme = new DefaultColorScheme();
 
     public CanvasColorScheme getColorScheme() {

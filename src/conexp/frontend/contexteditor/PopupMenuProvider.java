@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 11.04.2002
- * Time: 0:33:10
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.contexteditor;
 
 import javax.swing.*;

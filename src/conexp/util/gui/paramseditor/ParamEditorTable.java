@@ -1,8 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.util.gui.paramseditor;
 
 import util.gui.JTableX;
 
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class ParamEditorTable extends JTableX {

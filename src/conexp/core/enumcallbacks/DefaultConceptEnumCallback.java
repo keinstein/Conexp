@@ -1,13 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.enumcallbacks;
 
 import conexp.core.ConceptEnumCallback;
 import conexp.core.Set;
 
-/**
- * Insert the type's description here.
- * Creation date: (14.07.01 19:32:49)
- * @author
- */
+
 public class DefaultConceptEnumCallback implements ConceptEnumCallback {
 
     /*****************************************

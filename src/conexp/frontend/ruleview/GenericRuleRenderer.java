@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.ruleview;
 
 import conexp.core.AttributeInformationSupplier;
@@ -8,11 +14,7 @@ import conexp.util.GenericStrategy;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 
-/**
- * Insert the type's description here.
- * Creation date: (06.05.01 20:20:04)
- * @author
- */
+
 public abstract class GenericRuleRenderer implements RuleRenderer, GenericStrategy {
     protected SimpleAttributeSet[] attrs;
     private SimpleAttributeSet baseStyle;

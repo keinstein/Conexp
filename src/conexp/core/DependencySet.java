@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core;
 
 import util.StringUtil;
@@ -5,11 +11,7 @@ import util.collection.CollectionFactory;
 
 import java.util.*;
 
-/**
- * Insert the type's description here.
- * Creation date: (01.05.01 14:01:17)
- * @author Serhiy Yevtushenko
- */
+
 public class DependencySet {
 
     public interface DependencyProcessor {
@@ -73,7 +75,7 @@ public class DependencySet {
         dependencies.remove(impl);
     }
 
-    public void removeDependency(int index){
+    public void removeDependency(int index) {
         dependencies.remove(index);
     }
 
@@ -122,14 +124,14 @@ public class DependencySet {
     }
 
 
-    public boolean equalsAsSet(DependencySet that){
-        if (!attrInfo.equals(that.attrInfo)){
+    public boolean equalsAsSet(DependencySet that) {
+        if (!attrInfo.equals(that.attrInfo)) {
             return false;
         }
-        if(this.getSize()!=that.getSize()){
+        if (this.getSize() != that.getSize()) {
             return false;
         }
-        if (!(new HashSet(dependencies)).equals(new HashSet(that.dependencies))){
+        if (!(new HashSet(dependencies)).equals(new HashSet(that.dependencies))) {
             return false;
         }
         return true;
@@ -137,16 +139,16 @@ public class DependencySet {
 
 
     public boolean equals(Object obj) {
-        if (!(obj instanceof DependencySet)){
+        if (!(obj instanceof DependencySet)) {
             return false;
         }
         DependencySet that = (DependencySet) obj;
 
-        if (!attrInfo.equals(that.attrInfo)){
+        if (!attrInfo.equals(that.attrInfo)) {
             return false;
         }
-        if (!dependencies.equals(that.dependencies)){
-                return false;
+        if (!dependencies.equals(that.dependencies)) {
+            return false;
         }
         return true;
     }

@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Nov 17, 2001
- * Time: 3:52:04 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend;
 
 import conexp.frontend.util.IResourceManager;

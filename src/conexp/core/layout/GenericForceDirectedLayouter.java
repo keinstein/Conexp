@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout;
 
 import conexp.core.ItemSet;
@@ -80,7 +86,7 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
             float distSq = p.x * p.x + p.y * p.y;
             if (distSq > maxSq) maxSq = distSq;
         }
-        float maxZ =  getConceptInfo(lattice.getOne()).coords.z;
+        float maxZ = getConceptInfo(lattice.getOne()).coords.z;
 
         return (maxZ * maxZ > 4 * maxSq ? maxZ : 2 * (float) Math.sqrt(maxSq));
     }

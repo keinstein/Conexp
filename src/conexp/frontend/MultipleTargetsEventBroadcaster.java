@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: Nov 5, 2001
- * Time: 9:11:29 PM
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend;
 
 import java.beans.PropertyChangeEvent;

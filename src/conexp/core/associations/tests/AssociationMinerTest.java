@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: Serhiy Yevtushenko
- * Date: Jun 30, 2002
- * Time: 11:34:31 AM
- * To change template for new class use 
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core.associations.tests;
 
 import conexp.core.Context;
@@ -19,7 +18,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public abstract class AssociationMinerTest extends TestCase {
-    public void testAssociationMiner(){
+    public void testAssociationMiner() {
         AssociationMiner miner = makeAssociationMiner();
         Context cxt = SetBuilder.makeContext(new int[][]{
             {0, 1, 1},
@@ -29,24 +28,24 @@ public abstract class AssociationMinerTest extends TestCase {
         DependencySet dependencySet = new DependencySet(cxt);
         miner.setContext(cxt);
         miner.findAssociations(dependencySet, 2, 0.5);
-        Set  actualDependencies = new HashSet();
-        for(int i=0; i<dependencySet.getSize(); i++){
+        Set actualDependencies = new HashSet();
+        for (int i = 0; i < dependencySet.getSize(); i++) {
             actualDependencies.add(dependencySet.getDependency(i));
         }
         Set expectedDependencies = new HashSet();
         expectedDependencies.add(ObjectMother.makeAssociationRule(
-           new int[]{0, 0, 0}, 3, new int[]{1, 0, 0}, 2
+                new int[]{0, 0, 0}, 3, new int[]{1, 0, 0}, 2
         ));
         expectedDependencies.add(ObjectMother.makeAssociationRule(
-           new int[]{0, 0, 0}, 3, new int[]{0, 1, 0}, 2
+                new int[]{0, 0, 0}, 3, new int[]{0, 1, 0}, 2
         ));
         expectedDependencies.add(ObjectMother.makeAssociationRule(
-           new int[]{0, 0, 0}, 3, new int[]{0, 0, 1}, 2
+                new int[]{0, 0, 0}, 3, new int[]{0, 0, 1}, 2
         ));
         assertEquals(expectedDependencies, actualDependencies);
     }
 
-    public void testGetSupportForSet(){
+    public void testGetSupportForSet() {
         AssociationMiner miner = makeAssociationMiner();
         Context cxt = SetBuilder.makeContext(new int[][]{
             {0, 0, 0},

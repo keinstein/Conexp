@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: May 18, 2002
- * Time: 10:13:26 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.ui;
 
 import util.Assert;
@@ -62,22 +64,22 @@ public class DefaultMenuSite
         item.attachMenuToContainer();
     }
 
-    private JMenu findMenuBarSubMenuByName(String menuName){
+    private JMenu findMenuBarSubMenuByName(String menuName) {
         int bound = menuBar.getMenuCount();
-        for(int i=0; i<bound; i++){
+        for (int i = 0; i < bound; i++) {
             final JMenu currMenu = menuBar.getMenu(i);
-            if(menuName.equals(currMenu.getName())){
+            if (menuName.equals(currMenu.getName())) {
                 return currMenu;
             }
         }
         return null;
     }
 
-    private JMenu findMenuBarSubMenuByLabel(String menuLabel){
+    private JMenu findMenuBarSubMenuByLabel(String menuLabel) {
         int bound = menuBar.getMenuCount();
-        for(int i=0; i<bound; i++){
+        for (int i = 0; i < bound; i++) {
             final JMenu currMenu = menuBar.getMenu(i);
-            if(menuLabel.equals(currMenu.getText())){
+            if (menuLabel.equals(currMenu.getText())) {
                 return currMenu;
             }
         }
@@ -86,17 +88,16 @@ public class DefaultMenuSite
 
     private JMenu findMenuBarSubMenu(String toThisMenu) {
         JMenu found = findMenuBarSubMenuByName(toThisMenu);
-        if(null==found){
-            found=findMenuBarSubMenuByLabel(toThisMenu);
+        if (null == found) {
+            found = findMenuBarSubMenuByLabel(toThisMenu);
         }
-        if (null==found) {
+        if (null == found) {
             throw new IllegalArgumentException(
                     "Can't find menu ("
                     + toThisMenu + ")");
         }
         return found;
     }
-
 
 
     /************************************************************
@@ -213,7 +214,7 @@ public class DefaultMenuSite
          */
         public final void detachMenuFromContainer() {
             container.remove(lineItem);
-            if (container instanceof JMenuBar){
+            if (container instanceof JMenuBar) {
                 menuBarContents.remove(this);
                 container = regenerateMenuBar();
             }

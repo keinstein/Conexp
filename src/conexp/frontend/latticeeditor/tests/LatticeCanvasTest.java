@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.tests;
 
 import canvas.IHighlightStrategy;
@@ -10,7 +16,7 @@ import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import java.awt.Dimension;
+import java.awt.*;
 
 public class LatticeCanvasTest extends junit.framework.TestCase {
 

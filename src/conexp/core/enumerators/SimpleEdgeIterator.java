@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Aug 13, 2002
- * Time: 1:32:15 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core.enumerators;
 
 import conexp.core.Edge;
@@ -48,7 +50,7 @@ public class SimpleEdgeIterator implements EdgeIterator {
         }
     }
 
-    protected  boolean acceptElement(LatticeElement itemset){
+    protected boolean acceptElement(LatticeElement itemset) {
         return true;
     }
 

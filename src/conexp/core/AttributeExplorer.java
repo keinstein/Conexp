@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Dec 12, 2001
- * Time: 9:54:32 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core;
 
 public interface AttributeExplorer {
@@ -36,7 +38,7 @@ public interface AttributeExplorer {
     }
 
 
-    public interface ContextModificationCallback{
+    public interface ContextModificationCallback {
         void addObjectToContext(String name, Set intent);
     }
 

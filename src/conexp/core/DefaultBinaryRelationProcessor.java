@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Jan 7, 2002
- * Time: 10:11:52 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core;
 
 public class DefaultBinaryRelationProcessor implements BinaryRelationProcessor {
@@ -12,7 +14,7 @@ public class DefaultBinaryRelationProcessor implements BinaryRelationProcessor {
         this.rel = relation;
     }
 
-    protected BinaryRelation getRelation(){
+    protected BinaryRelation getRelation() {
         return rel;
     }
 

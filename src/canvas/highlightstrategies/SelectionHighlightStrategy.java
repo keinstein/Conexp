@@ -1,15 +1,17 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.highlightstrategies;
 
 import canvas.Figure;
 import canvas.FigureDrawingCanvas;
 import canvas.IHighlightStrategy;
 
-/*
- * User: Serhiy Yevtushenko
- * Date: Oct 19, 2002
- * Time: 10:09:33 PM
- */
-public class SelectionHighlightStrategy implements IHighlightStrategy{
+
+public class SelectionHighlightStrategy implements IHighlightStrategy {
     FigureDrawingCanvas drawingEditor;
 
     public SelectionHighlightStrategy(FigureDrawingCanvas drawingEditor) {

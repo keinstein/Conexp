@@ -1,12 +1,11 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layoutengines;
 
-
-
-/**
- for this class ispossible to have at one time only one of two commands
- StartLayout - this command clear all other commands and
- RestartLayout
- */
 
 class LayoutCommandQueue {
     protected java.lang.Object syncLock = new Object();
@@ -14,11 +13,7 @@ class LayoutCommandQueue {
     protected LayoutEvent restartLayout;
     protected int waitingForTake = 0;
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (04.06.01 15:37:51)
-     * @return conexp.core.layoutengines.LayoutEvent
-     */
+
     protected synchronized LayoutEvent extract() {
         LayoutEvent x = startLayout;
         if (x != null) {

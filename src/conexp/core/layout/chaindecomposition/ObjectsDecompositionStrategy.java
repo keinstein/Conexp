@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout.chaindecomposition;
 
 import conexp.core.BinaryRelation;
@@ -5,11 +11,7 @@ import conexp.core.ContextFactoryRegistry;
 import conexp.core.ModifiableBinaryRelation;
 import conexp.core.Set;
 
-/**
- * Insert the type's description here.
- * Creation date: (09.03.01 19:08:06)
- * @author
- */
+
 public class ObjectsDecompositionStrategy implements ChainDecompositionStrategy {
     private conexp.core.ExtendedContextEditingInterface cxt;
 

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.core.ContextEntity;
@@ -6,11 +12,7 @@ import conexp.frontend.latticeeditor.DrawParameters;
 
 import java.util.Iterator;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: Nov 29, 2002
- * Time: 11:24:28 PM
- */
+
 public abstract class BaseFullLabelingStrategy extends SimpleConceptLabelingStrategy {
     public BaseFullLabelingStrategy(DrawParameters opt) {
         super(opt);

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.tests;
 
 import conexp.core.*;
@@ -9,20 +15,16 @@ import conexp.core.enumcallbacks.ConceptSetCallback;
 import util.Assert;
 import util.testing.UniqueExpectationSet;
 
-/**
- * Creation date: (22.02.01 21:57:47)
- * @author Sergey Yevtsuhenko
- */
 
 public class SetBuilder {
     public static ModifiableBinaryRelation makeRelation(int[][] arrRelation) {
         ModifiableBinaryRelation rel;
-        if(arrRelation.length>0){
+        if (arrRelation.length > 0) {
             rel = ContextFactoryRegistry.createRelation(arrRelation.length, arrRelation[0].length);
             for (int i = arrRelation.length; --i >= 0;) {
                 rel.getModifiableSet(i).or(makeSet(arrRelation[i]));
             }
-        }else{
+        } else {
             rel = ContextFactoryRegistry.createRelation(0, 0);
         }
 
@@ -84,14 +86,14 @@ public class SetBuilder {
         return ret;
     }
 
-    public static ExtendedContextEditingInterface makeContext(String[]objectNames, String[] attrNames, int[][]relation){
+    public static ExtendedContextEditingInterface makeContext(String[] objectNames, String[] attrNames, int[][] relation) {
         ExtendedContextEditingInterface ret = makeContext(relation);
-        Assert.isTrue(ret.getObjectCount()==objectNames.length);
-        for(int i=0; i<objectNames.length; i++){
+        Assert.isTrue(ret.getObjectCount() == objectNames.length);
+        for (int i = 0; i < objectNames.length; i++) {
             ret.getObject(i).setName(objectNames[i]);
         }
-        Assert.isTrue(ret.getAttributeCount()==attrNames.length);
-        for(int i=0; i<attrNames.length; i++){
+        Assert.isTrue(ret.getAttributeCount() == attrNames.length);
+        for (int i = 0; i < attrNames.length; i++) {
             ret.getAttribute(i).setName(attrNames[i]);
         }
         return ret;
@@ -139,20 +141,20 @@ public class SetBuilder {
         return makeLatticeWithContext(relation, new DepthSearchCalculator());
     }
 
-    public static Lattice makeLatticeWithContextAndFeatureMask(int[][] relation, int []featureMaskDescription){
+    public static Lattice makeLatticeWithContextAndFeatureMask(int[][] relation, int[] featureMaskDescription) {
         return FCAEngineRegistry.buildPartialLattice(makeContext(relation), makeSet(featureMaskDescription));
     }
 
-    public static Lattice makeLatticeWithContextAndFeatureMask(Context cxt, int []featureMaskDescription){
+    public static Lattice makeLatticeWithContextAndFeatureMask(Context cxt, int[] featureMaskDescription) {
         return FCAEngineRegistry.buildPartialLattice(cxt, makeSet(featureMaskDescription));
     }
 
 
-    public static Lattice makeIcebergLattice(int[][] relation, int minSupport){
+    public static Lattice makeIcebergLattice(int[][] relation, int minSupport) {
         return makeIcebergLattice(makeContext(relation), minSupport);
     }
 
-    public static Lattice makeIcebergLattice(Context cxt, int minSupport){
+    public static Lattice makeIcebergLattice(Context cxt, int minSupport) {
         return FCAEngineRegistry.buildIcebergLattice(cxt, minSupport);
     }
 
@@ -161,13 +163,13 @@ public class SetBuilder {
         return makeLatticeFromContext(cxt, strat);
     }
 
-    public static LatticeElement findLatticeElementWithIntent(Lattice lat, int [] intent){
+    public static LatticeElement findLatticeElementWithIntent(Lattice lat, int[] intent) {
         final LatticeElement elementWithIntent = lat.findElementWithIntent(SetBuilder.makeSet(intent));
-        Assert.isTrue(null!=elementWithIntent);
+        Assert.isTrue(null != elementWithIntent);
         return elementWithIntent;
     }
 
-    public static Lattice makeLattice(Context cxt){
+    public static Lattice makeLattice(Context cxt) {
         return FCAEngineRegistry.buildLattice(cxt);
     }
 

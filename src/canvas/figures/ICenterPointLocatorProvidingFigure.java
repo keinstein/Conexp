@@ -1,10 +1,12 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.figures;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: Dec 2, 2002
- * Time: 5:19:39 PM
- */
+
 public interface ICenterPointLocatorProvidingFigure {
     CenterPointLocator getCenterPointLocator();
 

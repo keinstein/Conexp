@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Dec 8, 2001
- * Time: 9:30:56 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core.attrexplorationimpl.tests;
 
 import conexp.core.*;
@@ -80,7 +82,7 @@ public class MockAttributeExplorerCallback extends Assert implements AttributeEx
     }
 
     public void error(AttributeExplorationError error) {
-        error.formatMessage(new LocalizedMessageSupplier(){
+        error.formatMessage(new LocalizedMessageSupplier() {
             public String getMessage(String key) {
                 return " No message";
             }

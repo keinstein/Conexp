@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: Serhiy Yevtushenko
- * Date: 06.03.2002
- * Time: 14:27:57
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor;
 
 import conexp.util.gui.paramseditor.ParamInfo;

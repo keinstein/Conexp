@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.enumcallbacks.tests;
 
 import conexp.core.BinaryRelation;
@@ -10,9 +16,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/**
- * JUnit test case for NextClosedSetBuilderCallbackTest
- */
 
 public class NextClosedSetBuilderCallbackTest extends TestCase {
     private static final Class THIS = NextClosedSetBuilderCallbackTest.class;
@@ -26,7 +29,7 @@ public class NextClosedSetBuilderCallbackTest extends TestCase {
         calc.calculateConceptSet();
         assertEquals(2, lat.getOne().getPredCount());
         assertEquals(2, lat.getZero().getSuccCount());
-   }
+    }
 
     public static Test suite() {
         return new TestSuite(THIS);

@@ -1,14 +1,16 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout.chaindecomposition.tests;
 
 import conexp.core.layout.chaindecomposition.ChainDecompositionLayout;
 import junit.framework.TestSuite;
 import util.testing.SimpleMockPropertyChangeListener;
 
-/**
- * Insert the type's description here.
- * Creation date: (30.03.01 3:57:11)
- * @author
- */
+
 public class ChainDecompositionLayoutTest extends conexp.core.layout.tests.GenericLayouterTest {
     protected boolean isTestImproveOnce() {
         return false;

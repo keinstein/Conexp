@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layoutengines;
 
 import conexp.core.Lattice;
@@ -5,7 +11,7 @@ import conexp.core.layout.Layouter;
 import conexp.frontend.latticeeditor.DrawParameters;
 
 class LayoutEvent {
-    final static int START_LAYOUT = 1; // layouter may be old, lattice is new
+    final static int START_LAYOUT = 1;
     final static int RESTART_LAYOUT = 2;
 
     public final Lattice lattice;

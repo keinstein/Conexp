@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.ruleview;
 
 import conexp.core.DependencySet;
@@ -6,13 +12,9 @@ import conexp.frontend.DependencySetSupplier;
 import conexp.frontend.ViewChangePanel;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
+import java.awt.*;
 
-/**
- * Insert the type's description here.
- * Creation date: (07.05.01 21:45:58)
- * @author
- */
+
 public abstract class GenericRuleView extends ViewChangePanel implements DependencySetConsumer {
     protected class SortBySupportAction extends AbstractAction {
         SortBySupportAction() {

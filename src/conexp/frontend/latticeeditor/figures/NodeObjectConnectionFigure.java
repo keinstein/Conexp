@@ -1,10 +1,16 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.ColorTransformerWithFadeOut;
 import conexp.core.Set;
 
-import java.awt.BasicStroke;
+import java.awt.*;
 
 public class NodeObjectConnectionFigure extends LineFigureWithFigureDimensionCalcStrategyProvider {
     public NodeObjectConnectionFigure(AbstractConceptCorrespondingFigure start, BorderCalculatingFigure end) {

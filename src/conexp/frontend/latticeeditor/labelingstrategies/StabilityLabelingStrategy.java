@@ -1,14 +1,16 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.core.ContextFunctions;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.DrawParameters;
 
-/**
- * Insert the type's description here.
- * Creation date: (26.12.00 1:09:16)
- * @author Serhiy Yevtushenko
- */
+
 public class StabilityLabelingStrategy extends SimpleConceptLabelingStrategy {
     /**
      * OwnObjectsCountLabelingStrategy constructor comment.

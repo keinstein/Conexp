@@ -1,15 +1,17 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 07.03.2002
- * Time: 18:14:52
-  */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor.drawstrategies;
 
 import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.LabelingStrategyModelFactory;
 import conexp.util.gui.strategymodel.StrategyModel;
 
-public class DefaultLabelingStrategiesFactory implements LabelingStrategyModelFactory{
+public class DefaultLabelingStrategiesFactory implements LabelingStrategyModelFactory {
     DrawParameters drawParams;
 
     public DefaultLabelingStrategiesFactory(DrawParameters drawParams) {

@@ -1,13 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-/**
- * Insert the type's description here.
- * Creation date: (30.03.01 4:47:12)
- * @author
- */
+
 public class RelaxerLayouterTest extends GenericLayouterTest {
     protected boolean isPureImprovingLayout() {
         return true;

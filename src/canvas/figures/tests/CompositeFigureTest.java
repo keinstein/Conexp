@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.figures.tests;
 
 import canvas.figures.CompositeFigure;
@@ -13,7 +19,7 @@ public class CompositeFigureTest extends TestCase {
         return new TestSuite(THIS);
     }
 
-    public void testFindFigureInside(){
+    public void testFindFigureInside() {
         CompositeFigure figure = new CompositeFigure();
         MockFigure firstInner = new MockFigure(10, 10);
         figure.addFigure(firstInner);

@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: Dec 12, 2001
- * Time: 2:04:42 PM
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.attributeexploration;
 
 import conexp.core.*;
@@ -14,9 +13,7 @@ import conexp.frontend.contexteditor.ContextTablePane;
 import util.Assert;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Frame;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

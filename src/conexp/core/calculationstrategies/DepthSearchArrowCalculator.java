@@ -1,14 +1,16 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies;
 
 import conexp.core.*;
 import util.Assert;
 import util.collection.IntStack;
 
-/**
- *
- *@author     Sergey
- *@created    24 Èþëü 2000 ã.
- */
+
 public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorithm implements ArrowCalculator {
 
     protected ModifiableSet outAttribsDelta;
@@ -172,7 +174,7 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
         //clearing prohibited set
         tempAttrSet.clearSet();
         downArrow.clearRelation();
-        if(downArrow.getColCount()>0){
+        if (downArrow.getColCount() > 0) {
             doCalcDownArrow(newExtent, 0);
         }
     }

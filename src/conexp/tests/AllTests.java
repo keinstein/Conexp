@@ -1,14 +1,11 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.tests;
 
-/**
- * AllTests.java
- *
- *
- * Created: Wed Jul 26 01:03:48 2000
- *
- * @author Sergey Yevtushenko
- * @version
- */
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.tests;
 
 import conexp.core.ConceptFactory;
@@ -6,11 +12,7 @@ import conexp.core.LatticeElement;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-/**
- * Insert the type's description here.
- * Creation date: (01.12.00 3:06:54)
- * @author
- */
+
 public class EdgeTest extends junit.framework.TestCase {
     private Edge e;
     private LatticeElement start;

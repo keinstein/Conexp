@@ -1,10 +1,12 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.compareutils;
 
-/**
- * Insert the type's description here.
- * Creation date: (13.07.01 19:05:26)
- * @author
- */
+
 public class KeyValuePair {
     public final java.lang.Object key;
     public final java.lang.Object value;

@@ -1,8 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.tests;
 
 import canvas.figures.RectangularFigure;
 
-import java.awt.Graphics;
+import java.awt.*;
 
 public class MockFigure extends RectangularFigure {
     public MockFigure(double x, double y) {

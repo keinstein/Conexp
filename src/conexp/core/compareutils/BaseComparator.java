@@ -1,10 +1,11 @@
-package conexp.core.compareutils;
-
 /**
  * Copyright (c) 2000-2003, Sergey Yevtushenko
  * All rights reserved.
  * Please read license.txt for licensing issues.
- */
+ **/
+
+package conexp.core.compareutils;
+
 
 public class BaseComparator {
     public final DiffMap map;
@@ -20,8 +21,8 @@ public class BaseComparator {
     }
 
 
-    public void dumpDifferencesToSout(){
-       map.dumpDifferences(new java.io.PrintWriter(System.out, true));
+    public void dumpDifferencesToSout() {
+        map.dumpDifferences(new java.io.PrintWriter(System.out, true));
     }
 
 }

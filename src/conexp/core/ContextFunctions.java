@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: Serhiy Yevtushenko
- * Date: 22.04.2002
- * Time: 1:23:50
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core;
 
 import util.Assert;
@@ -61,25 +60,25 @@ public class ContextFunctions {
         BinaryRelation relation = cxt.getRelation();
         ModifiableSet temp = ContextFactoryRegistry.createSet(queryIntent.size());
         int ret = 0;
-        for(int i=0; i<relation.getRowCount(); i++){
+        for (int i = 0; i < relation.getRowCount(); i++) {
             temp.copy(relation.getSet(i));
             temp.and(attributeMask);
-            if(queryIntent.isSubsetOf(temp)){
-               ret++;
+            if (queryIntent.isSubsetOf(temp)) {
+                ret++;
             }
         }
         return ret;
     }
 
-    public static int contingentSize(Set queryIntent, ExtendedContextEditingInterface cxt, Set attributeMask){
+    public static int contingentSize(Set queryIntent, ExtendedContextEditingInterface cxt, Set attributeMask) {
         BinaryRelation relation = cxt.getRelation();
         ModifiableSet temp = ContextFactoryRegistry.createSet(queryIntent.size());
         int ret = 0;
-        for(int i=0; i<relation.getRowCount(); i++){
+        for (int i = 0; i < relation.getRowCount(); i++) {
             temp.copy(relation.getSet(i));
             temp.and(attributeMask);
-            if(queryIntent.isEquals(temp)){
-               ret++;
+            if (queryIntent.isEquals(temp)) {
+                ret++;
             }
         }
         return ret;

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies;
 
 import conexp.core.ContextFactoryRegistry;
@@ -5,12 +11,7 @@ import conexp.core.LatticeElement;
 import conexp.core.ModifiableSet;
 import conexp.core.Set;
 
-/**
- *  Description of the Class
- *
- *@author     Sergey
- *created    24 Èþëü 2000 ã.
- */
+
 public class DepthSearchCalculator extends BasicDepthSearchCalculator {
     static class DepthSearchLatticeElement extends LatticeElement {
         ModifiableSet firstTimePredecessors;

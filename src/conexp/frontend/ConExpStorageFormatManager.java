@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 09.03.2002
- * Time: 0:00:36
-  */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend;
 
 import conexp.frontend.io.ConExpXMLReader;
@@ -12,7 +14,7 @@ import conexp.frontend.io.ConImpContextWriter;
 import conexp.frontend.util.StorageFormatManager;
 import conexp.frontend.util.StorageFormatRecord;
 
-public class ConExpStorageFormatManager extends StorageFormatManager{
+public class ConExpStorageFormatManager extends StorageFormatManager {
     public ConExpStorageFormatManager() {
         super();
         registerStorageFormat(

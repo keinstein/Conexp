@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.IHighlightStrategy;
@@ -10,18 +16,12 @@ import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import util.StringUtil;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-/**
- * ConceptFigure.java
- * Created: Sun Dec 17 01:10:42 2000
- *
- * @author Sergey Yevtushenko
- */
 
 public class ConceptFigure extends ConceptCorrespondingFigure implements BorderCalculatingFigure {
 

@@ -1,20 +1,21 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Oct 20, 2002
- * Time: 6:53:12 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 
 package canvas.figures;
 
 import canvas.CanvasScheme;
 import canvas.IHighlightStrategy;
 
-import java.awt.Color;
+import java.awt.*;
 
 public abstract class BaseTextFigure extends RectangularFigure {
 
 
-    ColorTransformer colorTransformer=DefaultColorTransformer.getInstance();
+    ColorTransformer colorTransformer = DefaultColorTransformer.getInstance();
 
     public void setColorTransformer(ColorTransformer colorTransformer) {
         this.colorTransformer = colorTransformer;
@@ -30,7 +31,7 @@ public abstract class BaseTextFigure extends RectangularFigure {
         IHighlightStrategy highlightStrategy = opt.getHighlightStrategy();
         canvas.CanvasColorScheme colorScheme = opt.getColorScheme();
         return colorTransformer.getColor(colorScheme.getHighlightColor(), colorScheme.getEdgeColor(),
-                        shouldHighlight(highlightStrategy), highlightStrategy.isActive());
+                shouldHighlight(highlightStrategy), highlightStrategy.isActive());
     }
 
     protected boolean shouldHighlight(IHighlightStrategy highlightStrategy) {

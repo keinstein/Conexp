@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout;
 
 import conexp.core.*;
@@ -117,6 +123,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     }
 
     LinkedList replacedEdges = new LinkedList();
+
     //------------------------------------------
     void breakEdgeAndUpdateRankSizes(Edge edge, int[] ranksSize) {
         LatticeElement start = edge.getStart();
@@ -919,7 +926,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
      */
 
 
-    interface ElementInfoProcessor{
+    interface ElementInfoProcessor {
         void processElementInfo(ElementInfo elementInfo);
     }
 

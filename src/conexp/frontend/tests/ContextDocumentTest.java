@@ -1,14 +1,11 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.tests;
 
-/**
- * ContextDocumentTest.java
- *
- *
- * Created: Wed Jul 26 00:33:16 2000
- *
- * @author Sergey Yevtushenko
- * @version
- */
 
 import conexp.core.Context;
 import conexp.core.DependencySet;
@@ -166,20 +163,20 @@ public class ContextDocumentTest extends TestCase {
         doc.getContext().getUpArrow();
     }
 
-    public void testBuildLattice(){
-         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
-                                                        {1, 0, 1},
-                                                        {1, 1, 0}});
-         doc = new ContextDocument(cxt);
+    public void testBuildLattice() {
+        Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
+                                                         {1, 0, 1},
+                                                         {1, 1, 0}});
+        doc = new ContextDocument(cxt);
 
-         doc.calculateLattice();
+        doc.calculateLattice();
         LatticeComponent latticeComponent = doc.getLatticeComponent();
         assertEquals(latticeComponent.getLattice().conceptsCount(), 8);
-         latticeComponent.getAttributeMask().addPropertyChangeListener(new AttributeMaskChangeController(latticeComponent));
-         latticeComponent.getAttributeMask().setAttributeSelected(2, false);
-         assertEquals(4, latticeComponent.getLattice().conceptsCount());
-         doc.calculateLattice();
-         assertEquals(4, latticeComponent.getLattice().conceptsCount());
+        latticeComponent.getAttributeMask().addPropertyChangeListener(new AttributeMaskChangeController(latticeComponent));
+        latticeComponent.getAttributeMask().setAttributeSelected(2, false);
+        assertEquals(4, latticeComponent.getLattice().conceptsCount());
+        doc.calculateLattice();
+        assertEquals(4, latticeComponent.getLattice().conceptsCount());
     }
 
 }

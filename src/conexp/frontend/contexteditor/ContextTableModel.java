@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.contexteditor;
 
 import conexp.core.*;
@@ -556,7 +562,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     }
 
 
-    protected abstract class ContextDestroyingCommandBase extends CommandBase{
+    protected abstract class ContextDestroyingCommandBase extends CommandBase {
         public ContextDestroyingCommandBase(String name) {
             super(name);
         }
@@ -573,7 +579,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         public void undoCommand() {
             boolean shouldCallStructureChange = isStructureChange();
             context.copyFrom(oldContext);
-            oldContext=null;
+            oldContext = null;
             fireTableDataChanged();
             if (shouldCallStructureChange) {
                 fireTableStructureChanged();
@@ -586,15 +592,16 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
     }
 
-    protected abstract class ExtendedContextDestroyingCommandBase extends ContextDestroyingCommandBase{
+    protected abstract class ExtendedContextDestroyingCommandBase extends ContextDestroyingCommandBase {
         boolean enabled;
+
         public ExtendedContextDestroyingCommandBase(String name) {
             super(name);
             enabled = (getContext() instanceof ExtendedContextEditingInterface);
         }
 
-        protected ExtendedContextEditingInterface getExtendedContext(){
-            return (ExtendedContextEditingInterface)getContext();
+        protected ExtendedContextEditingInterface getExtendedContext() {
+            return (ExtendedContextEditingInterface) getContext();
         }
 
         public boolean isEnabled() {
@@ -602,13 +609,13 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
 
         public void doCommand() {
-            if(isEnabled()){
+            if (isEnabled()) {
                 super.doCommand();
             }
         }
 
         public void undoCommand() {
-            if(isEnabled()){
+            if (isEnabled()) {
                 super.undoCommand();
             }
         }
@@ -657,7 +664,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
     }
 
-    public class TransposeContextCommand extends ExtendedContextDestroyingCommandBase{
+    public class TransposeContextCommand extends ExtendedContextDestroyingCommandBase {
         public TransposeContextCommand() {
             super("Transpose context");
         }
@@ -667,7 +674,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
     }
 
-    public class PurifyContextCommand extends ExtendedContextDestroyingCommandBase{
+    public class PurifyContextCommand extends ExtendedContextDestroyingCommandBase {
         public PurifyContextCommand() {
             super("Purify context");
         }
@@ -678,7 +685,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
     }
 
-    public class PurifyObjectsCommand extends ExtendedContextDestroyingCommandBase{
+    public class PurifyObjectsCommand extends ExtendedContextDestroyingCommandBase {
         public PurifyObjectsCommand() {
             super("Purify objects");
         }
@@ -688,7 +695,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
     }
 
-    public class PurifyAttributesCommand extends ExtendedContextDestroyingCommandBase{
+    public class PurifyAttributesCommand extends ExtendedContextDestroyingCommandBase {
         public PurifyAttributesCommand() {
             super("Purify attributes");
         }
@@ -699,7 +706,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     }
 
 
-    public class ReduceContextCommand extends ExtendedContextDestroyingCommandBase{
+    public class ReduceContextCommand extends ExtendedContextDestroyingCommandBase {
         public ReduceContextCommand() {
             super("Reduce context");
         }
@@ -710,7 +717,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
     }
 
-    public class ReduceObjectsCommand extends ExtendedContextDestroyingCommandBase{
+    public class ReduceObjectsCommand extends ExtendedContextDestroyingCommandBase {
         public ReduceObjectsCommand() {
             super("Reduce objects");
         }
@@ -720,7 +727,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
     }
 
-    public class ReduceAttributesCommand extends ExtendedContextDestroyingCommandBase{
+    public class ReduceAttributesCommand extends ExtendedContextDestroyingCommandBase {
         public ReduceAttributesCommand() {
             super("Reduce attributes");
         }
@@ -730,7 +737,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
     }
 
-    public class AddAttribCommand extends CommandBase{
+    public class AddAttribCommand extends CommandBase {
         public AddAttribCommand() {
             super("Add attribute");
         }
@@ -738,50 +745,51 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         public void doCommand() {
             int oldObjCount = getContext().getObjectCount();
             int oldAttributeCount = getContext().getAttributeCount();
-            getContext().setDimension(oldObjCount, oldAttributeCount+1);
+            getContext().setDimension(oldObjCount, oldAttributeCount + 1);
         }
 
         public void undoCommand() {
             int newObjCount = getContext().getObjectCount();
             int newAttributeCount = getContext().getAttributeCount();
-            getContext().setDimension(newObjCount, newAttributeCount-1);
+            getContext().setDimension(newObjCount, newAttributeCount - 1);
         }
     }
 
-    public class AddRowCommand extends CommandBase{
+    public class AddRowCommand extends CommandBase {
         public AddRowCommand() {
             this("Add row");
         }
 
-        protected AddRowCommand(String commandName){
+        protected AddRowCommand(String commandName) {
             super(commandName);
         }
 
         public void doCommand() {
             int oldObjCount = getContext().getObjectCount();
             int oldAttributeCount = getContext().getAttributeCount();
-            getContext().setDimension(oldObjCount+1, oldAttributeCount);
+            getContext().setDimension(oldObjCount + 1, oldAttributeCount);
         }
 
         public void undoCommand() {
             int newObjCount = getContext().getObjectCount();
             int newAttributeCount = getContext().getAttributeCount();
-            getContext().setDimension(newObjCount-1, newAttributeCount);
+            getContext().setDimension(newObjCount - 1, newAttributeCount);
         }
     }
 
-     public class AddObjectWithNameCommand extends AddRowCommand{
-         String objectName;
-         Set intent;
-         public AddObjectWithNameCommand(String objectName, Set intent) {
-           super("Add object with name and intent");
-           this.objectName = objectName;
-           this.intent = intent.makeModifiableSetCopy();
-         }
+    public class AddObjectWithNameCommand extends AddRowCommand {
+        String objectName;
+        Set intent;
 
-         public void doCommand() {
-             getContext().addObjectWithNameAndIntent(objectName, intent);
-         }
-     }
+        public AddObjectWithNameCommand(String objectName, Set intent) {
+            super("Add object with name and intent");
+            this.objectName = objectName;
+            this.intent = intent.makeModifiableSetCopy();
+        }
+
+        public void doCommand() {
+            getContext().addObjectWithNameAndIntent(objectName, intent);
+        }
+    }
 
 }

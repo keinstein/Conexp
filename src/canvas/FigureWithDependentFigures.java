@@ -1,13 +1,15 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Aug 16, 2002
- * Time: 4:22:23 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package canvas;
 
 import java.util.Iterator;
 
-public interface FigureWithDependentFigures extends Figure{
+public interface FigureWithDependentFigures extends Figure {
     void addDependend(Figure f);
 
     void removeAllDependend();

@@ -1,13 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.ui;
 
 import java.util.HashMap;
 
-/**
- * Insert the type's description here.
- * Creation date: (14.05.2001 14:03:54)
- * @author
- */
-public class ViewMap{
+
+public class ViewMap {
     protected static class ViewInfo {
         ViewInfo(String capt_, String type_) {
             caption = capt_;

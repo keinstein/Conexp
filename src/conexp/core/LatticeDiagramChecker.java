@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Aug 19, 2002
- * Time: 4:34:23 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core;
 
 import util.Assert;

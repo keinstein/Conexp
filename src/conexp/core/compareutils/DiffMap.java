@@ -1,11 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.compareutils;
 
 import java.util.*;
 
-/**
- * Creation date: (13.07.01 16:30:45)
- * @author sergey yevtushenko
- */
+
 public class DiffMap {
     protected Map map;
     protected final CompareInfoFactory factory;

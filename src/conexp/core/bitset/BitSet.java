@@ -1,16 +1,10 @@
-package conexp.core.bitset;
-
-
 /**
- * BitSet.java
- *
- *
- * Created: Fri Jan 07 19:01:45 2000
- *
- * @author
- * @version
- * based on java BitSet; rewriten cause of all private members in BitSet
- */
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+package conexp.core.bitset;
 
 
 import conexp.core.Fragment;
@@ -158,7 +152,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
             }
             //add last value, if any
             int difference = set.size - secondPart;
-            if ((difference>0) && (difference & BIT_INDEX_MASK)!=0) {
+            if ((difference > 0) && (difference & BIT_INDEX_MASK) != 0) {
                 unit[startUnitIndex + unitsCount + 1] = prev;
             }
             ;
@@ -182,7 +176,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
 
     public int elementCount() {
         int sum = 0;
-        for (int i=0; i<unit.length; i++)
+        for (int i = 0; i < unit.length; i++)
             sum += bitCount(unit[i]);
         return sum;
     }
@@ -197,11 +191,11 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      */
     private static int bitCount(long val) {
         val -= (val & 0xaaaaaaaaaaaaaaaaL) >>> 1;
-        val =  (val & 0x3333333333333333L) + ((val >>> 2) & 0x3333333333333333L);
-        val =  (val + (val >>> 4)) & 0x0f0f0f0f0f0f0f0fL;
+        val = (val & 0x3333333333333333L) + ((val >>> 2) & 0x3333333333333333L);
+        val = (val + (val >>> 4)) & 0x0f0f0f0f0f0f0f0fL;
         val += val >>> 8;
         val += val >>> 16;
-        return ((int)(val) + (int)(val >>> 32)) & 0xff;
+        return ((int) (val) + (int) (val >>> 32)) & 0xff;
     }
 
     public ModifiableSet makeModifiableSetCopy() {
@@ -443,7 +437,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     public boolean intersects(Fragment s) {
         if (s instanceof BitSet) {
             BitSet set = (BitSet) s;
-            for (int i = unit.length; --i>=0;) {
+            for (int i = unit.length; --i >= 0;) {
                 if ((unit[i] & set.unit[i]) != 0) {
                     return true;
                 }
@@ -602,7 +596,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
             long xorMask = unit[k] ^ other.unit[k];
             while (mask != 0) {
                 if ((mask & xorMask) != 0) {
-                    return ((mask & unit[k]) != 0) ? 1: -1;
+                    return ((mask & unit[k]) != 0) ? 1 : -1;
                 }
                 mask <<= 1;
             }
@@ -612,7 +606,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         int i = upperBound * BITS_PER_UNIT;
         while (i < size) {
             if ((mask & xorMask) != 0) {
-                return ((mask & unit[upperBound]) != 0) ? 1: -1;
+                return ((mask & unit[upperBound]) != 0) ? 1 : -1;
             }
             mask <<= 1;
             i++;
@@ -687,7 +681,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     public boolean out(int bitIndex) {
         if (bitIndex < 0)
             throw new IndexOutOfBoundsException(Integer.toString(bitIndex));
-        Assert.isTrue(bitIndex<size(), "index bigger than size");
+        Assert.isTrue(bitIndex < size(), "index bigger than size");
         int unitIndex = unitIndex(bitIndex);
         if (unitIndex >= unit.length)
             return true;

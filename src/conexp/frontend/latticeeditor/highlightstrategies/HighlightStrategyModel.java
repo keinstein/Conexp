@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.highlightstrategies;
 
 
@@ -10,7 +16,7 @@ public class HighlightStrategyModel extends AbstractDrawingStrategyModel {
     private final static int NEIGHBOURS_HIGHLIGHT_STRATEGY = ONE_NODE_HIGHLIGHT_STRATEGY + 1;
     private final static int IDEAL_HIGHLIGHT_STRATEGY = NEIGHBOURS_HIGHLIGHT_STRATEGY + 1;
     private final static int FILTER_HIGHLIGHT_STRATEGY = IDEAL_HIGHLIGHT_STRATEGY + 1;
-    private final static int NO_HIGHLIGHT_STRATEGY  =  FILTER_HIGHLIGHT_STRATEGY + 1;
+    private final static int NO_HIGHLIGHT_STRATEGY = FILTER_HIGHLIGHT_STRATEGY + 1;
     private final static int LAST_STRATEGY = NO_HIGHLIGHT_STRATEGY;
     private final static int STRATEGY_COUNT = LAST_STRATEGY + 1;
 

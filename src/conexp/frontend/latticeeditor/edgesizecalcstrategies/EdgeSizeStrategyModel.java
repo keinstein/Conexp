@@ -1,12 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.edgesizecalcstrategies;
 
 import conexp.frontend.latticeeditor.DrawParameters;
 
-/**
- * Insert the type's description here.
- * Creation date: (18.01.01 23:52:52)
- * @author
- */
+
 public class EdgeSizeStrategyModel extends conexp.frontend.latticeeditor.AbstractDrawingStrategyModel {
     /**
      * EdgeSizeStrategyModel constructor comment.
@@ -23,7 +25,7 @@ public class EdgeSizeStrategyModel extends conexp.frontend.latticeeditor.Abstrac
         allocateStrategies(4);
         int i = 0;
         setStrategy(i++, "One pixel", new FixedEdgeSizeCalcStrategy(1.0f));
-        setStrategy(i++, "InvisibleEdgeStrategyModel" , "No ", new FixedEdgeSizeCalcStrategy(0));
+        setStrategy(i++, "InvisibleEdgeStrategyModel", "No ", new FixedEdgeSizeCalcStrategy(0));
         setStrategy(i++, "~ object", new ObjectFlowEdgeSizeCalcStrategy(opt));
         setStrategy(i, "~ connection", new ConceptConnectionEdgeSizeCalcStrategy(opt));
     }

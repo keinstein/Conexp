@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend;
 
 import conexp.frontend.ui.ViewManager;
@@ -5,11 +11,7 @@ import conexp.frontend.ui.ViewManager;
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 
-/**
- * Insert the type's description here.
- * Creation date: (14.05.2001 16:55:47)
- * @author
- */
+
 public class JTabPaneViewManager extends ViewManager {
     protected javax.swing.JTabbedPane tabPane;
 

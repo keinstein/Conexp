@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Nov 27, 2001
- * Time: 9:42:00 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend;
 
 import util.DataFormatException;

@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: Serhiy Yevtushenko
- * Date: Jun 11, 2002
- * Time: 3:10:22 AM
- * To change template for new class use 
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor.queries;
 
 import conexp.core.*;
@@ -30,15 +29,15 @@ public abstract class QueryBase implements ConceptQuery {
         this.attributeMask = attributeMask;
     }
 
-    protected ExtendedContextEditingInterface getContext(){
+    protected ExtendedContextEditingInterface getContext() {
         return cxt;
     }
 
     boolean stabilityCalculated = false;
-    int cachedStability  = -1;
+    int cachedStability = -1;
 
     public boolean hasOwnObjects() {
-        return getOwnObjectsCount()>0;
+        return getOwnObjectsCount() > 0;
     }
 
     public boolean hasOwnAttribs() {
@@ -51,7 +50,7 @@ public abstract class QueryBase implements ConceptQuery {
     }
 
     public int getStability() {
-        if(!stabilityCalculated){
+        if (!stabilityCalculated) {
             cachedStability = ContextFunctions.stability(getQueryIntent(), cxt);
             stabilityCalculated = true;
         }
@@ -60,9 +59,9 @@ public abstract class QueryBase implements ConceptQuery {
 
     public ConceptQuery makeCombinedQuery(ConceptQuery other, boolean isTop, boolean isInnermost) {
         Assert.isTrue(other instanceof QueryBase);
-        QueryBase that = (QueryBase)other;
+        QueryBase that = (QueryBase) other;
         //now requiring that core was same
-        Assert.isTrue(this.getContext()==that.getContext());
+        Assert.isTrue(this.getContext() == that.getContext());
 
         final int attributeCount = getContext().getAttributeCount();
         ModifiableSet combinedQuery = ContextFactoryRegistry.createSet(attributeCount);
@@ -73,19 +72,19 @@ public abstract class QueryBase implements ConceptQuery {
         combinedAttributeMask.copy(getAttributeMask());
         combinedAttributeMask.or(that.getAttributeMask());
 
-        List attributeContingent= null;
-        if(isTop){
-           if(hasOwnAttribs()){
-               attributeContingent = CollectionFactory.createDefaultList();
+        List attributeContingent = null;
+        if (isTop) {
+            if (hasOwnAttribs()) {
+                attributeContingent = CollectionFactory.createDefaultList();
 
-               for (Iterator ownAttribsIter = ownAttribsIterator(); ownAttribsIter.hasNext();) {
-                   attributeContingent.add(ownAttribsIter.next());
-               }
-           }
+                for (Iterator ownAttribsIter = ownAttribsIterator(); ownAttribsIter.hasNext();) {
+                    attributeContingent.add(ownAttribsIter.next());
+                }
+            }
         }
 
         return new GenericNodeQuery(getContext(), combinedQuery, attributeContingent,
-                    isInnermost, combinedAttributeMask);
+                isInnermost, combinedAttributeMask);
     }
 
     public Iterator extentIterator() {

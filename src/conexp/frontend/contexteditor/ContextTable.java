@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.contexteditor;
 
 import conexp.core.ContextEditingInterface;
@@ -73,7 +79,7 @@ public class ContextTable extends JTable implements ParamsProvider {
 
     }
 
-    public void setPopupMenuProvider(PopupMenuProvider newPopupMenuProvider){
+    public void setPopupMenuProvider(PopupMenuProvider newPopupMenuProvider) {
         this.popupMenuProvider = newPopupMenuProvider;
     }
 
@@ -82,11 +88,11 @@ public class ContextTable extends JTable implements ParamsProvider {
      *  will be changed, when implement mechanism for declaring action and
      *  loading actions from XML resources
      * */
-    public void setFullContextMenuProvider(){
+    public void setFullContextMenuProvider() {
         setPopupMenuProvider(new ContextTablePopupMenuProvider());
     }
 
-    class ContextTablePopupMenuProvider implements PopupMenuProvider{
+    class ContextTablePopupMenuProvider implements PopupMenuProvider {
         public JPopupMenu makePopupMenu() {
             JPopupMenu popupMenu = new JPopupMenu();
             popupMenu.add(new RemoveAttributeAction());
@@ -117,8 +123,8 @@ public class ContextTable extends JTable implements ParamsProvider {
         }
     }
 
-    public abstract static class ActionWithKey extends AbstractAction{
-       public ActionWithKey(String key, String name) {
+    public abstract static class ActionWithKey extends AbstractAction {
+        public ActionWithKey(String key, String name) {
             super(name);
             putValue(AbstractAction.ACTION_COMMAND_KEY, key);
         }
@@ -138,9 +144,9 @@ public class ContextTable extends JTable implements ParamsProvider {
         }
     }
 
-    class RemoveObjectAction extends ActionWithKey{
-        public  RemoveObjectAction(){
-           super("removeObjects", "Remove object(s)");
+    class RemoveObjectAction extends ActionWithKey {
+        public RemoveObjectAction() {
+            super("removeObjects", "Remove object(s)");
         }
 
         public boolean isEnabled() {
@@ -171,7 +177,7 @@ public class ContextTable extends JTable implements ParamsProvider {
 
 
     class FillCellAction extends ActionOnSelectedContextCells {
-        FillCellAction(){
+        FillCellAction() {
             super("fillSelectedCells", "Fill selected cells");
         }
 
@@ -181,8 +187,8 @@ public class ContextTable extends JTable implements ParamsProvider {
 
     }
 
-    class ClearCellAction extends ActionOnSelectedContextCells{
-        ClearCellAction(){
+    class ClearCellAction extends ActionOnSelectedContextCells {
+        ClearCellAction() {
             super("clearSelectedCells", "Clear selected keys");
         }
 
@@ -192,8 +198,8 @@ public class ContextTable extends JTable implements ParamsProvider {
     }
 
 
-    class InverseCellAction extends ActionOnSelectedContextCells{
-        InverseCellAction(){
+    class InverseCellAction extends ActionOnSelectedContextCells {
+        InverseCellAction() {
             super("inverseSelectedCells", "Inverse selected cells");
         }
 
@@ -210,15 +216,15 @@ public class ContextTable extends JTable implements ParamsProvider {
         getContextTableModel().setContext(cxt);
     }
 
-    public void addUndoableEditListener(UndoableEditListener listener){
+    public void addUndoableEditListener(UndoableEditListener listener) {
         getContextTableModel().addUndoableEditListener(listener);
     }
 
-    public void removeUndoableEditListener(UndoableEditListener listener){
+    public void removeUndoableEditListener(UndoableEditListener listener) {
         getContextTableModel().removeUndoableEditListener(listener);
     }
 
-    public void performCommand(Command command){
+    public void performCommand(Command command) {
         getContextTableModel().performCommand(command);
     }
 

@@ -1,10 +1,12 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.compareutils;
 
-/**
- * Insert the type's description here.
- * Creation date: (13.07.01 18:40:40)
- * @author
- */
+
 public class LatticeElementCompareInfoFactory implements CompareInfoFactory {
     /**
      * Insert the method's description here.

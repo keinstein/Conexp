@@ -1,16 +1,18 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package cefacade.demo;
 
 import cefacade.CEFacadeFactory;
 import cefacade.ContextReducer;
 import cefacade.ISimpleContext;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: 17.01.2003
- * Time: 17:56:29
- */
+
 public class ContextCreationAndReductionDemo {
-    public static void demoOne(){
+    public static void demoOne() {
         ISimpleContext context = CEFacadeFactory.makeContext();
         context.setDimension(2, 2);
         context.setObjectName(0, "Obj One");

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.tests;
 
 import conexp.core.Lattice;
@@ -12,10 +18,7 @@ import junit.framework.TestSuite;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-/**
- * Creation date: (06.12.00 12:48:18)
- * @author
- */
+
 public class LatticePainterPanelTest extends junit.framework.TestCase {
     LatticePainterPanel pan;
 

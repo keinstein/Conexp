@@ -1,13 +1,16 @@
-/*
- * User: sergey
- * Date: Nov 5, 2001
- * Time: 9:17:14 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend;
 
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
 
 public interface ConceptSetDrawingConsumer {
     void setConceptSetDrawing(ConceptSetDrawing drawing);
+
     void clearConceptSetDrawing();
 }

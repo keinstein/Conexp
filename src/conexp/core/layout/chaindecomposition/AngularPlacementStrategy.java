@@ -1,10 +1,12 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout.chaindecomposition;
 
-/**
- * Insert the type's description here.
- * Creation date: (10.03.01 10:49:44)
- * @author
- */
+
 public class AngularPlacementStrategy extends SimplePlacementStrategy {
     /**
      * Insert the method's description here.

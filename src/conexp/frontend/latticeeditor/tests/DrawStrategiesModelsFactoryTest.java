@@ -1,13 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.tests;
 
 import conexp.frontend.latticeeditor.DrawParameters;
 import junit.framework.TestCase;
 
-/**
- * Insert the type's description here.
- * Creation date: (24.01.01 0:36:00)
- * @author
- */
+
 public abstract class DrawStrategiesModelsFactoryTest extends TestCase {
     protected conexp.frontend.latticeeditor.ModelsFactory factory;
     protected DrawParameters drawParams;

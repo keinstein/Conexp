@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Jan 26, 2002
- * Time: 6:18:56 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor;
 
 import canvas.FigureDrawingCanvas;
@@ -27,11 +29,11 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
         return AffineTransform.getTranslateInstance(-viewPoint.getX() + drawParams.getMinGapX(), -viewPoint.getY() + drawParams.getMinGapY());
     }
 
-    protected LatticeCanvasScheme getLatticeCanvasSchema(){
-        return (LatticeCanvasScheme)getOptions();
+    protected LatticeCanvasScheme getLatticeCanvasSchema() {
+        return (LatticeCanvasScheme) getOptions();
     }
 
-    public ConceptsCollection getConceptSet(){
+    public ConceptsCollection getConceptSet() {
         return getConceptSetDrawing().getConceptSet();
     }
 
@@ -48,7 +50,7 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
     }
 
     public ConceptSetDrawing getConceptSetDrawing() {
-        return (ConceptSetDrawing)getDrawing();
+        return (ConceptSetDrawing) getDrawing();
     }
 
     protected ConceptSetDrawing makeConceptSetDrawing() {
@@ -56,7 +58,7 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
     }
 
     public void setConceptSetDrawing(ConceptSetDrawing drawing) {
-       setFigureDrawing(drawing);
+        setFigureDrawing(drawing);
     }
 
     public void clearConceptSetDrawing() {
@@ -135,18 +137,18 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
     }
 
     protected boolean canDescribePoint(java.awt.Point ptSrc) {
-        if(!hasSelection()) {
+        if (!hasSelection()) {
             return false;
         }
-        if(!(getFirstSelectedFigure() instanceof ConceptFigure)){
-           return false;
+        if (!(getFirstSelectedFigure() instanceof ConceptFigure)) {
+            return false;
         }
         Point2D pt = getWorldCoords(ptSrc);
         return getFirstSelectedFigure().contains(pt.getX(), pt.getY());
     }
 
     protected String describeActivePoint() {
-        return ((ConceptFigure)getFirstSelectedFigure()).getDescription(getContext());
+        return ((ConceptFigure) getFirstSelectedFigure()).getDescription(getContext());
     }
 
 

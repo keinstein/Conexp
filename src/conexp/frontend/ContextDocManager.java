@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend;
 
 import conexp.core.LocalizedMessageSupplier;
@@ -11,7 +17,7 @@ import util.gui.fileselector.FileSelectorService;
 import util.gui.fileselector.GenericFileFilter;
 
 import javax.swing.*;
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -22,10 +28,7 @@ import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
-/**
- *@author     Sergey Yevtushenko
- *created    26 Èþëü 2000 ã.
- */
+
 public class ContextDocManager extends BasePropertyChangeSupplier implements ActionChainBearer, DocManagerMessages, DocManager {
     //-----------------------------------------------------------
     private ActionMap actionChain = new ActionMap();
@@ -35,6 +38,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         new NewDocAction(), new SaveDocAction(),
         new SaveDocAsAction()
     };
+
     public ActionMap getActionChain() {
         return actionChain;
     }
@@ -149,7 +153,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     public ContextDocManager(JFrame mainFrame, OptionPaneSupplier optionPaneSupplier) {
         super();
         this.appMainWindow = mainFrame;
-        appMainWindow.addWindowListener(new WindowAdapter(){
+        appMainWindow.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 onExit();
             }
@@ -409,12 +413,12 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
                         getSaveFilters())) {
             try {
                 File f = new File(fileSelector.getSelectedPath());
-                if(StringUtil.isEmpty(StringUtil.getExtension(f.getCanonicalPath()))){
-                    f = new File(f.getAbsolutePath()+getStorageFormatManager().getDefaultExtension());
+                if (StringUtil.isEmpty(StringUtil.getExtension(f.getCanonicalPath()))) {
+                    f = new File(f.getAbsolutePath() + getStorageFormatManager().getDefaultExtension());
                 }
                 final String extension = StringUtil.getExtension(f.getCanonicalPath());
-                if(!isFormatSupported(extension)){
-                    throw new IOException("Do not support format with extension:"+extension);
+                if (!isFormatSupported(extension)) {
+                    throw new IOException("Do not support format with extension:" + extension);
                 }
                 if (f.exists()) {
                     String msg = makeLocalizedMessageWithOneParam("FileExistsConfirmOverwriteMsg", f.getName());
@@ -439,7 +443,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     }
 
     private boolean isFormatSupported(String extension) {
-        return getWriter(extension)!=null;
+        return getWriter(extension) != null;
     }
 
     private GenericFileFilter[] getSaveFilters() {
@@ -467,8 +471,8 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     public void saveDocument(File f) throws java.io.IOException {
         final String extension = StringUtil.getExtension(f.getCanonicalPath());
         DocumentWriter writer = getWriter(extension);
-        if(writer==null){
-            throw new IOException("Not supported extension "+extension);
+        if (writer == null) {
+            throw new IOException("Not supported extension " + extension);
         }
         writer.storeDocument(getActiveDoc(), new FileWriter(f));
     }

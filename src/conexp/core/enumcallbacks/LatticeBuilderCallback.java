@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.enumcallbacks;
 
 import conexp.core.Lattice;
@@ -14,10 +20,9 @@ public class LatticeBuilderCallback extends DefaultConceptEnumCallback {
         lat = _lat;
     }
 
-    private LatticeElement addToLatElem(Set obj, Set attr) {
+    private void addToLatElem(Set obj, Set attr) {
         last = LatticeElement.makeFromSetsCopies(obj, attr);
         lat.addElementSetLinks(last);
-        return last;
     }
 
     /**
@@ -32,11 +37,11 @@ public class LatticeBuilderCallback extends DefaultConceptEnumCallback {
 
     /**
      *
-     * @param obj <description>
-     * @param attr <description>
+     * @param extent <description>
+     * @param intent <description>
      */
-    public void setZeroElement(Set obj, Set attr) {
-        last = LatticeElement.makeFromSetsCopies(obj, attr);
+    public void setZeroElement(Set extent, Set intent) {
+        last = LatticeElement.makeFromSetsCopies(extent, intent);
         //*DBG*/ System.out.println(last);
         //*DBG*/ System.out.println(lat);
         lat.addElement(last);
@@ -45,11 +50,10 @@ public class LatticeBuilderCallback extends DefaultConceptEnumCallback {
 
     /**
      *
-     * @param obj <description>
-     * @param attr <description>
-     * @param j <description>
+     * @param extent <description>
+     * @param intent <description>
      */
-    public void addConcept(Set obj, Set attr) {
-        addToLatElem(obj, attr);
+    public void addConcept(Set extent, Set intent) {
+        addToLatElem(extent, intent);
     }
 }

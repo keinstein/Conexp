@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.util.gui.strategymodel.tests;
 
 import conexp.util.GenericStrategy;
@@ -29,17 +35,17 @@ public class StrategyValueItemTest extends TestCase {
         model.addStrategy(SECOND_KEY, "second test entry", new MockGenericStrategy());
 
         valueItem = new StrategyValueItem("valueItem",
-                        model, null);
+                model, null);
 
     }
 
-    public void testGetStrategyKey(){
+    public void testGetStrategyKey() {
         valueItem.setValue(0);
         assertEquals(0, valueItem.getValue());
         assertEquals(FIRST_KEY, valueItem.getStrategyKey());
     }
 
-    public void testFindStrategyByKey(){
+    public void testFindStrategyByKey() {
         assertEquals(1, valueItem.findStrategyByKey(SECOND_KEY));
     }
 
@@ -55,7 +61,7 @@ public class StrategyValueItemTest extends TestCase {
         assertEquals(1, valueItem.getValue());
     }
 
-    public void testSetValueByKey(){
+    public void testSetValueByKey() {
         assertEquals(0, valueItem.getValue());
         assertTrue(valueItem.setValueByKey(SECOND_KEY));
         assertEquals(1, valueItem.getValue());

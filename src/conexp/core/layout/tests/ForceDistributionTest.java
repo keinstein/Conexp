@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout.tests;
 
 import conexp.core.layout.ForceDistribution;
@@ -27,7 +33,7 @@ public class ForceDistributionTest extends TestCase {
         forceDistrib = new ForceDistribution();
     }
 
-    public void testAcceptabilityOfValues(){
+    public void testAcceptabilityOfValues() {
         final BoundedDoubleValue attractionFactorModel = forceDistrib.getAttractionFactorModel();
         attractionFactorModel.setValue(attractionFactorModel.maxVal);
 
@@ -44,8 +50,8 @@ public class ForceDistributionTest extends TestCase {
         for (int i = 0; i < 200; i++) {
             float[] forceConstants = forceDistrib.forceConstantsForIterations(i);
             final float attractionFactor = forceConstants[0];
-            assertTrue(attractionFactor>0);
-            assertTrue(attractionFactor<1);
+            assertTrue(attractionFactor > 0);
+            assertTrue(attractionFactor < 1);
         }
     }
 }

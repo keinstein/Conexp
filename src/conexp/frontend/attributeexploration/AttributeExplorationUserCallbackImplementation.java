@@ -1,8 +1,9 @@
-/*
- * User: sergey
- * Date: Dec 11, 2001
- * Time: 10:02:28 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 
 package conexp.frontend.attributeexploration;
 
@@ -12,7 +13,7 @@ import conexp.frontend.ResourceLoader;
 import util.Assert;
 
 import javax.swing.*;
-import java.awt.Component;
+import java.awt.*;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 

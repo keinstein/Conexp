@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: Dec 17, 2001
- * Time: 9:26:30 PM
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.io;
 
 import conexp.core.Context;
@@ -59,7 +58,7 @@ public class ConImpContextLoader {
             Context tmp = FCAEngineRegistry.makeContext(numObj, numAttr);
 
             str = getNextLine(); //skipping empty line between names and data
-            if(!StringUtil.isEmpty(str)){
+            if (!StringUtil.isEmpty(str)) {
                 pushBack(str);
             }
 
@@ -101,7 +100,7 @@ public class ConImpContextLoader {
     }
 
     private String getNextLine() throws IOException {
-        if(storedLine!=null){
+        if (storedLine != null) {
             String ret = storedLine;
             storedLine = null;
             return ret;

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.ruleview;
 
 import conexp.frontend.DependencySetSupplier;
@@ -9,11 +15,6 @@ import javax.swing.border.BevelBorder;
 import java.util.ResourceBundle;
 
 
-/**
- * Insert the type's description here.
- * Creation date: (18.11.00 9:35:47)
- * @author Sergey
- */
 public class AssociationRulesView extends GenericRuleView {
 
     private static ResourceBundle resources;

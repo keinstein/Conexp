@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies.tests;
 
 import com.mockobjects.ExpectationSet;
@@ -14,7 +20,7 @@ import junit.framework.TestCase;
 public abstract class CalcStrategyTest extends TestCase {
 
     protected ConceptCalcStrategy calcStrategy;
-    protected ConceptsCollection  conceptSet;
+    protected ConceptsCollection conceptSet;
 
     protected void setUp() {
         calcStrategy = makeCalcStrategy();

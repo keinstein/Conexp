@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout;
 
 import conexp.util.gui.paramseditor.BoundedDoubleValueParamInfo;
@@ -21,9 +27,9 @@ public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
         float maxYProjection = getConceptInfo(lattice.getOne()).coords.getProjection().y;
 
         float yScaleFactor = maxYProjection - minYProjection;
-        Assert.isTrue(yScaleFactor>=0);
+        Assert.isTrue(yScaleFactor >= 0);
 
-        final double sizeY = yScaleFactor >0.02 ? (levels * drawParams.getGridSizeY() / yScaleFactor): 1;
+        final double sizeY = yScaleFactor > 0.02 ? (levels * drawParams.getGridSizeY() / yScaleFactor) : 1;
 
         float minX = 0;
 
@@ -123,14 +129,14 @@ public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
      */
     public ForceDistribution getForceDistribution() {
         if (null == forceDistribution) {
-                    forceDistribution = new ForceDistribution();
-                    forceDistribution.getPropertyChange().addPropertyChangeListener(
-                            new java.beans.PropertyChangeListener() {
-                                public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                                    fireLayoutPropertyChanged(LAYOUT_PARAMS_CHANGE);
-                                }
-                            }
-                    );
+            forceDistribution = new ForceDistribution();
+            forceDistribution.getPropertyChange().addPropertyChangeListener(
+                    new java.beans.PropertyChangeListener() {
+                        public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                            fireLayoutPropertyChanged(LAYOUT_PARAMS_CHANGE);
+                        }
+                    }
+            );
         }
         return forceDistribution;
     }

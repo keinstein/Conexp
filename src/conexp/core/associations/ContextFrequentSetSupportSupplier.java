@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.associations;
 
 import conexp.core.BinaryRelation;
@@ -9,7 +15,7 @@ public class ContextFrequentSetSupportSupplier implements FrequentSetSupportSupp
 
     public ContextFrequentSetSupportSupplier(ExtendedContextEditingInterface cxt) {
         super();
-        this.cxt=cxt;
+        this.cxt = cxt;
     }
 
     public int supportForSet(conexp.core.Set attribs) {

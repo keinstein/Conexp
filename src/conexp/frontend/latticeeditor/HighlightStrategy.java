@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor;
 
 import canvas.Figure;
@@ -9,16 +15,12 @@ import conexp.frontend.latticeeditor.figures.EdgeFigure;
 import conexp.frontend.latticeeditor.figures.NodeObjectConnectionFigure;
 import conexp.util.GenericStrategy;
 
-/**
- * Insert the type's description here.
- * Creation date: (01.12.00 1:11:51)
- * @author
- */
+
 public abstract class HighlightStrategy implements GenericStrategy, IHighlightStrategy {
     protected conexp.core.LatticeElement node;
     protected Set query;
 
-    public boolean highlightFigure(Figure figure){
+    public boolean highlightFigure(Figure figure) {
         if (figure instanceof AbstractConceptCorrespondingFigure) {
             AbstractConceptCorrespondingFigure conceptFigure = (AbstractConceptCorrespondingFigure) figure;
             return highlightNodeWithQuery(conceptFigure.getIntentQuery());

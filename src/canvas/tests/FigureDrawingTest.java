@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.tests;
 
 import canvas.Figure;
@@ -8,14 +14,9 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import java.awt.Point;
-import java.awt.Rectangle;
+import java.awt.*;
 
-/**
- * Insert the type's description here.
- * Creation date: (13.01.01 2:07:00)
- * @author
- */
+
 public class FigureDrawingTest extends TestCase {
     protected FigureDrawing fd;
     protected FigureWithCoords f1;
@@ -45,7 +46,7 @@ public class FigureDrawingTest extends TestCase {
     public void testAddForegroundFigure() {
         assertEquals(fd.makeDrawingDimension(20, 20), fd.getDimension());
         assertEquals(false, fd.isBoundsRectDirty());
-        assertEquals(new Rectangle(0,0, 20, 20), fd.getUserBoundsRect());
+        assertEquals(new Rectangle(0, 0, 20, 20), fd.getUserBoundsRect());
         Figure f = new MockFigure(25, 25);
         fd.addForegroundFigure(f);
         assertEquals(fd.makeDrawingDimension(30, 30), fd.getDimension());
@@ -53,14 +54,13 @@ public class FigureDrawingTest extends TestCase {
     }
 
     public void testFireBoundsBoxChange() {
-        assertEquals(new Rectangle(0,0, 20, 20), fd.getUserBoundsRect());
+        assertEquals(new Rectangle(0, 0, 20, 20), fd.getUserBoundsRect());
         MockPropertyChangeListener listener = new MockPropertyChangeListener();
         listener.setExpectedEventCount(1);
         listener.setExpectedPropertyName(FigureDrawing.BOUNDS_BOX_PROPERTY);
         listener.setExpectedOldValue(new Rectangle(0, 0, 20, 20));
         listener.setExpectedNewValue(new Rectangle(0, 0, 30, 30));
         fd.addPropertyChangeListener(listener);
-
 
 
         Figure f = new MockFigure(25, 25);
@@ -79,7 +79,7 @@ public class FigureDrawingTest extends TestCase {
 
         f1.moveBy(10, 10);
         assertEquals(new Point(15, 15), f1.getCenter());
-        assertSame(f2, fd.findFigureInReverseOrder(15,15));
+        assertSame(f2, fd.findFigureInReverseOrder(15, 15));
     }
 
     /**
@@ -137,7 +137,7 @@ public class FigureDrawingTest extends TestCase {
         assertEquals(false, fd.layOnBorder(new java.awt.Rectangle(18, 18, 1, 1)));
     }
 
-    public void testClear(){
+    public void testClear() {
         assertEquals(new java.awt.Rectangle(0, 0, 20, 20), fd.getUserBoundsRect());
         assertEquals(fd.makeDrawingDimension(20, 20), fd.getDimension());
 

@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Jan 24, 2002
- * Time: 3:25:52 AM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package canvas.figures;
 
 import java.awt.geom.Point2D;
@@ -38,7 +40,7 @@ public abstract class RectangularFigure extends FigureWithCoords implements Bord
                     getCenterY() + dh);
         } else {
 
-            double dw = (dx > 0 ? -getWidth() / 2: getWidth() / 2);
+            double dw = (dx > 0 ? -getWidth() / 2 : getWidth() / 2);
 
             result.setLocation(getCenterX() + dw,
                     getCenterY() + (dx != 0 ? (dy * dw) / dx : 0));

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.figures.tests;
 
 import canvas.tests.FigureTest;
@@ -23,11 +29,12 @@ public class ConceptFigureTest extends FigureTest {
 
     protected canvas.Figure makeFigure() {
         final ConceptFigure conceptFigure = new ConceptFigure(
-                        new ConceptNodeQuery(SetBuilder.makeContext(new int[0][0]), ConceptFactory.makeEmptyLatticeElement(),
-                                SetBuilder.makeSet(new int[0]))
-                        );
-        conceptFigure.setFigureDimensionCalcStrategyProvider(new conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider(){
+                new ConceptNodeQuery(SetBuilder.makeContext(new int[0][0]), ConceptFactory.makeEmptyLatticeElement(),
+                        SetBuilder.makeSet(new int[0]))
+        );
+        conceptFigure.setFigureDimensionCalcStrategyProvider(new conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider() {
             FigureDimensionCalcStrategy figureDimensionCalcStrategy = makeFigureDimensionCalcStrategy(RADIUS);
+
             public FigureDimensionCalcStrategy getFigureDimensionCalcStrategy() {
                 return figureDimensionCalcStrategy;
             }

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.labelingstrategies.tests;
 
 import conexp.core.Lattice;
@@ -17,16 +23,16 @@ public class AllAttribsLabelingStrategyTest extends GenericLabelingStrategyTest 
     }
 
     protected ConceptNodeQuery makeAcceptable() {
-        return  ConceptNodeQueryFactory.makeWithOwnAttribs();
+        return ConceptNodeQueryFactory.makeWithOwnAttribs();
     }
 
     protected GenericLabelingStrategy makeStrategy() {
         return new AllAttribsLabelingStrategy(new conexp.frontend.latticeeditor.LatticePainterDrawParams());
     }
 
-    public void testAdditionOfAttributesAndCleanup(){
+    public void testAdditionOfAttributesAndCleanup() {
         Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{0, 1},
-                                                             {1, 0}});
+                                                                        {1, 0}});
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(lattice);
         assertTrue(drawing.setAttributeLabelingStrategyKey(LabelingStrategiesKeys.NO_ATTRIBS_LABELING_STRATEGY));

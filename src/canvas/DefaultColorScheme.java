@@ -1,14 +1,16 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas;
 
 import javax.swing.*;
-import java.awt.Color;
+import java.awt.*;
 
-/**
- * Insert the type's description here.
- * Creation date: (06.10.00 23:00:52)
- * @author
- */
-public class DefaultColorScheme implements CanvasColorScheme{
+
+public class DefaultColorScheme implements CanvasColorScheme {
     Color edgeColor = Color.black;
     Color fillColor = Color.blue;
     Color nodeColor = Color.white;

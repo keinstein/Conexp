@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.tests;
 
 import conexp.frontend.ConceptFrame;
@@ -6,9 +12,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import util.StringUtil;
 
-/**
- * JUnit test case for TestContextDocManager
- */
 
 public class ConceptFrameTest extends TestCase {
     private static final Class THIS = ConceptFrameTest.class;

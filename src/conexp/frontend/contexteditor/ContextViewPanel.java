@@ -1,11 +1,11 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.contexteditor;
 
-/**
- *  ContextViewPanel.java Created: Sun Apr 30 18:57:12 2000
- *
- *@author     Sergey Yevtushenko
- *@version
- */
 
 import conexp.core.Context;
 import conexp.frontend.ResourceLoader;
@@ -22,16 +22,11 @@ import javax.swing.event.UndoableEditListener;
 import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ResourceBundle;
 
-/**
- *  Description of the Class
- *
- *@author     Sergey
- *created    8 Èþíü 2000 ã.
- */
+
 public class ContextViewPanel extends ContextTablePane implements ViewChangeInterfaceWithConfig {
     //ActionChainBearer
     private ActionMap actionChain = new ActionMap();
@@ -105,7 +100,7 @@ public class ContextViewPanel extends ContextTablePane implements ViewChangeInte
     }
 
 
-    UndoableEditListener undoableEditListener = new UndoableEditListener(){
+    UndoableEditListener undoableEditListener = new UndoableEditListener() {
         public void undoableEditHappened(UndoableEditEvent e) {
             undoManager.addEdit(e.getEdit());
             undoAction.update();

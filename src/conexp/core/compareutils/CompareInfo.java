@@ -1,10 +1,12 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.compareutils;
 
-/**
- * Insert the type's description here.
- * Creation date: (13.07.01 16:36:29)
- * @author
- */
+
 public class CompareInfo {
     public final static int IN_FIRST = 1;
     public final static int IN_SECOND = IN_FIRST + 1;

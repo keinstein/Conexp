@@ -1,13 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor;
 
 import conexp.core.ConceptsCollection;
 import conexp.core.ExtendedContextEditingInterface;
 
 
-/**
- * Insert the type's description here.
- * Creation date: (11.10.00 21:35:55)
- */
 public class DefaultDimensionCalcStrategy extends AbstractDimensionCalcStrategy {
 
     protected DrawParameters options;

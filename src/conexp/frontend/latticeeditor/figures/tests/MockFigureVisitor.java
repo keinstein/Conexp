@@ -1,14 +1,16 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.figures.tests;
 
 import com.mockobjects.ExpectationCounter;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.DefaultFigureVisitor;
 
-/**
- * Insert the type's description here.
- * Creation date: (23.12.00 13:33:41)
- * @author
- */
+
 public class MockFigureVisitor extends DefaultFigureVisitor {
     private com.mockobjects.ExpectationCounter counter = new ExpectationCounter("Expected number of visits");
 

@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: May 28, 2002
- * Time: 12:34:08 AM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.components;
 
 import conexp.frontend.AttributeMask;
@@ -10,7 +12,7 @@ import conexp.frontend.AttributeMask;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
-public class AttributeMaskScrollPane extends JScrollPane{
+public class AttributeMaskScrollPane extends JScrollPane {
     private AttributeMaskTable attributeSelectionTable;
 
     public AttributeMaskTable getAttributeSelectionTable() {

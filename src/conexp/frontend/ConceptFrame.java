@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend;
 
 import util.ConfigurationManager;
@@ -7,18 +13,11 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-/**
- *  Description of the Class
- *
- *@author     Sergey
- *@created    8 N=L 2000 3.
- */
+
 public class ConceptFrame extends JFrame {
 
     public ConceptFrame() {
@@ -36,7 +35,6 @@ public class ConceptFrame extends JFrame {
         jSplitPane1.setPreferredSize(new Dimension(SizeOptions.getProjectPaneWidth(), 150));
         jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setOneTouchExpandable(true);
-
 
 
         int sizeTab = 100;
@@ -112,7 +110,7 @@ public class ConceptFrame extends JFrame {
         };
         ContextDocManager contextDocManager = new ContextDocManager(this, optionPaneSupplier);
         contextDocManager.setStorageFormatManager(new ConExpStorageFormatManager());
-        contextDocManager.setConfigManager(new ConfigurationManager("ConExp.prop","ConExp configuration"));
+        contextDocManager.setConfigManager(new ConfigurationManager("ConExp.prop", "ConExp configuration"));
         return contextDocManager;
     }
 

@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: Serhiy Yevtushenko
- * Date: Jun 10, 2002
- * Time: 10:04:53 PM
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor.queries;
 
 import conexp.core.ContextFunctions;
@@ -37,18 +36,18 @@ public class GenericNodeQuery extends QueryBase {
     }
 
     public boolean hasOwnAttribs() {
-        return null!=attributeContingent && attributeContingent.size()>0;
+        return null != attributeContingent && attributeContingent.size() > 0;
     }
 
     public int getOwnAttribsCount() {
-        if(null==attributeContingent){
+        if (null == attributeContingent) {
             return 0;
         }
         return attributeContingent.size();
     }
 
     public Iterator ownAttribsIterator() {
-        if(null==attributeContingent){
+        if (null == attributeContingent) {
             return NullIterator.makeNull();
         }
         return attributeContingent.iterator();

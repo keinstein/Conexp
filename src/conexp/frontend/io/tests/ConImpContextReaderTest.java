@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.io.tests;
 
 import conexp.core.ExtendedContextEditingInterface;
@@ -35,13 +41,13 @@ public class ConImpContextReaderTest extends TestCase {
         };
 
         ExtendedContextEditingInterface expectedContext = SetBuilder.makeContext(new String[]{"O1", "O2"}, new String[]{"A1", "A2"}, new int[][]
-                    {{0, 0},
-                     {1, 1}});
+        {{0, 0},
+         {1, 1}});
 
         doTestReading(data, expectedContext);
     }
 
-    public void testReadingWithEmptyLineAfterDimensions(){
+    public void testReadingWithEmptyLineAfterDimensions() {
         String[] data = {
             "B",
             "Test cxt",
@@ -57,8 +63,8 @@ public class ConImpContextReaderTest extends TestCase {
         };
 
         ExtendedContextEditingInterface expectedContext = SetBuilder.makeContext(new String[]{"O1", "O2"}, new String[]{"A1", "A2"}, new int[][]
-                    {{0, 0},
-                     {1, 1}});
+        {{0, 0},
+         {1, 1}});
 
         doTestReading(data, expectedContext);
     }
@@ -68,14 +74,14 @@ public class ConImpContextReaderTest extends TestCase {
         StringReader reader = new StringReader(buildString(data));
         ConImpContextLoader loader = new ConImpContextLoader();
         try {
-            ExtendedContextEditingInterface cxt =loader.loadContext(reader);
+            ExtendedContextEditingInterface cxt = loader.loadContext(reader);
             assertEquals(expectedContext, cxt);
         } catch (Exception e) {
             TestUtil.reportUnexpectedException(e);
         }
     }
 
-    public static String buildString(String [] strings){
+    public static String buildString(String[] strings) {
         return StringUtil.join(strings, "\n");
     }
 }

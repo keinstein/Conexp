@@ -1,10 +1,12 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 09.04.2002
- * Time: 13:13:12
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.contexteditor;
 
-interface CellTransformer{
+interface CellTransformer {
     Object transformedValue(Object oldValue);
 }

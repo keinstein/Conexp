@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Jul 24, 2002
- * Time: 2:56:16 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core.associations;
 
 import conexp.core.*;
@@ -72,16 +74,16 @@ public class AssociationCoverCalculator {
         final int newPremiseObjectCount = parentHavingMaximalSupportThatStillCreatesAssociationRule.getObjCnt();
 
         final int count = cover.getSize();
-        for(int i=0; i<count; i++){
-           Dependency dependency = cover.getDependency(i);
-           dependencyAttributeSet.copy(dependency.getPremise());
-           dependencyAttributeSet.or(dependency.getConclusion());
+        for (int i = 0; i < count; i++) {
+            Dependency dependency = cover.getDependency(i);
+            dependencyAttributeSet.copy(dependency.getPremise());
+            dependencyAttributeSet.or(dependency.getConclusion());
 
-           if(current.getAttribs().isSubsetOf(dependencyAttributeSet)){
-               if(newPremiseObjectCount<=dependency.getPremiseSupport()){
+            if (current.getAttribs().isSubsetOf(dependencyAttributeSet)) {
+                if (newPremiseObjectCount <= dependency.getPremiseSupport()) {
                     return false;
-               }
-           }
+                }
+            }
         }
 
         return true;
@@ -91,19 +93,19 @@ public class AssociationCoverCalculator {
         ConceptFilterIterator filterIterator = new ConceptFilterIterator(current);
         LatticeElement ret = null;
         double currentSupport = current.getObjCnt();
-        while(filterIterator.hasNext()){
+        while (filterIterator.hasNext()) {
             LatticeElement next = filterIterator.nextConcept();
-            if(ret==null){
+            if (ret == null) {
                 ret = next;
-            }else{
+            } else {
                 final int nextSupport = next.getObjCnt();
-                if(currentSupport>=nextSupport*confidence){
+                if (currentSupport >= nextSupport * confidence) {
                     final int retSupport = ret.getObjCnt();
-                    if(nextSupport>retSupport){
+                    if (nextSupport > retSupport) {
                         ret = next;
-                    }else if (nextSupport == retSupport){
-                        if(next.getAttribs().elementCount()<ret.getAttribs().elementCount()){
-                            ret=next;
+                    } else if (nextSupport == retSupport) {
+                        if (next.getAttribs().elementCount() < ret.getAttribs().elementCount()) {
+                            ret = next;
                         }
                     }
                 }

@@ -1,12 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout;
 
 import conexp.util.valuemodels.BoundedDoubleValue;
 
-/**
- * Insert the type's description here.
- * Creation date: (12.03.01 22:41:39)
- * @author
- */
+
 public class ForceDistribution {
     static final String REPULSION_PROPERTY = "repulsion";
     static final String ATTRACTION_PROPERTY = "attraction";

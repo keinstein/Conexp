@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor;
 
 import canvas.Figure;
@@ -18,12 +24,8 @@ import java.awt.geom.Point2D;
 import java.util.Iterator;
 import java.util.List;
 
-/*
- * User: Serhiy Yevtushenko
- * Date: 12.10.2002
- * Time: 17:27:31
- */
-public class CEDiagramEditorPanel extends DiagramEditorPanel implements View{
+
+public class CEDiagramEditorPanel extends DiagramEditorPanel implements View {
 
     /**
      *  DEBUG
@@ -45,7 +47,6 @@ public class CEDiagramEditorPanel extends DiagramEditorPanel implements View{
 
             document.getContext().copyFrom(checker.getContext());
         }
-
 
 
     }
@@ -114,8 +115,8 @@ public class CEDiagramEditorPanel extends DiagramEditorPanel implements View{
 
     protected void formObjectNamesInContext(LatticeDiagramChecker checker, List nodes) {
         ExtendedContextEditingInterface cxt = checker.getContext();
-        for(int i=0; i<cxt.getObjectCount(); i++){
-            NodeFigure figure = (NodeFigure)nodes.get(i);
+        for (int i = 0; i < cxt.getObjectCount(); i++) {
+            NodeFigure figure = (NodeFigure) nodes.get(i);
             cxt.getObject(i).setName(String.valueOf(figure.getId()));
         }
     }

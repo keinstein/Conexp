@@ -1,9 +1,11 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 06.03.2002
- * Time: 14:34:19
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor;
 
-public interface ModelsFactory extends DrawStrategiesModelsFactory{
+public interface ModelsFactory extends DrawStrategiesModelsFactory {
 }

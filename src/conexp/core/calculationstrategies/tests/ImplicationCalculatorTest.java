@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Jul 6, 2002
- * Time: 12:12:42 AM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.*;
@@ -147,9 +149,9 @@ public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBas
         };
 
         int[][][] expImplicationsDescriptions = new int[][][]{
-        {{0, 0, 1, 0, 1},{1, 1, 0, 1, 0}},
-        {{0, 1, 0, 0, 0},{1, 0, 1, 1, 1}},
-        {{1, 0, 0, 0, 0},{0, 1, 1, 1, 1}}
+            {{0, 0, 1, 0, 1}, {1, 1, 0, 1, 0}},
+            {{0, 1, 0, 0, 0}, {1, 0, 1, 1, 1}},
+            {{1, 0, 0, 0, 0}, {0, 1, 1, 1, 1}}
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
     }
@@ -163,42 +165,40 @@ public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBas
         };
 
         int[][][] expImplicationsDescriptions = new int[][][]{
-        {{0, 0, 0, 0, 1},{0, 0, 1, 0, 0}},
-        {{0, 0, 1, 1, 1},{1, 1, 0, 0, 0}},
-        {{0, 1, 0, 1, 0},{1, 0, 0, 0, 0}},
-        {{0, 1, 1, 0, 0},{1, 0, 0, 1, 1}},
-        {{1, 0, 0, 0, 0},{0, 1, 0, 1, 0}}
+            {{0, 0, 0, 0, 1}, {0, 0, 1, 0, 0}},
+            {{0, 0, 1, 1, 1}, {1, 1, 0, 0, 0}},
+            {{0, 1, 0, 1, 0}, {1, 0, 0, 0, 0}},
+            {{0, 1, 1, 0, 0}, {1, 0, 0, 1, 1}},
+            {{1, 0, 0, 0, 0}, {0, 1, 0, 1, 0}}
 
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
     }
 
-    public void testImplicationCalculatorRandomFailure7(){
+    public void testImplicationCalculatorRandomFailure7() {
         int[][] relation = new int[][]{
-        {0, 0, 0, 1, 1},
-        {0, 0, 0, 0, 0},
-        {1, 0, 0, 0, 0},
-        {1, 1, 0, 0, 0},
-        {1, 0, 1, 1, 0},
-        {0, 1, 0, 1, 0},
-        {0, 0, 1, 0, 0},
-        {1, 0, 0, 0, 0}
+            {0, 0, 0, 1, 1},
+            {0, 0, 0, 0, 0},
+            {1, 0, 0, 0, 0},
+            {1, 1, 0, 0, 0},
+            {1, 0, 1, 1, 0},
+            {0, 1, 0, 1, 0},
+            {0, 0, 1, 0, 0},
+            {1, 0, 0, 0, 0}
         };
 
         int[][][] expImplicationsDescriptions = new int[][][]{
-        {{0, 0, 0, 0, 1},{0, 0, 0, 1, 0}},
-        {{0, 0, 1, 1, 0},{1, 0, 0, 0, 0}},
-        {{0, 1, 0, 1, 1},{1, 0, 1, 0, 0}},
-        {{0, 1, 1, 0, 0},{1, 0, 0, 1, 1}},
-        {{1, 0, 0, 1, 0},{0, 0, 1, 0, 0}},
-        {{1, 0, 1, 0, 0},{0, 0, 0, 1, 0}},
-        {{1, 0, 1, 1, 1},{0, 1, 0, 0, 0}}
+            {{0, 0, 0, 0, 1}, {0, 0, 0, 1, 0}},
+            {{0, 0, 1, 1, 0}, {1, 0, 0, 0, 0}},
+            {{0, 1, 0, 1, 1}, {1, 0, 1, 0, 0}},
+            {{0, 1, 1, 0, 0}, {1, 0, 0, 1, 1}},
+            {{1, 0, 0, 1, 0}, {0, 0, 1, 0, 0}},
+            {{1, 0, 1, 0, 0}, {0, 0, 0, 1, 0}},
+            {{1, 0, 1, 1, 1}, {0, 1, 0, 0, 0}}
 
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
     }
-
-
 
 
     public void testBuildImplicationsWithContextWithSmallAttributeSetAndBigObjectSet() {

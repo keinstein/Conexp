@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core;
 
 import util.Assert;
@@ -18,6 +24,7 @@ public class Lattice extends ConceptsCollection {
 
     public interface TopSortBlock {
         public void elementAction(LatticeElement curr, LatticeElement lastPred);
+
         public void assignTopSortNumberToElement(LatticeElement el, int topSortNumber);
     };
 
@@ -115,7 +122,7 @@ public class Lattice extends ConceptsCollection {
                 find = true;
             }//outer
         }
-        return curr.getAttribs().in(attr) ? curr: null;
+        return curr.getAttribs().in(attr) ? curr : null;
     }
 
 
@@ -129,7 +136,7 @@ public class Lattice extends ConceptsCollection {
         Assert.isTrue(null != curr, "One in findElement can't be null");
         //*DBG*/System.out.println("curr="+(BitSet)_curr.attribs);
         //*DBG*/System.out.println("compare="+_attribs+" "+_curr.attribs+"["+_attribs.compare(_curr.attribs)+"]");
-        if(null!=getFeatureMask()){
+        if (null != getFeatureMask()) {
             ModifiableSet maskedAttribs = attribs.makeModifiableSetCopy();
             maskedAttribs.and(getFeatureMask());
             attribs = maskedAttribs;
@@ -198,8 +205,8 @@ public class Lattice extends ConceptsCollection {
         if (other.conceptsCount() != conceptsCount()) {
             return false;
         }
-        if(!this.isValid()){
-            if(other.isValid()){
+        if (!this.isValid()) {
+            if (other.isValid()) {
                 return false;
             }
             return true; //two notValid lattices

@@ -1,14 +1,16 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package cefacade.implementation;
 
 import cefacade.ISimpleContext;
 import conexp.core.Context;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: 17.01.2003
- * Time: 17:24:50
- */
-public class SimpleContextImplementation implements ISimpleContext{
+
+public class SimpleContextImplementation implements ISimpleContext {
     Context context;
 
     public SimpleContextImplementation(Context context) {
@@ -34,7 +36,7 @@ public class SimpleContextImplementation implements ISimpleContext{
     public String[] getAttributeName() {
         final int attributeCount = getAttributeCount();
         final String[] ret = new String[attributeCount];
-        for(int i=0;i<attributeCount; i++){
+        for (int i = 0; i < attributeCount; i++) {
             ret[i] = getAttributeName(i);
         }
         return ret;
@@ -42,7 +44,7 @@ public class SimpleContextImplementation implements ISimpleContext{
 
     public void setAttributeName(String[] newNames) {
         setDimension(getObjectCount(), newNames.length);
-        for(int i=0; i<newNames.length; i++){
+        for (int i = 0; i < newNames.length; i++) {
             setAttributeName(i, newNames[i]);
         }
     }
@@ -57,7 +59,7 @@ public class SimpleContextImplementation implements ISimpleContext{
 
     public void setObjectName(String[] newNames) {
         setDimension(newNames.length, getAttributeCount());
-        for(int i=0; i<newNames.length; i++){
+        for (int i = 0; i < newNames.length; i++) {
             setObjectName(i, newNames[i]);
         }
     }
@@ -65,7 +67,7 @@ public class SimpleContextImplementation implements ISimpleContext{
     public String[] getObjectName() {
         final int objectCount = getObjectCount();
         final String[] ret = new String[objectCount];
-        for(int i=0;i<objectCount; i++){
+        for (int i = 0; i < objectCount; i++) {
             ret[i] = getObjectName(i);
         }
         return ret;
@@ -87,7 +89,7 @@ public class SimpleContextImplementation implements ISimpleContext{
         return new SimpleContextImplementation(context.makeNativeCopy());
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return context;
     }
 

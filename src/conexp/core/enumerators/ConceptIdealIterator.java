@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.enumerators;
 
 import conexp.core.LatticeElement;
@@ -6,7 +12,7 @@ import util.Assert;
 public class ConceptIdealIterator extends DepthSearchIterator {
     public ConceptIdealIterator(LatticeElement start) {
         super();
-        Assert.isTrue(start.getHeight()>=0);
+        Assert.isTrue(start.getHeight() >= 0);
         initDepthIterator(start, start.getPredCount());
     }
 

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import canvas.Figure;
@@ -12,10 +18,7 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
- * Insert the type's description here.
- * Creation date: (20.12.00 23:00:27)
- */
+
 public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericLabelingStrategy {
 
     public OneToManyConnectedFiguresLabelingStrategy(DrawParameters opt) {

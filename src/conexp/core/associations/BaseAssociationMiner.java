@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Jun 30, 2002
- * Time: 11:37:33 AM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core.associations;
 
 import conexp.core.*;
@@ -98,11 +100,9 @@ public abstract class BaseAssociationMiner implements AssociationMiner {
         this.cxt = cxt;
     }
 
-    public ExtendedContextEditingInterface getDataSet()
-    {
+    public ExtendedContextEditingInterface getDataSet() {
         return cxt;
     }
-
 
 
     public int supportForSet(Set attribs) {

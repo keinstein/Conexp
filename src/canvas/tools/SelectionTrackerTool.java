@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.tools;
 
 import canvas.CanvasTool;
@@ -9,12 +15,8 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-/*
- * User: Serhiy Yevtushenko
- * Date: Oct 18, 2002
- * Time: 7:07:50 PM
- */
-public class SelectionTrackerTool extends CanvasTool{
+
+public class SelectionTrackerTool extends CanvasTool {
     private Point2D start;
 
 
@@ -54,8 +56,8 @@ public class SelectionTrackerTool extends CanvasTool{
     }
 
     private void updateRectangle(Point2D current) {
-       selectionRect = GraphicObjectsFactory.makeRectangle2D(Math.min(start.getX(), current.getX()), Math.min(start.getY(),
-               current.getY()), Math.abs(start.getX()-current.getX()), Math.abs(start.getY()-current.getY()));
+        selectionRect = GraphicObjectsFactory.makeRectangle2D(Math.min(start.getX(), current.getX()), Math.min(start.getY(),
+                current.getY()), Math.abs(start.getX() - current.getX()), Math.abs(start.getY() - current.getY()));
     }
 
 

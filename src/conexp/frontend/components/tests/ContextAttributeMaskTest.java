@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.components.tests;
 
 import conexp.core.Context;
@@ -25,7 +31,7 @@ public class ContextAttributeMaskTest extends TestCase {
         mask = new ContextAttributeMask(cxt);
     }
 
-    public void testAttributeSelection(){
+    public void testAttributeSelection() {
         assertEquals(3, mask.getAttributeCount());
         assertEquals(3, selectedItemsInMask(mask));
         mask.setAttributeSelected(2, false);
@@ -34,7 +40,7 @@ public class ContextAttributeMaskTest extends TestCase {
         assertEquals(true, mask.isAttributeSelected(2));
     }
 
-    public void testContextSynchronization(){
+    public void testContextSynchronization() {
         assertEquals(3, mask.getAttributeCount());
         assertEquals(3, selectedItemsInMask(mask));
         SimpleMockPropertyChangeListener listener = new SimpleMockPropertyChangeListener(AttributeMask.ATTRIBUTE_SELECTION_CHANGED);
@@ -58,7 +64,7 @@ public class ContextAttributeMaskTest extends TestCase {
         assertEquals(2, selectedItemsInMask(mask));
     }
 
-    public void testSynchronyzationWhenContextTransposed(){
+    public void testSynchronyzationWhenContextTransposed() {
         assertEquals(3, mask.getAttributeCount());
         cxt.increaseObjects(3);
         assertEquals(4, cxt.getObjectCount());
@@ -80,7 +86,7 @@ public class ContextAttributeMaskTest extends TestCase {
     }
 
 
-    public void testGetAttributeName(){
+    public void testGetAttributeName() {
         final String FIRST_NAME = "TestName";
         final String SECOND_NAME = "SecondTestName";
         cxt.getAttribute(0).setName(FIRST_NAME);
@@ -93,30 +99,30 @@ public class ContextAttributeMaskTest extends TestCase {
         listener.verify();
     }
 
-    public void testCreateSelectedAttributesSet(){
-         mask.setAttributeSelected(1, false);
-         assertEquals(3, mask.getAttributeCount());
-         assertEquals(SetBuilder.makeSet(new int[]{1, 0, 1}), getContextAttributeMask().toSet());
-         cxt.removeAttribute(0);
-         assertEquals(SetBuilder.makeSet(new int[]{0, 1}), getContextAttributeMask().toSet());
+    public void testCreateSelectedAttributesSet() {
+        mask.setAttributeSelected(1, false);
+        assertEquals(3, mask.getAttributeCount());
+        assertEquals(SetBuilder.makeSet(new int[]{1, 0, 1}), getContextAttributeMask().toSet());
+        cxt.removeAttribute(0);
+        assertEquals(SetBuilder.makeSet(new int[]{0, 1}), getContextAttributeMask().toSet());
     }
 
     private ContextAttributeMask getContextAttributeMask() {
-        return ((ContextAttributeMask)mask);
+        return ((ContextAttributeMask) mask);
     }
 
 
-    static int selectedItemsInMask(AttributeMask mask){
-        int ret=0;
-        for(int j=mask.getAttributeCount(); --j>=0;){
-           if(mask.isAttributeSelected(j)){
-               ret++;
-           }
+    static int selectedItemsInMask(AttributeMask mask) {
+        int ret = 0;
+        for (int j = mask.getAttributeCount(); --j >= 0;) {
+            if (mask.isAttributeSelected(j)) {
+                ret++;
+            }
         }
         return ret;
     }
 
-    public void testAttributeCountChangeEvent(){
+    public void testAttributeCountChangeEvent() {
         SimpleMockPropertyChangeListener listener = new SimpleMockPropertyChangeListener(AttributeMask.ATTRIBUTE_COUNT_CHANGED);
         mask.addPropertyChangeListener(listener);
         listener.setExpected(1);
@@ -128,14 +134,14 @@ public class ContextAttributeMaskTest extends TestCase {
         listener.verify();
     }
 
-    public void testEquals(){
+    public void testEquals() {
         AttributeMask secondMask = new ContextAttributeMask(cxt);
         assertEquals(mask, secondMask);
         assertEquals(false, mask.equals(new Object()));
         assertEquals(false, mask.equals(null));
 
         assertEquals(3, mask.getAttributeCount());
-        ExtendedContextEditingInterface cxt2 =  SetBuilder.makeContext(new int[][]{{0,1}});
+        ExtendedContextEditingInterface cxt2 = SetBuilder.makeContext(new int[][]{{0, 1}});
         AttributeMask thirdMask = new ContextAttributeMask(cxt2);
         assertEquals(false, mask.equals(thirdMask));
         secondMask.setAttributeSelected(0, false);
@@ -144,7 +150,7 @@ public class ContextAttributeMaskTest extends TestCase {
         //comparison on context is not done, because context are not part of interface (AT least for now)
     }
 
-    public void testHashCode(){
+    public void testHashCode() {
         AttributeMask secondMask = new ContextAttributeMask(cxt);
         assertEquals(mask.hashCode(), secondMask.hashCode());
     }

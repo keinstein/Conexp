@@ -1,15 +1,17 @@
-/*
- * Author: Serhiy Yevtushenko
- * Date: May 7, 2002
- * Time: 8:48:57 AM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core;
 
 import java.util.EventObject;
 
-public class ContextChangeEvent extends EventObject{
+public class ContextChangeEvent extends EventObject {
     public final static int ATTRIBUTE_REMOVED = 1;
-    public final static int ATTRIBUTE_ADDED = ATTRIBUTE_REMOVED+1;
+    public final static int ATTRIBUTE_ADDED = ATTRIBUTE_REMOVED + 1;
 
     public ContextChangeEvent(Object source, int type, int column) {
         super(source);
@@ -17,7 +19,7 @@ public class ContextChangeEvent extends EventObject{
         this.column = column;
     }
 
-    public static ContextChangeEvent makeAttributeInsertedEvent(ExtendedContextEditingInterface cxt, int attrIndex){
+    public static ContextChangeEvent makeAttributeInsertedEvent(ExtendedContextEditingInterface cxt, int attrIndex) {
         return new ContextChangeEvent(cxt, ATTRIBUTE_ADDED, attrIndex);
     }
 

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core;
 
 import contingencytable.ExtendedContingencyTable;
@@ -6,26 +12,22 @@ import contingencytable.IExtendedContingencyTable;
 import contingencytable.RuleMeasures;
 import util.Assert;
 
-/**
- * Insert the type's description here.
- * Creation date: (01.05.01 13:37:44)
- * @author Serhiy Yevtushenko
- */
+
 public abstract class GenericDependency implements Dependency {
 
     protected ModifiableSet conclusion;
 
     protected ModifiableSet premise;
 
-    ExtendedContingencyTable ruleCharacteristics=new ExtendedContingencyTable();
+    ExtendedContingencyTable ruleCharacteristics = new ExtendedContingencyTable();
 
     public GenericDependency(Set premise, Set conclusion, int premiseSupport, int ruleSupport) {
         this.premise = premise.makeModifiableSetCopy();
         this.conclusion = conclusion.makeModifiableSetCopy();
         ruleCharacteristics.setCharacteristic(IContingencyTable.PREMISE,
-                        IContingencyTable.CONCLUSION, ruleSupport);
+                IContingencyTable.CONCLUSION, ruleSupport);
         ruleCharacteristics.setCharacteristic(IContingencyTable.PREMISE,
-                        IContingencyTable.CONCLUSION_COMPLEMENT, premiseSupport-ruleSupport);
+                IContingencyTable.CONCLUSION_COMPLEMENT, premiseSupport - ruleSupport);
     }
 
     public boolean equals(Object obj) {
@@ -78,7 +80,7 @@ public abstract class GenericDependency implements Dependency {
     int cachedPremiseLength = -1;
 
     public int getPremiseLength() {
-        if(cachedPremiseLength==-1){
+        if (cachedPremiseLength == -1) {
             cachedPremiseLength = premise.elementCount();
         }
         return cachedPremiseLength;
@@ -93,14 +95,14 @@ public abstract class GenericDependency implements Dependency {
         ruleCharacteristics.setCharacteristic(IContingencyTable.PREMISE_COMPLEMENT,
                 IContingencyTable.CONCLUSION, conclusionSupport - RuleMeasures.support(ruleCharacteristics));
         ruleCharacteristics.setCharacteristic(IContingencyTable.PREMISE_COMPLEMENT,
-                IContingencyTable.CONCLUSION_COMPLEMENT, totalObjectCount-conclusionSupport-
+                IContingencyTable.CONCLUSION_COMPLEMENT, totalObjectCount - conclusionSupport -
                 ruleCharacteristics.getCharacteristic(IContingencyTable.PREMISE, IContingencyTable.CONCLUSION_COMPLEMENT)
-                );
+        );
 
-        Assert.isTrue(ruleCharacteristics.getCharacteristicTotal(IContingencyTable.PREMISE)+
-                ruleCharacteristics.getCharacteristicTotal(IContingencyTable.PREMISE_COMPLEMENT)==totalObjectCount);
-        Assert.isTrue(ruleCharacteristics.getCharacteristicTotal(IContingencyTable.CONCLUSION)+
-                ruleCharacteristics.getCharacteristicTotal(IContingencyTable.CONCLUSION_COMPLEMENT)==totalObjectCount);
+        Assert.isTrue(ruleCharacteristics.getCharacteristicTotal(IContingencyTable.PREMISE) +
+                ruleCharacteristics.getCharacteristicTotal(IContingencyTable.PREMISE_COMPLEMENT) == totalObjectCount);
+        Assert.isTrue(ruleCharacteristics.getCharacteristicTotal(IContingencyTable.CONCLUSION) +
+                ruleCharacteristics.getCharacteristicTotal(IContingencyTable.CONCLUSION_COMPLEMENT) == totalObjectCount);
 
     }
 

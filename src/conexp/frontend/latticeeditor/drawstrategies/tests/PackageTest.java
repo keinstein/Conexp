@@ -1,13 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.drawstrategies.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-/**
- * Insert the type's description here.
- * Creation date: (12.10.00 23:33:15)
- * @author
- */
+
 public class PackageTest extends junit.framework.TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();

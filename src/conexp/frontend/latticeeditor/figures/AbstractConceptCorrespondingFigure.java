@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Jun 9, 2002
- * Time: 4:58:01 AM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.*;
@@ -15,16 +17,14 @@ import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 import util.collection.CollectionFactory;
 import util.gui.ColorUtil;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDiagramFigure implements BorderCalculatingLineDiagramFigure, FigureWithDependentFigures, ICenterPointLocatorProvidingFigure{
+public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDiagramFigure implements BorderCalculatingLineDiagramFigure, FigureWithDependentFigures, ICenterPointLocatorProvidingFigure {
 
     public AbstractConceptCorrespondingFigure() {
         super();
@@ -68,20 +68,20 @@ public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDia
 
     public abstract LatticeElement getConcept();
 
-    public Set getIntentQuery(){
-       return getConceptQuery().getQueryIntent();
+    public Set getIntentQuery() {
+        return getConceptQuery().getQueryIntent();
     }
 
     public abstract ConceptQuery getConceptQuery();
 
     public void visit(BaseFigureVisitor visitor) {
-        ((FigureVisitor)visitor).visitConceptCorrespondingFigure(this);
+        ((FigureVisitor) visitor).visitConceptCorrespondingFigure(this);
     }
 
     protected Color getNodeColor(CanvasScheme opt) {
         canvas.CanvasColorScheme colorScheme = opt.getColorScheme();
         IHighlightStrategy highlightStrategy = opt.getHighlightStrategy();
-        if (highlightStrategy.highlightFigure(this)){
+        if (highlightStrategy.highlightFigure(this)) {
             return colorScheme.getHighlightColor();
         }
         return transformColor(highlightStrategy, colorScheme.getNodeBorderColor());
@@ -99,7 +99,7 @@ public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDia
 
     public void draw(Graphics g, canvas.CanvasScheme opt) {
         Graphics2D g2D = (Graphics2D) g;
-        LatticeCanvasScheme latticeCanvasSchema = (LatticeCanvasScheme)opt;
+        LatticeCanvasScheme latticeCanvasSchema = (LatticeCanvasScheme) opt;
         drawBackgroundAndBorder(g2D, latticeCanvasSchema);
         drawInterior(g2D, latticeCanvasSchema);
     }

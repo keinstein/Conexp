@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: Serhiy Yevtushenko
- * Date: Jun 17, 2002
- * Time: 9:31:51 PM
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.components;
 
 
@@ -22,7 +21,7 @@ public abstract class BasicSingleSelectionAttributeMaskImplementation extends Ba
                 for (int i = 0; i < attributeCount; i++) {
                     doSetAttributeSelected(i, i == index);
                 }
-            }else{
+            } else {
                 doSetAttributeSelected(index, false);
             }
             getPropertyChangeSupport().firePropertyChange(ATTRIBUTE_SELECTION_CHANGED, null, null);

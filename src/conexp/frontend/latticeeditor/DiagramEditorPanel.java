@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Aug 15, 2002
- * Time: 12:43:04 AM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor;
 
 import canvas.*;
@@ -15,11 +17,11 @@ import conexp.frontend.latticeeditor.figures.LineFigureWithFigureDimensionCalcSt
 import util.collection.CollectionFactory;
 
 import javax.swing.*;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
-public abstract class DiagramEditorPanel extends FigureDrawingCanvas{
+public abstract class DiagramEditorPanel extends FigureDrawingCanvas {
 
     /**
      *  todo: remove connectors figures, when one from connected figures are removed from drawing
@@ -55,7 +57,7 @@ public abstract class DiagramEditorPanel extends FigureDrawingCanvas{
 
     class ConnectFigureAction extends ToolAction {
         public ConnectFigureAction() {
-            super(DiagramEditorPanel.this,"connectFigure", "Connect", CONNECT_FIGURE_TOOL);
+            super(DiagramEditorPanel.this, "connectFigure", "Connect", CONNECT_FIGURE_TOOL);
         }
     }
 
@@ -65,15 +67,13 @@ public abstract class DiagramEditorPanel extends FigureDrawingCanvas{
     Tool CONNECT_FIGURE_TOOL = new ConnectFiguresTool();
 
 
-
-
     class AddNewNodeTool extends DefaultTool {
         public void mouseReleased(MouseEvent e) {
             Point pt = e.getPoint();
             Point2D userCoords = getWorldCoords(pt);
 
             Figure figure = makeHierarchyNodeFigure(userCoords);
-            if(null!=figure){
+            if (null != figure) {
                 addFigure(figure);
             }
             deactivate();
@@ -135,8 +135,8 @@ public abstract class DiagramEditorPanel extends FigureDrawingCanvas{
                         repaint();
                     }
                 }
-            }else{
-                if(hasStartFigure()){
+            } else {
+                if (hasStartFigure()) {
                     getDrawing().removeFigure(connectorFigure);
                 }
                 resetState();

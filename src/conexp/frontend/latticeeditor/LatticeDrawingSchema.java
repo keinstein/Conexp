@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 07.03.2002
- * Time: 18:38:05
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor;
 
 public interface LatticeDrawingSchema {

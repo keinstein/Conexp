@@ -1,17 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend;
 
 import javax.swing.*;
 import java.net.URL;
 
-/**
- * MyImageIcon
- *
- *
- * Created: Tue Mar 21 01:13:15 2000
- *
- * @author
- * @version
- */
 
 public class MyImageIcon extends ImageIcon {
 //	public float getAlignmentY() { return 0.5f; }

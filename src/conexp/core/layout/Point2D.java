@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout;
 
 class Point2D {
@@ -9,25 +15,17 @@ class Point2D {
         y = (float) 0.0;
     }
 
-    /**
-     * The usual dot product.
-     * @param pt The other point (vector)
-     */
+
     public float dotProduct(Point2D pt) {
         return (x * pt.x + y * pt.y);
     }
 
-    /**
-     * The Euclidean length.
-     */
+
     public float length() {
         return (float) java.lang.Math.sqrt(x * x + y * y);
     }
 
-    /**
-     * Correlation between two points (vectors).
-     * @param pt The other point (vector)
-     */
+
     public float correlation(Point2D pt) {
         float len1 = this.length();
         float len2 = pt.length();

@@ -1,14 +1,16 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.figures;
 
 import util.StringUtil;
 
 import java.awt.geom.Point2D;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: Dec 2, 2002
- * Time: 6:03:30 PM
- */
+
 public abstract class FigureWithCoords extends AbstractFigure implements IFigureWithCoords, ICenterPointLocatorProvidingFigure {
     protected CenterPointLocator centerPointLocator = new DefaultCenterPointLocator();
 

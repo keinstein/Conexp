@@ -1,17 +1,16 @@
-/*
- * Created by IntelliJ IDEA.
- * User: Serhiy Yevtushenko
- * Date: Jun 28, 2002
- * Time: 8:19:44 PM
- * To change template for new class use 
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core.searchconstraints;
 
 import conexp.core.SearchConstraint;
 import conexp.core.Set;
 
-public class MinSupportConstrainer implements SearchConstraint{
+public class MinSupportConstrainer implements SearchConstraint {
 
     int minSupport;
 
@@ -20,7 +19,7 @@ public class MinSupportConstrainer implements SearchConstraint{
     }
 
     public boolean continueSearch(Set intent, int objectCount) {
-        if(objectCount<minSupport){
+        if (objectCount < minSupport) {
             return false;
         }
         return true;

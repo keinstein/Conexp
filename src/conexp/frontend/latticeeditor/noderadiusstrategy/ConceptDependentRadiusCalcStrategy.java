@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 09.03.2002
- * Time: 18:16:49
-  */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor.noderadiusstrategy;
 
 import conexp.core.ConceptsCollection;
@@ -30,7 +32,7 @@ public abstract class ConceptDependentRadiusCalcStrategy extends AbstractNodeRad
     protected abstract double calculatePercents(ConceptQuery query);
 
     private int calculateRadius(double percent) {
-        return options.getMinNodeRadius()+Math.round((float)Math.sqrt(percent)*deltaRadius);
+        return options.getMinNodeRadius() + Math.round((float) Math.sqrt(percent) * deltaRadius);
     }
 
     public void initCalc() {
@@ -38,7 +40,7 @@ public abstract class ConceptDependentRadiusCalcStrategy extends AbstractNodeRad
         if (null != lattice) {
             deltaRadius = options.getMaxNodeRadius() - options.getMinNodeRadius();
             maximalValue = calculateMaximalValue(lattice);
-            Assert.isTrue(getMaximalValue()>=0);
+            Assert.isTrue(getMaximalValue() >= 0);
 //            pixelPerObject = deltaRadius / totalObjects;
         }
     }

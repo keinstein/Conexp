@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.associations;
 
 import conexp.core.GenericDependency;
@@ -5,11 +11,7 @@ import conexp.core.ItemSet;
 import conexp.core.ModifiableSet;
 import conexp.core.Set;
 
-/**
- * Insert the type's description here.
- * Creation date: (01.05.01 13:47:30)
- * @author  Serhiy Yevtushenko
- */
+
 public class AssociationRule extends GenericDependency {
 
     public AssociationRule(Set premise, int premiseSupport, Set conclusion, int conclusionSupport) {

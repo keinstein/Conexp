@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Oct 20, 2001
- * Time: 5:03:19 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.tests;
 
 import conexp.frontend.*;
@@ -15,7 +17,7 @@ import util.gui.MostRecentUrlListManager;
 import util.testing.SimpleMockPropertyChangeListener;
 
 import javax.swing.*;
-import java.awt.Component;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -50,13 +52,13 @@ public class ContextDocManagerTest extends TestCase {
         try {
             docManager.doLoadDocumentFromFile(new File("File.notSupportedExtension"));
         } catch (IOException e) {
-            fail("Unexpected exception "+StringUtil.stackTraceToString(e));
+            fail("Unexpected exception " + StringUtil.stackTraceToString(e));
         } catch (DataFormatException e) {
-            assertTrue("Expect exception about absense of loader",true);
+            assertTrue("Expect exception about absense of loader", true);
         }
     }
 
-    static class MockDocument implements Document{
+    static class MockDocument implements Document {
         public void addViewChangeListener(ViewChangeListener optionPaneViewChangeListener) {
         }
 
@@ -82,13 +84,13 @@ public class ContextDocManagerTest extends TestCase {
         }
     };
 
-    public void testMruList(){
+    public void testMruList() {
         //MRU - when file should be added to MRU - after close with write;
         MostRecentUrlListManager mruManager = docManager.getMruManager();
         assertTrue(mruManager.getMostRecentUrlList().isEmpty());
         final String DOC_PATH = "One";
         DocumentRecord firstDocRec = makeDocRecordAndAddItToManager(DOC_PATH, true);
-        assertEquals(0,mruManager.getMostRecentUrlList().size());
+        assertEquals(0, mruManager.getMostRecentUrlList().size());
         docManager.removeDocument(firstDocRec);
 
         assertTrue(mruManager.getMostRecentUrlList().contains(DOC_PATH));
@@ -100,7 +102,7 @@ public class ContextDocManagerTest extends TestCase {
         //When file should be removed from MRU  - when
     }
 
-    public void testNonAdditionToMRUofDocumentsWithoutCorrespondingFiles(){
+    public void testNonAdditionToMRUofDocumentsWithoutCorrespondingFiles() {
         MostRecentUrlListManager mruManager = docManager.getMruManager();
         assertTrue(mruManager.getMostRecentUrlList().isEmpty());
         DocumentRecord docRecord = makeDocRecordAndAddItToManager("", false);

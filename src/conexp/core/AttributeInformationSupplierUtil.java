@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: Dec 18, 2001
- * Time: 10:49:31 PM
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core;
 
 
@@ -32,7 +31,7 @@ public class AttributeInformationSupplierUtil {
     }
 
     public static String describeSet(AttributeInformationSupplier attrInfo,
-                                   Set set, String separator, String emptySetDescriptor) {
+                                     Set set, String separator, String emptySetDescriptor) {
         StringBuffer buf = new StringBuffer();
         describeSet(buf, attrInfo, set, separator, emptySetDescriptor);
         return buf.toString();

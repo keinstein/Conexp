@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core;
 
 import util.Assert;
@@ -8,12 +14,7 @@ import java.beans.PropertyChangeEvent;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- *  Description of the Class
- *
- *@author     Sergey Yevtushenko
- * created    8 N=L 2000 3.
- */
+
 public class Context implements AttributeInformationSupplier, ExtendedContextEditingInterface {
     private List objects = CollectionFactory.createFastIndexAccessList();
     //---------------------------------------------------------------
@@ -336,7 +337,6 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
 
-
     private void createDummyObjectsAndAttribs(int objCnt, int attrCnt) {
         addObjectsWithDefaultNamesInRange(0, objCnt);
         addAttributesWithDefaultNamesInRange(0, attrCnt);
@@ -480,7 +480,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         arrowCalc.setRelation(getRelation());
     }
 
-     // Arrow relation related operation
+    // Arrow relation related operation
     //---------------------------------------------------------------
     public void reduceAttributes() {
         doPurifyAttributes();
@@ -509,7 +509,6 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         }
         getContextListenersSupport().realisePostponedStructureChange();
     }
-
 
 
     public BinaryRelation getUpArrow() {
@@ -559,7 +558,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     //---------------------------------------------------------------
     private void calcDownArrow() {
         Assert.isTrue(arrowCalc != null, "For calculating arrows calculator should be set!");
-        Assert.isTrue(downArrow!=null);
+        Assert.isTrue(downArrow != null);
         arrowCalc.calcDownArrow(downArrow);
         setDownArrowUpdate(false);
     }
@@ -603,11 +602,11 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         public void contextStructureChanged() {
             final int objectCount = getObjectCount();
             final int attributeCount = getAttributeCount();
-            if(null!=upArrow){
+            if (null != upArrow) {
                 upArrow.setDimension(objectCount, attributeCount);
                 setUpArrowUpdate(true);
             }
-            if(null!=downArrow){
+            if (null != downArrow) {
                 downArrow.setDimension(objectCount, attributeCount);
                 setDownArrowUpdate(true);
             }
@@ -619,18 +618,17 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
 
     public void copyFrom(ContextEditingInterface cxt) {
         setDimension(cxt.getObjectCount(), cxt.getAttributeCount());
-        for(int i=0; i<cxt.getObjectCount(); i++){
+        for (int i = 0; i < cxt.getObjectCount(); i++) {
             getObject(i).setName(cxt.getObject(i).getName());
         }
-        for(int i=0; i<cxt.getAttributeCount(); i++){
+        for (int i = 0; i < cxt.getAttributeCount(); i++) {
             getAttribute(i).setName(cxt.getAttribute(i).getName());
         }
-        if(!rel.equals(cxt.getRelation())){
+        if (!rel.equals(cxt.getRelation())) {
             rel = cxt.getRelation().makeModifiableCopy();
             getContextListenersSupport().fireRelationChanged();
         }
     }
-
 
 
 }

@@ -1,9 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.DrawParameters;
 
-public class FullConceptLabelingStrategy extends BaseFullLabelingStrategy{
+public class FullConceptLabelingStrategy extends BaseFullLabelingStrategy {
     public FullConceptLabelingStrategy(DrawParameters opt) {
         super(opt);
     }

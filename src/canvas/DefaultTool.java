@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas;
 
 import javax.swing.event.EventListenerList;
@@ -5,18 +11,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/*
- * User: Serhiy Yevtushenko
- * Date: 14.10.2002
- * Time: 19:11:08
- */
-public class DefaultTool  extends MouseAdapter implements Tool {
+
+public class DefaultTool extends MouseAdapter implements Tool {
     EventListenerList listenersList;
 
     boolean active;
 
     protected EventListenerList getListenersList() {
-        if(null==listenersList){
+        if (null == listenersList) {
             listenersList = new EventListenerList();
         }
         return listenersList;
@@ -30,10 +32,10 @@ public class DefaultTool  extends MouseAdapter implements Tool {
         getListenersList().remove(ToolListener.class, listener);
     }
 
-    protected void fireToolStateChanged(ToolEvent event){
+    protected void fireToolStateChanged(ToolEvent event) {
         Object[] listeners = getListenersList().getListenerList();
-        for(int i=listeners.length-1; i>=0; i-=2){
-            ((ToolListener)listeners[i]).toolStateChanged(event);
+        for (int i = listeners.length - 1; i >= 0; i -= 2) {
+            ((ToolListener) listeners[i]).toolStateChanged(event);
         }
 
     }
@@ -53,9 +55,9 @@ public class DefaultTool  extends MouseAdapter implements Tool {
     }
 
     public void setActive(boolean value) {
-        if(value){
+        if (value) {
             activate();
-        }else{
+        } else {
             deactivate();
         }
     }
@@ -67,9 +69,9 @@ public class DefaultTool  extends MouseAdapter implements Tool {
     }
 
     public void setEnabled(boolean value) {
-        if(enabled!=value){
+        if (enabled != value) {
             enabled = value;
-            fireToolStateChanged(enabled? ToolEvent.makeToolEnabledEvent(this) : ToolEvent.makeToolDisabledEvent(this));
+            fireToolStateChanged(enabled ? ToolEvent.makeToolEnabledEvent(this) : ToolEvent.makeToolDisabledEvent(this));
         }
     }
 

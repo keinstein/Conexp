@@ -1,14 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 
 
-/**
- * Insert the type's description here.
- * Creation date: (13.01.01 19:50:48)
- * @author Serhiy Yevtushenko
- */
 public class PaintBlock implements FigureBlock {
     Graphics2D g;
     private CanvasScheme opt;

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.tests;
 
 import conexp.frontend.latticeeditor.XMLFileStrategyModel;
@@ -6,9 +12,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/**
- * JUnit test case for XmlFileStrategyModelTest
- */
 
 public class XmlFileStrategyModelTest extends TestCase {
     private static final Class THIS = XmlFileStrategyModelTest.class;

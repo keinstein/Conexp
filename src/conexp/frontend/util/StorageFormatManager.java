@@ -1,7 +1,10 @@
-/*
- * Date: Feb 25, 2002
- * Time: 4:45:02 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.util;
 
 import conexp.frontend.DocumentLoader;
@@ -19,8 +22,8 @@ public class StorageFormatManager {
         return formats.size();
     }
 
-    public boolean isEmpty(){
-        return 0==registeredFormatCount();
+    public boolean isEmpty() {
+        return 0 == registeredFormatCount();
     }
 
     protected DocumentLoader getLoader(int index) {
@@ -98,13 +101,13 @@ public class StorageFormatManager {
         return null;
     }
 
-    public DocumentLoader getDefaultLoader(){
-        if(null!=defaultFormat){
+    public DocumentLoader getDefaultLoader() {
+        if (null != defaultFormat) {
             return defaultFormat.getLoader();
         }
-        for(int i=0; i<registeredFormatCount(); i++){
+        for (int i = 0; i < registeredFormatCount(); i++) {
             StorageFormatRecord currFormat = getStorageFormatRecord(i);
-            if(currFormat.hasLoader()){
+            if (currFormat.hasLoader()) {
                 return currFormat.getLoader();
             }
         }
@@ -137,24 +140,24 @@ public class StorageFormatManager {
     StorageFormatRecord defaultFormat;
 
     public void registerDefaultStorageFormat(StorageFormatRecord format) {
-        Assert.isTrue(format.getLoader()!=null);
-        Assert.isTrue(format.getWriter()!=null);
-        Assert.isTrue(format.getExtension()!=null);
+        Assert.isTrue(format.getLoader() != null);
+        Assert.isTrue(format.getWriter() != null);
+        Assert.isTrue(format.getExtension() != null);
         registerStorageFormat(format);
         defaultFormat = format;
     }
 
-    public String getDefaultExtension(){
+    public String getDefaultExtension() {
         return defaultFormat.getExtension();
     }
 
     public DocumentWriter getDefaultWriter() {
-        if(null!=defaultFormat){
+        if (null != defaultFormat) {
             return defaultFormat.getWriter();
         }
-        for(int i=0; i<registeredFormatCount(); i++){
+        for (int i = 0; i < registeredFormatCount(); i++) {
             StorageFormatRecord currFormat = getStorageFormatRecord(i);
-            if(currFormat.hasWriter()){
+            if (currFormat.hasWriter()) {
                 return currFormat.getWriter();
             }
         }

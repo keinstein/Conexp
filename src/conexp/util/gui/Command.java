@@ -1,12 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.util.gui;
 
 import javax.swing.undo.UndoableEdit;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: Dec 28, 2002
- * Time: 1:03:46 AM
- */
-public interface Command extends UndoableEdit{
-   void performCommand();
+
+public interface Command extends UndoableEdit {
+    void performCommand();
 }

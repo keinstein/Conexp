@@ -1,14 +1,15 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Oct 21, 2002
- * Time: 12:18:42 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 
 package canvas.figures;
 
 import util.gui.ColorUtil;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class ColorTransformerWithFadeOut implements ColorTransformer {
 
@@ -17,17 +18,17 @@ public class ColorTransformerWithFadeOut implements ColorTransformer {
 
     private static final ColorTransformer g_Instance = new ColorTransformerWithFadeOut();
 
-    public static ColorTransformer getInstance(){
+    public static ColorTransformer getInstance() {
         return g_Instance;
     }
 
     public Color getColor(Color selectionColor, Color normalColor, boolean isSelected, boolean hasSelection) {
-        if(isSelected){
+        if (isSelected) {
             return selectionColor;
         }
-        if(hasSelection){
+        if (hasSelection) {
             return ColorUtil.fadeOut(normalColor);
-        }else{
+        } else {
             return normalColor;
         }
     }

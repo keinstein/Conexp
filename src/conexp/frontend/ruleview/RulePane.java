@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.ruleview;
 
 import conexp.core.Dependency;
@@ -8,11 +14,7 @@ import javax.swing.text.DefaultStyledDocument;
 import javax.swing.text.SimpleAttributeSet;
 import java.util.Iterator;
 
-/**
- * Insert the type's description here.
- * Creation date: (06.05.01 23:55:18)
- * @author :  Serhiy Yevtushenko
- */
+
 public class RulePane extends javax.swing.JTextPane {
     private static String newline = System.getProperty("line.separator");//$NON-NLS-1$
     protected RuleRenderer renderer;

@@ -1,18 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.tests;
 
 import conexp.core.Implication;
 import junit.framework.Test;
 import junit.framework.TestSuite;
-
-/**
- * ImplicationTest.java
- *
- *
- * Created: Sun Aug 06 22:48:57 2000
- *
- * @author Sergey Yevtushenko
- * @version
- */
 
 
 public class ImplicationTest extends DependencyTest {

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.tests;
 
 import conexp.core.LatticeDiagramChecker;
@@ -19,23 +25,23 @@ public class LatticeDiagramCheckerTest extends TestCase {
         checker = new LatticeDiagramChecker();
     }
 
-    public void testIsDiagramOfLatticeForOneNodeCase(){
+    public void testIsDiagramOfLatticeForOneNodeCase() {
         checker.setNodeCount(1);
         assertTrue(checker.isDiagramOfLattice());
     }
 
-    public void testIsDiagramOfLatticeForDisjointCase(){
+    public void testIsDiagramOfLatticeForDisjointCase() {
         checker.setNodeCount(2);
         assertEquals("Diagram of lattice should consist from connected nodes", false, checker.isDiagramOfLattice());
     }
 
-    public void testTwoNodeCaseOrderedLattice(){
+    public void testTwoNodeCaseOrderedLattice() {
         checker.setNodeCount(2);
         checker.setLessThan(0, 1); //id of nodes in set less  than doesn't matter
-        assertEquals(true,  checker.isDiagramOfLattice());
+        assertEquals(true, checker.isDiagramOfLattice());
     }
 
-    public void testCyclicOrderRelationCase(){
+    public void testCyclicOrderRelationCase() {
         checker.setNodeCount(4);
         checker.setLessThan(0, 1);
         checker.setLessThan(1, 2);
@@ -44,7 +50,7 @@ public class LatticeDiagramCheckerTest extends TestCase {
         assertEquals(false, checker.isDiagramOfLattice());
     }
 
-    public void testRedundantLinksInOrderRelation(){
+    public void testRedundantLinksInOrderRelation() {
         checker.setNodeCount(3);
         checker.setLessThan(0, 1);
         checker.setLessThan(1, 2);
@@ -52,7 +58,7 @@ public class LatticeDiagramCheckerTest extends TestCase {
         assertEquals(false, checker.isDiagramOfLattice());
     }
 
-    public void testRedundantLinksInOrderRelationForBiggerLength(){
+    public void testRedundantLinksInOrderRelationForBiggerLength() {
         checker.setNodeCount(5);
         checker.setLessThan(0, 1);
         checker.setLessThan(1, 2);
@@ -62,7 +68,7 @@ public class LatticeDiagramCheckerTest extends TestCase {
         assertEquals(false, checker.isDiagramOfLattice());
     }
 
-    public void testForCaseOfNotSemilattice(){
+    public void testForCaseOfNotSemilattice() {
         checker.setNodeCount(3);
         checker.setLessThan(1, 0);
         checker.setLessThan(2, 0);
@@ -71,7 +77,7 @@ public class LatticeDiagramCheckerTest extends TestCase {
     }
 
 
-    public void testTransitiveClosureInLessThanRelationCalculation(){
+    public void testTransitiveClosureInLessThanRelationCalculation() {
         checker.setNodeCount(8);
         checker.setLessThan(2, 0);
         checker.setLessThan(3, 2);

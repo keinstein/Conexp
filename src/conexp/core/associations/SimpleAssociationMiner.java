@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.associations;
 
 import conexp.core.*;
@@ -6,10 +12,7 @@ import conexp.core.calculationstrategies.NextClosedSetCalculator;
 
 import java.util.ArrayList;
 
-/**
- * Insert the type's description here.
- * Creation date: (02.05.01 14:18:55)
- */
+
 public class SimpleAssociationMiner extends BaseAssociationMiner {
 
     public SimpleAssociationMiner() {
@@ -24,8 +27,8 @@ public class SimpleAssociationMiner extends BaseAssociationMiner {
         long exactTime = System.currentTimeMillis();
         findApproximateDependencies(depSet, minSupport, minConfidence);
         long approximateTime = System.currentTimeMillis();
-        System.out.println("Time for finding exact dependencies:"+(exactTime-startTime));
-        System.out.println("approximate dependencies:"+(approximateTime-exactTime));
+        System.out.println("Time for finding exact dependencies:" + (exactTime - startTime));
+        System.out.println("approximate dependencies:" + (approximateTime - exactTime));
     }
 
     public void findApproximateDependencies(DependencySet ret, int minSupport, double minConfidence) {

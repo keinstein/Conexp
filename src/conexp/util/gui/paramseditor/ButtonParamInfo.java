@@ -1,12 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.util.gui.paramseditor;
 
 import java.awt.event.ActionListener;
 
-/**
- * Insert the type's description here.
- * Creation date: (17.06.01 0:53:05)
- * @author
- */
+
 public class ButtonParamInfo extends AbstractParamInfo {
     protected final java.lang.String buttonLabel;
     private static util.gui.celleditors.JButtonRenderer sButtonRenderer = new util.gui.celleditors.JButtonRenderer();

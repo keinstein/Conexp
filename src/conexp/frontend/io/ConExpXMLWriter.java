@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Feb 2, 2002
- * Time: 4:36:51 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.io;
 
 import canvas.figures.IFigureWithCoords;

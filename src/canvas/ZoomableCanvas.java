@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas;
 
 import com.visibleworkings.trace.Trace;
@@ -16,11 +22,7 @@ import java.awt.print.PageFormat;
 import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: Nov 20, 2002
- * Time: 3:41:42 PM
- */
+
 public abstract class ZoomableCanvas extends JComponent implements IScreenImageProvider, Printable {
     protected AffineTransform scalingTransform;
 
@@ -80,8 +82,8 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
     protected void doAdjustSizeOfCanvas() {
         Dimension viewDimension = getViewportSize();
         Dimension newDimension = new Dimension(getDrawingDimension());
-        int newWidth = (int)Math.max(viewDimension.getWidth(), newDimension.getWidth() * getZoom());
-        int newHeight = (int)Math.max(viewDimension.getHeight(), newDimension.getHeight() * getZoom());
+        int newWidth = (int) Math.max(viewDimension.getWidth(), newDimension.getWidth() * getZoom());
+        int newHeight = (int) Math.max(viewDimension.getHeight(), newDimension.getHeight() * getZoom());
         newDimension.setSize(newWidth, newHeight); //due to bug in jdk1.3
         updateSizeOfCanvas(newDimension);
     }

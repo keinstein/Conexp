@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layoutengines;
 
 import conexp.core.Lattice;
@@ -77,7 +83,7 @@ class LayoutImproveThread extends Thread {
         try {
             inputQueue.put(evt);
         } catch (InterruptedException ex) {
-            //TODO check validity of this operation
+
             this.interrupt();
         }
     }

@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: May 7, 2002
- * Time: 11:24:34 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.components;
 
 import conexp.core.*;

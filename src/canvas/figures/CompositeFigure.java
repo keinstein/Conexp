@@ -1,18 +1,20 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.figures;
 
 import canvas.*;
 import util.collection.CollectionFactory;
 import util.collection.ReverseListIterator;
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: Dec 2, 2002
- * Time: 3:25:42 PM
- */
+
 public class CompositeFigure extends AbstractFigure {
     List innerFigures = CollectionFactory.createDefaultList();
 
@@ -117,9 +119,9 @@ public class CompositeFigure extends AbstractFigure {
         FigureIterator iter = reverseFigures();
         while (iter.hasNext()) {
             Figure f = iter.nextFigure();
-            if(f!=toExclude && f.contains(x, y)) {
-                Figure found =  f.findFigureInsideExceptFor(x, y, toExclude);
-                if(null!=found){
+            if (f != toExclude && f.contains(x, y)) {
+                Figure found = f.findFigureInsideExceptFor(x, y, toExclude);
+                if (null != found) {
                     return found;
                 }
             }

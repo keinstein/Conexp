@@ -1,15 +1,17 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas;
 
 import util.Assert;
 
-/*
- * User: Serhiy Yevtushenko
- * Date: Oct 14, 2002
- * Time: 10:23:11 PM
- */
-public class DefaultToolListener implements ToolListener{
+
+public class DefaultToolListener implements ToolListener {
     public void toolStateChanged(ToolEvent toolEvent) {
-        switch(toolEvent.getType()){
+        switch (toolEvent.getType()) {
             case ToolEvent.TOOL_ACTIVATED:
                 onToolActivated(toolEvent);
                 break;

@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Jan 16, 2002
- * Time: 8:02:34 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core;
 
 public interface Fragment extends Cloneable {

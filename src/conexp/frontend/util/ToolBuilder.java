@@ -1,24 +1,18 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.util;
 
 import conexp.frontend.ResourceLoader;
 
 import javax.swing.*;
-import java.awt.Dimension;
-import java.awt.Insets;
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ResourceBundle;
-
-
-/**
- * ToolBuilder.java
- *
- *
- * Created: Tue Aug 01 15:19:30 2000
- *
- * @author Sergey Yevtushenko
- * @version
- */
 
 
 public class ToolBuilder {
@@ -151,10 +145,10 @@ public class ToolBuilder {
         but.setRequestFocusEnabled(false);
         if (null != action) {
             but.addActionListener(action);
-            action.addPropertyChangeListener(new PropertyChangeListener(){
+            action.addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent evt) {
-                    if(evt.getPropertyName().equals("enabled")){
-                        but.setEnabled(((Boolean)evt.getNewValue()).booleanValue());
+                    if (evt.getPropertyName().equals("enabled")) {
+                        but.setEnabled(((Boolean) evt.getNewValue()).booleanValue());
                     }
                 }
             });

@@ -1,9 +1,11 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: May 28, 2002
- */
-package conexp.frontend.components;
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 
+
+package conexp.frontend.components;
 
 
 public abstract class BasicMultiSelectionAttributeMaskImplementation extends BasicAttributeMaskImplementation {
@@ -17,7 +19,7 @@ public abstract class BasicMultiSelectionAttributeMaskImplementation extends Bas
     }
 
     public void selectAll() {
-       setValueForAll(Boolean.TRUE);
+        setValueForAll(Boolean.TRUE);
     }
 
     public void deselectAll() {

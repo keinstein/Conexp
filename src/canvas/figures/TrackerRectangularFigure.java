@@ -1,18 +1,19 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.figures;
 
 import canvas.CanvasScheme;
 import util.gui.GraphicObjectsFactory;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-/*
- * User: Serhiy Yevtushenko
- * Date: Oct 19, 2002
- * Time: 11:13:23 AM
- */
-public class TrackerRectangularFigure extends RectangularFigure{
+
+public class TrackerRectangularFigure extends RectangularFigure {
 
     public TrackerRectangularFigure(double x, double y, double w, double h) {
         super(x, y, w, h);
@@ -26,7 +27,7 @@ public class TrackerRectangularFigure extends RectangularFigure{
     }
 
     public void draw(Graphics g, CanvasScheme opt) {
-        Graphics2D g2D = (Graphics2D)g;
+        Graphics2D g2D = (Graphics2D) g;
 
         Rectangle2D rect = GraphicObjectsFactory.makeRectangle2D();
         boundingBox(rect);

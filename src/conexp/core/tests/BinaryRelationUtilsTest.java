@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.tests;
 
 import conexp.core.BinaryRelation;
@@ -7,9 +13,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/**
- * JUnit test case for BinaryRelationUtilsTest
- */
 
 public class BinaryRelationUtilsTest extends TestCase {
     private static final Class THIS = BinaryRelationUtilsTest.class;
@@ -105,16 +108,16 @@ public class BinaryRelationUtilsTest extends TestCase {
         assertEquals(expRelation, relationToClose);
     }
 
-    public void testTransitiveClosureForTheWorstCase(){
+    public void testTransitiveClosureForTheWorstCase() {
         int[][] relationToCloseDescr = {{0, 0, 0, 1},
                                         {0, 0, 0, 0},
                                         {0, 1, 0, 0},
                                         {0, 0, 1, 0}};
         int[][] expClosedRelationDescr = {
-                                        {0, 1, 1, 1},
-                                        {0, 0, 0, 0},
-                                        {0, 1, 0, 0},
-                                        {0, 1, 1, 0}
+            {0, 1, 1, 1},
+            {0, 0, 0, 0},
+            {0, 1, 0, 0},
+            {0, 1, 1, 0}
         };
 
         doTestTransitiveClosure(relationToCloseDescr, expClosedRelationDescr);

@@ -1,7 +1,10 @@
-/*
- * Date: Feb 25, 2002
- * Time: 7:21:56 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.util;
 
 import conexp.frontend.DocumentLoader;
@@ -10,7 +13,7 @@ import util.StringUtil;
 import util.gui.fileselector.ExtensionFileFilter;
 import util.gui.fileselector.GenericFileFilter;
 
-public class StorageFormatRecord{
+public class StorageFormatRecord {
     String extension;
     String description;
     DocumentLoader loader;
@@ -28,8 +31,8 @@ public class StorageFormatRecord{
     }
 
     private static String appendDotIfNeeded(String name) {
-        if(!name.startsWith(".")){
-           name = "."+name;
+        if (!name.startsWith(".")) {
+            name = "." + name;
         }
         return name;
     }
@@ -38,12 +41,12 @@ public class StorageFormatRecord{
         this.loader = loader;
     }
 
-    public boolean hasLoader(){
-        return loader!=null;
+    public boolean hasLoader() {
+        return loader != null;
     }
 
-    public boolean hasWriter(){
-        return writer!=null;
+    public boolean hasWriter() {
+        return writer != null;
     }
 
     public DocumentLoader getLoader() {
@@ -58,14 +61,14 @@ public class StorageFormatRecord{
         return extension;
     }
 
-    public boolean acceptsExtension(String ext){
+    public boolean acceptsExtension(String ext) {
         return extension.equals(bringExtensionToCanonicalForm(ext));
     }
 
-    public GenericFileFilter getFilter(){
-        if(!StringUtil.isEmpty(description)){
+    public GenericFileFilter getFilter() {
+        if (!StringUtil.isEmpty(description)) {
             return new ExtensionFileFilter(description, getExtension());
-        }else{
+        } else {
             return new ExtensionFileFilter(getExtension());
         }
     }

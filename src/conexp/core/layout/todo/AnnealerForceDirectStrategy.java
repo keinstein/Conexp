@@ -1,13 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout.todo;
 
 import conexp.core.Edge;
 import conexp.core.LatticeElement;
 
-/**
- * Insert the type's description here.
- * Creation date: (16.11.00 23:25:09)
- * @author
- */
+
 public class AnnealerForceDirectStrategy implements ForceDirectStrategy {
     protected ForceDirectParams fdParams;
 

@@ -1,12 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor;
 
 import conexp.util.GenericStrategy;
 
-/**
- * Insert the type's description here.
- * Creation date: (07.03.01 7:33:46)
- * @author Serhiy  Yevtushenko
- */
+
 public abstract class DrawParamsIndependentStrategyModel extends conexp.frontend.latticeeditor.AbstractDrawingStrategyModel {
 
     public DrawParamsIndependentStrategyModel() {
@@ -24,7 +26,7 @@ public abstract class DrawParamsIndependentStrategyModel extends conexp.frontend
         String[][] createInfo = getCreateInfo();
         allocateStrategies(createInfo.length);
         for (int i = 0; i < createInfo.length; i++) {
-            GenericStrategy genericStrategy= makeGenericStrategyByClassName(createInfo[i][1]);
+            GenericStrategy genericStrategy = makeGenericStrategyByClassName(createInfo[i][1]);
 
             setStrategy(
                     i,
@@ -34,7 +36,6 @@ public abstract class DrawParamsIndependentStrategyModel extends conexp.frontend
 
         }
     }
-
 
 
     public abstract String[][] getCreateInfo();

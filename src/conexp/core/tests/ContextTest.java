@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.tests;
 
 import conexp.core.*;
@@ -387,28 +393,28 @@ public class ContextTest extends TestCase {
         listener.verify();
     }
 
-    MockContextListener makeAttributeInsertionListener(){
-        return new MockContextListener(){
+    MockContextListener makeAttributeInsertionListener() {
+        return new MockContextListener() {
             public void attributeChanged(ContextChangeEvent changeEvent) {
-                if(changeEvent.getType()==ContextChangeEvent.ATTRIBUTE_ADDED){
+                if (changeEvent.getType() == ContextChangeEvent.ATTRIBUTE_ADDED) {
                     counter.inc();
                 }
             }
         };
     }
 
-    MockContextListener makeAttributeRemovalListener(){
-        return new MockContextListener(){
+    MockContextListener makeAttributeRemovalListener() {
+        return new MockContextListener() {
             public void attributeChanged(ContextChangeEvent changeEvent) {
-                if(changeEvent.getType()==ContextChangeEvent.ATTRIBUTE_REMOVED){
+                if (changeEvent.getType() == ContextChangeEvent.ATTRIBUTE_REMOVED) {
                     counter.inc();
                 }
             }
         };
     }
 
-    public void testAttributeAddRemoveNotification(){
-        cxt = new Context(2,3);
+    public void testAttributeAddRemoveNotification() {
+        cxt = new Context(2, 3);
 
         MockContextListener insertionListener = makeAttributeInsertionListener();
         cxt.addContextListener(insertionListener);
@@ -439,7 +445,7 @@ public class ContextTest extends TestCase {
 
     }
 
-    public void testArrowRelationUpdateOnAttributeRemoval(){
+    public void testArrowRelationUpdateOnAttributeRemoval() {
         cxt = SetBuilder.makeContext(new int[][]{{1, 0, 1}});
         BinaryRelation oldUpArrowRelation = cxt.getUpArrow();
         BinaryRelation oldDownArrownRelation = cxt.getDownArrow();
@@ -450,7 +456,7 @@ public class ContextTest extends TestCase {
         assertEquals(2, cxt.getDownArrow().getColCount());
     }
 
-    public void testUpDownArrowUpdateOnRelationChange(){
+    public void testUpDownArrowUpdateOnRelationChange() {
         cxt = SetBuilder.makeContext(new int[][]{{1, 0},
                                                  {1, 1}});
         assertEquals(SetBuilder.makeRelation(new int[][]{{0, 1},
@@ -466,7 +472,7 @@ public class ContextTest extends TestCase {
                                                          {0, 0}}), cxt.getDownArrow());
     }
 
-    public void testArrowRelationUpdateOnDimensionChange(){
+    public void testArrowRelationUpdateOnDimensionChange() {
         checkRelationSizes(cxt.getUpArrow(), 2, 2);
         checkRelationSizes(cxt.getDownArrow(), 2, 2);
 
@@ -475,7 +481,7 @@ public class ContextTest extends TestCase {
         checkRelationSizes(cxt.getDownArrow(), 3, 4);
     }
 
-    public void testArrowRelationUpdateOnObjectRemoval(){
+    public void testArrowRelationUpdateOnObjectRemoval() {
 
         final BinaryRelation upArrow = cxt.getUpArrow();
         checkRelationSizes(upArrow, 2, 2);
@@ -492,12 +498,12 @@ public class ContextTest extends TestCase {
         assertEquals(expRowCount, binaryRelation.getRowCount());
     }
 
-    public void testArrowRelationCalculation(){
+    public void testArrowRelationCalculation() {
 
-        cxt = SetBuilder.makeContext(new int[][]{{0,0,0},
-                                                 {0,0,0}});
+        cxt = SetBuilder.makeContext(new int[][]{{0, 0, 0},
+                                                 {0, 0, 0}});
         assertEquals(SetBuilder.makeRelation(new int[][]{{1, 1, 1},
-                                                          {1, 1, 1}}), cxt.getUpArrow());
+                                                         {1, 1, 1}}), cxt.getUpArrow());
 
         cxt.setRelationAt(0, 0, true);
         assertEquals(SetBuilder.makeRelation(new int[][]{{0, 1, 1},
@@ -513,28 +519,28 @@ public class ContextTest extends TestCase {
     }
 
 
-    public void testCopy(){
+    public void testCopy() {
         final int[][] CONTEXT_DATA = new int[][]{{0, 0, 1},
-                                                         {1, 0, 0}};
+                                                 {1, 0, 0}};
         cxt = SetBuilder.makeContext(CONTEXT_DATA);
         ContextEditingInterface other = cxt.makeCopy();
         assertEquals(SetBuilder.makeContext(CONTEXT_DATA), other);
         assertEquals(cxt, other);
 
         assertNotNull(cxt.getArrowCalculator());
-        assertNotNull(((Context)other).getArrowCalculator());
+        assertNotNull(((Context) other).getArrowCalculator());
 
     }
 
-    public void testChangeOfTypeOnTranspose(){
+    public void testChangeOfTypeOnTranspose() {
         final int[][] CONTEXT_DATA = new int[][]{{0, 0, 1},
-                                                         {1, 0, 0}};
+                                                 {1, 0, 0}};
         cxt = SetBuilder.makeContext(CONTEXT_DATA);
         cxt.transpose();
-        for(int i=0;i<cxt.getObjectCount(); i++){
+        for (int i = 0; i < cxt.getObjectCount(); i++) {
             assertTrue(cxt.getObject(i).isObject());
         }
-        for(int i=0; i<cxt.getAttributeCount(); i++){
+        for (int i = 0; i < cxt.getAttributeCount(); i++) {
             assertFalse(cxt.getAttribute(i).isObject());
         }
     }
@@ -548,7 +554,7 @@ public class ContextTest extends TestCase {
         doTestExpectectationOnModification(cxt, mock, expectedNumberOfCalls, modification);
     }
 
-    public void testFireOfRelationChangeOnAddObjectWithNameAndIntent(){
+    public void testFireOfRelationChangeOnAddObjectWithNameAndIntent() {
         ContextStructureModification modification = new ContextStructureModification() {
             public void modifyContext(Context cxt) {
                 cxt.addObjectWithNameAndIntent("Fourth", SetBuilder.makeSet(new int[]{1, 1, 1}));
@@ -560,7 +566,7 @@ public class ContextTest extends TestCase {
         expectStructureChangedCall(cxt, 1, modification);
     }
 
-    public void testExpectStructureChangeOnCopyFrom(){
+    public void testExpectStructureChangeOnCopyFrom() {
         ContextStructureModification modification = new ContextStructureModification() {
             public void modifyContext(Context cxt) {
                 cxt.copyFrom(SetBuilder.makeContext(new int[][]{{0, 1, 0},
@@ -574,7 +580,7 @@ public class ContextTest extends TestCase {
 
     }
 
-    public void testDownArrow(){
+    public void testDownArrow() {
         cxt = SetBuilder.makeContext(new int[0][0]);
         assertEquals(0, cxt.getAttributeCount());
         assertEquals(0, cxt.getObjectCount());
@@ -584,7 +590,7 @@ public class ContextTest extends TestCase {
 
     }
 
-    public void testReduceAttributesAndObjects(){
+    public void testReduceAttributesAndObjects() {
         cxt = SetBuilder.makeContext(new int[][]{{1}});
         System.out.println("before reduceAttr");
         cxt.reduceAttributes();

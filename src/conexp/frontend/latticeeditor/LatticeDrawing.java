@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Feb 10, 2002
- * Time: 6:30:15 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor;
 
 import canvas.BaseFigureVisitor;
@@ -49,7 +51,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
         if (!hasLattice()) {
             return;
         }
-        if(getLattice().isEmpty()){
+        if (getLattice().isEmpty()) {
             return;
         }
         getLayoutEngine().startLayout(getLattice(), getDrawParams());
@@ -59,7 +61,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
         return layoutEngine;
     }
 
-    LayoutListener layoutListener = new LayoutListener(){
+    LayoutListener layoutListener = new LayoutListener() {
         public void layoutChange(ConceptCoordinateMapper mapper) {
             BaseFigureVisitor visitor = new CoordinateMapperFigureVisitor(mapper);
             applyUpdatingFigureVisitor(visitor);
@@ -67,8 +69,8 @@ public class LatticeDrawing extends ConceptSetDrawing {
     };
 
     public void setLayoutEngine(LayoutEngine layoutEngine) {
-        if(layoutEngine!=this.layoutEngine){
-            if(null!=this.layoutEngine){
+        if (layoutEngine != this.layoutEngine) {
+            if (null != this.layoutEngine) {
                 this.layoutEngine.removeLayoutListener(layoutListener);
             }
         }

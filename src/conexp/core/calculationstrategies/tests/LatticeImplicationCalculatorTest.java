@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.Context;
@@ -23,7 +29,7 @@ public class LatticeImplicationCalculatorTest extends ImplicationCalculatorTest 
         return calc;
     }
 
-    public void testIsUnionEqualsTo(){
+    public void testIsUnionEqualsTo() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{0, 0, 1},
                                                          {0, 1, 0},
                                                          {1, 0, 0}});
@@ -34,7 +40,7 @@ public class LatticeImplicationCalculatorTest extends ImplicationCalculatorTest 
 
         assertTrue(calc.isUnionEqualsTo(lat.getOne(), lat.getOne(), lat.getOne()));
 
-        LatticeElement other = SetBuilder.findLatticeElementWithIntent(lat, new int[]{0,0,1});
+        LatticeElement other = SetBuilder.findLatticeElementWithIntent(lat, new int[]{0, 0, 1});
 
         assertTrue(calc.isUnionEqualsTo(lat.getOne(), other, other));
         assertTrue(calc.isUnionEqualsTo(other, lat.getOne(), other));

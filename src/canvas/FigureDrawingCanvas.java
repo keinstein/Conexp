@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Aug 15, 2002
- * Time: 2:26:30 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package canvas;
 
 import canvas.tools.SelectionTool;
@@ -13,10 +15,7 @@ import util.collection.CollectionFactory;
 import util.collection.IndexedSet;
 import util.gui.GraphicObjectsFactory;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
@@ -57,8 +56,8 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     }
 
     protected Dimension getDrawingDimension() {
-        if(null==drawing){
-             return getSize();
+        if (null == drawing) {
+            return getSize();
         }
         return getDrawing().getDimension();
     }
@@ -162,7 +161,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     public void setOptions(CanvasScheme options) {
         CanvasScheme oldValue = this.options;
         this.options = options;
-        firePropertyChange("CanvasScheme",oldValue, this.options);
+        firePropertyChange("CanvasScheme", oldValue, this.options);
     }
 
     public CanvasScheme getOptions() {
@@ -264,7 +263,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
         return activeTool;
     }
 
-    public void moveFigures(Collection figures, double dx, double dy){
+    public void moveFigures(Collection figures, double dx, double dy) {
         for (Iterator iterator = figures.iterator(); iterator.hasNext();) {
             Figure figure = (Figure) iterator.next();
             moveFigure(figure, dx, dy);

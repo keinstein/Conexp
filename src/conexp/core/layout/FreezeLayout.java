@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout;
 
 import conexp.core.ConceptIterator;
@@ -24,7 +30,7 @@ public class FreezeLayout extends SimpleForceLayout {
         for (int i = 0; i < size; i++) {
             LatticeElement x = lattice.elementAt(i);
             Point3D currCoords = getConceptInfo(x).coords;
-            ConceptIterator filter = (currIter % 2 == 0 ?  (ConceptIterator) new ConceptFilterIterator(x) : (ConceptIterator) new ConceptIdealIterator(x));
+            ConceptIterator filter = (currIter % 2 == 0 ? (ConceptIterator) new ConceptFilterIterator(x) : (ConceptIterator) new ConceptIdealIterator(x));
             filter.nextConcept(); // Skip the first element which is x.
             while (filter.hasNext()) {
                 Point3D otherCoords = getConceptInfo(filter.nextConcept()).coords;
@@ -34,7 +40,7 @@ public class FreezeLayout extends SimpleForceLayout {
                 otherCoords.adjustForce(-forces[0], -forces[1]);
             }
 
-            Iterator list = (currIter % 2 == 0 ?  getHighIncomparablesForConcept(x): getLowIncomparablesForConcept(x)).iterator();
+            Iterator list = (currIter % 2 == 0 ? getHighIncomparablesForConcept(x) : getLowIncomparablesForConcept(x)).iterator();
             while (list.hasNext()) {
                 Point3D otherCoords = getConceptInfo((LatticeElement) list.next()).coords;
                 repulsion(
@@ -133,10 +139,9 @@ public class FreezeLayout extends SimpleForceLayout {
         int dz = pt1.z - pt2.z;
         float inv_d_cubed;
         if (dz == 0) {
-            if (Math.abs(dx)<0.2 && Math.abs(dy)< 0.2) {
+            if (Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2) {
                 inv_d_cubed = (float) 37.0;
-            }
-            else if (Math.abs(dx) < 1.0 && (Math.abs(dy)< 1.0)) {
+            } else if (Math.abs(dx) < 1.0 && (Math.abs(dy) < 1.0)) {
                 inv_d_cubed = (float) 1.0 / ((float) Math.pow(Math.abs(dx), 2) +
                         (float) Math.pow(Math.abs(dy), 2));
             } else {

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.ui;
 
 import conexp.frontend.View;
@@ -8,11 +14,7 @@ import javax.swing.*;
 import java.util.HashMap;
 import java.util.Iterator;
 
-/**
- * Insert the type's description here.
- * Creation date: (14.05.2001 14:03:54)
- * @author
- */
+
 public class ViewManager {
 
     protected ViewMap viewMap = new ViewMap();
@@ -33,7 +35,7 @@ public class ViewManager {
 
 
     public void registerView(String id, String type, String caption) throws ViewManagerException {
-       viewMap.registerView(id, type, caption);
+        viewMap.registerView(id, type, caption);
     }
 
     protected javax.swing.JComponent activeView;
@@ -133,6 +135,7 @@ public class ViewManager {
     public javax.swing.JComponent getActiveView() {
         return activeView;
     }
+
     protected void setActiveView(JComponent view) {
         if (activeView != view) {
             JComponent oldView = activeView;

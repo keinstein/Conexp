@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.BinaryRelation;
@@ -10,10 +16,7 @@ import conexp.core.tests.SetBuilder;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-/**
- * Creation date: (12.07.01 16:09:29)
- * @author sergey
- */
+
 public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBuildingDepthSearchCalculatorTest {
     private static final Class THIS = DepthSearchCalcWithFeatureMaskLatticeBuildingTest.class;
 
@@ -119,14 +122,14 @@ public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBu
 
     }
 
-    public void testBuildIcebergLattice(){
+    public void testBuildIcebergLattice() {
         getRealStrategy().setSearchConstrainter(new MinSupportConstrainer(2));
-        int[][] relation=new int[][]{
-                {1, 0, 1, 1, 0},
-                {0, 1, 1, 0, 1},
-                {1, 1, 1, 0, 1},
-                {0, 1, 0, 0, 1},
-                {1, 1, 1, 0, 1}
+        int[][] relation = new int[][]{
+            {1, 0, 1, 1, 0},
+            {0, 1, 1, 0, 1},
+            {1, 1, 1, 0, 1},
+            {0, 1, 0, 0, 1},
+            {1, 1, 1, 0, 1}
         };
         doTestCalcStrategyForExpectedSizeAndEdgeCount(relation, 6, 7);
         getRealStrategy().removeAllSearchConstraints();

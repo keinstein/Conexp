@@ -1,7 +1,9 @@
-/* Diagram.java	96/30/6
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 
-
-*/
 
 package conexp.core.layout;
 

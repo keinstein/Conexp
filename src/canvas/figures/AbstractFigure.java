@@ -1,15 +1,17 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.figures;
 
 import canvas.BaseFigureVisitor;
 import canvas.Figure;
 import util.Assert;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: Dec 2, 2002
- * Time: 3:37:40 PM
- */
-public abstract class AbstractFigure implements Figure{
+
+public abstract class AbstractFigure implements Figure {
     protected canvas.FigureListener fListener;
 
     public void removeFigureListener() {
@@ -27,7 +29,7 @@ public abstract class AbstractFigure implements Figure{
 
     public Figure findFigureInsideExceptFor(double x, double y, Figure toExclude) {
         Assert.isTrue(contains(x, y));
-        return toExclude == this ? null: this;
+        return toExclude == this ? null : this;
     }
 
     public void visit(BaseFigureVisitor visitor) {

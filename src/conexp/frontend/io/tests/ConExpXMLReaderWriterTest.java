@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.io.tests;
 
 import conexp.core.Context;
@@ -38,7 +44,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
 
     private void setUpFullLatticeCase() {
         cxt = SetBuilder.makeContext(new int[][]{{0},
-                                                         {1}});
+                                                 {1}});
         doc = new ContextDocument();
         doc.setContext(cxt);
         doc.getLatticeComponent().calculateLattice();
@@ -46,12 +52,12 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
 
     private void setUpPartialLatticeCase() {
         cxt = SetBuilder.makeContext(new int[][]{{0, 1},
-                                                         {1, 0}});
+                                                 {1, 0}});
         doc = new ContextDocument();
         doc.setContext(cxt);
         final LatticeComponent latticeComponent = doc.getLatticeComponent();
         final SetProvidingAttributeMask attributeMask = latticeComponent.getAttributeMask();
-        assertEquals(2,attributeMask.getAttributeCount());
+        assertEquals(2, attributeMask.getAttributeCount());
         attributeMask.setAttributeSelected(1, false);
         latticeComponent.calculatePartialLattice();
     }
@@ -76,12 +82,12 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         doTestWriteAndReadForDocumentWithConceptsLabels(doc, cxt);
     }
 
-    public void testLoadSavePartialLattice(){
+    public void testLoadSavePartialLattice() {
         setUpPartialLatticeCase();
         doTestWriteAndReadForDocWithLattice(doc, cxt);
     }
 
-    public void testLoadSaveFullLattice(){
+    public void testLoadSaveFullLattice() {
         setUpFullLatticeCase();
         doTestWriteAndReadForDocWithLattice(doc, cxt);
     }

@@ -1,13 +1,14 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.highlightstrategies;
 
 import conexp.core.Set;
 
 
-/**
- * Insert the type's description here.
- * Creation date: (01.12.00 3:00:20)
- * @author
- */
 public class NeigboursHighlightStrategy extends OneNodeHighlightStrategy {
 
     /**

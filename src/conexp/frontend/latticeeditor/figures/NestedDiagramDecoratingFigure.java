@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Jun 9, 2002
- * Time: 4:29:14 AM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor.figures;
 
 import conexp.core.LatticeElement;
@@ -10,7 +12,7 @@ import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
 import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 

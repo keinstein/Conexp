@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.tests;
 
 import canvas.DefaultTool;
@@ -8,7 +14,7 @@ import junit.framework.TestSuite;
 import util.collection.CollectionFactory;
 import util.testing.SimpleMockPropertyChangeListener;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,10 +24,10 @@ public class FigureDrawingCanvasTest extends TestCase {
         return new TestSuite(FigureDrawingCanvasTest.class);
     }
 
-    static class MockTool extends DefaultTool{
-        List  callsList = CollectionFactory.createDefaultList();
+    static class MockTool extends DefaultTool {
+        List callsList = CollectionFactory.createDefaultList();
 
-        public void clearCalls(){
+        public void clearCalls() {
             callsList.clear();
         }
 
@@ -41,7 +47,7 @@ public class FigureDrawingCanvasTest extends TestCase {
 
     }
 
-    public void testCallsOfEventOnActiveToolChange(){
+    public void testCallsOfEventOnActiveToolChange() {
         FigureDrawingCanvas canvas = new FigureDrawingCanvas();
         MockTool tool = new MockTool();
         tool.clearCalls();
@@ -53,7 +59,7 @@ public class FigureDrawingCanvasTest extends TestCase {
                                                 "deactivate"}), tool.getCallsList());
     }
 
-    public void testFiringOfSelectionEvent(){
+    public void testFiringOfSelectionEvent() {
         FigureDrawingCanvas canvas = new FigureDrawingCanvas();
         MockFigure one = new MockFigure(5, 5);
         MockFigure two = new MockFigure(20, 24);
@@ -72,7 +78,7 @@ public class FigureDrawingCanvasTest extends TestCase {
         mockListener.verify();
     }
 
-    public void testResizeOfCanvasOnZoomChange(){
+    public void testResizeOfCanvasOnZoomChange() {
         FigureDrawingCanvas canvas = new FigureDrawingCanvas();
         MockFigure one = new MockFigure(5, 5);
         MockFigure two = new MockFigure(95, 45);

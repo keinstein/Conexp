@@ -1,12 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies;
 
 import conexp.core.*;
 import util.Assert;
 
-/**
- *@author     Sergey
- *created    24 Èþëü 2000 ã.
- */
+
 public class NextClosedSetCalculator extends AbstractConceptCalcStrategy implements ImplicationCalcStrategy, LatticeCalcStrategy {
     //-----------------------------------------------------
     int objInImpl;
@@ -222,40 +225,40 @@ public class NextClosedSetCalculator extends AbstractConceptCalcStrategy impleme
         return tempAttrSet.equals(set);
     }
 
- /*   //-----------------------------------------------------
-    private void nextClosedSet() {
-        int numObj = rel.getRowCount();
-        conexp.core.ModifiableSet A = zeroClosure();
-        callback.addConcept(A, attrSet);
+    /*   //-----------------------------------------------------
+       private void nextClosedSet() {
+           int numObj = rel.getRowCount();
+           conexp.core.ModifiableSet A = zeroClosure();
+           callback.addConcept(A, attrSet);
 
-        conexp.core.ModifiableSet b = ContextFactoryRegistry.createSet(numObj);
-        conexp.core.ModifiableSet notJ = ContextFactoryRegistry.createSet(numObj);
+           conexp.core.ModifiableSet b = ContextFactoryRegistry.createSet(numObj);
+           conexp.core.ModifiableSet notJ = ContextFactoryRegistry.createSet(numObj);
 
-        int j = numObj - 1;
-        while (j >= 0) {
-            //that is a not equal g
-            j = numObj - 1;
-            notJ.clearSet();
-            for (; j >= 0; j--) {
-                notJ.put(j);
-                if (!A.in(j)) {
-                    //DBG System.out.println("****************************");
-                    //DBG System.out.println("Next closed set A="+A);
-                    b.copy(A);
-                    b.andNot(notJ);
-                    b.put(j);
-                    boolean res = closure(b, j);
-                    //DBG System.out.println("J="+j+" : after closure b "+b);
-                    if (res) {
-                        callback.addConcept(b, attrSet);
-                        A.copy(b);
-                        break;
-                    }
-                }
-            }
-        }
-    }
-*/
+           int j = numObj - 1;
+           while (j >= 0) {
+               //that is a not equal g
+               j = numObj - 1;
+               notJ.clearSet();
+               for (; j >= 0; j--) {
+                   notJ.put(j);
+                   if (!A.in(j)) {
+                       //DBG System.out.println("****************************");
+                       //DBG System.out.println("Next closed set A="+A);
+                       b.copy(A);
+                       b.andNot(notJ);
+                       b.put(j);
+                       boolean res = closure(b, j);
+                       //DBG System.out.println("J="+j+" : after closure b "+b);
+                       if (res) {
+                           callback.addConcept(b, attrSet);
+                           A.copy(b);
+                           break;
+                       }
+                   }
+               }
+           }
+       }
+   */
     //-----------------------------------------------------
     private void nextClosedSetAttr() {
         final int numAttr = rel.getColCount();

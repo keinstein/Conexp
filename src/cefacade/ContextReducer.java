@@ -1,13 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package cefacade;
 
 import cefacade.implementation.ContextReducerImplementation;
 
-/**
- * Author: Serhiy Yevtushenko
- * Date: 17.01.2003
- * Time: 17:31:47
- */
-public class ContextReducer implements IContextTranformer{
+
+public class ContextReducer implements IContextTranformer {
 
 
     public ISimpleContext transform(ISimpleContext context) {
@@ -19,7 +21,7 @@ public class ContextReducer implements IContextTranformer{
      * @return reduced context
      */
 
-    public static ISimpleContext getReducedContext(ISimpleContext context){
+    public static ISimpleContext getReducedContext(ISimpleContext context) {
         return ContextReducerImplementation.getReducedContext(context);
     }
 

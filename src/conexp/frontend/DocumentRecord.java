@@ -1,22 +1,21 @@
-/*
- * Created by IntelliJ IDEA.
- * User: Serhiy Yevtushenko
- * Date: May 17, 2002
- * Time: 10:58:00 PM
- * To change template for new class use 
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend;
 
 import util.FileNameMangler;
 import util.StringUtil;
 
-public class DocumentRecord{
+public class DocumentRecord {
     FileNameMangler pathFormer;
-    boolean hasCorrespondingFile=false;
+    boolean hasCorrespondingFile = false;
 
     public DocumentRecord(Document document, String url) {
-        if(null==document){
+        if (null == document) {
             throw new IllegalArgumentException();
         }
         this.document = document;
@@ -39,15 +38,15 @@ public class DocumentRecord{
         return document;
     }
 
-    public String getDocumentDirectory(){
+    public String getDocumentDirectory() {
         return pathFormer.getOutPath();
     }
 
-    public String getDocumentPath(){
+    public String getDocumentPath() {
         return pathFormer.getCurrFileName();
     }
 
-    public String getDocumentFileName(){
+    public String getDocumentFileName() {
         return pathFormer.getFileName();
     }
 

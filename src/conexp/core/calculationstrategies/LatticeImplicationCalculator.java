@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: Serhiy Yevtushenko
- * Date: Jul 4, 2002
- * Time: 5:02:23 PM
- * To change template for new class use
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.core.calculationstrategies;
 
 import conexp.core.*;
@@ -30,7 +29,6 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
     }
 
 
-
     public int getCallsToFindFromInteraction() {
         return callsToFindFromInteraction;
     }
@@ -38,7 +36,6 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
     public int getCacheHits() {
         return cacheHits;
     }
-
 
 
     public void setImplications(ImplicationSet implSet) {
@@ -121,14 +118,14 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
         //assumptions, on which reducing is based:
         // 1) every next rule can't be derived from previous ones
         // 2) we are reducing only rules, that corresponds to one conexp
-        for(int i=endImplicationCount; --i>=startImplicationCount; ){
+        for (int i = endImplicationCount; --i >= startImplicationCount;) {
             Implication curr = implications.getImplication(i);
-            Set currPremise =curr.getPremise();
+            Set currPremise = curr.getPremise();
 
-            for(int j=i; --j>=startImplicationCount;){
+            for (int j = i; --j >= startImplicationCount;) {
 
                 Implication other = implications.getImplication(j);
-                if(currPremise.isSubsetOf(other.getPremise())){
+                if (currPremise.isSubsetOf(other.getPremise())) {
                     implications.removeDependency(j);
                     --i; //(next i should be smaller due to removal)
                 }
@@ -141,18 +138,18 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
 
     private void findImplicationsFromInteractionOfTwoParents(LatticeElement currConcept, LatticeElement firstParent, LatticeElement secondParent) {
         callsToFindFromInteraction++;
-        if(!exploredChains.add(new Pair(firstParent, secondParent))){
+        if (!exploredChains.add(new Pair(firstParent, secondParent))) {
             cacheHits++;
             return;
         }
-        if(!isUnionEqualsTo(firstParent, secondParent, currConcept)){
+        if (!isUnionEqualsTo(firstParent, secondParent, currConcept)) {
             returnsDueNotUnion++;
             return;
         }
         final int firstSuccCount = firstParent.getSuccCount();
         for (int i = 0; i < firstSuccCount; i++) {
             LatticeElement parentSuccessor = firstParent.getSucc(i);
-             findImplicationsFromInteractionOfTwoParents(currConcept, parentSuccessor, secondParent);
+            findImplicationsFromInteractionOfTwoParents(currConcept, parentSuccessor, secondParent);
         }
 
         final int secCount = secondParent.getSuccCount();
@@ -162,8 +159,8 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
         }
 
         tempPremise.copy(firstParent.getAttribs());
-       // ModifiableSet premise = firstParent.getAttribs().makeModifiableSetCopy();
-       // premise.or(secondParent.getAttribs());
+        // ModifiableSet premise = firstParent.getAttribs().makeModifiableSetCopy();
+        // premise.or(secondParent.getAttribs());
         tempPremise.or(secondParent.getAttribs());
         implications.setClosure(tempPremise);
 
@@ -195,9 +192,9 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
     public boolean isUnionEqualsTo(LatticeElement firstParent, LatticeElement secondParent, LatticeElement currConcept) {
         tempPremise.copy(firstParent.getAttribs());
         tempPremise.or(secondParent.getAttribs());
-        for(int i=0; i<currConcept.getSuccCount(); i++){
-            if(tempPremise.isSubsetOf(currConcept.getSucc(i).getAttribs())){
-                 return false;
+        for (int i = 0; i < currConcept.getSuccCount(); i++) {
+            if (tempPremise.isSubsetOf(currConcept.getSucc(i).getAttribs())) {
+                return false;
             }
         }
         return true;

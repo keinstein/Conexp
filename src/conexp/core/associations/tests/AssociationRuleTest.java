@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.associations.tests;
 
 import conexp.core.associations.AssociationRule;
@@ -6,9 +12,6 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/**
- * JUnit test case for AssociationRuleTest
- */
 
 public class AssociationRuleTest extends TestCase {
     private static final Class THIS = AssociationRuleTest.class;

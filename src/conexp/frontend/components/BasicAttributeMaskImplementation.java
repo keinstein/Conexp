@@ -1,11 +1,10 @@
-/*
- * Created by IntelliJ IDEA.
- * User: Serhiy Yevtushenko
- * Date: Jun 17, 2002
- * Time: 9:56:17 PM
- * To change template for new class use 
- * Code Style | Class Templates options (Tools | IDE Options).
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.components;
 
 import conexp.frontend.AttributeMask;
@@ -23,8 +22,8 @@ public abstract class BasicAttributeMaskImplementation extends BasePropertyChang
         }
     }
 
-    protected boolean addAttributeWithDefaultValue(final Boolean defaultValue) {
-        return selectedAttributes.add(defaultValue);
+    protected void addAttributeWithDefaultValue(Boolean defaultValue) {
+        selectedAttributes.add(defaultValue);
     }
 
     public boolean isAttributeSelected(int index) {
@@ -40,28 +39,28 @@ public abstract class BasicAttributeMaskImplementation extends BasePropertyChang
         final boolean newBooleanValue = newValue.booleanValue();
         final int attributeCount = getAttributeCount();
 
-        for(int i=0; i<attributeCount; i++){
+        for (int i = 0; i < attributeCount; i++) {
             boolean oldValue = isAttributeSelected(i);
-            if(oldValue!=newBooleanValue){
-                changed=true;
+            if (oldValue != newBooleanValue) {
+                changed = true;
                 selectedAttributes.set(i, newValue);
             }
         }
-        if(changed){
+        if (changed) {
             getPropertyChangeSupport().firePropertyChange(ATTRIBUTE_SELECTION_CHANGED, null, null);
         }
     }
 
     public boolean equals(Object obj) {
-        if(!(obj instanceof AttributeMask)){
+        if (!(obj instanceof AttributeMask)) {
             return false;
         }
-        AttributeMask that = (AttributeMask)obj;
-        if(this.getAttributeCount()!=that.getAttributeCount()){
+        AttributeMask that = (AttributeMask) obj;
+        if (this.getAttributeCount() != that.getAttributeCount()) {
             return false;
         }
-        for(int i=getAttributeCount(); --i>=0; ){
-            if(this.isAttributeSelected(i)!=that.isAttributeSelected(i)){
+        for (int i = getAttributeCount(); --i >= 0;) {
+            if (this.isAttributeSelected(i) != that.isAttributeSelected(i)) {
                 return false;
             }
         }

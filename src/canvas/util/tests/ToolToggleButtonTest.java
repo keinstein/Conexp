@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.util.tests;
 
 import canvas.DefaultTool;
@@ -9,26 +15,26 @@ import junit.framework.TestSuite;
 
 public class ToolToggleButtonTest extends TestCase {
 
-   public static Test suite(){
-       return new TestSuite(ToolToggleButtonTest.class);
-   }
+    public static Test suite() {
+        return new TestSuite(ToolToggleButtonTest.class);
+    }
 
-   public void testButtonStateChangeOnToolActivation(){
-       DefaultTool actionTool = new DefaultTool();
-       actionTool.activate();
-       ToolAction action = new ToolAction(null, "testAction", "Test action", actionTool);
+    public void testButtonStateChangeOnToolActivation() {
+        DefaultTool actionTool = new DefaultTool();
+        actionTool.activate();
+        ToolAction action = new ToolAction(null, "testAction", "Test action", actionTool);
 
-       ToolToggleButton button = new ToolToggleButton(action);
-       assertTrue(button.isSelected());
+        ToolToggleButton button = new ToolToggleButton(action);
+        assertTrue(button.isSelected());
 
-       actionTool.deactivate();
-       assertFalse(button.isSelected());
+        actionTool.deactivate();
+        assertFalse(button.isSelected());
 
-       actionTool.activate();
-       assertTrue(button.isSelected());
-   }
+        actionTool.activate();
+        assertTrue(button.isSelected());
+    }
 
-    public void testButtonStateChangeOnChangeOfEnabled(){
+    public void testButtonStateChangeOnChangeOfEnabled() {
 
         DefaultTool actionTool = new DefaultTool();
         actionTool.setEnabled(false);

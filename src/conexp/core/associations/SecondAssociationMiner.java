@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.associations;
 
 import conexp.core.DependencySet;
@@ -8,10 +14,7 @@ import conexp.core.calculationstrategies.LatticeImplicationCalculator;
 
 import java.util.ArrayList;
 
-/**
- * Insert the type's description here.
- * Creation date: (02.05.01 14:18:55)
- */
+
 public class SecondAssociationMiner extends BaseAssociationMiner {
 
     public SecondAssociationMiner() {
@@ -29,11 +32,11 @@ public class SecondAssociationMiner extends BaseAssociationMiner {
         findApproximateBaseByCruscal(depSet, frequentEdges, frequentItemsetLattice.conceptsCount());
 
         long approximateTime = System.currentTimeMillis();
-        System.out.println("approximate dependencies:"+(approximateTime-exactTime));
-        System.out.println("Time to sort edges:"+(sortTime-exactTime));
-        System.out.println("Time to find base:"+(approximateTime-sortTime));
+        System.out.println("approximate dependencies:" + (approximateTime - exactTime));
+        System.out.println("Time to sort edges:" + (sortTime - exactTime));
+        System.out.println("Time to find base:" + (approximateTime - sortTime));
         final int exactCount = validImplications.getSize();
-        for(int i=0; i<exactCount; i++){
+        for (int i = 0; i < exactCount; i++) {
             depSet.addDependency(validImplications.getDependency(i));
         }
     }
@@ -43,7 +46,7 @@ public class SecondAssociationMiner extends BaseAssociationMiner {
         long startTime = System.currentTimeMillis();
         findFrequentItemsetsLattice(minSupport);
         long latticeTime = System.currentTimeMillis();
-        System.out.println("Time for building lattice:"+(latticeTime-startTime));
+        System.out.println("Time for building lattice:" + (latticeTime - startTime));
 
         validImplications = new ImplicationSet(cxt);
         LatticeImplicationCalculator calc = new LatticeImplicationCalculator();
@@ -51,13 +54,13 @@ public class SecondAssociationMiner extends BaseAssociationMiner {
         calc.setImplications(validImplications);
         calc.calcDuquenneGuiguiesSet();
         long exactTime = System.currentTimeMillis();
-        System.out.println("Time for finding validImplications dependencies:"+(exactTime-latticeTime));
+        System.out.println("Time for finding validImplications dependencies:" + (exactTime - latticeTime));
 
         return frequentItemsetLattice;
     }
 
     public Lattice findFrequentItemsetsLattice(int minSupport) {
-        frequentItemsetLattice=FCAEngineRegistry.buildIcebergLattice(cxt, minSupport);
+        frequentItemsetLattice = FCAEngineRegistry.buildIcebergLattice(cxt, minSupport);
         return frequentItemsetLattice;
     }
 

@@ -1,14 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies;
 
 import conexp.core.*;
 import conexp.core.searchconstraints.NullSearchConstraint;
 
-/**
- *  Description of the Class
- *
- *@author     Sergey
- *@created    24 Èþëü 2000 ã.
- */
+
 public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator implements
         ConceptLatticeCalcStrategyWithFeatureMask, ConceptSpaceSearchEngine {
 
@@ -47,7 +48,7 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
         return null != featureMask;
     }
 
-    public void removeAllSearchConstraints(){
+    public void removeAllSearchConstraints() {
         setSearchConstrainter(new NullSearchConstraint());
     }
 
@@ -113,36 +114,36 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
         ModifiableSet currIntent = currAttribs[depth];
         currIntent.copy(intent);
 
-        for (int j = workSet.firstIn(); j!=Set.NOT_IN_SET; j = workSet.nextIn(j)) {
-                findAttrClosure(j, currExtent);
-                workSet.and(outerSet);
-                newIntent.andNot(currIntent);
-                if (!newIntent.intersects(prohibitedSet)) {
-                    newIntent.or(currIntent);
-                    if (searchConstrainer.continueSearch(newIntent, newExtent.elementCount())) {
-                        callback.addConcept(newExtent, newIntent);
+        for (int j = workSet.firstIn(); j != Set.NOT_IN_SET; j = workSet.nextIn(j)) {
+            findAttrClosure(j, currExtent);
+            workSet.and(outerSet);
+            newIntent.andNot(currIntent);
+            if (!newIntent.intersects(prohibitedSet)) {
+                newIntent.or(currIntent);
+                if (searchConstrainer.continueSearch(newIntent, newExtent.elementCount())) {
+                    callback.addConcept(newExtent, newIntent);
 
-                        ModifiableSet nextProhibitedSet = prohibitedSets[depth + 1];
-                        nextProhibitedSet.copy(prohibitedSet);
-                        nextProhibitedSet.or(newIntent);
+                    ModifiableSet nextProhibitedSet = prohibitedSets[depth + 1];
+                    nextProhibitedSet.copy(prohibitedSet);
+                    nextProhibitedSet.or(newIntent);
 
-                        tempAttrSet.copy(allAttrSet);
-                        tempAttrSet.andNot(outerSet);
+                    tempAttrSet.copy(allAttrSet);
+                    tempAttrSet.andNot(outerSet);
 
-                        prohibitedSet.or(tempAttrSet);
+                    prohibitedSet.or(tempAttrSet);
 
-                        if (!newIntent.equals(allAttrSet)) {
-                            descEntities[depth + 1].copy(allAttrSet);
-                            descEntities[depth + 1].andNot(nextProhibitedSet);
-                            depthSearchEnumConcepts(newIntent, newExtent, depth + 1);
-                        } // end of if ()
-                    }else{
-                        tempAttrSet.copy(allAttrSet);
-                        tempAttrSet.andNot(outerSet);
+                    if (!newIntent.equals(allAttrSet)) {
+                        descEntities[depth + 1].copy(allAttrSet);
+                        descEntities[depth + 1].andNot(nextProhibitedSet);
+                        depthSearchEnumConcepts(newIntent, newExtent, depth + 1);
+                    } // end of if ()
+                } else {
+                    tempAttrSet.copy(allAttrSet);
+                    tempAttrSet.andNot(outerSet);
 
-                        prohibitedSet.or(tempAttrSet);
-                    }
+                    prohibitedSet.or(tempAttrSet);
                 }
+            }
         }  //for(int j=workSet.length(); --j>=0;){
         //*DBG*/ System.out.println("return from depth["+depth+"]==============================================");
     }
@@ -151,7 +152,7 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
     void calcDescendantsAttr(DepthSearchLatticeElement parentElement, int depth) {
         Set conceptDescendantAttributes = calcDescAttr(depth, parentElement.getObjects(), parentElement.getAttribs());
         if (conceptDescendantAttributes.isEmpty()) {
-            if(hasZero){
+            if (hasZero) {
                 parentElement.addFirstTimePred(lattice.getZero());
             }
             return;
@@ -160,34 +161,34 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
         conceptDescendantAttributesCopy.copy(conceptDescendantAttributes);
 
         ModifiableSet prohibitedSet = prohibitedSets[depth];
-        for (int j = conceptDescendantAttributesCopy.firstIn(); j!=Set.NOT_IN_SET; j = conceptDescendantAttributesCopy.nextIn(j)) {
-                if (isDirectDescendentForAttr(j, conceptDescendantAttributes, parentElement.getObjects())) {
-                    conceptDescendantAttributesCopy.andNot(newIntent);
-                    conceptDescendantAttributesCopy.and(outerSet);
-                    newIntent.or(parentElement.getAttribs());
-                    if (searchConstrainer.continueSearch(newIntent, newExtent.elementCount())) {
-                        if (newIntent.intersects(prohibitedSet)) {
-                            setConnectionFromOne(parentElement, newIntent);
-                        } else {
-                            // this comparison should work only one time
-                            // it will be really very good to remove it
-                            if (newIntent.isEquals(allAttrSet)) {
-                                if(hasZero){
-                                   parentElement.addFirstTimePred(lattice.getZero());
-                                }
-                            } else {
-                                DepthSearchLatticeElement childLatticeElement = makeDepthSearchLatticeElement(newExtent, newIntent);
-                                lattice.addElement(childLatticeElement);
-                                parentElement.addFirstTimePred(childLatticeElement);
-                                prohibitedSets[depth + 1].copy(prohibitedSet);
-                                calcDescendantsAttr(childLatticeElement, depth + 1);
+        for (int j = conceptDescendantAttributesCopy.firstIn(); j != Set.NOT_IN_SET; j = conceptDescendantAttributesCopy.nextIn(j)) {
+            if (isDirectDescendentForAttr(j, conceptDescendantAttributes, parentElement.getObjects())) {
+                conceptDescendantAttributesCopy.andNot(newIntent);
+                conceptDescendantAttributesCopy.and(outerSet);
+                newIntent.or(parentElement.getAttribs());
+                if (searchConstrainer.continueSearch(newIntent, newExtent.elementCount())) {
+                    if (newIntent.intersects(prohibitedSet)) {
+                        setConnectionFromOne(parentElement, newIntent);
+                    } else {
+                        // this comparison should work only one time
+                        // it will be really very good to remove it
+                        if (newIntent.isEquals(allAttrSet)) {
+                            if (hasZero) {
+                                parentElement.addFirstTimePred(lattice.getZero());
                             }
+                        } else {
+                            DepthSearchLatticeElement childLatticeElement = makeDepthSearchLatticeElement(newExtent, newIntent);
+                            lattice.addElement(childLatticeElement);
+                            parentElement.addFirstTimePred(childLatticeElement);
+                            prohibitedSets[depth + 1].copy(prohibitedSet);
+                            calcDescendantsAttr(childLatticeElement, depth + 1);
                         }
                     }
-                    prohibitedSet.put(j);
-
                 }
-                //if(isDirectDescendentAttr(j,conceptDescAttr,parentElement.objects)){
+                prohibitedSet.put(j);
+
+            }
+            //if(isDirectDescendentAttr(j,conceptDescAttr,parentElement.objects)){
         }
         //for(int j=conceptDescendantAttributesCopy.length();--j>=0; ){
     }

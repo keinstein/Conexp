@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Jan 27, 2002
- * Time: 3:35:42 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor;
 
 

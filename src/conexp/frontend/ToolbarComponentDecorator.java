@@ -1,19 +1,15 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend;
 
 import conexp.frontend.util.ToolBuilder;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-
-/**
- * ToolbarComponentDecorator.java
- *
- *
- * Created: Sun Apr 30 20:58:02 2000
- *
- * @author
- * @version
- */
+import java.awt.*;
 
 
 public class ToolbarComponentDecorator extends JPanel implements View, OptionPaneProvider {
@@ -23,7 +19,7 @@ public class ToolbarComponentDecorator extends JPanel implements View, OptionPan
     public ToolbarComponentDecorator(ViewChangeInterfaceWithConfig inner, boolean inScrollPane) {
         this.inner = inner;
         setLayout(new BorderLayout());
-        add(inScrollPane ? new JScrollPane(inner.getViewComponent()): inner.getViewComponent(), BorderLayout.CENTER);
+        add(inScrollPane ? new JScrollPane(inner.getViewComponent()) : inner.getViewComponent(), BorderLayout.CENTER);
         ToolBuilder toolBuilder = new ToolBuilder(inner.getResourceManager(), inner.getActionChain());
         JToolBar tool = toolBuilder.createToolBar(JToolBar.VERTICAL);
         tool.setFloatable(false);

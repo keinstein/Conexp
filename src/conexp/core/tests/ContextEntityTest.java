@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.tests;
 
 import com.mockobjects.ExpectationCounter;
@@ -9,9 +15,6 @@ import junit.framework.TestSuite;
 
 import java.beans.PropertyChangeEvent;
 
-/**
- * JUnit test case for ContextTest
- */
 
 public class ContextEntityTest extends TestCase {
     private static final Class THIS = ContextEntityTest.class;
@@ -37,7 +40,7 @@ public class ContextEntityTest extends TestCase {
         counter.verify();
     }
 
-    public void testEquals(){
+    public void testEquals() {
         final String firstName = "One";
         final String secondName = "Two";
         ContextEntity attr1 = ContextEntity.createContextAttribute(firstName);

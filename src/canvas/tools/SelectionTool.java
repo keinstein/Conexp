@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.tools;
 
 import canvas.*;
@@ -5,12 +11,8 @@ import canvas.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
-/*
- * User: Serhiy Yevtushenko
- * Date: Oct 18, 2002
- * Time: 6:50:35 PM
- */
-public class SelectionTool extends CanvasTool{
+
+public class SelectionTool extends CanvasTool {
     public SelectionTool(FigureDrawingCanvas figureDrawingCanvas) {
         super(figureDrawingCanvas);
     }
@@ -18,15 +20,15 @@ public class SelectionTool extends CanvasTool{
     Tool childTool = null;
 
     public void mousePressed(MouseEvent e) {
-        if(childTool!=null){
+        if (childTool != null) {
             return;
         }
         Point2D worldCoords = figureDrawingCanvas.getWorldCoords(e.getPoint());
         Figure f = figureDrawingCanvas.findFigureInReverseOrderToDrawing(worldCoords.getX(), worldCoords.getY());
         Tool tool;
-        if(f!=null){
+        if (f != null) {
             tool = makeMoveFigureTool();
-        }else{
+        } else {
             tool = makeSelectionTrackerTool();
         }
         childTool = tool;

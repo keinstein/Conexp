@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Jun 2, 2002
- * Time: 8:03:23 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor;
 
 import canvas.figures.ConnectionFigure;
@@ -16,15 +18,6 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 
-
-/*
-    TODO: change to subclass of composite figure
-
-    TODO: mapping of labels to diagram nodes (objects, attributes and so on)
-    TODO: resizing of empty nodes
-    TODO: proper drawing of nodes
-    TODO: remove conceptSet element
-*/
 
 public class NestedLineDiagramDrawing extends ConceptSetDrawing {
     LatticeDrawing outerDiagram;
@@ -85,10 +78,10 @@ public class NestedLineDiagramDrawing extends ConceptSetDrawing {
             public void visitNode(LatticeElement concept) {
 
                 Point2D originalCoords = outerDiagram.getFigureForConcept(concept).getCenter();
-                double xValueToScale = (originalCoords.getX() - boundsRect.getMinX())/2;
-                double yValueToScale = (originalCoords.getY() - boundsRect.getMinY())/2;
+                double xValueToScale = (originalCoords.getX() - boundsRect.getMinX()) / 2;
+                double yValueToScale = (originalCoords.getY() - boundsRect.getMinY()) / 2;
                 Point2D newCoords = new Point2D.Double(originalCoords.getX() + xScale * xValueToScale,
-                                                       originalCoords.getY() + yScale * yValueToScale);
+                        originalCoords.getY() + yScale * yValueToScale);
 
                 getFigureForConcept(concept).setCoords(newCoords);
             }
@@ -150,7 +143,7 @@ public class NestedLineDiagramDrawing extends ConceptSetDrawing {
     }
 
     public boolean hasConceptSet() {
-        return conceptSet!=null;
+        return conceptSet != null;
     }
 }
 

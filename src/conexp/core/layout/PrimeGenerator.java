@@ -1,10 +1,12 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.layout;
 
-/**
- * Insert the type's description here.
- * Creation date: (05.03.01 2:16:16)
- * @author
- */
+
 public class PrimeGenerator {
     // I didn't have 3 and 5 before.
     private static final int[] primes = {3, 5, 7, 11, 13, 17, 19, 23, 29, 31};

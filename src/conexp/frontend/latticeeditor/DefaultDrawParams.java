@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Jan 27, 2002
- * Time: 3:41:28 PM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor;
 
 public class DefaultDrawParams extends BasicDrawParams {

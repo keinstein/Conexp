@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: 06.03.2002
- * Time: 14:17:18
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor;
 
 import conexp.util.gui.paramseditor.ParamInfo;
@@ -65,8 +67,8 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
 
     protected ParamInfo[] makeParamInfo() {
         return new ParamInfo[]{
-                  new StrategyValueItemParamInfo("Attribs", getAttrLabelingStrategyItem()),
-                  new StrategyValueItemParamInfo("Objects", getObjectsLabelingStrategyItem())
+            new StrategyValueItemParamInfo("Attribs", getAttrLabelingStrategyItem()),
+            new StrategyValueItemParamInfo("Objects", getObjectsLabelingStrategyItem())
         };
     }
 

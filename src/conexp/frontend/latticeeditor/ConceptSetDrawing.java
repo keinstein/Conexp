@@ -1,8 +1,10 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Jun 8, 2002
- * Time: 3:03:38 AM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.latticeeditor;
 
 import canvas.Figure;
@@ -18,11 +20,11 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.LineDiagramFigure;
 import conexp.util.gui.paramseditor.ParamInfo;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.geom.Dimension2D;
 
 public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
-    FigureDimensionCalcStrategyProvider figureDimensionProvider=new FigureDimensionCalcStretegyProviderImplementation();
+    FigureDimensionCalcStrategyProvider figureDimensionProvider = new FigureDimensionCalcStretegyProviderImplementation();
     LatticeDrawingOptions latticeDrawingOptions;
 
     public ConceptSetDrawing() {
@@ -30,8 +32,8 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
         setOptions(new LatticePainterOptions());
     }
 
-    protected LatticeCanvasScheme getLatticeCanvasScheme(){
-        return (LatticeCanvasScheme)getOptions();
+    protected LatticeCanvasScheme getLatticeCanvasScheme() {
+        return (LatticeCanvasScheme) getOptions();
     }
 
     public abstract ConceptsCollection getConceptSet();
@@ -184,7 +186,7 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
         return getLatticeDrawingOptions();
     }
 
-    class FigureDimensionCalcStretegyProviderImplementation implements FigureDimensionCalcStrategyProvider{
+    class FigureDimensionCalcStretegyProviderImplementation implements FigureDimensionCalcStrategyProvider {
         public FigureDimensionCalcStrategy getFigureDimensionCalcStrategy() {
             return getLatticeCanvasScheme().getDrawStrategiesContext().getFigureDimensionCalcStrategy();
         }

@@ -1,8 +1,10 @@
-/*
- * User: sergey
- * Date: Dec 13, 2001
- * Time: 11:52:50 AM
- */
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
+
 package conexp.frontend.contexteditor;
 
 import conexp.core.AttributeExplorer;
@@ -38,20 +40,20 @@ public class ContextTablePane extends JScrollPane {
         contextTableView.setContext(source);
     }
 
-    public void addUndoableEditListener(UndoableEditListener listener){
+    public void addUndoableEditListener(UndoableEditListener listener) {
         contextTableView.addUndoableEditListener(listener);
     }
 
-    public void removeUndoableEditListener(UndoableEditListener listener){
+    public void removeUndoableEditListener(UndoableEditListener listener) {
         contextTableView.removeUndoableEditListener(listener);
     }
 
-    protected void performCommand(Command command){
+    protected void performCommand(Command command) {
         contextTableView.performCommand(command);
     }
 
-    public AttributeExplorer.ContextModificationCallback getContextModificationCallback(){
-        return new AttributeExplorer.ContextModificationCallback(){
+    public AttributeExplorer.ContextModificationCallback getContextModificationCallback() {
+        return new AttributeExplorer.ContextModificationCallback() {
             public void addObjectToContext(String name, Set intent) {
                 performCommand(getContextTableModel().new AddObjectWithNameCommand(name, intent));
             }

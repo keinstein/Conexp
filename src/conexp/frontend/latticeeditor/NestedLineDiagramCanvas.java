@@ -1,10 +1,11 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Jun 8, 2002
- * Time: 2:24:52 PM
- */
-package conexp.frontend.latticeeditor;
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 
+
+package conexp.frontend.latticeeditor;
 
 
 public class NestedLineDiagramCanvas extends BaseConceptSetCanvas {

@@ -1,18 +1,20 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.tools;
 
 import canvas.CanvasTool;
 import canvas.Figure;
 import canvas.FigureDrawingCanvas;
 
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
-/*
- * User: Serhiy Yevtushenko
- * Date: Oct 18, 2002
- * Time: 6:47:59 PM
- */
+
 public class MoveNodeTool extends CanvasTool {
     Point2D startPoint;
 
@@ -23,8 +25,8 @@ public class MoveNodeTool extends CanvasTool {
     public void mousePressed(MouseEvent e) {
         Point2D userCoords = figureDrawingCanvas.getWorldCoords(e.getPoint());
         Figure figure = figureDrawingCanvas.findFigureInReverseOrderToDrawing(userCoords.getX(),
-                        userCoords.getY());
-        if(!figureDrawingCanvas.hasSelection() || !figureDrawingCanvas.getSelection().contains(figure)){
+                userCoords.getY());
+        if (!figureDrawingCanvas.hasSelection() || !figureDrawingCanvas.getSelection().contains(figure)) {
             figureDrawingCanvas.selectFigure(figure);
         }
         if (figureDrawingCanvas.hasSelection()) {

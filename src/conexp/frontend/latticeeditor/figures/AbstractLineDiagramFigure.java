@@ -1,12 +1,11 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.figures;
 
-/**
- * AbstractLineDiagramFigure.java
- * Created: Sat Dec 16 17:08:07 2000
- *
- * @author Sergey Yevtushenko
- * @version
- */
 
 import canvas.figures.FigureWithCoords;
 import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
@@ -28,7 +27,7 @@ public abstract class AbstractLineDiagramFigure extends FigureWithCoords impleme
         this.figureDimensionProvider = figureDimensionProvider;
     }
 
-    protected FigureDimensionCalcStrategyProvider getFigureDimensionProvider(){
+    protected FigureDimensionCalcStrategyProvider getFigureDimensionProvider() {
         return this.figureDimensionProvider;
     }
 

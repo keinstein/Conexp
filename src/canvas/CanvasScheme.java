@@ -1,13 +1,15 @@
-/*
- * User: Serhiy Yevtushenko
- * Date: Aug 15, 2002
- * Time: 3:05:29 PM
- */
-package canvas;
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 
+
+package canvas;
 
 
 public interface CanvasScheme {
     CanvasColorScheme getColorScheme();
+
     IHighlightStrategy getHighlightStrategy();
 }

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.labelingstrategies.tests;
 
 import com.mockobjects.ExpectationCounter;
@@ -11,16 +17,13 @@ import conexp.frontend.latticeeditor.labelingstrategies.GenericLabelingStrategy;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import junit.framework.TestCase;
 
-import java.awt.Dimension;
+import java.awt.*;
 
-/**
- * Insert the type's description here.
- * Creation date: (25.12.00 0:47:30)
- * @author Serhiy Yevtushenko
- */
+
 public abstract class GenericLabelingStrategyTest extends TestCase {
     protected GenericLabelingStrategy labelStrategy;
     private Context cxt;
+
     protected abstract ConceptNodeQuery makeAcceptable();
 
     /**
@@ -36,8 +39,8 @@ public abstract class GenericLabelingStrategyTest extends TestCase {
      */
     protected void setUp() {
         labelStrategy = makeStrategy();
-        cxt= SetBuilder.makeContext(new int[][]{{0, 0},
-                                                                            {0, 0}});
+        cxt = SetBuilder.makeContext(new int[][]{{0, 0},
+                                                 {0, 0}});
         labelStrategy.setContext(cxt);
     }
 
@@ -49,29 +52,29 @@ public abstract class GenericLabelingStrategyTest extends TestCase {
         assertTrue(labelStrategy.accept(makeAcceptable()));
     }
 
-    static class MockFigureDrawingListener implements canvas.FigureDrawingListener{
-            ExpectationCounter counter  = new ExpectationCounter("DimensionChanged counter");
+    static class MockFigureDrawingListener implements canvas.FigureDrawingListener {
+        ExpectationCounter counter = new ExpectationCounter("DimensionChanged counter");
 
-            boolean expectedCalled = false;
-            boolean actualCalled = false;
+        boolean expectedCalled = false;
+        boolean actualCalled = false;
 
-            public void setExpected(boolean wasCalled){
-                 this.expectedCalled = wasCalled;
-            }
+        public void setExpected(boolean wasCalled) {
+            this.expectedCalled = wasCalled;
+        }
 
-            public void verify(){
-                assertEquals(expectedCalled, actualCalled);
-            }
+        public void verify() {
+            assertEquals(expectedCalled, actualCalled);
+        }
 
-            public void dimensionChanged(Dimension newDim) {
-                actualCalled = true;
-            }
+        public void dimensionChanged(Dimension newDim) {
+            actualCalled = true;
+        }
 
-            public void needUpdate() {
-            }
+        public void needUpdate() {
+        }
     }
 
-   public void testApplicationOfChanges(){
+    public void testApplicationOfChanges() {
         Lattice lat = SetBuilder.makeLatticeFromContext(cxt);
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(lat);

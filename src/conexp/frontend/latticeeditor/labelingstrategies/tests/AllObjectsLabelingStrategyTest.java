@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.labelingstrategies.tests;
 
 import conexp.core.Lattice;
@@ -11,11 +17,7 @@ import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-/**
- * Insert the type's description here.
- * Creation date: (25.12.00 20:17:21)
- * @author
- */
+
 public class AllObjectsLabelingStrategyTest extends GenericLabelingStrategyTest {
     protected ConceptNodeQuery makeAcceptable() {
         return ConceptNodeQueryFactory.makeWithOwnObjects();
@@ -37,9 +39,9 @@ public class AllObjectsLabelingStrategyTest extends GenericLabelingStrategyTest 
         return new TestSuite(AllObjectsLabelingStrategyTest.class);
     }
 
-      public void testAdditionOfAttributesAndCleanup(){
+    public void testAdditionOfAttributesAndCleanup() {
         Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{0, 1},
-                                                             {1, 0}});
+                                                                        {1, 0}});
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(lattice);
         assertTrue(drawing.setObjectLabelingStrategyKey(LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY));

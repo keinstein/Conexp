@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor;
 
 import conexp.util.gui.paramseditor.BoundedIntValueParamInfo;
@@ -10,7 +16,7 @@ import java.beans.PropertyChangeSupport;
 import java.beans.VetoableChangeListener;
 import java.beans.VetoableChangeSupport;
 
-public class LatticePainterDrawParams extends BasicDrawParams implements ParamsProvider{
+public class LatticePainterDrawParams extends BasicDrawParams implements ParamsProvider {
     private BoundedIntValue maxNodeRadius;
     private BoundedIntValue gridSizeX;
     private BoundedIntValue gridSizeY;

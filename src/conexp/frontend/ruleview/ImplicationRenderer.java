@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.ruleview;
 
 import conexp.core.AttributeInformationSupplier;
@@ -5,12 +11,9 @@ import conexp.core.Dependency;
 
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
-import java.awt.Color;
+import java.awt.*;
 
-/**
- * Creation date: (06.05.01 20:20:04)
- * @author Sergey Yevtushenko
- */
+
 public class ImplicationRenderer extends GenericRuleRenderer {
 
     public ImplicationRenderer() {

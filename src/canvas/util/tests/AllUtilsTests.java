@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package canvas.util.tests;
 
 import junit.framework.Test;
@@ -5,7 +11,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 
-//this class is not called AllTests due to bug in Ant.
 public class AllUtilsTests extends TestCase {
 
     public static Test suite() {

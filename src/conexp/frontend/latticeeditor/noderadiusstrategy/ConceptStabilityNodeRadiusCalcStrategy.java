@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.latticeeditor.noderadiusstrategy;
 
 import conexp.core.ConceptsCollection;
@@ -12,7 +18,7 @@ public class ConceptStabilityNodeRadiusCalcStrategy extends ConceptDependentRadi
     }
 
     protected double calculatePercents(ConceptQuery query) {
-        return ((double)query.getStability())/getMaximalValue();
+        return ((double) query.getStability()) / getMaximalValue();
     }
 
     //TODO: change calculation of maximal value of query on calculation by figure drawing,

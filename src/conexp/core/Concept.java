@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core;
 
 import util.Assert;
@@ -5,10 +11,7 @@ import util.collection.CollectionFactory;
 
 import java.util.Iterator;
 
-/**
- * Insert the type's description here.
- * Creation date: (02.07.01 1:35:35)
- */
+
 public class Concept implements ItemSet {
 
     private Set attribs;
@@ -42,8 +45,8 @@ public class Concept implements ItemSet {
      * @param intent conexp.core.Set
      */
     public Concept(Set extent, Set intent) {
-        Assert.isTrue(null!=extent);
-        Assert.isTrue(null!=intent);
+        Assert.isTrue(null != extent);
+        Assert.isTrue(null != intent);
         objects = extent;
         attribs = intent;
     }
@@ -107,25 +110,25 @@ public class Concept implements ItemSet {
     }
 
     protected boolean isConceptEqual(Concept that) {
-        if(this.getAttribs() == null){
-            if(that.getAttribs()!=null){
+        if (this.getAttribs() == null) {
+            if (that.getAttribs() != null) {
                 return false;
             }
-        }else{
-            if(!getAttribs().equals(that.getAttribs())){
-                return false;
-            }
-        }
-        if(this.getObjects() == null){
-            if(that.getObjects()!=null){
-                return false;
-            }
-        }else{
-            if(!this.getObjects().equals(that.getObjects())){
+        } else {
+            if (!getAttribs().equals(that.getAttribs())) {
                 return false;
             }
         }
-        return  true;
+        if (this.getObjects() == null) {
+            if (that.getObjects() != null) {
+                return false;
+            }
+        } else {
+            if (!this.getObjects().equals(that.getObjects())) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
@@ -137,7 +140,7 @@ public class Concept implements ItemSet {
     private int cachedObjectCount = -1;
 
     public int getObjCnt() {
-        if(-1==cachedObjectCount){
+        if (-1 == cachedObjectCount) {
             cachedObjectCount = getObjects().elementCount();
         }
         return cachedObjectCount;
@@ -299,7 +302,7 @@ public class Concept implements ItemSet {
         return index;
     }
 
-    public void setIndex(int index){
+    public void setIndex(int index) {
         this.index = index;
     }
 
