@@ -50,6 +50,12 @@ public class ImplicationSet extends DependencySet {
         super.addDependency(dep);
     }
 
+    public void addAll(ImplicationSet other){
+        for (Iterator iterator = other.iterator(); iterator.hasNext();) {
+            addImplication((Implication) iterator.next());
+        }
+    }
+
     //---------------------------------------
     public Implication getImplication(int i) {
         return (Implication) getDependency(i);
