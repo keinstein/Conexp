@@ -9,9 +9,9 @@ package conexp.core;
 
 
 public interface ExtendedContextEditingInterface extends ContextEditingInterfaceWithArrowRelations {
-    void purifyAttributes();
+    void clarifyAttributes();
 
-    void purifyObjects();
+    void clarifyObjects();
 
     void reduceAttributes();
 

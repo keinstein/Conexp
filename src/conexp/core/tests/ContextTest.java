@@ -84,10 +84,10 @@ public class ContextTest extends TestCase {
 
     }
 
-    public void testPurifyObjectsChange() {
+    public void testClarifyObjectsChange() {
         ContextStructureModification modification = new ContextStructureModification() {
             public void modifyContext(Context cxt) {
-                cxt.purifyObjects();
+                cxt.clarifyObjects();
             }
         };
 
@@ -98,10 +98,10 @@ public class ContextTest extends TestCase {
 
     }
 
-    public void testPurifyAttributesChange() {
+    public void testClarifyAttributesChange() {
         ContextStructureModification modification = new ContextStructureModification() {
             public void modifyContext(Context cxt) {
-                cxt.purifyAttributes();
+                cxt.clarifyAttributes();
             }
         };
 

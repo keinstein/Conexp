@@ -312,15 +312,15 @@ public class ContextTableModelTest extends TestCase {
         });
     }
 
-    public void testUndoOnPurifyContext() {
+    public void testUndoOnClarifyContext() {
         doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
-                tableModel.performCommand(tableModel.new PurifyContextCommand());
+                tableModel.performCommand(tableModel.new ClarifyContextCommand());
             }
         });
     }
 
-    public void testUndoOnPurifyObjects() {
+    public void testUndoOnClarifyObjects() {
         tableModel = new ContextTableModel(
                 SetBuilder.makeContext(
                         new int[][]{
@@ -332,15 +332,15 @@ public class ContextTableModelTest extends TestCase {
 
         doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
-                tableModel.performCommand(tableModel.new PurifyObjectsCommand());
+                tableModel.performCommand(tableModel.new ClarifyObjectsCommand());
             }
         });
     }
 
-    public void testUndoOnPurifyAttributes() {
+    public void testUndoOnClarifyAttributes() {
         doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
-                tableModel.performCommand(tableModel.new PurifyAttributesCommand());
+                tableModel.performCommand(tableModel.new ClarifyAttributesCommand());
             }
         });
     }

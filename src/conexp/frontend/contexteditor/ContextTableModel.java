@@ -675,34 +675,34 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
     }
 
-    public class PurifyContextCommand extends ExtendedContextDestroyingCommandBase {
-        public PurifyContextCommand() {
-            super("Purify context");
+    public class ClarifyContextCommand extends ExtendedContextDestroyingCommandBase {
+        public ClarifyContextCommand() {
+            super("Clarify context");
         }
 
         protected void modifyContext() {
-            getExtendedContext().purifyObjects();
-            getExtendedContext().purifyAttributes();
+            getExtendedContext().clarifyObjects();
+            getExtendedContext().clarifyAttributes();
         }
     }
 
-    public class PurifyObjectsCommand extends ExtendedContextDestroyingCommandBase {
-        public PurifyObjectsCommand() {
-            super("Purify objects");
+    public class ClarifyObjectsCommand extends ExtendedContextDestroyingCommandBase {
+        public ClarifyObjectsCommand() {
+            super("Clarify objects");
         }
 
         protected void modifyContext() {
-            getExtendedContext().purifyObjects();
+            getExtendedContext().clarifyObjects();
         }
     }
 
-    public class PurifyAttributesCommand extends ExtendedContextDestroyingCommandBase {
-        public PurifyAttributesCommand() {
-            super("Purify attributes");
+    public class ClarifyAttributesCommand extends ExtendedContextDestroyingCommandBase {
+        public ClarifyAttributesCommand() {
+            super("Clarify attributes");
         }
 
         protected void modifyContext() {
-            getExtendedContext().purifyAttributes();
+            getExtendedContext().clarifyAttributes();
         }
     }
 

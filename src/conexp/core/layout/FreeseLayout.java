@@ -18,7 +18,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class FreezeLayout extends SimpleForceLayout {
+public class FreeseLayout extends SimpleForceLayout {
     static class FreezeLayoutConceptInfo extends ForceDirectConceptInfo {
         Collection highIncomparables;
         Collection lowIncomparables;

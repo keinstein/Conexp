@@ -15,6 +15,8 @@ import util.comparators.ComparatorUtil;
 import java.util.*;
 
 public class MinIntersectionLayout extends NonIncrementalLayouter {
+    //todo:possibly - modify min intersection in order to perfrom swapping, taking into account consideration about strait lines
+
     //------------------------------------------
     //for debug only
     int maxElm;

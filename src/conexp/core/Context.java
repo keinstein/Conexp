@@ -220,12 +220,12 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
     //---------------------------------------------------------------
-    public void purifyAttributes() {
-        doPurifyAttributes();
+    public void clarifyAttributes() {
+        doClarifyAttributes();
         getContextListenersSupport().realisePostponedStructureChange();
     }
 
-    private void doPurifyAttributes() {
+    private void doClarifyAttributes() {
         int numObj = rel.getRowCount();
         int numAttr = rel.getColCount();
         ModifiableSet toClear = ContextFactoryRegistry.createSet(numAttr);
@@ -264,13 +264,13 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
     //---------------------------------------------------------------
-    public void purifyObjects() {
-        doPurifyObjects();
+    public void clarifyObjects() {
+        doClarifyObjects();
         getContextListenersSupport().realisePostponedStructureChange();
 
     }
 
-    private void doPurifyObjects() {
+    private void doClarifyObjects() {
         int bound = rel.getRowCount();
         for (int i = 0; i < bound; i++) {
             Set curr = rel.getSet(i);
@@ -484,7 +484,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     // Arrow relation related operation
     //---------------------------------------------------------------
     public void reduceAttributes() {
-        doPurifyAttributes();
+        doClarifyAttributes();
         int numAttr = rel.getColCount();
         ModifiableSet notToClear = ContextFactoryRegistry.createSet(numAttr);
         BinaryRelation up = getUpArrow();
@@ -501,7 +501,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
 
     //---------------------------------------------------------------
     public void reduceObjects() {
-        doPurifyObjects();
+        doClarifyObjects();
         BinaryRelation down = getDownArrow();
         for (int i = rel.getRowCount(); --i >= 0;) {
             if (down.getSet(i).isEmpty()) {

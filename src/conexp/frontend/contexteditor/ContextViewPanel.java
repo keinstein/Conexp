@@ -110,8 +110,8 @@ public class ContextViewPanel extends ContextTablePane implements ViewChangeInte
     };
 
     private Action[] actions = {
-        new AddRowAction(), new PurifyObjectsAction(),
-        new AddAttribAction(), new PurifyAttribsAction(),
+        new AddRowAction(), new ClarifyObjectsAction(),
+        new AddAttribAction(), new ClarifyAttribsAction(),
         new ReduceObjectsAction(), new ReduceAttribsAction(),
         new ReduceAllAction(),
         new TrasposeContextAction(),
@@ -143,14 +143,14 @@ public class ContextViewPanel extends ContextTablePane implements ViewChangeInte
 
     }
 
-    class PurifyObjectsAction extends AbstractAction {
+    class ClarifyObjectsAction extends AbstractAction {
 
-        PurifyObjectsAction() {
-            super("purifyObj");//$NON-NLS-1$
+        ClarifyObjectsAction() {
+            super("clarifyObj");//$NON-NLS-1$
         }
 
         public void actionPerformed(ActionEvent e) {
-            performCommand(getContextTableModel().new PurifyObjectsCommand());
+            performCommand(getContextTableModel().new ClarifyObjectsCommand());
         }
     }
 
@@ -165,14 +165,14 @@ public class ContextViewPanel extends ContextTablePane implements ViewChangeInte
         }
     }
 
-    class PurifyAttribsAction extends AbstractAction {
+    class ClarifyAttribsAction extends AbstractAction {
 
-        PurifyAttribsAction() {
-            super("purifyAttr");//$NON-NLS-1$
+        ClarifyAttribsAction() {
+            super("clarifyAttributes");//$NON-NLS-1$
         }
 
         public void actionPerformed(ActionEvent e) {
-            performCommand(getContextTableModel().new PurifyAttributesCommand());
+            performCommand(getContextTableModel().new ClarifyAttributesCommand());
         }
     }
 
