@@ -49,15 +49,6 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
         return (Lattice) conceptSet;
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (01.07.01 23:14:26)
-     */
-    protected void buildIntentsSetAndFillExpectationSet(BinaryRelation rel, ExpectationSet expSet,
-                                                        ExpectationSet expSetExtents) {
-        super.buildIntentsSetAndFillExpectationSet(rel, expSet, expSetExtents);
-
-    }
 
     protected void checkEdgeCount(BinaryRelation rel, int expectedEdgeCount) {
         compareExpEdgeCount(rel, getLattice(), expectedEdgeCount);

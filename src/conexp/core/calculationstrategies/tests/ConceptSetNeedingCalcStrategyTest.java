@@ -28,4 +28,5 @@ public abstract class ConceptSetNeedingCalcStrategyTest extends CalcStrategyTest
     protected void setupStrategy(ConceptsCollection col) {
         getRealStrategy().setConceptSet(col);
     }
+
 }

@@ -708,8 +708,6 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         virtMap.clear();
     }
 
-
-
     interface ConnectedCollectionsSupplier{
         LatticeElementCollection getConnected(LatticeElement current);
         LatticeElementCollection getOtherConnected(LatticeElement current);
@@ -748,7 +746,6 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
                 currInfo.x = (getElementInfo(connected.get(0)).x + getElementInfo(connected.get(numParents - 1)).x) / 2;
             }
             currInfo.y = drawParams.getGridSizeY() * (lattice.getHeight() - curr.getHeight());
-
         }
     }
     //---------------------------------------------------------------

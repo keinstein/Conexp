@@ -12,14 +12,9 @@ import conexp.core.enumcallbacks.ConceptNumExperimentCallback;
  * @author Serhiy Yevtushenko
  */
 public class ConceptCountExperiment extends BaseConceptCalcExperiment {
-
-
     public ConceptCountExperiment(String strategyName) {
         super(strategyName);
     }
-
-
-
 
     protected void doLocalSetup() {
         ConceptEnumCallback callback = new ConceptNumExperimentCallback();
@@ -30,6 +25,4 @@ public class ConceptCountExperiment extends BaseConceptCalcExperiment {
     protected int getConceptsCount() {
         return ((ConceptNumCallback)coll).getConceptCount();
     }
-
-
 }

@@ -67,6 +67,12 @@ public class SetRelation implements ModifiableBinaryRelation {
         return relation[row];
     }
 
+    public void addSet(Set set) {
+        int oldRowCount = getRowCount();
+        setDimension(oldRowCount+1, getColCount());
+        getModifiableSet(oldRowCount).copy(set);
+    }
+
     public Set getSet(int x) {
         return getModifiableSet(x);
     }

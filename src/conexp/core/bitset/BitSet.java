@@ -8,7 +8,6 @@
 package conexp.core.bitset;
 
 
-import conexp.core.Fragment;
 import conexp.core.IPartiallyOrdered;
 import conexp.core.ModifiableSet;
 import conexp.core.Set;
@@ -83,7 +82,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      *
      * @param   s   a bit set.
      */
-    public void and(Fragment s) {
+    public void and(Set s) {
         if (this == s)
             return;
         BitSet set = (BitSet) s;
@@ -101,7 +100,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      *            <code>BitSet</code>.
      * @since     JDK1.2
      */
-    public void andNot(Fragment s) {
+    public void andNot(Set s) {
         BitSet set = (BitSet) s;
         //*DBG*/util.Assert.isTrue(this.size ==set.size);
         //*DBG*/util.Assert.isTrue(this.unit.length==set.unit.length);
@@ -248,7 +247,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         return ret;
     }
 
-    public void copy(Fragment s) {
+    public void copy(Set s) {
         BitSet set = (BitSet) s;
         if (set != this) {
             if (unit.length != set.unit.length) {
@@ -434,7 +433,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         return ((unit[unitIndex] & bit(bitIndex)) != 0);
     }
 
-    public boolean intersects(Fragment s) {
+    public boolean intersects(Set s) {
         if (s instanceof BitSet) {
             BitSet set = (BitSet) s;
             for (int i = unit.length; --i >= 0;) {
@@ -652,7 +651,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * @return boolean
      * @param other conexp.core.Set
      */
-    public boolean isSubsetOf(Fragment other) {
+    public boolean isSubsetOf(Set other) {
         if (other == null || !(other instanceof BitSet))
             return false;
         if (this == other)
@@ -712,7 +711,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         return highestBit + 1;
     }
 
-    public boolean isEquals(Fragment obj) {
+    public boolean isEquals(Set obj) {
         BitSet set = (BitSet) obj;
         if (this.size != set.size) {
             return false;

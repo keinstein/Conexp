@@ -15,17 +15,14 @@ import java.util.List;
  */
 
 public class ContextTableTest extends TestCase {
-    public void testPasteAllowed(){
-        Context cxt = SetBuilder.makeContext(new int[][]{
-            {1, 0, 0},
-            {0, 1, 0},
-            {0, 0, 0}
-        });
-        ContextTable table = new ContextTable(cxt);
+    private ContextTable table;
+    private Context cxt;
+
+    public void testPasteAllowed() {
         int[] selRows = {0, 1};
         int[] selCols = {0, 1};
         String copied = table.buildStringRepresentation(
-             selRows.length, selCols.length, selRows, selCols
+                selRows.length, selCols.length, selRows, selCols
         );
         assertTrue(table.contentCanBePasted(copied, 0, 0));
         assertFalse(table.contentCanBePasted(copied, 1, 0));
@@ -35,7 +32,7 @@ public class ContextTableTest extends TestCase {
         selRows = new int[]{1, 2};
         selCols = new int[]{1, 2};
         copied = table.buildStringRepresentation(
-             selRows.length, selCols.length, selRows, selCols
+                selRows.length, selCols.length, selRows, selCols
         );
         assertFalse(table.contentCanBePasted(copied, 0, 0));
         assertTrue(table.contentCanBePasted(copied, 1, 0));
@@ -47,14 +44,32 @@ public class ContextTableTest extends TestCase {
 
     }
 
-    public void testSplit() throws Exception {
+    protected void setUp() {
+        cxt = SetBuilder.makeContext(new int[][]{
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 0}
+        });
+        table = new ContextTable(cxt);
+    }
+
+    public static void testSplit() throws Exception {
         List expected = Arrays.asList(new String[]{"1", "2"});
         assertEquals(expected, ContextTable.split("1\t2", '\t'));
         expected = Arrays.asList(new String[]{"1"});
         assertEquals(expected, ContextTable.split("1", '\t'));
 
         expected = Arrays.asList(new String[]{"", "1"});
-        assertEquals(expected, ContextTable.split("\t1",'\t'));
+        assertEquals(expected, ContextTable.split("\t1", '\t'));
+    }
+
+    public void testCorrectnessOfCompressedView() {
+        assertEquals(false, table.getCompressView().getValue());
+        assertEquals(ContextTable.USUAL_WIDTH, table.getColumnModel().getColumn(1).getPreferredWidth());
+        table.getCompressView().setValue(true);
+        assertEquals(ContextTable.COMPRESSED_WIDTH, table.getColumnModel().getColumn(1).getPreferredWidth());
+        cxt.removeObject(0);
+        assertEquals(ContextTable.COMPRESSED_WIDTH, table.getColumnModel().getColumn(1).getPreferredWidth());
     }
 
 }

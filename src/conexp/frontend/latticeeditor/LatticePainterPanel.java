@@ -7,7 +7,6 @@
 
 package conexp.frontend.latticeeditor;
 
-import canvas.util.SaveImageAction;
 import com.visibleworkings.trace.Trace;
 import conexp.frontend.LatticeDrawingProvider;
 import conexp.frontend.ResourceLoader;
@@ -29,7 +28,6 @@ import java.util.ResourceBundle;
 
 
 public class LatticePainterPanel extends BaseLatticePainterPane implements ViewChangeInterfaceWithConfig {
-
 
     class PanningTool extends canvas.DefaultTool {
         int xDiff = 0;
@@ -122,7 +120,6 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         }
 
     }
-
 
     class SelectScaleToFitModeAction extends AbstractAction {
         public SelectScaleToFitModeAction() {
@@ -267,7 +264,7 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
     public Action[] getActions() {
         Action[] ret = {new AlignToGridAction(),
                         new GrabAndDragAction(),
-                        new SaveImageAction(this, "Save lattice image as"),
+                        new ExportLatticeInfoAction("saveImage", "Export diagram as", this),
                         new SelectMoveModeAction(),
                         new SelectScaleToFitModeAction(),
                         new AddZoomAction(),

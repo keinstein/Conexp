@@ -8,10 +8,7 @@
 package conexp.core.calculationstrategies.tests;
 
 import com.mockobjects.ExpectationSet;
-import conexp.core.BinaryRelation;
-import conexp.core.Concept;
-import conexp.core.ConceptCalcStrategy;
-import conexp.core.ConceptsCollection;
+import conexp.core.*;
 import conexp.core.compareutils.ConceptCollectionComparator;
 import conexp.core.tests.SetBuilder;
 import junit.framework.TestCase;
@@ -101,11 +98,11 @@ public abstract class CalcStrategyTest extends TestCase {
         {1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0}
     };
     public static final int[][] LECTICAL_TREE_ERROR_CONTEXT = new int[][]{
-                {1, 0, 1, 1, 0},
-                {1, 0, 0, 1, 0},
-                {0, 1, 1, 1, 0},
-                {0, 1, 0, 0, 1}
-            };
+        {1, 0, 1, 1, 0},
+        {1, 0, 0, 1, 0},
+        {0, 1, 1, 1, 0},
+        {0, 1, 0, 0, 1}
+    };
 
     protected void setUp() {
         calcStrategy = makeCalcStrategy();
@@ -122,8 +119,8 @@ public abstract class CalcStrategyTest extends TestCase {
     public void testOneNodeLattice() {
         doTestCalcStrategyForExpectedIntentsAndExtents(
                 ONE_NODE_LATTICE, new int[][]{{1}},
-                                  new int[][]{{1}},
-                                  0
+                new int[][]{{1}},
+                0
         );
 
     }
@@ -131,9 +128,9 @@ public abstract class CalcStrategyTest extends TestCase {
 
     public void testTwoNodeLattice() {
         doTestCalcStrategyForExpectedIntentsAndExtents(
-                TWO_NODE_LATTICE, new int[][]{{0},{1}},
-                                  new int[][]{{1}, {0}},
-                                  1
+                TWO_NODE_LATTICE, new int[][]{{0}, {1}},
+                new int[][]{{1}, {0}},
+                1
         );
 
     }
@@ -165,6 +162,42 @@ public abstract class CalcStrategyTest extends TestCase {
                 },
                 12
         );
+    }
+
+    protected void doTestCalcStrategyForExpectedConcepts(int[][] input, int[][][] concepts, int edgeCount) {
+        BinaryRelation rel = SetBuilder.makeRelation(input);
+        calcStrategy.setRelation(rel);
+        setupResultCollectorAndStrategy();
+        generateIntents();
+        checkResults(rel, concepts);
+        checkEdgeCount(rel, edgeCount);
+    }
+
+    protected void checkResults(BinaryRelation rel, int[][][] concepts) {
+        testIntentsAndExtentsSizes(conceptSet, rel);
+        checkConcepts(concepts, conceptSet);
+
+    }
+
+    private static void checkConcepts(int[][][] concepts, final ConceptsCollection actualConcepts) {
+        ConceptsCollection expConcepts = new ConceptsCollection();
+        for (int i = 0; i < concepts.length; i++) {
+            int[][] currentConcept = concepts[i];
+            assertEquals(2, currentConcept.length);
+            ModifiableSet extent = SetBuilder.makeSet(currentConcept[0]);
+            ModifiableSet intent = SetBuilder.makeSet(currentConcept[1]);
+            expConcepts.addElement(new Concept(extent, intent));
+        }
+        ConceptCollectionComparator comparator = new ConceptCollectionComparator(expConcepts, actualConcepts);
+        if (!comparator.isEqual()) {
+            comparator.dumpDifferencesToSout();
+            assertTrue("concept set compare failed expected"+expConcepts + " but was "+actualConcepts, false);
+        }
+    }
+
+    protected void setupResultCollectorAndStrategy() {
+        conceptSet = makeConceptCollection();
+        setupStrategy(conceptSet);
     }
 
     /**
@@ -210,6 +243,16 @@ public abstract class CalcStrategyTest extends TestCase {
      * Creation date: (24.02.01 1:30:42)
      */
     public void testNominal() {
+        doTestCalcStrategyForExpectedConcepts(NOMINAL_4_NODE_4_ATTR,
+                new int[][][]{
+                    {{1, 1, 1, 1}, {0, 0, 0, 0}},
+                    {{0, 0, 0, 0}, {1, 1, 1, 1}},
+                    {{0, 0, 0, 1}, {0, 0, 0, 1}},
+                    {{0, 0, 1, 0}, {0, 0, 1, 0}},
+                    {{0, 1, 0, 0}, {0, 1, 0, 0}},
+                    {{1, 0, 0, 0}, {1, 0, 0, 0}},
+                }
+                , 8);
         doTestCalcStrategyForExpectedIntentsAndExtents(
                 NOMINAL_4_NODE_4_ATTR,
                 new int[][]{
@@ -250,19 +293,10 @@ public abstract class CalcStrategyTest extends TestCase {
 
     protected void buildIntentsSetAndFillExpectationSet(BinaryRelation rel, com.mockobjects.ExpectationSet expSet, com.mockobjects.ExpectationSet expSetExtents) {
         conceptSet = makeConceptCollection();
-        commonTestForAllStrategies(rel, conceptSet, expSet, expSetExtents);
-    }
-
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (13.07.01 21:57:53)
-     */
-    protected void commonTestForAllStrategies(BinaryRelation rel, ConceptsCollection conceptSet, ExpectationSet expSetIntents, ExpectationSet expSetExtents) {
         setupStrategy(conceptSet);
         generateIntents();
         testIntentsAndExtentsSizes(conceptSet, rel);
-        ConceptSetTestUtils.fillExpectationSetByIntentsFromLattice(expSetIntents, conceptSet);
+        ConceptSetTestUtils.fillExpectationSetByIntentsFromLattice(expSet, conceptSet);
         ConceptSetTestUtils.fillExpectationSetByExtentsFromLattice(expSetExtents, conceptSet);
     }
 
@@ -388,10 +422,12 @@ public abstract class CalcStrategyTest extends TestCase {
      * Creation date: (13.07.01 22:02:30)
      */
     protected void testIntentsAndExtentsSizes(ConceptsCollection conceptSet, BinaryRelation rel) {
+        final int rowCount = rel.getRowCount();
+        final int colCount = rel.getColCount();
         for (int i = conceptSet.conceptsCount(); --i >= 0;) {
             Concept con = conceptSet.conceptAt(i);
-            assertEquals(rel.getRowCount(), con.getObjects().size());
-            assertEquals(rel.getColCount(), con.getAttribs().size());
+            assertEquals(rowCount, con.getObjects().size());
+            assertEquals(colCount, con.getAttribs().size());
         }
     }
 
@@ -436,5 +472,33 @@ public abstract class CalcStrategyTest extends TestCase {
                 },
                 24
         );
+    }
+
+    public void testCharmExample() {
+        doTestCalcStrategyForExpectedConcepts(
+                new int[][]{
+                    {1, 1, 0, 1, 1},
+                    {0, 1, 1, 0, 1},
+                    {1, 1, 0, 1, 1},
+                    {1, 1, 1, 0, 1},
+                    {1, 1, 1, 1, 1},
+                    {0, 1, 1, 1, 0}
+                },
+                new int[][][]{
+                    {{1, 1, 1, 1, 1, 1}, {0, 1, 0, 0, 0}},
+                    {{0, 0, 0, 0, 1, 0}, {1, 1, 1, 1, 1}},
+                    {{1, 1, 1, 1, 1, 0}, {0, 1, 0, 0, 1}},
+                    {{0, 1, 0, 1, 1, 0}, {0, 1, 1, 0, 1}},
+                    {{0, 0, 0, 1, 1, 0}, {1, 1, 1, 0, 1}},
+                    {{1, 0, 1, 1, 1, 0}, {1, 1, 0, 0, 1}},
+                    {{1, 0, 1, 0, 1, 0}, {1, 1, 0, 1, 1}},
+                    {{1, 0, 1, 0, 1, 1}, {0, 1, 0, 1, 0}},
+                    {{0, 0, 0, 0, 1, 1}, {0, 1, 1, 1, 0}},
+                    {{0, 1, 0, 1, 1, 1}, {0, 1, 1, 0, 0}},
+                }
+                , 15
+
+        );
+
     }
 }

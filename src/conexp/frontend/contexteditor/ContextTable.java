@@ -20,6 +20,7 @@ import javax.swing.*;
 import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.UndoableEditListener;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import java.awt.Toolkit;
@@ -43,6 +44,8 @@ public class ContextTable extends JTable implements ParamsProvider {
     boolean repaintMode = false;
     private BooleanValueModel compressView;
     public static final String COMPRESSED_VIEW_PROPERTY = "compressedView";
+    public static final int COMPRESSED_WIDTH = 16;
+    public static final int USUAL_WIDTH = 75;
 
     public void setRepaintMode(boolean repaintMode) {
         this.repaintMode = repaintMode;
@@ -60,17 +63,9 @@ public class ContextTable extends JTable implements ParamsProvider {
             }
         });
 
-        compressView = new BooleanValueModel(COMPRESSED_VIEW_PROPERTY, false);
-        compressView.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                if (COMPRESSED_VIEW_PROPERTY.equals(evt.getPropertyName())) {
-                    setCompressedView(Boolean.TRUE.equals(evt.getNewValue()));
-                }
-            }
-        });
-
         setDefaultRenderer(Boolean.class, cellRenderer);
         setDefaultRenderer(String.class, cellRenderer);
+
 
         final ContextCellEditor cellEditor = new ContextCellEditor();
 
@@ -88,6 +83,32 @@ public class ContextTable extends JTable implements ParamsProvider {
             }
         });
 
+        compressView = new BooleanValueModel(COMPRESSED_VIEW_PROPERTY, false);
+        compressView.addPropertyChangeListener(new PropertyChangeListener() {
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (COMPRESSED_VIEW_PROPERTY.equals(evt.getPropertyName())) {
+                    setCompressedView(Boolean.TRUE.equals(evt.getNewValue()));
+                }
+            }
+        });
+
+/*
+        getContextTableModel().addTableModelListener(new SyncListener() {
+            void doSync() {
+                System.out.println("ContextTable.doSync");
+               setCompressedView(compressView.getValue());
+            }
+
+            protected boolean reactOnEvent(TableModelEvent evt) {
+                System.out.println("ContextTable.reactOnEvent");
+                return super.reactOnEvent(evt);
+            }
+        });
+*/
+
+
+
+
         //this line fix an issue with switching focus from window, containing table, when editing is in process
         putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 
@@ -100,8 +121,24 @@ public class ContextTable extends JTable implements ParamsProvider {
 
     }
 
+    public void tableChanged(TableModelEvent e) {
+        super.tableChanged(e);
+        afterTableChanged(e);
+    }
+
+    protected void afterTableChanged(TableModelEvent e) {
+        //is called here because the table column model is rebuilt after the change
+       if(compressView!=null){
+        setCompressedView(compressView.getValue());
+       }
+    }
+
     private void setCompressedView(boolean compressed) {
-        final int preferredWidth = compressed ? 16 : 75;
+        doSetCompresedView(compressed);
+    }
+
+    private void doSetCompresedView(boolean compressed) {
+        final int preferredWidth = compressed ? COMPRESSED_WIDTH : USUAL_WIDTH;
         TableColumnModel columnModel = getColumnModel();
         for (int i = 1; i < getColumnCount(); i++) {
             TableColumn column = columnModel.getColumn(i);
@@ -109,6 +146,10 @@ public class ContextTable extends JTable implements ParamsProvider {
         }
     }
 
+
+    public BooleanValueModel getCompressView() {
+        return compressView;
+    }
 
     PopupMenuProvider popupMenuProvider = new DefaultPopupMenuProvider();
 
@@ -135,7 +176,7 @@ public class ContextTable extends JTable implements ParamsProvider {
         setPopupMenuProvider(new ContextTablePopupMenuProvider());
     }
 
-    class ContextTablePopupMenuProvider extends DefaultPopupMenuProvider{
+    class ContextTablePopupMenuProvider extends DefaultPopupMenuProvider {
         public void fillPopupMenu(JPopupMenu popupMenu) {
             popupMenu.add(new CutAction());
             popupMenu.add(new CopyAction());

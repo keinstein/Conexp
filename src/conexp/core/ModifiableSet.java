@@ -8,7 +8,7 @@
 
 package conexp.core;
 
-public interface ModifiableSet extends Set, ModifiableFragment {
+public interface ModifiableSet extends Set{
 //-------------------------
     /**
      *      puts element in set
@@ -63,4 +63,16 @@ public interface ModifiableSet extends Set, ModifiableFragment {
      * @param addition conexp.core.Set
      */
     void append(Set addition);
+
+    void copy(Set set);
+
+    /**
+     *   performs inplace and operation
+     */
+    void and(Set set);
+
+    /**
+     *      performs inplace andNot operation
+     */
+    void andNot(Set set);
 }

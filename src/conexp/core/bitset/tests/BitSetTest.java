@@ -32,11 +32,13 @@ public class BitSetTest extends TestCase {
         emptySet = new BitSet(96);
 
         firstWord = new BitSet(96);
-        for (int i = 0; i < 32; i++)
+        for (int i = 0; i < 32; i++){
             firstWord.put(i);
+        }
         secondWord = new BitSet(96);
-        for (int i = 64; i < 96; i++)
+        for (int i = 64; i < 96; i++){
             secondWord.put(i);
+        }
 
         temp = new BitSet(96);
     }

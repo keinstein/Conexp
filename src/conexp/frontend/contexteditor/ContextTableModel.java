@@ -321,10 +321,12 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         //*DBG*/ printDebugData();
     }
 
-    static abstract class SyncListener extends DefaultContextListener implements TableModelListener {
+
+
+    static abstract class SyncValueListener extends SyncListener {
         IntValueModel valueModel;
 
-        public SyncListener(IntValueModel valueModel) {
+        public SyncValueListener(IntValueModel valueModel) {
             this.valueModel = valueModel;
         }
 
@@ -338,18 +340,9 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
 
         protected abstract int getValue();
 
-        public void contextStructureChanged() {
-            doSync();
-        }
-
-        public void tableChanged(TableModelEvent evt) {
-            if (evt.getType() != TableModelEvent.UPDATE ||
-                    evt.getFirstRow() == TableModelEvent.HEADER_ROW) {
-                doSync();
-            }
-        }
-
     }
+
+
 
 
     public synchronized IntValueModel getAttribCountModel() {
@@ -368,7 +361,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
             }
             );
 
-            SyncListener lst = new SyncListener(attribCountModel) {
+            SyncValueListener lst = new SyncValueListener(attribCountModel) {
                 protected int getValue() {
                     return getContext().getAttributeCount();
                 }
@@ -400,7 +393,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
             }
             );
 
-            SyncListener lst = new SyncListener(objectCountModel) {
+            SyncValueListener lst = new SyncValueListener(objectCountModel) {
                 protected int getValue() {
                     return getContext().getObjectCount();
                 }

@@ -27,4 +27,6 @@ public interface ModifiableBinaryRelation extends BinaryRelation {
     //ModifiableBinaryRelation
 
     ModifiableSet getModifiableSet(int j);
+
+    void addSet(Set set);
 }

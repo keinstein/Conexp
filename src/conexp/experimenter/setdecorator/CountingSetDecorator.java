@@ -1,6 +1,8 @@
 package conexp.experimenter.setdecorator;
 
-import conexp.core.*;
+import conexp.core.IPartiallyOrdered;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import util.Assert;
 
 /**
@@ -37,23 +39,19 @@ public class CountingSetDecorator implements ModifiableSet{
         inner.remove(elId);
     }
 
-    public void copy(Fragment fragment) {
+    public void copy(Set set) {
         statistic.register(OperationCodes.COPY);
-        inner.copy(getWorkingFragment(fragment));
+        inner.copy(getWorkingSet(set));
     }
 
-    public void and(Fragment set) {
+    public void and(Set set) {
         statistic.register(OperationCodes.COPY);
-        inner.and(getWorkingFragment(set));
+        inner.and(getWorkingSet(set));
     }
 
-    public void andNot(Fragment set) {
+    public void andNot(Set set) {
         statistic.register(OperationCodes.AND_NOT_OPERATION);
-        inner.andNot(getWorkingFragment(set));
-    }
-
-    private Set getWorkingFragment(Fragment set) {
-        return getWorkingSet((Set)set);
+        inner.andNot(getWorkingSet(set));
     }
 
     public void clearSet() {
@@ -156,24 +154,24 @@ public class CountingSetDecorator implements ModifiableSet{
         return inner.outUpperBound();
     }
 
-    public boolean intersects(Fragment other) {
+    public boolean intersects(Set other) {
         statistic.register(OperationCodes.INTERSECTS);
-        return inner.intersects(getWorkingFragment(other));
+        return inner.intersects(getWorkingSet(other));
     }
 
-    public boolean isEquals(Fragment obj) {
+    public boolean isEquals(Set obj) {
         statistic.register(OperationCodes.IS_EQUALS);
-        return inner.isEquals(getWorkingFragment(obj));
+        return inner.isEquals(getWorkingSet(obj));
     }
 
-    public boolean isSupersetOf(Fragment other) {
+    public boolean isSupersetOf(Set other) {
         statistic.register(OperationCodes.IS_SUPERSET_OF);
-        return inner.isSupersetOf(getWorkingFragment(other));
+        return inner.isSupersetOf(getWorkingSet(other));
     }
 
-    public boolean isSubsetOf(Fragment s) {
+    public boolean isSubsetOf(Set s) {
         statistic.register(OperationCodes.IS_SUBSET_OF);
-        return inner.isSubsetOf(getWorkingFragment(s));
+        return inner.isSubsetOf(getWorkingSet(s));
     }
 
     public boolean isEmpty() {
@@ -215,11 +213,6 @@ public class CountingSetDecorator implements ModifiableSet{
     public ModifiableSet makeModifiableSetCopy() {
         statistic.register(OperationCodes.MAKE_MODIFIABLE_COPY);
         return new CountingSetDecorator(inner.makeModifiableSetCopy(), statistic);
-    }
-
-    public ModifiableFragment makeModifiableFragment() {
-        statistic.register(OperationCodes.MAKE_MODIFIABLE_FRAGMENT);
-        return new CountingSetDecorator((ModifiableSet)inner.makeModifiableFragment(), statistic);
     }
 
     public boolean equals(Object obj) {

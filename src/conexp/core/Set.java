@@ -7,7 +7,7 @@
 
 package conexp.core;
 
-public interface Set extends Fragment, IPartiallyOrdered {
+public interface Set extends Cloneable, IPartiallyOrdered {
 
     int hashCode();
 
@@ -65,5 +65,17 @@ public interface Set extends Fragment, IPartiallyOrdered {
     boolean out(int index);
 
     int outUpperBound();
+
+    Object clone();
+
+    boolean intersects(Set other);
+
+    boolean isEquals(Set obj);
+
+    boolean isSupersetOf(Set other);
+
+    boolean isSubsetOf(Set s);
+
+    boolean isEmpty();
 
 }

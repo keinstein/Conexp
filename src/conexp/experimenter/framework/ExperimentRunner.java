@@ -25,7 +25,7 @@ public class ExperimentRunner {
     protected IMeasurementProtocol expRunnerMeasurementProtocol;
     MeasurementSetChecker validatingParamsChecker = new MeasurementSetChecker();
 
-    protected static final String RUNTIME = "RunTime";
+    public static final String RUNTIME = "RunTime";
     protected static final String MEMORY_USAGE = "MemoryUsage";
     public static final String OPERATION_COUNT = "OperationCountStatistics";
     private ExperimentContextFactory setFactory;

@@ -22,9 +22,11 @@ public class ObjectsLabelingStrategyModel extends DrawParamsIndependentStrategyM
             {"Show own objects count", LabelingStrategiesKeys.OWN_OBJECTS_COUNT_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.OwnObjectsCountLabelingStrategy"},
             {"Show object count", LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.ObjectsCountLabelingStrategy"},
             {"Stability", LabelingStrategiesKeys.STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.StabilityToDesctructionLabelingStrategy"},
+/*
             {"Attribs multi line", "Attribs multi line", "conexp.frontend.latticeeditor.labelingstrategies.AllAttribsMultiLineLabelingStrategy"},
             {"Object multi line", "Object multi line", "conexp.frontend.latticeeditor.labelingstrategies.AllObjectsMultiLineLabelingStrategy"},
             {"Full concept", "Full concept", "conexp.frontend.latticeeditor.labelingstrategies.FullConceptLabelingStrategy"},
+*/
 
 
            // { "Point Stability", LabelingStrategiesKeys.POINT_STABILITY_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.PointStabilityLabelingStrategy"},

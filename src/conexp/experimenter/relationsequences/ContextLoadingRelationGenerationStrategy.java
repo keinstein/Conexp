@@ -19,8 +19,7 @@ import java.io.IOException;
  * Time: 23:14:27
  */
 
-public class ContextLoadingRelationGenerationStrategy extends BaseRelationGenerationStrategy {
-    protected Context context;
+public class ContextLoadingRelationGenerationStrategy extends ContextBasedRelationSequence {
     private String url;
     protected ContextReaderFactory contextReaderFactory;
 
@@ -47,7 +46,7 @@ public class ContextLoadingRelationGenerationStrategy extends BaseRelationGenera
         FileReader fileReader=null;
         try {
             fileReader = new FileReader(url);
-            context = loader.parseContext(fileReader);
+            setContext(loader.parseContext(fileReader));
         } finally {
             if(null!=fileReader){
                 fileReader.close();
@@ -57,15 +56,6 @@ public class ContextLoadingRelationGenerationStrategy extends BaseRelationGenera
 
     private ContextReader makeContextReader() {
         return contextReaderFactory.makeContextReader();
-    }
-
-    protected Context getContext() {
-        return context;
-    }
-
-    public BinaryRelation makeRelation(int relNo) {
-        Assert.isTrue(relNo<=count);
-        return context.getRelation();
     }
 
     public String describeStrategy() {

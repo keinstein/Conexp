@@ -8,9 +8,8 @@
 
 package conexp.core.bitset;
 
-import conexp.core.Fragment;
-import conexp.core.ModifiableFragment;
 import conexp.core.ModifiableSet;
+import conexp.core.Set;
 
 public abstract class BasicBitSet implements ModifiableSet, Cloneable {
     protected int size;
@@ -39,11 +38,7 @@ public abstract class BasicBitSet implements ModifiableSet, Cloneable {
             return false;
         if (this == obj)
             return true;
-        return isEquals((Fragment) obj);
-    }
-
-    public ModifiableFragment makeModifiableFragment() {
-        return makeModifiableSetCopy();
+        return isEquals((Set) obj);
     }
 
     public Object clone() {
@@ -68,7 +63,7 @@ public abstract class BasicBitSet implements ModifiableSet, Cloneable {
     }
 
 
-    public boolean isSupersetOf(Fragment other) {
+    public boolean isSupersetOf(Set other) {
         return other.isSubsetOf(this);
     }
 

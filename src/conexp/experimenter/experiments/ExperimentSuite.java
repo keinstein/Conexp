@@ -22,14 +22,16 @@ public class ExperimentSuite extends BaseExperimentSuite {
      */
     public static RelationSequenceSet makeRelationSequenceSet() {
         RelationSequenceSet relSet = new RelationSequenceSet();
-        addExponentialSequence(relSet);
+        //addExponentialSequence(relSet);
+
         addSparseSequence(relSet);
-        addTypicalSequenceAndTransposed(relSet);
+/*        addTypicalSequenceAndTransposed(relSet);
+*/
         return relSet;
     }
 
     private static void addExponentialSequence(RelationSequenceSet relSet) {
-        relSet.addRelationSequence(new conexp.experimenter.relationsequences.ExponentialRelationGenerationStrategy(5, 9, 9-5+1));
+        relSet.addRelationSequence(new conexp.experimenter.relationsequences.ExponentialRelationGenerationStrategy(5, 19, 19-5+1));
     }
 
     private static void addTypicalSequenceAndTransposed(RelationSequenceSet relSet) {
@@ -53,7 +55,8 @@ public class ExperimentSuite extends BaseExperimentSuite {
 
     private static void addSparseSequence(RelationSequenceSet relSet) {
 //        RelationSequence sparse = new conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy(100, 500, 100, 100, 5, 4);
-        RelationSequence sparse = new conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy(100, 900, 50, 50, 9, 3);
+        //RelationSequence sparse = new conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy(100, 900, 100, 100, 9, 3);
+        RelationSequence sparse = new conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy(1000, 9000, 100, 100, 9, 3);
         relSet.addRelationSequence(sparse);
         relSet.addRelationSequence(new conexp.experimenter.relationsequences.TransposeRelationSequenceDecorator(sparse));
     }
