@@ -625,7 +625,10 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         for(int i=0; i<cxt.getAttributeCount(); i++){
             getAttribute(i).setName(cxt.getAttribute(i).getName());
         }
-        rel = cxt.getRelation().makeModifiableCopy();
+        if(!rel.equals(cxt.getRelation())){
+            rel = cxt.getRelation().makeModifiableCopy();
+            getContextListenersSupport().fireRelationChanged();
+        }
     }
 
 

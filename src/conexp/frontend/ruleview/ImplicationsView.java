@@ -55,12 +55,9 @@ public class ImplicationsView extends GenericRuleView {
         return resources;
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (07.05.01 21:45:04)
-     */
-    protected RulePane makeRulePane() {
-        return new RulePane(getDependencySet(), new ImplicationRenderer(), resources.getString("NoRulesInBaseMsg"));
+
+    protected GenericRuleRenderer makeRenderer() {
+        return new ImplicationRenderer();
     }
 
 

@@ -560,6 +560,20 @@ public class ContextTest extends TestCase {
         expectStructureChangedCall(cxt, 1, modification);
     }
 
+    public void testExpectStructureChangeOnCopyFrom(){
+        ContextStructureModification modification = new ContextStructureModification() {
+            public void modifyContext(Context cxt) {
+                cxt.copyFrom(SetBuilder.makeContext(new int[][]{{0, 1, 0},
+                                                                {1, 0, 0},
+                                                                {0, 1, 0}}));
+            }
+        };
+
+        cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0}, {0, 1, 0}, {0, 1, 0}});
+        expectRelationChangedCall(cxt, 1, modification);
+
+    }
+
     public void testDownArrow(){
         cxt = SetBuilder.makeContext(new int[0][0]);
         assertEquals(0, cxt.getAttributeCount());
@@ -582,5 +596,4 @@ public class ContextTest extends TestCase {
         cxt.reduceObjects();
         assertEquals(0, cxt.getObjectCount());
     }
-
 }

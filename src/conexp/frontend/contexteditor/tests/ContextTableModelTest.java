@@ -193,6 +193,7 @@ public class ContextTableModelTest extends TestCase{
        doTestDoUndoCommand(modifier);
    }
 
+
     private void doTestDoUndoCommand(ContextTableModifier modifier) {
         final MockUndoableEditListener mockUndoableEditListener = new MockUndoableEditListener();
         MockTableModelListener tableModelListener = new MockTableModelListener();
@@ -264,7 +265,7 @@ public class ContextTableModelTest extends TestCase{
         });
     }
 
-    public void testUndoOnRemoveAttribute(){
+    public void testUndoOnRemoveObject(){
         doTestDoUndoCommand(new ContextTableModifier(){
             public void modifyTable(ContextTableModel tableModel) {
                 tableModel.removeRows(new int[]{1});

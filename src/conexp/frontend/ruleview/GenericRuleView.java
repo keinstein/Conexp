@@ -59,7 +59,13 @@ public abstract class GenericRuleView extends ViewChangePanel implements Depende
     }
 
 
-    protected abstract RulePane makeRulePane();
+    /**
+     * Insert the method's description here.
+     * Creation date: (07.05.01 21:45:04)
+     */
+    protected RulePane makeRulePane() {
+        return new RulePane(getDependencySet(), makeRenderer(), getResources().getString("NoRulesInBaseMsg"));
+    }
 
     // this two belongs to controller
     public void initialUpdate() {
@@ -75,4 +81,6 @@ public abstract class GenericRuleView extends ViewChangePanel implements Depende
     public void setDependencySet(DependencySet dependencySet) {
         rulePane.setRuleSet(dependencySet);
     }
+
+    protected abstract GenericRuleRenderer makeRenderer();
 }

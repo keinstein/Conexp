@@ -42,12 +42,8 @@ public class AssociationRulesView extends GenericRuleView {
     }
 
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (07.05.01 21:45:04)
-     */
-    protected RulePane makeRulePane() {
-        return new RulePane(getDependencySet(), new AssociationRuleConfidenceRenderer(), resources.getString("NoRulesInBaseMsg"));
+    protected GenericRuleRenderer makeRenderer() {
+        return new AssociationRuleConfidenceRenderer();
     }
 
     /**

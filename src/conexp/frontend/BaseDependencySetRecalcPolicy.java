@@ -15,7 +15,7 @@ public abstract class BaseDependencySetRecalcPolicy extends PropertyChangeBaseCo
 
     protected BaseDependencySetRecalcPolicy(DependencySetSupplier supplier) {
         super();
-        setEventBroadcaster(new OneTargetEventBroadcaster());
+        setEventBroadcaster(new MultipleTargetsEventBroadcaster());
         registerEventProcessors();
         setEventSupplier(supplier);
     }
