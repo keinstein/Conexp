@@ -80,6 +80,13 @@ public class DependencySet {
         dependencies.remove(index);
     }
 
+    public void removeAll(DependencySet toRemove){
+        for (Iterator iterator = toRemove.iterator(); iterator.hasNext();) {
+            Dependency dependency = (Dependency) iterator.next();
+            removeDependency(dependency);
+        }
+    }
+
     public void forEach(DependencyProcessor block) {
         for (int i = 0; i < getSize(); i++) {
             block.processDependency(getDependency(i));
