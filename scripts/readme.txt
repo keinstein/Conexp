@@ -1,10 +1,10 @@
-Concept Explorer 1.0 Readme File
+Concept Explorer 1.1 Readme File
 ================================
 
 What is it?
 -----------
-This is a first public release of "Concept Explorer"(ConExp) tool,
-that implements basic functionality, needed for study and
+This is a version 1.1 of "Concept Explorer"(ConExp) tool,
+that implements basic functionality needed for study and
 research of Formal Concept Analysis.
 For more information about Formal Concept Analysis, see
 http://www.math.tu-dresden.de/~ganter/fba.html and
@@ -20,8 +20,8 @@ What can I do with ConExp?
 In ConExp the following functionality is implemented:
 -context editing
 -building concept lattices from context
--finding bases of implications, that are true in context
--finding bases of association rules, that are true in context
+-finding bases of implications that are true in context
+-finding bases of association rules that are true in context
 -performing attribute exploration
 
 
@@ -35,10 +35,12 @@ http://java.sun.com/j2se/downloads.html
 How to start it?
 ----------------
 Run the appropriate start script("conexp.bat" on Windows, "conexp.sh" on Unix).
-On Unix before that set the executable attribute for "conexp.sh". If you run it
+On Unix: before that set the executable attribute for "conexp.sh". If you run it
 from the command line, make sure, that you are in the installation directory.
-Alternatively, you can run "java -jar conexp.jar" from the command line (Also
-"javaw -jar conexp.jar" on Windows, if you don't want to see java console).
+Alternatively, you can run "java -jar conexp.jar" from the command line
+
+On Windows: use "javaw -jar conexp.jar" if you don't want to see
+the java console.
 
 
 Where I can get help?
@@ -62,6 +64,10 @@ files.
 
 How did ConExp appeared?
 ------------------------
-ConExp was first developed as a part of master thesis in National Technical
+ConExp was first developed as a part of master's thesis in National Technical
 University of Ukraine "KPI" in 2000. During the following years, it was extended
-and now is open source project on sourceforge.
+and now is an open source project on Sourceforge.
+
+
+Enjoy!
+        The ConExp Team.

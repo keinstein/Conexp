@@ -480,11 +480,9 @@ public class ContextTable extends JTable implements ParamsProvider {
     public static void initKeyboard(ContextTable contextTable) {
         KeyStroke xPressed = KeyStroke.getKeyStroke('x');
         KeyStroke dotPressed = KeyStroke.getKeyStroke('.');
-        KeyStroke space = KeyStroke.getKeyStroke(' ');
 
         contextTable.registerKeyboardAction(new FastEditingListener(contextTable, Boolean.TRUE), xPressed, JComponent.WHEN_FOCUSED);
         FastEditingListener makeCellEmptyListener = new FastEditingListener(contextTable, Boolean.FALSE);
-        contextTable.registerKeyboardAction(makeCellEmptyListener, space, JComponent.WHEN_FOCUSED);
         contextTable.registerKeyboardAction(makeCellEmptyListener, dotPressed, JComponent.WHEN_FOCUSED);
 
         KeyStroke copy = KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK, false);

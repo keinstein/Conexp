@@ -1,0 +1,28 @@
+Release notes to version 1.1 of "Concept Explorer"
+==================================================
+
+The following new functionality was added in release 1.1
+compared to 1.0.1:
+- ability to build concept lattice by selected object subset
+  (thanks to Tim Kaiser to implementing major part of it)
+- fast input mode for editing context (now pressing "X" and "."
+  allows to input new value to context and move to the next cell).
+- cut/copy/paste support for context editing
+
+Several bugs were fixed:
+- attribute exploration input dialogs
+  * not transfering value, entered at object name section of context
+  editor, when one of the buttons in dialog is pressed
+  * exception, that appeared if dialog was closed via "X" button on top
+
+- lattice drawing pane
+  * bug, connected with absence of reaction on change of some values in
+    drawing parameters pane
+  * bug - dragging node of lattice outside of visible area can lead to
+    image of lattice to jump in 0.0 point (thanks to Julian Tane) for
+    contributing patch
+
+We are glad to welcome two new members of ConExp team -
+Tim Kaiser and Julian Tane.
+
+
