@@ -12,7 +12,7 @@ import junit.framework.TestCase;
 
 public class CompareInfoTest extends TestCase {
     public void testSetCorresponding(){
-        CompareInfo info = DefaultCompareInfoFactory.getInstance().makeCompareInfo("One", CompareInfo.IN_FIRST);
+        CompareInfo info = DefaultCompareInfoFactory.getInstance().makeCompareInfo("Key", "One", CompareInfo.IN_FIRST);
         assertTrue(info.setCorresponding("One"));
         assertFalse("Corresponding object can be set only once",info.setCorresponding("One"));
     }

@@ -16,7 +16,7 @@ public class DefaultCompareInfoFactory implements CompareInfoFactory {
         return g_Instance;
     }
 
-    public CompareInfo makeCompareInfo(Object obj, int type) {
-        return new CompareInfo(obj, type);
+    public CompareInfo makeCompareInfo(Object key, Object obj, int type) {
+        return new CompareInfo(key, obj, type);
     }
 }

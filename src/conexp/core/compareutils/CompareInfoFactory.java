@@ -15,5 +15,5 @@ public interface CompareInfoFactory {
      * @param obj java.lang.Object
      * @param type int
      */
-    CompareInfo makeCompareInfo(Object obj, int type);
+    CompareInfo makeCompareInfo(Object key, Object obj, int type);
 }

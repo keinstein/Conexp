@@ -17,6 +17,7 @@ public class CompareInfo {
     public final static int IN_BOTH_BUT_DIFFERENT = IN_BOTH + 1;
     private int type;
 
+    protected Object key;
     protected Object one;
     protected Object two;
 
@@ -32,7 +33,8 @@ public class CompareInfo {
     }
 
 
-    protected CompareInfo(Object element, int type) {
+    protected CompareInfo(Object key, Object element, int type) {
+        this.key = key;
         this.type = type;
         switch (type) {
             case IN_FIRST:
@@ -72,6 +74,7 @@ public class CompareInfo {
      * @param writer java.io.PrintWriter
      */
     protected void doDumpDifferencesForInBoth(java.io.PrintWriter writer) {
+        writer.println("For key :"+key);
         writer.println("In first was: " + one);
         writer.println("In second was: "+two);
     }

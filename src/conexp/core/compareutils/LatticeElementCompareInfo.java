@@ -18,8 +18,8 @@ public class LatticeElementCompareInfo extends CompareInfo {
     boolean predSame = true;
     boolean succSame = true;
 
-    LatticeElementCompareInfo(Object el, int t) {
-        super(el, t);
+    LatticeElementCompareInfo(Object key, Object object, int type) {
+        super(key, object, type);
     }
 
     protected boolean doCompareElements() {

@@ -189,7 +189,7 @@ public class DiffMap {
     }
 
     public void putFirst(Object key, Object firstValue) {
-        if (null != map.put(key, factory.makeCompareInfo(firstValue, CompareInfo.IN_FIRST))) {
+        if (null != map.put(key, factory.makeCompareInfo(key, firstValue, CompareInfo.IN_FIRST))) {
             logCorruptKey(key);
         }
     }
@@ -197,7 +197,7 @@ public class DiffMap {
     public boolean putSecond(Object key, Object secondValue) {
         CompareInfo info = (CompareInfo) map.get(key);
         if (null == info) {
-            map.put(key, factory.makeCompareInfo(secondValue, CompareInfo.IN_SECOND));
+            map.put(key, factory.makeCompareInfo(key, secondValue, CompareInfo.IN_SECOND));
             return false;
         } else {
             if (!info.setCorresponding(secondValue)) {
