@@ -46,4 +46,3 @@ public abstract class AbstractLineDiagramFigure extends FigureWithCoords impleme
         this.collision = collision;
     }
 }
-
