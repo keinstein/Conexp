@@ -18,7 +18,7 @@ public class LatticeElementCompareInfo extends CompareInfo {
     }
 
     protected boolean doCompareElements() {
-        edgeCompare = new DiffMap(new DefaultCompareInfoFactory());
+        edgeCompare = new DiffMap(DefaultCompareInfoFactory.getInstance());
         boolean ret = edgeCompare.compareSets(new LatticeElementPredCompareSet((LatticeElement) one),
                 new LatticeElementPredCompareSet((LatticeElement) two));
         if (!ret) {

@@ -201,7 +201,7 @@ public abstract class CalcStrategyTest extends TestCase {
     protected void doTestCalcStrategyForExpectedSizeForFullLatticeCase(int[][] input, int expectedSize) {
         ConceptsCollection conceptSet = buildConceptCollection(input);
         if (conceptSet.conceptsCount() != expectedSize) {
-            DiffMap map = new DiffMap(new DefaultCompareInfoFactory());
+            DiffMap map = new DiffMap(DefaultCompareInfoFactory.getInstance());
             if (!map.compareSets(new ConceptCollectionCompareSet(SetBuilder.makeConceptSet(input)),
                     new ConceptCollectionCompareSet(conceptSet))) {
                 map.dumpDifferences(new java.io.PrintWriter(System.out, true));

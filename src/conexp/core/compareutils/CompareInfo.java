@@ -99,9 +99,13 @@ public class CompareInfo {
         if (null == one) {
             return false;
         } else {
-            two = second;
-            type = IN_BOTH;
-            return true;
+            if (null == two) {
+                two = second;
+                type = IN_BOTH;
+                return true;
+            }else{
+                return false;
+            }
         }
     }
 }

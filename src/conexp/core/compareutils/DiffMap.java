@@ -45,6 +45,7 @@ public class DiffMap {
             KeyValuePair pair = iterator.nextKeyValuePair();
             ret = putSecond(pair.key, pair.value) & ret;
         }
+        System.out.println("ret = "+ret);
         ret = ret && !isCorrupt();
         if (!ret) {
             processDifferences();
@@ -179,7 +180,7 @@ public class DiffMap {
     public boolean putSecond(Object key, Object secondValue) {
         CompareInfo info = (CompareInfo) map.get(key);
         if (null == info) {
-            map.put(key, new CompareInfo(secondValue, CompareInfo.IN_SECOND));
+            map.put(key, factory.makeCompareInfo(secondValue, CompareInfo.IN_SECOND));
             return false;
         } else {
             if (!info.setCorresponding(secondValue)) {

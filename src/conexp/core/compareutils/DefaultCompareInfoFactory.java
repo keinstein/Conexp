@@ -9,6 +9,13 @@
 package conexp.core.compareutils;
 
 public class DefaultCompareInfoFactory implements CompareInfoFactory {
+
+    private static CompareInfoFactory g_Instance = new DefaultCompareInfoFactory();
+
+    public static CompareInfoFactory getInstance(){
+        return g_Instance;
+    }
+
     public CompareInfo makeCompareInfo(Object obj, int type) {
         return new CompareInfo(obj, type);
     }

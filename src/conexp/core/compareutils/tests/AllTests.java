@@ -16,7 +16,8 @@ public class AllTests extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(DiffMapTest.suite());
+        suite.addTestSuite(DiffMapTest.class);
+        suite.addTestSuite(CompareInfoTest.class);
         return suite;
     }
 }

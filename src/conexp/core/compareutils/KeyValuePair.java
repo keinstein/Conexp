@@ -17,4 +17,9 @@ public class KeyValuePair {
         key = k;
         value = v;
     }
+
+    public String toString() {
+        return "Key: ["+key+ "] Value: ["+value+"]";
+    }
+
 }

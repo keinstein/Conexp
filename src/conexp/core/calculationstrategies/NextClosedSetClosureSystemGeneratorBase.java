@@ -21,11 +21,11 @@ public abstract class NextClosedSetClosureSystemGeneratorBase extends NextClosed
     //-----------------------------------------------------
     protected void nextClosedSetAttr() {
         final int numAttr = rel.getColCount();
-        ModifiableSet b = ContextFactoryRegistry.createSet(numAttr);
         ModifiableSet notJ = ContextFactoryRegistry.createSet(numAttr);
         zeroClosureAttr();
         addZeroElement(attrSet);
         int j = numAttr - 1;
+        ModifiableSet nextPrefix = ContextFactoryRegistry.createSet(numAttr);
         while (j >= 0) {
             //that is a not equal g
             j = numAttr - 1;
@@ -33,9 +33,9 @@ public abstract class NextClosedSetClosureSystemGeneratorBase extends NextClosed
             for (; j >= 0; j--) {
                 notJ.put(j);
                 if (!attrSet.in(j)) {
-                    b.copy(attrSet);
-                    b.andNot(notJ);
-                    if (closureAttr(b, j, notJ)) {
+                    nextPrefix.copy(attrSet);
+                    nextPrefix.andNot(notJ);
+                    if (closureAttr(nextPrefix, j, notJ)) {
                         attrSet.copy(nextClosure);
                         addNextClosedElement(attrSet);
                         break;

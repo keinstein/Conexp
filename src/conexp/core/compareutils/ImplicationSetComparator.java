@@ -13,7 +13,7 @@ import conexp.core.ImplicationSet;
 public class ImplicationSetComparator extends BaseComparator {
 
     public ImplicationSetComparator(ImplicationSet one, ImplicationSet two) {
-        super(new DefaultCompareInfoFactory(),
+        super(DefaultCompareInfoFactory.getInstance(),
                 new ImplicationSetCompareSet(one),
                 new ImplicationSetCompareSet(two));
     }

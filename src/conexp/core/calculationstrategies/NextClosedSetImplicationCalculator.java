@@ -64,6 +64,7 @@ public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBa
         //nextClosure = old pseudointent
         possiblePseudoIntent.put(j); //next possible pseudointent
         //assuming, that it can be premise of implication
+/*
         int bound = implSet.getSize();
 
         boolean restartCycle = true;
@@ -79,6 +80,8 @@ public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBa
                 }
             }
         }
+*/
+        implSet.setClosure(possiblePseudoIntent);
         //todo: unify usage of variable nextClosure (use possible pseudointent instead) and
         //possibly extract common part
         nextElementInLecticalOrder.copy(possiblePseudoIntent);
