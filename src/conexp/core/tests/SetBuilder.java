@@ -14,7 +14,10 @@ import conexp.core.calculationstrategies.NextClosedSetCalculator;
 import conexp.core.calculationstrategies.ReferenceDepthSearchCalculator;
 import conexp.core.enumcallbacks.ConceptSetCallback;
 import util.Assert;
+import util.collection.CollectionFactory;
 import util.testing.UniqueExpectationSet;
+
+import java.util.List;
 
 
 public class SetBuilder {
@@ -40,6 +43,14 @@ public class SetBuilder {
             }
         }
         return set;
+    }
+
+    public static List makeSetCollection(int[][] sets){
+        List ret = CollectionFactory.createDefaultList();
+        for(int i=0;i<sets.length; i++){
+            ret.add(makeSet(sets[i]));
+        }
+        return ret;
     }
 
     protected static void doMakeLattice(Lattice lat, BinaryRelation rel, LatticeNeedingCalcStrategy strat) {
