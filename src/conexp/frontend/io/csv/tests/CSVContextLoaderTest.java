@@ -10,30 +10,17 @@ package conexp.frontend.io.csv.tests;
 
 import java.io.StringReader;
 
+import junit.framework.TestCase;
 import util.StringUtil;
 import util.testing.TestUtil;
-
-import conexp.core.Context;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.io.ContextCreator;
 import conexp.frontend.io.csv.CSVContextCreator;
-import conexp.frontend.io.csv.CSVContextLoader;
-
-import junit.framework.TestCase;
 
 public class CSVContextLoaderTest extends TestCase {
 
-	final static String simpleattributesstring = ";attr1;attr2;attr3;attr4;attr5";
-	final static  int attributecount = 5;
-	final static String[] objectstrings = {
-		"obj1;1;0;1;1;",
-		"obj2;1;0;1;1;",
-		"obj3;0;0;1;1;1",
-		"obj4;0;0;0;1;",
-	};
-	
-	CSVContextLoaderTest(){
+	public CSVContextLoaderTest(){
 		 
 	}
 	
@@ -44,27 +31,9 @@ public class CSVContextLoaderTest extends TestCase {
 	protected ContextCreator getCreator(){
 		return new CSVContextCreator();
 	}
-
-	private String contextstring = null; 
 	
-	private String getContextString(){
-		if ( contextstring == null ){
-			contextstring = simpleattributesstring;
-			for (int i = 0; i < objectstrings.length ; i ++ ){
-				contextstring ="\n"+objectstrings[i];
-			}
-		}		
-		return contextstring;
-	}
-
-	public void testSetAttributes(){
-		setUp();
-		String contextstring  = getContextString();
-		
-	}
-
 	public void testReadingWithEmptyLine() {
-		String[] data = {";A1,A2",
+		String[] data = {";A1;A2",
 								"O1;z;a",
 								""	,
 								"O2;1;1"};
@@ -74,7 +43,7 @@ public class CSVContextLoaderTest extends TestCase {
 		 
 		doTestReading(data, expectedContext);
 		
-		String[] data2 = {";A1,A2",
+		String[] data2 = {";A1;A2",
 					"O1;z;a",
 					"                                             ",
 					"O2;1;1"};
@@ -82,7 +51,7 @@ public class CSVContextLoaderTest extends TestCase {
 	}
 
 	public void testReadingWithEmptyLastattribute() {
-			String[] data = {";A1,A2",
+			String[] data = {";A1;A2",
 									""	,
 									"O1;1;",
 									"O2;0;1"};
@@ -95,7 +64,7 @@ public class CSVContextLoaderTest extends TestCase {
 
 
 	public void testReadingWithComments() {
-			String[] data = {";A1,A2",
+			String[] data = {";A1;A2",
 									"O1;1;0",
 									"%aaaaa;klklöklkök;äkkklölk",
 									"O2;0;1"};
