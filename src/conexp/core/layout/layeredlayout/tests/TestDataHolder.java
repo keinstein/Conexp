@@ -30,10 +30,12 @@ public class TestDataHolder {
 
     public static final double[][] ASYMMETRIC_LAYOUT_NOMINAL_2 = new double[][]{
         {0, 0},
-        {0, 1},
-        {1, 1},
-        {0, 1}
+        {0, 100},
+        {100, 150},
+        {0, 200}
     };
+
+
 
     public static final double[][] SYMMETRIC_LAYOUT_NOMINAL_3 = new double[][]{
                         {0, 0},

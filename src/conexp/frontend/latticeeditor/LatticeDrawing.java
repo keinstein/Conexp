@@ -64,10 +64,14 @@ public class LatticeDrawing extends ConceptSetDrawing {
 
     LayoutListener layoutListener = new LayoutListener() {
         public void layoutChange(ConceptCoordinateMapper mapper) {
-            BaseFigureVisitor visitor = new CoordinateMapperFigureVisitor(mapper);
-            applyUpdatingFigureVisitor(visitor);
+            setCoordinatesFromMapper(mapper);
         }
     };
+
+    public void setCoordinatesFromMapper(ConceptCoordinateMapper mapper) {
+        BaseFigureVisitor visitor = new CoordinateMapperFigureVisitor(mapper);
+        applyUpdatingFigureVisitor(visitor);
+    }
 
     public void setLayoutEngine(LayoutEngine layoutEngine) {
         if (layoutEngine != this.layoutEngine) {

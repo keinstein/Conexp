@@ -19,10 +19,9 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 public class AttributeExplorerTest extends TestCase {
-    private static final Class THIS = AttributeExplorerTest.class;
 
     public static Test suite() {
-        return new TestSuite(THIS);
+        return new TestSuite(AttributeExplorerTest.class);
     }
 
     private void doTestAttributeExploration(int[][] context, int[][][] expQuerySequence, int[][][] contrExamples, int[][] expContext, int[][][] expImplicationTheory) {

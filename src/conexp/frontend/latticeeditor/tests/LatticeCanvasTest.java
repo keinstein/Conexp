@@ -8,6 +8,8 @@
 package conexp.frontend.latticeeditor.tests;
 
 import canvas.IHighlightStrategy;
+import canvas.IFigurePredicate;
+import canvas.figures.TrueFigurePredicate;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.latticeeditor.*;
 import conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory;
@@ -40,12 +42,12 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
                 };
 
         LatticeCanvas latCanvas = new LatticeCanvas(options) {
-            protected double findMinimalYDistanceToPredecessorsFiguresCenters(AbstractConceptCorrespondingFigure f) {
+            protected double findMinimalYDistanceToPredecessorsFiguresCenters(AbstractConceptCorrespondingFigure f, IFigurePredicate includeInComputation) {
                 return 10 + 2 * (new DefaultDrawParams()).getMaxNodeRadius();
             }
         };
         double res = latCanvas.getUpMoveConstraintForConcept(new ConceptFigure(
-                ConceptNodeQueryFactory.makeEmpty()));
+                ConceptNodeQueryFactory.makeEmpty()), TrueFigurePredicate.getInstance());
         assertEquals(10.0, res, 0.001);
 
     }

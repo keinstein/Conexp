@@ -109,7 +109,7 @@
         </jar>
     </target>
 
-    <target name="compileRelease" depends="init, makebuilddir" description="compile the source">
+    <target name="compileRelease" depends="init, makebuilddir, copyresources" description="compile the source">
         <javac destdir="${build}" debug="off" optimize="true">
             <src>
                 <path location="${src}/${rootPackage}"/>

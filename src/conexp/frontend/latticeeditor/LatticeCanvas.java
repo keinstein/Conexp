@@ -9,7 +9,7 @@
 package conexp.frontend.latticeeditor;
 
 import canvas.FigureDrawingCanvas;
-import canvas.DefaultCanvasScheme;
+import canvas.IFigurePredicate;
 import conexp.core.*;
 import conexp.frontend.ConceptSetDrawingConsumer;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
@@ -68,21 +68,25 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
         getDrawing().clear();
     }
 
-    public double getUpMoveConstraintForConcept(AbstractConceptCorrespondingFigure f) {
-        double ret = findMinimalYDistanceToPredecessorsFiguresCenters(f);
+    public double getUpMoveConstraintForConcept(AbstractConceptCorrespondingFigure f, IFigurePredicate predicate) {
+        double ret = findMinimalYDistanceToPredecessorsFiguresCenters(f, predicate);
+        System.out.println("LatticeCanvas.getUpMoveConstraintForConcept "+ret);
         DrawParameters drawParams = getDrawParameters();
         ret = Math.max(0, ret - 2 * drawParams.getMaxNodeRadius());
         Assert.isTrue(ret >= 0);
+        System.out.println("returned "+ret);
         return ret;
     }
 
-    protected double findMinimalYDistanceToPredecessorsFiguresCenters(AbstractConceptCorrespondingFigure f) {
+    protected double findMinimalYDistanceToPredecessorsFiguresCenters(AbstractConceptCorrespondingFigure f, IFigurePredicate includeInComputation) {
         LatticeElement el = f.getConcept();
         double ret = Double.MAX_VALUE;
         for (int i = 0; i < el.getSuccCount(); i++) {
             LatticeElement succEl = el.getSucc(i);
             AbstractConceptCorrespondingFigure succFigures = getFigureForConcept(succEl);
-            ret = Math.min(ret, f.getCenterY() - succFigures.getCenterY());
+            if(includeInComputation.accept(succFigures)){
+                ret = Math.min(ret, f.getCenterY() - succFigures.getCenterY());
+            }
         }
         return ret;
     }

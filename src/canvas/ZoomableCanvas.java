@@ -38,7 +38,7 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
     public void onComponentResized() {
         Dimension newViewportSize = getViewportSize();
         if (isFitToSize()) {
-            System.out.println("ZoomableCanvas.componentResized fitToSize="+fitToSize);
+            //System.out.println("ZoomableCanvas.componentResized fitToSize="+fitToSize);
             adjustZoom(newViewportSize);
             repaint();
         }
@@ -112,7 +112,7 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
     protected abstract Dimension getDrawingDimension();
 
     protected void updateSizeOfCanvas(Dimension newDimension) {
-        System.out.println("ZoomableCanvas.updateSizeOfCanvas new size "+newDimension);
+        //System.out.println("ZoomableCanvas.updateSizeOfCanvas new size "+newDimension);
         setSize(newDimension);
         setPreferredSize(newDimension);
         revalidate();
