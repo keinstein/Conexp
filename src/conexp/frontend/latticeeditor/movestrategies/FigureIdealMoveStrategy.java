@@ -88,7 +88,6 @@ public class FigureIdealMoveStrategy implements MoveStrategy {
                 }
                 return true;
             }
-            System.out.println("FigureOutsideTheIdealPredicate:returned false by default");
             return false;
         }
     }
