@@ -18,7 +18,9 @@ public interface ConExpXMLElements {
 
     String LATTICE_COLLECTION = "Lattices";
     String LATTICE_ELEMENT = "Lattice";
-    String ATTRIBUTE_MASK_ELEMENT = "EntitiesMask";
+    String ATTRIBUTE_MASK_ELEMENT = "AttributeMask";
+    String OBJECT_MASK_ELEMENT = "ObjectMask";
+
     String LATTICE_DIAGRAM = "LineDiagram";
     String LATTICE_DIAGRAM_SETTINGS = "LineDiagramSettings";
     String ATTRIBUTE_LABEL_DISPLAY_MODE = "AttributeLabelsDisplayMode";

@@ -55,9 +55,28 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         latticeComponent.calculatePartialLattice();
     }
 
+    private void setUpPartialObjectLatticeCase(){
+        cxt = SetBuilder.makeContext(new int[][]{{0, 1},
+                                                 {1, 0},
+                                                 {1, 1}});
+        doc = new ContextDocument();
+        doc.setContext(cxt);
+        final LatticeComponent latticeComponent = doc.getLatticeComponent();
+        final SetProvidingEntitiesMask attributeMask = latticeComponent.getAttributeMask();
+        assertEquals(2, attributeMask.getCount());
+        attributeMask.setSelected(1, false);
+
+
+        SetProvidingEntitiesMask objectMask = latticeComponent.getObjectMask();
+        assertEquals(3, objectMask.getCount());
+        objectMask.setSelected(1, false);
+
+        latticeComponent.calculatePartialLattice();
+    }
+
     public void testContextAndLineDiagramWithObjectAndAttributesLabelsFullLattice() {
         setUpFullLatticeCase();
-        doTestWriteAndReadForCotextDocWithLineDiagramWithObjectsAndAttributeLabels(doc, cxt);
+        doTestWriteAndReadForContextDocWithLineDiagramWithObjectsAndAttributeLabels(doc, cxt);
     }
 
     public void testContextAndLineDiagramWithConceptLabelsFullLattice() {
@@ -67,7 +86,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
 
     public void testContextAndLineDiagramWithObjectAndAttributesLabelsPartialLattice() {
         setUpPartialLatticeCase();
-        doTestWriteAndReadForCotextDocWithLineDiagramWithObjectsAndAttributeLabels(doc, cxt);
+        doTestWriteAndReadForContextDocWithLineDiagramWithObjectsAndAttributeLabels(doc, cxt);
     }
 
     public void testContextAndLineDiagramWithConceptLabelsPartialLattice() {
@@ -86,7 +105,12 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     }
 
 
-    private void doTestWriteAndReadForCotextDocWithLineDiagramWithObjectsAndAttributeLabels(ContextDocument doc, ExtendedContextEditingInterface cxt) {
+    public void testLoadSavePartialObjectLattice(){
+        setUpPartialObjectLatticeCase();
+        doTestWriteAndReadForDocWithLattice(doc, cxt);
+    }
+
+    private void doTestWriteAndReadForContextDocWithLineDiagramWithObjectsAndAttributeLabels(ContextDocument doc, ExtendedContextEditingInterface cxt) {
         Lattice lattice = doc.getLatticeComponent().getLattice();
 
         LatticeDrawing drawing = doc.getLatticeComponent().getDrawing();

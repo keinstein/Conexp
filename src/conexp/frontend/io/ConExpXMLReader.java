@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.io;
 
 import canvas.figures.IFigureWithCoords;
@@ -78,11 +77,22 @@ public class ConExpXMLReader implements DocumentLoader {
     }
 
     private void loadLatticeComponent(final LatticeComponent latticeComponent, Element latticeElement) throws DataFormatException {
+
         Element attributeMaskElement = latticeElement.getChild(ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT);
+        boolean partialLattice = false;
         if (null == attributeMaskElement) {
             latticeComponent.calculateLattice();
         } else {
-            doReadAttributeMask(latticeComponent.getAttributeMask(), attributeMaskElement);
+            partialLattice = true;
+            doReadEntitiesMask(latticeComponent.getAttributeMask(), attributeMaskElement);
+        }
+        Element objectMaskElement = latticeElement.getChild(ConExpXMLElements.OBJECT_MASK_ELEMENT);
+        if (objectMaskElement != null) {
+            doReadEntitiesMask(latticeComponent.getObjectMask(), objectMaskElement);
+            partialLattice = true;
+        }
+
+        if (partialLattice) {
             latticeComponent.calculatePartialLattice();
         }
         LatticeDrawing drawing = latticeComponent.getDrawing();
@@ -94,12 +104,12 @@ public class ConExpXMLReader implements DocumentLoader {
         loadConceptLabels(drawing, lineDiagramElement);
     }
 
-    private void doReadAttributeMask(final SetProvidingEntitiesMask attributeMask, Element attributeMaskElement) throws DataFormatException {
-        int attributeCount = attributeMask.getCount();
-        ModifiableSet intent = ContextFactoryRegistry.createSet(attributeCount);
-        doReadSet(intent, attributeMaskElement);
+    private void doReadEntitiesMask(final SetProvidingEntitiesMask entityMask, Element entitiesMaskElement) throws DataFormatException {
+        int count = entityMask.getCount();
+        ModifiableSet intent = ContextFactoryRegistry.createSet(count);
+        doReadSet(intent, entitiesMaskElement);
         for (int i = 0; i < intent.size(); i++) {
-            attributeMask.setSelected(i, intent.in(i));
+            entityMask.setSelected(i, intent.in(i));
         }
     }
 

@@ -83,13 +83,15 @@ public class ConExpXMLWriter implements DocumentWriter {
     }
 
     private void storeFeatureMask(LatticeComponent latticeComponent, Element latticeElement) {
-        latticeElement.addContent(makeAttributeMaskElement(latticeComponent.getAttributeMask()));
+        latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT, latticeComponent.getAttributeMask()));
+        latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.OBJECT_MASK_ELEMENT, latticeComponent.getObjectMask()));
     }
 
-    private Element makeAttributeMaskElement(SetProvidingEntitiesMask attributeMask) {
-        Element attributeMaskElement = new Element(ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT);
-        writeSet(attributeMask.toSet(), attributeMaskElement);
-        return attributeMaskElement;
+
+    private Element makeEntityMaskElement(final String elementName, SetProvidingEntitiesMask mask) {
+        Element entityMaskElement = new Element(elementName);
+        writeSet(mask.toSet(), entityMaskElement);
+        return entityMaskElement;
     }
 
     private void storeDrawings(LatticeComponent latticeComponent, Element latticeElement) {

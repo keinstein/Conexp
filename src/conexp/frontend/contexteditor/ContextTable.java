@@ -148,24 +148,15 @@ public class ContextTable extends JTable implements ParamsProvider {
     }
 
 
-    class CutAction extends ActionWithKey {
-        public CutAction() {
-            super("cut", "Cut");
-        }
-
-        public boolean isEnabled() {
-            //todo: write a correct handler
-            return true;
-        }
-
-        public void actionPerformed(ActionEvent e) {
-        }
-    }
 
 
     class CopyAction extends ActionWithKey {
         public CopyAction() {
-            super("copy", "Copy");
+            this("copy", "Copy");
+        }
+
+        protected CopyAction(String key, String name) {
+            super(key, name);
         }
 
         public boolean isEnabled() {
@@ -188,8 +179,26 @@ public class ContextTable extends JTable implements ParamsProvider {
             }
         }
 
-
     }
+
+    class CutAction extends CopyAction {
+        public CutAction() {
+            super("cut", "Cut");
+        }
+
+        public boolean isEnabled() {
+            return super.isEnabled() &&
+                    getSelectedColumn()>=1 &&
+                    getSelectedRow()>=1 &&
+                    getContextTableModel().hasAtLeastOneNonHeaderCell(getSelectedRows(), getSelectedColumns());
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            super.actionPerformed(e);
+            new ClearCellAction().actionPerformed(e);
+        }
+    }
+
 
     private static Clipboard getSystemClipboard() {
         return Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -238,7 +247,7 @@ public class ContextTable extends JTable implements ParamsProvider {
             }
             try {
                 String content = (String) contents.getTransferData(DataFlavor.stringFlavor);
-                return contentCanBePasted(content, getFirstSelectedRow(), getFirstSelectedColumn());
+                return contentCanBePasted(content, getSelectedRow(), getSelectedColumn());
             } catch (UnsupportedFlavorException e) {
                 return false;
             } catch (IOException e) {
@@ -246,9 +255,6 @@ public class ContextTable extends JTable implements ParamsProvider {
             }
         }
 
-        private int getFirstSelectedColumn() {
-            return getSelectedColumn();
-        }
 
         public void actionPerformed(ActionEvent e) {
 
@@ -258,11 +264,18 @@ public class ContextTable extends JTable implements ParamsProvider {
                 String clipboardContent =
                         (String) (getSystemClipboard().getContents(ContextTable.this).getTransferData(DataFlavor.stringFlavor));
 
-              processCellsOnPaste(clipboardContent, startRow, startCol, new CellProcessor(){
-                    public void processCell(String element, int row, int col) throws DataFormatException {
-                        setValueAt(convertElement(element, row, col), row, col);
-                    }
-                });
+                try {
+                    getContextTableModel().startCompoundCommand();
+                    processCellsOnPaste(clipboardContent, startRow, startCol, new CellProcessor() {
+                        public void processCell(String element, int row, int col) throws DataFormatException {
+                            setValueAt(convertElement(element, row, col), row, col);
+                        }
+                    });
+                } finally {
+                    getContextTableModel().endCompoundCommand();
+                }
+
+
             } catch (UnsupportedFlavorException e1) {
                 e1.printStackTrace();  //To change body of catch statement use Options | File Templates.
             } catch (IOException e1) {
@@ -271,22 +284,17 @@ public class ContextTable extends JTable implements ParamsProvider {
         }
 
 
-        private int getFirstSelectedRow() {
-            return (getSelectedRows())[0];
-        }
     }
 
 
-
-
-    interface CellProcessor{
+    interface CellProcessor {
         void processCell(String element, int row, int col) throws DataFormatException;
     }
 
     public boolean contentCanBePasted(String content, int firstSelectedRow, int firstSelectedColumn) {
-        CellProcessor cellProcessor = new CellProcessor(){
+        CellProcessor cellProcessor = new CellProcessor() {
             public void processCell(String element, int row, int col) throws DataFormatException {
-                 convertElement(element, row, col);
+                convertElement(element, row, col);
             }
         };
         return processCellsOnPaste(content, firstSelectedRow, firstSelectedColumn, cellProcessor);
@@ -299,7 +307,7 @@ public class ContextTable extends JTable implements ParamsProvider {
         int firstColCount = -1;
         try {
             while (lineTokenizer.hasMoreTokens()) {
-                if(currRow>=getRowCount()){
+                if (currRow >= getRowCount()) {
                     return false;
                 }
                 String line = lineTokenizer.nextToken();
@@ -308,16 +316,16 @@ public class ContextTable extends JTable implements ParamsProvider {
                 List elementTokenizer = split(line, '\t');
                 int colCounter = 0;
                 for (; colCounter < elementTokenizer.size(); colCounter++) {
-                    String element = (String)elementTokenizer.get(colCounter);
+                    String element = (String) elementTokenizer.get(colCounter);
                     final int currCol = firstSelectedColumn + colCounter;
-                    if(currCol>=getColumnCount()){
+                    if (currCol >= getColumnCount()) {
                         return false;
                     }
                     cellProcessor.processCell(element, currRow, currCol);
                 }
-                if(firstColCount==-1){
+                if (firstColCount == -1) {
                     firstColCount = colCounter;
-                }else if(firstColCount!=colCounter) {
+                } else if (firstColCount != colCounter) {
                     //different number of elements in rows
                     return false;
                 }
@@ -335,9 +343,9 @@ public class ContextTable extends JTable implements ParamsProvider {
         ArrayList result = new ArrayList();
         int index = line.indexOf(c);
         int startIndex = 0;
-        while(-1!=index){
+        while (-1 != index) {
             result.add(line.substring(startIndex, index));
-            startIndex = index +1;
+            startIndex = index + 1;
             index = line.indexOf(c, startIndex);
         }
         result.add(line.substring(startIndex));
@@ -387,8 +395,16 @@ public class ContextTable extends JTable implements ParamsProvider {
         }
 
         public void actionPerformed(ActionEvent e) {
-            getContextTableModel().applyCellTransformerToNonHeaderCells(getSelectedRows(), getSelectedColumns(),
+            getContextTableModel().applyCellTransformerToNonHeaderCells(getSelectedRows(), getModelSelectedColumns(),
                     getTransformer());
+        }
+
+        private int[] getModelSelectedColumns() {
+            final int[] selectedColumns = getSelectedColumns();
+            for (int i = 0; i < selectedColumns.length; i++) {
+                selectedColumns[i] = convertColumnIndexToModel(selectedColumns[i]);
+            }
+            return selectedColumns;
         }
 
         protected abstract CellTransformer getTransformer();
