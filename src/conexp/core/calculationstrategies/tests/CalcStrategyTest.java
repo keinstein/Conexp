@@ -12,9 +12,7 @@ import conexp.core.BinaryRelation;
 import conexp.core.Concept;
 import conexp.core.ConceptCalcStrategy;
 import conexp.core.ConceptsCollection;
-import conexp.core.compareutils.ConceptCollectionCompareSet;
-import conexp.core.compareutils.DefaultCompareInfoFactory;
-import conexp.core.compareutils.DiffMap;
+import conexp.core.compareutils.ConceptCollectionComparator;
 import conexp.core.tests.SetBuilder;
 import junit.framework.TestCase;
 
@@ -201,11 +199,11 @@ public abstract class CalcStrategyTest extends TestCase {
     protected void doTestCalcStrategyForExpectedSizeForFullLatticeCase(int[][] input, int expectedSize) {
         ConceptsCollection conceptSet = buildConceptCollection(input);
         if (conceptSet.conceptsCount() != expectedSize) {
-            DiffMap map = new DiffMap(DefaultCompareInfoFactory.getInstance());
-            if (!map.compareSets(new ConceptCollectionCompareSet(SetBuilder.makeConceptSet(input)),
-                    new ConceptCollectionCompareSet(conceptSet))) {
-                map.dumpDifferences(new java.io.PrintWriter(System.out, true));
-            }
+            ConceptCollectionComparator comparator = new ConceptCollectionComparator(
+                    SetBuilder.makeConceptSet(input),
+                    conceptSet
+            );
+            comparator.dumpDifferencesToSout();
             assertEquals(expectedSize, conceptSet.conceptsCount());
         }
     }

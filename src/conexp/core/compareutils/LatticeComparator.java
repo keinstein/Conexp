@@ -10,10 +10,10 @@ package conexp.core.compareutils;
 import conexp.core.Lattice;
 
 
-public class LatticeComparator extends BaseComparator {
+public class LatticeComparator extends ConceptCollectionComparator {
     public LatticeComparator(Lattice one, Lattice two) {
         super(new LatticeElementCompareInfoFactory(),
-                new ConceptCollectionCompareSet(one),
-                new ConceptCollectionCompareSet(two));
+                one,
+                two);
     }
 }

@@ -33,7 +33,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
 
     protected void compareExpEdgeCount(BinaryRelation rel, Lattice lat, int expectedEdgeCount) {
         LatticeComparator comp = new LatticeComparator(conexp.core.tests.SetBuilder.makeLattice(rel), lat);
-        if (!comp.equal || expectedEdgeCount != lat.edgeCount()) {
+        if (!comp.isEqual() || expectedEdgeCount != lat.edgeCount()) {
             comp.dumpDifferencesToSout();
             assertEquals(expectedEdgeCount, lat.edgeCount());
             assertTrue("compare of lattice failed ", false);

@@ -45,7 +45,6 @@ public class DiffMap {
             KeyValuePair pair = iterator.nextKeyValuePair();
             ret = putSecond(pair.key, pair.value) & ret;
         }
-        System.out.println("ret = "+ret);
         ret = ret && !isCorrupt();
         if (!ret) {
             processDifferences();
