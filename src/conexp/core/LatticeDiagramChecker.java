@@ -80,7 +80,7 @@ public class LatticeDiagramChecker {
         }
         int expectedNodeCount = hasMinimalElement() ? nodeCount : nodeCount + 1;
         //DBG*/ System.out.println("Node count: "+nodeCount);
-        //DBG*/ System.out.println("Real node count: "+getLattice().conceptsCount());
+        //DBG*/ System.out.println("Real node count: "+getConcepts().conceptsCount());
         return getLattice().conceptsCount() == expectedNodeCount;
     }
 

@@ -16,25 +16,13 @@ import java.util.Iterator;
  * Time: 22:19:52
  */
 
-public class AllAttribsMultiLineLabelingStrategy extends OneLabelConceptLabelingStrategy{
+public class AllAttribsMultiLineLabelingStrategy extends MultiLineLabelingStrategyBase{
     public AllAttribsMultiLineLabelingStrategy() {
         super();
     }
 
     protected BorderCalculatingFigure makeLabelForConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {
-        StringBuffer attribsNames = new StringBuffer();
-        boolean first = true;
-        for(Iterator attribsIterator = f.getConcept().ownAttribsIterator();attribsIterator.hasNext(); ){
-            if(first){
-                first = false;
-            }else{
-                attribsNames.append("\n");
-            }
-            attribsNames.append(((ContextEntity)attribsIterator.next()).getName());
-        }
-        MultiLineTextFigure figure = new MultiLineTextFigure();
-        figure.setText(attribsNames.toString());
-        return figure;
+        return buildMultiLineFigureFromEntityIterator(f.getConcept().ownAttribsIterator());
     }
 
     public boolean accept(ConceptQuery query) {

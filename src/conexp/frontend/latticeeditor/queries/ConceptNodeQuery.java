@@ -65,6 +65,14 @@ public class ConceptNodeQuery extends QueryBase {
         return concept.ownObjectsIterator();
     }
 
+    public Iterator extentIterator() {
+        return concept.extentIterator(getContext());
+    }
+
+    public Iterator intentIterator() {
+        return concept.intentIterator(getContext());
+    }
+
     public boolean isInnermost() {
         return innermost;
     }

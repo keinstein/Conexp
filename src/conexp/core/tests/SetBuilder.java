@@ -18,6 +18,7 @@ import util.collection.CollectionFactory;
 import util.testing.UniqueExpectationSet;
 
 import java.util.List;
+import java.util.Collection;
 
 
 public class SetBuilder {
@@ -45,8 +46,16 @@ public class SetBuilder {
         return set;
     }
 
-    public static List makeSetCollection(int[][] sets){
-        List ret = CollectionFactory.createDefaultList();
+    public static List makeListOfSets(int[][] sets){
+        return (List)fillCollection(sets, CollectionFactory.createDefaultList());
+    }
+
+    public static java.util.Set makeSetOfSets(int[][] sets){
+        return (java.util.Set)fillCollection(sets, CollectionFactory.createDefaultSet());
+    }
+
+
+    private static Collection fillCollection(int[][] sets, Collection ret) {
         for(int i=0;i<sets.length; i++){
             ret.add(makeSet(sets[i]));
         }

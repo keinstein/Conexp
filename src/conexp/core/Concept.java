@@ -132,12 +132,6 @@ public class Concept implements ItemSet {
         return true;
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (12.10.00 20:48:10)
-     * @return int
-     */
     private int cachedObjectCount = -1;
 
     public int getObjCnt() {
@@ -147,38 +141,18 @@ public class Concept implements ItemSet {
         return cachedObjectCount;
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (04.10.00 23:35:01)
-     * @return int
-     */
     public int getOwnAttrCnt() {
         return null == ownAttribs ? 0 : ownAttribs.size();
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (04.10.00 23:41:16)
-     * @return int
-     */
     public int getOwnObjCnt() {
         return (null == ownObjects) ? 0 : ownObjects.size();
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (04.05.01 23:07:43)
-     * @return int
-     */
     public int hashCode() {
         return getAttribs().hashCode() ^ getObjects().hashCode();
     }
 
-
-//----------------------------------------------
     public boolean hasOwnAttribs() {
         return (conceptType & HAS_ATTRIBS) != 0;
     }
