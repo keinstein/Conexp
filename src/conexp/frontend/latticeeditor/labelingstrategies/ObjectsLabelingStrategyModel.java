@@ -16,9 +16,10 @@ public class ObjectsLabelingStrategyModel extends AbstractDrawingStrategyModel {
     private final static int OWN_OBJECTS_COUNT_LABEL_STRATEGY = OBJECTS_LABEL_STRATEGY + 1;
     private final static int OBJECTS_COUNT_LABEL_STRATEGY = OWN_OBJECTS_COUNT_LABEL_STRATEGY + 1;
     private final static int STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY = OBJECTS_COUNT_LABEL_STRATEGY + 1;
-    private final static int POINT_STABILITY_LABEL_STRATEGY = STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY + 1;
-    private final static int INTEGRAL_STABILITY_LABEL_STRATEGY = POINT_STABILITY_LABEL_STRATEGY +1;
-    private final static int LAST_STRATEGY = INTEGRAL_STABILITY_LABEL_STRATEGY;
+    private final static int LAST_STRATEGY = STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY;
+//    private final static int POINT_STABILITY_LABEL_STRATEGY = STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY + 1;
+//    private final static int INTEGRAL_STABILITY_LABEL_STRATEGY = POINT_STABILITY_LABEL_STRATEGY +1;
+//    private final static int LAST_STRATEGY = INTEGRAL_STABILITY_LABEL_STRATEGY;
     private final static int STRATEGY_COUNT = LAST_STRATEGY + 1;
 
     public ObjectsLabelingStrategyModel(DrawParameters opt) {
@@ -32,7 +33,7 @@ public class ObjectsLabelingStrategyModel extends AbstractDrawingStrategyModel {
         setStrategy(OWN_OBJECTS_COUNT_LABEL_STRATEGY, LabelingStrategiesKeys.OWN_OBJECTS_COUNT_LABEL_STRATEGY, "Show own objects count", new OwnObjectsCountLabelingStrategy(opt));
         setStrategy(OBJECTS_COUNT_LABEL_STRATEGY, LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY, "Show object count", new ObjectsCountLabelingStrategy(opt));
         setStrategy(STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY, LabelingStrategiesKeys.STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY, "Stability", new StabilityToDesctructionLabelingStrategy(opt));
-        setStrategy(POINT_STABILITY_LABEL_STRATEGY, LabelingStrategiesKeys.POINT_STABILITY_LABEL_STRATEGY, new PointStabilityLabelingStrategy(opt));
-        setStrategy(INTEGRAL_STABILITY_LABEL_STRATEGY, LabelingStrategiesKeys.INTEGRAL_STABILITY_LABEL_STRATEGY, new IntegralStabilityLabelingStrategy(opt));
+//        setStrategy(POINT_STABILITY_LABEL_STRATEGY, LabelingStrategiesKeys.POINT_STABILITY_LABEL_STRATEGY, new PointStabilityLabelingStrategy(opt));
+//        setStrategy(INTEGRAL_STABILITY_LABEL_STRATEGY, LabelingStrategiesKeys.INTEGRAL_STABILITY_LABEL_STRATEGY, new IntegralStabilityLabelingStrategy(opt));
     }
 }
