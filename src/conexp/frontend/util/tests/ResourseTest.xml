@@ -1,0 +1,23 @@
+<Resources>
+    <Actions>
+        <Action>
+            <Key>ContextTableEditor.removeAttributes</Key>
+            <Label>ContextTableEditor.removeAttribute.Label</Label>
+        </Action>
+        <Action>
+            <Key>ContextTableEditor.removeObjects</Key>
+            <Label>ContextTableEditor.removeObjects.Label</Label>
+        </Action>
+    </Actions>
+    <Menus>
+        <Menu key = "ContextTableEditor">
+            <MenuItem action="ContextTableEditor.removeAttributes"/>
+            <MenuItem action="ContextTableEditor.removeObjects"/>
+            <MenuItem type = "Separator"/>
+            <MenuItem action="ContextTableEditor.invertCells"/>
+            <MenuItem action="ContextTableEditor.fillCells"/>
+        </Menu>
+    </Menus>
+    <Toolbars>
+    </Toolbars>
+</Resources>

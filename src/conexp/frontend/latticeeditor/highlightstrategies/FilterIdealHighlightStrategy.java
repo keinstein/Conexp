@@ -1,0 +1,18 @@
+package conexp.frontend.latticeeditor.highlightstrategies;
+
+import conexp.core.Set;
+
+public class FilterIdealHighlightStrategy extends conexp.frontend.latticeeditor.HighlightStrategy {
+
+    protected boolean highlightQuery(Set attribs) {
+        return query.isSubsetOf(attribs) || query.isSupersetOf(attribs);
+    }
+
+    protected boolean doHighlightEdge(Set startAttribs, Set endAttribs) {
+        return query.isSubsetOf(startAttribs) && query.isSubsetOf(endAttribs) ||
+                query.isSupersetOf(startAttribs) && query.isSupersetOf(endAttribs);
+    }
+
+    public FilterIdealHighlightStrategy() {
+    }
+}

@@ -1,0 +1,9 @@
+<Resources>
+<Actions/>
+<Menus>
+    <Menu key="SeparatorMenu">
+        <MenuItem type="Separator"/>
+    </Menu>
+</Menus>
+<Toolbars/>
+</Resources>

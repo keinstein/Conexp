@@ -1,0 +1,75 @@
+package conexp.frontend.ruleview;
+
+import conexp.core.AttributeInformationSupplier;
+import conexp.core.AttributeInformationSupplierUtil;
+import conexp.core.Set;
+import conexp.util.GenericStrategy;
+
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+
+/**
+ * Insert the type's description here.
+ * Creation date: (06.05.01 20:20:04)
+ * @author
+ */
+public abstract class GenericRuleRenderer implements RuleRenderer, GenericStrategy {
+    protected SimpleAttributeSet[] attrs;
+    private SimpleAttributeSet baseStyle;
+
+    protected static final String FOLLOW = " ==> ";
+
+    protected static final String END_MARK = ";";
+
+    /**
+     * ImplicationRenderer constructor comment.
+     */
+    public GenericRuleRenderer() {
+        super();
+        updateDependentStyles();
+    }
+
+
+    /**
+     * Insert the method's description here.
+     * Creation date: (07.05.01 21:35:20)
+     */
+    protected void generateSupport(StringBuffer buf, int support) {
+        buf.append("< " + support + " > ");
+    }
+
+
+    /**
+     * Insert the method's description here.
+     * Creation date: (06.05.01 21:27:42)
+     * @return javax.swing.text.SimpleAttributeSet
+     */
+    public javax.swing.text.SimpleAttributeSet getBaseStyle() {
+        if (null == baseStyle) {
+            baseStyle = new SimpleAttributeSet();
+        }
+        return baseStyle;
+    }
+
+
+    /**
+     * Insert the method's description here.
+     * Creation date: (06.05.01 20:26:26)
+     */
+    public void setFontParams(java.lang.String family, int size) {
+        StyleConstants.setFontFamily(getBaseStyle(), family);
+        StyleConstants.setFontSize(getBaseStyle(), size);
+        updateDependentStyles();
+    }
+
+
+    public void describeSet(StringBuffer buffer, AttributeInformationSupplier attrInfo, Set set) {
+        AttributeInformationSupplierUtil.describeSet(buffer, attrInfo, set, " ", "{ }");
+    }
+
+    /**
+     * Insert the method's description here.
+     * Creation date: (06.05.01 20:31:58)
+     */
+    protected abstract void updateDependentStyles();
+}

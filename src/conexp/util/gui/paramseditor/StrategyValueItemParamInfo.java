@@ -1,0 +1,63 @@
+package conexp.util.gui.paramseditor;
+
+import conexp.util.gui.strategymodel.StrategyValueItem;
+
+import javax.swing.*;
+
+public class StrategyValueItemParamInfo extends AbstractParamInfo {
+    protected final StrategyValueItem valueModel;
+
+    /**
+     * StrategyValueItemParamInfo constructor comment.
+     * @param label java.lang.String
+     */
+    public StrategyValueItemParamInfo(String label, StrategyValueItem value) {
+        super(label);
+        valueModel = value;
+    }
+
+    /**
+     * Insert the method's description here.
+     * Creation date: (30.03.01 23:35:34)
+     * @return javax.swing.table.TableCellRenderer
+     */
+    public javax.swing.table.TableCellRenderer getParamRenderer() {
+        return null;
+    }
+
+    /**
+     * Insert the method's description here.
+     * Creation date: (29.03.01 0:35:45)
+     * @return java.lang.Object
+     */
+    public Object getValue() {
+        return valueModel.getValueDescription();
+    }
+
+    /**
+     * Insert the method's description here.
+     * Creation date: (29.03.01 0:35:45)
+     * @return javax.swing.table.TableCellEditor
+     */
+    protected javax.swing.table.TableCellEditor makeEditor() {
+        return new javax.swing.DefaultCellEditor(makeStrategyCombo(valueModel));
+    }
+
+    static JComboBox makeStrategyCombo(StrategyValueItem strategy) {
+        JComboBox combo = new JComboBox(strategy.getDescription());
+        combo.addActionListener(strategy);
+        return combo;
+    }
+
+    public void setValue(Object obj) throws IllegalArgumentException {
+        if (!(obj instanceof Integer)) {
+            throw new IllegalArgumentException("Accept only Intager" + obj);
+        }
+        int newValue = ((Integer) obj).intValue();
+        valueModel.setValue(newValue);
+    }
+
+    /*  public Object getValueGroup() {
+          return new Integer(valueModel.getValueGroup());
+      } */
+}

@@ -1,0 +1,77 @@
+package conexp.frontend.latticeeditor.figures.tests;
+
+import canvas.tests.FigureTest;
+import conexp.core.ConceptFactory;
+import conexp.core.tests.SetBuilder;
+import conexp.frontend.latticeeditor.ConceptQuery;
+import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
+import conexp.frontend.latticeeditor.figures.ConceptFigure;
+import conexp.frontend.latticeeditor.noderadiusstrategy.AbstractNodeRadiusCalcStrategy;
+import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+import java.awt.geom.Point2D;
+
+public class ConceptFigureTest extends FigureTest {
+
+    public static Test suite() {
+        return new TestSuite(ConceptFigureTest.class);
+    }
+
+    final int RADIUS = 5;
+
+    protected canvas.Figure makeFigure() {
+        final ConceptFigure conceptFigure = new ConceptFigure(
+                        new ConceptNodeQuery(SetBuilder.makeContext(new int[0][0]), ConceptFactory.makeEmptyLatticeElement(),
+                                SetBuilder.makeSet(new int[0]))
+                        );
+        conceptFigure.setFigureDimensionCalcStrategyProvider(new conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider(){
+            FigureDimensionCalcStrategy figureDimensionCalcStrategy = makeFigureDimensionCalcStrategy(RADIUS);
+            public FigureDimensionCalcStrategy getFigureDimensionCalcStrategy() {
+                return figureDimensionCalcStrategy;
+            }
+        });
+        return conceptFigure;
+    }
+
+    public void testVisitConceptFigure() {
+        MockFigureVisitor visitor = new MockFigureVisitor();
+        visitor.setExpectedVisits(1);
+        f.visit(visitor);
+        visitor.verify();
+    }
+
+    public void testBorderAt() {
+
+        final int centerX = 0;
+        final int centerY = 10;
+        ConceptFigure cf = (ConceptFigure) f;
+
+        cf.setCoords(centerX, centerY);
+        Point2D outPoint = new Point2D.Double(centerX, centerY - 2 * RADIUS);
+        Point2D result = new Point2D.Double();
+        cf.borderAt(outPoint, result);
+        assertEquals(new Point2D.Double(centerX, centerY - RADIUS), result);
+
+        outPoint.setLocation(centerX, centerY + 2 * RADIUS);
+        cf.borderAt(outPoint, result);
+        assertEquals(new Point2D.Double(centerX, centerY + RADIUS), result);
+
+        outPoint.setLocation(centerX + 2 * RADIUS, centerY);
+        cf.borderAt(outPoint, result);
+        assertEquals(new Point2D.Double(centerX + RADIUS, centerY), result);
+
+        outPoint.setLocation(centerX - 2 * RADIUS, centerY);
+        cf.borderAt(outPoint, result);
+        assertEquals(new Point2D.Double(centerX - RADIUS, centerY), result);
+    }
+
+    public static FigureDimensionCalcStrategy makeFigureDimensionCalcStrategy(final int nodeRadius) {
+        return new AbstractNodeRadiusCalcStrategy(null) {
+            public int calcNodeRadius(ConceptQuery query) {
+                return nodeRadius;
+            }
+        };
+    }
+}

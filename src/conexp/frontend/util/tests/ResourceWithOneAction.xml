@@ -1,0 +1,14 @@
+<Resources>
+<Actions>
+    <Action key="Test.testAction">
+        <Label>Test.testAction.label</Label>
+        <Tooltip>Test.testAction.tooltip</Tooltip>
+    </Action>
+</Actions>
+<Menus>
+    <Menu key="OneItemMenu">
+        <MenuItem action="Test.testAction"/>
+    </Menu>
+</Menus>
+<Toolbars/>
+</Resources>

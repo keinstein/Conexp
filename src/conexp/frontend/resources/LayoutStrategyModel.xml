@@ -1,0 +1,6 @@
+<strategymodel>
+	<strategy label="Minimal intersections" class="conexp.core.layout.MinIntersectionLayout"/>
+	<strategy label="Chain decomposition" class="conexp.core.layout.chaindecomposition.ChainDecompositionLayout"/>
+	<strategy label="Freeze Layout" class="conexp.core.layout.FreezeLayout"/>
+	<strategy label="Force Layout" class="conexp.core.layout.ForceLayout"/>
+</strategymodel>
