@@ -7,6 +7,7 @@
 
 package conexp.frontend.latticeeditor.figures;
 
+import canvas.CanvasScheme;
 import conexp.frontend.latticeeditor.ConceptQuery;
 
 import java.awt.Color;
@@ -19,7 +20,8 @@ public class ContextObjectTextFigure extends ConceptRelatedTextFigure {
         this.obj = obj;
     }
 
-    protected Color getBackground() {
+	// TODO: Sergey. changed getBackground() to getBackground(CanvasScheme opt) check whether it's O.K  
+    protected Color getBackground(CanvasScheme opt) {
         return obj.isObject() ? Color.white : Color.lightGray;
     }
 
