@@ -17,7 +17,6 @@ import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.DocumentLoader;
 import conexp.frontend.io.DefaultDataFormatErrorHandler;
-import conexp.frontend.io.csv.CSVContextLoader;
 import conexp.frontend.io.objattrlist.ObjectListContextCreator;
 
 public class ObjectListContextCreatorTest extends TestCase {
