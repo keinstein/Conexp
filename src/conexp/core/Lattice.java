@@ -48,19 +48,19 @@ public class Lattice extends ConceptsCollection {
     protected LatticeElement zero;
 
     private Set attributesMask;
-	private Set objectsMask;
+    private Set objectsMask;
 
     public Set getAttributesMask() {
         return attributesMask;
     }
 
-	public Set getObjectsMask() {
-			return objectsMask;
-		}
+    public Set getObjectsMask() {
+        return objectsMask;
+    }
 
     public void setFeatureMasks(Set attributesMask, Set objectsMask) {
         this.attributesMask = attributesMask;
-    	this.objectsMask = objectsMask;
+        this.objectsMask = objectsMask;
     }
 
     //------------------------------------------
@@ -203,7 +203,7 @@ public class Lattice extends ConceptsCollection {
     }
 
 
-    public LatticeElement getBottom(){
+    public LatticeElement getBottom() {
         return getZero();
     }
 
@@ -257,7 +257,7 @@ public class Lattice extends ConceptsCollection {
      * @param extent conexp.core.Set
      * @param intent conexp.core.Set
      */
-    public Concept makeConcept(Set extent, Set intent) {
+    public Concept makeConcept(ModifiableSet extent, ModifiableSet intent) {
         return LatticeElement.makeLatticeElementFromSets(extent, intent);
     }
 
@@ -290,7 +290,7 @@ public class Lattice extends ConceptsCollection {
         }
     }
 
-    public void setTop(LatticeElement top){
+    public void setTop(LatticeElement top) {
         setOne(top);
     }
 
@@ -302,7 +302,7 @@ public class Lattice extends ConceptsCollection {
     }
 
     public void setBottom(LatticeElement el) {
-         setZero(el);
+        setZero(el);
     }
 
 
@@ -407,5 +407,35 @@ public class Lattice extends ConceptsCollection {
             }
         }
         return true;
+    }
+
+    /**
+     *  creates a deep copy of current lattice
+     */
+    public Lattice makeCopy() {
+        final Lattice ret = new Lattice();
+        //usage of loop insead of forEach is important here
+        for (int i = 0; i < conceptsCount(); i++) {
+            ret.addElement(makeConceptCopy(elementAt(i)));
+        }
+        ret.setZero(ret.elementAt(this.zero.getIndex()));
+        ret.setOne(ret.elementAt(this.one.getIndex()));
+
+        forEach(new LatticeElementVisitor() {
+            public void visitNode(LatticeElement node) {
+                final LatticeElement nodeInNewLattice = ret.elementAt(node.getIndex());
+                for (ConceptIterator iterator = node.getChildren().iterator(); iterator.hasNext();) {
+                    LatticeElement concept = iterator.nextConcept();
+                    nodeInNewLattice.addChild(ret.elementAt(concept.getIndex()));
+                }
+            }
+        });
+
+        return ret;
+    }
+
+
+    private LatticeElement makeConceptCopy(Concept concept) {
+        return new LatticeElement(concept.getObjects().makeModifiableSetCopy(), concept.getAttribs().makeModifiableSetCopy());
     }
 }

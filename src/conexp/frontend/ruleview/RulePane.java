@@ -16,8 +16,7 @@ import javax.swing.text.SimpleAttributeSet;
 import java.util.Iterator;
 
 
-public class RulePane extends javax.swing.JTextPane {
-    private static String newline = System.getProperty("line.separator");//$NON-NLS-1$
+public class RulePane extends TextPaneViewBase {
     protected RuleRenderer renderer;
     protected DependencySet ruleSet;
     protected final java.lang.String emptySetMessage;
@@ -31,21 +30,6 @@ public class RulePane extends javax.swing.JTextPane {
         generateContent();
     }
 
-    protected void appendString(String str, SimpleAttributeSet attrSet) throws BadLocationException {
-        getDocument().insertString(
-                getDocument().getLength(),
-                str,
-                attrSet
-        );
-    }
-
-
-    public void clear() {
-        try {
-            getDocument().remove(0, getDocument().getLength());
-        } catch (BadLocationException ble) {
-        }
-    }
 
     public void generateContent() {
         clear();
@@ -60,11 +44,11 @@ public class RulePane extends javax.swing.JTextPane {
                     tmp.append((++cnt));
                     tmp.append(" ");
                     renderer.describeRule(tmp, ruleSet.getAttributesInformation(), dep);
-                    tmp.append(newline);
+                    tmp.append(NEW_LINE);
                     appendString(tmp.toString(), renderer.dependencyStyle(dep));
                 }
             } else {
-                appendString(emptySetMessage + newline,
+                appendString(emptySetMessage + NEW_LINE,
                         renderer.getBaseStyle());
             }
         } catch (BadLocationException ble) {

@@ -34,7 +34,7 @@ public class ContextTablePane extends JScrollPane {
         setViewportView(contextTableView);
     }
 
-    protected ContextTable getContextTableView() {
+    public ContextTable getContextTableView() {
         return contextTableView;
     }
 

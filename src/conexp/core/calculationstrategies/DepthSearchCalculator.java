@@ -17,7 +17,7 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
     static class DepthSearchLatticeElement extends LatticeElement {
         ModifiableSet firstTimePredecessors;
 
-        DepthSearchLatticeElement(Set extent, Set intent) {
+        DepthSearchLatticeElement(ModifiableSet extent, ModifiableSet intent) {
             super(extent, intent);
             firstTimePredecessors = ContextFactoryRegistry.createSet(intent.size());
         }
@@ -182,7 +182,7 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
      * @param intent conexp.core.Set
      */
     protected DepthSearchLatticeElement makeDepthSearchLatticeElement(Set extent, Set intent) {
-        return new DepthSearchLatticeElement((Set) extent.clone(), (Set) intent.clone());
+        return new DepthSearchLatticeElement(extent.makeModifiableSetCopy(), intent.makeModifiableSetCopy());
     }
 
 }

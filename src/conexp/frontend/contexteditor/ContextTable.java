@@ -14,6 +14,7 @@ import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
 import conexp.util.valuemodels.BooleanValueModel;
 import util.DataFormatException;
+import util.gui.ActionWithKey;
 
 import javax.swing.*;
 import javax.swing.event.CellEditorListener;
@@ -111,9 +112,14 @@ public class ContextTable extends JTable implements ParamsProvider {
 
     PopupMenuProvider popupMenuProvider = new DefaultPopupMenuProvider();
 
-    protected JPopupMenu makePopupMenu() {
-        return popupMenuProvider.makePopupMenu();
+    public PopupMenuProvider getPopupMenuProvider() {
+        return popupMenuProvider;
+    }
 
+    protected JPopupMenu makePopupMenu() {
+        JPopupMenu popupMenu = new JPopupMenu();
+        popupMenuProvider.fillPopupMenu(popupMenu);
+        return popupMenu;
     }
 
     public void setPopupMenuProvider(PopupMenuProvider newPopupMenuProvider) {
@@ -129,9 +135,8 @@ public class ContextTable extends JTable implements ParamsProvider {
         setPopupMenuProvider(new ContextTablePopupMenuProvider());
     }
 
-    class ContextTablePopupMenuProvider implements PopupMenuProvider {
-        public JPopupMenu makePopupMenu() {
-            JPopupMenu popupMenu = new JPopupMenu();
+    class ContextTablePopupMenuProvider extends DefaultPopupMenuProvider{
+        public void fillPopupMenu(JPopupMenu popupMenu) {
             popupMenu.add(new CutAction());
             popupMenu.add(new CopyAction());
             popupMenu.add(new PasteAction());
@@ -142,7 +147,6 @@ public class ContextTable extends JTable implements ParamsProvider {
             popupMenu.add(new FillCellAction());
             popupMenu.add(new ClearCellAction());
             popupMenu.add(new InverseCellAction());
-            return popupMenu;
         }
     }
 
@@ -162,13 +166,6 @@ public class ContextTable extends JTable implements ParamsProvider {
 
         public void mousePressed(MouseEvent e) {
             maybeShowPopup(e);
-        }
-    }
-
-    public abstract static class ActionWithKey extends AbstractAction {
-        public ActionWithKey(String key, String name) {
-            super(name);
-            putValue(AbstractAction.ACTION_COMMAND_KEY, key);
         }
     }
 

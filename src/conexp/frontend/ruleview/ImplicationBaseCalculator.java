@@ -14,6 +14,8 @@ import conexp.core.ImplicationSet;
 
 
 public class ImplicationBaseCalculator extends AbstractDependencySetCalculator {
+    private ImplicationCalcStrategy lastCalc;
+
     public ImplicationBaseCalculator(Context cxt, ImplicationCalcStrategyFactory implicationsCalculatorFactory) {
         super(cxt);
         setImplicationCalcStrategyFactory(implicationsCalculatorFactory);
@@ -35,7 +37,12 @@ public class ImplicationBaseCalculator extends AbstractDependencySetCalculator {
 
 
     protected void doFindDependencies() {
-        doCalculateImplications(makeImplicationCalcStrategy());
+        lastCalc = makeImplicationCalcStrategy();
+        doCalculateImplications(lastCalc);
+    }
+
+    public ImplicationCalcStrategy getLastCalc() {
+        return lastCalc;
     }
 
     private ImplicationCalcStrategy makeImplicationCalcStrategy() {

@@ -80,4 +80,14 @@ public class LatticeTest extends TestCase {
 
 
     }
+
+    public void testMakeCopy(){
+        Lattice lat = SetBuilder.makeLattice(new int[][]{{0}});
+        Lattice copy = lat.makeCopy();
+        assertEquals(lat.conceptsCount(), copy.conceptsCount());
+        assertTrue(lat.isEqual(copy));
+ // add this checks, when it will be truly important
+//        assertEquals(lat.getContext(), copy.getContext());
+    }
+
 }

@@ -15,8 +15,8 @@ import java.util.Iterator;
 
 public class Concept implements ItemSet {
 
-    private Set attribs;
-    private Set objects;
+    private ModifiableSet attribs;
+    private ModifiableSet objects;
 
     /**
      * identifier in lattice; if >= 0 then element is in lattice *
@@ -45,7 +45,7 @@ public class Concept implements ItemSet {
      * @param extent conexp.core.Set
      * @param intent conexp.core.Set
      */
-    public Concept(Set extent, Set intent) {
+    public Concept(ModifiableSet extent, ModifiableSet intent) {
         Assert.isTrue(null != extent);
         Assert.isTrue(null != intent);
         objects = extent;
@@ -233,7 +233,7 @@ public class Concept implements ItemSet {
      * @param intent conexp.core.Set
      * @param extent conexp.core.Set
      */
-    public static Concept makeFromSets(Set extent, Set intent) {
+    public static Concept makeFromSets(ModifiableSet extent, ModifiableSet intent) {
         return new Concept(extent, intent);
     }
 
@@ -305,6 +305,10 @@ public class Concept implements ItemSet {
 
     public void setIndex(int index) {
         this.index = index;
+    }
+
+    public ModifiableSet getModifiableAttribs() {
+        return attribs;
     }
 
 }

@@ -104,15 +104,29 @@ public class SetBuilder {
 
     public static ExtendedContextEditingInterface makeContext(String[] objectNames, String[] attrNames, int[][] relation) {
         ExtendedContextEditingInterface ret = makeContext(relation);
-        Assert.isTrue(ret.getObjectCount() == objectNames.length);
-        for (int i = 0; i < objectNames.length; i++) {
-            ret.getObject(i).setName(objectNames[i]);
-        }
+        setObjectNames(ret, objectNames);
+        setAttributesNames(ret, attrNames);
+        return ret;
+    }
+
+    public static Context makeContextWithAttributeNames(String[] attrNames, int[][] relation){
+        Context ret = makeContext(relation);
+        setAttributesNames(ret, attrNames);
+        return ret;
+    }
+
+    private static void setAttributesNames(ExtendedContextEditingInterface ret, String[] attrNames) {
         Assert.isTrue(ret.getAttributeCount() == attrNames.length);
         for (int i = 0; i < attrNames.length; i++) {
             ret.getAttribute(i).setName(attrNames[i]);
         }
-        return ret;
+    }
+
+    private static void setObjectNames(ExtendedContextEditingInterface ret, String[] objectNames) {
+        Assert.isTrue(ret.getObjectCount() == objectNames.length);
+        for (int i = 0; i < objectNames.length; i++) {
+            ret.getObject(i).setName(objectNames[i]);
+        }
     }
 
 
@@ -196,8 +210,7 @@ public class SetBuilder {
 
     public static Lattice makeLatticeFromContext(Context cxt, LatticeNeedingCalcStrategy strat) {
         cxt.setArrowCalculator(FCAEngineRegistry.makeArrowCalculator());
-        Lattice lattice = new Lattice();
-        lattice.setContext(cxt);
+        Lattice lattice = FCAEngineRegistry.makeLatticeForContext(cxt);
         doMakeLattice(lattice, cxt.getRelation(), strat);
         cxt.locateElementsConcepts(lattice);
         return lattice;

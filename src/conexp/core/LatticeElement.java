@@ -118,7 +118,7 @@ public class LatticeElement extends Concept {
     private int height = -1;
 
 //--------------------------------------------
-    public LatticeElement(Set _obj, Set _attr) {
+    public LatticeElement(ModifiableSet _obj, ModifiableSet _attr) {
         super(_obj, _attr);
     }
 //--------------------------------------------
@@ -282,14 +282,13 @@ public class LatticeElement extends Concept {
     }
 
     public static LatticeElement makeFromSetsCopies(Set extent, Set intent) {
-        return new LatticeElement((Set) extent.clone(), (Set) intent.clone());
+        return new LatticeElement(extent.makeModifiableSetCopy(), intent.makeModifiableSetCopy());
     }
 
 
-    public static LatticeElement makeLatticeElementFromSets(Set extent, Set intent) {
+    public static LatticeElement makeLatticeElementFromSets(ModifiableSet extent, ModifiableSet intent) {
         return new LatticeElement(extent, intent);
     }
-
 
 
 }

@@ -44,7 +44,7 @@ public class ConImpContextLoader implements ContextReader {
 
         String str = getNextLine();
 
-        if (!str.equals("B")) {
+        if (!"B".equals(str)) {
             throw makeFileFormatException();
         }
         reader.readLine(); //skipping line with a name

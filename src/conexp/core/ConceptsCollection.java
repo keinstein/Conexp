@@ -8,6 +8,7 @@
 package conexp.core;
 
 import util.Assert;
+import util.collection.CollectionFactory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -26,7 +27,7 @@ public class ConceptsCollection {
         }
     }
 
-    protected List elements = new ArrayList();
+    protected List elements = CollectionFactory.createDefaultList();
 
     public ConceptsCollection() {
         super();
@@ -83,12 +84,12 @@ public class ConceptsCollection {
     }
 
 
-    public Concept makeConcept(Set extent, Set intent) {
+    public Concept makeConcept(ModifiableSet extent, ModifiableSet intent) {
         return Concept.makeFromSets(extent, intent);
     }
 
     public Concept makeConceptFromSetsCopies(Set intent, Set extent) {
-        return makeConcept((Set) intent.clone(), (Set) extent.clone());
+        return makeConcept(intent.makeModifiableSetCopy(), extent.makeModifiableSetCopy());
     }
 
     private Context context;
@@ -103,6 +104,34 @@ public class ConceptsCollection {
 
     public String toString() {
         return elements.toString();
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj){
+            return true;
+        }
+        if (!(obj instanceof ConceptsCollection)){
+            return false;
+        }
+
+        final ConceptsCollection conceptsCollection = (ConceptsCollection) obj;
+
+        if (context != null ? !context.equals(conceptsCollection.context) : conceptsCollection.context != null){
+            return false;
+        }
+        //todo: think, maybe set comparison is more appropriate
+        if (!elements.equals(conceptsCollection.elements)){
+            return false;
+        }
+
+        return true;
+    }
+
+    public int hashCode() {
+        int result;
+        result = elements.hashCode();
+        result = 29 * result + (context != null ? context.hashCode() : 0);
+        return result;
     }
 
 }

@@ -89,6 +89,7 @@ public class PropertyChangeBaseController implements PropertyChangeListener {
     }
 
     protected void applyEventProcessorToListeners(PropertyChangeEvent evt, EventProcessor processor) {
+        System.out.println("PropertyChangeBaseController.applyEventProcessorToListeners "+evt.getPropertyName());
         eventBroadcaster.applyEventProcessorToListeners(evt, processor);
     }
 

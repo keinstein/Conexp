@@ -652,6 +652,15 @@ public class ContextTest extends TestCase {
         assertEquals(0, cxt.getObjectCount());
     }
 
+    public void testIndexOfAttribute() {
+        cxt = SetBuilder.makeContextWithAttributeNames(new String[]{"One", "Two"}, new int[][]{
+            {1, 0}
+        });
+        assertEquals(-1, cxt.indexOfAttribute("Three"));
+        assertEquals(1, cxt.indexOfAttribute("Two"));
+
+    }
+
     private static class MockAttributeChangeContextListener extends MockContextListener {
         private final int EVENT_TYPE;
 

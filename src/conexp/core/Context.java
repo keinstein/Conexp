@@ -65,13 +65,18 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         return candName;
     }
 
-    public boolean hasAttributeWithName(String cand) {
-        for (int i = 0; i < getAttributeCount(); i++) {
-            if (getAttribute(i).getName().equals(cand)) {
-                return true;
+    public int indexOfAttribute(String name) {
+        final int attributeCount = getAttributeCount();
+        for (int i = 0; i < attributeCount; i++) {
+            if (getAttribute(i).getName().equals(name)) {
+                return i;
             }
         }
-        return false;
+        return -1;
+    }
+
+    public boolean hasAttributeWithName(String cand) {
+        return indexOfAttribute(cand)!=-1;
     }
 
 
@@ -385,24 +390,24 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     /******************************************************************
      * for objects from core find correpondent concepts
      *****************************************************************/
-	private void findObjectsConcepts(Lattice lattice) {
-			Assert.isTrue(null != lattice);
-			for (int j = getObjectCount(); --j >= 0;) {			
-					LatticeElement concept = lattice.findLatticeElementFromOne(rel.getSet(j));
-					Assert.isTrue(null != concept);
-					concept.addOwnObject(getObject(j));				
-			}
-		}
+    private void findObjectsConcepts(Lattice lattice) {
+        Assert.isTrue(null != lattice);
+        for (int j = getObjectCount(); --j >= 0;) {
+            LatticeElement concept = lattice.findLatticeElementFromOne(rel.getSet(j));
+            Assert.isTrue(null != concept);
+            concept.addOwnObject(getObject(j));
+        }
+    }
 
-		//---------------------------------------------------------------
+    //---------------------------------------------------------------
     private void findObjectsConcepts(Lattice lattice, Set objectMask) {
         Assert.isTrue(null != lattice);
         for (int j = getObjectCount(); --j >= 0;) {
-        	if (objectMask.in(j)) {
-		        LatticeElement concept = lattice.findLatticeElementFromOne(rel.getSet(j));
-		        Assert.isTrue(null != concept);
-		        concept.addOwnObject(getObject(j));
-        	}
+            if (objectMask.in(j)) {
+                LatticeElement concept = lattice.findLatticeElementFromOne(rel.getSet(j));
+                Assert.isTrue(null != concept);
+                concept.addOwnObject(getObject(j));
+            }
         }
     }
 
@@ -574,7 +579,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     //---------------------------------------------------------------
     private void calcUpArrow() {
         util.Assert.isTrue(arrowCalc != null, "For calculating arrows calculator should be set!");
-        util.Assert.isTrue(upArrow!=null);
+        util.Assert.isTrue(upArrow != null);
         arrowCalc.calcUpArrow(upArrow);
         setUpArrowUpdate(false);
     }
@@ -641,7 +646,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
 
     private void setRelation(ModifiableBinaryRelation modifiableBinaryRelation) {
         this.rel = modifiableBinaryRelation;
-        if(null!=arrowCalc){
+        if (null != arrowCalc) {
             arrowCalc.setRelation(modifiableBinaryRelation);
         }
     }
