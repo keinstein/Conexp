@@ -9,9 +9,7 @@ package conexp.core.tests;
 
 import conexp.core.DependencySet;
 import conexp.core.associations.tests.ObjectMother;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class DependencySetTest extends TestCase {

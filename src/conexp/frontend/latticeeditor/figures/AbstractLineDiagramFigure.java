@@ -45,6 +45,5 @@ public abstract class AbstractLineDiagramFigure extends FigureWithCoords impleme
     public void setCollision(boolean collision) {
         this.collision = collision;
     }
-
 }
 

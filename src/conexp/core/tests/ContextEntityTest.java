@@ -10,9 +10,7 @@ package conexp.core.tests;
 import com.mockobjects.ExpectationCounter;
 import conexp.core.ContextEntity;
 import conexp.core.DefaultContextObjectListener;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import java.beans.PropertyChangeEvent;
 

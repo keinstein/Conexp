@@ -75,11 +75,9 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
 
     public double getUpMoveConstraintForConcept(AbstractConceptCorrespondingFigure f, IFigurePredicate predicate) {
         double ret = findMinimalYDistanceToPredecessorsFiguresCenters(f, predicate);
-        System.out.println("LatticeCanvas.getUpMoveConstraintForConcept "+ret);
         DrawParameters drawParams = getDrawParameters();
         ret = Math.max(0, ret - 2 * drawParams.getMaxNodeRadius());
         Assert.isTrue(ret >= 0);
-        System.out.println("returned "+ret);
         return ret;
     }
 

@@ -8,8 +8,6 @@
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.calculationstrategies.ReferenceDepthSearchCalculator;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 
 public class ReferenceDepthSearchCalculatorTest extends EnumerativeCalcStrategyTest {

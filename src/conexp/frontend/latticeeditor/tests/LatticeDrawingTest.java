@@ -30,26 +30,31 @@ public class LatticeDrawingTest extends TestCase {
         assertEquals(true, drawing.hasLabelsForAttributes());
     }
 
-    public void testNeedUpdateCollision() {
+    public void testNeedUpdateCollision() throws Exception{
         LatticeDrawing drawing = new LatticeDrawing();
         assertFalse(drawing.hasNeedUpdateCollisions());
         final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1,0},
                                                                                  {0,1}});
         drawing.setLattice(lattice);
-        assertTrue(drawing.hasNeedUpdateCollisions());
-        drawing.updateCollisions();
-        assertFalse(drawing.hasNeedUpdateCollisions());
+        checkUpdateCycle(drawing);
+
         drawing.setLayoutEngine(new SimpleLayoutEngine());
         drawing.layoutLattice();
-        assertTrue(drawing.hasNeedUpdateCollisions());
-        drawing.updateCollisions();
-        assertFalse(drawing.hasNeedUpdateCollisions());
+        checkUpdateCycle(drawing);
+        //without this code it is not guaranted, that update collisions will lead to actual update
+        //but we accept it, as update collisions is called from every paint method
+
+
         drawing.getFigureForConcept(lattice.getZero()).moveBy(3, 3);
-        assertTrue(drawing.hasNeedUpdateCollisions());
-        drawing.updateCollisions();
-        assertFalse(drawing.hasNeedUpdateCollisions());
+        checkUpdateCycle(drawing);
     }
 
+    private void checkUpdateCycle(LatticeDrawing drawing) {
+        assertTrue(drawing.hasNeedUpdateCollisions());
+        drawing.updateCollisions();
+        while(drawing.isUpdatingCollisions()){}
+        assertFalse(drawing.hasNeedUpdateCollisions());
+    }
 
 
 }

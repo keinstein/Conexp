@@ -10,9 +10,7 @@ package conexp.core.tests;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class LatticeTest extends TestCase {

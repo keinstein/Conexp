@@ -11,10 +11,8 @@ package conexp.frontend.latticeeditor.figures;
 import canvas.Figure;
 import conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider;
 
-public interface LineDiagramFigure extends Figure {
+public interface LineDiagramFigure extends Figure, Collidable {
 
     public void setFigureDimensionCalcStrategyProvider(FigureDimensionCalcStrategyProvider figureDimensionProvider);
 
-    boolean hasCollision();
-    void setCollision(boolean value);
 }

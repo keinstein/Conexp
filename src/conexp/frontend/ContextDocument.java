@@ -12,6 +12,8 @@ import conexp.core.*;
 import conexp.core.attrexplorationimpl.AttributeExplorerImplementation;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import conexp.core.enumcallbacks.ConceptNumCallback;
+import conexp.core.layoutengines.SimpleLayoutEngine;
+import conexp.core.tests.SetBuilder;
 import conexp.frontend.attributeexploration.AttributeExplorationUserCallbackImplementation;
 import conexp.frontend.components.EntityMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
@@ -31,9 +33,7 @@ import util.FormatUtil;
 import util.StringUtil;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.util.ResourceBundle;
@@ -53,9 +53,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     private static final String IMPLICATION_VIEW_TYPE = "IMPLICATION_VIEW";
     private static final String ASSOCIATIONS_VIEW_TYPE = "ASSOCIATIONS_VIEW";
 
-/*
     private static final String NESTED_LINE_DIAGRAM_TYPE = "NESTED_LINE_DIAGRAM_VIEW";
-*/
     private static final String DIAGRAM_CREATOR_TYPE = "DIAGRAM_CREATOR_VIEW";
 
 
@@ -134,7 +132,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         new AttributeExploration(),
         new CalcImplicationsNCS(),
         new CalcAssociationRules(),
-//        new BuildNestedLineDiagram(),
+        new BuildNestedLineDiagram(),
         new ShowDiagramEditor()
     };
 
@@ -277,7 +275,6 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     //----------------------------------------------------------
 
-/*
     //Nested line diagram testing
     class BuildNestedLineDiagram extends AbstractAction {
         public BuildNestedLineDiagram() {
@@ -288,7 +285,6 @@ public class ContextDocument implements ActionChainBearer, Document {
             doBuildNestedLineDiagram();
         }
     }
-*/
 
 
     class ShowDiagramEditor extends AbstractAction {
@@ -329,11 +325,9 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
 
-/*
     private void doBuildNestedLineDiagram() {
         activateView(VIEW_NESTED);
     }
-*/
 
 
     public void doAttributeExploration() {
@@ -485,7 +479,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     public static final String VIEW_IMPLICATIONS = "Implications";//$NON-NLS-1$
     public static final String VIEW_ASSOCIATIONS = "Associations";//$NON-NLS-1$
     public static final String VIEW_LATTICE = "Lattice";
-//    public static final String VIEW_NESTED = "NestedLineDiagram";
+    public static final String VIEW_NESTED = "NestedLineDiagram";
     public static final String VIEW_DIAGRAM_CREATOR = "DiagramCreator";
 
 
@@ -496,7 +490,7 @@ public class ContextDocument implements ActionChainBearer, Document {
             viewManager.registerView(VIEW_IMPLICATIONS, IMPLICATION_VIEW_TYPE, resContextDocument.getString("ImplViewCaption"));
             viewManager.registerView(VIEW_ASSOCIATIONS, ASSOCIATIONS_VIEW_TYPE, resContextDocument.getString("AssociationRulesViewCaption"));//$NON-NLS-1$
 
-//            viewManager.registerView(VIEW_NESTED, NESTED_LINE_DIAGRAM_TYPE, "Test for nested line diagram");
+            viewManager.registerView(VIEW_NESTED, NESTED_LINE_DIAGRAM_TYPE, "Test for nested line diagram");
             viewManager.registerView(VIEW_DIAGRAM_CREATOR, DIAGRAM_CREATOR_TYPE, "Diagram creator");
 
 
@@ -522,11 +516,9 @@ public class ContextDocument implements ActionChainBearer, Document {
                         return makeAssociationsRuleView();
                     }
 
-/*
                     if (NESTED_LINE_DIAGRAM_TYPE.equals(type)) {
                         return makeNestedLineDiagramView();
                     }
-*/
 
                     if (DIAGRAM_CREATOR_TYPE.equals(type)) {
                         return makeDiagramCreatorView();
@@ -562,7 +554,6 @@ public class ContextDocument implements ActionChainBearer, Document {
         return main;
     }
 
-/*
     private View makeNestedLineDiagramView() {
         //this is simply mock data for know, only for purpose of development
         Context cxt = SetBuilder.makeContext(new int[][]{
@@ -596,7 +587,6 @@ public class ContextDocument implements ActionChainBearer, Document {
 
         return view;
     }
-*/
 
     protected void activateView(String viewName) {
         try {

@@ -10,13 +10,8 @@ package conexp.frontend.components.tests;
 import conexp.core.Context;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.tests.SetBuilder;
-import conexp.frontend.EntitiesMask;
 import conexp.frontend.SetProvidingEntitiesMask;
-import conexp.frontend.components.ContextAttributeMask;
-import conexp.frontend.components.BasicMultiSelectionEntityMaskImplementation;
 import conexp.frontend.components.ContextObjectMask;
-import junit.framework.TestCase;
-import util.testing.SimpleMockPropertyChangeListener;
 
 
 public class ContextObjectMaskTest extends ContextMaskBaseTest {

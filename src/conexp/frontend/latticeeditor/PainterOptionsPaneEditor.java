@@ -13,7 +13,7 @@ import conexp.util.gui.paramseditor.ParamInfo;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
-import java.awt.BorderLayout;
+import java.awt.*;
 import java.beans.PropertyChangeListener;
 
 public class PainterOptionsPaneEditor extends javax.swing.JPanel {

@@ -10,8 +10,6 @@ package conexp.core.tests;
 import conexp.core.ConceptFactory;
 import conexp.core.Edge;
 import conexp.core.LatticeElement;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 
 public class EdgeTest extends junit.framework.TestCase {

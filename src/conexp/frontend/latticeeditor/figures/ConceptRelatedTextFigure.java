@@ -12,15 +12,13 @@ import canvas.IHighlightStrategy;
 import canvas.figures.TextFigure;
 import conexp.core.Set;
 import conexp.frontend.latticeeditor.ConceptQuery;
-import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
-import conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider;
 
-public abstract class ConceptRelatedTextFigure extends TextFigure implements BorderCalculatingLineDiagramFigure {
-    conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider figureDimensionProvider;
-
+public abstract class ConceptRelatedTextFigure extends TextFigure{
+//    conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider figureDimensionProvider;
 
     protected ConceptQuery concept;
 
+/*
     public void setFigureDimensionCalcStrategyProvider(conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider figureDimensionProvider) {
         this.figureDimensionProvider = figureDimensionProvider;
     }
@@ -32,6 +30,7 @@ public abstract class ConceptRelatedTextFigure extends TextFigure implements Bor
     protected FigureDimensionCalcStrategy getDimensionCalcStrategy() {
         return getFigureDimensionProvider().getFigureDimensionCalcStrategy();
     }
+*/
 
 
     public ConceptRelatedTextFigure(ConceptQuery conceptQuery) {

@@ -8,9 +8,7 @@
 package conexp.core.tests;
 
 import conexp.core.*;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import java.beans.PropertyChangeEvent;
 

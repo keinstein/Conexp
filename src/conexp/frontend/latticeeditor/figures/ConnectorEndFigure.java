@@ -8,11 +8,10 @@
 
 package conexp.frontend.latticeeditor.figures;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-public class ConnectorEndFigure extends NodeFigure implements BorderCalculatingLineDiagramFigure {
+public class ConnectorEndFigure extends NodeFigure{
     public ConnectorEndFigure() {
         setRadius(3);
     }

@@ -8,8 +8,6 @@
 package conexp.core.tests;
 
 import conexp.core.Implication;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 
 public class ImplicationTest extends DependencyTest {

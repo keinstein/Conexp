@@ -18,10 +18,6 @@ import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Collections;
-
-import util.collection.CollectionFactory;
 
 
 public class NestedLineDiagramDrawing extends ConceptSetDrawing {
@@ -36,6 +32,10 @@ public class NestedLineDiagramDrawing extends ConceptSetDrawing {
     public void clear() {
         super.clear();
         elementFigureMap = null;
+    }
+
+    public void drawingParametersChanged() {
+
     }
 
     public void buildNestedDrawing(LatticeDrawing outerDiagram, ConceptSetDrawing innerDiagram, ConceptsCollection conceptSet) {

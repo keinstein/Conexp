@@ -13,11 +13,10 @@ import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.LineFigure;
 import canvas.util.ToolAction;
 import conexp.frontend.latticeeditor.figures.ConnectorEndFigure;
-import conexp.frontend.latticeeditor.figures.LineFigureWithFigureDimensionCalcStrategyProvider;
 import util.collection.CollectionFactory;
 
 import javax.swing.*;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 
@@ -180,7 +179,7 @@ public abstract class DiagramEditorPanel extends FigureDrawingCanvas {
     }
 
     protected LineFigure makeConnectorFigure(BorderCalculatingFigure startFigure, BorderCalculatingFigure endFigure) {
-        LineFigure connectorFigure = new LineFigureWithFigureDimensionCalcStrategyProvider(startFigure, endFigure);
+        LineFigure connectorFigure = new LineFigure(startFigure, endFigure);
         connectorFigure.setSelectable(true);
         connectorFigure.setStartFigure(startFigure);
         connectorFigure.setEndFigure(endFigure);

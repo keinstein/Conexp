@@ -19,7 +19,6 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.XMLOutputter;
-import util.Assert;
 import util.XMLGeneralTypesUtil;
 
 import java.io.IOException;

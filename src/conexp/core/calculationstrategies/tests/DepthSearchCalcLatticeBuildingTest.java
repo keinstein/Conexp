@@ -10,8 +10,6 @@ package conexp.core.calculationstrategies.tests;
 import conexp.core.ConceptsCollection;
 import conexp.core.Lattice;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 
 public class DepthSearchCalcLatticeBuildingTest extends LatticeBuildingDepthSearchCalculatorTest {

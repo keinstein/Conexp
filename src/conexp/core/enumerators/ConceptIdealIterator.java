@@ -8,7 +8,6 @@
 package conexp.core.enumerators;
 
 import conexp.core.LatticeElement;
-import util.Assert;
 
 public class ConceptIdealIterator extends DepthSearchIterator {
     public ConceptIdealIterator(LatticeElement start) {

@@ -15,7 +15,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 
 
-public abstract class TextFigure extends BaseTextFigure implements BorderCalculatingFigure {
+public abstract class TextFigure extends BaseTextFigure{
 
     protected TextFigure() {
         setColorTransformer(ColorTransformerWithFadeOut.getInstance());

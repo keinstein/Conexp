@@ -9,15 +9,44 @@ package conexp.frontend.latticeeditor.figures;
 
 import canvas.CanvasScheme;
 import canvas.figures.ColorTransformerWithFadeOut;
+import canvas.figures.LineFigure;
 import conexp.core.ItemSet;
 import conexp.core.Set;
 import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 
-public class EdgeFigure extends LineFigureWithFigureDimensionCalcStrategyProvider {
+import java.awt.*;
+
+public class EdgeFigure extends LineFigure implements Collidable  {
     public EdgeFigure(AbstractConceptCorrespondingFigure start, AbstractConceptCorrespondingFigure end) {
         super(start, end);
         setColorTransformer(ColorTransformerWithFadeOut.getInstance());
     }
+
+
+    boolean collision;
+
+    public boolean hasCollision() {
+        return collision;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
+    }
+
+    protected Color getLineColor(CanvasScheme opt) {
+        if(hasCollision()){
+            return opt.getColorScheme().getCollisionColor();
+        }
+        return super.getLineColor(opt);
+    }
+
+    protected float getLineThickness(CanvasScheme opt) {
+        if(hasCollision()){
+            return 2.0f;
+        }
+        return doGetLineThickness(opt);
+    }
+
 
     public Set getStartIntentQuery() {
         return ((AbstractConceptCorrespondingFigure) getStartFigure()).getIntentQuery();

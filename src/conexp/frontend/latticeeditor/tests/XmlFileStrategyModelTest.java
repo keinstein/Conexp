@@ -9,9 +9,7 @@ package conexp.frontend.latticeeditor.tests;
 
 import conexp.frontend.latticeeditor.XMLFileStrategyModel;
 import conexp.util.exceptions.ConfigFatalError;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class XmlFileStrategyModelTest extends TestCase {

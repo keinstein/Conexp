@@ -11,8 +11,6 @@ import conexp.core.ConceptsCollection;
 import conexp.core.Lattice;
 import conexp.core.calculationstrategies.NextClosedSetCalculator;
 import conexp.core.enumcallbacks.NextClosedSetLatticeBuilderCallback;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 
 public class NextClosedSetCalcBuildLatTest extends LatticeBuildingDepthSearchCalculatorTest {

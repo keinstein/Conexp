@@ -12,9 +12,7 @@ import conexp.core.Lattice;
 import conexp.core.enumerators.EdgeMinSupportSelector;
 import conexp.core.enumerators.SimpleEdgeIterator;
 import conexp.core.tests.SetBuilder;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class EdgeMinSupportSelectorTest extends TestCase {

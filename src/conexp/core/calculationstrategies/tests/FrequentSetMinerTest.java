@@ -9,8 +9,6 @@ package conexp.core.calculationstrategies.tests;
 
 import conexp.core.searchconstraints.MinSupportConstrainer;
 import conexp.core.searchconstraints.NoSearchConstraint;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 
 public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeBuildingTest {

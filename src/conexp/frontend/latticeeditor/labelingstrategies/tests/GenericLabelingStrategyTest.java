@@ -18,7 +18,7 @@ import conexp.frontend.latticeeditor.labelingstrategies.GenericLabelingStrategy;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import junit.framework.TestCase;
 
-import java.awt.Dimension;
+import java.awt.*;
 
 
 public abstract class GenericLabelingStrategyTest extends TestCase {
@@ -92,12 +92,14 @@ public abstract class GenericLabelingStrategyTest extends TestCase {
                 new ConceptFigure(makeAcceptable());
         LatticeDrawing drawing = new LatticeDrawing();
         assertTrue("Array should be empty", drawing.isEmpty());
+        drawing.addFigure(f);
         canvas.BaseFigureVisitor visitor = labelStrategy.makeInitStrategyVisitor(drawing);
         f.visit(visitor);
         assertEquals("Strategy should add figires", false, drawing.isEmpty());
         assertTrue("Strategy should have connected figires", labelStrategy.hasConnectedObjects());
         visitor = labelStrategy.makeShutDownVisitor(drawing);
         f.visit(visitor);
+        drawing.removeFigure(f);
         assertTrue("Strategy should clean up after herself", drawing.isEmpty());
         assertEquals("Strategy should'nt have connected objects after clean up", false, labelStrategy.hasConnectedObjects());
     }

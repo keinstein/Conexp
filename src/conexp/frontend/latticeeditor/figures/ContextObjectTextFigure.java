@@ -10,7 +10,7 @@ package conexp.frontend.latticeeditor.figures;
 import canvas.CanvasScheme;
 import conexp.frontend.latticeeditor.ConceptQuery;
 
-import java.awt.Color;
+import java.awt.*;
 
 public class ContextObjectTextFigure extends ConceptRelatedTextFigure {
     protected conexp.core.ContextEntity obj;

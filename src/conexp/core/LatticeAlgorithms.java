@@ -1,7 +1,5 @@
 package conexp.core;
 
-import util.Assert;
-
 import java.util.Iterator;
 
 /*

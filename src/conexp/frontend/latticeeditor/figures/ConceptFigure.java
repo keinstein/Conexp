@@ -8,6 +8,7 @@
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.IHighlightStrategy;
+import canvas.Selectable;
 import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.FigureUtils;
 import conexp.core.ExtendedContextEditingInterface;
@@ -17,14 +18,14 @@ import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import util.StringUtil;
 
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 
-public class ConceptFigure extends ConceptCorrespondingFigure implements BorderCalculatingFigure {
+public class ConceptFigure extends ConceptCorrespondingFigure implements BorderCalculatingFigure, Selectable {
 
     ConceptQuery query;
 
@@ -94,5 +95,15 @@ public class ConceptFigure extends ConceptCorrespondingFigure implements BorderC
 
     private String makeObjDesc(int cnt, int totalCnt) {
         return "<i>" + cnt + " objects (" + StringUtil.formatPercents(totalCnt != 0 ? (double) cnt / totalCnt : 0.) + ")</i>";
+    }
+
+    boolean selected;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
     }
 }

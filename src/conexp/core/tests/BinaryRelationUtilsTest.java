@@ -10,9 +10,7 @@ package conexp.core.tests;
 import conexp.core.BinaryRelation;
 import conexp.core.BinaryRelationUtils;
 import conexp.core.ModifiableBinaryRelation;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class BinaryRelationUtilsTest extends TestCase {

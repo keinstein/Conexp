@@ -27,6 +27,11 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
         factory = makeDrawStrategiesFactory(drawParams);
     }
 
+    //for testing
+    public LatticePainterOptions(){
+        this(new DefaultDrawParams());
+    }
+
 
 
     protected ModelsFactory makeDrawStrategiesFactory(DrawParameters drawParams) {
@@ -70,7 +75,7 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
         return smallGridSize;
     }
 
-    public void setFigureDrawingStrategy(String key) {
-        getLatticePainterDrawStrategyContext().getNodeRadiusStrategyItem().setValueByKey(key);
+    public boolean setFigureDrawingStrategy(String key) {
+        return getLatticePainterDrawStrategyContext().getNodeRadiusStrategyItem().setValueByKey(key);
     }
 }

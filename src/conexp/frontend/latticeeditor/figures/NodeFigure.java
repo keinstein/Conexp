@@ -8,16 +8,16 @@
 
 package conexp.frontend.latticeeditor.figures;
 
+import canvas.Selectable;
 import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.FigureUtils;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-public class NodeFigure extends AbstractLineDiagramFigure implements BorderCalculatingFigure {
+public class NodeFigure extends AbstractLineDiagramFigure implements BorderCalculatingFigure, Selectable {
     private int radius = 10;
     protected int id = -1;
 
@@ -75,5 +75,14 @@ public class NodeFigure extends AbstractLineDiagramFigure implements BorderCalcu
         return super.toString() + "[id=" + id + "]";
     }
 
+    boolean selected;
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
 
 }

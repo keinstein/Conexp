@@ -8,9 +8,7 @@
 package conexp.core.tests;
 
 import conexp.core.ContextListenerSupport;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class ContextListenerSupportTest extends TestCase {

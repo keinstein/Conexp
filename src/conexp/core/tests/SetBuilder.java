@@ -194,7 +194,7 @@ public class SetBuilder {
         return makeLatticeFromContext(cxt, new DepthSearchCalculator());
     }
 
-    private static Lattice makeLatticeFromContext(Context cxt, LatticeNeedingCalcStrategy strat) {
+    public static Lattice makeLatticeFromContext(Context cxt, LatticeNeedingCalcStrategy strat) {
         cxt.setArrowCalculator(FCAEngineRegistry.makeArrowCalculator());
         Lattice lattice = new Lattice();
         lattice.setContext(cxt);
@@ -216,4 +216,5 @@ public class SetBuilder {
                         makeSet(extent),
                         makeSet(intent));
     }
+
 }

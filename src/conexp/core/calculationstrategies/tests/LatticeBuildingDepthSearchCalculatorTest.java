@@ -26,6 +26,24 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
                 {1, 0, 1, 1, 1, 0, 0, 0, 0},
                 {1, 0, 1, 1, 0, 1, 0, 0, 0},
             };
+    public static final int[][] TWO_NODE_ONE_ATTR_CONTEXT = new int[][]{
+                        {0}
+                    };
+    public static final int[][] ONE_NODE_ONE_ATTR_CONTEXT = new int[][]{
+                        {1}
+                    };
+    public static final int[][] LINEAR_3_NODE_4_ATTR = new int[][]{
+                {0, 0, 0, 1},
+                {0, 0, 1, 1},
+            };
+    public static final int[][] NOMINAL_2_NODE_3_ATTR = new int[][]{
+                {0, 0, 1},
+                {0, 1, 0}
+            };
+    public static final int[][] NOMINAL_2_NODE_4_ATTR = new int[][]{
+                        {1, 0, 0, 0},
+                        {0, 1, 0, 0},
+                    };
 
     protected Lattice getLattice() {
         return (Lattice) conceptSet;
@@ -91,9 +109,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
 
     public void testTwoNodeCase() {
         doTestCalcStrategyForExpectedIntentsAndExtents(
-                new int[][]{
-                    {0}
-                },
+                TWO_NODE_ONE_ATTR_CONTEXT,
 
                 new int[][]{
                     {0},
@@ -108,9 +124,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
 
     public void testOneNodeCase() {
         doTestCalcStrategyForExpectedIntentsAndExtents(
-                new int[][]{
-                    {1}
-                },
+                ONE_NODE_ONE_ATTR_CONTEXT,
 
                 new int[][]{
                     {1}
@@ -122,11 +136,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
     }
 
     public void testLin3() {
-        int[][] linear = new int[][]{
-            {0, 0, 0, 1},
-            {0, 0, 1, 1},
-        };
-        doTestCalcStrategyForExpectedIntentsAndExtents(linear, new int[][]{
+        doTestCalcStrategyForExpectedIntentsAndExtents(LINEAR_3_NODE_4_ATTR, new int[][]{
             {0, 0, 0, 1},
             {0, 0, 1, 1},
             {1, 1, 1, 1},
@@ -140,11 +150,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
     }
 
     public void testNominal2() {
-        int[][] relation = new int[][]{
-            {0, 0, 1},
-            {0, 1, 0}
-        };
-        doTestCalcStrategyForExpectedIntentsAndExtents(relation,
+        doTestCalcStrategyForExpectedIntentsAndExtents(NOMINAL_2_NODE_3_ATTR,
                 new int[][]{
                     {0, 0, 0},
                     {0, 0, 1},
@@ -265,10 +271,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
 
     public void testNominalTwoObjectCase() {
         doTestCalcStrategyForExpectedIntentsAndExtents(
-                new int[][]{
-                    {1, 0, 0, 0},
-                    {0, 1, 0, 0},
-                },
+                NOMINAL_2_NODE_4_ATTR,
                 new int[][]{
                     {0, 0, 0, 0},
                     {1, 0, 0, 0},

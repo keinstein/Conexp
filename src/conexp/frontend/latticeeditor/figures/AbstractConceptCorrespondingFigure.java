@@ -9,6 +9,7 @@
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.*;
+import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.ICenterPointLocatorProvidingFigure;
 import conexp.core.LatticeElement;
 import conexp.core.Set;
@@ -25,7 +26,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDiagramFigure implements BorderCalculatingLineDiagramFigure, FigureWithDependentFigures, ICenterPointLocatorProvidingFigure {
+public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDiagramFigure implements BorderCalculatingFigure, FigureWithDependentFigures, ICenterPointLocatorProvidingFigure {
 
     public AbstractConceptCorrespondingFigure() {
         super();

@@ -20,6 +20,57 @@ public abstract class CalcStrategyTest extends TestCase {
 
     protected ConceptCalcStrategy calcStrategy;
     protected ConceptsCollection conceptSet;
+    public static final int[][] BOOLEAN_3_ATTR = new int[][]{
+                {1, 1, 0},
+                {0, 1, 1},
+                {1, 0, 1}
+            };
+    public static final int[][] LINEAR_4_NODE_4_ATTR = new int[][]{
+                {0, 0, 0, 1},
+                {0, 0, 1, 1},
+                {0, 1, 1, 1},
+                {1, 1, 1, 1}
+            };
+    public static final int[][] NOMINAL_4_NODE_4_ATTR = new int[][]{
+                        {1, 0, 0, 0},
+                        {0, 1, 0, 0},
+                        {0, 0, 1, 0},
+                        {0, 0, 0, 1}
+                    };
+    public static final int[][] LINEAR_2_NODE_2_ATTR = new int[][]{
+                {1, 0},
+                {1, 1}
+            };
+    public static final int[][] DEPTH_SEARCH_ERROR_5_ATTR = new int[][]{
+                {1, 0, 1, 0, 0},
+                {0, 1, 1, 1, 0},
+                {1, 0, 1, 1, 0},
+                {0, 1, 0, 0, 1},
+                {1, 0, 1, 0, 0},
+                {0, 0, 1, 0, 0},
+                {1, 0, 0, 1, 0},
+                {0, 1, 0, 1, 1},
+                {0, 0, 1, 0, 1},
+                {0, 1, 1, 0, 0},
+                {0, 0, 0, 0, 1},
+                {1, 1, 1, 1, 1},
+                {1, 0, 0, 0, 1},
+                {0, 0, 1, 1, 1},
+                {1, 0, 1, 0, 1},
+                {0, 1, 0, 0, 0},
+                {0, 0, 0, 0, 1},
+                {1, 0, 1, 0, 1},
+                {1, 0, 0, 0, 0},
+                {1, 0, 1, 1, 0}
+            };
+    public static final int[][] NEXT_CLOSURE_ERROR_8_ATTR = new int[][]{
+                {1, 0, 0, 0, 0, 0, 1, 0},
+                {0, 1, 0, 1, 0, 1, 1, 0},
+                {0, 0, 0, 1, 0, 0, 0, 1},
+                {0, 1, 1, 0, 0, 0, 0, 1},
+                {0, 0, 0, 0, 1, 0, 0, 1},
+                {0, 0, 1, 1, 0, 1, 0, 0}
+            };
 
     protected void setUp() {
         calcStrategy = makeCalcStrategy();
@@ -71,11 +122,7 @@ public abstract class CalcStrategyTest extends TestCase {
      * Creation date: (24.02.01 1:27:46)
      */
     public void testExponential() {
-        doTestCalcStrategyForExpectedIntentsAndExtents(new int[][]{
-            {1, 1, 0},
-            {0, 1, 1},
-            {1, 0, 1}
-        },
+        doTestCalcStrategyForExpectedIntentsAndExtents(BOOLEAN_3_ATTR,
                 new int[][]{
                     {0, 0, 0},
                     {0, 0, 1},
@@ -105,13 +152,7 @@ public abstract class CalcStrategyTest extends TestCase {
      * Creation date: (24.02.01 1:18:42)
      */
     public void testLinear() {
-        int[][] linear = new int[][]{
-            {0, 0, 0, 1},
-            {0, 0, 1, 1},
-            {0, 1, 1, 1},
-            {1, 1, 1, 1}
-        };
-        doTestCalcStrategyForExpectedIntentsAndExtents(linear, linear, linear, 3);
+        doTestCalcStrategyForExpectedIntentsAndExtents(LINEAR_4_NODE_4_ATTR, LINEAR_4_NODE_4_ATTR, LINEAR_4_NODE_4_ATTR, 3);
     }
 
     /**
@@ -120,12 +161,7 @@ public abstract class CalcStrategyTest extends TestCase {
      */
     public void testNominal() {
         doTestCalcStrategyForExpectedIntentsAndExtents(
-                new int[][]{
-                    {1, 0, 0, 0},
-                    {0, 1, 0, 0},
-                    {0, 0, 1, 0},
-                    {0, 0, 0, 1}
-                },
+                NOMINAL_4_NODE_4_ATTR,
                 new int[][]{
                     {0, 0, 0, 0},
                     {1, 0, 0, 0},
@@ -159,11 +195,7 @@ public abstract class CalcStrategyTest extends TestCase {
      * Creation date: (24.02.01 1:18:42)
      */
     public void testLin2() {
-        int[][] linear = new int[][]{
-            {1, 0},
-            {1, 1}
-        };
-        doTestCalcStrategyForExpectedIntentsAndExtents(linear, linear, new int[][]{{1, 1}, {0, 1}}, 1);
+        doTestCalcStrategyForExpectedIntentsAndExtents(LINEAR_2_NODE_2_ATTR, LINEAR_2_NODE_2_ATTR, new int[][]{{1, 1}, {0, 1}}, 1);
     }
 
     protected void buildIntentsSetAndFillExpectationSet(BinaryRelation rel, com.mockobjects.ExpectationSet expSet, com.mockobjects.ExpectationSet expSetExtents, int expectedEdgeCount) {
@@ -231,28 +263,6 @@ public abstract class CalcStrategyTest extends TestCase {
 
 
     public void testBadDepthSearchCalc() {
-        int[][] rel = {
-            {1, 0, 1, 0, 0},
-            {0, 1, 1, 1, 0},
-            {1, 0, 1, 1, 0},
-            {0, 1, 0, 0, 1},
-            {1, 0, 1, 0, 0},
-            {0, 0, 1, 0, 0},
-            {1, 0, 0, 1, 0},
-            {0, 1, 0, 1, 1},
-            {0, 0, 1, 0, 1},
-            {0, 1, 1, 0, 0},
-            {0, 0, 0, 0, 1},
-            {1, 1, 1, 1, 1},
-            {1, 0, 0, 0, 1},
-            {0, 0, 1, 1, 1},
-            {1, 0, 1, 0, 1},
-            {0, 1, 0, 0, 0},
-            {0, 0, 0, 0, 1},
-            {1, 0, 1, 0, 1},
-            {1, 0, 0, 0, 0},
-            {1, 0, 1, 1, 0}
-        };
         int expIntents[][] = {
             {0, 0, 0, 0, 0},
             {0, 0, 0, 0, 1},
@@ -300,7 +310,7 @@ public abstract class CalcStrategyTest extends TestCase {
             {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0}
 
         };
-        doTestCalcStrategyForExpectedIntentsAndExtents(rel, expIntents, expextedExtents, 43);
+        doTestCalcStrategyForExpectedIntentsAndExtents(DEPTH_SEARCH_ERROR_5_ATTR, expIntents, expextedExtents, 43);
 
     }
 
@@ -355,14 +365,7 @@ public abstract class CalcStrategyTest extends TestCase {
      * Creation date: (23.02.01 23:19:10)
      */
     public void testNextClosedSetHardLattice() {
-        doTestCalcStrategyForExpectedIntentsAndExtents(new int[][]{
-            {1, 0, 0, 0, 0, 0, 1, 0},
-            {0, 1, 0, 1, 0, 1, 1, 0},
-            {0, 0, 0, 1, 0, 0, 0, 1},
-            {0, 1, 1, 0, 0, 0, 0, 1},
-            {0, 0, 0, 0, 1, 0, 0, 1},
-            {0, 0, 1, 1, 0, 1, 0, 0}
-        },
+        doTestCalcStrategyForExpectedIntentsAndExtents(NEXT_CLOSURE_ERROR_8_ATTR,
                 new int[][]{
                     {0, 0, 0, 0, 0, 0, 0, 0},
                     {1, 1, 1, 1, 1, 1, 1, 1},

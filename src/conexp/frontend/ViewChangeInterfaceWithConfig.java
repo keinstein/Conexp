@@ -9,7 +9,7 @@
 package conexp.frontend;
 
 import javax.swing.*;
-import java.awt.Component;
+import java.awt.*;
 
 public interface ViewChangeInterfaceWithConfig extends OptionPaneProvider, ConfigProvider, ActionChainBearer {
     Component getViewComponent();

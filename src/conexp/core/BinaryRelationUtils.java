@@ -206,14 +206,14 @@ public class BinaryRelationUtils {
         return -1;
     }
 
-    public static ModifiableSet closureOfObject(BinaryRelation relation, Set objectToClose) {
+    public static ModifiableSet closureOfAttributeSet(BinaryRelation relation, Set attributeSetToClose) {
         int colCount = relation.getColCount();
         ModifiableSet tempClosure = ContextFactoryRegistry.createSet(colCount);
         tempClosure.fill();
         int rowCount = relation.getRowCount();
         for (int k = 0; k < rowCount; k++) {
             Set set = relation.getSet(k);
-            if (set.isSupersetOf(objectToClose)) {
+            if (set.isSupersetOf(attributeSetToClose)) {
                 tempClosure.and(set);
             }
         }

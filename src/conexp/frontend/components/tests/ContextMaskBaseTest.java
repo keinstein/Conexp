@@ -1,11 +1,11 @@
 package conexp.frontend.components.tests;
 
-import junit.framework.TestCase;
-import conexp.frontend.EntitiesMask;
-import conexp.frontend.SetProvidingEntitiesMask;
-import conexp.core.tests.SetBuilder;
 import conexp.core.Context;
 import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.tests.SetBuilder;
+import conexp.frontend.EntitiesMask;
+import conexp.frontend.SetProvidingEntitiesMask;
+import junit.framework.TestCase;
 import util.testing.SimpleMockPropertyChangeListener;
 
 /**

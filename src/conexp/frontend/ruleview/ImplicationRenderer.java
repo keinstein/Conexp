@@ -12,7 +12,7 @@ import conexp.core.Dependency;
 
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
-import java.awt.Color;
+import java.awt.*;
 
 
 public class ImplicationRenderer extends GenericRuleRenderer {

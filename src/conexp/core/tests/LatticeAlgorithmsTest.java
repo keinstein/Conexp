@@ -1,7 +1,10 @@
 package conexp.core.tests;
 
+import conexp.core.Lattice;
+import conexp.core.LatticeAlgorithms;
+import conexp.core.LatticeElement;
+import conexp.core.Set;
 import junit.framework.TestCase;
-import conexp.core.*;
 
 /*
  * This program is a part of the Darmstadt JSM Implementation.

@@ -7,19 +7,25 @@
 
 package conexp.frontend.latticeeditor.tests;
 
-import canvas.IHighlightStrategy;
 import canvas.IFigurePredicate;
+import canvas.IHighlightStrategy;
 import canvas.figures.TrueFigurePredicate;
 import conexp.core.tests.SetBuilder;
+import conexp.core.Lattice;
+import conexp.core.LatticeElement;
+import conexp.core.layout.layeredlayout.tests.TestDataHolder;
+import conexp.core.layout.layeredlayout.tests.MapBasedConceptCoordinateMapper;
+import conexp.core.layout.ConceptCoordinateMapper;
 import conexp.frontend.latticeeditor.*;
 import conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import conexp.frontend.components.LatticeComponent;
 
-import java.awt.Dimension;
+import java.awt.*;
+
+import util.testing.TestUtil;
 
 public class LatticeCanvasTest extends junit.framework.TestCase {
 
@@ -49,6 +55,20 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
         double res = latCanvas.getUpMoveConstraintForConcept(new ConceptFigure(
                 ConceptNodeQueryFactory.makeEmpty()), TrueFigurePredicate.getInstance());
         assertEquals(10.0, res, 0.001);
+    }
+
+    public void testGetUpAndDownMoveStrategiesForConcept() {
+        LatticeCanvas canvas = buildPreparedCanvas(TestDataHolder.FULL_RELATION_INTERVAL_4, TestDataHolder.LAYOUT_INTERVAL_4_ASSYMETRIC);
+        ConceptSetDrawing drawing = canvas.getConceptSetDrawing();
+        Lattice lattice = drawing.getLattice();
+
+        LatticeElement concept = lattice.findElementWithIntent(SetBuilder.makeSet(new int[]{1, 1, 0, 0}));
+        AbstractConceptCorrespondingFigure figure =drawing.getFigureForConcept(concept);
+
+        double upConstraint = canvas.getUpMoveConstraintForConcept(figure, TrueFigurePredicate.getInstance());
+        double downConstraint = canvas.getDownMoveConstraintForConcept((ConceptFigure)figure);
+        assertEquals(40.0, upConstraint, TestDataHolder.PRECISION);
+        assertEquals(60.0, downConstraint, TestDataHolder.PRECISION);
 
     }
 
@@ -91,7 +111,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
     }
 
     private LatticeCanvas makeCanvas() {
-        return new LatticeCanvas(new LatticePainterOptions(new DefaultDrawParams()));
+        return new LatticeCanvas(new LatticePainterOptions());
     }
 
     private LatticeDrawing makePreparedLatticeDrawing(final int[][] relation) {
@@ -99,6 +119,33 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
         drawing.setLattice(SetBuilder.makeLatticeWithContext(relation));
         drawing.layoutLattice();
         return drawing;
+    }
+
+    public static LatticeCanvas buildPreparedCanvas(final int[][] saturatedRelation, final double[][] layout) {
+        LatticeComponent component = new LatticeComponent(SetBuilder.makeContext(saturatedRelation));
+        component.calculateLattice();
+        Lattice lattice = component.getLattice();
+        ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(
+                lattice, saturatedRelation,
+                layout
+        );
+        LatticeDrawing drawing = component.getDrawing();
+        drawing.setCoordinatesFromMapper(mapper);
+
+        try {
+            drawing.getLatticeDrawingOptions().getEditableDrawingOptions().setNodeMaxRadius(10);
+            //todo: make drawing options scriptable in normal way
+        } catch (java.beans.PropertyVetoException e) {
+            TestUtil.reportUnexpectedException(e);
+        }
+
+        LatticePainterOptions latticeCanvasScheme = new LatticePainterOptions();
+        boolean strategySet = latticeCanvasScheme.setFigureDrawingStrategy("MaxNodeRadiusCalcStrategy");
+        assertTrue(strategySet);
+
+        LatticeCanvas canvas = new LatticeCanvas(latticeCanvasScheme);
+        canvas.setConceptSetDrawing(drawing);
+        return canvas;
     }
 
 

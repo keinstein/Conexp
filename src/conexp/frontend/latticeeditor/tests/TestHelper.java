@@ -1,13 +1,13 @@
 package conexp.frontend.latticeeditor.tests;
 
-import conexp.frontend.components.LatticeComponent;
-import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.core.Context;
 import conexp.core.Lattice;
-import conexp.core.tests.SetBuilder;
 import conexp.core.layoutengines.SimpleLayoutEngine;
-import util.gui.GraphicObjectsFactory;
+import conexp.core.tests.SetBuilder;
+import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.latticeeditor.LatticeDrawing;
 import junit.framework.Assert;
+import util.gui.GraphicObjectsFactory;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

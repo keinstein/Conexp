@@ -10,9 +10,7 @@ package conexp.core.calculationstrategies.tests;
 import conexp.core.ArrowCalculator;
 import conexp.core.Context;
 import conexp.core.calculationstrategies.DepthSearchArrowCalculator;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class DepthSearchArrowCalculatorTest extends TestCase {
     public void testDoCalcDownArrow() {

@@ -21,12 +21,11 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.figures.EdgeFigure;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
+import util.collection.CollectionFactory;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Collections;
-
-import util.collection.CollectionFactory;
 
 public class LatticeDrawing extends ConceptSetDrawing {
 
@@ -54,47 +53,50 @@ public class LatticeDrawing extends ConceptSetDrawing {
 
     boolean needUpdateCollisions;
 
+
+    public void drawingParametersChanged() {
+        needUpdateCollisions();
+    }
+
+    private void needUpdateCollisions() {
+        this.needUpdateCollisions = true;
+    }
+
     public boolean hasNeedUpdateCollisions() {
         return needUpdateCollisions;
     }
 
-    public void setNeedUpdateCollisions(boolean needUpdateCollisions) {
-        this.needUpdateCollisions = needUpdateCollisions;
+    public boolean isUpdatingCollisions(){
+        return collisionThread!=null;
     }
+
+    private void markCollisionDetectionStarted() {
+        needUpdateCollisions = false;
+    }
+
 
     CollisionDetector collisionDetector = new CollisionDetector();
 
     protected void onAfterFigureMove(Figure f) {
         super.onAfterFigureMove(f);
-        markCollisionsForUpdate();
-    }
-
-    private void markCollisionsForUpdate() {
-        setNeedUpdateCollisions(true);
+        needUpdateCollisions();
     }
 
     Thread collisionThread;
 
     public void onCollisionThreadEnd(){
         collisionThread = null;
-
+        fireNeedUpdate();
     }
 
     public void updateCollisions(){
-        if(needUpdateCollisions){
+        if(hasNeedUpdateCollisions()){
             if(collisionThread==null){
-                collisionThread =  new Thread(){
-                    public void run() {
-                        collisionDetector.detectCollisions(LatticeDrawing.this);
-                        onCollisionThreadEnd();
-                    }
-                };
+                collisionThread =  new CollisionUpdateThread();
                 collisionThread.start();
             }
-            needUpdateCollisions = false;
         }
     }
-
 
     public void shutdown() {
         getLayoutEngine().shutdown();
@@ -160,7 +162,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
         if (hasLattice()) {
             makeLatticeDiagramFigures();
             initStrategies();
-            setNeedUpdateCollisions(true);
+            needUpdateCollisions();
         }
     }
 
@@ -258,6 +260,13 @@ public class LatticeDrawing extends ConceptSetDrawing {
         return Collections.unmodifiableList(edges);
     }
 
+    private class CollisionUpdateThread extends Thread {
+        public void run() {
+            markCollisionDetectionStarted();
+            collisionDetector.detectCollisions(LatticeDrawing.this);
+            onCollisionThreadEnd();
+        }
+    }
 
 
 }

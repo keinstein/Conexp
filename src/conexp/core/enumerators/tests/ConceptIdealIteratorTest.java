@@ -14,9 +14,7 @@ import conexp.core.LatticeElement;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import conexp.core.enumerators.ConceptIdealIterator;
 import conexp.core.tests.SetBuilder;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class ConceptIdealIteratorTest extends TestCase {

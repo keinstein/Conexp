@@ -1,20 +1,19 @@
 package conexp.frontend.latticeeditor;
 
-import conexp.frontend.latticeeditor.figures.EdgeFigure;
-import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
-import conexp.frontend.latticeeditor.figures.LineDiagramFigure;
-import conexp.core.ConceptsCollection;
 import conexp.core.Concept;
-
-import java.util.List;
-import java.util.Iterator;
-import java.util.Collections;
-import java.util.Comparator;
-import java.awt.*;
-import java.awt.geom.Line2D;
-
+import conexp.core.ConceptsCollection;
+import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
+import conexp.frontend.latticeeditor.figures.Collidable;
+import conexp.frontend.latticeeditor.figures.EdgeFigure;
 import util.collection.CollectionFactory;
 import util.comparators.ComparatorUtil;
+
+import java.awt.*;
+import java.awt.geom.Line2D;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 
 /*
  * This program is a part of the Darmstadt JSM Implementation.
@@ -33,7 +32,6 @@ import util.comparators.ComparatorUtil;
 public class CollisionDetector {
 
     public void detectCollisions(LatticeDrawing conceptSetDrawing) {
-        System.out.println("start CollisionDetector.detectCollisions");
         List conceptFigures = getNodeListOrderedByYCoord(conceptSetDrawing);
         clearCollisions(conceptFigures);
         LatticeDrawingSchema drawingSchema = conceptSetDrawing.getLatticeDrawingSchema();
@@ -42,7 +40,6 @@ public class CollisionDetector {
         List edgeFigures = conceptSetDrawing.getEdges();
         clearCollisions(edgeFigures);
         detectNodeEdgeCollisions(edgeFigures, conceptFigures);
-        System.out.println("end CollisionDetector.detectCollisions");
     }
 
     private void detectNodeEdgeCollisions(List edgeFigures, List conceptFigures) {
@@ -56,6 +53,7 @@ public class CollisionDetector {
             for(int nodeIndex = 0; nodeIndex<conceptFigures.size(); nodeIndex++){
                 AbstractConceptCorrespondingFigure nodeFigure = (AbstractConceptCorrespondingFigure)conceptFigures.get(nodeIndex);
                 nodeFigure.boundingBox(nodeRect);
+                nodeRect.grow(2, 2);
                 if(edgeRect.getMaxY()<nodeRect.getMinY()){
                     break;
                 }
@@ -93,7 +91,7 @@ public class CollisionDetector {
 
     private static void clearCollisions(List conceptFigures) {
         for (Iterator iterator = conceptFigures.iterator(); iterator.hasNext();) {
-            LineDiagramFigure figure = (LineDiagramFigure) iterator.next();
+            Collidable figure = (Collidable) iterator.next();
             figure.setCollision(false);
         }
     }

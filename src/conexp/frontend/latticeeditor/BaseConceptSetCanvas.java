@@ -44,6 +44,8 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
     public void refresh() {
         repaint();
         revalidate();
+        getConceptSetDrawing().drawingParametersChanged();
+
     }
 
 

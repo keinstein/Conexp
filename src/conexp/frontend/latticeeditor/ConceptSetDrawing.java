@@ -176,7 +176,7 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
         this.latticeDrawingOptions = latticeDrawingOptions;
     }
 
-    protected synchronized LatticeDrawingOptions getLatticeDrawingOptions() {
+    public synchronized LatticeDrawingOptions getLatticeDrawingOptions() {
         if (null == latticeDrawingOptions) {
             latticeDrawingOptions = new LatticeDrawingOptions();
         }
@@ -186,6 +186,8 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
     public LatticeDrawingSchema getLatticeDrawingSchema() {
         return getLatticeDrawingOptions();
     }
+
+    public abstract void drawingParametersChanged();
 
     class FigureDimensionCalcStretegyProviderImplementation implements FigureDimensionCalcStrategyProvider {
         public FigureDimensionCalcStrategy getFigureDimensionCalcStrategy() {
