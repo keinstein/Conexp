@@ -139,7 +139,9 @@ public class ConExpXMLWriter implements DocumentWriter {
         for (int i = 0; i < cxt.getObjectCount(); i++) {
             ContextEntity currObject = cxt.getObject(i);
             IFigureWithCoords objectLabel = drawing.getLabelForObject(currObject);
-            Assert.isTrue(null != objectLabel, "If drawing has labels, every object should has label");
+            if(null==objectLabel){
+                continue;
+            }
             objectFigures.addContent(
                     makeLabelFigureElement(
                             ConExpXMLElements.OBJECT_LABEL_FIGURE_TYPE,

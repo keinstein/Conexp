@@ -101,14 +101,15 @@ public class AttributeExplorationUserCallbackImplementation implements Attribute
                 options[0]);
 
         switch (ret) {
-            case JOptionPane.CANCEL_OPTION:
+            case JOptionPane.CANCEL_OPTION:  //FALLTHROUGH !!!
+            case JOptionPane.CLOSED_OPTION: //fix for case, when option dialog is closed with button
                 return STOP;
             case JOptionPane.YES_OPTION:
                 return ACCEPT_IMPLICATION;
             case JOptionPane.NO_OPTION:
                 return REJECT_IMPLICATION;
             default:
-                Assert.isTrue(false);
+                Assert.shouldNotGetHere();
                 return STOP;
         }
     }

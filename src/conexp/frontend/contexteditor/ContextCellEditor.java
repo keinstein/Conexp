@@ -49,7 +49,6 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
         }
 
         public boolean stopCellEditing() {
-///*DBG*/ System.out.println("stopCellEditing");
             return true;
         }
 
@@ -58,13 +57,11 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
 
         // Implementing ActionListener interface
         public void actionPerformed(ActionEvent e) {
-///*DBG*/ System.out.println("actionPerformed");
             fireEditingStopped();
         }
 
         // Implementing ItemListener interface
         public void itemStateChanged(ItemEvent e) {
-            ///*DBG*/ System.out.println("itemStateChanged");
             fireEditingStopped();
         }
     }
@@ -213,7 +210,6 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
             fireEditingStopped();
             return true;
         }
-
         return false;
     }
 
@@ -223,7 +219,6 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
         }
 
         public void setValue(Object v) {
-            //*DBG*/ System.out.println("cross setValue "+v );
             if (v != null) {
                 if (v instanceof Boolean) {
                     super.setValue(((Boolean) v).booleanValue() ? Boolean.FALSE : Boolean.TRUE);
@@ -235,8 +230,12 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
             }
         }
 
+        // Implementing ActionListener interface
+        public void actionPerformed(ActionEvent e) {
+            super.actionPerformed(e);
+        }
+
         public boolean startCellEditing(EventObject anEvent) {
-            //*DBG*/ System.out.println("startCellEditing" );
             if (anEvent instanceof AWTEvent) {
                 fireEditingStopped();
                 return true;
@@ -254,7 +253,6 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
         }
 
         public void setValue(Object v) {
-            //*DBG*/ System.out.println("text setValue "+v );
             if (v != null) {
                 if (v instanceof String) {
                     textEditorComponent.setText((String) v);
@@ -264,8 +262,11 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
 
         }
 
+        public boolean startCellEditing(EventObject anEvent) {
+            return super.startCellEditing(anEvent);
+        }
+
         public boolean stopCellEditing() {
-            //*DBG*/ System.out.println("stopCellEditing");
             String res = textEditorComponent.getText();
             res.trim();
             if (res.length() > 0) {
@@ -277,7 +278,6 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
 
         // Implementing ActionListener interface
         public void actionPerformed(ActionEvent e) {
-            //*DBG*/ System.out.println("actionPerformed");
             if (stopCellEditing())
                 fireEditingStopped();
             else

@@ -201,6 +201,7 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
                 Trace.gui.eventm("Get message for lattice painter", evt.getPropertyName());
                 String propertyName = evt.getPropertyName();
                 if (propertyName.equals("gridSizeY")) {
+                    System.out.println("handling gridSizeChange");
                     rescaleByYCoord();
                 }
                 if (propertyName.equals("gridSizeX")) {

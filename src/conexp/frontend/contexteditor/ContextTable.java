@@ -19,10 +19,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.UndoableEditListener;
 import java.awt.Toolkit;
 import java.awt.datatransfer.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -43,6 +40,7 @@ public class ContextTable extends JTable implements ParamsProvider {
 
     public ContextTable(ContextEditingInterface cxt) {
         super(new ContextTableModel(cxt));
+
         cellRenderer = new ContextTooltipTableCellRenderer();
         cellRenderer.addRenderingChangeListener(new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent evt) {
@@ -59,7 +57,7 @@ public class ContextTable extends JTable implements ParamsProvider {
         setDefaultRenderer(Boolean.class, cellRenderer);
         setDefaultRenderer(String.class, cellRenderer);
 
-        ContextCellEditor cellEditor = new ContextCellEditor();
+        final ContextCellEditor cellEditor = new ContextCellEditor();
 
         setDefaultEditor(Boolean.class, cellEditor);
         setDefaultEditor(String.class, cellEditor);
@@ -75,12 +73,16 @@ public class ContextTable extends JTable implements ParamsProvider {
             }
         });
 
+        //this line fix an issue with switching focus from window, containing table, when editing is in process
+        putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
+
         ContextTable.initKeyboard(this);
         addMouseListener(new PopupListener());
 
         setCellSelectionEnabled(true);
         setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         getTableHeader().setReorderingAllowed(false);
+
     }
 
 

@@ -71,6 +71,8 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         assertEquals(3, objectMask.getCount());
         objectMask.setSelected(1, false);
 
+        latticeComponent.getDrawing().setObjectLabelingStrategyKey(LabelingStrategiesKeys.ALL_OBJECTS_LABELING_STRATEGY);
+
         latticeComponent.calculatePartialLattice();
     }
 
