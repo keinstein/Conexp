@@ -11,12 +11,18 @@ import conexp.core.Context;
 import conexp.core.DependencySet;
 import conexp.core.ImplicationCalcStrategy;
 import conexp.core.ImplicationSet;
-import conexp.core.calculationstrategies.NextClosedSetCalculator;
 
 
 public class ImplicationBaseCalculator extends AbstractDependencySetCalculator {
-    public ImplicationBaseCalculator(Context cxt) {
+    public ImplicationBaseCalculator(Context cxt, ImplicationCalcStrategyFactory implicationsCalculatorFactory) {
         super(cxt);
+        setImplicationCalcStrategyFactory(implicationsCalculatorFactory);
+    }
+
+    ImplicationCalcStrategyFactory factory;
+
+    public void setImplicationCalcStrategyFactory(ImplicationCalcStrategyFactory factory) {
+        this.factory = factory;
     }
 
     protected DependencySet makeDependencySet() {
@@ -29,8 +35,11 @@ public class ImplicationBaseCalculator extends AbstractDependencySetCalculator {
 
 
     protected void doFindDependencies() {
-        ImplicationCalcStrategy implCalculator = new NextClosedSetCalculator();
-        doCalculateImplications(implCalculator);
+        doCalculateImplications(makeImplicationCalcStrategy());
+    }
+
+    private ImplicationCalcStrategy makeImplicationCalcStrategy() {
+        return factory.makeImplicationCalcStrategy();
     }
 
     protected void doCalculateImplications(ImplicationCalcStrategy calc) {
@@ -42,4 +51,5 @@ public class ImplicationBaseCalculator extends AbstractDependencySetCalculator {
         calc.setImplications(implSet);
         calc.calcImplications();
     }
+
 }

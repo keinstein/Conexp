@@ -20,6 +20,7 @@ import conexp.frontend.latticeeditor.CEDiagramEditorPanel;
 import conexp.frontend.ruleview.AssociationRulesView;
 import conexp.frontend.ruleview.ImplicationBaseCalculator;
 import conexp.frontend.ruleview.ImplicationsView;
+import conexp.frontend.ruleview.NextClosedSetImplicationCalculatorFactory;
 import conexp.frontend.ui.ViewManager;
 import conexp.frontend.ui.ViewManagerException;
 import conexp.frontend.util.ActionChainUtil;
@@ -366,7 +367,8 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     public ImplicationBaseCalculator getImplicationBaseCalculator() {
         if (null == implicationBaseCalculator) {
-            implicationBaseCalculator = new ImplicationBaseCalculator(getContext());
+            implicationBaseCalculator = new ImplicationBaseCalculator(getContext(),
+                    NextClosedSetImplicationCalculatorFactory.getInstance());
             getContext().addContextListener(getImplicationBaseRecalcPolicy());
 
         }
