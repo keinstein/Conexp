@@ -37,13 +37,12 @@ public class DiffMap {
         if (one.getSize() != two.getSize()) {
             ret = false;
         }
-
-        for (int i = one.getSize(); --i >= 0;) {
-            KeyValuePair pair = one.get(i);
+        for (KeyValuePairIterator iterator = one.iterator(); iterator.hasNext();) {
+            KeyValuePair pair = iterator.nextKeyValuePair();
             putFirst(pair.key, pair.value);
         }
-        for (int j = two.getSize(); --j >= 0;) {
-            KeyValuePair pair = two.get(j);
+        for(KeyValuePairIterator iterator = two.iterator(); iterator.hasNext();){
+            KeyValuePair pair = iterator.nextKeyValuePair();
             ret = putSecond(pair.key, pair.value) & ret;
         }
         ret = ret && !isCorrupt();

@@ -12,9 +12,6 @@ public class KeyValuePair {
     public final java.lang.Object key;
     public final java.lang.Object value;
 
-    /**
-     * Pair constructor comment.
-     */
     public KeyValuePair(Object k, Object v) {
         super();
         key = k;

@@ -11,6 +11,8 @@ import util.Assert;
 
 import java.util.*;
 
+import conexp.util.IteratorWrapperBase;
+
 public class LatticeElement extends Concept {
     //--------------------------------------------
     public List predessors = new ArrayList();
@@ -36,7 +38,7 @@ public class LatticeElement extends Concept {
         public ConceptIterator iterator() {
             return new EdgeIteratorWrapper(collection.iterator()) {
                 public LatticeElement nextConcept() {
-                    return doGet(edgeIterator.next());
+                    return doGet(innerIterator.next());
                 }
             };
         }
@@ -52,27 +54,14 @@ public class LatticeElement extends Concept {
         }
     }
 
-    protected static abstract class EdgeIteratorWrapper implements ConceptIterator {
-
-        protected Iterator edgeIterator;
-
+    protected static abstract class EdgeIteratorWrapper extends IteratorWrapperBase implements ConceptIterator {
         EdgeIteratorWrapper(Iterator edgeIterator) {
-            this.edgeIterator = edgeIterator;
+            super(edgeIterator);
         }
 
         public Object next() {
             return nextConcept();
         }
-
-        public boolean hasNext() {
-            return edgeIterator.hasNext();
-        }
-
-        public void remove() {
-            edgeIterator.remove();
-        }
-
-
     }
 
     protected LatticeElementCollection predecessorsNodes = new LatticeElementCollectionBase(predessors){

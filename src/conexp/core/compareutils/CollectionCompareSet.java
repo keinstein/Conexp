@@ -8,19 +8,18 @@
 
 package conexp.core.compareutils;
 
-import conexp.core.ImplicationSet;
-
+import java.util.Collection;
 import java.util.Iterator;
 
-public class ImplicationSetCompareSet extends CompareSetBase{
-    final ImplicationSet implicationSet;
+public class CollectionCompareSet extends CompareSetBase{
+    final Collection collection;
 
-    public ImplicationSetCompareSet(ImplicationSet implicationSet) {
-        this.implicationSet = implicationSet;
+    public CollectionCompareSet(Collection implicationSet) {
+        this.collection = implicationSet;
     }
 
     protected Iterator getCollectionIterator() {
-        return implicationSet.iterator();
+        return collection.iterator();
     }
 
     protected KeyValuePair makeKeyValuePair(Object obj) {
@@ -28,6 +27,6 @@ public class ImplicationSetCompareSet extends CompareSetBase{
     }
 
     public int getSize() {
-        return implicationSet.getSize();
+        return collection.size();
     }
 }

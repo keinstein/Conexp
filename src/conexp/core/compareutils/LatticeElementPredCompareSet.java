@@ -8,39 +8,28 @@
 package conexp.core.compareutils;
 
 import conexp.core.LatticeElement;
+import conexp.core.LatticeElementCollection;
+
+import java.util.Iterator;
 
 
-public class LatticeElementPredCompareSet implements ICompareSet {
-    protected final LatticeElement el;
+public class LatticeElementPredCompareSet extends CompareSetBase{
+    private LatticeElementCollection predecessors;
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (13.07.01 19:18:26)
-     * @param el conexp.core.LatticeElement
-     */
     public LatticeElementPredCompareSet(LatticeElement el) {
-        this.el = el;
+        predecessors = el.getPredecessors();
     }
 
+    protected Iterator getCollectionIterator() {
+        return predecessors.iterator();
+    }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (13.07.01 19:17:34)
-     * @return conexp.core.compareutils.KeyValuePair
-     * @param index int
-     */
-    public KeyValuePair get(int index) {
-        LatticeElement pred = el.getPred(index);
+    protected KeyValuePair makeKeyValuePair(Object obj) {
+        LatticeElement pred = (LatticeElement)obj;
         return new KeyValuePair(pred.getAttribs(), pred);
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (13.07.01 19:17:34)
-     * @return int
-     */
     public int getSize() {
-        return el.getPredCount();
+        return predecessors.getSize();
     }
 }

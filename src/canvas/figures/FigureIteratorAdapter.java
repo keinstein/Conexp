@@ -8,29 +8,20 @@
 package canvas.figures;
 
 import canvas.Figure;
+import conexp.util.IteratorWrapperBase;
 
 import java.util.Iterator;
 
-public class FigureIteratorAdapter implements FigureIterator {
-    final Iterator iterator;
-
+public class FigureIteratorAdapter extends IteratorWrapperBase implements FigureIterator {
     public FigureIteratorAdapter(Iterator iterator) {
-        this.iterator = iterator;
-    }
-
-    public boolean hasNext() {
-        return iterator.hasNext();
+        super(iterator);
     }
 
     public Object next() {
-        return iterator.next();
-    }
-
-    public void remove() {
-        iterator.remove();
+        return innerIterator.next();
     }
 
     public Figure nextFigure() {
-        return (Figure) iterator.next();
+        return (Figure) innerIterator.next();
     }
 }

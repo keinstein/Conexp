@@ -10,14 +10,7 @@ package conexp.core.compareutils;
 
 public interface ICompareSet {
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (13.07.01 19:08:13)
-     * @return conexp.core.compareutils.KeyValuePair
-     * @param index int
-     */
-    KeyValuePair get(int index);
-
+    KeyValuePairIterator iterator();
 
     /**
      * Insert the method's description here.
