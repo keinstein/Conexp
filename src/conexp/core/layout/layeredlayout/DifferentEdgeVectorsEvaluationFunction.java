@@ -4,6 +4,7 @@ import conexp.core.ConceptIterator;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 import conexp.core.layout.PointUtilities;
+import conexp.core.layout.ConceptCoordinateMapper;
 import util.collection.CollectionFactory;
 import util.gui.GraphicObjectsFactory;
 
@@ -16,6 +17,13 @@ import java.util.Set;
  * Please read license.txt for licensing issues.
  */
 public class DifferentEdgeVectorsEvaluationFunction extends LatticeBasedEvaluationFunctionBase {
+
+    public DifferentEdgeVectorsEvaluationFunction() {
+    }
+
+    public DifferentEdgeVectorsEvaluationFunction(Lattice lattice, ConceptCoordinateMapper conceptCoordinateMapper) {
+        super(lattice, conceptCoordinateMapper);
+    }
 
     //the bigger value of evaluation function is better
     public double getEvaluationForLattice() {

@@ -16,8 +16,12 @@ import util.gui.JSplitPaneWithFixedRightPane;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.util.ResourceBundle;
 import java.util.TooManyListenersException;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class LatticeAndAttributeMaskSplitPane extends JSplitPaneWithFixedRightPane implements ViewChangeInterfaceWithConfig {
 
@@ -31,7 +35,7 @@ public class LatticeAndAttributeMaskSplitPane extends JSplitPaneWithFixedRightPa
         latticePanel.setParentActionMap(parentActionChain);
         setLeftComponent(new JScrollPane(latticePanel));
 
-        JScrollPane rightPanel = new AttributeMaskScrollPane(latticeSupplier.getAttributeMask());
+        JComponent rightPanel = makeAttributeSelectionPane(latticeSupplier);
 
         final Dimension preferredSize = new Dimension(SizeOptions.getProjectPaneWidth(), SizeOptions.getMainFrameHeight());
         rightPanel.setPreferredSize(preferredSize);
@@ -46,6 +50,28 @@ public class LatticeAndAttributeMaskSplitPane extends JSplitPaneWithFixedRightPa
         } catch (TooManyListenersException ex) {
             util.Assert.isTrue(false, "this can't happen");
         }
+    }
+
+    private JComponent makeAttributeSelectionPane(LatticeComponent latticeSupplier) {
+        JPanel ret = new JPanel(new BorderLayout());
+        final SetProvidingAttributeMask attributeMask = latticeSupplier.getAttributeMask();
+        ret.add(new AttributeMaskScrollPane(attributeMask), BorderLayout.CENTER);
+        final JButton button = new JButton("Select all");
+        button.setEnabled(attributeMask.hasUnselectedAttributes());
+        attributeMask.addPropertyChangeListener(new PropertyChangeListener(){
+            public void propertyChange(PropertyChangeEvent evt) {
+                 if(evt.getPropertyName().equals(AttributeMask.ATTRIBUTE_SELECTION_CHANGED)){
+                     button.setEnabled(attributeMask.hasUnselectedAttributes());
+                 }
+            }
+        });
+        button.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                attributeMask.selectAll();
+            }
+        });
+        ret.add(button, BorderLayout.SOUTH);
+        return ret;
     }
 
     public Component getViewComponent() {

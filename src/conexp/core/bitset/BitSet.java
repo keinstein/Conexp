@@ -11,6 +11,7 @@ package conexp.core.bitset;
 import conexp.core.Fragment;
 import conexp.core.ModifiableSet;
 import conexp.core.Set;
+import conexp.core.IPartiallyOrdered;
 import util.Assert;
 
 import java.io.Serializable;
@@ -727,4 +728,16 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         return true;
     }
 
+
+    public boolean isLesserThan(IPartiallyOrdered other) {
+        if(!(other instanceof BitSet)){
+            return false;
+        }
+        BitSet otherBitSet = (BitSet)other;
+        return Set.SUBSET == this.compare(otherBitSet);
+    }
+
+    public boolean isEqual(IPartiallyOrdered other) {
+        return this.equals(other);
+    }
 }

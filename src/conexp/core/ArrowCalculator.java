@@ -10,6 +10,8 @@ package conexp.core;
 
 public interface ArrowCalculator extends BinaryRelationProcessor {
 
+    public ArrowCalculator makeNew();
+
     public void calcDownArrow(ModifiableBinaryRelation downArrowRel);
 
     public void calcUpArrow(ModifiableBinaryRelation upArrow);

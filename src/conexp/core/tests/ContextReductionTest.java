@@ -14,6 +14,35 @@ import conexp.core.Context;
 
 public class ContextReductionTest extends TestCase {
     private static final Class THIS = ContextReductionTest.class;
+    public static final int[][] BURMEISTER__EXAMPLE = new int[][]{
+                        {0, 0, 0, 1, 0, 1, 1, 1, },
+                        {1, 1, 1, 1, 1, 1, 1, 1, },
+                        {1, 1, 1, 0, 0, 1, 1, 1, },
+                        {1, 1, 1, 1, 1, 0, 1, 1, },
+                        {1, 0, 0, 1, 1, 0, 0, 0, },
+                        {1, 1, 1, 1, 1, 0, 0, 1, },
+                        {0, 0, 0, 1, 0, 0, 1, 1, },
+                        {1, 1, 1, 0, 0, 0, 0, 1, },
+                        {1, 0, 0, 0, 0, 0, 0, 0, },
+                        {1, 1, 1, 0, 0, 0, 0, 0, },
+                        {0, 1, 0, 0, 0, 0, 0, 0, },
+                        {0, 1, 0, 0, 0, 0, 0, 1, },
+                        {0, 1, 0, 0, 0, 0, 0, 1, },
+                        {0, 1, 0, 1, 0, 0, 0, 1, },
+                        {1, 0, 0, 1, 1, 0, 0, 1, },
+                        {1, 0, 0, 0, 0, 0, 0, 1, },
+                        {1, 1, 1, 0, 0, 0, 1, 1, }
+                    };
+    public static final int[][] BURMEISTER_EXAMPLE_REDUCED = new int[][]{
+                {0, 0, 0, 1, 0, 1, 1, 1, },
+                {1, 1, 1, 0, 0, 1, 1, 1, },
+                {1, 1, 1, 1, 1, 0, 1, 1, },
+                {1, 0, 0, 1, 1, 0, 0, 0, },
+                {1, 1, 1, 1, 1, 0, 0, 1, },
+                {1, 1, 1, 0, 0, 0, 0, 0, },
+                {0, 1, 0, 1, 0, 0, 0, 1, },
+                {1, 0, 0, 1, 1, 0, 0, 1, },
+            };
 
     public static Test suite() {
         return new TestSuite(THIS);
@@ -42,25 +71,7 @@ public class ContextReductionTest extends TestCase {
          ----------
 */
 
-        Context cxt = SetBuilder.makeContext(new int[][]{
-            {0, 0, 0, 1, 0, 1, 1, 1, },
-            {1, 1, 1, 1, 1, 1, 1, 1, },
-            {1, 1, 1, 0, 0, 1, 1, 1, },
-            {1, 1, 1, 1, 1, 0, 1, 1, },
-            {1, 0, 0, 1, 1, 0, 0, 0, },
-            {1, 1, 1, 1, 1, 0, 0, 1, },
-            {0, 0, 0, 1, 0, 0, 1, 1, },
-            {1, 1, 1, 0, 0, 0, 0, 1, },
-            {1, 0, 0, 0, 0, 0, 0, 0, },
-            {1, 1, 1, 0, 0, 0, 0, 0, },
-            {0, 1, 0, 0, 0, 0, 0, 0, },
-            {0, 1, 0, 0, 0, 0, 0, 1, },
-            {0, 1, 0, 0, 0, 0, 0, 1, },
-            {0, 1, 0, 1, 0, 0, 0, 1, },
-            {1, 0, 0, 1, 1, 0, 0, 1, },
-            {1, 0, 0, 0, 0, 0, 0, 1, },
-            {1, 1, 1, 0, 0, 0, 1, 1, }
-        });
+        Context cxt = SetBuilder.makeContext(BURMEISTER__EXAMPLE);
 
 /*
            s ms
@@ -84,16 +95,7 @@ public class ContextReductionTest extends TestCase {
          ----------
  */
 
-        Context expReduced = SetBuilder.makeContext(new int[][]{
-            {0, 0, 0, 1, 0, 1, 1, 1, },
-            {1, 1, 1, 0, 0, 1, 1, 1, },
-            {1, 1, 1, 1, 1, 0, 1, 1, },
-            {1, 0, 0, 1, 1, 0, 0, 0, },
-            {1, 1, 1, 1, 1, 0, 0, 1, },
-            {1, 1, 1, 0, 0, 0, 0, 0, },
-            {0, 1, 0, 1, 0, 0, 0, 1, },
-            {1, 0, 0, 1, 1, 0, 0, 1, },
-        });
+        Context expReduced = SetBuilder.makeContext(BURMEISTER_EXAMPLE_REDUCED);
 
         cxt.reduceObjects();
         assertEquals(expReduced.getRelation(), cxt.getRelation());

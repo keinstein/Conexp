@@ -826,7 +826,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     //--------------------------------------------
 
     interface ElementInfoProcessor {
-        void processElementInfo(ElementInfo elementInfo);
+        void process(ElementInfo elementInfo);
     }
 
     protected void assignCoordsToLattice() {
@@ -840,7 +840,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             doStraytenLayoutForRank(rank);
         }
         applyElementInfoProcessor(new ElementInfoProcessor(){
-            public void processElementInfo(ElementInfo elementInfo) {
+            public void process(ElementInfo elementInfo) {
                 elementInfo.xPosDirect = elementInfo.x;
             }
         });
@@ -851,12 +851,12 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             doStraytenLayoutForRank(rank);
         }
         applyElementInfoProcessor( new ElementInfoProcessor(){
-            public void processElementInfo(ElementInfo elementInfo) {
+            public void process(ElementInfo elementInfo) {
                 elementInfo.xPosReverse = elementInfo.x;
             }
         });
         applyElementInfoProcessor(new ElementInfoProcessor(){
-            public void processElementInfo(ElementInfo elementInfo) {
+            public void process(ElementInfo elementInfo) {
                 elementInfo.x = (elementInfo.xPosReverse + elementInfo.xPosDirect) / 2.;
             }
         });
@@ -873,7 +873,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
                 if (curr.isVirtual()) {
                     continue;
                 }
-                processor.processElementInfo(getElementInfo(curr));
+                processor.process(getElementInfo(curr));
             }
         }
     }

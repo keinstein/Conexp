@@ -4,6 +4,7 @@ import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 import conexp.core.LatticeElementCollection;
 import conexp.core.layout.PointUtilities;
+import conexp.core.layout.ConceptCoordinateMapper;
 
 import java.awt.geom.Point2D;
 
@@ -16,6 +17,13 @@ import util.gui.GraphicObjectsFactory;
  * Please read license.txt for licensing issues.
  */
 public class ThreeElementsChainCountEvaluationFunction extends LatticeBasedEvaluationFunctionBase {
+    public ThreeElementsChainCountEvaluationFunction() {
+    }
+
+    public ThreeElementsChainCountEvaluationFunction(Lattice lattice, ConceptCoordinateMapper conceptCoordinateMapper) {
+        super(lattice, conceptCoordinateMapper);
+    }
+
     public double getEvaluationForLattice() {
         ThreeElementsChainCounterLatticeElementVisitor visitor = new ThreeElementsChainCounterLatticeElementVisitor();
         lattice.forEach(visitor);

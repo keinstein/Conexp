@@ -167,7 +167,6 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         double yDiff = Math.abs(maxY - minY);
         lattice.calcHeight();
         double realYSize = lattice.getHeight() * drawParams.getGridSizeY();
-
         double yScale = (yDiff != 0) ? realYSize / yDiff : 1;
         double xScale = yScale * drawParams.getGridSizeX() / drawParams.getGridSizeY();
 

@@ -8,8 +8,10 @@
 
 package conexp.frontend.components;
 
+import conexp.frontend.MultiSelectionAttributeMask;
 
-public abstract class BasicMultiSelectionAttributeMaskImplementation extends BasicAttributeMaskImplementation {
+
+public abstract class BasicMultiSelectionAttributeMaskImplementation extends BasicAttributeMaskImplementation implements MultiSelectionAttributeMask{
 
     public void setAttributeSelected(int index, boolean attributeSelected) {
         boolean oldValue = isAttributeSelected(index);
@@ -25,6 +27,15 @@ public abstract class BasicMultiSelectionAttributeMaskImplementation extends Bas
 
     public void deselectAll() {
         setValueForAll(Boolean.FALSE);
+    }
+
+    public boolean hasUnselectedAttributes() {
+        for(int i=getAttributeCount(); --i>=0;){
+            if(!isAttributeSelected(i)){
+                return true;
+            }
+        }
+        return false;
     }
 
 

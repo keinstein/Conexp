@@ -32,11 +32,11 @@ public class ToolbarComponentDecorator extends JPanel implements View, OptionPan
         return inner.getViewOptions();
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (16.06.01 21:37:05)
-     */
     public void initialUpdate() {
         inner.initialUpdate();
+    }
+
+    public ViewChangeInterfaceWithConfig getInner() {
+        return inner;
     }
 }

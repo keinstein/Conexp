@@ -79,13 +79,6 @@ public class ViewManager {
         }
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (14.05.2001 15:22:56)
-     * @return javax.swing.JComponent
-     * @param name java.lang.String
-     */
     public JComponent getView(String name) {
         return (JComponent) getViews().get(name);
     }

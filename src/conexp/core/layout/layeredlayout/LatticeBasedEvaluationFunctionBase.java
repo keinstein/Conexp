@@ -13,6 +13,14 @@ public abstract class LatticeBasedEvaluationFunctionBase implements IEvaluationF
     protected Lattice lattice;
     protected ConceptCoordinateMapper conceptCoordinateMapper;
 
+    public LatticeBasedEvaluationFunctionBase() {
+    }
+
+    public LatticeBasedEvaluationFunctionBase(Lattice lattice, ConceptCoordinateMapper conceptCoordinateMapper) {
+        this.lattice = lattice;
+        this.conceptCoordinateMapper = conceptCoordinateMapper;
+    }
+
     public void setLattice(Lattice lattice) {
         this.lattice = lattice;
     }

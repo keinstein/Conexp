@@ -529,8 +529,18 @@ public class ContextTest extends TestCase {
         assertEquals(cxt, other);
 
         assertNotNull(cxt.getArrowCalculator());
-        assertNotNull(((Context) other).getArrowCalculator());
+        Context otherCxt = ((Context) other);
+        assertNotNull(otherCxt.getArrowCalculator());
 
+        checkArrowCalculatorsIndependent(otherCxt);
+    }
+
+    private void checkArrowCalculatorsIndependent(Context otherCxt) {
+        assertFalse(cxt.hasUpArrow(1, 1));
+        otherCxt.reduceAttributes();
+        cxt.setRelationAt(1, 2, true);
+        cxt.setRelationAt(1, 2, false);
+        assertFalse(cxt.hasUpArrow(1, 1));
     }
 
     public void testChangeOfTypeOnTranspose() {
@@ -581,6 +591,23 @@ public class ContextTest extends TestCase {
 
     }
 
+    public  void testUpdateOfArrowCalculatorOnCopyFrom(){
+        cxt = SetBuilder.makeContext(new int[][]{{0}});
+        assertTrue(cxt.hasUpArrow(0, 0));
+        Context otherCxt = SetBuilder.makeContext(new int[][]{{1}});
+        assertFalse(otherCxt.hasUpArrow(0, 0));
+        cxt.copyFrom(otherCxt);
+        assertFalse(cxt.hasUpArrow(0, 0));
+    }
+
+    public void testUpdateOfArrowCalculatorOnTranspose(){
+        cxt = SetBuilder.makeContext(new int[][]{{1, 0},
+                                                 {1, 0}});
+        assertTrue(cxt.hasUpArrow(0, 1));
+        cxt.transpose();
+        assertFalse(cxt.hasUpArrow(0, 1));
+    }
+
     public void testDownArrow() {
         cxt = SetBuilder.makeContext(new int[0][0]);
         assertEquals(0, cxt.getAttributeCount());
@@ -593,9 +620,7 @@ public class ContextTest extends TestCase {
 
     public void testReduceAttributesAndObjects() {
         cxt = SetBuilder.makeContext(new int[][]{{1}});
-        System.out.println("before reduceAttr");
         cxt.reduceAttributes();
-        System.out.println("after reduceAttr");
         assertEquals(0, cxt.getAttributeCount());
         assertEquals(0, cxt.getRelation().getColCount());
         assertEquals(1, cxt.getRelation().getRowCount());

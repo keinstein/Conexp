@@ -10,7 +10,7 @@ package conexp.frontend;
 
 import conexp.core.Set;
 
-public interface SetProvidingAttributeMask extends AttributeMask {
+public interface SetProvidingAttributeMask extends MultiSelectionAttributeMask {
 
     Set toSet();
 }

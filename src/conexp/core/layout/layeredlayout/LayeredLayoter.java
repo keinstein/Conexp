@@ -1,13 +1,17 @@
 package conexp.core.layout.layeredlayout;
 
-import conexp.core.Lattice;
-import conexp.core.LatticeElement;
-import conexp.core.layout.*;
+import conexp.core.*;
+import conexp.core.layout.GenericLayouter;
+import conexp.core.layout.HeightInLatticeLayerAssignmentFunction;
+import conexp.core.layout.ILayerAssignmentFunction;
+import conexp.core.layout.NonIncrementalLayouter;
+import conexp.core.utils.MinimumPartialOrderedElementsCollection;
+import conexp.util.gui.paramseditor.ParamInfo;
 import util.collection.CollectionFactory;
-import util.gui.GraphicObjectsFactory;
 
-import java.util.SortedSet;
-import java.awt.geom.Point2D;
+import java.util.List;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * Copyright (c) 2000-2003, Sergey Yevtushenko
@@ -17,9 +21,12 @@ import java.awt.geom.Point2D;
 public class LayeredLayoter extends NonIncrementalLayouter {
     ILayerAssignmentFunction layerAssignmentFunction;
     private LatticeElement[][] elementsByLayers;
+    private ModifiableSet irreducibleElements;
+    private int layerCount;
+    private double xScale;
 
-    public class LayeredLayoutConceptInfo extends LayoutConceptInfo{
-        int layer=-1;
+    public class LayeredLayoutConceptInfo extends LayoutConceptInfo {
+        int layer = -1;
 
         public LayeredLayoutConceptInfo() {
 
@@ -38,8 +45,8 @@ public class LayeredLayoter extends NonIncrementalLayouter {
         return layerAssignmentFunction;
     }
 
-    public LayeredLayoutConceptInfo getElementInfo(LatticeElement latticeElement){
-         return (LayeredLayoutConceptInfo)getLayoutConceptInfo(latticeElement);
+    public LayeredLayoutConceptInfo getElementInfo(LatticeElement latticeElement) {
+        return (LayeredLayoutConceptInfo) getLayoutConceptInfo(latticeElement);
     }
 
     public void setLayerAssignmentFunction(ILayerAssignmentFunction layerAssignmentFunction) {
@@ -50,18 +57,33 @@ public class LayeredLayoter extends NonIncrementalLayouter {
         setLayerAssignmentFunction(HeightInLatticeLayerAssignmentFunction.getInstance());
     }
 
+    public void calcInitialPlacement() {
+        performLayout();
+    }
+
     public void performLayout() {
+        currentLayoutIndex = 0;
+        bestLayoutsResults = new DirectionVectorEvaluationResultsPair[0];
         elementsByLayers = buildLayersInfo();
         initEvaluationFunctions();
         performSearchForBestLattice();
+        assignCoordsToLattice();
     }
 
-    private void initEvaluationFunctions() {
+    AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunction latticeAcceptanceFunction;
+    List evaluationFunctions;
 
+    private void initEvaluationFunctions() {
+        latticeAcceptanceFunction = new AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunction(this, elementsByLayers);
+        evaluationFunctions = CollectionFactory.createDefaultList();
+        evaluationFunctions.add(new NumberOfSimmetricallyAllocatedChildrenEvaluationFunction(lattice, this));
+        evaluationFunctions.add(new DifferentEdgeVectorsEvaluationFunction(lattice, this));
+        evaluationFunctions.add(new ThreeElementsChainCountEvaluationFunction(lattice, this));
+        evaluationFunctions.add(new LengthOfEdgesEvaluationFunction(lattice, this));
     }
 
     private void assignLayersToLatticeElements() {
-        getLayerAssignmentFunction().calculateLayersForLattice(lattice, new ILayerAssignmentFunction.ILayerAssignmentFunctionCallback(){
+        getLayerAssignmentFunction().calculateLayersForLattice(lattice, new ILayerAssignmentFunction.ILayerAssignmentFunctionCallback() {
             public void layerForLatticeElement(LatticeElement latticeElement, int layer) {
                 getElementInfo(latticeElement).layer = layer;
             }
@@ -70,18 +92,18 @@ public class LayeredLayoter extends NonIncrementalLayouter {
 
     private LatticeElement[][] buildLayersInfo() {
         assignLayersToLatticeElements();
-        int layerCount = findMaxLayerIndex()+1;
+        layerCount = findMaxLayerIndex() + 1;
         int[] layerSizes = calculateLayersDimension(layerCount);
         return allocateNodesToLayers(layerSizes);
     }
 
     private LatticeElement[][] allocateNodesToLayers(int[] layerSizes) {
         final LatticeElement[][] elementsByLayers = new LatticeElement[layerSizes.length][];
-        for(int i=0; i<layerSizes.length; i++){
+        for (int i = 0; i < layerSizes.length; i++) {
             elementsByLayers[i] = new LatticeElement[layerSizes[i]];
         }
         final int[] currentPositionsInLayers = new int[layerSizes.length];
-        lattice.forEach(new Lattice.LatticeElementVisitor(){
+        lattice.forEach(new Lattice.LatticeElementVisitor() {
             public void visitNode(LatticeElement node) {
                 LayeredLayoutConceptInfo elementInfo = getElementInfo(node);
                 int layer = elementInfo.layer;
@@ -94,7 +116,7 @@ public class LayeredLayoter extends NonIncrementalLayouter {
 
     private int[] calculateLayersDimension(int layerCount) {
         final int[] layerSizes = new int[layerCount];
-        lattice.forEach(new Lattice.LatticeElementVisitor(){
+        lattice.forEach(new Lattice.LatticeElementVisitor() {
             public void visitNode(LatticeElement node) {
                 layerSizes[getElementInfo(node).layer]++;
             }
@@ -108,13 +130,174 @@ public class LayeredLayoter extends NonIncrementalLayouter {
         return visitor.getMaxLayer();
     }
 
-    private void performSearchForBestLattice() {
 
+    MinimumPartialOrderedElementsCollection bestLayouts = new MinimumPartialOrderedElementsCollection();
+    DirectionVectorEvaluationResultsPair[] bestLayoutsResults = new DirectionVectorEvaluationResultsPair[0];
+    int currentLayoutIndex = 0;
+
+    private void performSearchForBestLattice() {
+        Context cxt = lattice.getContext();
+        irreducibleElements = findIrreducibleAttributes(cxt);
+        searchBestLatticesByBacktracking();
     }
 
+    private void searchBestLatticesByBacktracking() {
+        bestLayouts.clear();
+        assignYCoordsToLattice();
+        System.out.println("Start search");
+        System.out.println("irreducible elements:" + irreducibleElements.elementCount());
+        double[] directionVector = new double[irreducibleElements.elementCount()];
+        double[] currentEvaluation = new double[evaluationFunctions.size()];
+
+        BacktrackingAlgorithm algorithm = new BacktrackingAlgorithm();
+        algorithm.setRange(-11, 11);
+        algorithm.setStep(1);
+        int searchSteps = 0;
+        for (algorithm.firstPoint(directionVector); algorithm.hasMorePoints(directionVector); algorithm.nextPoint(directionVector)) {
+            assignXCoordinatesToLattice(directionVector);
+            if (isLatticeSatisfactory()) {
+                evaluateLattice(currentEvaluation);
+                bestLayouts.add(new DirectionVectorEvaluationResultsPair(directionVector, currentEvaluation));
+            }
+            searchSteps++;
+/*
+            if(searchSteps>10000 && !bestLayouts.isEmpty()){
+                break;
+            }
+*/
+        }
+    }
+
+    private void evaluateLattice(double[] currentEvaluation) {
+        for (int i = 0; i < evaluationFunctions.size(); i++) {
+            currentEvaluation[i] = ((IEvaluationFunction) evaluationFunctions.get(i)).getEvaluationForLattice();
+        }
+    }
+
+    private void assignYCoordsToLattice() {
+        xScale = drawParams.getGridSizeX() / drawParams.getGridSizeY();
+        lattice.forEach(new Lattice.LatticeElementVisitor() {
+            public void visitNode(LatticeElement node) {
+                LayeredLayoutConceptInfo elementInfo = getElementInfo(node);
+                elementInfo.setY((layerCount - 1 - elementInfo.getLayer()) * drawParams.getGridSizeY());
+            }
+        });
+    }
+
+    private boolean isLatticeSatisfactory() {
+        return latticeAcceptanceFunction.getEvaluationForLattice() >= 0;
+    }
+
+    private void assignXCoordinatesToLattice(final double[] directionVector) {
+        lattice.forEach(new Lattice.LatticeElementVisitor() {
+            public void visitNode(LatticeElement node) {
+                getElementInfo(node).setX(xScale * drawParams.getGridSizeX() * calculateXPosition(node.getAttribs(), directionVector));
+            }
+        });
+    }
+
+    double calculateXPosition(Set attributes, double[] vectorsX) {
+        double x = 0;
+        int posInVector = 0;
+        for (int index = irreducibleElements.firstIn(); index != Set.NOT_IN_SET;
+             index = irreducibleElements.nextIn(index)) {
+            if (attributes.in(index)) {
+                x += vectorsX[posInVector];
+            }
+            posInVector++;
+        }
+        return x;
+    }
+
+    public static ModifiableSet findIrreducibleAttributes(Context cxt) {
+        int attributeCount = cxt.getAttributeCount();
+        ModifiableSet irreducibleElements = ContextFactoryRegistry.createSet(attributeCount);
+        BinaryRelation upArrow = cxt.getUpArrow();
+        int rowCount = upArrow.getRowCount();
+        for (int i = 0; i < rowCount; i++) {
+            irreducibleElements.or(upArrow.getSet(i));
+        }
+        ModifiableSet elementLessOrEqual = ContextFactoryRegistry.createSet(attributeCount);
+        ModifiableSet elementOutOfSet = ContextFactoryRegistry.createSet(attributeCount);
+        BinaryRelation relation = cxt.getRelation();
+        for (int i = irreducibleElements.firstIn(); i != Set.NOT_IN_SET; i = irreducibleElements.nextIn(i)) {
+            elementLessOrEqual.fillByOne(attributeCount);
+            elementOutOfSet.clearSet();
+            for (int row = 0; row < relation.getRowCount(); row++) {
+                Set set = relation.getSet(row);
+                if (set.in(i)) {
+                    elementLessOrEqual.and(set);
+                } else {
+                    elementOutOfSet.or(set);
+                }
+            }
+            elementLessOrEqual.andNot(elementOutOfSet);
+            //now elementLessOrEqual contains equivalent attributes to i;
+            elementLessOrEqual.remove(i);
+            irreducibleElements.andNot(elementLessOrEqual);
+        }
+        return irreducibleElements;
+    }
 
     protected void assignCoordsToLattice() {
+        bestLayoutsResults = new DirectionVectorEvaluationResultsPair[bestLayouts.getSize()];
+        bestLayouts.toArray(bestLayoutsResults);
+        if (!bestLayouts.isEmpty()) {
+            System.out.println("bestLayouts:" + bestLayouts);
+            setCurrentLayout(0);
+        }else{
+            fireLayoutChanged(); //simple for proform. This is posi
+        }
+    }
 
+    private void setCurrentLayout(int layoutIndex) {
+        if(layoutIndex<0){
+            return;
+        }
+        if(layoutIndex>=getBestLayoutCount()){
+            return;
+        }
+        currentLayoutIndex = layoutIndex;
+        DirectionVectorEvaluationResultsPair pair = bestLayoutsResults[currentLayoutIndex];
+        System.out.println("current layout params: "+pair);
+        assignXCoordinatesToLattice(pair.getDirectionVectors());
+        fireLayoutChanged();
+    }
+
+    protected ParamInfo[] makeParams() {
+        return new ParamInfo[]{
+            new conexp.util.gui.paramseditor.ButtonParamInfo("Next layout", ">>", new ActionListener() {
+                public void actionPerformed(ActionEvent ev) {
+                    selectNextLayout();
+                }
+            }),
+            new conexp.util.gui.paramseditor.ButtonParamInfo("Prev layout", "<<", new ActionListener() {
+                public void actionPerformed(ActionEvent ev) {
+                    selectPrevLayout();
+                }
+            }),
+
+        };
+    }
+
+    private void selectPrevLayout() {
+        int nextIndex = currentLayoutIndex - 1;
+        if (nextIndex < 0) {
+            nextIndex = getBestLayoutCount() - 1;
+        }
+        setCurrentLayout(nextIndex);
+    }
+
+    private void selectNextLayout() {
+        int nextIndex = currentLayoutIndex+1;
+        if(nextIndex>=getBestLayoutCount()){
+            nextIndex= 0;
+        }
+        setCurrentLayout(nextIndex);
+    }
+
+    private int getBestLayoutCount() {
+        return bestLayoutsResults.length;
     }
 
     private class MaxLayerNumberElementVisitor implements Lattice.LatticeElementVisitor {
@@ -126,7 +309,7 @@ public class LayeredLayoter extends NonIncrementalLayouter {
 
         public void visitNode(LatticeElement node) {
             int currentElementLayer = getElementInfo(node).layer;
-            if(currentElementLayer > maxLayer){
+            if (currentElementLayer > maxLayer) {
                 maxLayer = currentElementLayer;
             }
         }

@@ -16,7 +16,7 @@ public class ThreeElementsChainCountEvaluationFunctionTest extends TestCase {
         Lattice lattice = SetBuilder.makeLattice(TestDataHolder.FULL_RELATION_NOMINAL_3);
         ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(
                 lattice, TestDataHolder.FULL_RELATION_NOMINAL_3,
-                TestDataHolder.SIMMETRIC_LAYOUT_NOMINAL_3
+                TestDataHolder.SYMMETRIC_LAYOUT_NOMINAL_3
         );
         ThreeElementsChainCountEvaluationFunction evaluationFunction = new ThreeElementsChainCountEvaluationFunction();
         evaluationFunction.setLattice(lattice);

@@ -7,7 +7,7 @@
 
 package conexp.core;
 
-public interface Set extends Fragment {
+public interface Set extends Fragment, IPartiallyOrdered {
 
     int hashCode();
 

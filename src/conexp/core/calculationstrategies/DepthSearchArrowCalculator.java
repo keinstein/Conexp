@@ -206,5 +206,8 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
         doCalcUpArrow(newExtent, newIntent, 0);
     }
 
+    public ArrowCalculator makeNew() {
+        return new DepthSearchArrowCalculator();
+    }
 
 }

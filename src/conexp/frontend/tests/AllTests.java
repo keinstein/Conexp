@@ -18,7 +18,7 @@ public class AllTests extends TestCase {
         suite.addTest(ConceptFrameTest.suite());
         suite.addTest(ContextDocManagerTest.suite());
         suite.addTest(PropertyChangeSupplierBaseControllerTest.suite());
-        suite.addTest(ContextDocumentTest.suite());
+        suite.addTestSuite(ContextDocumentTest.class);
         suite.addTest(JTabPaneViewManagerTest.suite());
         suite.addTest(ViewManagerTest.suite());
 

@@ -10,38 +10,29 @@ package conexp.frontend.tests;
 
 import conexp.core.Context;
 import conexp.core.DependencySet;
+import conexp.core.tests.ContextReductionTest;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.ContextDocument;
+import conexp.frontend.View;
+import conexp.frontend.ToolbarComponentDecorator;
+import conexp.frontend.contexteditor.ContextViewPanel;
 import conexp.frontend.components.AttributeMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
+
+import javax.swing.*;
 
 public class ContextDocumentTest extends TestCase {
-
-    public static Test suite() {
-        return new TestSuite(ContextDocumentTest.class);
-    }
-
     ContextDocument doc;
 
     protected void setUp() {
         doc = new ContextDocument();
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (21.11.00 0:47:38)
-     */
     public void testViewContainer() {
         assertNotNull(doc.getViewContainer());
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (21.11.00 0:15:19)
-     */
     public void testViewsOptions() {
         //TODO - move this test to test View Factory
 /*	contextComponent.getDocComponent();
@@ -52,29 +43,17 @@ public class ContextDocumentTest extends TestCase {
 	}*/
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (14.05.01 23:36:03)
-     */
     public void expectViewActivationAfterCommand(String command, String expectedView) {
         performCommand(command);
         assertEquals("Unexpected view activated for command " + command, doc.getViewManager().getView(expectedView), doc.getViewManager().getActiveView());
     }
 
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (14.05.01 23:11:34)
-     */
     protected void performCommand(String command) {
         doc.getActionChain().get(command).actionPerformed(null);
     }
 
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (08.05.01 21:36:47)
-     */
     public void testFindAssociations() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 1, 1},
                                                          {0, 1, 1}});
@@ -140,19 +119,10 @@ public class ContextDocumentTest extends TestCase {
         testDependencySetUpdateOnRelation(rel, supplier);
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (15.05.01 0:10:24)
-     */
     public void testGetViewManager() {
         doc.getViewManager();
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (14.05.01 23:33:07)
-     */
     public void testViewActivation() {
         doc.setShowMessages(false);
         expectViewActivationAfterCommand("calcAssociationRules", doc.VIEW_ASSOCIATIONS);
@@ -178,6 +148,19 @@ public class ContextDocumentTest extends TestCase {
         assertEquals(4, latticeComponent.getLattice().conceptsCount());
         doc.calculateLattice();
         assertEquals(4, latticeComponent.getLattice().conceptsCount());
+    }
+
+    public void testReduceContextCommand() throws Exception{
+        Context cxt = SetBuilder.makeContext(ContextReductionTest.BURMEISTER__EXAMPLE);
+        doc = new ContextDocument(cxt);
+        doc.getViewManager().addView(ContextDocument.VIEW_CONTEXT);
+        ToolbarComponentDecorator decorator = (ToolbarComponentDecorator)doc.getViewManager().getView(ContextDocument.VIEW_CONTEXT);
+        ContextViewPanel contextView  = (ContextViewPanel)decorator.getInner();
+        Action reduceObjects = contextView.getActionChain().get("reduceObj");
+        reduceObjects.actionPerformed(null);
+        assertEquals(SetBuilder.makeContext(ContextReductionTest.BURMEISTER_EXAMPLE_REDUCED).getRelation(),
+                doc.getContext().getRelation());
+
     }
 
 }

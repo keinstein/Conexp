@@ -17,10 +17,13 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
         suite.addTestSuite(AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunctionTest.class);
+        suite.addTestSuite(BacktrackingAlgorithmTest.class);
         suite.addTestSuite(DifferentEdgeVectorsEvaluationFunctionTest.class);
+        suite.addTestSuite(LayeredLayouterTest.class);
+        suite.addTestSuite(LatticePictureWidthEvaluationFunctionTest.class);
+        suite.addTestSuite(LengthOfEdgesEvaluationFunctionTest.class);
         suite.addTestSuite(NumberOfSimmetricallyAllocatedChildrenEvaluationFunctionTest.class);
         suite.addTestSuite(ThreeElementsChainCountEvaluationFunctionTest.class);
-        suite.addTestSuite(LayeredLayouterTest.class);
         return suite;
     }
 

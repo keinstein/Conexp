@@ -30,7 +30,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     public Context makeNativeCopy() {
         Context ret = new Context(0, 0);
         ret.copyFrom(this);
-        ret.setArrowCalculator(getArrowCalculator());
+        ret.setArrowCalculator(getArrowCalculator().makeNew());
         return ret;
     }
 
@@ -441,7 +441,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
             ContextEntity contextEntity = (ContextEntity) iterator.next();
             contextEntity.makeAttrib();
         }
-        rel = newRel;
+        setRelation(newRel);
         getContextListenersSupport().fireContextTransposed();
         getContextListenersSupport().fireContextStructureChanged();
     }
@@ -514,18 +514,11 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
 
     public BinaryRelation getUpArrow() {
         if (null == upArrow) {
+            upArrow = ContextFactoryRegistry.createRelation(getAttributeCount(), getObjectCount());
             setUpArrowUpdate(true);
         }
         if (upArrowNeedUpdate()) {
             calcUpArrow();
-        }
-        return upArrow;
-    }
-
-    //---------------------------------------------------------------
-    public ModifiableBinaryRelation getUpArrowRel() {
-        if (null == upArrow) {
-            upArrow = ContextFactoryRegistry.createRelation(getAttributeCount(), getObjectCount());
         }
         return upArrow;
     }
@@ -567,7 +560,8 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     //---------------------------------------------------------------
     private void calcUpArrow() {
         util.Assert.isTrue(arrowCalc != null, "For calculating arrows calculator should be set!");
-        arrowCalc.calcUpArrow(getUpArrowRel());
+        util.Assert.isTrue(upArrow!=null);
+        arrowCalc.calcUpArrow(upArrow);
         setUpArrowUpdate(false);
     }
 
@@ -626,8 +620,15 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
             getAttribute(i).setName(cxt.getAttribute(i).getName());
         }
         if (!rel.equals(cxt.getRelation())) {
-            rel = cxt.getRelation().makeModifiableCopy();
+            setRelation(cxt.getRelation().makeModifiableCopy());
             getContextListenersSupport().fireRelationChanged();
+        }
+    }
+
+    private void setRelation(ModifiableBinaryRelation modifiableBinaryRelation) {
+        this.rel = modifiableBinaryRelation;
+        if(null!=arrowCalc){
+            arrowCalc.setRelation(modifiableBinaryRelation);
         }
     }
 
