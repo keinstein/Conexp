@@ -8,11 +8,15 @@
 package conexp.core.compareutils;
 
 import conexp.core.LatticeElement;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 
 
 public class LatticeElementCompareInfo extends CompareInfo {
     protected DiffMap predEdgeCompare;
-    protected DiffMap succEdgeCompate;
+    protected DiffMap succEdgeCompare;
+    boolean predSame = true;
+    boolean succSame = true;
 
     LatticeElementCompareInfo(Object el, int t) {
         super(el, t);
@@ -22,10 +26,10 @@ public class LatticeElementCompareInfo extends CompareInfo {
         predEdgeCompare = new DiffMap(DefaultCompareInfoFactory.getInstance());
         final LatticeElement firstConcept = ((LatticeElement) one);
         final LatticeElement secondConcept = ((LatticeElement) two);
-        boolean ret = predEdgeCompare.compareSets(new LatticeElementCollectionCompareSet(firstConcept.getPredecessors()),
+        boolean ret = predSame = predEdgeCompare.compareSets(new LatticeElementCollectionCompareSet(firstConcept.getPredecessors()),
                 new LatticeElementCollectionCompareSet(secondConcept.getPredecessors()));
-        succEdgeCompate = new DiffMap(DefaultCompareInfoFactory.getInstance());
-        ret &= succEdgeCompate.compareSets(new LatticeElementCollectionCompareSet(firstConcept.getSuccessors()),
+        succEdgeCompare = new DiffMap(DefaultCompareInfoFactory.getInstance());
+        ret &= succSame = succEdgeCompare.compareSets(new LatticeElementCollectionCompareSet(firstConcept.getSuccessors()),
                 new LatticeElementCollectionCompareSet(secondConcept.getSuccessors()));
 
         if (!ret) {
@@ -38,12 +42,31 @@ public class LatticeElementCompareInfo extends CompareInfo {
         util.Assert.isTrue(getType() == IN_BOTH_BUT_DIFFERENT);
         writer.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         writer.println("LatticeElement with desription " + one + " were different");
-        writer.println("Differences in predecessors edges:");
-        predEdgeCompare.dumpDifferences(writer);
+        writer.println("one :" + one);
+        writer.println("two :" + two);
+        final Set oneObjects = ((LatticeElement)one).getObjects();
+        final Set twoObjects = ((LatticeElement)two).getObjects();
+        ModifiableSet oneMinusTwo = oneObjects.makeModifiableSetCopy();
+        oneMinusTwo.andNot(twoObjects);
+        ModifiableSet twoMinusOne = twoObjects.makeModifiableSetCopy();
+        twoMinusOne.andNot(oneObjects);
+        oneMinusTwo.or(twoMinusOne);
+        if(!oneMinusTwo.isEmpty()){
+            writer.println("following objects are different "+oneMinusTwo);
+        }
+
+        if (!predSame) {
+            writer.println("---------------------------------------------------------");
+            writer.println("Differences in predecessors edges:");
+            predEdgeCompare.dumpDifferences(writer);
+        }
+        if (!succSame) {
+            writer.println("---------------------------------------------------------");
+            writer.println("Differences in successors edges");
+            succEdgeCompare.dumpDifferences(writer);
+        }
         writer.println("---------------------------------------------------------");
-        writer.println("Differences in successors edges");
-        succEdgeCompate.dumpDifferences(writer);
-        writer.println("end logging " + one);
+        writer.println("end logging");
         writer.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     }
 }

@@ -18,12 +18,7 @@ import junit.framework.TestSuite;
 
 
 public class EdgeMinSupportSelectorTest extends TestCase {
-    private static final Class THIS = EdgeMinSupportSelectorTest.class;
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (04.05.01 23:40:55)
-     */
     protected static void doTestEdgeSelector(int[][] cxt, int minSupport, int[][][][] expEdges) {
         ExpectationSet exp = new ExpectationSet("expected edges");
         for (int i = 0; i < expEdges.length; i++) {
@@ -39,14 +34,6 @@ public class EdgeMinSupportSelectorTest extends TestCase {
         exp.verify();
     }
 
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (20.06.01 1:42:58)
-     */
     public void testAgainEdgeSelector() {
         int[][] cxt = new int[][]{
             {1, 0, 0, 0, 0},

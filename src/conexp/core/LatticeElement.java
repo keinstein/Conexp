@@ -136,6 +136,18 @@ public class LatticeElement extends Concept {
         succ.height = Math.max(this.height + 1, succ.height);
     }
 
+    public void addParent(LatticeElement parent){
+        addSucc(parent);
+    }
+
+    public void addChild(LatticeElement child){
+        addPred(child);
+    }
+
+    public void removeParent(LatticeElement parent){
+        removeSucc(parent);
+    }
+
     public void removeSucc(LatticeElement succ) {
         removeFromLatticeElementCollection(getSuccessors(), succ);
     }
@@ -172,6 +184,10 @@ public class LatticeElement extends Concept {
         return predecessorsNodes;
     }
 
+    public LatticeElementCollection getChildren(){
+        return getPredecessors();
+    }
+
     public LatticeElementCollection getSuccessors(){
         return successorsNodes;
     }
@@ -184,12 +200,22 @@ public class LatticeElement extends Concept {
         return (Edge)predessors.get(pos);
     }
 
+
+
     public int getPredCount() {
         return getPredecessors().getSize();
     }
 
     public LatticeElement getSucc(int i) {
         return successorsNodes.get(i);
+    }
+
+    public int getParentCount() {
+        return getSuccCount();
+    }
+
+    public LatticeElementCollection getParents() {
+        return getSuccessors();
     }
 
     public int getSuccCount() {
@@ -263,6 +289,7 @@ public class LatticeElement extends Concept {
     public static LatticeElement makeLatticeElementFromSets(Set extent, Set intent) {
         return new LatticeElement(extent, intent);
     }
+
 
 
 }

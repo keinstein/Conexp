@@ -15,10 +15,9 @@ import junit.framework.TestSuite;
 public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(EdgeMinSupportSelectorTest.suite());
-        suite.addTest(FilterEnumeratorTest.suite());
+        suite.addTestSuite(EdgeMinSupportSelectorTest.class);
+        suite.addTestSuite(ConceptFilterIteratorTest.class);
         suite.addTestSuite(ConceptIdealIteratorTest.class);
-
         return suite;
     }
 

@@ -139,8 +139,6 @@ public class Lattice extends ConceptsCollection {
      *  after fully building lattice
      ****************************************************************/
     public LatticeElement findLatticeElementFromOne(Set attribs) {
-        LatticeElement curr = getOne();
-        Assert.isTrue(null != curr, "One in findElement can't be null");
         //*DBG*/System.out.println("curr="+(BitSet)_curr.attribs);
         //*DBG*/System.out.println("compare="+_attribs+" "+_curr.attribs+"["+_attribs.compare(_curr.attribs)+"]");
         if (null != getAttributesMask()) {
@@ -148,6 +146,9 @@ public class Lattice extends ConceptsCollection {
             maskedAttribs.and(getAttributesMask());
             attribs = maskedAttribs;
         }
+
+        LatticeElement curr = getOne();
+        Assert.isTrue(null != curr, "One in findElement can't be null");
         boolean find = (Set.EQUAL == attribs.compare(curr.getAttribs()));
 
         while (!find) {
@@ -201,6 +202,14 @@ public class Lattice extends ConceptsCollection {
         return zero;
     }
 
+
+    public LatticeElement getBottom(){
+        return getZero();
+    }
+
+    public LatticeElement getTop() {
+        return getOne();
+    }
 
     /**
      * Insert the method's description here.
@@ -257,7 +266,7 @@ public class Lattice extends ConceptsCollection {
     /** this function adds find all predessors for element toSet
      *   and adds it to their successors list
      */
-    private void setLinks(LatticeElement start, LatticeElement toSet) {
+    private static void setLinks(LatticeElement start, LatticeElement toSet) {
         boolean findNext = false;
         //*DBG*/System.out.println("start element index="+start.index);
         Iterator enum = start.successorsEdges();
@@ -281,11 +290,19 @@ public class Lattice extends ConceptsCollection {
         }
     }
 
+    public void setTop(LatticeElement top){
+        setOne(top);
+    }
+
 
 //------------------------------------------
     public void setOne(LatticeElement el) {
         Assert.isTrue(el.getIndex() != -1, "Before setting one add to elements");
         one = el;
+    }
+
+    public void setBottom(LatticeElement el) {
+         setZero(el);
     }
 
 

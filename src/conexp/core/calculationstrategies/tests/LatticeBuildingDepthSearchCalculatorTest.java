@@ -16,6 +16,16 @@ import conexp.core.compareutils.LatticeComparator;
 import conexp.core.tests.SetBuilder;
 
 public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrategyTest {
+    public static final int[][] LIVING_BEING_AND_WATER_RELATION = new int[][]{
+                {1, 1, 0, 0, 0, 0, 1, 0, 0},
+                {1, 1, 0, 0, 0, 0, 1, 1, 0},
+                {1, 1, 1, 0, 0, 0, 1, 1, 0},
+                {1, 0, 1, 0, 0, 0, 1, 1, 1},
+                {1, 1, 0, 1, 0, 1, 0, 0, 0},
+                {1, 1, 1, 1, 0, 1, 0, 0, 0},
+                {1, 0, 1, 1, 1, 0, 0, 0, 0},
+                {1, 0, 1, 1, 0, 1, 0, 0, 0},
+            };
 
     protected Lattice getLattice() {
         return (Lattice) conceptSet;
@@ -78,4 +88,253 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
      * @param lat conexp.core.Lattice
      */
     protected abstract void setupStrategy(ConceptsCollection lat);
+
+    public void testTwoNodeCase() {
+        doTestCalcStrategyForExpectedIntentsAndExtents(
+                new int[][]{
+                    {0}
+                },
+
+                new int[][]{
+                    {0},
+                    {1}
+                },
+                new int[][]{
+                    {1},
+                    {0}
+                }, 1
+        );
+    }
+
+    public void testOneNodeCase() {
+        doTestCalcStrategyForExpectedIntentsAndExtents(
+                new int[][]{
+                    {1}
+                },
+
+                new int[][]{
+                    {1}
+                },
+                new int[][]{
+                    {1}
+                }, 0
+        );
+    }
+
+    public void testLin3() {
+        int[][] linear = new int[][]{
+            {0, 0, 0, 1},
+            {0, 0, 1, 1},
+        };
+        doTestCalcStrategyForExpectedIntentsAndExtents(linear, new int[][]{
+            {0, 0, 0, 1},
+            {0, 0, 1, 1},
+            {1, 1, 1, 1},
+        },
+                new int[][]{
+                    {1, 1},
+                    {0, 1},
+                    {0, 0},
+
+                }, 2);
+    }
+
+    public void testNominal2() {
+        int[][] relation = new int[][]{
+            {0, 0, 1},
+            {0, 1, 0}
+        };
+        doTestCalcStrategyForExpectedIntentsAndExtents(relation,
+                new int[][]{
+                    {0, 0, 0},
+                    {0, 0, 1},
+                    {0, 1, 0},
+                    {1, 1, 1}
+                },
+                new int[][]{
+                    {1, 1},
+                    {1, 0},
+                    {0, 1},
+                    {0, 0}
+                },
+                4
+        );
+    }
+
+    public void testBadDepthSeachReduced() {
+        int[][] relation = new int[][]{
+            {0, 1, 1, 1, 0},
+            {1, 0, 1, 1, 0},
+            {0, 1, 0, 0, 1},
+            {1, 0, 0, 1, 0},
+            {0, 1, 0, 1, 1},
+            {0, 1, 1, 0, 0},
+            {1, 0, 0, 0, 1},
+            {0, 0, 1, 1, 1},
+            {1, 0, 1, 0, 1},
+        };
+        doTestCalcStrategyForExpectedIntentsAndExtents(relation,
+                new int[][]{
+                    {0, 0, 0, 0, 0},
+                    {1, 1, 1, 1, 1},
+                    {0, 0, 0, 0, 1},
+                    {0, 0, 0, 1, 1},
+                    {0, 0, 1, 1, 1},
+                    {0, 1, 0, 1, 1},
+                    {0, 0, 1, 0, 1},
+                    {1, 0, 1, 0, 1},
+                    {0, 1, 0, 0, 1},
+                    {1, 0, 0, 0, 1},
+                    {0, 0, 0, 1, 0},
+                    {0, 0, 1, 1, 0},
+                    {0, 1, 1, 1, 0},
+                    {1, 0, 1, 1, 0},
+                    {0, 1, 0, 1, 0},
+                    {1, 0, 0, 1, 0},
+                    {0, 0, 1, 0, 0},
+                    {0, 1, 1, 0, 0},
+                    {1, 0, 1, 0, 0},
+                    {0, 1, 0, 0, 0},
+                    {1, 0, 0, 0, 0},
+                },
+                new int[][]{
+                    {1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 1, 0, 1, 0, 1, 1, 1},
+                    {0, 0, 0, 0, 1, 0, 0, 1, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 1, 0},
+                    {0, 0, 0, 0, 1, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 1, 1},
+                    {0, 0, 0, 0, 0, 0, 0, 0, 1},
+                    {0, 0, 1, 0, 1, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 1, 0, 1},
+                    {1, 1, 0, 1, 1, 0, 0, 1, 0},
+                    {1, 1, 0, 0, 0, 0, 0, 1, 0},
+                    {1, 0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 1, 0, 0, 0, 0, 0, 0, 0},
+                    {1, 0, 0, 0, 1, 0, 0, 0, 0},
+                    {0, 1, 0, 1, 0, 0, 0, 0, 0},
+                    {1, 1, 0, 0, 0, 1, 0, 1, 1},
+                    {1, 0, 0, 0, 0, 1, 0, 0, 0},
+                    {0, 1, 0, 0, 0, 0, 0, 0, 1},
+                    {1, 0, 1, 0, 1, 1, 0, 0, 0},
+                    {0, 1, 0, 1, 0, 0, 1, 0, 1},
+                },
+                43
+        );
+
+    }
+
+    public void testNextClosedSetHardLatticeSubcase1() {
+        doTestCalcStrategyForExpectedIntentsAndExtents(new int[][]{
+            {1, 0, 0, 0, 0, 0, 1, 0},
+            {0, 1, 0, 1, 0, 1, 1, 0},
+            {0, 0, 0, 1, 0, 0, 0, 1},
+            {0, 1, 1, 0, 0, 0, 0, 1},
+            {0, 0, 0, 0, 1, 0, 0, 1},
+        },
+                new int[][]{
+                    {0, 0, 0, 0, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0, 0, 0, 1},
+                    {0, 0, 0, 0, 0, 0, 1, 0},
+                    {0, 0, 0, 0, 1, 0, 0, 1},
+                    {0, 0, 0, 1, 0, 0, 0, 0},
+                    {0, 0, 0, 1, 0, 0, 0, 1},
+                    {0, 1, 0, 0, 0, 0, 0, 0},
+                    {0, 1, 0, 1, 0, 1, 1, 0},
+                    {0, 1, 1, 0, 0, 0, 0, 1},
+                    {1, 0, 0, 0, 0, 0, 1, 0},
+                    {1, 1, 1, 1, 1, 1, 1, 1},
+                },
+                new int[][]{
+                    {1, 1, 1, 1, 1},
+                    {0, 0, 1, 1, 1},
+                    {1, 1, 0, 0, 0},
+                    {0, 0, 0, 0, 1},
+                    {0, 1, 1, 0, 0},
+                    {0, 0, 1, 0, 0},
+                    {0, 1, 0, 1, 0},
+                    {0, 1, 0, 0, 0},
+                    {0, 0, 0, 1, 0},
+                    {1, 0, 0, 0, 0},
+                    {0, 0, 0, 0, 0},
+                },
+                18
+        );
+    }
+
+    public void testNominalTwoObjectCase() {
+        doTestCalcStrategyForExpectedIntentsAndExtents(
+                new int[][]{
+                    {1, 0, 0, 0},
+                    {0, 1, 0, 0},
+                },
+                new int[][]{
+                    {0, 0, 0, 0},
+                    {1, 0, 0, 0},
+                    {0, 1, 0, 0},
+                    {1, 1, 1, 1}
+                },
+                new int[][]{
+                    {0, 0},
+                    {1, 0},
+                    {0, 1},
+                    {1, 1}
+                },
+                4
+        );
+
+
+    }
+
+    public void testLivingObjectsAndWaterLattice() {
+
+        int[][] expIntents = {
+            {1, 0, 0, 0, 0, 0, 0, 0, 0},
+            {1, 1, 1, 1, 1, 1, 1, 1, 1},
+            {1, 0, 0, 0, 0, 0, 1, 0, 0},
+            {1, 0, 0, 0, 0, 0, 1, 1, 0},
+            {1, 0, 1, 0, 0, 0, 1, 1, 0},
+            {1, 0, 1, 0, 0, 0, 1, 1, 1},
+            {1, 1, 1, 0, 0, 0, 1, 1, 0},
+            {1, 1, 0, 0, 0, 0, 1, 1, 0},
+            {1, 1, 0, 0, 0, 0, 1, 0, 0},
+            {1, 0, 0, 1, 0, 0, 0, 0, 0},
+            {1, 0, 0, 1, 0, 1, 0, 0, 0},
+            {1, 0, 1, 1, 0, 1, 0, 0, 0},
+            {1, 1, 1, 1, 0, 1, 0, 0, 0},
+            {1, 1, 0, 1, 0, 1, 0, 0, 0},
+            {1, 0, 1, 1, 0, 0, 0, 0, 0},
+            {1, 0, 1, 1, 1, 0, 0, 0, 0},
+            {1, 0, 1, 0, 0, 0, 0, 0, 0},
+            {1, 1, 1, 0, 0, 0, 0, 0, 0},
+            {1, 1, 0, 0, 0, 0, 0, 0, 0},
+        };
+        int[][] expExtents = {
+            {1, 1, 1, 1, 1, 1, 1, 1},
+            {0, 0, 0, 0, 0, 0, 0, 0},
+            {1, 1, 1, 1, 0, 0, 0, 0},
+            {0, 1, 1, 1, 0, 0, 0, 0},
+            {0, 0, 1, 1, 0, 0, 0, 0},
+            {0, 0, 0, 1, 0, 0, 0, 0},
+            {0, 0, 1, 0, 0, 0, 0, 0},
+            {0, 1, 1, 0, 0, 0, 0, 0},
+            {1, 1, 1, 0, 0, 0, 0, 0},
+            {0, 0, 0, 0, 1, 1, 1, 1},
+            {0, 0, 0, 0, 1, 1, 0, 1},
+            {0, 0, 0, 0, 0, 1, 0, 1},
+            {0, 0, 0, 0, 0, 1, 0, 0},
+            {0, 0, 0, 0, 1, 1, 0, 0},
+            {0, 0, 0, 0, 0, 1, 1, 1},
+            {0, 0, 0, 0, 0, 0, 1, 0},
+            {0, 0, 1, 1, 0, 1, 1, 1},
+            {0, 0, 1, 0, 0, 1, 0, 0},
+            {1, 1, 1, 0, 1, 1, 0, 0},
+        };
+
+        doTestCalcStrategyForExpectedIntentsAndExtents(
+                LIVING_BEING_AND_WATER_RELATION, expIntents, expExtents, 32
+        );
+
+    }
 }
