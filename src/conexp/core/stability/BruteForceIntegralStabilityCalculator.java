@@ -32,7 +32,7 @@ public class BruteForceIntegralStabilityCalculator extends DefaultBinaryRelation
             Set subset = powerSetIterator.nextSet();
             ModifiableBinaryRelation subrelation = buildSubcontextFromContext(getRelation(), subset);
             Context subcontext = FCAEngineRegistry.makeContext(subrelation);
-            Lattice subcontextLattice = FCAEngineRegistry.buildLattice(subcontext);
+            ConceptsCollection subcontextLattice = FCAEngineRegistry.buildConceptSet(subcontext);
             subcontextLattice.forEach(new ConceptsCollection.ConceptVisitor() {
                 public void visitConcept(Concept c) {
                     Integer occurences = (Integer) attributeSetToOccurencesMap.get(c.getAttribs());

@@ -57,6 +57,7 @@ public class LatticeAndAttributeMaskSplitPane extends JSplitPaneWithFixedRightPa
         final SetProvidingAttributeMask attributeMask = latticeSupplier.getAttributeMask();
         ret.add(new AttributeMaskScrollPane(attributeMask), BorderLayout.CENTER);
         final JButton button = new JButton("Select all");
+/*
         button.setEnabled(attributeMask.hasUnselectedAttributes());
         attributeMask.addPropertyChangeListener(new PropertyChangeListener(){
             public void propertyChange(PropertyChangeEvent evt) {
@@ -65,6 +66,7 @@ public class LatticeAndAttributeMaskSplitPane extends JSplitPaneWithFixedRightPa
                  }
             }
         });
+*/
         button.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 attributeMask.selectAll();

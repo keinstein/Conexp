@@ -150,7 +150,7 @@ public class LayeredLayoter extends NonIncrementalLayouter {
         double[] currentEvaluation = new double[evaluationFunctions.size()];
 
         BacktrackingAlgorithm algorithm = new BacktrackingAlgorithm();
-        algorithm.setRange(-11, 11);
+        algorithm.setRange(-5, 5);
         algorithm.setStep(1);
         int searchSteps = 0;
         for (algorithm.firstPoint(directionVector); algorithm.hasMorePoints(directionVector); algorithm.nextPoint(directionVector)) {
@@ -160,11 +160,9 @@ public class LayeredLayoter extends NonIncrementalLayouter {
                 bestLayouts.add(new DirectionVectorEvaluationResultsPair(directionVector, currentEvaluation));
             }
             searchSteps++;
-/*
-            if(searchSteps>10000 && !bestLayouts.isEmpty()){
+           if(searchSteps>100000 && !bestLayouts.isEmpty()){
                 break;
             }
-*/
         }
     }
 

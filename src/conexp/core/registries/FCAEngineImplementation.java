@@ -23,7 +23,6 @@ public class FCAEngineImplementation implements FCAEngine {
 
     public Lattice buildLattice(Context cxt) {
         DepthSearchCalculator calc = new DepthSearchCalculator();
-
         Lattice result = makeLatticeForContext(cxt);
         calc.setLattice(result);
         calc.setRelation(cxt.getRelation());
@@ -31,6 +30,16 @@ public class FCAEngineImplementation implements FCAEngine {
         cxt.locateElementsConcepts(result);
         result.calcHeight();
         return result;
+    }
+
+    public ConceptsCollection buildConceptSet(Context cxt) {
+        ConceptsCollection conceptSet = new ConceptsCollection();
+        ConceptEnumCallback callback = new ConceptSetCallback(conceptSet);
+        DepthSearchCalculator calc = new DepthSearchCalculator();
+        calc.setCallback(callback);
+        calc.setRelation(cxt.getRelation());
+        calc.calculateConceptSet();
+        return conceptSet;
     }
 
     public Lattice buildPartialLattice(Context cxt, Set featureMask) {

@@ -29,7 +29,7 @@ public class BacktrackingAlgorithm {
         for(int i=solutionVector.length; --i>=0; ){
             double currentComponent = solutionVector[i];
             double nextComponent = currentComponent + step;
-            if(range.covers(nextComponent)){
+            if(range.includes(nextComponent)){
                 return true;
             }
         }
@@ -40,7 +40,7 @@ public class BacktrackingAlgorithm {
         for(int i=solutionVector.length; --i>=0; ){
             double currentComponent = solutionVector[i];
             double nextComponent = currentComponent + step;
-            if(range.covers(nextComponent)){
+            if(range.includes(nextComponent)){
                 solutionVector[i] = nextComponent;
                 return;
             }else{

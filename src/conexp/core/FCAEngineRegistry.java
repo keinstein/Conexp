@@ -37,6 +37,10 @@ public class FCAEngineRegistry {
         return getFcaEngine().buildIcebergLattice(cxt, minSupport);
     }
 
+    public static ConceptsCollection buildConceptSet(Context cxt){
+        return getFcaEngine().buildConceptSet(cxt);
+    }
+
     public static ConceptsCollection buildIcebergConceptSet(ExtendedContextEditingInterface cxt, int minSupport) {
         return getFcaEngine().buildIcebergConceptSet(cxt, minSupport);
     }

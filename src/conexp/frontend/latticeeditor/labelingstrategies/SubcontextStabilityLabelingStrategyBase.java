@@ -1,11 +1,10 @@
 package conexp.frontend.latticeeditor.labelingstrategies;
 
-import conexp.frontend.latticeeditor.DrawParameters;
+import conexp.core.BinaryRelationProcessor;
+import conexp.core.ExtendedContextEditingInterface;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
-import conexp.core.ExtendedContextEditingInterface;
-import conexp.core.BinaryRelationProcessor;
-import conexp.core.stability.PointAndIntegralStabilityCalculator;
+import conexp.frontend.latticeeditor.DrawParameters;
 import util.StringUtil;
 
 /**
@@ -39,7 +38,7 @@ public abstract class SubcontextStabilityLabelingStrategyBase extends SimpleConc
     }
 
     protected String getDescriptionString(ConceptQuery conceptQuery) {
-        return "" + StringUtil.formatPercents(getStabilityValue(conceptQuery));
+        return "" + StringUtil.formatPercents(getStabilityValue(conceptQuery), 2);
     }
 
     protected abstract double getStabilityValue(ConceptQuery conceptQuery);

@@ -190,10 +190,11 @@ public class ConceptFrame extends JFrame {
     private void setToolBar(JToolBar tool) {
         if (null != toolBar) {
             getContentPane().remove(toolBar);
-        } // end of if ()
+        }
         if (null != tool) {
             getContentPane().add(tool, BorderLayout.NORTH);
-        } // end of if ()
+        }
+        getContentPane().validate();
         toolBar = tool;
     }
 
