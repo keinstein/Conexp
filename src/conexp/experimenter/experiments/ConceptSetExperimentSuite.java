@@ -24,8 +24,6 @@ public class ConceptSetExperimentSuite extends ExperimentSuite {
      * @param args java.lang.String[]
      */
     public static void main(String[] args) {
-        //implicationSetExperiment();
-        //generatorsExperiment();
         conceptSetExperiment();
     }
 
