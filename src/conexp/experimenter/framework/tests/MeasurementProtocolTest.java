@@ -9,13 +9,13 @@
 package conexp.experimenter.framework.tests;
 
 import com.mockobjects.ExpectationSet;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import conexp.experimenter.framework.IMeasurementDescription;
 import conexp.experimenter.framework.IMeasurementProtocol;
 import conexp.experimenter.framework.MeasurementDescription;
 import conexp.experimenter.framework.MeasurementProtocol;
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 import java.util.Iterator;
 
