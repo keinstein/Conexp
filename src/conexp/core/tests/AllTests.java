@@ -16,7 +16,7 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
 
-        suite.addTest(ContextTest.suite());
+        suite.addTestSuite(ContextTest.class);
         suite.addTest(ContextEntityTest.suite());
         suite.addTest(ContextListenerSupportTest.suite());
         suite.addTest(BinaryRelationUtilsTest.suite());

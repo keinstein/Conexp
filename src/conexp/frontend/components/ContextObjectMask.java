@@ -19,7 +19,7 @@ public class ContextObjectMask extends BasicMultiSelectionEntityMaskImplementati
 	ExtendedContextEditingInterface context;
 
 	class ObjectMaskContextListener extends DefaultContextListener {
-		public void ObjectChanged(ContextChangeEvent changeEvent) {
+		public void objectChanged(ContextChangeEvent changeEvent) {
 			switch (changeEvent.getType()) {
 				case ContextChangeEvent.OBJECT_REMOVED:
 					{
@@ -38,7 +38,7 @@ public class ContextObjectMask extends BasicMultiSelectionEntityMaskImplementati
 			}
 		}
 
-		public void ObjectNameChanged(PropertyChangeEvent evt) {
+		public void objectNameChanged(PropertyChangeEvent evt) {
 			getPropertyChangeSupport().firePropertyChange(ENTITIES_NAMES_CHANGED, null, null);
 		}
 

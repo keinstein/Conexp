@@ -21,5 +21,7 @@ public interface ContextListener {
 
     void attributeChanged(ContextChangeEvent changeEvent);
 
+    void objectChanged(ContextChangeEvent changeEvent);
+
     void contextTransposed();
 }

@@ -15,12 +15,8 @@ import junit.framework.TestSuite;
 import java.beans.PropertyChangeEvent;
 
 public class ContextTest extends TestCase {
-    private static final Class THIS = ContextTest.class;
     Context cxt;
 
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
     public void testAvailabilityOfArrowRelationInterfaceForDisplay() {
         assertTrue(cxt instanceof ContextEditingInterfaceWithArrowRelations);
@@ -395,24 +391,22 @@ public class ContextTest extends TestCase {
     }
 
     MockContextListener makeAttributeInsertionListener() {
-        return new MockContextListener() {
-            public void attributeChanged(ContextChangeEvent changeEvent) {
-                if (changeEvent.getType() == ContextChangeEvent.ATTRIBUTE_ADDED) {
-                    counter.inc();
-                }
-            }
-        };
+        return new MockAttributeChangeContextListener(ContextChangeEvent.ATTRIBUTE_ADDED);
     }
 
+
     MockContextListener makeAttributeRemovalListener() {
-        return new MockContextListener() {
-            public void attributeChanged(ContextChangeEvent changeEvent) {
-                if (changeEvent.getType() == ContextChangeEvent.ATTRIBUTE_REMOVED) {
-                    counter.inc();
-                }
-            }
-        };
+        return new MockAttributeChangeContextListener(ContextChangeEvent.ATTRIBUTE_REMOVED);
     }
+
+    MockContextListener makeObjectInsertionListener() {
+        return new MockObjectChangeContextListener(ContextChangeEvent.OBJECT_ADDED);
+    }
+
+    MockContextListener makeObjectRemovalListener() {
+        return new MockObjectChangeContextListener(ContextChangeEvent.OBJECT_REMOVED);
+    }
+
 
     public void testAttributeAddRemoveNotification() {
         cxt = new Context(2, 3);
@@ -443,8 +437,39 @@ public class ContextTest extends TestCase {
         insertionListener.setExpectedCalls(3);
         cxt.setDimension(2, 6);
         insertionListener.verify();
-
     }
+
+    public void testObjectAddRemoveNotification() {
+        cxt = new Context(2, 3);
+
+        MockContextListener insertionListener = makeObjectInsertionListener();
+        cxt.addContextListener(insertionListener);
+
+        MockContextListener removalListener = makeObjectRemovalListener();
+        cxt.addContextListener(removalListener);
+
+        insertionListener.setExpectedCalls(2);
+        cxt.increaseObjects(2);
+        insertionListener.verify();
+
+        insertionListener.setExpectedCalls(1);
+        cxt.addObject(ContextEntity.createContextObject("New Object"));
+        insertionListener.verify();
+
+        removalListener.setExpectedCalls(1);
+        cxt.removeObject(0);
+        removalListener.verify();
+
+        assertEquals(4, cxt.getObjectCount());
+        removalListener.setExpectedCalls(3);
+        cxt.setDimension(1, 3);
+        removalListener.verify();
+
+        insertionListener.setExpectedCalls(3);
+        cxt.setDimension(4, 3);
+        insertionListener.verify();
+    }
+
 
     public void testArrowRelationUpdateOnAttributeRemoval() {
         cxt = SetBuilder.makeContext(new int[][]{{1, 0, 1}});
@@ -627,5 +652,33 @@ public class ContextTest extends TestCase {
 
         cxt.reduceObjects();
         assertEquals(0, cxt.getObjectCount());
+    }
+
+    private static class MockAttributeChangeContextListener extends MockContextListener {
+        private final int EVENT_TYPE;
+
+        public MockAttributeChangeContextListener(int EVENT_TYPE) {
+            this.EVENT_TYPE = EVENT_TYPE;
+        }
+
+        public void attributeChanged(ContextChangeEvent changeEvent) {
+            if (changeEvent.getType() == EVENT_TYPE) {
+                counter.inc();
+            }
+        }
+    }
+
+    private static class MockObjectChangeContextListener extends MockContextListener {
+        private final int EVENT_TYPE;
+
+        public MockObjectChangeContextListener(int EVENT_TYPE) {
+            this.EVENT_TYPE = EVENT_TYPE;
+        }
+
+        public void objectChanged(ContextChangeEvent changeEvent) {
+            if (changeEvent.getType() == EVENT_TYPE) {
+                counter.inc();
+            }
+        }
     }
 }

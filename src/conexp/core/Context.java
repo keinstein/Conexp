@@ -169,8 +169,9 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
     public void addObject(ContextEntity newObject) {
-        ensureRelationsSizes(rel.getRowCount() + 1, rel.getColCount());
-        addObjectToObjectList(newObject);
+        final int newObjectIndex = rel.getRowCount();
+        ensureRelationsSizes(newObjectIndex + 1, rel.getColCount());
+        addObjectToObjectList(newObject, newObjectIndex);
         getContextListenersSupport().fireContextStructureChanged();
     }
 
@@ -209,14 +210,15 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         for (int j = from; j < till; j++) {
             int hint = (j + 1);
             ContextEntity newObject = ContextEntity.createContextObject(formObjectName(hint));
-            addObjectToObjectList(newObject);
+            addObjectToObjectList(newObject, j);
         }
     }
 
-    private void addObjectToObjectList(ContextEntity newObject) {
+    private void addObjectToObjectList(ContextEntity newObject, int index) {
         Assert.isTrue(newObject.isObject());
         newObject.setContextEntityListener(objectNameListener);
         objects.add(newObject);
+        getContextListenersSupport().fireObjectInserted(index);
     }
 
     //---------------------------------------------------------------
@@ -312,7 +314,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         ContextEntity obj = getObject(index);
         obj.setContextEntityListener(null);
         objects.remove(index);
-
+        getContextListenersSupport().fireObjectRemoved(index);
         getContextListenersSupport().madePostponedStructureChange();
     }
 

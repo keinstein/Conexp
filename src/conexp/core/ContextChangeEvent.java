@@ -13,10 +13,10 @@ import java.util.EventObject;
 public class ContextChangeEvent extends EventObject {
     public final static int ATTRIBUTE_REMOVED = 1;
     public final static int ATTRIBUTE_ADDED = ATTRIBUTE_REMOVED + 1;
-	public final static int OBJECT_REMOVED = 1;
+	public final static int OBJECT_REMOVED = ATTRIBUTE_ADDED+1;
 	public final static int OBJECT_ADDED = OBJECT_REMOVED + 1;
 
-    public ContextChangeEvent(Object source, int type, int column) {
+    protected ContextChangeEvent(Object source, int type, int column) {
         super(source);
         this.type = type;
         this.column = column;
@@ -29,6 +29,15 @@ public class ContextChangeEvent extends EventObject {
     public static ContextChangeEvent makeAttributeRemovedEvent(ExtendedContextEditingInterface cxt, int index) {
         return new ContextChangeEvent(cxt, ATTRIBUTE_REMOVED, index);
     }
+
+    public static ContextChangeEvent makeObjectInsertedEvent(ExtendedContextEditingInterface cxt, int objIndex){
+        return new ContextChangeEvent(cxt, OBJECT_ADDED, objIndex);
+    }
+
+    public static ContextChangeEvent makeObjectRemovedEvent(ExtendedContextEditingInterface cxt, int objIndex){
+        return new ContextChangeEvent(cxt, OBJECT_REMOVED, objIndex);
+    }
+
 
     int type;
     int column;

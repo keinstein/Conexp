@@ -27,4 +27,7 @@ public class DefaultContextListener implements ContextListener {
 
     public void attributeChanged(ContextChangeEvent changeEvent) {
     }
+
+    public void objectChanged(ContextChangeEvent changeEvent) {
+    }
 }

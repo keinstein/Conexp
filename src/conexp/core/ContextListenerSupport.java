@@ -176,19 +176,41 @@ public class ContextListenerSupport {
         }
     }
 
-    public void fireAttributeInserted(final int j) {
+    public void fireAttributeInserted(final int attrIndex) {
         eventFireHelper(new AttributeEventBinder() {
             protected EventObject getEvent() {
-                return ContextChangeEvent.makeAttributeInsertedEvent(cxt, j);
+                return ContextChangeEvent.makeAttributeInsertedEvent(cxt, attrIndex);
             }
         });
-
     }
 
-    public void fireAttributeRemoved(final int index) {
+    public void fireAttributeRemoved(final int attrIndex) {
         eventFireHelper(new AttributeEventBinder() {
             protected EventObject getEvent() {
-                return ContextChangeEvent.makeAttributeRemovedEvent(cxt, index);
+                return ContextChangeEvent.makeAttributeRemovedEvent(cxt, attrIndex);
+            }
+        });
+    }
+
+    static class ObjectEventBinder extends ContextListenerEventBinder {
+        protected void fireEventFor(ContextListener listener, EventObject evt) {
+            listener.objectChanged((ContextChangeEvent) evt);
+        }
+    }
+
+
+    public void fireObjectInserted(final int objIndex){
+        eventFireHelper(new ObjectEventBinder(){
+            protected EventObject getEvent() {
+                return ContextChangeEvent.makeObjectInsertedEvent(cxt, objIndex);
+            }
+        });
+    }
+
+    public void fireObjectRemoved(final int objIndex){
+        eventFireHelper(new ObjectEventBinder(){
+            protected EventObject getEvent() {
+                return ContextChangeEvent.makeObjectRemovedEvent(cxt, objIndex);
             }
         });
     }
