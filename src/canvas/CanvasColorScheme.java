@@ -8,7 +8,7 @@
 
 package canvas;
 
-import java.awt.Color;
+import java.awt.*;
 
 public interface CanvasColorScheme {
     Color getTextBackColor();

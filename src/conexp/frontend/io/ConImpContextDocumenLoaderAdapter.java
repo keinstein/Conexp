@@ -16,17 +16,14 @@ import util.DataFormatException;
 import java.io.IOException;
 import java.io.Reader;
 
+//todo: rename to ContextReaderAdapter, when have access to CSV.
+
 public class ConImpContextDocumenLoaderAdapter implements DocumentLoader {
     private ContextReader loader;
 
     public ConImpContextDocumenLoaderAdapter(ContextReader loader) {
         this.loader = loader;
     }
-
-    public ConImpContextDocumenLoaderAdapter() {
-        this(new ConImpContextLoader());
-    }
-
     public ContextDocument loadDocument(Reader r, DataFormatErrorHandler errorHandler) throws IOException, DataFormatException {
         return new ContextDocument(loader.parseContext(r));
     }

@@ -1,7 +1,7 @@
 package canvas.figures;
 
-import canvas.IFigurePredicate;
 import canvas.Figure;
+import canvas.IFigurePredicate;
 
 /*
  * This program is a part of the Darmstadt JSM Implementation.

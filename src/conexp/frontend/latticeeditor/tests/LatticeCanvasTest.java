@@ -10,22 +10,21 @@ package conexp.frontend.latticeeditor.tests;
 import canvas.IFigurePredicate;
 import canvas.IHighlightStrategy;
 import canvas.figures.TrueFigurePredicate;
-import conexp.core.tests.SetBuilder;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
-import conexp.core.layout.layeredlayout.tests.TestDataHolder;
-import conexp.core.layout.layeredlayout.tests.MapBasedConceptCoordinateMapper;
 import conexp.core.layout.ConceptCoordinateMapper;
+import conexp.core.layout.layeredlayout.tests.MapBasedConceptCoordinateMapper;
+import conexp.core.layout.layeredlayout.tests.TestDataHolder;
+import conexp.core.tests.SetBuilder;
+import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.*;
 import conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
-import conexp.frontend.components.LatticeComponent;
+import util.testing.TestUtil;
 
 import java.awt.*;
-
-import util.testing.TestUtil;
 
 public class LatticeCanvasTest extends junit.framework.TestCase {
 

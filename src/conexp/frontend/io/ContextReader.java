@@ -1,11 +1,10 @@
 package conexp.frontend.io;
 
 import conexp.core.Context;
-
-import java.io.Reader;
-import java.io.IOException;
-
 import util.DataFormatException;
+
+import java.io.IOException;
+import java.io.Reader;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

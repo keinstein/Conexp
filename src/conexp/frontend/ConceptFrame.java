@@ -112,7 +112,7 @@ public class ConceptFrame extends JFrame {
         ContextDocManager contextDocManager = new ContextDocManager(this, optionPaneSupplier);
         contextDocManager.setStorageFormatManager(new ConExpStorageFormatManager());
 		
-        new StorageFormatLoader(contextDocManager.getResources()).loadStorageFormats(contextDocManager.getStorageFormatManager());
+        //new StorageFormatLoader(contextDocManager.getResources()).loadStorageFormats(contextDocManager.getStorageFormatManager());
        
         contextDocManager.setConfigManager(new ConfigurationManager("ConExp.prop", "ConExp configuration"));
         return contextDocManager;

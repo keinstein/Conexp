@@ -8,20 +8,24 @@
 
 package conexp.frontend;
 
-import conexp.frontend.io.ConExpXMLReader;
-import conexp.frontend.io.ConExpXMLWriter;
-import conexp.frontend.io.ConImpContextDocumenLoaderAdapter;
-import conexp.frontend.io.ConImpContextWriter;
+import conexp.frontend.io.*;
+import conexp.frontend.io.csv.CSVContextCreator;
+import conexp.frontend.io.objattrlist.ObjectListContextCreator;
 import conexp.frontend.util.StorageFormatManager;
 import conexp.frontend.util.StorageFormatRecord;
 
 public class ConExpStorageFormatManager extends StorageFormatManager {
+
     public ConExpStorageFormatManager() {
         super();
+        setAllowAllSupported(true);
         registerStorageFormat(
-                new StorageFormatRecord("Cxt files", "cxt", new ConImpContextDocumenLoaderAdapter(), new ConImpContextWriter()));
+                new StorageFormatRecord("Cxt files", "cxt", new ConImpContextDocumenLoaderAdapter(new ConImpContextLoader()), new ConImpContextWriter()));
+        registerStorageFormat(new StorageFormatRecord("CSV files", "csv", new ConImpContextDocumenLoaderAdapter(new CSVContextCreator()), null));
+        registerStorageFormat(new StorageFormatRecord("List of Object and its attributes", "oal", new ConImpContextDocumenLoaderAdapter(new ObjectListContextCreator()), null));
         registerDefaultStorageFormat(
                 new StorageFormatRecord("ConExp xml format", "cex", new ConExpXMLReader(), new ConExpXMLWriter()));
+
 
     }
 }

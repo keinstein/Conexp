@@ -7,9 +7,9 @@
 
 package conexp.frontend.latticeeditor.figures;
 
+import canvas.CanvasScheme;
 import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.LineFigure;
-import canvas.CanvasScheme;
 
 import java.awt.*;
 

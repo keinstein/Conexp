@@ -1,19 +1,11 @@
 package conexp.frontend.tests;
 
-import java.io.IOException;
-import java.io.StringBufferInputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.PropertyResourceBundle;
-import java.util.ResourceBundle;
-import java.util.StringTokenizer;
-
-import junit.framework.TestCase;
-
 import conexp.frontend.ResourceLoader;
 import conexp.frontend.StorageFormatLoader;
 import conexp.frontend.util.StorageFormatManager;
-import conexp.frontend.util.StorageFormatRecord;
+import junit.framework.TestCase;
+
+import java.util.ResourceBundle;
 
 public class StorageFormatLoaderTests extends TestCase{
 	

@@ -15,7 +15,7 @@ public class AllTests extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(StorageFormatManagerTest.suite());
+        suite.addTestSuite(StorageFormatManagerTest.class);
         return suite;
     }
 

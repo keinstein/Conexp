@@ -11,7 +11,7 @@ import canvas.CanvasTool;
 import canvas.Figure;
 import canvas.FigureDrawingCanvas;
 
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 

@@ -9,14 +9,12 @@ package canvas.figures;
 
 import canvas.CanvasColorScheme;
 import canvas.CanvasScheme;
-import canvas.IHighlightStrategy;
 import canvas.Figure;
+import canvas.IHighlightStrategy;
 import util.Assert;
 import util.gui.GraphicObjectsFactory;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Stroke;
+import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;

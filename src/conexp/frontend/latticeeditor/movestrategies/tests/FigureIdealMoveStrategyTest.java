@@ -1,5 +1,6 @@
 package conexp.frontend.latticeeditor.movestrategies.tests;
 
+import canvas.figures.TrueFigurePredicate;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 import conexp.core.layout.layeredlayout.tests.TestDataHolder;
@@ -8,10 +9,8 @@ import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.LatticeCanvas;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.movestrategies.FigureIdealMoveStrategy;
-import conexp.frontend.latticeeditor.movestrategies.OneFigureMoveStrategy;
 import conexp.frontend.latticeeditor.tests.LatticeCanvasTest;
 import junit.framework.TestCase;
-import canvas.figures.TrueFigurePredicate;
 
 
 public class FigureIdealMoveStrategyTest extends TestCase {

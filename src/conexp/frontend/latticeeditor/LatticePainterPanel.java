@@ -9,7 +9,6 @@ package conexp.frontend.latticeeditor;
 
 import canvas.util.SaveImageAction;
 import com.visibleworkings.trace.Trace;
-import conexp.core.Lattice;
 import conexp.frontend.LatticeDrawingProvider;
 import conexp.frontend.ResourceLoader;
 import conexp.frontend.ViewChangeInterfaceWithConfig;
@@ -26,17 +25,8 @@ import java.beans.PropertyChangeListener;
 import java.util.ResourceBundle;
 
 
-public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewChangeInterfaceWithConfig {
+public class LatticePainterPanel extends BaseLatticePainterPane implements ViewChangeInterfaceWithConfig {
 
-
-    protected LatticeDrawing getLatticeDrawing() {
-        return (LatticeDrawing) getConceptSetDrawing();
-    }
-
-
-    public Lattice getLattice() {
-        return getLatticeDrawing().getLattice();
-    }
 
     class PanningTool extends canvas.DefaultTool {
         int xDiff = 0;
@@ -218,6 +208,7 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
             if (DrawParamsProperties.GRID_SIZE_X_PROPERTY.equals(propertyName)) {
                 handleXGridChange(evt);
             }
+            //todo: move level up
             if(DrawParamsProperties.MAX_NODE_RADIUS_PROPERTY.equals(propertyName)){
                 refresh();
             }
@@ -227,12 +218,6 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
             double coeff = ((Number) event.getNewValue()).doubleValue() / ((Number) event.getOldValue()).doubleValue();
             rescaleByXCoord(coeff);
         }
-    }
-
-    LatticeDrawingProvider latticeSupplier;
-
-    public LatticeDrawingProvider getLatticeSupplier() {
-        return latticeSupplier;
     }
 
     //---------------------------------------------------------------
@@ -249,8 +234,7 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
     }
 
     public LatticePainterPanel(LatticeDrawingProvider latticeDrawingProvider) {
-        super(latticeDrawingProvider.getDrawing().getPainterOptions());
-        setLatticeSupplier(latticeDrawingProvider);
+        super(latticeDrawingProvider);
         init();
         getPainterOptions().addPropertyChangeListener(layoutChangeHandler);
 
@@ -259,11 +243,6 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
 
         ToolTipManager.sharedInstance().registerComponent(this);
         ActionChainUtil.putActions(getActionChain(), getActions());
-    }
-
-    private void setLatticeSupplier(LatticeDrawingProvider supplier) {
-        latticeSupplier = supplier;
-        setOptions(latticeSupplier.getDrawing().getOptions());
     }
 
     public void setParentActionMap(ActionMap parentActionChain) {
@@ -323,10 +302,6 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
         return canDescribePoint(evt.getPoint()) ? describeActivePoint() : null;
     }
     //------------------------------------------------------------------
-
-    public void initialUpdate() {
-        setConceptSetDrawing(getLatticeSupplier().getDrawing());
-    }
 
     private class DrawingPropertyChangeListener implements PropertyChangeListener {
         public void propertyChange(PropertyChangeEvent evt) {

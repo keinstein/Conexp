@@ -8,16 +8,16 @@
 package conexp.frontend.io.objattrlist.tests;
 
 
-import java.io.StringReader;
-
-import junit.framework.TestCase;
-import util.StringUtil;
-import util.testing.TestUtil;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.DocumentLoader;
 import conexp.frontend.io.DefaultDataFormatErrorHandler;
 import conexp.frontend.io.objattrlist.ObjectListContextCreator;
+import junit.framework.TestCase;
+import util.StringUtil;
+import util.testing.TestUtil;
+
+import java.io.StringReader;
 
 public class ObjectListContextCreatorTest extends TestCase {
 

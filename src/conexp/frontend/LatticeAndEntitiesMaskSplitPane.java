@@ -5,12 +5,12 @@
  **/
 
 
-
 package conexp.frontend;
 
 import conexp.frontend.components.EntitiesMaskScrollPane;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.LatticePainterPanel;
+import conexp.frontend.latticeeditor.BirdviewLatticeView;
 import conexp.frontend.util.IResourceManager;
 import util.gui.JSplitPaneWithFixedRightPane;
 
@@ -50,21 +50,34 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
     }
 
     private JComponent makeAttributeSelectionPane(LatticeComponent latticeSupplier) {
-        JSplitPane ret  = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+        JSplitPane outer = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+        outer.setOneTouchExpandable(true);
+        outer.setResizeWeight(0.5);
 
+        final JPanel comp = new JPanel(new BorderLayout());
+        BirdviewLatticeView panel = new BirdviewLatticeView(latticeSupplier);
+        panel.setFitToSize(true);
+        panel.initialUpdate();
+        comp.add(panel, BorderLayout.CENTER);
+
+        outer.setTopComponent(comp);
+
+        JSplitPane ret = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         ret.setOneTouchExpandable(true);
         ret.setResizeWeight(0.5);
 
         ret.setTopComponent(buildMaskEditorPane(latticeSupplier.getAttributeMask(), "Select all attributes"));
         ret.setBottomComponent(buildMaskEditorPane(latticeSupplier.getObjectMask(), "Select all objects"));
-        return ret;
+        outer.setBottomComponent(ret);
+
+        return outer;
     }
 
     private JPanel buildMaskEditorPane(final SetProvidingEntitiesMask entitiesMask, String selectAllText) {
         JPanel attributeSelectionPane = new JPanel(new BorderLayout());
         attributeSelectionPane.add(new EntitiesMaskScrollPane(entitiesMask), BorderLayout.CENTER);
         final JButton button = new JButton(selectAllText);
-        button.addActionListener(new ActionListener(){
+        button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 entitiesMask.selectAll();
             }

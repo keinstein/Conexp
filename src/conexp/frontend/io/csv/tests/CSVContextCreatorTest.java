@@ -8,16 +8,16 @@
 package conexp.frontend.io.csv.tests;
 
 
-import java.io.StringReader;
-
-import junit.framework.TestCase;
-import util.StringUtil;
-import util.testing.TestUtil;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.DocumentLoader;
 import conexp.frontend.io.DefaultDataFormatErrorHandler;
 import conexp.frontend.io.csv.CSVContextLoader;
+import junit.framework.TestCase;
+import util.StringUtil;
+import util.testing.TestUtil;
+
+import java.io.StringReader;
 
 public class CSVContextCreatorTest extends TestCase {
 

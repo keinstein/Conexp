@@ -10,9 +10,7 @@ package conexp.frontend.util.tests;
 import conexp.frontend.*;
 import conexp.frontend.util.StorageFormatManager;
 import conexp.frontend.util.StorageFormatRecord;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import util.DataFormatException;
 import util.gui.fileselector.GenericFileFilter;
 
@@ -21,12 +19,6 @@ import java.io.Reader;
 import java.io.Writer;
 
 public class StorageFormatManagerTest extends TestCase {
-    private static final Class THIS = StorageFormatManagerTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     static class MockDocumentLoader implements DocumentLoader {
         public ContextDocument loadDocument(Reader reader, DataFormatErrorHandler errorHandler) throws IOException, DataFormatException {
             return null;

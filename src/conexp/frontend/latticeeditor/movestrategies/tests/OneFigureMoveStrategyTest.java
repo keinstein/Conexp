@@ -1,20 +1,16 @@
 package conexp.frontend.latticeeditor.movestrategies.tests;
 
-import junit.framework.TestCase;
-import conexp.frontend.components.LatticeComponent;
-import conexp.frontend.latticeeditor.*;
-import conexp.frontend.latticeeditor.tests.LatticeCanvasTest;
-import conexp.frontend.latticeeditor.movestrategies.OneFigureMoveStrategy;
-import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
-import conexp.frontend.latticeeditor.figures.ConceptFigure;
-import conexp.core.tests.SetBuilder;
-import conexp.core.layout.layeredlayout.tests.TestDataHolder;
-import conexp.core.layout.layeredlayout.tests.MapBasedConceptCoordinateMapper;
-import conexp.core.layout.ConceptCoordinateMapper;
+import canvas.figures.TrueFigurePredicate;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
-import util.testing.TestUtil;
-import canvas.figures.TrueFigurePredicate;
+import conexp.core.layout.layeredlayout.tests.TestDataHolder;
+import conexp.core.tests.SetBuilder;
+import conexp.frontend.latticeeditor.ConceptSetDrawing;
+import conexp.frontend.latticeeditor.LatticeCanvas;
+import conexp.frontend.latticeeditor.figures.ConceptFigure;
+import conexp.frontend.latticeeditor.movestrategies.OneFigureMoveStrategy;
+import conexp.frontend.latticeeditor.tests.LatticeCanvasTest;
+import junit.framework.TestCase;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

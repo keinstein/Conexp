@@ -9,15 +9,15 @@ package conexp.frontend.latticeeditor;
 
 import canvas.IHighlightStrategy;
 import conexp.core.layout.Layouter;
-import conexp.util.valuemodels.BoundedIntValue;
+import conexp.util.gui.paramseditor.BoundedIntValueParamInfo;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
-import conexp.util.gui.paramseditor.BoundedIntValueParamInfo;
+import conexp.util.valuemodels.BoundedIntValue;
 import util.BaseVetoablePropertyChangeSupplier;
 
 import java.awt.*;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 //todo: rename to LatticeCanvasSchemeWithOptions
 

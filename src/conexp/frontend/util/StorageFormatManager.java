@@ -11,6 +11,7 @@ package conexp.frontend.util;
 import conexp.frontend.DocumentLoader;
 import conexp.frontend.DocumentWriter;
 import util.Assert;
+import util.gui.fileselector.AllSupportedFormatsFilter;
 import util.gui.fileselector.GenericFileFilter;
 
 import java.util.ArrayList;
@@ -79,7 +80,25 @@ public class StorageFormatManager {
         return ret;
     }
 
+    boolean allowAllSupported = false;
+
+    public boolean isAllowAllSupported() {
+        return allowAllSupported;
+    }
+
+    public void setAllowAllSupported(boolean allowAllSupported) {
+        this.allowAllSupported = allowAllSupported;
+    }
+
     public GenericFileFilter[] getLoadFilters() {
+        final GenericFileFilter[] rawLoadFilters = getRawLoadFilters();
+        if(allowAllSupported){
+            return AllSupportedFormatsFilter.allowAllSupported(rawLoadFilters);
+        }
+        return rawLoadFilters;
+    }
+
+    private GenericFileFilter[] getRawLoadFilters() {
         int size = loaderCount();
         GenericFileFilter[] ret = new GenericFileFilter[size];
         int currRec = 0;

@@ -1,44 +1,17 @@
 package conexp.frontend.io.objattrlist;
 
 
-import java.io.BufferedReader;
-
-import java.io.FileNotFoundException;
-
-import java.io.FileReader;
-
-import java.io.FileWriter;
-
-import java.io.IOException;
-
-import java.io.InputStream;
-
-import java.io.InputStreamReader;
-
-import java.io.Reader;
-
-import java.net.MalformedURLException;
-
-import java.net.URL;
-
-import java.util.Hashtable;
-
-import java.util.StringTokenizer;
-
+import conexp.core.Context;
+import conexp.core.ContextEntity;
+import conexp.frontend.ContextDocument;
+import conexp.frontend.DataFormatErrorHandler;
+import conexp.frontend.DocumentLoader;
+import conexp.frontend.io.*;
 import util.DataFormatException;
 
-
-import conexp.core.Context;
-
-import conexp.core.ContextEntity;
-
-import conexp.frontend.ContextDocument;
-
-import conexp.frontend.DataFormatErrorHandler;
-
-import conexp.frontend.DocumentLoader;
-
-import conexp.frontend.io.*;
+import java.io.*;
+import java.util.Hashtable;
+import java.util.StringTokenizer;
 
 
 public class ObjectListContextCreator implements ContextCreator, DocumentLoader, ContextReader {

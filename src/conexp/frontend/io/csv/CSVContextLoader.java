@@ -6,22 +6,16 @@
  */
 package conexp.frontend.io.csv;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import util.DataFormatException;
 import conexp.core.Context;
 import conexp.frontend.ContextDocument;
 import conexp.frontend.DataFormatErrorHandler;
 import conexp.frontend.DocumentLoader;
 import conexp.frontend.io.ConExpXMLWriter;
+import util.DataFormatException;
+
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * @author Julien Tane

@@ -1,8 +1,8 @@
 package conexp.frontend.io;
 
 import java.io.*;
-import java.net.URL;
 import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
