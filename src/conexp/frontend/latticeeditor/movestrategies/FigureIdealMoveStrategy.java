@@ -53,7 +53,6 @@ public class FigureIdealMoveStrategy implements MoveStrategy {
             if (existsParentOutsideIdeal(concept.getParents(), conceptFigureIntent)) {
                 AbstractConceptCorrespondingFigure nextFigure = canvas.getFigureForConcept(concept);
                 double upMoveConstraintForConcept = canvas.getUpMoveConstraintForConcept(nextFigure, figureOutsideTheIdeal);
-                System.out.println("upModeConstraint " + upMoveConstraintForConcept + " for figure " + nextFigure.getConcept());
                 ret = -Math.min(upMoveConstraintForConcept, -ret);
             }
         }
