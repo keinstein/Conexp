@@ -1,1 +1,1 @@
-javaw -jar conexp.jar
+java -jar conexp.jar
