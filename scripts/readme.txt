@@ -27,7 +27,7 @@ In ConExp the following functionality is implemented:
 
 What do I need to run ConExp?
 -----------------------------
-You need a Java Runtime Enviroment (JRE) version 1.3 or higher (1.4.1_01 recommended).
+You need a Java Runtime Environment (JRE) version 1.3 or higher (1.4.1_01 recommended).
 For the development Java Development Kit (JDK) version 1.4.1_01 is usually used.
 If you don't have it, you can get them from the following URL:
 http://java.sun.com/j2se/downloads.html

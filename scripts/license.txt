@@ -1,4 +1,4 @@
-Copyright (c) 2000-2003, Sergey Yevtushenko
+Copyright (c) 2000-2003, Serhiy Yevtushenko
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
@@ -15,11 +15,11 @@ met:
   derived from this software without specific prior written
   permission.
 
-If you use this software in research purposes, in resulting pulications please
+If you use this software in research purposes, in resulting publications please
 refer to usage of this software. Please cite the following article:
 
 Serhiy A. Yevtushenko. System of data analysis "Concept Explorer".
-(In russian). Proceedings of the 7th national conference on Artificial
+(In Russian). Proceedings of the 7th national conference on Artificial
 Intelligence KII-2000, p. 127-134, Russia, 2000.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
