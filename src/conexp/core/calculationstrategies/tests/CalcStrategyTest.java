@@ -23,6 +23,10 @@ public abstract class CalcStrategyTest extends TestCase {
     public static final int[][] ONE_NODE_LATTICE = new int[][]{
         {1}
     };
+
+    public static final int[][] TWO_NODE_LATTICE = new int[][]{
+        {0}
+    };
     public static final int[][] BOOLEAN_3_ATTR = new int[][]{
         {1, 1, 0},
         {0, 1, 1},
@@ -120,6 +124,16 @@ public abstract class CalcStrategyTest extends TestCase {
                 ONE_NODE_LATTICE, new int[][]{{1}},
                                   new int[][]{{1}},
                                   0
+        );
+
+    }
+
+
+    public void testTwoNodeLattice() {
+        doTestCalcStrategyForExpectedIntentsAndExtents(
+                TWO_NODE_LATTICE, new int[][]{{0},{1}},
+                                  new int[][]{{1}, {0}},
+                                  1
         );
 
     }

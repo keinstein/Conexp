@@ -10,52 +10,12 @@ package conexp.core.calculationstrategies;
 import conexp.core.*;
 
 
-public abstract class LatticeNeedingCalcStrategy extends DepthSearchBinaryRelationAlgorithm implements ConceptCalcStrategy, LatticeCalcStrategy {
+public abstract class LatticeNeedingCalcStrategy extends DepthSearchConceptCalcStrategy implements LatticeCalcStrategy {
     protected Lattice lattice;
-    protected ConceptEnumCallback callback;
-
-    public void setCallback(ConceptEnumCallback _callback) {
-        this.callback = _callback;
-        this.callback.setRelation(rel);
-    }
-
-    public void setRelation(BinaryRelation rel) {
-        super.setRelation(rel);
-        //SMELL to refactor
-        if (null != callback) {
-            callback.setRelation(rel);
-        }
-    }
 
     //-----------------------------------------------------------------------
-    /**
-     *  calculates One element of conexp lattice object set is in newExtent
-     *  attributes set is in outerSet
-     */
-    protected void calcOne() {
-        int numObj = rel.getRowCount();
-        newIntent.copy(allAttrSet);
-        newExtent.fill();
-        for (int i = numObj; --i >= 0;) {
-            newIntent.and(rel.getSet(i));
-        }
-    }
 
     //-----------------------------------------------------------------------
-    /**
-     *  calculates Zero element of conexp lattice object set is in newExtent
-     *  attributes set is in outerSet
-     */
-    protected void calcZero() {
-        int numObj = rel.getRowCount();
-        newExtent.clearSet();
-        outerSet.copy(allAttrSet);
-        for (int i = numObj; --i >= 0;) {
-            if (outerSet.isSubsetOf(rel.getSet(i))) {
-                newExtent.put(i);
-            }
-        }
-    }
 
     //-----------------------------------------------------------------
     /**
@@ -86,7 +46,21 @@ public abstract class LatticeNeedingCalcStrategy extends DepthSearchBinaryRelati
 
     public void tearDown() {
         lattice = null;
-        callback = null;
         super.tearDown();
+    }
+
+    /**
+     *  calculates Zero element of conexp lattice object set is in newExtent
+     *  attributes set is in outerSet
+     */
+    protected void calcZero() {
+        int numObj = rel.getRowCount();
+        newExtent.clearSet();
+        outerSet.copy(allAttrSet);
+        for (int i = numObj; --i >= 0;) {
+            if (outerSet.isSubsetOf(rel.getSet(i))) {
+                newExtent.put(i);
+            }
+        }
     }
 }

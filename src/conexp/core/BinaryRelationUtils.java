@@ -7,7 +7,10 @@
 
 package conexp.core;
 
+import util.DoubleUtil;
+
 import java.util.LinkedList;
+import java.util.Arrays;
 
 
 public class BinaryRelationUtils {
@@ -15,7 +18,6 @@ public class BinaryRelationUtils {
      * Insert the method's description here.
      * Creation date: (08.07.01 2:31:15)
      * @return java.lang.String
-     * @deprecated
      */
     public static String describeRelation(BinaryRelation rel) {
         StringBuffer ret = new StringBuffer();
@@ -41,6 +43,137 @@ public class BinaryRelationUtils {
             }
         }
         return cnt;
+    }
+
+    public static double averageNumberOfAttributesPerObject(BinaryRelation rel) {
+        int[] frequencies = attributePerObjectFrequencies(rel);
+        return average(frequencies);
+    }
+
+    public static int[] attributePerObjectFrequencies(BinaryRelation rel) {
+        int rowCount = rel.getRowCount();
+        int[] frequencies = new int[rowCount];
+        for (int i = 0; i < rowCount; i++) {
+            frequencies[i] = rel.getSet(i).elementCount();
+        }
+        return frequencies;
+    }
+
+    public static double varianceOfAttributesPerObjects(BinaryRelation rel) {
+        int[] attributePerObject = attributePerObjectFrequencies(rel);
+        return variance(attributePerObject);
+    }
+
+    public static double average(int[] frequencies) {
+        if (0 == frequencies.length) {
+            return 0;
+        }
+        long sum = sum(frequencies);
+        return DoubleUtil.getRate(sum, frequencies.length);
+    }
+
+    public static double averageNumberOfObjectsPerAttribute(BinaryRelation rel) {
+        return average(attributeFrequencies(rel));
+    }
+
+    public static int[] attributeFrequencies(BinaryRelation rel) {
+        int colCount = rel.getColCount();
+        int[] frequencies = new int[colCount];
+        int rowCount = rel.getRowCount();
+        for (int i = 0; i < rowCount; i++) {
+            Set set = rel.getSet(i);
+            for (int j = set.firstIn(); j != Set.NOT_IN_SET; j = set.nextIn(j)) {
+                frequencies[j]++;
+            }
+        }
+        return frequencies;
+    }
+/**
+ *  side effect - list became sorted
+ */
+    public static double quantile(int[] elements, double phi){
+        Arrays.sort(elements);
+        return quantileFromSorted(elements, phi);
+    }
+
+    public static double quantileFromSorted(int[] sortedElements, double phi) {
+        if(phi<0 || phi>1){
+            throw new IllegalArgumentException("Incorrect parameter value in quantile");
+        }
+        int n = sortedElements.length;
+
+        double index = phi * (n - 1);
+        int lhs = (int) index;
+        double delta = index - lhs;
+        double result;
+
+        if (n == 0) return 0.0;
+
+        if (lhs == n - 1) {
+            result = sortedElements[lhs];
+        } else {
+            result = (1 - delta) * sortedElements[lhs] + delta * sortedElements[lhs + 1];
+        }
+
+        return result;
+    }
+
+    public static double varianceOfObjectPerAttribute(BinaryRelation rel) {
+        int[] frequencies = attributeFrequencies(rel);
+        return variance(frequencies);
+    }
+
+    public static int min(int[] array) {
+        if (array.length == 0) {
+            throw new IllegalArgumentException("Min has no value for empty array");
+        }
+        int last = array.length - 1;
+        int min = array[last];
+        for (int i = last; --i >= 0;) {
+            int value = array[i];
+            if (value < min) {
+                min = value;
+            }
+        }
+        return min;
+    }
+
+    public static int max(int[] array) {
+        if (array.length == 0) {
+            throw new IllegalArgumentException("Max has no value for empty array");
+        }
+        int last = array.length - 1;
+        int max = array[last];
+        for (int i = last; --i >= 0;) {
+            int value = array[i];
+            if (value > max) {
+                max = value;
+            }
+        }
+        return max;
+    }
+
+
+    public static double variance(int[] frequencies) {
+        if (0 == frequencies.length) {
+            return 0;
+        }
+        double average = average(frequencies);
+        double sum = 0;
+        for (int i = frequencies.length; --i >= 0;) {
+            double deviation = frequencies[i] - average;
+            sum += deviation * deviation;
+        }
+        return sum / frequencies.length;
+    }
+
+
+    private static long sum(int[] frequencies) {
+        long sum = 0;
+        for (int i = 0; i < frequencies.length; i++) {
+            sum += frequencies[i];
+        }
+        return sum;
     }
 
 
@@ -218,6 +351,22 @@ public class BinaryRelationUtils {
             }
         }
         return tempClosure;
+    }
+
+    public static int minAttrCountPerObject(BinaryRelation relation) {
+        return min(attributePerObjectFrequencies(relation));
+    }
+
+    public static int maxAttributePerObject(BinaryRelation relation) {
+        return max(attributePerObjectFrequencies(relation));
+    }
+
+    public static int minObjCountPerAttribute(BinaryRelation relation) {
+        return min(attributeFrequencies(relation));
+    }
+
+    public static int maxObjCountPerAttribute(BinaryRelation relation) {
+        return max(attributeFrequencies(relation));
     }
 
 }

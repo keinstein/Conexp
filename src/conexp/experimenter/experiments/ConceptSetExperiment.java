@@ -3,7 +3,7 @@ package conexp.experimenter.experiments;
 import conexp.core.BinaryRelationProcessor;
 import conexp.core.ConceptCalcStrategy;
 import conexp.core.ConceptsCollection;
-import conexp.experimenter.experiments.BaseConceptSetExperiment;
+import conexp.experimenter.experiments.BaseConceptsExperiment;
 import util.StringUtil;
 
 /**
@@ -11,11 +11,15 @@ import util.StringUtil;
  * Creation date: (21.07.01 13:46:49)
  * @author
  */
-public abstract class ConceptSetExperiment extends BaseConceptSetExperiment {
-    protected final java.lang.String strategyName;
+public abstract class ConceptSetExperiment extends BaseConceptCalcExperiment {
 
     protected ConceptSetExperiment(String strategyName) {
-        this.strategyName = strategyName;
+        super(strategyName);
+    }
+
+
+    protected void doLocalSetup() {
+        coll = makeConceptsCollection();
     }
 
     /**
@@ -27,20 +31,8 @@ public abstract class ConceptSetExperiment extends BaseConceptSetExperiment {
     }
 
 
-    public String getDescription() {
-        return StringUtil.extractClassName(strategyName);
-    }
-
-    public void perform() {
-        ((ConceptCalcStrategy)strategy).calculateConceptSet();
-    }
-
     protected int getConceptsCount() {
         return ((ConceptsCollection) coll).conceptsCount();
-    }
-
-    public BinaryRelationProcessor makeStrategy() {
-        return (ConceptCalcStrategy) createClassByName(strategyName);
     }
 
 }

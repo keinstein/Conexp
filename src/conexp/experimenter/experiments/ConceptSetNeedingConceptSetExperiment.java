@@ -25,6 +25,7 @@ public class ConceptSetNeedingConceptSetExperiment extends ConceptSetExperiment 
      * Creation date: (21.07.01 15:33:31)
      */
     protected void doLocalSetup() {
+        super.doLocalSetup();
         ((ConceptSetNeedingCalcStrategy) strategy).setConceptSet((conexp.core.ConceptsCollection) coll);
     }
 

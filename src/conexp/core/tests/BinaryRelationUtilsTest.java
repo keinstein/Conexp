@@ -14,6 +14,7 @@ import junit.framework.TestCase;
 
 
 public class BinaryRelationUtilsTest extends TestCase {
+    public static final double PRECISION = 0.0001;
 
     /**
      * Insert the method's description here.
@@ -112,4 +113,92 @@ public class BinaryRelationUtilsTest extends TestCase {
 
         doTestTransitiveClosure(relationToCloseDescr, expClosedRelationDescr);
     }
+
+    public void testAverageNumberOfAttributesPerRow(){
+        int [][] relationDescr={{}};
+        BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
+        double average = BinaryRelationUtils.averageNumberOfAttributesPerObject(relation);
+        assertEquals(0, average, PRECISION);
+
+        relationDescr =new int[][] {
+            {1, 0},
+            {0, 1}
+        };
+        relation = SetBuilder.makeRelation(relationDescr);
+        assertEquals(1, BinaryRelationUtils.averageNumberOfAttributesPerObject(relation), PRECISION);
+
+        relationDescr =new int[][] {
+            {1, 1},
+            {0, 1}
+        };
+        relation = SetBuilder.makeRelation(relationDescr);
+        assertEquals(1.5, BinaryRelationUtils.averageNumberOfAttributesPerObject(relation), PRECISION);
+    }
+
+    public void testAverageNumberOfObjectsPerAttribute(){
+        int [][] relationDescr={{}};
+        BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
+        assertEquals(0, BinaryRelationUtils.averageNumberOfObjectsPerAttribute(relation), PRECISION);
+
+        relationDescr =new int[][] {
+            {1, 0, 1},
+            {0, 0, 1}
+        };
+        relation = SetBuilder.makeRelation(relationDescr);
+        assertEquals(1, BinaryRelationUtils.averageNumberOfObjectsPerAttribute(relation), PRECISION);
+    }
+
+    public void testVarianceOfObjectPerAttribute(){
+        int [][] relationDescr={{}};
+        BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
+        assertEquals(0, BinaryRelationUtils.varianceOfObjectPerAttribute(relation), PRECISION);
+        relationDescr =new int[][] {
+            {1, 0, 1},
+            {0, 0, 1}
+        };
+        relation = SetBuilder.makeRelation(relationDescr);
+        assertEquals(0.6666, BinaryRelationUtils.varianceOfObjectPerAttribute(relation), PRECISION);
+    }
+
+    public void testVarianceOfAttributesPerObject(){
+        int [][] relationDescr={{}};
+        BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
+        assertEquals(0, BinaryRelationUtils.varianceOfAttributesPerObjects(relation), PRECISION);
+        relationDescr =new int[][] {
+            {1, 0, 1},
+            {0, 0, 1}
+        };
+        relation = SetBuilder.makeRelation(relationDescr);
+        assertEquals(0.25, BinaryRelationUtils.varianceOfAttributesPerObjects(relation), PRECISION);
+    }
+
+    public void testMax(){
+        assertEquals(3, BinaryRelationUtils.max(new int[]{1, 3, 2}));
+        assertEquals(3, BinaryRelationUtils.max(new int[]{1, 2, 3}));
+        assertEquals(3, BinaryRelationUtils.max(new int[]{3, 2, 1}));
+
+
+        try {
+            BinaryRelationUtils.max(new int[0]);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            assertTrue(true);
+        }
+    }
+
+    public void testMin() {
+        assertEquals(1, BinaryRelationUtils.min(new int[]{1, 3, 2}));
+        assertEquals(1, BinaryRelationUtils.min(new int[]{3, 2, 1}));
+        assertEquals(1, BinaryRelationUtils.min(new int[]{2, 1, 3}));
+        try {
+            BinaryRelationUtils.min(new int[0]);
+            fail("IllegalArgumentException expected");
+        } catch (IllegalArgumentException e) {
+            assertTrue(true);
+        }
+
+
+    }
+
+
 }

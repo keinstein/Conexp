@@ -27,6 +27,7 @@ public class CallbackBasedConceptSetExperiment extends ConceptSetExperiment {
      * Creation date: (21.07.01 15:33:31)
      */
     protected void doLocalSetup() {
+        super.doLocalSetup();
         ((ConceptCalcStrategy)strategy).setCallback(new conexp.core.enumcallbacks.ConceptSetCallback((conexp.core.ConceptsCollection) coll));
     }
 

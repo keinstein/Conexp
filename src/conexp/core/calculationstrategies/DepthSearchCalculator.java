@@ -76,31 +76,6 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
         }
     }
 
-    //-----------------------------------------------------------------
-    /**
-     *  method finds a closure by addition of attr j to intent, having extent
-     *  _concObjects
-     *
-     *@param  j             - attribute to add
-     *@param  _concObjects  - list of objects, in which closure is performed
-     * side_effect            newExtent - new conexp extent
-     *                        outerSet - outer set
-     *                        newIntent - new conexp intent
-     */
-    protected void findAttrClosure(int j, Set _concObjects) {
-        newExtent.clearSet();
-        outerSet.clearSet();
-        newIntent.copy(allAttrSet);
-        for (int i = _concObjects.firstIn(); i >= 0; i = _concObjects.nextIn(i)) {
-            Set tmp = rel.getSet(i);
-            if (tmp.in(j)) {
-                newExtent.put(i);
-                newIntent.and(tmp);
-            } else {
-                outerSet.or(tmp);
-            }
-        }
-    }
     //----------------------------------------------------------------
     /**
      *  this function is strongly connected with used order !!! precondition :

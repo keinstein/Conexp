@@ -115,8 +115,7 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
 
     protected void depthSearchEnumerateConcepts() {
         //todo: write version, that works with feature mask and search constrainer
-        startCalc();
-        initObjectsAndAttribs();
+        initStackObjects();
         callback.startCalc();
         calcOne();
         if (!searchConstrainer.continueSearch(newIntent, newExtent.elementCount())) {

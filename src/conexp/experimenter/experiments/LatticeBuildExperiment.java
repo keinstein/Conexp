@@ -20,6 +20,7 @@ public class LatticeBuildExperiment extends ConceptSetExperiment {
     }
 
     protected void doLocalSetup() {
+        super.doLocalSetup();
         if (strategy instanceof NextClosedSetCalculator) {
 
             ConceptEnumCallback callback = new NextClosedSetLatticeBuilderCallback((Lattice) coll);

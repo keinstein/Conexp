@@ -1,11 +1,6 @@
 package conexp.experimenter.relationsequences;
 
 import conexp.core.BinaryRelation;
-import conexp.core.BinaryRelationUtils;
-import conexp.experimenter.framework.IMeasurementProtocol;
-import conexp.experimenter.framework.MeasurementProtocol;
-import conexp.experimenter.framework.MeasurementSet;
-import conexp.experimenter.framework.RelationSequence;
 
 /**
  * Insert the type's description here.
@@ -45,17 +40,6 @@ public abstract class BaseRelationGenerationStrategy extends BaseRelationSequenc
             relations[i] = makeRelation(i);
         }
     }
-
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (21.07.01 12:25:29)
-     * @return java.lang.String
-     */
-    public java.lang.String describeRelation(int i) {
-        return conexp.core.BinaryRelationUtils.describeRelation(relations[i]);
-    }
-
 
     /**
      * Insert the method's description here.
