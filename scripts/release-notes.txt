@@ -22,6 +22,8 @@ Several bugs were fixed:
     image of lattice to jump in 0.0 point (thanks to Julian Tane) for
     contributing patch
 
+Thanks to John Old, HTML version of readme file was added.
+
 We are glad to welcome two new members of ConExp team -
 Tim Kaiser and Julian Tane.
 
