@@ -13,11 +13,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 public class BoundedIntValueParamInfoTest extends TestCase {
-    private static final Class THIS = BoundedIntValueParamInfoTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
     public void testEditor() {
         BoundedIntValue val = new BoundedIntValue("test", 10, 0, 80);

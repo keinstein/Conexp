@@ -11,9 +11,13 @@ import conexp.core.ContextEditingInterface;
 import conexp.util.gui.Command;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
+import conexp.util.gui.paramseditor.BooleanParamInfo;
+import conexp.util.valuemodels.BooleanValueModel;
 import util.DataFormatException;
 
 import javax.swing.*;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableColumn;
 import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.UndoableEditListener;
@@ -36,6 +40,8 @@ public class ContextTable extends JTable implements ParamsProvider {
     ParamInfo[] params;
 
     boolean repaintMode = false;
+    private BooleanValueModel compressView;
+    public static final String COMPRESSED_VIEW_PROPERTY = "compressedView";
 
     public void setRepaintMode(boolean repaintMode) {
         this.repaintMode = repaintMode;
@@ -54,6 +60,15 @@ public class ContextTable extends JTable implements ParamsProvider {
                 }
                 invalidate();
                 repaint();
+            }
+        });
+
+        compressView = new BooleanValueModel(COMPRESSED_VIEW_PROPERTY, false);
+        compressView.addPropertyChangeListener(new PropertyChangeListener() {
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (COMPRESSED_VIEW_PROPERTY.equals(evt.getPropertyName())) {
+                    setCompressedView(Boolean.TRUE.equals(evt.getNewValue()));
+                }
             }
         });
 
@@ -86,6 +101,15 @@ public class ContextTable extends JTable implements ParamsProvider {
         setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         getTableHeader().setReorderingAllowed(false);
 
+    }
+
+    private void setCompressedView(boolean compressed) {
+        final int preferredWidth = compressed ? 16: 75;
+        TableColumnModel columnModel = getColumnModel();
+        for (int i = 1; i < getColumnCount(); i++) {
+            TableColumn column = columnModel.getColumn(i);
+            column.setPreferredWidth(preferredWidth);
+        }
     }
 
 
@@ -153,8 +177,6 @@ public class ContextTable extends JTable implements ParamsProvider {
     }
 
 
-
-
     class CopyAction extends ActionWithKey {
         public CopyAction() {
             this("copy", "Copy");
@@ -193,8 +215,8 @@ public class ContextTable extends JTable implements ParamsProvider {
 
         public boolean isEnabled() {
             return super.isEnabled() &&
-                    getSelectedColumn()>=1 &&
-                    getSelectedRow()>=1 &&
+                    getSelectedColumn() >= 1 &&
+                    getSelectedRow() >= 1 &&
                     getContextTableModel().hasAtLeastOneNonHeaderCell(getSelectedRows(), getSelectedColumns());
         }
 
@@ -471,13 +493,23 @@ public class ContextTable extends JTable implements ParamsProvider {
     public ParamInfo[] getParams() {
         if (null == params) {
             ParamInfo[] rendererParams = cellRenderer.getParams();
+            ParamInfo[] tableViewerParams = this.getNativeParams();
             ParamInfo[] modelParams = getContextTableModel().getParams();
             params = new ParamInfo[rendererParams.length
-                    + modelParams.length];
+                    + modelParams.length + tableViewerParams.length];
             System.arraycopy(rendererParams, 0, params, 0, rendererParams.length);
-            System.arraycopy(modelParams, 0, params, rendererParams.length, modelParams.length);
+            System.arraycopy(tableViewerParams, 0, params, rendererParams.length, tableViewerParams.length);
+
+            System.arraycopy(modelParams, 0, params, rendererParams.length + tableViewerParams.length, modelParams.length);
         }
         return params;
+    }
+
+    private ParamInfo[] getNativeParams() {
+
+        return new ParamInfo[]{
+            new BooleanParamInfo("Compressed", compressView)
+        };
     }
 
     public static void initKeyboard(ContextTable contextTable) {

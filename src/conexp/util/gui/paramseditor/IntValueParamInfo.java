@@ -12,8 +12,6 @@ import conexp.util.valuemodels.IIntValueModel;
 public class IntValueParamInfo extends AbstractParamInfo {
     protected final IIntValueModel valueModel;
 
-    ;
-
     /**
      * Insert the method's description here.
      * Creation date: (30.03.01 23:35:43)

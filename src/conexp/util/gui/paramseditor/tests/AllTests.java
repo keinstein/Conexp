@@ -17,7 +17,7 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
 
-        suite.addTest(BoundedIntValueParamInfoTest.suite());
+        suite.addTestSuite(BoundedIntValueParamInfoTest.class);
         suite.addTest(ParamEditorTableTest.suite());
         suite.addTest(ParamTableModelTest.suite());
 
