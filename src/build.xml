@@ -96,7 +96,6 @@
             <fileset dir="${build}">
                 <include name="${rootPackage}/**"/>
                 <include name="${canvasPackage}/**"/>
-                <exclude name="**/tests/"/>
             </fileset>
         </jar>
     </target>

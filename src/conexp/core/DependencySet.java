@@ -1,6 +1,7 @@
 package conexp.core;
 
 import util.StringUtil;
+import util.collection.CollectionFactory;
 
 import java.util.*;
 
@@ -17,14 +18,14 @@ public class DependencySet {
 
     protected AttributeInformationSupplier attrInfo;
 
-    protected java.util.ArrayList dependencies;
+    protected List dependencies;
 
     /**
      * Insert the method's description here.
      * Creation date: (01.05.01 19:18:02)
      */
     public DependencySet(AttributeInformationSupplier attrInfo) {
-        dependencies = new ArrayList();
+        dependencies = CollectionFactory.createDefaultList();
         this.attrInfo = attrInfo;
     }
 
@@ -113,7 +114,11 @@ public class DependencySet {
     }
 
     public DependencySet makeCompatibleDependencySet() {
-        return new DependencySet(getAttributesInformation());
+        return makeDependencySet(getAttributesInformation());
+    }
+
+    protected DependencySet makeDependencySet(AttributeInformationSupplier attributesInformation) {
+        return new DependencySet(attributesInformation);
     }
 
 

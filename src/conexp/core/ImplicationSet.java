@@ -34,6 +34,10 @@ public class ImplicationSet extends DependencySet {
         super(attributeInformationSupplier);
     }
 
+    protected DependencySet makeDependencySet(AttributeInformationSupplier attributesInformation) {
+        return new ImplicationSet(attributesInformation);
+    }
+
     //---------------------------------------
     public void addImplication(Implication dep) {
         super.addDependency(dep);

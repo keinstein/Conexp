@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import conexp.core.ImplicationCalcStrategy;
 import conexp.core.Context;
 import conexp.core.ImplicationSet;
+import conexp.core.compareutils.ImplicationSetComparator;
 import conexp.core.tests.SetBuilder;
 
 /**
@@ -19,8 +20,12 @@ public abstract class ImplicationCalculatorBaseTest extends TestCase {
         ImplicationSet expImplication =
                 SetBuilder.makeImplicationSet(cxt,
                         expImplicationsDescriptions);
-//        assertEquals(expImplication.size(), implications.size());
-        assertEquals(expImplication, implications);
+        if(!expImplication.equals(implications)){
+            ImplicationSetComparator comparator = new ImplicationSetComparator(expImplication,  implications);
+            comparator.dumpDifferencesToSout();
+            assertEquals(expImplication, implications);
+        }
+
     }
 
     protected abstract ImplicationCalcStrategy makePreparedCalculator(Context cxt);

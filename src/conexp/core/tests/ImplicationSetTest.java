@@ -158,4 +158,8 @@ public class ImplicationSetTest extends TestCase {
         assertEquals(false, one.equals(two));
 
     }
+
+    public void testMakeCompatibleDependencySet(){
+        assertTrue(impSet.makeCompatibleDependencySet() instanceof ImplicationSet);
+    }
 }
