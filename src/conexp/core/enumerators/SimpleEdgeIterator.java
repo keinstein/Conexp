@@ -46,7 +46,7 @@ public class SimpleEdgeIterator implements EdgeIterator {
             }
             LatticeElement curr = (LatticeElement) elemIter.next();
             if (acceptElement(curr)) {
-                predEdgeIter = curr.predessors();
+                predEdgeIter = curr.predessorsEdges();
             }
         }
     }

@@ -24,22 +24,22 @@ public class Lattice extends ConceptsCollection {
     }
 
     public interface TopSortBlock {
-        public void elementAction(LatticeElement curr, LatticeElement lastPred);
+        public void elementAction(LatticeElement currentElement, LatticeElement lastPredecessor);
 
-        public void assignTopSortNumberToElement(LatticeElement el, int topSortNumber);
+        public void assignTopSortNumberToElement(LatticeElement currentElement, int topSortNumber);
     };
 
     public static class DefaultTopSortBlock implements TopSortBlock {
-        public void elementAction(LatticeElement curr, LatticeElement lastPred) {
+        public void elementAction(LatticeElement currentElement, LatticeElement lastPredecessor) {
         }
 
-        public void assignTopSortNumberToElement(LatticeElement el, int topSortNumber) {
+        public void assignTopSortNumberToElement(LatticeElement currentElement, int topSortNumber) {
         }
     };
 
     static class CalcHeightTopSortBlock extends DefaultTopSortBlock {
-        public void elementAction(LatticeElement curr, LatticeElement lastPred) {
-            curr.setHeight(lastPred.getHeight() + 1);
+        public void elementAction(LatticeElement currentElement, LatticeElement lastPredecessor) {
+            currentElement.setHeight(lastPredecessor.getHeight() + 1);
         }
     };
 
@@ -111,7 +111,7 @@ public class Lattice extends ConceptsCollection {
         Assert.isTrue(null != curr, "Zero in findElement can't be null");
         boolean find = false;
         while (!find) {
-            ConceptIterator enum = curr.successorElements();
+            ConceptIterator enum = curr.getSuccessors().iterator();
             outer:{
                 while (enum.hasNext()) {
                     LatticeElement succ = enum.nextConcept();
@@ -145,7 +145,7 @@ public class Lattice extends ConceptsCollection {
         boolean find = (Set.EQUAL == attribs.compare(curr.getAttribs()));
 
         while (!find) {
-            ConceptIterator enum = curr.predecessorElements();
+            ConceptIterator enum = curr.getPredecessors().iterator();
             Assert.isTrue(curr.getPredCount() > 0);
             outer:{
                 while (enum.hasNext()) {
@@ -224,10 +224,10 @@ public class Lattice extends ConceptsCollection {
             if (null == otherEl) {
                 return false;
             }
-            if (el.predessors.size() != otherEl.predessors.size()) {
+            if (el.getPredCount() != otherEl.getPredCount()) {
                 return false;
             }
-            if (el.successors.size() != otherEl.successors.size()) {
+            if (el.getSuccCount() != otherEl.getSuccCount()) {
                 return false;
             }
         }
@@ -254,7 +254,7 @@ public class Lattice extends ConceptsCollection {
     private void setLinks(LatticeElement start, LatticeElement toSet) {
         boolean findNext = false;
         //*DBG*/System.out.println("start element index="+start.index);
-        Iterator enum = start.successors();
+        Iterator enum = start.successorsEdges();
         while (enum.hasNext()) {
             LatticeElement curr = ((Edge) enum.next()).getEnd();
             switch (toSet.compare(curr)) {
@@ -300,8 +300,8 @@ public class Lattice extends ConceptsCollection {
         int size = conceptsCount();
         final LatticeElement[] ret = new LatticeElement[size];
         doTopSort(new DefaultTopSortBlock() {
-            public void assignTopSortNumberToElement(LatticeElement el, int topSortNo) {
-                ret[topSortNo] = el;
+            public void assignTopSortNumberToElement(LatticeElement currentElement, int topSortNo) {
+                ret[topSortNo] = currentElement;
             }
         });
         return ret;
@@ -324,7 +324,7 @@ public class Lattice extends ConceptsCollection {
         int currNo = 0;
 
         while (tmp != one) {
-            Iterator succ = tmp.successors();
+            Iterator succ = tmp.successorsEdges();
             block.assignTopSortNumberToElement(tmp, currNo++);
             while (succ.hasNext()) {
                 LatticeElement tmp2 = ((Edge) succ.next()).getEnd();

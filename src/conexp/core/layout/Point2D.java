@@ -5,36 +5,37 @@
  **/
 
 
+
 package conexp.core.layout;
 
+/**
+ * todo: delete me
+ * @deprecated
+ */
+
 class Point2D {
-    public float x;
-    public float y;
+    private double x;
+    private double y;
 
     public Point2D() {
-        x = (float) 0.0;
-        y = (float) 0.0;
+        setX((float) 0.0);
+        setY((float) 0.0);
     }
 
-
-    public float dotProduct(Point2D pt) {
-        return (x * pt.x + y * pt.y);
+    public double getX() {
+        return x;
     }
 
-
-    public float length() {
-        return (float) java.lang.Math.sqrt(x * x + y * y);
+    public void setX(double x) {
+        this.x = x;
     }
 
+    public double getY() {
+        return y;
+    }
 
-    public float correlation(Point2D pt) {
-        float len1 = this.length();
-        float len2 = pt.length();
-        if (len1 == (float) 0.0 || len2 == (float) 0.0) {
-            return ((float) 0.0);
-        } else {
-            return (dotProduct(pt) / (len1 * len2));
-        }
+    public void setY(double y) {
+        this.y = y;
     }
 
 }

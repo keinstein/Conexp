@@ -24,10 +24,10 @@ public class FreezeLayout extends SimpleForceLayout {
         Collection lowIncomparables;
     }
 
-    protected synchronized void update(float att, float repulsion) {
+    protected synchronized void update(double att, double repulsion) {
         //pay attension to size-1;
         int size = lattice.conceptsCount();
-        float[] forces = new float[2];
+        double[] forces = new double[2];
         for (int i = 0; i < size; i++) {
             LatticeElement x = lattice.elementAt(i);
             Point3D currCoords = getConceptInfo(x).coords;
@@ -57,9 +57,9 @@ public class FreezeLayout extends SimpleForceLayout {
 
 
     // This finds the attraction between two points and updates their currentForce.
-    protected void attraction(Point3D pt1, Point3D pt2, float att_fac, float[] res) {
-        res[0] = att_fac * (pt2.x - pt1.x);
-        res[1] = att_fac * (pt2.y - pt1.y);
+    protected void attraction(Point3D pt1, Point3D pt2, double att_fac, double[] res) {
+        res[0] = att_fac * (pt2.getX() - pt1.getX());
+        res[1] = att_fac * (pt2.getY() - pt1.getY());
     }
 
     /**
@@ -106,12 +106,6 @@ public class FreezeLayout extends SimpleForceLayout {
         }
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (09.03.01 10:57:52)
-     * @return java.lang.Object
-     * @param el conexp.core.LatticeElement
-     */
     protected FreezeLayoutConceptInfo getLocalConceptInfo(int index) {
         return (FreezeLayoutConceptInfo) elementMap[index];
     }
@@ -134,24 +128,24 @@ public class FreezeLayout extends SimpleForceLayout {
     }
 
     // This finds the repulsion between two points and updates their currentForce.
-    protected void repulsion(Point3D pt1, Point3D pt2, float repulsionFactor, float[] res) {
-        float dx = pt1.x - pt2.x;
-        float dy = pt1.y - pt2.y;
+    protected void repulsion(Point3D pt1, Point3D pt2, double repulsionFactor, double[] res) {
+        double dx = pt1.getX() - pt2.getX();
+        double dy = pt1.getY() - pt2.getY();
         int dz = pt1.z - pt2.z;
         float inv_d_cubed;
         if (dz == 0) {
             if (Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2) {
-                inv_d_cubed = (float) 37.0;
+                inv_d_cubed =  37.0f;
             } else if (Math.abs(dx) < 1.0 && (Math.abs(dy) < 1.0)) {
-                inv_d_cubed = (float) 1.0 / ((float) Math.pow(Math.abs(dx), 2) +
+                inv_d_cubed =  1.0f / ((float) Math.pow(Math.abs(dx), 2) +
                         (float) Math.pow(Math.abs(dy), 2));
             } else {
-                inv_d_cubed = (float) 1.0 / ((float) Math.pow(Math.abs(dx), 3) +
+                inv_d_cubed =  1.0f / ((float) Math.pow(Math.abs(dx), 3) +
                         (float) Math.pow(Math.abs(dy), 3) +
                         (float) Math.pow(Math.abs(dz), 3));
             }
         } else {
-            inv_d_cubed = (float) 1.0 / ((float) Math.pow(Math.abs(dx), 3) +
+            inv_d_cubed = 1.0f / ((float) Math.pow(Math.abs(dx), 3) +
                     (float) Math.pow(Math.abs(dy), 3) +
                     (float) Math.pow(Math.abs(dz), 3));
         }

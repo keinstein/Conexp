@@ -25,18 +25,8 @@ public abstract class GenericLayouterTest extends TestCase {
         return false;
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (30.03.01 3:40:20)
-     * @return boolean
-     */
     protected abstract boolean isTestImproveOnce();
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (30.03.01 3:20:03)
-     * @return conexp.core.layout.GenericLayouter
-     */
     protected abstract GenericLayouter makeLayouter();
 
     public void testLayoutChangedListener() {

@@ -7,8 +7,9 @@
 
 package conexp.core.layout;
 
+import java.awt.geom.Point2D;
 
-public class Point3D extends Point2D {
+public class Point3D extends java.awt.geom.Point2D.Double {
     public int z;
     private Point2D currentForce;
     private Point2D previousForce;
@@ -19,68 +20,63 @@ public class Point3D extends Point2D {
     float normalizedZ;
 
     public Point3D() {
-        currentForce = new Point2D();
+        currentForce = makePoint2D();
         previousForce = null;
-        proj2d = new Point2D();
+        proj2d = makePoint2D();
+    }
+
+    private Point2D.Double makePoint2D() {
+        return new Point2D.Double();
     }
 
     public Point2D getProjection() {
         return proj2d;
     }
 
-    public float getX() {
-        return proj2d.x;
+    public float getProjectedX() {
+        return (float)proj2d.getX();
     }
 
-    public float getY() {
-        return proj2d.y;
+    public float getProjectedY() {
+        return (float)proj2d.getY();
     }
 
     public void update() {
-        float correction = (float) 1.0;
+        double correction = 1.0;
         if (previousForce != null) {
-            correction = (float) 1.0
-                    + factor * currentForce.correlation(previousForce);
+            correction = 1.0
+                    + factor * PointUtilities.correlation(currentForce, previousForce);
         } else {
-            previousForce = new Point2D();
+            previousForce = makePoint2D();
         }
-        x += correction * currentForce.x;
-        y += correction * currentForce.y;
-        previousForce.x = currentForce.x;
-        previousForce.y = currentForce.y;
-        currentForce.x = (float) 0.0;
-        currentForce.y = (float) 0.0;
+        this.setLocation(getX() + correction * currentForce.getX(),
+                    getY() + correction * currentForce.getY());
+
+        previousForce.setLocation(currentForce);
+        currentForce.setLocation(0.0, 0.0);
     }
 
-    public void adjustForce(float dx, float dy) {
-        currentForce.x += dx;
-        currentForce.y += dy;
+    public void adjustForce(double dx, double dy) {
+        currentForce.setLocation(
+                currentForce.getX() + dx,
+                currentForce.getY() + dy);
     }
 
     protected void setNormalizedCoords(float scaleFactor) {
-        normalizedX = x / scaleFactor;
-        normalizedY = y / scaleFactor;
+        normalizedX = (float)getX() / scaleFactor;
+        normalizedY = (float)getY() / scaleFactor;
         normalizedZ = z / scaleFactor;
     }
 
 
     public String toString() {
-        return "(" + x + ", " + y + ", " + z + ")"
-                + "[" + proj2d.x + ", " + proj2d.y + "]";
+        return "(" + getX() + ", " + getY() + ", " + z + ")"
+                + "[" + proj2d.getX() + ", " + proj2d.getY() + "]";
     }
 
-    private Point3D deltaMove;
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (04.03.01 10:40:19)
-     * @return double
-     * @param one conexp.frontend.latticeeditor.Layout.Point3D
-     * @param two conexp.frontend.latticeeditor.Layout.Point3D
-     */
     public static double distance(Point3D one, Point3D two) {
-        double dx = one.x - two.x;
-        double dy = one.y - two.y;
+        double dx = one.getX() - two.getX();
+        double dy = one.getY() - two.getY();
         double dz = one.z - two.z;
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
@@ -91,12 +87,12 @@ public class Point3D extends Point2D {
      * @return double
      */
     public double size() {
-        return Math.sqrt(x * x + y * y + z * z);
+        return Math.sqrt(getX() * getX() + getY() * getY() + z * z);
     }
 
     public void project2d(double angle) {
-        proj2d.x = (float) Math.cos(angle) * normalizedX
-                + (float) Math.sin(angle) * normalizedY;
-        proj2d.y = normalizedZ;
+        proj2d.setLocation(
+                Math.cos(angle) * normalizedX + Math.sin(angle) * normalizedY,
+                normalizedZ);
     }
 }

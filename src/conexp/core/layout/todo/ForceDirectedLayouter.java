@@ -18,20 +18,22 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
         Point3D deltaMove = new Point3D();
 
         void setDeltaMoveToZero() {
-            deltaMove.x = 0;
-            deltaMove.y = 0;
+            deltaMove.setLocation(0, 0);
             deltaMove.z = 0;
         }
 
         void adjustForce(double dx, double dy, double dz) {
-            deltaMove.x += dx;
-            deltaMove.y += dy;
+            deltaMove.setLocation(
+                    deltaMove.getX() + dx,
+                    deltaMove.getY() + dy);
             deltaMove.z += dz;
         }
 
         void addDeltaToCurrPosWithFactor(double factor) {
-            coords.x = coords.getX() + deltaMove.getX() * (float) factor;
-            coords.y = coords.getY() + deltaMove.getY() * (float) factor;
+            coords.setLocation(
+                    coords.getProjectedX() + deltaMove.getProjectedX() * factor,
+                    coords.getProjectedY() + deltaMove.getProjectedY() * factor);
+
             coords.z += deltaMove.z * factor;
         }
     };
@@ -62,12 +64,11 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
 
             for (int k = 0; k < j; k++) {
                 Point3D pt = getConceptInfo(topSorted[i + k]).coords;
-                //			pt.z = rank*params.;
-                pt.x = drawParams.getGridSizeX()
-                        * j
-                        * (float) Math.cos(k * angle);
-                //			pt.y = j * (float) Math.sin(k * angle + PI / primeGen.nextPrime());
-                pt.y = drawParams.getGridSizeY() * (getConceptInfo(lattice.getOne()).rank - rank);
+                pt.setLocation(
+                        drawParams.getGridSizeX() * j
+                        * Math.cos(k * angle),
+                        drawParams.getGridSizeY() *
+                        (getConceptInfo(lattice.getOne()).rank - rank));
             }
             i += j;
         }
@@ -85,7 +86,7 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
             LatticeElement curr = lattice.elementAt(i);
             int predCnt = curr.getPredCount();
             for (int j = 0; j < predCnt; j++) {
-                Edge e = (Edge) curr.predessors.get(j);
+                Edge e = curr.getPredEdge(j);
 
                 ElementInfo from = getLocalConceptInfo(e.getStart().getIndex());
                 ElementInfo to = getLocalConceptInfo(e.getEnd().getIndex());
@@ -93,11 +94,11 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
                 double distance = Point3D.distance(from.coords, to.coords);
                 if (distance > 0.00001) {
                     strategy.attractEdgeNodes(e, distance, forceFactors);
-                    from.adjustForce((from.coords.getX() - to.coords.getX()) * forceFactors[0],
-                            (from.coords.getY() - to.coords.getY()) * forceFactors[0],
+                    from.adjustForce((from.coords.getProjectedX() - to.coords.getProjectedX()) * forceFactors[0],
+                            (from.coords.getProjectedY() - to.coords.getProjectedY()) * forceFactors[0],
                             0/*(from.coords.z-to.coords.z)*forceFactors[0]*/);
-                    to.adjustForce((to.coords.getX() - from.coords.getX()) * forceFactors[1],
-                            (to.coords.getY() - from.coords.getY()) * forceFactors[1],
+                    to.adjustForce((to.coords.getProjectedX() - from.coords.getProjectedX()) * forceFactors[1],
+                            (to.coords.getProjectedY() - from.coords.getProjectedY()) * forceFactors[1],
                             0/*(to.coords.y-from.coords.y)*forceFactors[1]*/);
                 }
             }
@@ -125,8 +126,8 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
                 }
 
                 double factor = strategy.repulsiveForce(curr, distance);
-                u.adjustForce((u.coords.getX() - v.coords.getX()) * factor,
-                        (u.coords.getY() - v.coords.getY()) * factor,
+                u.adjustForce((u.coords.getProjectedX() - v.coords.getProjectedX()) * factor,
+                        (u.coords.getProjectedY() - v.coords.getProjectedY()) * factor,
                         0/*(u.coords.z-v.coords.z)*factor*/);
             }
         }
@@ -218,8 +219,8 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
         for (int i = lattice.conceptsCount(); --i >= 0;) {
             LatticeElement el = lattice.elementAt(i);
             ElementInfo elInfo = getLocalConceptInfo(el.getIndex());
-            elInfo.x = elInfo.coords.getX();
-            elInfo.y = elInfo.coords.getY();
+            elInfo.setX(elInfo.coords.getProjectedX());
+            elInfo.setY(elInfo.coords.getProjectedY());
         }
     }
 

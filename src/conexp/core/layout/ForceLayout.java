@@ -13,10 +13,10 @@ import conexp.core.LatticeElement;
 public class ForceLayout extends SimpleForceLayout {
 
 
-    protected synchronized void update(float att, float repulsion) {
+    protected synchronized void update(double att, double repulsion) {
         //pay attension to size-1;
         int size = lattice.conceptsCount();
-        float[] forces = new float[2];
+        double[] forces = new double[2];
         for (int i = 0; i < size; i++) {
             LatticeElement x = lattice.elementAt(i);
             Point3D currCoords = getConceptInfo(x).coords;
@@ -48,9 +48,9 @@ public class ForceLayout extends SimpleForceLayout {
 
 
     // This finds the attraction between two points and updates their currentForce.
-    protected void attraction(Point3D pt1, Point3D pt2, float att_fac, float[] res) {
-        res[0] = 3.0f * att_fac * (pt2.x - pt1.x);
-        res[1] = 3.0f * att_fac * (pt2.y - pt1.y);
+    protected void attraction(Point3D pt1, Point3D pt2, double att_fac, double[] res) {
+        res[0] = 3.0f * att_fac * (pt2.getX() - pt1.getX());
+        res[1] = 3.0f * att_fac * (pt2.getY() - pt1.getY());
     }
 
     /**
@@ -62,9 +62,9 @@ public class ForceLayout extends SimpleForceLayout {
     }
 
     // This finds the repulsion between two points and updates their currentForce.
-    protected void repulsion(Point3D pt1, Point3D pt2, float repulsionFactor, float[] res) {
-        float dx = pt1.x - pt2.x;
-        float dy = pt1.y - pt2.y;
+    protected void repulsion(Point3D pt1, Point3D pt2, double repulsionFactor, double[] res) {
+        double dx = pt1.getX() - pt2.getX();
+        double dy = pt1.getY() - pt2.getY();
         int dz = pt1.z - pt2.z;
         float inv_d_cubed;
         if (dz == 0 && -0.2 < dx && dx < 0.2 && -0.2 < dy && dy < 0.2) {

@@ -13,6 +13,7 @@ import conexp.util.valuemodels.BoundedDoubleValue;
 import util.comparators.ComparatorUtil;
 
 import java.util.Comparator;
+import java.awt.geom.Point2D;
 
 
 public abstract class GenericForceDirectedLayouter extends GenericLayouter {
@@ -36,7 +37,9 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
         public void project2D(double angle) {
             float half = 0.5f;
             coords.project2d(angle);
-            coords.getProjection().x += half;
+            Point2D projection = coords.getProjection();
+            projection.setLocation(projection.getX() + half,
+                                   projection.getY());
         }
     }
 
@@ -54,42 +57,28 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
         topSorted = null;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // This does a translation in the x-y plane so that 0 is at the origin.
     // It returns a scale factor which can be used to get the coords in [0,1].
 
     protected synchronized float translateCoordsRelativeToZeroAndReturnDiameter() {
         Point3D p = getConceptInfo(0).coords;
 
-        float x0 = p.x;
-        float y0 = p.y;
-        float maxSq = (float) 0.0;
+        double x0 = p.getX();
+        double y0 = p.getY();
+        double maxSq = 0.0;
 
         for (int i = lattice.conceptsCount(); --i >= 0;) {
             p = getConceptInfo(i).coords;
-            p.x -= x0;
-            p.y -= y0;
-            float distSq = p.x * p.x + p.y * p.y;
-            if (distSq > maxSq) maxSq = distSq;
+            p.setLocation(p.getX() - x0,
+                          p.getY() - y0);
+            double distSq = p.getX() * p.getX() + p.getY() * p.getY();
+            if (distSq > maxSq){
+                maxSq = distSq;
+            }
         }
         float maxZ = getConceptInfo(lattice.getOne()).coords.z;
 
-        return (maxZ * maxZ > 4 * maxSq ? maxZ : 2 * (float) Math.sqrt(maxSq));
+        return (float)(maxZ * maxZ > 4 * maxSq ? maxZ : 2 * (float) Math.sqrt(maxSq));
     }
 
 
@@ -148,8 +137,9 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
             for (int k = 0; k < j; k++) {
                 Point3D pt = getConceptInfo(topSorted[i + k]).coords;
                 pt.z = rank;
-                pt.x = j * (float) Math.cos(k * angle + PI / primeGen.nextPrime());
-                pt.y = j * (float) Math.sin(k * angle + PI / primeGen.nextPrime());
+                pt.setLocation(
+                        j * (float) Math.cos(k * angle + PI / primeGen.nextPrime()),
+                        j * (float) Math.sin(k * angle + PI / primeGen.nextPrime()));
             }
             i += j;
         }

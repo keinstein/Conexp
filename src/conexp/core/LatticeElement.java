@@ -9,14 +9,83 @@ package conexp.core;
 
 import util.Assert;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class LatticeElement extends Concept {
     //--------------------------------------------
     public List predessors = new ArrayList();
     public List successors = new ArrayList();
+
+    protected static abstract class LatticeElementCollectionBase implements LatticeElementCollection {
+        List collection;
+
+        public LatticeElementCollectionBase(List collection) {
+            this.collection = collection;
+        }
+
+        protected abstract LatticeElement doGet(Object collElement);
+
+        public int getSize() {
+            return collection.size();
+        }
+
+        public LatticeElement get(int index) {
+            return doGet(collection.get(index));
+        }
+
+        public ConceptIterator iterator() {
+            return new EdgeIteratorWrapper(collection.iterator()) {
+                public LatticeElement nextConcept() {
+                    return doGet(edgeIterator.next());
+                }
+            };
+        }
+
+        public void sort(final Comparator latticeElementComparator) {
+            Collections.sort(collection, new Comparator(){
+                public int compare(Object o1, Object o2) {
+                    LatticeElement one = doGet(o1);
+                    LatticeElement two = doGet(o2);
+                    return latticeElementComparator.compare(one, two);
+                }
+            });
+        }
+    }
+
+    protected static abstract class EdgeIteratorWrapper implements ConceptIterator {
+
+        protected Iterator edgeIterator;
+
+        EdgeIteratorWrapper(Iterator edgeIterator) {
+            this.edgeIterator = edgeIterator;
+        }
+
+        public Object next() {
+            return nextConcept();
+        }
+
+        public boolean hasNext() {
+            return edgeIterator.hasNext();
+        }
+
+        public void remove() {
+            edgeIterator.remove();
+        }
+
+
+    }
+
+    protected LatticeElementCollection predecessorsNodes = new LatticeElementCollectionBase(predessors){
+        protected LatticeElement doGet(Object collElement) {
+            return ((Edge)collElement).getStart();
+        }
+    };
+
+    protected LatticeElementCollection successorsNodes = new LatticeElementCollectionBase(successors){
+        protected LatticeElement doGet(Object collElement) {
+            return ((Edge)collElement).getEnd();
+        }
+    };
 
 
     private int height = -1;
@@ -47,69 +116,52 @@ public class LatticeElement extends Concept {
     public int getHeight() {
         return height;
     }
-
-    static abstract class EdgeIteratorWrapper implements ConceptIterator {
-
-        protected Iterator edgeIterator;
-
-        EdgeIteratorWrapper(Iterator edgeIterator) {
-            this.edgeIterator = edgeIterator;
-        }
-
-        public Object next() {
-            return nextConcept();
-        }
-
-        public boolean hasNext() {
-            return edgeIterator.hasNext();
-        }
-
-        public void remove() {
-            edgeIterator.remove();
-        }
-
-
+//-------------------------------------------
+    public void setHeight(int h) {
+        Assert.isTrue(h >= 0, "Height of lattice element should be greater or equal zero");
+        height = h;
     }
 
-    public ConceptIterator predecessorElements() {
-        return new EdgeIteratorWrapper(predessors()) {
-            public LatticeElement nextConcept() {
-                return ((Edge) edgeIterator.next()).getStart();
-            }
-        };
+    public LatticeElementCollection getPredecessors() {
+        return predecessorsNodes;
     }
 
-    public ConceptIterator successorElements() {
-        return new EdgeIteratorWrapper(successors()) {
-            public LatticeElement nextConcept() {
-                return ((Edge) edgeIterator.next()).getEnd();
-            }
-        };
+    public LatticeElementCollection getSuccessors(){
+        return successorsNodes;
     }
 
     public LatticeElement getPred(int pos) {
-        return ((Edge) predessors.get(pos)).getStart();
+        return predecessorsNodes.get(pos);
+    }
+
+    public Edge getPredEdge(int pos){
+        return (Edge)predessors.get(pos);
     }
 
     public int getPredCount() {
-        return predessors.size();
+        return getPredecessors().getSize();
     }
 
     public LatticeElement getSucc(int i) {
-        return ((Edge) successors.get(i)).getEnd();
+        return successorsNodes.get(i);
     }
 
     public int getSuccCount() {
-        return successors.size();
+        return successorsNodes.getSize();
     }
 //----------------------------------------------
     public boolean isVirtual() {
         return false;
     }
 //--------------------------------------------
-    public Iterator predessors() {
+    public Iterator predessorsEdges() {
         return predessors.iterator();
     }
+
+    public Iterator successorsEdges() {
+        return successors.iterator();
+    }
+
     /**
      @deprecated
      */
@@ -124,16 +176,7 @@ public class LatticeElement extends Concept {
     public void replaceSucc(Edge succ, Edge newSucc) {
         successors.set(successors.indexOf(succ), newSucc);
     }
-//-------------------------------------------
-    public void setHeight(int h) {
-        Assert.isTrue(h >= 0, "Height of lattice element should be greater or equal zero");
-        height = h;
-    }
 //--------------------------------------------
-    public Iterator successors() {
-        return successors.iterator();
-    }
-
     /**
      * not full equals;
      * compares only concepts, and don't compare in and out edge sets

@@ -14,15 +14,12 @@ import conexp.core.Set;
 import conexp.core.layout.FreezeLayout;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.latticeeditor.LatticePainterDrawParams;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import java.util.Collection;
 import java.util.Iterator;
 
 
 public class FreezeLayoutTest extends SimpleForceLayoutTest {
-    private static final Class THIS = FreezeLayoutTest.class;
     FreezeLayout fLayout;
     Lattice lat;
 
@@ -70,10 +67,6 @@ public class FreezeLayoutTest extends SimpleForceLayoutTest {
                                                  {0, 0, 1}});
         fLayout.initLayout(lat, new LatticePainterDrawParams());
         fLayout.calcInitialPlacement();
-    }
-
-    public static Test suite() {
-        return new TestSuite(THIS);
     }
 
     public void testHighIncomparables() {

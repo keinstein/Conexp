@@ -148,7 +148,7 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
         LatticeElement curr = lattice.getOne();
         Assert.isTrue(null != curr, "One in findElement can't be null");
         while (true) {
-            ConceptIterator enum = curr.predecessorElements();
+            ConceptIterator enum = curr.getPredecessors().iterator();
             outer : {
                 while (enum.hasNext()) {
                     LatticeElement pred = enum.nextConcept();

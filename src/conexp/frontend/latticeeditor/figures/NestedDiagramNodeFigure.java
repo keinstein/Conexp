@@ -94,7 +94,7 @@ public class NestedDiagramNodeFigure extends ConceptCorrespondingFigure {
         Lattice lattice = innerDiagram.getLattice();
         lattice.forEach(new Lattice.LatticeElementVisitor() {
             public void visitNode(LatticeElement node) {
-                Iterator edges = node.successors();
+                Iterator edges = node.successorsEdges();
                 while (edges.hasNext()) {
                     Edge e = (Edge) edges.next();
                     innerFigures.addFigure(makeEdgeFigure(e));

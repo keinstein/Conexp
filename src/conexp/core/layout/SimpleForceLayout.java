@@ -7,6 +7,8 @@
 
 package conexp.core.layout;
 
+import java.awt.geom.Point2D;
+
 import conexp.util.gui.paramseditor.BoundedDoubleValueParamInfo;
 import conexp.util.gui.paramseditor.ParamInfo;
 import util.Assert;
@@ -15,7 +17,7 @@ public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
     protected int currIter;
     protected ForceDistribution forceDistribution;
 
-    abstract protected void update(float att, float repulsion);
+    abstract protected void update(double att, double repulsion);
 
 
     /**
@@ -24,20 +26,20 @@ public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
      */
     public void assignCoordsToLattice() {
         int levels = lattice.getHeight();
-        float minYProjection = getConceptInfo(lattice.getZero()).coords.getProjection().y;
-        float maxYProjection = getConceptInfo(lattice.getOne()).coords.getProjection().y;
+        double minYProjection = getConceptInfo(lattice.getZero()).coords.getProjection().getY();
+        double maxYProjection = getConceptInfo(lattice.getOne()).coords.getProjection().getY();
 
-        float yScaleFactor = maxYProjection - minYProjection;
+        double yScaleFactor = maxYProjection - minYProjection;
         Assert.isTrue(yScaleFactor >= 0);
 
         final double sizeY = yScaleFactor > 0.02 ? (levels * drawParams.getGridSizeY() / yScaleFactor) : 1;
 
-        float minX = 0;
+        double minX = 0;
 
         for (int i = lattice.conceptsCount(); --i >= 0;) {
             Point2D currProjection = getConceptInfo(lattice.elementAt(i)).coords.getProjection();
-            if (minX > currProjection.x) {
-                minX = currProjection.x;
+            if (minX > currProjection.getX()) {
+                minX = currProjection.getX();
             }
         }
 
@@ -46,14 +48,14 @@ public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
         for (int i = lattice.conceptsCount(); --i >= 0;) {
             ForceDirectConceptInfo currInfo = getConceptInfo(lattice.elementAt(i));
             Point2D currProjection = currInfo.coords.getProjection();
-            currInfo.x = sizeX * (currProjection.x - minX);
-            currInfo.y = sizeY * (yScaleFactor - (currProjection.y - minYProjection));
+            currInfo.x = sizeX * (currProjection.getX() - minX);
+            currInfo.y = sizeY * (yScaleFactor - (currProjection.getY() - minYProjection));
         }
         fireLayoutChanged();
     }
 
     // This finds the attraction between two points and updates their currentForce.
-    abstract protected void attraction(Point3D pt1, Point3D pt2, float att_fac, float[] res);
+    abstract protected void attraction(Point3D pt1, Point3D pt2, double att_fac, double[] res);
 
     /**
      * Insert the method's description here.
@@ -105,7 +107,7 @@ public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
         projectAndAssignCoords();
     }
 
-    abstract protected void repulsion(Point3D pt1, Point3D pt2, float repulsionFactor, float[] res);
+    abstract protected void repulsion(Point3D pt1, Point3D pt2, double repulsionFactor, double[] res);
 
     protected ParamInfo[] makeParams() {
         return new ParamInfo[]{

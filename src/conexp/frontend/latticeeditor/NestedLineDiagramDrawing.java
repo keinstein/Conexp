@@ -112,7 +112,7 @@ public class NestedLineDiagramDrawing extends ConceptSetDrawing {
         Lattice outerLattice = outerDiagram.getLattice();
         outerLattice.forEach(new Lattice.LatticeElementVisitor() {
             public void visitNode(LatticeElement node) {
-                Iterator edges = node.successors();
+                Iterator edges = node.successorsEdges();
                 while (edges.hasNext()) {
                     Edge e = (Edge) edges.next();
                     addFigure(makeEdgeFigure(e));

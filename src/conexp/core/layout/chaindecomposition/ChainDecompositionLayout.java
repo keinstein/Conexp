@@ -175,8 +175,8 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
             LatticeElement concept = lattice.elementAt(i);
             computePosition(getDecompositionStrategy().conceptRepresentation(concept), pt);
             LayoutConceptInfo conceptInfo = getLayoutConceptInfo(concept);
-            conceptInfo.x = xScale * pt.getX();
-            conceptInfo.y = yScale * (pt.getY() - minY);
+            conceptInfo.setX(xScale * pt.getX());
+            conceptInfo.setY(yScale * (pt.getY() - minY));
         }
         fireLayoutChanged();
     }

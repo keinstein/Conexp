@@ -124,6 +124,12 @@
     </target>
 
 
+    <target name="makeSrcZip" depends="init"  description = "make source archive">
+        <zip zipfile="${distr.release}/${rootPackage}-src.zip">
+            <fileset dir="${src}"/>
+        </zip>
+    </target>
+
     <target name="compileFacade" depends="init, makebuilddir" description="compile the source">
         <javac destdir="${build}">
             <src>

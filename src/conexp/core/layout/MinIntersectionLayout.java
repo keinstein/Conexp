@@ -9,6 +9,7 @@ package conexp.core.layout;
 
 import conexp.core.*;
 import util.Assert;
+import util.collection.CollectionFactory;
 import util.comparators.ComparatorUtil;
 
 import java.util.*;
@@ -29,7 +30,6 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         double savedPosInRank;
         double posInRank;
         int rank;
-        int topSortNumber;
 
 
         public void savePosition() {
@@ -40,26 +40,8 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             posInRank = savedPosInRank;
         }
     };
-    //------------------------------------------
-    class SuccRankComparator implements java.util.Comparator {
-        public int compare(Object obj, Object obj1) {
-            double i1 = getElementInfo(((Edge) obj).getEnd()).posInRank;
-            double i2 = getElementInfo(((Edge) obj1).getEnd()).posInRank;
-            return ComparatorUtil.compareDoubles(i1, i2);
-        }
-
-        private SuccRankComparator() {
-            super();
-        }
-    }
-
 //------------------------------------------
-    //------------------------------------------
     class MedComparator implements java.util.Comparator {
-        private MedComparator() {
-            super();
-        }
-
         public int compare(Object obj, Object obj1) {
             double i1 = getElementInfo((LatticeElement) obj).median;
             double i2 = getElementInfo((LatticeElement) obj1).median;
@@ -69,38 +51,34 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             return ComparatorUtil.compareDoubles(i1, i2);
         }
     }
-
-
-    class PosComparator implements java.util.Comparator {
-        public int compare(Object obj, Object obj1) {
-            double i1 = getElementInfo(((LatticeElement) obj)).posInRank;
-            double i2 = getElementInfo(((LatticeElement) obj1)).posInRank;
-            return ComparatorUtil.compareDoubles(i1, i2);
-        }
-
-        private PosComparator() {
-            super();
-        }
-    }
-
     //------------------------------------------
-    class PredRankComparator implements java.util.Comparator {
-        private PredRankComparator() {
-        }
-
-        public int compare(Object obj, Object obj1) {
-            double i1 = getElementInfo(((Edge) obj).getStart()).posInRank;
-            double i2 = getElementInfo(((Edge) obj1).getStart()).posInRank;
+    class PositionInRankComparator implements java.util.Comparator {
+        public int compare(Object o1, Object o2) {
+            double i1 = getElementInfo((LatticeElement)o1).posInRank;
+            double i2 = getElementInfo((LatticeElement)o2).posInRank;
             return ComparatorUtil.compareDoubles(i1, i2);
         }
     }
 
-    private java.util.ArrayList virtMap = new ArrayList();
+    ILayerAssignmentFunction layerAssignmentFunction;
 
+    public ILayerAssignmentFunction getLayerAssignmentFunction() {
+        return layerAssignmentFunction;
+    }
+
+    public void setLayerAssignmentFunction(ILayerAssignmentFunction layerAssignmentFunction) {
+        this.layerAssignmentFunction = layerAssignmentFunction;
+    }
+
+    private List virtMap = CollectionFactory.createFastIndexAccessList();
+
+    public MinIntersectionLayout() {
+        setLayerAssignmentFunction(HeightInLatticeLayerAssignmentFunction.getInstance());
+    }
 
     //------------------------------------------
-    void assignRanks() {
-        Comparator posComparator = new PosComparator();
+    void assignPositionsInRanks() {
+        Comparator posComparator = new PositionInRankComparator();
         for (int i = ranks.length; --i > 0;) {
             Arrays.sort(ranks[i], posComparator);
             for (int j = ranks[i].length; --j >= 0;) {
@@ -218,15 +196,12 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     }
 
     private void assignRanksToLatticeElements() {
-        lattice.doTopSort(new Lattice.DefaultTopSortBlock() {
-            public void elementAction(LatticeElement curr, LatticeElement lastPred) {
-                getElementInfo(curr).rank = curr.getHeight();
-            }
-
-            public void assignTopSortNumberToElement(LatticeElement el, int topSortNumber) {
-                getElementInfo(el).topSortNumber = topSortNumber;
-            }
-        });
+        getLayerAssignmentFunction().calculateLayersForLattice(lattice,
+                new ILayerAssignmentFunction.ILayerAssignmentFunctionCallback(){
+                    public void layerForLatticeElement(LatticeElement latticeElement, int layer) {
+                       getElementInfo(latticeElement).rank = layer;
+                    }
+                });
     }
 
     //------------------------------------------
@@ -286,7 +261,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
 
 
     private void breakLongOutgoingEdges(LatticeElement curr, int[] ranksSize) {
-        Iterator succ = curr.successors();
+        Iterator succ = curr.successorsEdges();
 
         while (succ.hasNext()) {
             Edge currEdge = (Edge) succ.next();
@@ -311,7 +286,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     int crossingPred(LatticeElement first, LatticeElement second) {
         Assert.isTrue(isPredessorsOrdered(first), "Predessors should be ordered ");
         Assert.isTrue(isPredessorsOrdered(second), "Predessors should be ordered ");
-        return calculateEdgeIntersectionsBetweenTwoElements(first.predecessorElements(), second.predecessorElements());
+        return calculateEdgeIntersectionsBetweenTwoElements(first.getPredecessors().iterator(), second.getPredecessors().iterator());
     }
 
 //------------------------------------------
@@ -325,7 +300,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     int crossingSucc(LatticeElement first, LatticeElement second) {
         Assert.isTrue(isSuccessorsOrdered(first), " Successors should be ordered ");
         Assert.isTrue(isSuccessorsOrdered(second), " Successors should be ordered ");
-        return calculateEdgeIntersectionsBetweenTwoElements(first.successorElements(), second.successorElements());
+        return calculateEdgeIntersectionsBetweenTwoElements(first.getSuccessors().iterator(), second.getSuccessors().iterator());
     }
 
     private int calculateEdgeIntersectionsBetweenTwoElements(ConceptIterator firstEdges, ConceptIterator secondEdges) {
@@ -375,7 +350,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         getElementInfo(elm).savePosition();
         ranks[getElementInfo(elm).rank][(int) getElementInfo(elm).posInRank] = elm;
 
-        ConceptIterator succ = elm.successorElements();
+        ConceptIterator succ = elm.getSuccessors().iterator();
 
         boolean sort = false;
 
@@ -391,7 +366,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             prev = getElementInfo(curr).posInRank;
         }
         if (sort) {
-            Collections.sort(elm.successors, new SuccRankComparator());
+            elm.getSuccessors().sort(new PositionInRankComparator());
         }
     }
 
@@ -421,8 +396,8 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     //------------------------------------------
     void improveOrderingPred(LatticeElement elm1, LatticeElement elm2) {
         util.Assert.isTrue(getElementInfo(elm1).posInRank < getElementInfo(elm2).posInRank);
-        Iterator pred1 = elm1.predessors();
-        Iterator pred2 = elm2.predessors();
+        Iterator pred1 = elm1.predessorsEdges();
+        Iterator pred2 = elm2.predessorsEdges();
         Edge e1 = (Edge) pred1.next();
         Edge e2 = (Edge) pred2.next();
         outer:{
@@ -460,8 +435,8 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         util.Assert.isTrue(getElementInfo(elm1).posInRank < getElementInfo(elm2).posInRank);
         //*DBG*/ elm1.printSuccPos();
         //*DBG*/ elm2.printSuccPos();
-        Iterator succ1 = elm1.successors();
-        Iterator succ2 = elm2.successors();
+        Iterator succ1 = elm1.successorsEdges();
+        Iterator succ2 = elm2.successorsEdges();
         Edge e1 = (Edge) succ1.next();
         Edge e2 = (Edge) succ2.next();
         outer:{
@@ -501,55 +476,31 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         return new ElementInfo();
     }
 //------------------------------------------
-    /** returns median value for the list of predessors
-     @param elm - node of lattice for which to return median value
-     */
-    double medianValuePred(LatticeElement elm) {
-        int cnt = elm.getPredCount();
-        int m = cnt / 2;
+
+    private double medianValue(LatticeElementCollection connected) {
+        int cnt = connected.getSize();
         if (0 == cnt) {
             return -1;
         }
+        int m = cnt / 2;
         if (1 == cnt % 2) {
-            return getElementInfo(elm.getPred(m)).posInRank;
+            return getElementInfo(connected.get(m)).posInRank;
 
         }
         if (2 == cnt) {
-            return (getElementInfo(elm.getPred(0)).posInRank +
-                    getElementInfo(elm.getPred(1)).posInRank) / 2.;
+            return (getElementInfo(connected.get(0)).posInRank +
+                    getElementInfo(connected.get(1)).posInRank) / 2.;
         }
 
-        double leftMid = getElementInfo(elm.getPred(m - 1)).posInRank;
-        double left = leftMid - getElementInfo(elm.getPred(0)).posInRank;
+        double leftMid = getElementInfo(connected.get(m - 1)).posInRank;
+        double left = leftMid - getElementInfo(connected.get(0)).posInRank;
 
-        double rightMid = getElementInfo(elm.getPred(m)).posInRank;
-        double right = getElementInfo(elm.getPred(cnt - 1)).posInRank - rightMid;
+        double rightMid = getElementInfo(connected.get(m)).posInRank;
+        double right = getElementInfo(connected.get(cnt - 1)).posInRank - rightMid;
 
         return (leftMid * right + rightMid * left) / (left + right);
     }
 //------------------------------------------
-    /** returns median value for the list of successors
-     @param elm - node of lattice for which to return median value
-     */
-    double medianValueSucc(LatticeElement elm) {
-        int cnt = elm.getSuccCount();
-        if (0 == cnt) {
-            return -1.;
-        }
-        int m = cnt / 2;
-        if (1 == cnt % 2) {
-            return getElementInfo(elm.getSucc(m)).posInRank;
-        }
-        if (2 == cnt) {
-            return (getElementInfo(elm.getSucc(0)).posInRank +
-                    getElementInfo(elm.getSucc(1)).posInRank) / 2.;
-        }
-        double leftMid = getElementInfo(elm.getSucc(m - 1)).posInRank;
-        double left = leftMid - getElementInfo(elm.getSucc(0)).posInRank;
-        double rightMid = getElementInfo(elm.getSucc(m)).posInRank;
-        double right = getElementInfo(elm.getSucc(cnt - 1)).posInRank - rightMid;
-        return (leftMid * right + rightMid * left) / (left + right);
-    }
 
     //------------------------------------------
     void packPosInRanks() {
@@ -573,15 +524,14 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     }
 
     void reorderEdges() {
-        Comparator predRankComparator = new PredRankComparator();
-        Comparator succRankComparator = new SuccRankComparator();
+        Comparator rankComparator = new PositionInRankComparator();
         for (int i = ranks.length; --i >= 0;) {
             for (int j = ranks[i].length; --j >= 0;) {
                 if (!isPredessorsOrdered(ranks[i][j])) {
-                    Collections.sort(ranks[i][j].predessors, predRankComparator);
+                    ranks[i][j].getPredecessors().sort(rankComparator);
                 }
                 if (!isSuccessorsOrdered(ranks[i][j])) {
-                    Collections.sort(ranks[i][j].successors, succRankComparator);
+                    ranks[i][j].getSuccessors().sort(rankComparator);
                 }
             }
         }
@@ -595,7 +545,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
                 getElementInfo(ranks[i][j]).restorePosition();
             }
         }
-        assignRanks();
+        assignPositionsInRanks();
     }
 
     //------------------------------------------
@@ -625,19 +575,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
                 currNodes[--nodeCnt] = currRank[i];
             }
         }
-        Arrays.sort(currNodes, new Comparator() {
-            public int compare(Object obj1, Object obj2) {
-                ElementInfo el1 = getElementInfo((LatticeElement) obj1);
-                ElementInfo el2 = getElementInfo((LatticeElement) obj2);
-                if (el1.x < el2.x) {
-                    return -1;
-                }
-                if (el1.x > el2.x) {
-                    return 1;
-                }
-                return 0;
-            }
-        });
+        Arrays.sort(currNodes, new XPositionComparator());
         boolean straighten = false;
         int xmarginSize = drawParams.getGridSizeX() / 10;
         for (int i = currNodes.length; --i > 0;) {
@@ -717,7 +655,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     //------------------------------------------
 
     void wmedian(int iter) {
-        Comparator predRankComparator = new PredRankComparator();
+        Comparator predRankComparator = new PositionInRankComparator();
         if (0 == iter % 2) {
 // warning : number of ranks decreased due lattice properties
             int bound = ranks.length - 1;
@@ -725,7 +663,8 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             for (int i = 2; i < bound; i++) {
                 LatticeElement[] currentRank = ranks[i];
                 for (int j = currentRank.length; --j >= 0;) {
-                    getElementInfo(currentRank[j]).median = medianValueSucc(currentRank[j]);
+                    LatticeElement elm = currentRank[j];
+                    getElementInfo(elm).median = medianValue(elm.getSuccessors());
                 }
                 reorderCurrentRankByHeuristicValue(currentRank);
             }
@@ -735,10 +674,11 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             for (int i = ranks.length - 1; --i > 1;) {
                 LatticeElement[] currentRank = ranks[i];
                 for (int j = currentRank.length; --j >= 0;) {
+                    LatticeElement elm = currentRank[j];
                     if (!isPredessorsOrdered(currentRank[j])) {
-                        Collections.sort(currentRank[j].predessors, predRankComparator);
+                        currentRank[j].getPredecessors().sort(predRankComparator);
                     }
-                    getElementInfo(currentRank[j]).median = medianValuePred(currentRank[j]);
+                    getElementInfo(elm).median = medianValue(elm.getPredecessors());
                 }
                 reorderCurrentRankByHeuristicValue(currentRank);
             }
@@ -767,78 +707,48 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     }
 
 
-    private void assignCoordsForRank(int rank) {
+
+    interface ConnectedCollectionsSupplier{
+        LatticeElementCollection getConnected(LatticeElement current);
+        LatticeElementCollection getOtherConnected(LatticeElement current);
+    }
+
+    private void doAssignsCoordsForRank(int rank, ConnectedCollectionsSupplier supplier) {
         final int deltaX = drawParams.getGridSizeX();
         for (int j = ranks[rank].length; --j >= 0;) {
             LatticeElement curr = ranks[rank][j];
             if (curr.isVirtual()) {
                 continue;
             }
-            LatticeElement parent = curr.getPred(0);
-            int numParents = curr.getPredCount();
+            LatticeElementCollection connected = supplier.getConnected(curr);
+            LatticeElement parent = connected.get(0);
+            int numParents = connected.getSize();
 
             ElementInfo currInfo = getElementInfo(curr);
             ElementInfo parentInfo = getElementInfo(parent);
             if (1 == numParents) {
-                int numChildsOfParent = parent.getSuccCount();
+                LatticeElementCollection otherConnected = supplier.getOtherConnected(parent);
+                int numChildsOfParent = otherConnected.getSize();
                 if (1 == numChildsOfParent) {
                     currInfo.x = parentInfo.x;
                 } else {
                     int pos = -1;
                     for (int k = numChildsOfParent; --k >= 0;) {
-                        if (parent.getSucc(k) == curr) {
+                        if (otherConnected.get(k) == curr) {
                             pos = k;
                             break;
                         }
                     }
-                    util.Assert.isTrue(pos != -1);
+                    Assert.isTrue(pos != -1);
                     currInfo.x = parentInfo.x - ((numChildsOfParent - 1) * deltaX / 2) + pos * deltaX;
                 }
             } else {
-                currInfo.x = (getElementInfo(curr.getPred(0)).x + getElementInfo(curr.getPred(numParents - 1)).x) / 2;
+                currInfo.x = (getElementInfo(connected.get(0)).x + getElementInfo(connected.get(numParents - 1)).x) / 2;
             }
-            /*getElementInfo(curr).y = drawParams.getGridSizeY() * (lattice.getHeight() - curr.getHeight()); */
             currInfo.y = drawParams.getGridSizeY() * (lattice.getHeight() - curr.getHeight());
 
         }
     }
-
-
-    private void assignCoordsForRankReverse(int rank) {
-        final int deltaX = drawParams.getGridSizeX();
-        for (int j = ranks[rank].length; --j >= 0;) {
-            LatticeElement curr = ranks[rank][j];
-            if (curr.isVirtual()) {
-                continue;
-            }
-            LatticeElement parent = curr.getSucc(0);
-            int numParents = curr.getSuccCount();
-
-            ElementInfo currInfo = getElementInfo(curr);
-            ElementInfo parentInfo = getElementInfo(parent);
-
-            if (1 == numParents) {
-                int numChildsOfParent = parent.getPredCount();
-                if (1 == numChildsOfParent) {
-                    currInfo.x = parentInfo.x;
-                } else {
-                    int pos = -1;
-                    for (int k = numChildsOfParent; --k >= 0;) {
-                        if (parent.getPred(k) == curr) {
-                            pos = k;
-                            break;
-                        }
-                    }
-                    util.Assert.isTrue(pos != -1);
-                    currInfo.x = parentInfo.x - ((numChildsOfParent - 1) * deltaX / 2) + pos * deltaX;
-                }
-            } else {
-                currInfo.x = (getElementInfo(curr.getSucc(0)).x + getElementInfo(curr.getSucc(numParents - 1)).x) / 2;
-            }
-            getElementInfo(curr).y = drawParams.getGridSizeY() * (lattice.getHeight() - curr.getHeight());
-        }
-    }
-
     //---------------------------------------------------------------
     int calcLatticeWidth() {
         //        lattice.calcHeight();
@@ -862,12 +772,6 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         return width;
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (17.02.01 2:46:21)
-     * @param index int
-     * @param obj java.lang.Object
-     */
     private ElementInfo getElementInfo(LatticeElement el) {
         return getElementInfo(el.getIndex());
     }
@@ -877,25 +781,24 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
      */
     //----------------------------------------------
     private boolean isPredessorsOrdered(LatticeElement el) {
-        return checkIsElementsOfIteratorOrderedByPosition(el.predecessorElements());
+        return checkIsElementsOfIteratorOrderedByPosition(el.getPredecessors().iterator());
     }
-
 
     /**
      @deprecated
      */
     //----------------------------------------------
     private boolean isSuccessorsOrdered(LatticeElement el) {
-        return checkIsElementsOfIteratorOrderedByPosition(el.successorElements());
+        return checkIsElementsOfIteratorOrderedByPosition(el.getSuccessors().iterator());
     }
 
     //--------------------------------------------
     private void printPredPos(LatticeElement el) {
-        printElementsFromIteratorWithPositions("Predessors: ", el.predecessorElements());
+        printElementsFromIteratorWithPositions("Predessors: ", el.getPredecessors().iterator());
     }
 
     private void printSuccPos(LatticeElement el) {
-        printElementsFromIteratorWithPositions("Successors: ", el.successorElements());
+        printElementsFromIteratorWithPositions("Successors: ", el.getSuccessors().iterator());
     }
 
     private boolean checkIsElementsOfIteratorOrderedByPosition(ConceptIterator iter) {
@@ -922,78 +825,71 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
 
     //--------------------------------------------
 
-    /**
-     @deprecated
-     */
-
-
     interface ElementInfoProcessor {
         void processElementInfo(ElementInfo elementInfo);
     }
 
     protected void assignCoordsToLattice() {
-
         int latticeWidth = calcLatticeWidth();
         int height = lattice.getHeight();
+        calcZeroElementPosition(latticeWidth, height);
 
-//	calcUnitElementPosition
+        ConnectedCollectionsSupplier supplier = new DirectConnectedCollectionsSupplier();
+        for (int rank = 1; rank < ranks.length; rank++) {
+            doAssignsCoordsForRank(rank, supplier);
+            doStraytenLayoutForRank(rank);
+        }
+        applyElementInfoProcessor(new ElementInfoProcessor(){
+            public void processElementInfo(ElementInfo elementInfo) {
+                elementInfo.xPosDirect = elementInfo.x;
+            }
+        });
+        ConnectedCollectionsSupplier reverseSupplier = new ReverseConnectedCollectionsSupplier();
+
+        for (int rank = ranks.length - 1; --rank >= 0;) {
+            doAssignsCoordsForRank(rank, reverseSupplier);
+            doStraytenLayoutForRank(rank);
+        }
+        applyElementInfoProcessor( new ElementInfoProcessor(){
+            public void processElementInfo(ElementInfo elementInfo) {
+                elementInfo.xPosReverse = elementInfo.x;
+            }
+        });
+        applyElementInfoProcessor(new ElementInfoProcessor(){
+            public void processElementInfo(ElementInfo elementInfo) {
+                elementInfo.x = (elementInfo.xPosReverse + elementInfo.xPosDirect) / 2.;
+            }
+        });
+        for (int rank = ranks.length - 1; --rank >= 0;) {
+            doStraytenLayoutForRank(rank);
+        }
+        fireLayoutChanged();
+    }
+
+    private void applyElementInfoProcessor(ElementInfoProcessor processor) {
+        for (int i = ranks.length; --i >= 0;) {
+            for (int j = ranks[i].length; --j >= 0;) {
+                LatticeElement curr = ranks[i][j];
+                if (curr.isVirtual()) {
+                    continue;
+                }
+                processor.processElementInfo(getElementInfo(curr));
+            }
+        }
+    }
+
+    private void calcZeroElementPosition(int latticeWidth, int height) {
         LatticeElement zero = lattice.getZero();
         ElementInfo zeroInfo = getElementInfo(zero);
         zeroInfo.x = drawParams.getGridSizeX() * latticeWidth / 2;
         zeroInfo.y = (height - zero.getHeight()) * drawParams.getGridSizeY();
+    }
 
-        for (int i = 1; i < ranks.length; i++) {
-            assignCoordsForRank(i);
-            int straitenIterCount = 10;
-            while (straightenLayoutForRank(i) && straitenIterCount > 0) {
-                straitenIterCount--;
-            }
+    private void doStraytenLayoutForRank(int i) {
+        int straitenIterCount = 10;
+        while (straightenLayoutForRank(i) && straitenIterCount > 0) {
+            straitenIterCount--;
         }
-        for (int i = ranks.length; --i >= 0;) {
-            for (int j = ranks[i].length; --j >= 0;) {
-                LatticeElement curr = ranks[i][j];
-                if (curr.isVirtual()) {
-                    continue;
-                }
-                ElementInfo currInfo = getElementInfo(curr);
-                currInfo.xPosDirect = currInfo.x;
-            }
-        }
-        for (int i = ranks.length - 1; --i >= 0;) {
-            assignCoordsForRankReverse(i);
-            int straitenIterCount = 10;
-            while (straightenLayoutForRank(i) && straitenIterCount > 0) {
-                straitenIterCount--;
-            }
-        }
-
-        for (int i = ranks.length; --i >= 0;) {
-            for (int j = ranks[i].length; --j >= 0;) {
-                LatticeElement curr = ranks[i][j];
-                if (curr.isVirtual()) {
-                    continue;
-                }
-                ElementInfo currInfo = getElementInfo(curr);
-                currInfo.xPosReverse = currInfo.x;
-            }
-        }
-        for (int i = ranks.length; --i >= 0;) {
-            for (int j = ranks[i].length; --j >= 0;) {
-                LatticeElement curr = ranks[i][j];
-                if (curr.isVirtual()) {
-                    continue;
-                }
-                ElementInfo currInfo = getElementInfo(curr);
-                currInfo.x = (currInfo.xPosReverse + currInfo.xPosDirect) / 2.;
-            }
-
-            int straitenIterCount = 10;
-            while (straightenLayoutForRank(i) && straitenIterCount > 0) {
-                straitenIterCount--;
-            }
-        }
-
-        fireLayoutChanged();
     }
 
     protected static final int edgeSlack(Edge currEdge) {
@@ -1009,4 +905,31 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         edges.set(index + 1, toSwap);
     }
 
+    private static class DirectConnectedCollectionsSupplier implements ConnectedCollectionsSupplier {
+        public LatticeElementCollection getConnected(LatticeElement element) {
+            return element.getPredecessors();
+        }
+
+        public LatticeElementCollection getOtherConnected(LatticeElement element) {
+            return element.getSuccessors();
+        }
+    }
+
+    private static class ReverseConnectedCollectionsSupplier implements ConnectedCollectionsSupplier {
+        public LatticeElementCollection getConnected(LatticeElement element) {
+            return element.getSuccessors();
+        }
+
+        public LatticeElementCollection getOtherConnected(LatticeElement element) {
+            return element.getPredecessors();
+        }
+    }
+
+    private class XPositionComparator implements Comparator {
+        public int compare(Object obj1, Object obj2) {
+            ElementInfo el1 = getElementInfo((LatticeElement) obj1);
+            ElementInfo el2 = getElementInfo((LatticeElement) obj2);
+            return ComparatorUtil.compareDoubles(el1.x, el2.x);
+        }
+    }
 }
