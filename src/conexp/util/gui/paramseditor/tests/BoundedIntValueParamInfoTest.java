@@ -8,9 +8,7 @@
 package conexp.util.gui.paramseditor.tests;
 
 import conexp.util.valuemodels.BoundedIntValue;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class BoundedIntValueParamInfoTest extends TestCase {
 

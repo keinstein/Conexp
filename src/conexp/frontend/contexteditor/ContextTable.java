@@ -9,18 +9,18 @@ package conexp.frontend.contexteditor;
 
 import conexp.core.ContextEditingInterface;
 import conexp.util.gui.Command;
+import conexp.util.gui.paramseditor.BooleanParamInfo;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
-import conexp.util.gui.paramseditor.BooleanParamInfo;
 import conexp.util.valuemodels.BooleanValueModel;
 import util.DataFormatException;
 
 import javax.swing.*;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableColumn;
 import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.UndoableEditListener;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.event.ActionEvent;
@@ -53,11 +53,7 @@ public class ContextTable extends JTable implements ParamsProvider {
         cellRenderer = new ContextTooltipTableCellRenderer();
         cellRenderer.addRenderingChangeListener(new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent evt) {
-                if (evt.getNewValue() instanceof ArrowRelDrawStrategy) {
-                    setRepaintMode(true);
-                } else {
-                    setRepaintMode(false);
-                }
+                setRepaintMode(evt.getNewValue() instanceof ArrowRelDrawStrategy);
                 invalidate();
                 repaint();
             }
@@ -104,7 +100,7 @@ public class ContextTable extends JTable implements ParamsProvider {
     }
 
     private void setCompressedView(boolean compressed) {
-        final int preferredWidth = compressed ? 16: 75;
+        final int preferredWidth = compressed ? 16 : 75;
         TableColumnModel columnModel = getColumnModel();
         for (int i = 1; i < getColumnCount(); i++) {
             TableColumn column = columnModel.getColumn(i);

@@ -20,10 +20,9 @@ import conexp.frontend.io.ConExpXMLReader;
 import conexp.frontend.io.ConExpXMLWriter;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
+import util.testing.TestUtil;
 
 import java.awt.geom.Point2D;
-
-import util.testing.TestUtil;
 
 public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     protected DocumentLoader makeDocumentLoader() {
