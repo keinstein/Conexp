@@ -17,6 +17,7 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite test = new TestSuite();
         test.addTest(conexp.core.tests.AllTests.suite());
+        test.addTest(conexp.experimenter.tests.AllTests.suite());
         test.addTest(conexp.frontend.tests.AllTests.suite());
         test.addTest(conexp.util.tests.UtilsAllTests.suite());
         return test;

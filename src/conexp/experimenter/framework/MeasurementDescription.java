@@ -8,7 +8,7 @@
  */
 package conexp.experimenter.framework;
 
-import research.conexp.core.compareutils.IComparatorFactory;
+import conexp.core.compareutils.IComparatorFactory;
 
 public class MeasurementDescription implements IMeasurementDescription {
     final String name;

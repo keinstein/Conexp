@@ -1,4 +1,4 @@
-package conexp.experimenter.tests;
+package conexp.experimenter.experiments.tests;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -12,12 +12,8 @@ public class AllTests extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(conexp.experimenter.experiments.tests.AllTests.suite());
-        suite.addTest(conexp.experimenter.framework.tests.AllTests.suite());
-        suite.addTest(conexp.experimenter.relationsequences.tests.AllTests.suite());
-
+        suite.addTestSuite(ExperimentSuiteTest.class);
         return suite;
     }
-
 
 }

@@ -9,7 +9,7 @@
 package conexp.experimenter.framework;
 
 import conexp.core.compareutils.BaseComparator;
-import research.conexp.core.compareutils.IComparatorFactory;
+import conexp.core.compareutils.IComparatorFactory;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
