@@ -14,28 +14,20 @@ import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.NestedDiagramNodeFigure;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import conexp.frontend.latticeeditor.queries.GenericNodeQuery;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class NestedDiagramNodeFigureTest extends TestCase {
-    private static final Class THIS = NestedDiagramNodeFigureTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     public void testGetIntentQuery() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
                                                          {1, 0, 1},
                                                          {1, 1, 0}});
 
-        Lattice inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 1, 0}, new int[]{0, 1, 0});
+        Lattice inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 1, 0}, new int[]{1, 1, 1});
         LatticeDrawing innerDrawing = new LatticeDrawing();
         innerDrawing.setLattice(inner);
 
 
-        Lattice innerMost = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 0, 1}, new int[]{0, 1, 0});
+        Lattice innerMost = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 0, 1}, new int[]{1, 1, 1});
         LatticeDrawing innerMostDrawing = new LatticeDrawing();
         innerMostDrawing.setLattice(innerMost);
 

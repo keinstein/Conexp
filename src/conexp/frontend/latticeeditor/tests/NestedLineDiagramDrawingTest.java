@@ -82,11 +82,11 @@ public class NestedLineDiagramDrawingTest extends TestCase {
                                                          {1, 1, 1, 0}}
         );
 
-        outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 1, 0, 0}, new int[]{1, 1, 0, 0});
+        outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 1, 0, 0}, new int[]{1, 1, 1, 1});
         LatticeDrawing outerDrawing = new LatticeDrawing();
         outerDrawing.setLattice(outer);
 
-        inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 0, 1, 1}, new int[]{1, 1, 0, 0});
+        inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 0, 1, 1}, new int[]{1, 1, 1, 1});
         LatticeDrawing innerDrawing = new LatticeDrawing();
         innerDrawing.setLattice(inner);
         //it can be also the set

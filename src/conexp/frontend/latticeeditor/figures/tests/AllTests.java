@@ -15,9 +15,9 @@ import junit.framework.TestSuite;
 public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(ConceptFigureTest.suite());
-        suite.addTest(NestedDiagramNodeFigureTest.suite());
-        suite.addTest(NestedDiagramDecoratingFigureTest.suite());
+        suite.addTestSuite(ConceptFigureTest.class);
+        suite.addTestSuite(NestedDiagramNodeFigureTest.class);
+        suite.addTestSuite(NestedDiagramDecoratingFigureTest.class);
         return suite;
     }
 }

@@ -15,16 +15,10 @@ import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.noderadiusstrategy.AbstractNodeRadiusCalcStrategy;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import java.awt.geom.Point2D;
 
 public class ConceptFigureTest extends FigureTest {
-
-    public static Test suite() {
-        return new TestSuite(ConceptFigureTest.class);
-    }
 
     final int RADIUS = 5;
 

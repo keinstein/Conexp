@@ -12,26 +12,18 @@ import conexp.core.Lattice;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.NestedDiagramDecoratingFigure;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class NestedDiagramDecoratingFigureTest extends TestCase {
-    private static final Class THIS = NestedDiagramDecoratingFigureTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     public void testGetIntentQuery() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1},
                                                          {1, 0}});
 
-        Lattice outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 0}, new int[]{0, 1});
+        Lattice outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 0}, new int[]{1, 1});
         LatticeDrawing outerDrawing = new LatticeDrawing();
         outerDrawing.setLattice(outer);
 
-        Lattice inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 1},new int[]{0, 1});
+        Lattice inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 1},new int[]{1, 1});
         LatticeDrawing innerDrawing = new LatticeDrawing();
         innerDrawing.setLattice(inner);
 
