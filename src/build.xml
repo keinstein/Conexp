@@ -113,7 +113,7 @@
 
 
     <target name="makeReleaseJar" depends="ensureLibsDirExists, compileRelease">
-        <jar jarfile="${distr.last}/${rootPackage}.jar"
+        <jar jarfile="${distr.release}/${rootPackage}.jar"
             manifest="${src}/META-INF/ConExp/MANIFEST.MF">
             <fileset dir="${build}">
                 <include name="${rootPackage}/**"/>
@@ -135,7 +135,7 @@
     </target>
 
     <target name="makeFacadeJar" depends="ensureLibsDirExists, compileFacade">
-        <jar jarfile="${distr.libs}/${facadePackage}.jar">
+        <jar jarfile="${distr.release}/${facadePackage}.jar">
             <fileset dir="${build}">
                 <include name="${facadePackage}/**"/>
                 <exclude name="**/tests/"/>
@@ -153,7 +153,7 @@
         </zip>
     </target>
 
-    <target name="generateDistribution" depends="compileRelease, compileFacade">
+    <target name="generateDistribution" depends="makeReleaseJar, makeFacadeJar">
        <zip zipfile="${distr.release}/ConExp-${DSTAMP}-${TSTAMP}.zip">
             <fileset dir="${libs.dirs.distr}"/>
             <fileset dir="${distr.release}">
