@@ -249,22 +249,6 @@ public class Concept implements ItemSet {
         return "Intent " + getAttribs() + "  Extent " + getObjects();
     }
 
-    /*
-     * @@modifier
-    */
-
-    public void includeObjectsInConcept(Set objects) {
-        //refactor to modifiable conexp
-        ((ModifiableSet) this.getObjects()).or(objects);
-    }
-    /*
-     * @@modifier
-    */
-
-    public void addObject(int i) {
-        ((ModifiableSet) this.getObjects()).put(i);
-    }
-
     public Set getAttribs() {
         return attribs;
     }
@@ -281,8 +265,25 @@ public class Concept implements ItemSet {
         this.index = index;
     }
 
+
     public ModifiableSet getModifiableAttribs() {
         return attribs;
+    }
+
+    /*
+     * @@modifier
+    */
+
+    public void includeObjectsInConcept(Set objects) {
+        //refactor to modifiable conexp
+        ((ModifiableSet) this.getObjects()).or(objects);
+    }
+    /*
+     * @@modifier
+    */
+
+    public void addObject(int i) {
+        ((ModifiableSet) this.getObjects()).put(i);
     }
 
 }

@@ -17,7 +17,7 @@ public abstract class ConceptSetNeedingCalcStrategyTest extends CalcStrategyTest
         return (ConceptSetNeedingCalcStrategy) calcStrategy;
     }
 
-    protected void buildIntentsSetAndFillExpectationSet(BinaryRelation rel, com.mockobjects.ExpectationSet expSet, com.mockobjects.ExpectationSet expSetExtents, int expectedEdgeCount) {
+    protected void buildIntentsSetAndFillExpectationSet(BinaryRelation rel, com.mockobjects.ExpectationSet expSet, com.mockobjects.ExpectationSet expSetExtents) {
         ConceptsCollection col = new ConceptsCollection();
         setupStrategy(col);
         generateIntents();

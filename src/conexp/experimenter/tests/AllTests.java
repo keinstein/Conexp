@@ -15,7 +15,7 @@ public class AllTests extends TestCase {
         suite.addTest(conexp.experimenter.experiments.tests.AllTests.suite());
         suite.addTest(conexp.experimenter.framework.tests.AllTests.suite());
         suite.addTest(conexp.experimenter.relationsequences.tests.AllTests.suite());
-
+        suite.addTest(conexp.experimenter.setdecorator.tests.AllTests.suite());
         return suite;
     }
 

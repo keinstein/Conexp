@@ -21,4 +21,8 @@ public class ExperimentRunResults {
         util.Assert.isTrue(null == resultsOnExperimentSet[expNo]);
         resultsOnExperimentSet[expNo] = results;
     }
+
+    public MeasurementSet getResultForExperiment(int expNo){
+        return resultsOnExperimentSet[expNo];
+    }
 }

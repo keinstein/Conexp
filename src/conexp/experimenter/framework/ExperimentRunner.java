@@ -2,6 +2,7 @@ package conexp.experimenter.framework;
 
 import conexp.core.BinaryRelation;
 import conexp.core.BinaryRelationUtils;
+import conexp.core.ExperimentContextFactory;
 import util.MemoryUtil;
 
 import java.io.PrintWriter;
@@ -18,7 +19,6 @@ import java.util.Set;
 public class ExperimentRunner {
     java.util.List protocol;
 
-
     protected java.io.PrintWriter outStream;
     protected java.io.PrintWriter screenStream;
     protected ExperimentSet experimentSet;
@@ -28,14 +28,27 @@ public class ExperimentRunner {
 
     protected static final String RUNTIME = "RunTime";
     protected static final String MEMORY_USAGE = "MemoryUsage";
+    public static final String OPERATION_COUNT = "OperationCountStatistics";
+    private ExperimentContextFactory setFactory;
+
 
     protected MeasurementProtocol makeExpRunnerMeasurementProtocol() {
-        return MeasurementProtocol.buildMeasurementProtocolFromStrings(
-                new String[][]{
-                    {RUNTIME, "false"},
-                    {MEMORY_USAGE, "false"}
-                }
-        );
+        if (!isStoreOperationCount()) {
+            return MeasurementProtocol.buildMeasurementProtocolFromStrings(
+                    new String[][]{
+                        {RUNTIME, "false"},
+                        {MEMORY_USAGE, "false"}
+                    }
+            );
+        } else {
+           return MeasurementProtocol.buildMeasurementProtocolFromStrings(
+                   new String[][]{
+                       {RUNTIME, "false"},
+                       {MEMORY_USAGE, "false"},
+                       {OPERATION_COUNT, "false"}
+                   }
+           );
+        }
     }
 
     protected IMeasurementProtocol getExpRunnerMeasurementProtocol() {
@@ -46,11 +59,14 @@ public class ExperimentRunner {
     }
 
 
-    /**
-     * ExperimentWithConceptsGeneration constructor comment.
-     */
     public ExperimentRunner() {
-        super();
+        this(null);
+    }
+
+    public ExperimentRunner(ExperimentContextFactory setFactory) {
+        setOutStream(new PrintWriter(new StringWriter()));
+        setScreenStream(new PrintWriter(new StringWriter()));
+        this.setFactory = setFactory;
     }
 
     public void performExperiment(RelationSequence relSeq, int no) throws ExperimentException {
@@ -58,7 +74,6 @@ public class ExperimentRunner {
         relationParams.setMeasurementProtocol(relSeq.getMeasurementProtocol());
         relSeq.fillInMeasurementSet(no, relationParams);
         ExperimentRunResults currRunResults = new ExperimentRunResults(relationParams, experimentSet.experimentCount());
-
         protocol.add(currRunResults);
 
         BinaryRelation rel = relSeq.getRelation(no);
@@ -77,9 +92,7 @@ public class ExperimentRunner {
             validatingParamsChecker.clear();
             throw ex;
         }
-
         validatingParamsChecker.clear();
-
         onFinishedExperimentStep(no);
     }
 
@@ -100,6 +113,9 @@ public class ExperimentRunner {
         try {
             experiment.setUp(rel);
 
+            if(isStoreOperationCount()){
+                setFactory.resetStatictics();
+            }
             long startMemory = util.MemoryUtil.freeMemory();
             long start = System.currentTimeMillis();
             experiment.perform();
@@ -113,6 +129,10 @@ public class ExperimentRunner {
             res.setMeasurementProtocol(getExpRunnerMeasurementProtocol());
             res.setMeasurement(RUNTIME, new Long(timeOfExecution));
             res.setMeasurement(MEMORY_USAGE, new Long(memoryUsed));
+            if(isStoreOperationCount()){
+                res.setMeasurement(OPERATION_COUNT, setFactory.getSnapshot());
+            }
+
 
             res.setMeasurementProtocol(experiment.getMeasurementProtocol());
             experiment.saveResults(res);
@@ -126,11 +146,6 @@ public class ExperimentRunner {
         return res;
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (21.07.01 17:39:49)
-     */
     public static String formatDouble(double temp) {
         return java.text.DecimalFormat.getNumberInstance().format(temp);
     }
@@ -145,11 +160,11 @@ public class ExperimentRunner {
     }
 
 
-    protected int getNumberOfExperimentsRuns() {
+    public int getNumberOfExperimentsRuns() {
         return protocol.size();
     }
 
-    protected ExperimentRunResults getRunResults(int runNo) {
+    public ExperimentRunResults getRunResults(int runNo) {
         return (ExperimentRunResults) protocol.get(runNo);
     }
 
@@ -202,10 +217,6 @@ public class ExperimentRunner {
         }
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (12.07.01 13:28:55)
-     */
     protected void logExperimentResults(RelationSequence relSeq, ExperimentSet experimentSet) {
         logRelationSequenceParams(relSeq);
         outStream.println();
@@ -390,21 +401,10 @@ public class ExperimentRunner {
         screenStream.println("Free memory " + MemoryUtil.freeMemory());
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (26.07.01 20:47:30)
-     */
     protected void onStartExperimentStep(int no, BinaryRelation rel) {
         screenStream.println("Step no " + no + " Relation stat " + BinaryRelationUtils.describeRelation(rel));
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (05.08.01 19:42:21)
-     * @param relGen conexp.core.experimenter.RelationGenerationStrategy
-     */
     protected void printRelations(RelationSequence relGen) {
         int count = relGen.getRelationCount();
         for (int i = 0; i < count; i++) {
@@ -412,12 +412,9 @@ public class ExperimentRunner {
         }
     }
 
-
     public void runExperiment(RelationSequence relGen) {
         util.Assert.isTrue(relGen != null);
-
         protocol = new ArrayList();
-
         try {
             for (int i = 0; i < relGen.getRelationCount(); i++) {
                 performExperiment(relGen, i);
@@ -439,5 +436,9 @@ public class ExperimentRunner {
 
     public void setScreenStream(java.io.PrintWriter newScreenStream) {
         screenStream = newScreenStream;
+    }
+
+    protected boolean isStoreOperationCount() {
+        return setFactory!=null;
     }
 }

@@ -16,9 +16,6 @@ import util.Assert;
 
 public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
     //-----------------------------------------------------------------
-    /**
-     *  Constructor for the DepthSearchCalculator object
-     */
     public ReferenceDepthSearchCalculator() {
         super();
     }

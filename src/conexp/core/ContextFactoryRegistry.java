@@ -32,11 +32,18 @@ public class ContextFactoryRegistry {
         return getFactory().createSet(size);
     }
 
+
+    public static void setContextFactory(ContextFactory newFactory){
+        factory = newFactory;
+    }
+
+
     /**
      * Insert the method's description here.
      * Creation date: (07.03.01 21:11:13)
      * @return conexp.core.ContextFactory
      */
+
     private synchronized static ContextFactory getFactory() {
         if (null == factory) {
             factory = new conexp.core.bitset.BitSetFactory();

@@ -4,15 +4,13 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-/**
- * JUnit test case for AllTests
- */
 
 public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite=new TestSuite();
-        suite.addTest(MeasurementSetTest.suite());
-        suite.addTest(MeasurementProtocolTest.suite());
+        suite.addTestSuite(MeasurementSetTest.class);
+        suite.addTestSuite(MeasurementProtocolTest.class);
+        suite.addTestSuite(ExperimentRunnerTest.class);
         return suite;
     }
 

@@ -4,6 +4,7 @@ import conexp.core.BinaryRelationProcessor;
 import conexp.core.ConceptCalcStrategy;
 import conexp.core.ConceptsCollection;
 import conexp.experimenter.experiments.BaseConceptSetExperiment;
+import util.StringUtil;
 
 /**
  * Insert the type's description here.
@@ -25,6 +26,10 @@ public abstract class ConceptSetExperiment extends BaseConceptSetExperiment {
         return new ConceptsCollection();
     }
 
+
+    public String getDescription() {
+        return StringUtil.extractClassName(strategyName);
+    }
 
     public void perform() {
         ((ConceptCalcStrategy)strategy).calculateConceptSet();
