@@ -36,4 +36,15 @@ public abstract class AbstractLineDiagramFigure extends FigureWithCoords impleme
         return getFigureDimensionProvider().getFigureDimensionCalcStrategy();
     }
 
+    boolean collision;
+
+    public boolean hasCollision() {
+        return collision;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
+    }
+
 }
+

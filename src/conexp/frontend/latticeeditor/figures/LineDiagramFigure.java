@@ -14,4 +14,7 @@ import conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider;
 public interface LineDiagramFigure extends Figure {
 
     public void setFigureDimensionCalcStrategyProvider(FigureDimensionCalcStrategyProvider figureDimensionProvider);
+
+    boolean hasCollision();
+    void setCollision(boolean value);
 }

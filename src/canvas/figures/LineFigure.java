@@ -10,6 +10,7 @@ package canvas.figures;
 import canvas.CanvasColorScheme;
 import canvas.CanvasScheme;
 import canvas.IHighlightStrategy;
+import canvas.Figure;
 import util.Assert;
 import util.gui.GraphicObjectsFactory;
 
@@ -138,6 +139,20 @@ public class LineFigure extends AbstractFigure implements ConnectionFigure {
     }
 
     public void setCoords(double x, double y) {
+    }
+
+    public Line2D getLine(){
+        return new Line2D.Double(getStartPoint(), getEndPoint());
+    }
+
+    public boolean containsFigure(Figure f){
+        if(startFigure==f){
+            return true;
+        }
+        if(endFigure==f){
+            return true;
+        }
+        return false;
     }
 
     public void draw(java.awt.Graphics g, CanvasScheme opt) {

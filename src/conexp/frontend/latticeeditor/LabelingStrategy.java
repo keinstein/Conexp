@@ -15,7 +15,7 @@ public abstract class LabelingStrategy implements ILabelingStrategy {
 
     public void shutdown(ConceptSetDrawing drawing) {
         drawing.visitFigures(makeShutDownVisitor(drawing));
-//        drawing.applyChanges();
+//        conceptSetDrawing.applyChanges();
     }
 
     public void init(ConceptSetDrawing drawing) {

@@ -184,6 +184,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     }
 
     private void drawLineDiagram(Graphics g, AffineTransform scalingTransform) {
+        getDrawing().initPaint();
         PaintBlock block = getPaintBlock();
         block.setGraphics(g);
         block.getGraphics2D().transform(getPaintTransform(scalingTransform));

@@ -18,9 +18,7 @@ import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 import util.collection.CollectionFactory;
 import util.gui.ColorUtil;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -81,13 +79,20 @@ public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDia
         ((FigureVisitor) visitor).visitConceptCorrespondingFigure(this);
     }
 
-    protected Color getNodeColor(CanvasScheme opt) {
+    protected Color getNodeBorderColor(CanvasScheme opt) {
         canvas.CanvasColorScheme colorScheme = opt.getColorScheme();
+        if(hasCollision()){
+            return colorScheme.getCollisionColor();
+        }
         IHighlightStrategy highlightStrategy = opt.getHighlightStrategy();
         if (highlightStrategy.highlightFigure(this)) {
             return colorScheme.getHighlightColor();
         }
         return transformColor(highlightStrategy, colorScheme.getNodeBorderColor());
+    }
+
+    protected Color getNodeBackColor(LatticeCanvasScheme opt) {
+        return transformColor(opt.getHighlightStrategy(), opt.getColorScheme().getNodeColor());
     }
 
     protected Color transformColor(IHighlightStrategy highlightStrategy, Color color) {
@@ -103,20 +108,33 @@ public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDia
     public void draw(Graphics g, canvas.CanvasScheme opt) {
         Graphics2D g2D = (Graphics2D) g;
         LatticeCanvasScheme latticeCanvasSchema = (LatticeCanvasScheme) opt;
-        drawBackgroundAndBorder(g2D, latticeCanvasSchema);
+        drawBackground(g2D, latticeCanvasSchema);
         drawInterior(g2D, latticeCanvasSchema);
+        drawBorder(g2D, latticeCanvasSchema);
     }
 
     protected abstract void drawInterior(Graphics2D g2D, LatticeCanvasScheme opt);
 
-    protected void drawBackgroundAndBorder(Graphics2D g2D, LatticeCanvasScheme opt) {
-        IHighlightStrategy highlightStrategy = opt.getHighlightStrategy();
-        g2D.setColor(transformColor(highlightStrategy, opt.getColorScheme().getNodeColor()));
-        FigureDimensionCalcStrategy figureDimensionCalcStrategy = opt.getDrawStrategiesContext().getFigureDimensionCalcStrategy();
-        Ellipse2D oval = getFigureEllipse(figureDimensionCalcStrategy);
-        g2D.fill(oval);
-        g2D.setColor(getNodeColor(opt));
-        g2D.draw(oval);
+    private void drawBackground(Graphics2D g2D, LatticeCanvasScheme opt) {
+        g2D.setColor(getNodeBackColor(opt));
+        g2D.fill(getFigureEllipse(opt));
+    }
+
+    private void drawBorder(Graphics2D g2D, LatticeCanvasScheme opt) {
+        g2D.setColor(getNodeBorderColor(opt));
+        float thickness = hasCollision() ? 2.0f : 1.0f;
+        Stroke oldStroke = g2D.getStroke();
+        g2D.setStroke(getStroke(thickness));
+        g2D.draw(getFigureEllipse(opt));
+        g2D.setStroke(oldStroke);
+    }
+
+    private Stroke getStroke(float thickness) {
+        return new BasicStroke(thickness);
+    }
+
+    private Ellipse2D getFigureEllipse(LatticeCanvasScheme opt) {
+        return getFigureEllipse(opt.getDrawStrategiesContext().getFigureDimensionCalcStrategy());
     }
 
     public abstract Ellipse2D getFigureEllipse(FigureDimensionCalcStrategy figureDimensionCalcStrategy);

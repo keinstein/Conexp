@@ -20,7 +20,6 @@ public class ContextObjectTextFigure extends ConceptRelatedTextFigure {
         this.obj = obj;
     }
 
-	// TODO: Sergey. changed getBackground() to getBackground(CanvasScheme opt) check whether it's O.K  
     protected Color getBackground(CanvasScheme opt) {
         return obj.isObject() ? Color.white : Color.lightGray;
     }

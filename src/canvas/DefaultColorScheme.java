@@ -13,11 +13,12 @@ import java.awt.Color;
 
 public class DefaultColorScheme implements CanvasColorScheme {
     Color edgeColor = Color.black;
-    Color fillColor = Color.blue;
+    Color nodeFillColor = Color.blue;
     Color nodeColor = Color.white;
     Color nodeBorderColor = Color.black;
     Color textColor = Color.black;
     Color highlightColor = Color.blue;
+    Color collisionColor = Color.red;
 
     public DefaultColorScheme() {
         super();
@@ -29,7 +30,7 @@ public class DefaultColorScheme implements CanvasColorScheme {
     }
 
     public Color getNodeFillColor() {
-        return fillColor;
+        return nodeFillColor;
     }
 
     public Color getHighlightColor() {
@@ -50,6 +51,10 @@ public class DefaultColorScheme implements CanvasColorScheme {
 
     public Color getTextBackColor() {
         return Color.white;
+    }
+
+    public Color getCollisionColor() {
+        return collisionColor;
     }
 
     public Color getSelectedTextBackground() {

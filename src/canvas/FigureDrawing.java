@@ -26,7 +26,7 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
 
     public static final String BOUNDS_BOX_PROPERTY = "BoundsBox";
 
-    private canvas.FigureListener fFigureListener = new DrawingFigureListener();
+    private canvas.FigureListener figureListener = new DrawingFigureListener();
 
     public FigureDrawing() {
         super();
@@ -53,27 +53,27 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
 
 //---------------------------------------------------------------------------------------
 // FigureDrawingListener methods
-    protected FigureDrawingListener fListener;
+    protected FigureDrawingListener figureDrawingListener;
 
     public synchronized void addDrawingChangedListener(FigureDrawingListener mcl) {
-        if (fListener == null) {
-            fListener = mcl;
+        if (figureDrawingListener == null) {
+            figureDrawingListener = mcl;
         }
     }
 
     public synchronized void removeDrawingChangedListener(FigureDrawingListener mcl) {
-        fListener = null;
+        figureDrawingListener = null;
     }
 
     protected synchronized void fireDimensionChanged() {
-        if (null != fListener) {
-            fListener.dimensionChanged(getDimension());
+        if (null != figureDrawingListener) {
+            figureDrawingListener.dimensionChanged(getDimension());
         }
     }
 
     public synchronized void fireNeedUpdate() {
-        if (null != fListener) {
-            fListener.needUpdate();
+        if (null != figureDrawingListener) {
+            figureDrawingListener.needUpdate();
         }
     }
 
@@ -95,7 +95,7 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
     protected void doAddFigure(Figure f) {
         //order of calls is important
         addFigureRectToBounds(f);
-        f.setFigureListener(fFigureListener);
+        f.setFigureListener(figureListener);
     }
 
     public void addForegroundFigure(Figure f) {
@@ -247,26 +247,32 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
         }
     }
 
+    protected void onBeforeMoveFigure(Figure f) {
+        if (isBoundsRectDirty()) {
+            return;
+        }
+        checkDamage(f);
+    }
+
+    protected void onAfterFigureMove(Figure f) {
+        if (isBoundsRectDirty()) {
+            return;
+        }
+        Rectangle boundingRect = new Rectangle();
+        f.boundingBox(boundingRect);
+        if (!bounds.contains(boundingRect)) {
+            makeBoundsRectDirty();
+        }
+    }
+
     class DrawingFigureListener implements FigureListener {
         public void beforeFigureMove(Figure f) {
-            if (isBoundsRectDirty()) {
-                return;
-            }
-            checkDamage(f);
+            onBeforeMoveFigure(f);
         }
-
 
         public void afterFigureMove(Figure f) {
-            if (isBoundsRectDirty()) {
-                return;
-            }
-            Rectangle boundingRect = new Rectangle();
-            f.boundingBox(boundingRect);
-            if (!bounds.contains(boundingRect)) {
-                makeBoundsRectDirty();
-            }
+            onAfterFigureMove(f);
         }
-
     };
 
 
@@ -353,6 +359,10 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
             Figure figure = (Figure) figureIter.next();
             removeFigure(figure);
         }
+    }
+
+    public void initPaint() {
+
     }
 
 

@@ -9,6 +9,9 @@ package conexp.frontend.latticeeditor.figures;
 
 import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.LineFigure;
+import canvas.CanvasScheme;
+
+import java.awt.*;
 
 public class LineFigureWithFigureDimensionCalcStrategyProvider extends LineFigure implements LineDiagramFigure {
 
@@ -26,5 +29,33 @@ public class LineFigureWithFigureDimensionCalcStrategyProvider extends LineFigur
             BorderCalculatingLineDiagramFigure lineDiagramFigure = (BorderCalculatingLineDiagramFigure) figure;
             lineDiagramFigure.setFigureDimensionCalcStrategyProvider(figureDimensionProvider);
         }
+    }
+
+    protected Color getLineColor(CanvasScheme opt) {
+        if(hasCollision()){
+            return opt.getColorScheme().getCollisionColor();
+        }
+        return super.getLineColor(opt);
+    }
+
+    protected float getLineThickness(CanvasScheme opt) {
+        if(hasCollision()){
+            return 2.0f;
+        }
+        return doGetLineThickness(opt);
+    }
+
+    protected float doGetLineThickness(CanvasScheme opt) {
+        return super.getLineThickness(opt);
+    }
+
+    boolean collision;
+
+    public boolean hasCollision() {
+        return collision;
+    }
+
+    public void setCollision(boolean collision) {
+        this.collision = collision;
     }
 }

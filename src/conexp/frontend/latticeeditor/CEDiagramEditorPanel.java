@@ -54,7 +54,7 @@ public class CEDiagramEditorPanel extends DiagramEditorPanel implements View {
 
     class CheckIsLatticeAction extends ActionWithKey {
         public CheckIsLatticeAction() {
-            super("checkIsLattice", "Check drawing");
+            super("checkIsLattice", "Check conceptSetDrawing");
         }
 
         public void actionPerformed(ActionEvent e) {

@@ -8,6 +8,7 @@
 
 package conexp.frontend.latticeeditor;
 
+import canvas.FigureDrawing;
 import canvas.FigureDrawingCanvas;
 import canvas.IFigurePredicate;
 import conexp.core.*;
@@ -61,6 +62,10 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
 
     public void setConceptSetDrawing(ConceptSetDrawing drawing) {
         setFigureDrawing(drawing);
+    }
+
+    protected void setDrawing(FigureDrawing newDrawing) {
+        super.setDrawing(newDrawing);
     }
 
     public void clearConceptSetDrawing() {
@@ -132,8 +137,11 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
 
     public void moveFigure(canvas.Figure f, double dx, double dy) {
         getFigureMoveStrategy().moveFigure(this, f, dx, dy);
-//        getDrawing().applyChanges();
     }
+
+    /**
+     *  @test_public
+     */
 
     protected Set getCurrentQuery() {
         if (hasSelection() && getFirstSelectedFigure() instanceof AbstractConceptCorrespondingFigure) {
@@ -156,7 +164,6 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
     protected String describeActivePoint() {
         return ((ConceptFigure) getFirstSelectedFigure()).getDescription(getContext());
     }
-
 
     public void initPaint() {
         DrawStrategiesContext drawContext = getLatticeCanvasSchema().getDrawStrategiesContext();

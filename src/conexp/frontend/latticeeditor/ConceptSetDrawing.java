@@ -21,7 +21,7 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.LineDiagramFigure;
 import conexp.util.gui.paramseditor.ParamInfo;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.geom.Dimension2D;
 
 public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
@@ -72,7 +72,7 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
     class LabelingStrategiesEventHandler implements java.beans.PropertyChangeListener {
         public void propertyChange(java.beans.PropertyChangeEvent evt) {
             String propertyName = evt.getPropertyName();
-            Trace.gui.eventm("Get message for lattice drawing labelingStrategy", evt.getPropertyName());
+            Trace.gui.eventm("Get message for lattice conceptSetDrawing labelingStrategy", evt.getPropertyName());
             if (propertyName.equals("drawAttribs") ||
                     propertyName.equals("drawObjects")) {
                 changeLabelingStrategy((ILabelingStrategy) evt.getOldValue(), (ILabelingStrategy) evt.getNewValue());

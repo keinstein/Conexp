@@ -50,4 +50,13 @@ public class CompositeFigureWithFigureDimensionCalcStrategyProvider extends Comp
     }
 
 
+    public boolean hasCollision() {
+        return false;
+    }
+
+    public void setCollision(boolean value) {
+        //do nothing for now
+        //TODO: think, whether we need something more
+    }
+
 }

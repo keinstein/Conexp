@@ -100,4 +100,6 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
         drawing.layoutLattice();
         return drawing;
     }
+
+
 }

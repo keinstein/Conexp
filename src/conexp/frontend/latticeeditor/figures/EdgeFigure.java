@@ -35,8 +35,7 @@ public class EdgeFigure extends LineFigureWithFigureDimensionCalcStrategyProvide
         return ((AbstractConceptCorrespondingFigure) getEndFigure()).getConcept();
     }
 
-
-    protected float getLineThickness(CanvasScheme opt) {
+    protected float doGetLineThickness(CanvasScheme opt) {
         if (opt instanceof LatticeCanvasScheme) {
             LatticeCanvasScheme canvasSchema = (LatticeCanvasScheme) opt;
             return canvasSchema.getDrawStrategiesContext().getEdgeSizeCalcStrategy().edgeThickness(getStartConcept(), getEndConcept());

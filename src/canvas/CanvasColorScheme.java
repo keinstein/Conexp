@@ -21,6 +21,8 @@ public interface CanvasColorScheme {
 
     Color getNodeFillColor();
 
+    Color getCollisionColor();
+
     Color getHighlightColor();
 
     Color getTextColor();

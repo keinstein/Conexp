@@ -46,5 +46,14 @@ public abstract class ConceptRelatedTextFigure extends TextFigure implements Bor
         return concept.getQueryIntent();
     }
 
+    public boolean hasCollision() {
+        //collisions are not detected for now
+        return false;
+    }
+
+    public void setCollision(boolean value) {
+        //collisions are not detected for now
+    }
+
 
 }
