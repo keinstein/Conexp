@@ -11,6 +11,7 @@ import canvas.CanvasTool;
 import canvas.Figure;
 import canvas.FigureDrawingCanvas;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
@@ -30,6 +31,15 @@ public class MoveNodeTool extends CanvasTool {
         if (!figureDrawingCanvas.hasSelection() || !figureDrawingCanvas.getSelection().contains(figure)) {
             figureDrawingCanvas.selectFigure(figure);
         }
+        //todo: think and clean based on experience
+        if(figure!=null && SwingUtilities.isRightMouseButton(e)){
+            JPopupMenu popupMenu = new JPopupMenu();
+            figureDrawingCanvas.fillPopupMenu(popupMenu, figure);
+            if ((popupMenu.getComponentCount() != 0)) {
+                popupMenu.show(e.getComponent(), e.getX(), e.getY());
+            }
+        }
+
         if (figureDrawingCanvas.hasSelection()) {
             startPoint = userCoords;
         }

@@ -23,8 +23,8 @@ public class ExperimentSuite extends BaseExperimentSuite {
     public static RelationSequenceSet makeRelationSequenceSet() {
         RelationSequenceSet relSet = new RelationSequenceSet();
         addExponentialSequence(relSet);
-        ExperimentSuite.addSparseSequence(relSet);
-        ExperimentSuite.addTypicalSequenceAndTransposed(relSet);
+        addSparseSequence(relSet);
+        addTypicalSequenceAndTransposed(relSet);
         return relSet;
     }
 

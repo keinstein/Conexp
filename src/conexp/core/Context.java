@@ -56,7 +56,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
     public String makeUniqueObjectName() {
-        int startValue = getObjectCount();
+        int startValue = getObjectCount()+1;
         String candName;
         do {
             candName = formObjectName(startValue++);

@@ -436,6 +436,6 @@ public class Lattice extends ConceptsCollection {
 
 
     private LatticeElement makeConceptCopy(Concept concept) {
-        return new LatticeElement(concept.getObjects().makeModifiableSetCopy(), concept.getAttribs().makeModifiableSetCopy());
+        return LatticeElement.makeFromSetsCopies(concept.getObjects(), concept.getAttribs());
     }
 }

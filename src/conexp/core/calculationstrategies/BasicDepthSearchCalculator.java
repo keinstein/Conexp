@@ -38,6 +38,10 @@ public abstract class BasicDepthSearchCalculator extends LatticeNeedingCalcStrat
         performDepthSearchCalculationOfLattice();
     }
 
+    public void calculateConceptSet() {
+        depthSearchEnumerateConcepts();
+    }
+
     abstract protected void performDepthSearchCalculationOfLattice();
 
 }

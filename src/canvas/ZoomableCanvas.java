@@ -66,7 +66,6 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
 
     private void doSetZoom(double newZoom) {
         double oldValue = getZoom();
-        System.out.println("ZoomableCanvas.doSetZoom " + newZoom);
         if (newZoom != oldValue) {
             this.zoom = newZoom;
             Dimension viewDimension = getViewportSize();
@@ -83,7 +82,6 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         Dimension newDimension = new Dimension(getDrawingDimension());
         int newWidth = (int) Math.max(viewDimension.getWidth(), newDimension.getWidth() * getZoom());
         int newHeight = (int) Math.max(viewDimension.getHeight(), newDimension.getHeight() * getZoom());
-        System.out.println("new width " + newWidth + " new height:" + newHeight);
         newDimension.setSize(newWidth, newHeight); //due to bug in jdk1.3
         return newDimension;
     }
@@ -139,7 +137,6 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
     }
 
     public void setFitToSize(boolean fitToSize) {
-        System.out.println("ZoomableCanvas.setFitToSize:" + fitToSize);
         if (this.fitToSize != fitToSize) {
             this.fitToSize = fitToSize;
             if (fitToSize) {
@@ -160,7 +157,6 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
     }
 
     protected void switchViewportToScrollMode() {
-        System.out.println("ZoomableCanvas.switchViewportToScrollMode");
         Component c = getParent();
         if (c instanceof JViewport) {
             JViewport viewport = (JViewport) c;

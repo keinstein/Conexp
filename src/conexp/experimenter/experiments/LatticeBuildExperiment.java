@@ -3,6 +3,7 @@ package conexp.experimenter.experiments;
 import conexp.core.*;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import conexp.core.calculationstrategies.NextClosedSetCalculator;
+import conexp.core.calculationstrategies.AddAtomCalcStrategy;
 import conexp.core.enumcallbacks.NextClosedSetLatticeBuilderCallback;
 import conexp.experimenter.framework.MeasurementProtocol;
 import conexp.experimenter.framework.MeasurementSet;
@@ -35,6 +36,11 @@ public class LatticeBuildExperiment extends ConceptSetExperiment {
         if (strategy instanceof DepthSearchCalculator) {
             DepthSearchCalculator calc = (DepthSearchCalculator) strategy;
             calc.setLattice((Lattice) coll);
+            return;
+        }
+        if(strategy instanceof AddAtomCalcStrategy){
+           AddAtomCalcStrategy calc = (AddAtomCalcStrategy) strategy;
+            calc.setLattice((Lattice)coll);
             return;
         }
 

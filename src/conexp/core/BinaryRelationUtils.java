@@ -8,6 +8,7 @@
 package conexp.core;
 
 import util.DoubleUtil;
+import util.Assert;
 
 import java.util.LinkedList;
 import java.util.Arrays;
@@ -379,6 +380,15 @@ public class BinaryRelationUtils {
 
     public static int maxObjCountPerAttribute(BinaryRelation relation) {
         return max(attributeFrequencies(relation));
+    }
+
+    public static BinaryRelation createSlice(BinaryRelation baseRelation, int startIndex, int endIndex) {
+        Assert.isTrue(startIndex<=endIndex);
+        ModifiableBinaryRelation relation = ContextFactoryRegistry.createRelation(endIndex-startIndex+1, baseRelation.getColCount());
+        for(int i=startIndex; i<=endIndex; i++){
+            relation.getModifiableSet(i).copy(baseRelation.getSet(i));
+        }
+        return relation;
     }
 
 }

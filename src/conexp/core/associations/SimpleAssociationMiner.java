@@ -23,13 +23,15 @@ public class SimpleAssociationMiner extends BaseAssociationMiner {
     public void findAssociations(DependencySet depSet, int minSupport, double minConfidence) {
         util.Assert.isTrue(cxt != null);
         depSet.clear();
-        long startTime = System.currentTimeMillis();
+//        long startTime = System.currentTimeMillis();
         findExactDependencies(depSet, minSupport);
-        long exactTime = System.currentTimeMillis();
+//        long exactTime = System.currentTimeMillis();
         findApproximateDependencies(depSet, minSupport, minConfidence);
+/*
         long approximateTime = System.currentTimeMillis();
         System.out.println("Time for finding exact dependencies:" + (exactTime - startTime));
         System.out.println("approximate dependencies:" + (approximateTime - exactTime));
+*/
     }
 
     public void findApproximateDependencies(DependencySet ret, int minSupport, double minConfidence) {

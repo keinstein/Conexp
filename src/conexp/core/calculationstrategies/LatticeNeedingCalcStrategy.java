@@ -10,6 +10,10 @@ package conexp.core.calculationstrategies;
 import conexp.core.*;
 
 
+/**
+ * todo: refactor me: move to upper level, then depth-search concept calc strategy
+ */
+
 public abstract class LatticeNeedingCalcStrategy extends DepthSearchConceptCalcStrategy implements LatticeCalcStrategy {
     protected Lattice lattice;
 
@@ -47,6 +51,10 @@ public abstract class LatticeNeedingCalcStrategy extends DepthSearchConceptCalcS
     public void tearDown() {
         lattice = null;
         super.tearDown();
+    }
+
+    public void calculateConceptSet() {
+        buildLattice();
     }
 
     /**

@@ -262,7 +262,6 @@ public abstract class CalcStrategyTest extends TestCase {
         setupStrategy(conceptSet);
         generateIntents();
         testIntentsAndExtentsSizes(conceptSet, rel);
-        System.out.println("concept set "+conceptSet);
         ConceptSetTestUtils.fillExpectationSetByIntentsFromLattice(expSetIntents, conceptSet);
         ConceptSetTestUtils.fillExpectationSetByExtentsFromLattice(expSetExtents, conceptSet);
     }

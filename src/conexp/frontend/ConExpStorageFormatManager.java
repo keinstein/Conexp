@@ -20,9 +20,9 @@ public class ConExpStorageFormatManager extends StorageFormatManager {
         super();
         setAllowAllSupported(true);
         registerStorageFormat(
-                new StorageFormatRecord("Cxt files", "cxt", new ConImpContextDocumenLoaderAdapter(new ConImpContextLoader()), new ConImpContextWriter()));
-        registerStorageFormat(new StorageFormatRecord("CSV files", "csv", new ConImpContextDocumenLoaderAdapter(new CSVContextCreator()), null));
-        registerStorageFormat(new StorageFormatRecord("List of Object and its attributes", "oal", new ConImpContextDocumenLoaderAdapter(new ObjectListContextCreator()), null));
+                new StorageFormatRecord("Cxt files", "cxt", new ContextReaderDocumenLoaderAdapter(new ConImpContextLoader()), new ConImpContextWriter()));
+        registerStorageFormat(new StorageFormatRecord("CSV files", "csv", new ContextReaderDocumenLoaderAdapter(new CSVContextCreator()), null));
+        registerStorageFormat(new StorageFormatRecord("List of Object and its attributes", "oal", new ContextReaderDocumenLoaderAdapter(new ObjectListContextCreator()), null));
         registerDefaultStorageFormat(
                 new StorageFormatRecord("ConExp xml format", "cex", new ConExpXMLReader(), new ConExpXMLWriter()));
 

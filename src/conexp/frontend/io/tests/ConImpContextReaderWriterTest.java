@@ -9,14 +9,14 @@ package conexp.frontend.io.tests;
 
 import conexp.frontend.DocumentLoader;
 import conexp.frontend.DocumentWriter;
-import conexp.frontend.io.ConImpContextDocumenLoaderAdapter;
+import conexp.frontend.io.ContextReaderDocumenLoaderAdapter;
 import conexp.frontend.io.ConImpContextLoader;
 import conexp.frontend.io.ConImpContextWriter;
 
 public class ConImpContextReaderWriterTest extends ContextReaderWriterPairTest {
 
     protected DocumentLoader makeDocumentLoader() {
-        return new ConImpContextDocumenLoaderAdapter(new ConImpContextLoader());
+        return new ContextReaderDocumenLoaderAdapter(new ConImpContextLoader());
     }
 
     protected DocumentWriter makeDocumentWriter() {

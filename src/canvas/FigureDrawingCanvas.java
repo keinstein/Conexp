@@ -9,6 +9,7 @@
 package canvas;
 
 import canvas.tools.SelectionTool;
+import canvas.util.DefaultFigurePopupMenuProvider;
 import com.visibleworkings.trace.Trace;
 import util.Assert;
 import util.StringUtil;
@@ -16,6 +17,7 @@ import util.collection.CollectionFactory;
 import util.collection.IndexedSet;
 import util.gui.GraphicObjectsFactory;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -313,6 +315,15 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
         return selection.containsAll(collection) && collection.containsAll(selection);
     }
 
+    public void fillPopupMenu(JPopupMenu popupMenu, Figure figure) {
+        figurePopupMenuProvider.fillPopupMenu(popupMenu, figure);
+    }
+
+    protected IFigurePopupMenuProvider figurePopupMenuProvider = new DefaultFigurePopupMenuProvider();
+
+    public void setFigurePopupMenuProvider(IFigurePopupMenuProvider figurePopupMenuProvider) {
+        this.figurePopupMenuProvider = figurePopupMenuProvider;
+    }
 
     protected class MouseHandler extends MouseAdapter implements MouseMotionListener {
         public void mousePressed(MouseEvent e) {

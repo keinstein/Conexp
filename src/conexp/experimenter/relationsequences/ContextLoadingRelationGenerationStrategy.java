@@ -4,6 +4,8 @@ import conexp.core.BinaryRelation;
 import conexp.core.Context;
 import conexp.frontend.io.ConImpContextLoader;
 import conexp.frontend.io.ContextReader;
+import conexp.frontend.io.ContextReaderFactory;
+import conexp.frontend.io.ConImpContextReaderFactory;
 import util.Assert;
 import util.DataFormatException;
 
@@ -19,19 +21,30 @@ import java.io.IOException;
  */
 
 public class ContextLoadingRelationGenerationStrategy extends BaseRelationGenerationStrategy {
-    private Context context;
+    protected Context context;
     private String url;
+    protected ContextReaderFactory contextReaderFactory;
+
 
 
     public ContextLoadingRelationGenerationStrategy(String url) throws IOException, DataFormatException{
-        super(1);
+        this(url, new ConImpContextReaderFactory());
+    }
+
+    public ContextLoadingRelationGenerationStrategy(String url, ContextReaderFactory contextReaderFactory) throws IOException, DataFormatException{
+        this(url, 1, contextReaderFactory);
+    }
+
+    protected ContextLoadingRelationGenerationStrategy(String url, int count, ContextReaderFactory contextReaderFactory) throws IOException, DataFormatException{
+        super(count);
         this.url = url;
+        this.contextReaderFactory = contextReaderFactory;
         loadContext(url);
         createRelations();
     }
 
     private void loadContext(String url) throws IOException, DataFormatException {
-        ContextReader loader = new ConImpContextLoader();
+        ContextReader loader = makeContextReader();
         FileReader fileReader=null;
         try {
             fileReader = new FileReader(url);
@@ -43,6 +56,13 @@ public class ContextLoadingRelationGenerationStrategy extends BaseRelationGenera
         }
     }
 
+    private ContextReader makeContextReader() {
+        return contextReaderFactory.makeContextReader();
+    }
+
+    protected Context getContext() {
+        return context;
+    }
 
     public BinaryRelation makeRelation(int relNo) {
         Assert.isTrue(relNo<=count);

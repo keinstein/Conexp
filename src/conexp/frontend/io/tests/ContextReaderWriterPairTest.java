@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.io.tests;
 
 import conexp.core.Context;
@@ -38,13 +37,19 @@ public abstract class ContextReaderWriterPairTest extends TestCase {
         doTestWriteAndReadForContext(cxt);
     }
 
+    protected boolean isPreserveObjectNames() {
+        return true;
+    }
+
     public void testReaderWriterWithObjectsAndAttributes() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 0},
                                                          {0, 0},
                                                          {0, 0}
         });
         cxt.getAttribute(0).setName("First Attr");
-        cxt.getObject(2).setName("Third Object");
+        if (isPreserveObjectNames()) {
+            cxt.getObject(2).setName("Third Object");
+        }
         doTestWriteAndReadForContext(cxt);
     }
 
@@ -54,7 +59,9 @@ public abstract class ContextReaderWriterPairTest extends TestCase {
                                                          {1, 1}
         });
         cxt.getAttribute(0).setName("First Attr");
-        cxt.getObject(2).setName("Third Object");
+        if (isPreserveObjectNames()) {
+            cxt.getObject(2).setName("Third Object");
+        }
         doTestWriteAndReadForContext(cxt);
     }
 
@@ -68,7 +75,7 @@ public abstract class ContextReaderWriterPairTest extends TestCase {
     }
 
     protected ContextDocument writeAndReadContextDoc(ContextDocument doc) {
-        StringWriter writer = new StringWriter(){
+        StringWriter writer = new StringWriter() {
             public void close() throws IOException {
                 fail("It's responsibility of calling side to close writers");
             }

@@ -144,8 +144,10 @@ public class LayeredLayoter extends NonIncrementalLayouter {
     private void searchBestLatticesByBacktracking() {
         bestLayouts.clear();
         assignYCoordsToLattice();
+/*
         System.out.println("Start search");
         System.out.println("irreducible elements:" + irreducibleElements.elementCount());
+*/
         double[] directionVector = new double[irreducibleElements.elementCount()];
         double[] currentEvaluation = new double[evaluationFunctions.size()];
 
@@ -241,7 +243,7 @@ public class LayeredLayoter extends NonIncrementalLayouter {
         bestLayoutsResults = new DirectionVectorEvaluationResultsPair[bestLayouts.getSize()];
         bestLayouts.toArray(bestLayoutsResults);
         if (!bestLayouts.isEmpty()) {
-            System.out.println("bestLayouts:" + bestLayouts);
+//            System.out.println("bestLayouts:" + bestLayouts);
             setCurrentLayout(0);
         }else{
             fireLayoutChanged(); //simple for proform. This is posi
@@ -257,7 +259,7 @@ public class LayeredLayoter extends NonIncrementalLayouter {
         }
         currentLayoutIndex = layoutIndex;
         DirectionVectorEvaluationResultsPair pair = bestLayoutsResults[currentLayoutIndex];
-        System.out.println("current layout params: "+pair);
+//        System.out.println("current layout params: "+pair);
         assignXCoordinatesToLattice(pair.getDirectionVectors());
         fireLayoutChanged();
     }

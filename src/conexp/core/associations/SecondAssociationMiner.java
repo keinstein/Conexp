@@ -26,16 +26,18 @@ public class SecondAssociationMiner extends BaseAssociationMiner {
         util.Assert.isTrue(cxt != null);
         depSet.clear();
         findFrequentItemsetsAndImplications(minSupport);
-        long exactTime = System.currentTimeMillis();
+//        long exactTime = System.currentTimeMillis();
 
         ArrayList frequentEdges = findFrequentEdgesSortedByConfidence(frequentItemsetLattice, minConfidence, minSupport);
-        long sortTime = System.currentTimeMillis();
+//        long sortTime = System.currentTimeMillis();
         findApproximateBaseByCruscal(depSet, frequentEdges, frequentItemsetLattice.conceptsCount());
+/*
 
         long approximateTime = System.currentTimeMillis();
         System.out.println("approximate dependencies:" + (approximateTime - exactTime));
         System.out.println("Time to sort edges:" + (sortTime - exactTime));
         System.out.println("Time to find base:" + (approximateTime - sortTime));
+*/
         final int exactCount = validImplications.getSize();
         for (int i = 0; i < exactCount; i++) {
             depSet.addDependency(validImplications.getDependency(i));
@@ -44,18 +46,18 @@ public class SecondAssociationMiner extends BaseAssociationMiner {
 
 
     public Lattice findFrequentItemsetsAndImplications(int minSupport) {
-        long startTime = System.currentTimeMillis();
+//        long startTime = System.currentTimeMillis();
         findFrequentItemsetsLattice(minSupport);
-        long latticeTime = System.currentTimeMillis();
-        System.out.println("Time for building lattice:" + (latticeTime - startTime));
+//        long latticeTime = System.currentTimeMillis();
+//        System.out.println("Time for building lattice:" + (latticeTime - startTime));
 
         validImplications = new ImplicationSet(cxt);
         LatticeImplicationCalculator calc = new LatticeImplicationCalculator();
         calc.setLattice(frequentItemsetLattice);
         calc.setImplications(validImplications);
         calc.calcImplications();
-        long exactTime = System.currentTimeMillis();
-        System.out.println("Time for finding validImplications dependencies:" + (exactTime - latticeTime));
+//        long exactTime = System.currentTimeMillis();
+//        System.out.println("Time for finding validImplications dependencies:" + (exactTime - latticeTime));
 
         return frequentItemsetLattice;
     }

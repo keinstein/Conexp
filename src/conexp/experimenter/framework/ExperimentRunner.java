@@ -261,7 +261,7 @@ public class ExperimentRunner {
 
         for (int i = 0; i < experimentSet.experimentCount(); i++) {
             IMeasurementProtocol protocol = experimentSet.experimentAt(i).getMeasurementProtocol();
-            if (!protocol.hasMeasurementWithName(paramName)) {
+            if (!parameterIsSupportedByExperiment(protocol, paramName)) {
                 continue;
             }
             Iterator iter = protocol.validatingMeasurementIterator();
@@ -278,6 +278,13 @@ public class ExperimentRunner {
         }
 
 
+    }
+
+    private boolean parameterIsSupportedByExperiment(IMeasurementProtocol protocol, String paramName) {
+        if(getExpRunnerMeasurementProtocol().hasMeasurementWithName(paramName)){
+            return true;
+        }
+        return protocol.hasMeasurementWithName(paramName);
     }
 
 
