@@ -106,14 +106,22 @@ public class ImplicationSet extends DependencySet {
         } // end of for ()
     }
 
+
     //---------------------------------------
-    public void setClosure(ModifiableSet toClose) {
+
+    /**
+     *
+     * @param toClose
+     * @return whether set to close was modified
+     */
+    public boolean setClosure(ModifiableSet toClose) {
         //naive but robust implementation
         //TBD to change it on linear closure
         if (dependencies.isEmpty()) {
-            return;
+            return false;
         }
         boolean quit = false;
+        boolean modified = false;
         while (!quit) {
             quit = true;
             for (int i = dependencies.size(); --i >= 0;) {
@@ -124,10 +132,12 @@ public class ImplicationSet extends DependencySet {
                             Set.NOT_COMPARABLE == cmp2) {
                         toClose.or(imp.getConclusion());
                         quit = false;
+                        modified = true;
                     } // end of if ()
                 } // end of if ()
             } // end of for ()
         } // end of while ()
+        return modified;
     }
 
     public boolean isRespectedBySet(Set set) {

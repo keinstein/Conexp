@@ -58,6 +58,10 @@ public class SetBuilder {
         return makeImplication(premise, concslusion, 0);
     }
 
+    public static Implication makeImplication(int[][] implication){
+        return makeImplication(implication[0], implication[1]);
+    }
+
     public static ImplicationSet makeImplicationSet(AttributeInformationSupplier attrInfo, int[][][] implicationDescriptions) {
         ImplicationSet ret = new ImplicationSet(attrInfo);
         for (int i = 0; i < implicationDescriptions.length; i++) {

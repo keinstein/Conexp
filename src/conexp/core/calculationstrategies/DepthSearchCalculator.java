@@ -103,7 +103,7 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
     }
     //----------------------------------------------------------------
     /**
-     *  this function is strongly connected with used order !!! precodndition :
+     *  this function is strongly connected with used order !!! precondition :
      *  _attribs not equal one attribs
      */
     protected LatticeElement findLatticeElementFromOne(Set attribs) {
