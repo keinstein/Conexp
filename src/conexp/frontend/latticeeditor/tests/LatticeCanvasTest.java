@@ -21,34 +21,29 @@ import java.awt.Dimension;
 
 public class LatticeCanvasTest extends junit.framework.TestCase {
 
-    public static Test suite() {
-        return new TestSuite(LatticeCanvasTest.class);
-    }
-
     public void testGetUpMoveConstraintForConcept() {
-        LatticeCanvas latCanvas = new LatticeCanvas() {
+        final LatticeCanvasScheme options = new LatticeCanvasScheme() {
+                    public canvas.CanvasColorScheme getColorScheme() {
+                        return null;
+                    }
+
+                    DrawParameters drawParams = new DefaultDrawParams();
+                    DrawStrategiesContext drawStrategiesContext = new LatticeCanvasDrawStrategiesContext(new DefaultDrawStrategiesModelsFactory(drawParams), null);
+
+                    public DrawStrategiesContext getDrawStrategiesContext() {
+                        return drawStrategiesContext;
+                    }
+
+                    public IHighlightStrategy getHighlightStrategy() {
+                        return drawStrategiesContext.getHighlightStrategy();
+                    }
+                };
+
+        LatticeCanvas latCanvas = new LatticeCanvas(options) {
             protected double findMinimalYDistanceToPredecessorsFiguresCenters(AbstractConceptCorrespondingFigure f) {
                 return 10 + 2 * (new DefaultDrawParams()).getMaxNodeRadius();
             }
         };
-
-        latCanvas.setOptions(new LatticeCanvasScheme() {
-            public canvas.CanvasColorScheme getColorScheme() {
-                return null;
-            }
-
-            DrawParameters drawParams = new DefaultDrawParams();
-            DrawStrategiesContext drawStrategiesContext = new LatticeCanvasDrawStrategiesContext(new DefaultDrawStrategiesModelsFactory(drawParams), null);
-
-            public DrawStrategiesContext getDrawStrategiesContext() {
-                return drawStrategiesContext;
-            }
-
-            public IHighlightStrategy getHighlightStrategy() {
-                return drawStrategiesContext.getHighlightStrategy();
-            }
-        });
-
         double res = latCanvas.getUpMoveConstraintForConcept(new ConceptFigure(
                 ConceptNodeQueryFactory.makeEmpty()));
         assertEquals(10.0, res, 0.001);
@@ -56,7 +51,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
     }
 
     public void testDimensionUpdateDuringResetOfLatticeDrawing() {
-        LatticeCanvas canvas = new LatticeCanvas();
+        LatticeCanvas canvas = makeCanvas();
         LatticeDrawing drawing = new LatticeDrawing() {
             public Dimension getDimension() {
                 return new Dimension(200, 150);
@@ -70,7 +65,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
     public void testClearLatticeDrawing() {
         LatticeDrawing drawing = makePreparedLatticeDrawing(new int[][]{{0},
                                                                         {1}});
-        LatticeCanvas canvas = new LatticeCanvas();
+        LatticeCanvas canvas = makeCanvas();
         canvas.setConceptSetDrawing(drawing);
         canvas.selectFigure(canvas.getFigureForConcept(drawing.getLattice().getZero()));
         assertTrue(canvas.hasSelection());
@@ -82,7 +77,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
         LatticeDrawing drawing = makePreparedLatticeDrawing(new int[][]{{0},
                                                                         {1}});
 
-        LatticeCanvas canvas = new LatticeCanvas();
+        LatticeCanvas canvas = makeCanvas();
         canvas.setConceptSetDrawing(drawing);
 
         canvas.selectFigure(canvas.getFigureForConcept(drawing.getLattice().getZero()));
@@ -91,6 +86,10 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
         canvas.setConceptSetDrawing(secondDrawing);
         assertEquals(false, canvas.hasSelection());
 
+    }
+
+    private LatticeCanvas makeCanvas() {
+        return new LatticeCanvas(new LatticePainterOptions(new DefaultDrawParams()));
     }
 
     private LatticeDrawing makePreparedLatticeDrawing(final int[][] relation) {

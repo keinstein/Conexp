@@ -14,20 +14,12 @@ import conexp.core.LatticeElement;
 import conexp.core.layoutengines.SimpleLayoutEngine;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.LatticeDrawing;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import util.collection.CollectionFactory;
 
 import java.util.Set;
 
 public class SimpleLayoutEngineTest extends TestCase {
-    private static final Class THIS = SimpleLayoutEngineTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     public void testCoordinatesAssignment() {
 
         Context cxt = FCAEngineRegistry.makeContext(3, 3);

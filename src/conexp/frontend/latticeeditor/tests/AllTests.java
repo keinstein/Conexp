@@ -16,15 +16,14 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
 
-        suite.addTest(LatticeDrawingTest.suite());
-        suite.addTest(LatticePainterOptionsTest.suite());
-        suite.addTest(LatticePainterPanelTest.suite());
-        suite.addTest(LatticeCanvasTest.suite());
+        suite.addTestSuite(LatticeDrawingTest.class);
+        suite.addTestSuite(LatticePainterOptionsTest.class);
+        suite.addTestSuite(LatticePainterPanelTest.class);
+        suite.addTestSuite(LatticeCanvasTest.class);
 
         suite.addTestSuite(NestedLineDiagramDrawingTest.class);
-
-
-        suite.addTest(XmlFileStrategyModelTest.suite());
+        suite.addTestSuite(RescaleByYFigureVisitorTest.class);
+        suite.addTestSuite(XmlFileStrategyModelTest.class);
 
         suite.addTest(conexp.frontend.latticeeditor.drawstrategies.tests.PackageTest.suite());
         suite.addTest(conexp.frontend.latticeeditor.edgesizecalcstrategies.tests.PackageTest.suite());

@@ -8,6 +8,7 @@
 
 package conexp.frontend.latticeeditor;
 
+//todo: rename to DrawParamsProvider
 public interface LatticeDrawingSchema {
     DrawParameters getDrawParams();
 }

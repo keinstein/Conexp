@@ -28,4 +28,9 @@ public class LatticeDrawingOptions extends BaseVetoablePropertyChangeSupplier im
         }
         return drawParams;
     }
+
+    public LatticePainterDrawParams getEditableDrawingOptions(){
+        return (LatticePainterDrawParams)getDrawParams();
+    }
+
 }

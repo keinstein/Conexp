@@ -34,6 +34,8 @@ import java.util.Iterator;
 
 public class FigureDrawingCanvas extends ZoomableCanvas {
     public static final String SELECTION_PROPERTY = "Selection";
+    public static final String DRAWING="Drawing";
+
 
     private CanvasFigureDrawingListener figureDrawingChangeListener = new CanvasFigureDrawingListener();
     protected FigureDrawing drawing;
@@ -116,6 +118,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
             this.drawing.removeDrawingChangedListener(figureDrawingChangeListener);
             this.drawing.removePropertyChangeListener(FigureDrawing.BOUNDS_BOX_PROPERTY, drawingBoundsChangeListener);
         }
+        FigureDrawing oldDrawing = this.drawing;
         this.drawing = newDrawing;
         //todo: something is wrong with options setting sequence
         //fix this
@@ -125,6 +128,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
         newDrawing.addPropertyChangeListener(FigureDrawing.BOUNDS_BOX_PROPERTY, drawingBoundsChangeListener);
         updateTranslatingTransform(newDrawing.getUserBoundsRect());
         drawingDimensionChanged(getDrawingDimension());
+        firePropertyChange(DRAWING, oldDrawing, this.drawing);
     }
 
     public FigureDrawing getDrawing() {

@@ -24,10 +24,7 @@ public class RescaleByYFigureVisitor extends DefaultFigureVisitor {
     }
 
     public void visitConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {
-        System.out.println("shift = "+shift+ " lattice height="+latticeHeight + " min delta ="+minDelta+
-                " f.conceptHeight ="+f.getConcept().getHeight()+" f.centerY "+f.getCenterY());
-        final double dy = shift + (latticeHeight - f.getConcept().getHeight()) * minDelta - f.getCenterY();
-        System.out.println("moving figure "+f+ " by "+dy);
-        f.moveBy(0, dy);
+        int newCoord = shift + (latticeHeight - f.getConcept().getHeight()) * minDelta;
+        f.moveBy(0, newCoord - f.getCenterY());
     }
 }

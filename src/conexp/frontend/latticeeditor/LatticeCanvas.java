@@ -9,6 +9,7 @@
 package conexp.frontend.latticeeditor;
 
 import canvas.FigureDrawingCanvas;
+import canvas.DefaultCanvasScheme;
 import conexp.core.*;
 import conexp.frontend.ConceptSetDrawingConsumer;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
@@ -20,8 +21,8 @@ import java.awt.geom.Point2D;
 
 public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDrawingConsumer {
 
-    public LatticeCanvas() {
-        setOptions(new LatticePainterOptions());
+    public LatticeCanvas(LatticeCanvasScheme latticeCanvasScheme){
+        setOptions(latticeCanvasScheme);
     }
 
 

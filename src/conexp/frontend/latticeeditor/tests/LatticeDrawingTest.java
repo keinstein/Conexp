@@ -16,10 +16,6 @@ import junit.framework.TestSuite;
 
 
 public class LatticeDrawingTest extends TestCase {
-    public static Test suite() {
-        return new TestSuite(LatticeDrawingTest.class);
-    }
-
     public void testLatticeDrawing() {
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(null);

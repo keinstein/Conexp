@@ -20,8 +20,7 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
             if (evt.getSource() == getPainterOptions()) {
                 Trace.gui.eventm("Get message for lattice painter", evt.getPropertyName());
                 String propertyName = evt.getPropertyName();
-                if (propertyName.equals("maxNodeRadius") ||
-                        propertyName.equals("nodeDrawStrategy") ||
+                if (propertyName.equals("nodeDrawStrategy") ||
                         propertyName.equals("edgeDrawStrategy")) {
                     refresh();
                 }
@@ -32,8 +31,9 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
         }
     };
 
-    public BaseConceptSetCanvas() {
-        super();
+
+    public BaseConceptSetCanvas(LatticeCanvasScheme latticeCanvasScheme) {
+        super(latticeCanvasScheme);
     }
 
     protected void init() {
@@ -65,8 +65,13 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
     public JComponent getViewOptions() {
         if (null == optionsEditor) {
             optionsEditor = new PainterOptionsPaneEditor(getPainterOptions(),
+                    getEditableDrawingParams(),
                     getConceptSetDrawing().getLabelingStrategiesParams());
         }
         return optionsEditor;
+    }
+
+    public LatticePainterDrawParams getEditableDrawingParams() {
+        return getConceptSetDrawing().getLatticeDrawingOptions().getEditableDrawingOptions();
     }
 }

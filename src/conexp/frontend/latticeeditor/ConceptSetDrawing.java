@@ -30,7 +30,7 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
 
     public ConceptSetDrawing() {
         super();
-        setOptions(new LatticePainterOptions());
+        setOptions(new LatticePainterOptions(getLatticeDrawingSchema().getDrawParams()));
     }
 
     protected LatticeCanvasScheme getLatticeCanvasScheme() {

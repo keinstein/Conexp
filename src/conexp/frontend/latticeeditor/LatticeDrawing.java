@@ -124,7 +124,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
         return getLabelingStrategiesContext().setObjectLabelingStrategyKey(key);
     }
 
-    private LatticePainterOptions getPainterOptions() {
+    public LatticePainterOptions getPainterOptions() {
         return (LatticePainterOptions) getOptions();
     }
 

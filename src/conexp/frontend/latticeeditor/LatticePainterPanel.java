@@ -25,9 +25,12 @@ import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.ResourceBundle;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 
 public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewChangeInterfaceWithConfig {
+
 
     protected LatticeDrawing getLatticeDrawing() {
         return (LatticeDrawing) getConceptSetDrawing();
@@ -192,33 +195,42 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
         resources = ResourceLoader.getResourceBundle("conexp/frontend/resources/LatticePainterPanel");
     }
 
-    private LatticePainterLocalEventHandler localEventHandler = new LatticePainterLocalEventHandler();
+    private LatticePainterLayoutChangeHandler layoutChangeHandler = new LatticePainterLayoutChangeHandler();
+    private LatticeDrawParamsEventHandler drawParamsEventHandler = new LatticeDrawParamsEventHandler();
 
-
-    class LatticePainterLocalEventHandler implements java.beans.PropertyChangeListener {
+    class LatticePainterLayoutChangeHandler implements java.beans.PropertyChangeListener {
         public void propertyChange(java.beans.PropertyChangeEvent evt) {
             if (evt.getSource() == LatticePainterPanel.this.getPainterOptions()) {
                 Trace.gui.eventm("Get message for lattice painter", evt.getPropertyName());
                 String propertyName = evt.getPropertyName();
-                if (propertyName.equals("gridSizeY")) {
-                    System.out.println("handling gridSizeChange");
-                    rescaleByYCoord();
-                }
-                if (propertyName.equals("gridSizeX")) {
-                    handleXGridChange(evt);
-                }
                 if (propertyName.equals("layout")) {
                     getLatticeDrawing().layoutLattice();
                 }
             }
         }
-
-        private void handleXGridChange(java.beans.PropertyChangeEvent arg1) {
-            double coeff = ((Number) arg1.getNewValue()).doubleValue() / ((Number) arg1.getOldValue()).doubleValue();
-            rescaleByXCoord(coeff);
-        }
     };
 
+
+    class LatticeDrawParamsEventHandler implements PropertyChangeListener {
+        public void propertyChange(PropertyChangeEvent evt) {
+            Trace.gui.eventm("Get message for lattice painter", evt.getPropertyName());
+            String propertyName = evt.getPropertyName();
+            if (propertyName.equals("gridSizeY")) {
+                rescaleByYCoord();
+            }
+            if (propertyName.equals("gridSizeX")) {
+                handleXGridChange(evt);
+            }
+            if(propertyName.equals("maxNodeRadius")){
+                refresh();
+            }
+        }
+
+        private void handleXGridChange(PropertyChangeEvent event) {
+            double coeff = ((Number) event.getNewValue()).doubleValue() / ((Number) event.getOldValue()).doubleValue();
+            rescaleByXCoord(coeff);
+        }
+    }
 
     LatticeDrawingProvider latticeSupplier;
 
@@ -239,11 +251,14 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
         return actionChain;
     }
 
-    public LatticePainterPanel(LatticeDrawingProvider supplier) {
-        super();
-        setLatticeSupplier(supplier);
+    public LatticePainterPanel(LatticeDrawingProvider latticeDrawingProvider) {
+        super(latticeDrawingProvider.getDrawing().getPainterOptions());
+        setLatticeSupplier(latticeDrawingProvider);
         init();
-        getPainterOptions().addPropertyChangeListener(localEventHandler);
+        getPainterOptions().addPropertyChangeListener(layoutChangeHandler);
+
+        getEditableDrawingParams().addPropertyChangeListener(drawParamsEventHandler);
+        addPropertyChangeListener(DRAWING, new DrawingPropertyChangeListener());
 
         ToolTipManager.sharedInstance().registerComponent(this);
         ActionChainUtil.putActions(getActionChain(), getActions());
@@ -303,7 +318,7 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
 
     public void rescaleByYCoord() {
         DrawParameters drawParams = getDrawParameters();
-        visitFiguresAndRepaint(new RescaleByYFigureVisitor(drawParams.getMinGapY(), drawParams.getGridSizeY(), getConceptSetDrawing().getNumberOfLevelsInDrawing()));
+        visitFiguresAndRepaint(new RescaleByYFigureVisitor(0, drawParams.getGridSizeY(), getConceptSetDrawing().getNumberOfLevelsInDrawing()));
     }
 
     //----------------------------------------------
@@ -314,6 +329,19 @@ public class LatticePainterPanel extends BaseConceptSetCanvas implements ViewCha
 
     public void initialUpdate() {
         setConceptSetDrawing(getLatticeSupplier().getDrawing());
+    }
+
+    private class DrawingPropertyChangeListener implements PropertyChangeListener {
+        public void propertyChange(PropertyChangeEvent evt) {
+            ConceptSetDrawing oldDrawing = (ConceptSetDrawing)evt.getOldValue();
+            if(null!=oldDrawing){
+                oldDrawing.getLatticeDrawingOptions().removePropertyChangeListener(drawParamsEventHandler);
+            }
+            ConceptSetDrawing newDrawing = (ConceptSetDrawing)evt.getNewValue();
+            if(null!=newDrawing){
+                newDrawing.getLatticeDrawingOptions().addPropertyChangeListener(drawParamsEventHandler);
+            }
+        }
     }
 
 }

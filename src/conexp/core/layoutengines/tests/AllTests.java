@@ -15,7 +15,7 @@ import junit.framework.TestSuite;
 public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(SimpleLayoutEngineTest.suite());
+        suite.addTestSuite(SimpleLayoutEngineTest.class);
         return suite;
     }
 }

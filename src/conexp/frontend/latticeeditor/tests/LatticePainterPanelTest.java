@@ -7,24 +7,26 @@
 
 package conexp.frontend.latticeeditor.tests;
 
+import conexp.core.Context;
 import conexp.core.Lattice;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.LatticeDrawingProvider;
+import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.LatticePainterPanel;
 import conexp.frontend.tests.ResourcesToolbarDefinitionTest;
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import junit.framework.TestCase;
+import util.testing.TestUtil;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 
-public class LatticePainterPanelTest extends junit.framework.TestCase {
+public class LatticePainterPanelTest extends TestCase {
     LatticePainterPanel pan;
 
-    static class MockLatticeSupplier implements LatticeDrawingProvider {
-        public MockLatticeSupplier() {
+    static class MockLatticeDrawingProvider implements LatticeDrawingProvider {
+        public MockLatticeDrawingProvider() {
 
         }
 
@@ -67,16 +69,12 @@ public class LatticePainterPanelTest extends junit.framework.TestCase {
         }
     }
 
-    MockLatticeSupplier supplier;
+    MockLatticeDrawingProvider supplier;
 
     protected void setUp() {
-        supplier = new MockLatticeSupplier();
+        supplier = new MockLatticeDrawingProvider();
         supplier.setLattice(SetBuilder.makeLattice(new int[][]{{0}}));
         pan = new LatticePainterPanel(supplier);
-    }
-
-    public static Test suite() {
-        return new TestSuite(LatticePainterPanelTest.class);
     }
 
     public void testPaint() {
@@ -105,5 +103,41 @@ public class LatticePainterPanelTest extends junit.framework.TestCase {
 
     public void testToolbarInResources() {
         ResourcesToolbarDefinitionTest.testToolbarDefinitionInResources(pan.getResources(), pan.getActionChain());
+    }
+
+    public void testCorrectWorkingOfOptionsChanges() {
+        Context cxt = SetBuilder.makeContext(new int[][]{
+            {1, 0, 0},
+            {0, 1, 0},
+            {0, 0, 1}
+        });
+        LatticeComponent component = TestHelper.makeTestableLatticeComponent(cxt);
+        component.calculateAndLayoutLattice();
+
+
+        final LatticeDrawing drawing = component.getDrawing();
+        assertEquals(60, drawing.getDrawParams().getGridSizeY());
+        assertEquals(80, drawing.getDrawParams().getGridSizeX());
+
+        Lattice lattice = component.getLattice();
+        TestHelper.checkCoordsForIntent(120, 0.0, drawing, lattice, new int[]{0, 0, 0});
+        TestHelper.checkCoordsForIntent(40.0, 60.0, drawing, lattice, new int[]{1, 0, 0});
+        TestHelper.checkCoordsForIntent(200.0, 60.0, drawing, lattice, new int[]{0, 1, 0});
+        TestHelper.checkCoordsForIntent(120.0, 60.0, drawing, lattice, new int[]{0, 0, 1});
+        TestHelper.checkCoordsForIntent(120, 120.0, drawing, lattice, new int[]{1, 1, 1});
+
+        LatticePainterPanel panel = new LatticePainterPanel(component);
+        panel.initialUpdate();
+        try {
+            panel.getEditableDrawingParams().setGridSizeY(80);
+        } catch (java.beans.PropertyVetoException e) {
+            TestUtil.reportUnexpectedException(e);
+        }
+
+        TestHelper.checkCoordsForIntent(120, 0.0, drawing, lattice, new int[]{0, 0, 0});
+        TestHelper.checkCoordsForIntent(40.0, 80.0, drawing, lattice, new int[]{1, 0, 0});
+        TestHelper.checkCoordsForIntent(200.0, 80.0, drawing, lattice, new int[]{0, 1, 0});
+        TestHelper.checkCoordsForIntent(120.0, 80.0, drawing, lattice, new int[]{0, 0, 1});
+        TestHelper.checkCoordsForIntent(120, 160.0, drawing, lattice, new int[]{1, 1, 1});
     }
 }

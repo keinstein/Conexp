@@ -7,20 +7,15 @@
 
 package conexp.frontend.latticeeditor.tests;
 
-import junit.framework.Test;
+import conexp.frontend.latticeeditor.LatticePainterDrawParams;
+import conexp.frontend.latticeeditor.LatticePainterOptions;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class LatticePainterOptionsTest extends TestCase {
-    private static final Class THIS = LatticePainterOptionsTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
 
     public void testSmallGridSize() {
-        (new conexp.frontend.latticeeditor.LatticePainterOptions()).getSmallGridSize();
+        (new LatticePainterOptions(new LatticePainterDrawParams())).getSmallGridSize();
     }
 }

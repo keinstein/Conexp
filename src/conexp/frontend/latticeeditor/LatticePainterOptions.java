@@ -12,33 +12,30 @@ import conexp.core.layout.Layouter;
 import conexp.util.valuemodels.BoundedIntValue;
 import util.BaseVetoablePropertyChangeSupplier;
 
+//todo: rename to LatticeCanvasSchemeWithOptions
 public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier implements LatticeCanvasScheme {
     private BoundedIntValue smallGridSize;
 
 
     private LatticeCanvasDrawStrategiesContext drawStrategiesContext;
-    private DrawParameters drawParams;
 
     private canvas.CanvasColorScheme colorScheme = new canvas.DefaultColorScheme();
-    private ModelsFactory factory = makeDrawStrategiesFactory();
 
-    public LatticePainterOptions() {
-        super();
+    private ModelsFactory factory;
+
+    public LatticePainterOptions(DrawParameters drawParams){
+        factory = makeDrawStrategiesFactory(drawParams);
     }
+
+
+
+    protected ModelsFactory makeDrawStrategiesFactory(DrawParameters drawParams) {
+        return new conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory(drawParams);
+    }
+
 
     public canvas.CanvasColorScheme getColorScheme() {
         return colorScheme;
-    }
-
-    public synchronized DrawParameters getDrawParams() {
-        if (null == drawParams) {
-            drawParams = new LatticePainterDrawParams(getPropertyChangeSupport(), getVetoPropertyChange());
-        }
-        return drawParams;
-    }
-
-    LatticePainterDrawParams getEditableDrawParams() {
-        return (LatticePainterDrawParams) getDrawParams();
     }
 
     public IHighlightStrategy getHighlightStrategy() {
@@ -71,10 +68,6 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
             smallGridSize.setVetoPropertyChange(getVetoPropertyChange());
         }
         return smallGridSize;
-    }
-
-    private ModelsFactory makeDrawStrategiesFactory() {
-        return new conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory(getDrawParams());
     }
 
     public void setFigureDrawingStrategy(String key) {

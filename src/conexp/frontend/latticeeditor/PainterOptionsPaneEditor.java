@@ -21,13 +21,15 @@ public class PainterOptionsPaneEditor extends javax.swing.JPanel {
 
     private LatticePainterOptions opt;
     private ParamInfo[] latticeDrawingOptions;
+    private LatticePainterDrawParams latticeDrawParams;
 
     /**
      *  Constructor for the PainterOptionsEditor object
      */
-    public PainterOptionsPaneEditor(LatticePainterOptions opt, ParamInfo[] latticeDrawingOptions) {
+    public PainterOptionsPaneEditor(LatticePainterOptions opt, LatticePainterDrawParams drawParams, ParamInfo[] latticeDrawingOptions) {
         this.opt = opt;
         this.latticeDrawingOptions = latticeDrawingOptions;
+        this.latticeDrawParams = drawParams;
         setLayout(new BorderLayout());
         JTabbedPane tabPane = new JTabbedPane();
 
@@ -64,7 +66,7 @@ public class PainterOptionsPaneEditor extends javax.swing.JPanel {
             table.getParamsModel().addParams(latticeDrawingOptions);
         }
         table.getParamsModel().addParams(getOpt().getLatticePainterDrawStrategyContext().getParams());
-        table.getParamsModel().addParams(getOpt().getEditableDrawParams().getParams());
+        table.getParamsModel().addParams(latticeDrawParams.getParams());
         paneDrawing.add(table);
 
         paneDrawing.setViewportView(table);

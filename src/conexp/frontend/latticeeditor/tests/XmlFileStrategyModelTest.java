@@ -15,7 +15,6 @@ import junit.framework.TestSuite;
 
 
 public class XmlFileStrategyModelTest extends TestCase {
-    private static final Class THIS = XmlFileStrategyModelTest.class;
 
     protected void compareExpectedAndActualArrays(Object[][] exp, Object[][] act) {
         assertEquals(exp.length, act.length);
@@ -57,11 +56,6 @@ public class XmlFileStrategyModelTest extends TestCase {
         } catch (ConfigFatalError expected) {
             assertTrue(true);
         }
-    }
-
-
-    public static Test suite() {
-        return new TestSuite(THIS);
     }
 
 
