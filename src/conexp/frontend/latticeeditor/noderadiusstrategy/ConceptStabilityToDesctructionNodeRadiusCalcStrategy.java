@@ -12,9 +12,9 @@ import conexp.core.ExtendedContextEditingInterface;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.DrawParameters;
 
-public class ConceptStabilityNodeRadiusCalcStrategy extends ConceptDependentRadiusCalcStrategy {
+public class ConceptStabilityToDesctructionNodeRadiusCalcStrategy extends ConceptDependentRadiusCalcStrategy {
 
-    public ConceptStabilityNodeRadiusCalcStrategy(DrawParameters opt) {
+    public ConceptStabilityToDesctructionNodeRadiusCalcStrategy(DrawParameters opt) {
         super(opt);
     }
 
@@ -27,7 +27,7 @@ public class ConceptStabilityNodeRadiusCalcStrategy extends ConceptDependentRadi
 
     protected int calculateMaximalValue(ConceptsCollection conceptSet) {
         ExtendedContextEditingInterface context = conceptSet.getContext();
-        final MaxParamValueConceptVisitor visitor = new MaxStabilityConceptVisitor(context);
+        final MaxParamValueConceptVisitor visitor = new MaxStabilityToDestructionConceptVisitor(context);
         conceptSet.forEach(visitor);
         return visitor.getMaxValue();
     }

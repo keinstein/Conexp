@@ -42,7 +42,6 @@ public abstract class ConceptDependentRadiusCalcStrategy extends AbstractNodeRad
             deltaRadius = options.getMaxNodeRadius() - options.getMinNodeRadius();
             maximalValue = calculateMaximalValue(lattice);
             Assert.isTrue(getMaximalValue() >= 0);
-//            pixelPerObject = deltaRadius / totalObjects;
         }
     }
 

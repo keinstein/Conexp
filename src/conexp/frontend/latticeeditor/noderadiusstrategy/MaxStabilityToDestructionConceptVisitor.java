@@ -12,15 +12,15 @@ import conexp.core.Concept;
 import conexp.core.ContextFunctions;
 import conexp.core.ExtendedContextEditingInterface;
 
-class MaxStabilityConceptVisitor extends MaxParamValueConceptVisitor {
+class MaxStabilityToDestructionConceptVisitor extends MaxParamValueConceptVisitor {
 
-    protected int calcCurrentValue(Concept node) {
-        return ContextFunctions.stability(node.getAttribs(), cxt);
+    protected double calcCurrentValue(Concept node) {
+        return ContextFunctions.stabilityToDesctruction(node.getAttribs(), cxt);
     }
 
     ExtendedContextEditingInterface cxt;
 
-    public MaxStabilityConceptVisitor(ExtendedContextEditingInterface cxt) {
+    public MaxStabilityToDestructionConceptVisitor(ExtendedContextEditingInterface cxt) {
         this.cxt = cxt;
     }
 }

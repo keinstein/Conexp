@@ -12,7 +12,7 @@ import conexp.core.Concept;
 
 class MaxOwnObjectCountConceptVisitor extends MaxParamValueConceptVisitor {
 
-    protected int calcCurrentValue(Concept node) {
+    protected double calcCurrentValue(Concept node) {
         return node.getOwnObjCnt();
     }
 }

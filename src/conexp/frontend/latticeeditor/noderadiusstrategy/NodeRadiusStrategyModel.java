@@ -29,6 +29,6 @@ public class NodeRadiusStrategyModel extends AbstractDrawingStrategyModel {
         setStrategy(OWN_OBJECTS_VOLUME, "~ to own objects", new OwnObjectsVolumeNodeRadiusCalcStrategy(opt));
         setStrategy(MAX_NODE_RADIUS_STRATEGY, "Fixed radius", new MaxNodeRadiusCalcStrategy(opt));
         setStrategy(EXTENT_VOLUME, "~ of object extent", new ObjectVolumeNodeRadiusCalcStrategy(opt));
-        setStrategy(STABILITY_STRATEGY, "~ stability", new ConceptStabilityNodeRadiusCalcStrategy(opt));
+        setStrategy(STABILITY_STRATEGY, "~ stabilityToDesctruction", new ConceptStabilityToDesctructionNodeRadiusCalcStrategy(opt));
     }
 }

@@ -12,18 +12,18 @@ import conexp.core.Concept;
 import conexp.core.ConceptsCollection;
 
 public abstract class MaxParamValueConceptVisitor implements ConceptsCollection.ConceptVisitor {
-    private int maxValue = 0;
+    private double maxValue = 0;
 
-    public int getMaxValue() {
+    public double getMaxValue() {
         return maxValue;
     }
 
     public void visitConcept(Concept node) {
-        int currValue = calcCurrentValue(node);
+        double currValue = calcCurrentValue(node);
         if (currValue > maxValue) {
             maxValue = currValue;
         }
     }
 
-    protected abstract int calcCurrentValue(Concept node);
+    protected abstract double calcCurrentValue(Concept node);
 }
