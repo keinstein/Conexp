@@ -1,6 +1,5 @@
 package conexp.experimenter.framework;
 
-import conexp.core.ExperimentContextFactory;
 import conexp.experimenter.experiments.ExperimentSuite;
 import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
 

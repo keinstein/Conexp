@@ -2,7 +2,6 @@ package conexp.experimenter.framework;
 
 import conexp.core.BinaryRelation;
 import conexp.core.BinaryRelationUtils;
-import conexp.core.ExperimentContextFactory;
 import util.MemoryUtil;
 
 import java.io.PrintWriter;
