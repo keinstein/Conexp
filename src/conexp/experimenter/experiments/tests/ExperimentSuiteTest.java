@@ -14,9 +14,6 @@ import junit.framework.TestCase;
 
 public class ExperimentSuiteTest extends TestCase {
 
-    public ExperimentSuiteTest() {
-    }
-
     public void doTestCreateExperimentSet(ExperimentSet set) {
         assertNotNull(set);
         conexp.core.BinaryRelation rel = conexp.core.tests.SetBuilder.makeRelation(new int[][]{{0, 0},
