@@ -8,7 +8,6 @@
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.frontend.latticeeditor.ConceptQuery;
-import conexp.frontend.latticeeditor.DrawParameters;
 import util.StringUtil;
 
 
@@ -18,8 +17,8 @@ public class ObjectsCountLabelingStrategy extends SimpleConceptLabelingStrategy 
      * ObjectsCountLabellingStrategy constructor comment.
      * @param opt conexp.frontend.latticeeditor.LatticePainterDrawParams
      */
-    public ObjectsCountLabelingStrategy(DrawParameters opt) {
-        super(opt);
+    public ObjectsCountLabelingStrategy() {
+        super();
     }
 
     /**

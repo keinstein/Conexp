@@ -8,12 +8,8 @@
 
 package canvas.figures;
 
-import canvas.Figure;
-
 import java.awt.geom.Point2D;
 
-public interface BorderCalculatingFigure extends Figure {
+public interface BorderCalculatingFigure extends IFigureWithCoords {
     void borderAt(Point2D outPoint, Point2D result);
-
-    Point2D getCenter();
 }

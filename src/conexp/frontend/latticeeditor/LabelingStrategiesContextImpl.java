@@ -74,6 +74,7 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
     }
 
     public void initStrategies(conexp.core.ExtendedContextEditingInterface cxt, ConceptSetDrawing fd) {
+
         setupLabelingStrategies(cxt);
 
         doInitStrategies(fd);
@@ -85,8 +86,9 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
     }
 
     private void doInitStrategies(ConceptSetDrawing fd) {
-        getAttrLabelingStrategy().init(fd);
-        getObjectsLabelingStrategy().init(fd);
+        final DrawParameters drawParams = fd.getLatticeDrawingOptions().getDrawParams();
+        getAttrLabelingStrategy().init(fd, drawParams);
+        getObjectsLabelingStrategy().init(fd, drawParams);
         fd.makeBoundsRectDirty();
     }
 

@@ -8,11 +8,10 @@
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.frontend.latticeeditor.ConceptQuery;
-import conexp.frontend.latticeeditor.DrawParameters;
 
 public class FullConceptLabelingStrategy extends BaseFullLabelingStrategy {
-    public FullConceptLabelingStrategy(DrawParameters opt) {
-        super(opt);
+    public FullConceptLabelingStrategy() {
+        super();
     }
 
     protected String getDescriptionString(ConceptQuery conceptQuery) {

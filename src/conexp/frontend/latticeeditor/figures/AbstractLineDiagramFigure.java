@@ -12,7 +12,7 @@ import canvas.figures.FigureWithCoords;
 import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
 import conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider;
 
-public abstract class AbstractLineDiagramFigure extends FigureWithCoords implements LineDiagramFigure {
+public abstract class AbstractLineDiagramFigure extends FigureWithCoords implements LineDiagramFigure{
 
     conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider figureDimensionProvider;
 

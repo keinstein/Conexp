@@ -9,12 +9,11 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.core.ContextFunctions;
 import conexp.frontend.latticeeditor.ConceptQuery;
-import conexp.frontend.latticeeditor.DrawParameters;
 
 
 public class StabilityToDesctructionLabelingStrategy extends SimpleConceptLabelingStrategy {
-    public StabilityToDesctructionLabelingStrategy(DrawParameters opt) {
-        super(opt);
+    public StabilityToDesctructionLabelingStrategy() {
+        super();
     }
 
     public boolean accept(ConceptQuery conceptQuery) {

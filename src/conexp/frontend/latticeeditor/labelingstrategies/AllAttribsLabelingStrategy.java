@@ -16,15 +16,15 @@ import java.awt.geom.Ellipse2D;
 
 public class AllAttribsLabelingStrategy extends OneToManyConnectedFiguresLabelingStrategy {
 
-    public AllAttribsLabelingStrategy(DrawParameters opt) {
-        super(opt);
+    public AllAttribsLabelingStrategy() {
+        super();
     }
 
     public boolean accept(ConceptQuery query) {
         return query.hasOwnAttribs();
     }
 
-    protected java.lang.Object makeConnectedObject(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure conceptFigure) {
+    protected java.lang.Object makeConnectedObject(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure conceptFigure, DrawParameters opt) {
         ConceptQuery conceptQuery = conceptFigure.getConceptQuery();
         int attrCount = conceptQuery.getOwnAttribsCount();
 
@@ -32,11 +32,11 @@ public class AllAttribsLabelingStrategy extends OneToManyConnectedFiguresLabelin
                 conceptFigure,
                 conceptQuery.ownAttribsIterator(),
                 attrCount,
-                makeCoordsDistributor(conceptFigure, attrCount));
+                makeCoordsDistributor(conceptFigure, attrCount, opt));
 
     }
 
-    protected PointDistributionStrategy makeCoordsDistributor(AbstractConceptCorrespondingFigure f, int numPoints) {
+    protected PointDistributionStrategy makeCoordsDistributor(AbstractConceptCorrespondingFigure f, int numPoints, DrawParameters opt) {
         return new UpperHemisphereUniformPointDistributionStrategy(f.getCenterX(),
                 f.getCenterY(),
                 numPoints,

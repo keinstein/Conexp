@@ -27,10 +27,11 @@ public abstract class DrawParamsIndependentStrategyModel extends conexp.frontend
         String[][] createInfo = getCreateInfo();
         allocateStrategies(createInfo.length);
         for (int i = 0; i < createInfo.length; i++) {
-            GenericStrategy genericStrategy = makeGenericStrategyByClassName(createInfo[i][1]);
+            GenericStrategy genericStrategy = makeGenericStrategyByClassName(createInfo[i][2]);
 
             setStrategy(
                     i,
+                    createInfo[i][1],
                     createInfo[i][0],
                     genericStrategy);
 

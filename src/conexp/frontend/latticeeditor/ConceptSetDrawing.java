@@ -54,7 +54,7 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
 
 
     private LabelingStrategyModelFactory makeDrawStrategiesFactory() {
-        return new conexp.frontend.latticeeditor.drawstrategies.DefaultLabelingStrategiesFactory(getLatticeDrawingSchema().getDrawParams());
+        return new conexp.frontend.latticeeditor.drawstrategies.DefaultLabelingStrategiesFactory();
     }
 
     private LabelingStrategiesContextImpl labelingStrategiesContext;
@@ -96,8 +96,7 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
 
         if (hasConceptSet()) {
             getLabelingStrategiesContext().setupLabelingStrategies(getLattice().getContext());
-
-            newStrategy.init(this);
+            newStrategy.init(this, getLatticeDrawingOptions().getDrawParams());
             fireNeedUpdate();
         }
     }

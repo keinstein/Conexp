@@ -9,6 +9,7 @@
 package canvas;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 public interface Figure {
@@ -32,4 +33,6 @@ public interface Figure {
 
 
     void visit(BaseFigureVisitor visitor);
+
+    void setCoords(Point2D coords);
 }

@@ -12,7 +12,7 @@ import util.StringUtil;
 import java.awt.geom.Point2D;
 
 
-public abstract class FigureWithCoords extends AbstractFigure implements IFigureWithCoords, ICenterPointLocatorProvidingFigure {
+public abstract class FigureWithCoords extends AbstractFigure implements ICenterPointLocatorProvidingFigure, BorderCalculatingFigure {
     protected CenterPointLocator centerPointLocator = new DefaultCenterPointLocator();
 
     public FigureWithCoords(double x, double y) {
@@ -53,10 +53,6 @@ public abstract class FigureWithCoords extends AbstractFigure implements IFigure
 //        doSetCoords(x, y);
 /*        Assert.isTrue(Math.abs(this.x-x)<0.001);
         Assert.isTrue(Math.abs(this.y-y)<0.001); */
-    }
-
-    public void setCoords(Point2D coords) {
-        setCoords(coords.getX(), coords.getY());
     }
 
     protected void basicMoveBy(double dx, double dy) {

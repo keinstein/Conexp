@@ -7,33 +7,25 @@
 
 package conexp.frontend.latticeeditor.labelingstrategies;
 
-import conexp.frontend.latticeeditor.AbstractDrawingStrategyModel;
-import conexp.frontend.latticeeditor.DrawParameters;
+import conexp.frontend.latticeeditor.DrawParamsIndependentStrategyModel;
 
-public class ObjectsLabelingStrategyModel extends AbstractDrawingStrategyModel {
-    private final static int NO_OBJECTS_LABELS_STRATEGY = 0;
-    private final static int OBJECTS_LABEL_STRATEGY = NO_OBJECTS_LABELS_STRATEGY + 1;
-    private final static int OWN_OBJECTS_COUNT_LABEL_STRATEGY = OBJECTS_LABEL_STRATEGY + 1;
-    private final static int OBJECTS_COUNT_LABEL_STRATEGY = OWN_OBJECTS_COUNT_LABEL_STRATEGY + 1;
-    private final static int STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY = OBJECTS_COUNT_LABEL_STRATEGY + 1;
-    private final static int LAST_STRATEGY = STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY;
-//    private final static int POINT_STABILITY_LABEL_STRATEGY = STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY + 1;
-//    private final static int INTEGRAL_STABILITY_LABEL_STRATEGY = POINT_STABILITY_LABEL_STRATEGY +1;
-//    private final static int LAST_STRATEGY = INTEGRAL_STABILITY_LABEL_STRATEGY;
-    private final static int STRATEGY_COUNT = LAST_STRATEGY + 1;
+public class ObjectsLabelingStrategyModel extends DrawParamsIndependentStrategyModel{
 
-    public ObjectsLabelingStrategyModel(DrawParameters opt) {
-        super(opt);
+    public ObjectsLabelingStrategyModel() {
     }
 
-    protected void createStrategies(DrawParameters opt) {
-        allocateStrategies(STRATEGY_COUNT);
-        setStrategy(NO_OBJECTS_LABELS_STRATEGY, LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY, "Don't show", NullLabellingStrategy.makeNull());
-        setStrategy(OBJECTS_LABEL_STRATEGY, LabelingStrategiesKeys.ALL_OBJECTS_LABELING_STRATEGY, "Show labels", new AllObjectsLabelingStrategy(opt));
-        setStrategy(OWN_OBJECTS_COUNT_LABEL_STRATEGY, LabelingStrategiesKeys.OWN_OBJECTS_COUNT_LABEL_STRATEGY, "Show own objects count", new OwnObjectsCountLabelingStrategy(opt));
-        setStrategy(OBJECTS_COUNT_LABEL_STRATEGY, LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY, "Show object count", new ObjectsCountLabelingStrategy(opt));
-        setStrategy(STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY, LabelingStrategiesKeys.STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY, "Stability", new StabilityToDesctructionLabelingStrategy(opt));
-//        setStrategy(POINT_STABILITY_LABEL_STRATEGY, LabelingStrategiesKeys.POINT_STABILITY_LABEL_STRATEGY, new PointStabilityLabelingStrategy(opt));
-//        setStrategy(INTEGRAL_STABILITY_LABEL_STRATEGY, LabelingStrategiesKeys.INTEGRAL_STABILITY_LABEL_STRATEGY, new IntegralStabilityLabelingStrategy(opt));
+
+    public String[][] getCreateInfo() {
+        return new String[][]{
+            {"Don't show", LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.NullLabellingStrategy"},
+            {"Show labels", LabelingStrategiesKeys.ALL_OBJECTS_LABELING_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.AllObjectsLabelingStrategy"},
+            {"Show own objects count", LabelingStrategiesKeys.OWN_OBJECTS_COUNT_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.OwnObjectsCountLabelingStrategy"},
+            {"Show object count", LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.ObjectsCountLabelingStrategy"},
+            {"Stability", LabelingStrategiesKeys.STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.StabilityToDesctructionLabelingStrategy"},
+            {"Attribs multi line", "Attribs multi line", "conexp.frontend.latticeeditor.labelingstrategies.AllAttribsMultiLineLabelingStrategy"},
+           // { "Point Stability", LabelingStrategiesKeys.POINT_STABILITY_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.PointStabilityLabelingStrategy"},
+           // { "Integral stability", LabelingStrategiesKeys.INTEGRAL_STABILITY_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.IntegralStabilityLabelingStrategy"}
+        };
     }
+
 }

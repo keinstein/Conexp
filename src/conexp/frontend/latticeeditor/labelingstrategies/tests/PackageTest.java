@@ -10,17 +10,17 @@ package conexp.frontend.latticeeditor.labelingstrategies.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-
+//todo: rename to AllTests
 public class PackageTest extends junit.framework.TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(AllAttribsLabelingStrategyTest.suite());
-        suite.addTest(AllObjectsLabelingStrategyTest.suite());
+        suite.addTestSuite(AllAttribsLabelingStrategyTest.class);
+        suite.addTestSuite(AllObjectsLabelingStrategyTest.class);
 
-        suite.addTest(AttributesLabelingStrategyModelTest.suite());
-        suite.addTest(ObjectsLabelingStrategyModelTest.suite());
-        suite.addTest(OwnObjectsCountLabelingStrategyTest.suite());
-        suite.addTest(ObjectsCountLabelingStrategyTest.suite());
+        suite.addTestSuite(AttributesLabelingStrategyModelTest.class);
+        suite.addTestSuite(ObjectsLabelingStrategyModelTest.class);
+        suite.addTestSuite(OwnObjectsCountLabelingStrategyTest.class);
+        suite.addTestSuite(ObjectsCountLabelingStrategyTest.class);
 
         return suite;
     }

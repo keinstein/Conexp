@@ -15,20 +15,14 @@ import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 import conexp.frontend.latticeeditor.labelingstrategies.OwnObjectsCountLabelingStrategy;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 public class OwnObjectsCountLabelingStrategyTest extends GenericLabelingStrategyTest {
-    public static Test suite() {
-        return new TestSuite(OwnObjectsCountLabelingStrategyTest.class);
-    }
-
     protected ConceptNodeQuery makeAcceptable() {
         return ConceptNodeQueryFactory.makeWithOwnObjects();
     }
 
     protected GenericLabelingStrategy makeStrategy() {
-        return new OwnObjectsCountLabelingStrategy(new conexp.frontend.latticeeditor.LatticePainterDrawParams());
+        return new OwnObjectsCountLabelingStrategy();
     }
 
     public void testAdditionOfConceptLabelsAndCleanup() {
@@ -41,7 +35,7 @@ public class OwnObjectsCountLabelingStrategyTest extends GenericLabelingStrategy
         GenericLabelingStrategy ownObjectCountStrategy = makeStrategy();
 
         ownObjectCountStrategy.setContext(lattice.getContext());
-        ownObjectCountStrategy.init(drawing);
+        ownObjectCountStrategy.init(drawing, makeDrawParams());
         assertEquals(true, drawing.hasLabelsForConcepts());
         ownObjectCountStrategy.shutdown(drawing);
         assertEquals(false, drawing.hasLabelsForConcepts());

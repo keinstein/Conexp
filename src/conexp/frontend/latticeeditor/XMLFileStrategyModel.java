@@ -103,7 +103,7 @@ public class XMLFileStrategyModel extends DrawParamsIndependentStrategyModel {
         if (size <= 0) {
             throw new ConfigFatalError("Strategy model is empty");
         }
-        createInfo = new String[size][2];
+        createInfo = new String[size][3];
 
         for (int i = size; --i >= 0;) {
             ConfigInfo inf = (ConfigInfo) configInfo.get(i);
@@ -115,7 +115,8 @@ public class XMLFileStrategyModel extends DrawParamsIndependentStrategyModel {
             }
 
             createInfo[i][0] = inf.label;
-            createInfo[i][1] = inf.className;
+            createInfo[i][1] = StringUtil.extractClassName(inf.className);
+            createInfo[i][2] = inf.className;
         }
     }
 

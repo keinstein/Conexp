@@ -4,7 +4,6 @@ import conexp.core.BinaryRelationProcessor;
 import conexp.core.stability.BruteForceIntegralStabilityCalculator;
 import conexp.core.stability.IntegralStabilityCalculator;
 import conexp.frontend.latticeeditor.ConceptQuery;
-import conexp.frontend.latticeeditor.DrawParameters;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
@@ -13,8 +12,8 @@ import conexp.frontend.latticeeditor.DrawParameters;
  */
 
 public class IntegralStabilityLabelingStrategy extends SubcontextStabilityLabelingStrategyBase {
-    public IntegralStabilityLabelingStrategy(DrawParameters opt) {
-        super(opt);
+    public IntegralStabilityLabelingStrategy() {
+        super();
     }
 
     protected BinaryRelationProcessor makeStabilityCalculator() {

@@ -9,7 +9,6 @@ package conexp.frontend.latticeeditor.figures;
 
 import canvas.IHighlightStrategy;
 import canvas.Selectable;
-import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.FigureUtils;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.frontend.latticeeditor.ConceptQuery;
@@ -25,7 +24,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
 
-public class ConceptFigure extends ConceptCorrespondingFigure implements BorderCalculatingFigure, Selectable {
+public class ConceptFigure extends ConceptCorrespondingFigure implements Selectable {
 
     ConceptQuery query;
 

@@ -10,12 +10,13 @@ package conexp.frontend.latticeeditor.drawstrategies.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+//todo: rename to AllTests
 
 public class PackageTest extends junit.framework.TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(DefaultDrawStrategiesModelsFactoryTest.suite());
-        suite.addTest(DefaultLabelingStrategiesModelsFactoryTest.suite());
+        suite.addTestSuite(DefaultDrawStrategiesModelsFactoryTest.class);
+        suite.addTestSuite(DefaultLabelingStrategiesModelsFactoryTest.class);
         return suite;
     }
 }

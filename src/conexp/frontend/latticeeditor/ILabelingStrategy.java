@@ -15,5 +15,5 @@ public interface ILabelingStrategy extends GenericStrategy {
 
     void shutdown(ConceptSetDrawing drawing);
 
-    void init(ConceptSetDrawing drawing);
+    void init(ConceptSetDrawing drawing, DrawParameters drawParams);
 }

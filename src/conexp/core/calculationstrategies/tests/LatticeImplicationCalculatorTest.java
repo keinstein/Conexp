@@ -15,6 +15,7 @@ import conexp.core.calculationstrategies.LatticeImplicationCalculator;
 import conexp.core.tests.SetBuilder;
 
 public class LatticeImplicationCalculatorTest extends ImplicationCalculatorTest {
+
     protected ImplicationCalcStrategy makePreparedCalculator(Context cxt) {
         Lattice lat = SetBuilder.makeLattice(cxt);
         LatticeImplicationCalculator calc = new LatticeImplicationCalculator();

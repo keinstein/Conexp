@@ -18,11 +18,11 @@ public abstract class LabelingStrategy implements ILabelingStrategy {
 //        conceptSetDrawing.applyChanges();
     }
 
-    public void init(ConceptSetDrawing drawing) {
-        drawing.visitFiguresAndApplyChanges(makeInitStrategyVisitor(drawing));
+    public void init(ConceptSetDrawing drawing, DrawParameters drawParams) {
+        drawing.visitFiguresAndApplyChanges(makeInitStrategyVisitor(drawing, drawParams));
     }
 
-    public abstract canvas.BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing fd);
+    public abstract canvas.BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing fd, DrawParameters opt);
 
     public abstract canvas.BaseFigureVisitor makeShutDownVisitor(ConceptSetDrawing fd);
 }

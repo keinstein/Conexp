@@ -89,6 +89,6 @@ public class XmlFileStrategyModelTest extends TestCase {
 
     public void testLoadNormalModel() {
         XMLFileStrategyModel model = new XMLFileStrategyModel("conexp/frontend/resources/tests/xmlConfigTest.xml", false);
-        compareExpectedAndActualArrays(new String[][]{{"one", "one.test"}, {"two", "two.test"}}, model.getCreateInfo());
+        compareExpectedAndActualArrays(new String[][]{{"one", "test", "one.test"}, {"two", "test", "two.test"}}, model.getCreateInfo());
     }
 }

@@ -4,7 +4,6 @@ import conexp.core.BinaryRelationProcessor;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
-import conexp.frontend.latticeeditor.DrawParameters;
 import util.StringUtil;
 
 /**
@@ -18,8 +17,8 @@ public abstract class SubcontextStabilityLabelingStrategyBase extends SimpleConc
 
     protected abstract BinaryRelationProcessor makeStabilityCalculator();
 
-    public SubcontextStabilityLabelingStrategyBase(DrawParameters opt) {
-        super(opt);
+    public SubcontextStabilityLabelingStrategyBase() {
+        super();
         stabilityCalculator = makeStabilityCalculator();
     }
 

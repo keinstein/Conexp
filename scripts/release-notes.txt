@@ -1,3 +1,16 @@
+Release notes to version 1.2 of "Concept Explorer"
+==================================================
+The following new functionality was added in release 1.2
+- detection of intersection between edges and nodes in lattice drawing
+- ability to specify size of labels
+- compressed view of context
+- ability to perform import from CSV (comma-separated values) and
+  OAL (object-attribute list) files
+
+The bug in ideal move strategy was fixed (thanks to Peter Burmeister for reporting)
+
+Also, the first version of user guide is added
+
 Release notes to version 1.1 of "Concept Explorer"
 ==================================================
 

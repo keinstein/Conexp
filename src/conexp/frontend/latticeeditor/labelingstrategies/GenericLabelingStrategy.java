@@ -9,7 +9,7 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 
 import canvas.BaseFigureVisitor;
 import canvas.Figure;
-import canvas.figures.TextFigure;
+import canvas.figures.BorderCalculatingFigure;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.DrawParameters;
@@ -21,20 +21,21 @@ import conexp.frontend.latticeeditor.figures.NodeObjectConnectionFigure;
 public abstract class GenericLabelingStrategy extends conexp.frontend.latticeeditor.LabelingStrategy {
 
     private java.util.HashMap conceptLabelsMap = new java.util.HashMap();
-    protected DrawParameters opt;
 
     public class InitStrategyVisitor extends DefaultFigureVisitor {
         ConceptSetDrawing drawing;
+        DrawParameters opt;
 
-        InitStrategyVisitor(ConceptSetDrawing drawing) {
+        InitStrategyVisitor(ConceptSetDrawing drawing, DrawParameters opt) {
             this.drawing = drawing;
+            this.opt = opt;
         }
 
         public void visitConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {
             if (!accept(f.getConceptQuery())) {
                 return;
             }
-            setConnectedObject(f, makeConnectedObject(drawing, f));
+            setConnectedObject(f, makeConnectedObject(drawing, f, opt));
         }
     }
 
@@ -63,9 +64,8 @@ public abstract class GenericLabelingStrategy extends conexp.frontend.latticeedi
     /**
      * GenericLabelingStrategy constructor comment.
      */
-    public GenericLabelingStrategy(DrawParameters opt) {
+    public GenericLabelingStrategy() {
         super();
-        this.opt = opt;
     }
 
     public abstract boolean accept(ConceptQuery query);
@@ -84,7 +84,7 @@ public abstract class GenericLabelingStrategy extends conexp.frontend.latticeedi
         return !conceptLabelsMap.isEmpty();
     }
 
-    protected abstract Object makeConnectedObject(ConceptSetDrawing fd, AbstractConceptCorrespondingFigure f);
+    protected abstract Object makeConnectedObject(ConceptSetDrawing fd, AbstractConceptCorrespondingFigure f, DrawParameters opt);
 
 
     private void removeConnectedObject(AbstractConceptCorrespondingFigure f) {
@@ -101,15 +101,15 @@ public abstract class GenericLabelingStrategy extends conexp.frontend.latticeedi
         //DEFAULT EMPTY IMPLEMENTATION
     }
 
-    public BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing drawing) {
-        return new InitStrategyVisitor(drawing);
+    public BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing drawing, DrawParameters opt) {
+        return new InitStrategyVisitor(drawing, opt);
     }
 
     public BaseFigureVisitor makeShutDownVisitor(ConceptSetDrawing drawing) {
         return new ShutDownStrategyVisitor(drawing);
     }
 
-    protected Figure makeConnectedFigure(AbstractConceptCorrespondingFigure f, TextFigure tf) {
+    protected Figure makeConnectedFigure(AbstractConceptCorrespondingFigure f, BorderCalculatingFigure tf) {
         NodeObjectConnectionFigure connector = new NodeObjectConnectionFigure(f, tf);
         CompositeFigureWithFigureDimensionCalcStrategyProvider cf = new CompositeFigureWithFigureDimensionCalcStrategyProvider();
         cf.addFigure(tf);

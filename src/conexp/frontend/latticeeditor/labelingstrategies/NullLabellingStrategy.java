@@ -8,6 +8,7 @@
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
+import conexp.frontend.latticeeditor.DrawParameters;
 
 
 public class NullLabellingStrategy extends conexp.frontend.latticeeditor.LabelingStrategy {
@@ -15,17 +16,12 @@ public class NullLabellingStrategy extends conexp.frontend.latticeeditor.Labelin
     private static NullLabellingStrategy singleton;
 
     /**
-     * EmptyLabellingStrategy constructor comment.
+     *  made public in order to allow to create via reflexion
      */
-    private NullLabellingStrategy() {
+    public NullLabellingStrategy() {
         super();
     }
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (24.12.00 4:01:36)
-     * @return conexp.frontend.latticeeditor.labelingstrategies.NullLabellingStrategy
-     */
     public static NullLabellingStrategy makeNull() {
         if (null == singleton) {
             singleton = new NullLabellingStrategy();
@@ -33,22 +29,13 @@ public class NullLabellingStrategy extends conexp.frontend.latticeeditor.Labelin
         return singleton;
     }
 
-    /**
-     * setContext method comment.
-     */
     public void setContext(conexp.core.ExtendedContextEditingInterface cxt) {
     }
 
-    /**
-     * makeInitStrategyVisitor method comment.
-     */
-    public canvas.BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing fd) {
+    public canvas.BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing fd, DrawParameters opt) {
         return visitor;
     }
 
-    /**
-     * makeShutDownVisitor method comment.
-     */
     public canvas.BaseFigureVisitor makeShutDownVisitor(conexp.frontend.latticeeditor.ConceptSetDrawing fd) {
         return visitor;
     }

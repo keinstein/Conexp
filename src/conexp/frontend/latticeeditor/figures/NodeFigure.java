@@ -9,7 +9,6 @@
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.Selectable;
-import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.FigureUtils;
 
 import java.awt.*;
@@ -17,7 +16,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-public class NodeFigure extends AbstractLineDiagramFigure implements BorderCalculatingFigure, Selectable {
+public class NodeFigure extends AbstractLineDiagramFigure implements Selectable {
     private int radius = 10;
     protected int id = -1;
 

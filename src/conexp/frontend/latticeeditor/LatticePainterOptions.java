@@ -121,7 +121,7 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
 
     public Font getLabelsFont(Graphics g) {
         if(cachedFont==null){
-            cachedFont = g.getFont().deriveFont((float)labelsFontSize.getValue());
+            cachedFont = g.getFont().deriveFont((float)getLabelsFontSize());
         }
         return cachedFont;
     }

@@ -12,6 +12,7 @@ import conexp.core.Context;
 import conexp.core.Lattice;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.latticeeditor.LatticeDrawing;
+import conexp.frontend.latticeeditor.LatticePainterDrawParams;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.labelingstrategies.GenericLabelingStrategy;
@@ -82,7 +83,7 @@ public abstract class GenericLabelingStrategyTest extends TestCase {
         MockFigureDrawingListener listener = new MockFigureDrawingListener();
         drawing.addDrawingChangedListener(listener);
         listener.setExpected(true);
-        labelStrategy.init(drawing);
+        labelStrategy.init(drawing, makeDrawParams());
         listener.verify();
     }
 
@@ -93,7 +94,7 @@ public abstract class GenericLabelingStrategyTest extends TestCase {
         LatticeDrawing drawing = new LatticeDrawing();
         assertTrue("Array should be empty", drawing.isEmpty());
         drawing.addFigure(f);
-        canvas.BaseFigureVisitor visitor = labelStrategy.makeInitStrategyVisitor(drawing);
+        canvas.BaseFigureVisitor visitor = labelStrategy.makeInitStrategyVisitor(drawing, new LatticePainterDrawParams());
         f.visit(visitor);
         assertEquals("Strategy should add figires", false, drawing.isEmpty());
         assertTrue("Strategy should have connected figires", labelStrategy.hasConnectedObjects());
@@ -102,5 +103,9 @@ public abstract class GenericLabelingStrategyTest extends TestCase {
         drawing.removeFigure(f);
         assertTrue("Strategy should clean up after herself", drawing.isEmpty());
         assertEquals("Strategy should'nt have connected objects after clean up", false, labelStrategy.hasConnectedObjects());
+    }
+
+    protected LatticePainterDrawParams makeDrawParams() {
+        return new LatticePainterDrawParams();
     }
 }

@@ -19,5 +19,4 @@ public interface IFigureWithCoords extends Figure {
 
     Point2D getCenter();
 
-    void setCoords(Point2D coords);
 }

@@ -11,6 +11,8 @@ import canvas.BaseFigureVisitor;
 import canvas.Figure;
 import util.Assert;
 
+import java.awt.geom.Point2D;
+
 
 public abstract class AbstractFigure implements Figure {
     protected canvas.FigureListener fListener;
@@ -58,5 +60,9 @@ public abstract class AbstractFigure implements Figure {
 
     public boolean contains(double x, double y) {
         return false;
+    }
+
+    public void setCoords(Point2D coords) {
+        setCoords(coords.getX(), coords.getY());
     }
 }

@@ -22,8 +22,8 @@ import java.util.Iterator;
 
 public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericLabelingStrategy {
 
-    public OneToManyConnectedFiguresLabelingStrategy(DrawParameters opt) {
-        super(opt);
+    public OneToManyConnectedFiguresLabelingStrategy() {
+        super();
     }
 
     protected void removeConnectedObjectFromContainer(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure f, java.lang.Object obj) {
@@ -60,5 +60,7 @@ public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericL
 
         return objectLabels;
     }
+
+    protected abstract PointDistributionStrategy makeCoordsDistributor(AbstractConceptCorrespondingFigure f, int numPoints, DrawParameters opt);
 
 }

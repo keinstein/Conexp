@@ -15,20 +15,14 @@ import conexp.frontend.latticeeditor.labelingstrategies.GenericLabelingStrategy;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 public class AllAttribsLabelingStrategyTest extends GenericLabelingStrategyTest {
-    public static Test suite() {
-        return new TestSuite(AllAttribsLabelingStrategyTest.class);
-    }
-
     protected ConceptNodeQuery makeAcceptable() {
         return ConceptNodeQueryFactory.makeWithOwnAttribs();
     }
 
     protected GenericLabelingStrategy makeStrategy() {
-        return new AllAttribsLabelingStrategy(new conexp.frontend.latticeeditor.LatticePainterDrawParams());
+        return new AllAttribsLabelingStrategy();
     }
 
     public void testAdditionOfAttributesAndCleanup() {
@@ -41,7 +35,7 @@ public class AllAttribsLabelingStrategyTest extends GenericLabelingStrategyTest 
         GenericLabelingStrategy allAttribsLabelingStrategy = makeStrategy();
 
         allAttribsLabelingStrategy.setContext(lattice.getContext());
-        allAttribsLabelingStrategy.init(drawing);
+        allAttribsLabelingStrategy.init(drawing, makeDrawParams());
         assertEquals(true, drawing.hasLabelsForAttributes());
         allAttribsLabelingStrategy.shutdown(drawing);
         assertEquals(false, drawing.hasLabelsForAttributes());

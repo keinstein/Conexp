@@ -9,14 +9,13 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.core.ContextEntity;
 import conexp.frontend.latticeeditor.ConceptQuery;
-import conexp.frontend.latticeeditor.DrawParameters;
 
 import java.util.Iterator;
 
 
 public abstract class BaseFullLabelingStrategy extends SimpleConceptLabelingStrategy {
-    public BaseFullLabelingStrategy(DrawParameters opt) {
-        super(opt);
+    public BaseFullLabelingStrategy() {
+        super();
     }
 
     protected void describeContextEntitySet(StringBuffer ret, Iterator iter) {

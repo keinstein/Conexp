@@ -11,13 +11,12 @@ import conexp.core.BinaryRelationProcessor;
 import conexp.core.stability.PointAndIntegralStabilityCalculator;
 import conexp.core.stability.PointStabilityCalculator;
 import conexp.frontend.latticeeditor.ConceptQuery;
-import conexp.frontend.latticeeditor.DrawParameters;
 
 
 public class PointStabilityLabelingStrategy extends SubcontextStabilityLabelingStrategyBase {
 
-    public PointStabilityLabelingStrategy(DrawParameters opt) {
-        super(opt);
+    public PointStabilityLabelingStrategy() {
+        super();
     }
 
     protected BinaryRelationProcessor makeStabilityCalculator() {

@@ -7,20 +7,17 @@
 
 package conexp.core.layout.chaindecomposition;
 
-public class ChainDecompositionStrategyModel extends conexp.frontend.latticeeditor.DrawParamsIndependentStrategyModel {
+import conexp.frontend.latticeeditor.DrawParamsIndependentStrategyModel;
+
+public class ChainDecompositionStrategyModel extends DrawParamsIndependentStrategyModel {
     public ChainDecompositionStrategyModel() {
         super();
     }
 
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (14.06.01 20:39:48)
-     * @return java.lang.String[][]
-     */
     public java.lang.String[][] getCreateInfo() {
-        return new String[][]{{"Attribute-based", "conexp.core.layout.chaindecomposition.AttributtesDecompositionStrategy"},
-                              {"Object-based", "conexp.core.layout.chaindecomposition.ObjectsDecompositionStrategy"}
+        return new String[][]{{"Attribute-based", "AttributtesDecompositionStrategy","conexp.core.layout.chaindecomposition.AttributtesDecompositionStrategy"},
+                              {"Object-based", "ObjectsDecompositionStrategy", "conexp.core.layout.chaindecomposition.ObjectsDecompositionStrategy"}
         };
     }
 }

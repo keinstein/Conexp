@@ -1,9 +1,9 @@
-Concept Explorer 1.1 Readme File
+Concept Explorer 1.2 Readme File
 ================================
 
 What is it?
 -----------
-This is a version 1.1 of "Concept Explorer"(ConExp) tool,
+This is a version 1.2 of "Concept Explorer"(ConExp) tool,
 that implements basic functionality needed for study and
 research of Formal Concept Analysis.
 For more information about Formal Concept Analysis, see

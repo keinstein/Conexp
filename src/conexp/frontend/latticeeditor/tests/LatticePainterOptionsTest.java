@@ -11,11 +11,23 @@ import conexp.frontend.latticeeditor.LatticePainterDrawParams;
 import conexp.frontend.latticeeditor.LatticePainterOptions;
 import junit.framework.TestCase;
 
+import java.awt.image.BufferedImage;
+
 
 public class LatticePainterOptionsTest extends TestCase {
+    private LatticePainterOptions latticePainterOptions;
 
+    protected void setUp() {
+        latticePainterOptions = (new LatticePainterOptions(new LatticePainterDrawParams()));
+    }
 
     public void testSmallGridSize() {
-        (new LatticePainterOptions(new LatticePainterDrawParams())).getSmallGridSize();
+        latticePainterOptions.getSmallGridSize();
     }
+
+    public void testGetLabelsFont() {
+        latticePainterOptions.getLabelsFont(new BufferedImage(10, 10, BufferedImage.TYPE_INT_RGB).getGraphics());
+    }
+
+
 }
