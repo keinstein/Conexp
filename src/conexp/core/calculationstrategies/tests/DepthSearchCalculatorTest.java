@@ -14,12 +14,6 @@ import junit.framework.TestSuite;
 
 public class DepthSearchCalculatorTest extends EnumerativeCalcStrategyTest {
 
-    private static final Class THIS = DepthSearchCalculatorTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     protected conexp.core.ConceptCalcStrategy makeCalcStrategy() {
         return new DepthSearchCalculator();
     }

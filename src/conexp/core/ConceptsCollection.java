@@ -11,6 +11,7 @@ import util.Assert;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ConceptsCollection {
 
@@ -25,7 +26,7 @@ public class ConceptsCollection {
         }
     }
 
-    protected java.util.ArrayList elements = new ArrayList();
+    protected List elements = new ArrayList();
 
     public ConceptsCollection() {
         super();
@@ -98,6 +99,10 @@ public class ConceptsCollection {
 
     public void setContext(Context newContext) {
         context = newContext;
+    }
+
+    public String toString() {
+        return elements.toString();
     }
 
 }

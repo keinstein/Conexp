@@ -11,16 +11,23 @@ import conexp.core.LatticeElement;
 
 
 public class LatticeElementCompareInfo extends CompareInfo {
-    protected DiffMap edgeCompare;
+    protected DiffMap predEdgeCompare;
+    protected DiffMap succEdgeCompate;
 
     LatticeElementCompareInfo(Object el, int t) {
         super(el, t);
     }
 
     protected boolean doCompareElements() {
-        edgeCompare = new DiffMap(DefaultCompareInfoFactory.getInstance());
-        boolean ret = edgeCompare.compareSets(new LatticeElementPredCompareSet((LatticeElement) one),
-                new LatticeElementPredCompareSet((LatticeElement) two));
+        predEdgeCompare = new DiffMap(DefaultCompareInfoFactory.getInstance());
+        final LatticeElement firstConcept = ((LatticeElement) one);
+        final LatticeElement secondConcept = ((LatticeElement) two);
+        boolean ret = predEdgeCompare.compareSets(new LatticeElementCollectionCompareSet(firstConcept.getPredecessors()),
+                new LatticeElementCollectionCompareSet(secondConcept.getPredecessors()));
+        succEdgeCompate = new DiffMap(DefaultCompareInfoFactory.getInstance());
+        ret &= succEdgeCompate.compareSets(new LatticeElementCollectionCompareSet(firstConcept.getSuccessors()),
+                new LatticeElementCollectionCompareSet(secondConcept.getSuccessors()));
+
         if (!ret) {
             makeInBothDifferent();
         }
@@ -31,7 +38,11 @@ public class LatticeElementCompareInfo extends CompareInfo {
         util.Assert.isTrue(getType() == IN_BOTH_BUT_DIFFERENT);
         writer.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         writer.println("LatticeElement with desription " + one + " were different");
-        edgeCompare.dumpDifferences(writer);
+        writer.println("Differences in predecessors edges:");
+        predEdgeCompare.dumpDifferences(writer);
+        writer.println("---------------------------------------------------------");
+        writer.println("Differences in successors edges");
+        succEdgeCompate.dumpDifferences(writer);
         writer.println("end logging " + one);
         writer.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     }

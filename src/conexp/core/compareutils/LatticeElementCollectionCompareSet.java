@@ -13,15 +13,15 @@ import conexp.core.LatticeElementCollection;
 import java.util.Iterator;
 
 
-public class LatticeElementPredCompareSet extends CompareSetBase{
-    private LatticeElementCollection predecessors;
+public class LatticeElementCollectionCompareSet extends CompareSetBase{
+    private LatticeElementCollection collection;
 
-    public LatticeElementPredCompareSet(LatticeElement el) {
-        predecessors = el.getPredecessors();
+    public LatticeElementCollectionCompareSet(LatticeElementCollection predecessors) {
+        this.collection = predecessors;
     }
 
     protected Iterator getCollectionIterator() {
-        return predecessors.iterator();
+        return collection.iterator();
     }
 
     protected KeyValuePair makeKeyValuePair(Object obj) {
@@ -30,6 +30,6 @@ public class LatticeElementPredCompareSet extends CompareSetBase{
     }
 
     public int getSize() {
-        return predecessors.getSize();
+        return collection.getSize();
     }
 }

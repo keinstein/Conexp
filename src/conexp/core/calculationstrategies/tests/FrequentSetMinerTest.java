@@ -14,12 +14,6 @@ import junit.framework.TestSuite;
 
 
 public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeBuildingTest {
-    private static final Class THIS = FrequentSetMinerTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     public void testWithNoSearchConstraint() {
         getRealStrategy().setSearchConstrainter(new NoSearchConstraint());
         doTestCalcStrategyForExpectedIntentsAndExtents(new int[][]{

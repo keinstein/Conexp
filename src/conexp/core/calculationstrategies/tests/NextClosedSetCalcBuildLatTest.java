@@ -16,12 +16,6 @@ import junit.framework.TestSuite;
 
 
 public class NextClosedSetCalcBuildLatTest extends LatticeBuildingDepthSearchCalculatorTest {
-    private static final Class THIS = NextClosedSetCalcBuildLatTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     protected conexp.core.ConceptCalcStrategy makeCalcStrategy() {
         return new NextClosedSetCalculator();
     }

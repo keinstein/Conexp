@@ -17,7 +17,7 @@ public class AllTests extends TestCase {
         TestSuite suite = new TestSuite();
         suite.addTest(EdgeMinSupportSelectorTest.suite());
         suite.addTest(FilterEnumeratorTest.suite());
-        suite.addTest(IdealEnumeratorTest.suite());
+        suite.addTestSuite(ConceptIdealIteratorTest.class);
 
         return suite;
     }

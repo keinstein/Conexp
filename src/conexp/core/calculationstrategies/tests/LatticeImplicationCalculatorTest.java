@@ -17,12 +17,6 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 public class LatticeImplicationCalculatorTest extends ImplicationCalculatorTest {
-    private static final Class THIS = LatticeImplicationCalculatorTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     protected ImplicationCalcStrategy makePreparedCalculator(Context cxt) {
         Lattice lat = SetBuilder.makeLattice(cxt);
         LatticeImplicationCalculator calc = new LatticeImplicationCalculator();

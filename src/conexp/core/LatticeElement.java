@@ -30,16 +30,16 @@ public class LatticeElement extends Concept {
             return collection.size();
         }
 
+        public boolean isEmpty() {
+            return collection.isEmpty();
+        }
+
         public LatticeElement get(int index) {
             return doGet(collection.get(index));
         }
 
         public ConceptIterator iterator() {
-            return new EdgeIteratorWrapper(collection.iterator()) {
-                public LatticeElement nextConcept() {
-                    return doGet(innerIterator.next());
-                }
-            };
+            return new EdgeCollectionIterator();
         }
 
         public void sort(final Comparator latticeElementComparator) {
@@ -51,7 +51,34 @@ public class LatticeElement extends Concept {
                 }
             });
         }
+
+
+        protected abstract void removeFromOtherCollection(Object lastObject);
+
+        private class EdgeCollectionIterator extends EdgeIteratorWrapper {
+            public EdgeCollectionIterator() {
+                super(collection.iterator());
+            }
+
+            Object lastObject;
+
+            public LatticeElement nextConcept() {
+                lastObject = innerIterator.next();
+                return doGet(lastObject);
+            }
+
+            public void remove() {
+                super.remove();
+                removeFromOtherCollection(lastObject);
+                lastObject = null;
+            }
+
+        }
+
+
     }
+
+
 
     protected static abstract class EdgeIteratorWrapper extends IteratorWrapperBase implements ConceptIterator {
         EdgeIteratorWrapper(Iterator edgeIterator) {
@@ -61,17 +88,29 @@ public class LatticeElement extends Concept {
         public Object next() {
             return nextConcept();
         }
+
+        public void remove() {
+            super.remove();
+        }
     }
 
     protected LatticeElementCollection predecessorsNodes = new LatticeElementCollectionBase(predessors){
         protected LatticeElement doGet(Object collElement) {
             return ((Edge)collElement).getStart();
         }
+
+        protected void removeFromOtherCollection(Object lastObject) {
+            doGet(lastObject).successors.remove(lastObject);
+        }
     };
 
     protected LatticeElementCollection successorsNodes = new LatticeElementCollectionBase(successors){
         protected LatticeElement doGet(Object collElement) {
             return ((Edge)collElement).getEnd();
+        }
+
+        protected void removeFromOtherCollection(Object lastObject) {
+            doGet(lastObject).predessors.remove(lastObject);
         }
     };
 
@@ -96,6 +135,25 @@ public class LatticeElement extends Concept {
         succ.predessors.add(edge);
         succ.height = Math.max(this.height + 1, succ.height);
     }
+
+    public void removeSucc(LatticeElement succ) {
+        removeFromLatticeElementCollection(getSuccessors(), succ);
+    }
+
+    private static void removeFromLatticeElementCollection(LatticeElementCollection latticeElementCollection, LatticeElement toRemove) {
+        for (Iterator iterator = latticeElementCollection.iterator(); iterator.hasNext();) {
+           LatticeElement element = (LatticeElement) iterator.next();
+           if(element==toRemove){
+               iterator.remove();
+               break;
+           }
+       }
+    }
+
+    public void removePred(LatticeElement parent) {
+        removeFromLatticeElementCollection(getPredecessors(), parent);
+    }
+
 
     public int degree() {
         return getPredCount() + getSuccCount();
@@ -205,4 +263,6 @@ public class LatticeElement extends Concept {
     public static LatticeElement makeLatticeElementFromSets(Set extent, Set intent) {
         return new LatticeElement(extent, intent);
     }
+
+
 }

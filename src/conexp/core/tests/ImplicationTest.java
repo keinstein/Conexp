@@ -14,13 +14,6 @@ import junit.framework.TestSuite;
 
 public class ImplicationTest extends DependencyTest {
 
-    private static final Class THIS = ImplicationTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
-
     Implication impOverlap;
     Implication impDisjoint;
 

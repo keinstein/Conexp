@@ -199,4 +199,10 @@ public class SetBuilder {
         cxt.reduceAttributes();
         return cxt.getRelation();
     }
+
+    public static LatticeElement makeLatticeElement(int[] extent, int[] intent) {
+        return LatticeElement.makeLatticeElementFromSets(
+                        makeSet(extent),
+                        makeSet(intent));
+    }
 }

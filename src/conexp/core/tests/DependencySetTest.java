@@ -15,12 +15,6 @@ import junit.framework.TestSuite;
 
 
 public class DependencySetTest extends TestCase {
-    protected static final Class THIS = DependencySetTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     public void testEquals() {
         MockAttributeInformationSupplier supplier = new MockAttributeInformationSupplier(3);
         DependencySet one = new DependencySet(supplier);

@@ -18,12 +18,6 @@ import java.beans.PropertyChangeEvent;
 
 
 public class ContextEntityTest extends TestCase {
-    private static final Class THIS = ContextEntityTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     public void testContextEntityNameListener() {
         ContextEntity attribute = ContextEntity.createContextAttribute("One");
         final ExpectationCounter counter = new ExpectationCounter("Expected calls");

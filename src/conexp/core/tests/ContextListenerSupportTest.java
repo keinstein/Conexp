@@ -14,12 +14,6 @@ import junit.framework.TestSuite;
 
 
 public class ContextListenerSupportTest extends TestCase {
-    private static final Class THIS = ContextListenerSupportTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     public void testMarkStructureChange() {
         ContextListenerSupport contextListenerSupport = new ContextListenerSupport(null);
         assertEquals(false, contextListenerSupport.hasStructureChangePostponed());

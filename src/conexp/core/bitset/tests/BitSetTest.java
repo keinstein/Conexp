@@ -317,6 +317,7 @@ public class BitSetTest extends TestCase {
         assertEquals(true, emptySet.isSubsetOf(secondWord));
         assertEquals(true, emptySet.isSubsetOf(twoWordSet));
         assertEquals(true, firstWord.isSubsetOf(twoWordSet));
+        assertEquals(true, firstWord.isSubsetOf(firstWord));
         assertEquals(false, twoWordSet.isSubsetOf(firstWord));
         assertEquals(false, twoWordSet.isSubsetOf(secondWord));
         assertEquals(false, secondWord.isSubsetOf(twoWordSet));

@@ -16,10 +16,11 @@ public interface Set extends Fragment, IPartiallyOrdered {
     ModifiableSet makeModifiableSetCopy();
 
 //-------------------------
+
+    final int NOT_IN_SET = -1;
     /**
      *  set of values for return from compare function
      */
-    final int NOT_IN_SET = -1;
     final int EQUAL = 0;
     final int SUBSET = 1;
     final int SUPERSET = 2;

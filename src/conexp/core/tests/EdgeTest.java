@@ -27,15 +27,6 @@ public class EdgeTest extends junit.framework.TestCase {
 
     /**
      * Insert the method's description here.
-     * Creation date: (01.12.00 3:07:48)
-     * @return junit.framework.Test
-     */
-    public static Test suite() {
-        return new TestSuite(EdgeTest.class);
-    }
-
-    /**
-     * Insert the method's description here.
      * Creation date: (01.12.00 3:11:37)
      */
     public void testContains() {

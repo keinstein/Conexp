@@ -15,12 +15,6 @@ import junit.framework.TestSuite;
 
 
 public class DepthSearchCalcLatticeBuildingTest extends LatticeBuildingDepthSearchCalculatorTest {
-    private static final Class THIS = DepthSearchCalcLatticeBuildingTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     protected conexp.core.ConceptCalcStrategy makeCalcStrategy() {
         return new DepthSearchCalculator();
     }

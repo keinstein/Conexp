@@ -16,21 +16,22 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
 
+        suite.addTestSuite(BinaryRelationUtilsTest.class);
         suite.addTestSuite(ContextTest.class);
-        suite.addTest(ContextEntityTest.suite());
-        suite.addTest(ContextListenerSupportTest.suite());
-        suite.addTest(BinaryRelationUtilsTest.suite());
-        suite.addTest(ContextFunctionsTest.suite());
-        suite.addTest(SetRelationTest.suite());
+        suite.addTestSuite(ContextEntityTest.class);
+        suite.addTestSuite(ContextListenerSupportTest.class);
+        suite.addTestSuite(ContextFunctionsTest.class);
+        suite.addTestSuite(SetRelationTest.class);
 
-        suite.addTest(EdgeTest.suite());
-        suite.addTest(LatticeTest.suite());
+        suite.addTestSuite(EdgeTest.class);
+        suite.addTestSuite(LatticeElementTest.class);
+        suite.addTestSuite(LatticeTest.class);
+        suite.addTestSuite(LatticeDiagramCheckerTest.class);
 
         suite.addTestSuite(ImplicationSetTest.class);
-        suite.addTest(ImplicationTest.suite());
-        suite.addTest(DependencySetTest.suite());
+        suite.addTestSuite(ImplicationTest.class);
+        suite.addTestSuite(DependencySetTest.class);
 
-        suite.addTestSuite(LatticeDiagramCheckerTest.class);
 
         suite.addTest(conexp.core.associations.tests.AllTests.suite());
         suite.addTest(conexp.core.attrexplorationimpl.tests.AttributeExplorerTest.suite());

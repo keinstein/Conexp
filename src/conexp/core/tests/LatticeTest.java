@@ -16,12 +16,7 @@ import junit.framework.TestSuite;
 
 
 public class LatticeTest extends TestCase {
-    private final static java.lang.Class THIS = LatticeTest.class;
     Lattice lat;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
     /**
      * Insert the method's description here.

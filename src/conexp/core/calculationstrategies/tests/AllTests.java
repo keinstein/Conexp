@@ -15,17 +15,18 @@ public class AllTests extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(DepthSearchCalcLatticeBuildingTest.suite());
-        suite.addTest(DepthSearchCalculatorTest.suite());
-        suite.addTest(DepthSearchArrowCalculatorTest.suite());
+        suite.addTestSuite(DepthSearchCalcLatticeBuildingTest.class);
+        suite.addTestSuite(DepthSearchCalculatorTest.class);
+
+        suite.addTestSuite(DepthSearchArrowCalculatorTest.class);
         suite.addTestSuite(DepthSearchCalcWithFeatureMaskLatticeBuildingTest.class);
         suite.addTestSuite(DepthSearchCalculatorWithFeatureMaskTest.class);
-        suite.addTest(NextClosedSetCalcBuildLatTest.suite());
-        suite.addTest(ReferenceDepthSearchCalculatorTest.suite());
+        suite.addTestSuite(NextClosedSetCalcBuildLatTest.class);
+        suite.addTestSuite(ReferenceDepthSearchCalculatorTest.class);
         suite.addTestSuite(NextClosedSetCalculatorTest.class);
-        suite.addTest(FrequentSetMinerTest.suite());
+        suite.addTestSuite(FrequentSetMinerTest.class);
 
-        suite.addTest(LatticeImplicationCalculatorTest.suite());
+        suite.addTestSuite(LatticeImplicationCalculatorTest.class);
         suite.addTestSuite(NextClosedSetImplicationCalculatorTest.class);
         return suite;
     }

@@ -15,13 +15,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 public class DepthSearchArrowCalculatorTest extends TestCase {
-
-    private static final Class THIS = DepthSearchArrowCalculatorTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     public void testDoCalcDownArrow() {
         Context cxt = new Context(200, 12);
         ArrowCalculator arrowCalc = new DepthSearchArrowCalculator();

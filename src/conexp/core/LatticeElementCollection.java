@@ -9,7 +9,9 @@ import java.util.Comparator;
  */
 public interface LatticeElementCollection{
     int getSize();
+    boolean isEmpty();
     LatticeElement get(int index);
     ConceptIterator iterator();
     void sort(Comparator latticeElementComparator);
+
 }

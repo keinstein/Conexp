@@ -29,20 +29,27 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
 
     boolean fitToSize = false;
     private double zoom;
-    ComponentListener resizeListener = new ComponentAdapter() {
+    protected ComponentListener resizeListener = new ComponentAdapter() {
         public void componentResized(ComponentEvent e) {
-            Dimension newViewportSize = e.getComponent().getSize();
-            if (fitToSize) {
-                adjustZoom(newViewportSize);
-                repaint();
-            }
+            onComponentResized();
         }
     };
+
+    public void onComponentResized() {
+        Dimension newViewportSize = getViewportSize();
+        if (isFitToSize()) {
+            System.out.println("ZoomableCanvas.componentResized fitToSize="+fitToSize);
+            adjustZoom(newViewportSize);
+            repaint();
+        }
+    }
 
     public ZoomableCanvas() {
         setZoom(1.0D);
         addComponentListener(resizeListener);
     }
+
+
 
     public double getZoom() {
         return zoom;
@@ -60,15 +67,26 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
 
     private void doSetZoom(double newZoom) {
         double oldValue = getZoom();
-
+        System.out.println("ZoomableCanvas.doSetZoom "+newZoom);
         if (newZoom != oldValue) {
             this.zoom = newZoom;
-            doAdjustSizeOfCanvas();
+            Dimension viewDimension = getViewportSize();
+            Dimension newDimension = calcNewDimension(viewDimension);
+            updateSizeOfCanvas(newDimension);
             updateScalingTransform();
             repaint();
 
             firePropertyChange("ZOOM", oldValue, newZoom);
         }
+    }
+
+    protected Dimension calcNewDimension(Dimension viewDimension) {
+        Dimension newDimension = new Dimension(getDrawingDimension());
+        int newWidth = (int) Math.max(viewDimension.getWidth(), newDimension.getWidth() * getZoom());
+        int newHeight = (int) Math.max(viewDimension.getHeight(), newDimension.getHeight() * getZoom());
+        System.out.println("new width "+newWidth+" new height:"+newHeight);
+        newDimension.setSize(newWidth, newHeight); //due to bug in jdk1.3
+        return newDimension;
     }
 
 
@@ -78,15 +96,6 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         } else {
             adjustZoom(getViewportSize());
         }
-    }
-
-    protected void doAdjustSizeOfCanvas() {
-        Dimension viewDimension = getViewportSize();
-        Dimension newDimension = new Dimension(getDrawingDimension());
-        int newWidth = (int) Math.max(viewDimension.getWidth(), newDimension.getWidth() * getZoom());
-        int newHeight = (int) Math.max(viewDimension.getHeight(), newDimension.getHeight() * getZoom());
-        newDimension.setSize(newWidth, newHeight); //due to bug in jdk1.3
-        updateSizeOfCanvas(newDimension);
     }
 
     public Point2D getWorldCoords(Point srcPoint) {
@@ -103,10 +112,11 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
     protected abstract Dimension getDrawingDimension();
 
     protected void updateSizeOfCanvas(Dimension newDimension) {
+        System.out.println("ZoomableCanvas.updateSizeOfCanvas new size "+newDimension);
         setSize(newDimension);
         setPreferredSize(newDimension);
         revalidate();
-        updateViewport();
+        //switchViewportToScrollMode();
     }
 
     protected void adjustZoom(Dimension size) {
@@ -130,15 +140,17 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
     }
 
     public void setFitToSize(boolean fitToSize) {
+        System.out.println("ZoomableCanvas.setFitToSize:"+fitToSize);
         if (this.fitToSize != fitToSize) {
             this.fitToSize = fitToSize;
             if (fitToSize) {
+                switchViewportToNoScrollerMode();
                 Dimension size = getViewportSize();
-                updateSizeOfCanvas(size);
+                //updateSizeOfCanvas(size);
                 adjustZoom(size);
             } else {
                 setZoom(1.0);
-                updateViewport();
+                switchViewportToScrollMode();
             }
             repaint();
         }
@@ -148,19 +160,35 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         return fitToSize;
     }
 
-    private void updateViewport() {
+    protected void switchViewportToScrollMode(){
+        System.out.println("ZoomableCanvas.switchViewportToScrollMode");
         Component c = getParent();
         if (c instanceof JViewport) {
-            JViewport jv = (JViewport) c;
-            Component viewportParent = jv.getParent();
-            Point oldPoint = jv.getViewPosition();// old point to be reset after revalidation.
+            JViewport viewport = (JViewport) c;
+            Component viewportParent = viewport.getParent();
+            Point oldPoint = viewport.getViewPosition();// old point to be reset after revalidation.
             if (viewportParent instanceof JScrollPane) {
                 JScrollPane scrollPane = (JScrollPane) viewportParent;
                 scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                 scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
                 scrollPane.revalidate();
             }
-            jv.setViewPosition(oldPoint);
+            viewport.setViewPosition(oldPoint);
+        }
+    }
+
+    protected void switchViewportToNoScrollerMode(){
+        System.out.println("ZoomableCanvas.switchViewportToNoScrollerMode");
+        Component c = getParent();
+        if (c instanceof JViewport) {
+            JViewport viewport = (JViewport) c;
+            Component viewportParent = viewport.getParent();
+            if (viewportParent instanceof JScrollPane) {
+                JScrollPane scrollPane = (JScrollPane) viewportParent;
+                scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+                scrollPane.revalidate();
+            }
         }
     }
 
@@ -168,16 +196,8 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         Dimension size = getSize();
         Component c = getParent();
         if (c instanceof JViewport) {
-
-            JViewport jv = (JViewport) c;
-            Component viewportParent = jv.getParent();
-            if (viewportParent instanceof JScrollPane) {
-                JScrollPane scrollPane = (JScrollPane) viewportParent;
-                scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-                scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-                scrollPane.revalidate();
-            }
-            size = jv.getExtentSize();
+            JViewport viewport = (JViewport) c;
+            size = viewport.getExtentSize();
         }
         return size;
     }

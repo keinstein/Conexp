@@ -16,15 +16,6 @@ import junit.framework.TestSuite;
 
 
 public class BinaryRelationUtilsTest extends TestCase {
-    private static final Class THIS = BinaryRelationUtilsTest.class;
-
-    public BinaryRelationUtilsTest(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
     /**
      * Insert the method's description here.

@@ -19,13 +19,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 
-public class IdealEnumeratorTest extends TestCase {
-    private static final Class THIS = IdealEnumeratorTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
+public class ConceptIdealIteratorTest extends TestCase {
     /**
      * Insert the method's description here.
      * Creation date: (07.03.01 0:47:15)
@@ -77,11 +71,6 @@ public class IdealEnumeratorTest extends TestCase {
         }
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (13.03.01 3:01:00)
-     */
     public ConceptIterator makeIterator(LatticeElement el, Lattice lat) {
         return new ConceptIdealIterator(el);
     }
