@@ -11,7 +11,9 @@ import junit.framework.TestSuite;
 public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(PercentFilledRelationGeneratorTest.suite());
+        suite.addTestSuite(PercentFilledRelationGeneratorTest.class);
+        suite.addTestSuite(ContextLoadingRelationGenerationStrategyTest.class);
+
         return suite;
     }
 }

@@ -10,17 +10,6 @@ import junit.framework.TestSuite;
  */
 
 public class PercentFilledRelationGeneratorTest extends TestCase {
-    private static final Class THIS = PercentFilledRelationGeneratorTest.class;
-
-    public PercentFilledRelationGeneratorTest(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
-
     public void testCalcRelationSize() {
         PercentFilledRelationGenerationStrategy seq = new PercentFilledRelationGenerationStrategy(5, 100, 20, 20, 20, 0.1);
         assertEquals(20, seq.calcRelationSizeY(0));
