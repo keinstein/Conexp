@@ -153,13 +153,14 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         if (c instanceof JViewport) {
             JViewport jv = (JViewport) c;
             Component viewportParent = jv.getParent();
+            Point oldPoint = jv.getViewPosition();// old point to be reset after revalidation.
             if (viewportParent instanceof JScrollPane) {
                 JScrollPane scrollPane = (JScrollPane) viewportParent;
                 scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                 scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
                 scrollPane.revalidate();
             }
-            jv.setViewPosition(new Point(0, 0));
+            jv.setViewPosition(oldPoint);
         }
     }
 
