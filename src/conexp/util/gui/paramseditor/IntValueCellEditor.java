@@ -7,6 +7,8 @@
 
 package conexp.util.gui.paramseditor;
 
+import javax.swing.*;
+
 
 public class IntValueCellEditor extends javax.swing.DefaultCellEditor {
 
@@ -27,7 +29,7 @@ public class IntValueCellEditor extends javax.swing.DefaultCellEditor {
             fireEditingStopped();
             return true;
         } catch (java.beans.PropertyVetoException ex) {
-            javax.swing.JOptionPane.showMessageDialog(null, ex.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(JOptionPane.getFrameForComponent(getEditField()), ex.getMessage());
             javax.swing.SwingUtilities.invokeLater(new util.gui.FocusGrabber(getEditField()));
             return false;
         }

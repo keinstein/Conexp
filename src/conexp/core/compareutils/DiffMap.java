@@ -109,6 +109,10 @@ public class DiffMap {
 
 
     public java.util.Collection getInBothButDifferent() {
+        return unmodifiableCopy(getInBothButDifferentIntern());
+    }
+
+    private Collection getInBothButDifferentIntern() {
         if (null == inBothButDifferent) {
             inBothButDifferent = makeCollection();
         }
@@ -116,6 +120,10 @@ public class DiffMap {
     }
 
     public java.util.Collection getInFirst() {
+        return unmodifiableCopy(getInFirstIntern());
+    }
+
+    private Collection getInFirstIntern() {
         if (null == inFirst) {
             inFirst = makeCollection();
         }
@@ -124,6 +132,11 @@ public class DiffMap {
 
 
     public java.util.Collection getInSecond() {
+        return unmodifiableCopy(getInSecondIntern());
+    }
+
+
+    private Collection getInSecondIntern() {
         if (null == inSecond) {
             inSecond = makeCollection();
         }
@@ -145,6 +158,11 @@ public class DiffMap {
     }
 
 
+    protected static Collection unmodifiableCopy(final Collection inSecondIntern) {
+        return Collections.unmodifiableCollection(inSecondIntern);
+    }
+
+
     protected static void printCollection(java.io.PrintWriter writer, Iterator iter) {
         while (iter.hasNext()) {
             writer.println(iter.next());
@@ -158,13 +176,13 @@ public class DiffMap {
             CompareInfo inf = (CompareInfo) iter.next();
             switch (inf.getType()) {
                 case CompareInfo.IN_FIRST:
-                    getInFirst().add(inf);
+                    getInFirstIntern().add(inf);
                     break;
                 case CompareInfo.IN_SECOND:
-                    getInSecond().add(inf);
+                    getInSecondIntern().add(inf);
                     break;
                 case CompareInfo.IN_BOTH_BUT_DIFFERENT:
-                    getInBothButDifferent().add(inf);
+                    getInBothButDifferentIntern().add(inf);
                     break;
             }
         }

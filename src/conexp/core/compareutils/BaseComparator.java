@@ -7,6 +7,8 @@
 
 package conexp.core.compareutils;
 
+import java.util.Collection;
+
 
 public class BaseComparator {
     public final DiffMap map;
@@ -42,6 +44,18 @@ public class BaseComparator {
 
     public boolean isEqual() {
         return equal;
+    }
+
+    public Collection getOnlyInFirst(){
+        return map.getInFirst();
+    }
+
+    public Collection getOnlyInSecond(){
+        return map.getInSecond();
+    }
+
+    public Collection getInBothButDifferent(){
+        return map.getInBothButDifferent();
     }
 
 }
