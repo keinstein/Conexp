@@ -13,7 +13,7 @@ import conexp.core.*;
 import conexp.frontend.ContextDocument;
 import conexp.frontend.DataFormatErrorHandler;
 import conexp.frontend.DocumentLoader;
-import conexp.frontend.SetProvidingAttributeMask;
+import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import org.jdom.DataConversionException;
@@ -94,12 +94,12 @@ public class ConExpXMLReader implements DocumentLoader {
         loadConceptLabels(drawing, lineDiagramElement);
     }
 
-    private void doReadAttributeMask(final SetProvidingAttributeMask attributeMask, Element attributeMaskElement) throws DataFormatException {
-        int attributeCount = attributeMask.getAttributeCount();
+    private void doReadAttributeMask(final SetProvidingEntitiesMask attributeMask, Element attributeMaskElement) throws DataFormatException {
+        int attributeCount = attributeMask.getCount();
         ModifiableSet intent = ContextFactoryRegistry.createSet(attributeCount);
         doReadSet(intent, attributeMaskElement);
         for (int i = 0; i < intent.size(); i++) {
-            attributeMask.setAttributeSelected(i, intent.in(i));
+            attributeMask.setSelected(i, intent.in(i));
         }
     }
 

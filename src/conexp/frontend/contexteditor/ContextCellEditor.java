@@ -72,71 +72,8 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
     public ContextCellEditor() {
 //        this.clickCountToStart = 1;
         this.clickCountToStart = 2;
-        this.crossDelegate = new EditorDelegate() {
-            public void setValue(Object v) {
-                //*DBG*/ System.out.println("cross setValue "+v );
-                if (v != null) {
-                    if (v instanceof Boolean) {
-                        super.setValue(((Boolean) v).booleanValue() ? Boolean.FALSE : Boolean.TRUE);
-                        crossEditorComponent.setIcon(((Boolean) value).booleanValue() ? CrossIcon.getCross() : null);
-                    }
-                } else {
-                    crossEditorComponent.setIcon(null);
-                    super.setValue(Boolean.FALSE);
-                }
-            }
-
-            public boolean startCellEditing(EventObject anEvent) {
-                //*DBG*/ System.out.println("startCellEditing" );
-                if (anEvent instanceof AWTEvent) {
-                    fireEditingStopped();
-                    return true;
-                }
-                return false;
-            }
-
-            public String toString() {
-                return "Cross Delegete " + value;
-            }
-
-
-        };
-        textDelegate = new EditorDelegate() {
-            public void setValue(Object v) {
-                //*DBG*/ System.out.println("text setValue "+v );
-                if (v != null) {
-                    if (v instanceof String) {
-                        textEditorComponent.setText((String) v);
-                    }
-                }
-                super.setValue(v);
-
-            }
-
-            public boolean stopCellEditing() {
-                //*DBG*/ System.out.println("stopCellEditing");
-                String res = textEditorComponent.getText();
-                res.trim();
-                if (res.length() > 0) {
-                    setValue(res);
-                    return true;
-                }
-                return false;
-            }
-
-            // Implementing ActionListener interface
-            public void actionPerformed(ActionEvent e) {
-                //*DBG*/ System.out.println("actionPerformed");
-                if (stopCellEditing())
-                    fireEditingStopped();
-                else
-                    fireEditingCanceled();
-            }
-
-            public String toString() {
-                return "Text Delegete " + value;
-            }
-        };
+        this.crossDelegate = new CrossEditorDelegate();
+        textDelegate = new TextEditorDelegate();
         crossEditorComponent.addActionListener(crossDelegate);
         crossEditorComponent.setSelectedIcon(CrossIcon.getCross());
         textEditorComponent.addActionListener(textDelegate);
@@ -198,6 +135,7 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
             delegate = crossDelegate;
             editorComponent = crossEditorComponent;
         }
+
         delegate.setValue(value);
         return editorComponent;
     }
@@ -277,5 +215,77 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
         }
 
         return false;
+    }
+
+    private class CrossEditorDelegate extends EditorDelegate {
+
+        public CrossEditorDelegate() {
+        }
+
+        public void setValue(Object v) {
+            //*DBG*/ System.out.println("cross setValue "+v );
+            if (v != null) {
+                if (v instanceof Boolean) {
+                    super.setValue(((Boolean) v).booleanValue() ? Boolean.FALSE : Boolean.TRUE);
+                    crossEditorComponent.setIcon(((Boolean) value).booleanValue() ? CrossIcon.getCross() : null);
+                }
+            } else {
+                crossEditorComponent.setIcon(null);
+                super.setValue(Boolean.FALSE);
+            }
+        }
+
+        public boolean startCellEditing(EventObject anEvent) {
+            //*DBG*/ System.out.println("startCellEditing" );
+            if (anEvent instanceof AWTEvent) {
+                fireEditingStopped();
+                return true;
+            }
+            return false;
+        }
+
+        public String toString() {
+            return "Cross Delegete " + value;
+        }
+    }
+
+    private class TextEditorDelegate extends EditorDelegate {
+        public TextEditorDelegate() {
+        }
+
+        public void setValue(Object v) {
+            //*DBG*/ System.out.println("text setValue "+v );
+            if (v != null) {
+                if (v instanceof String) {
+                    textEditorComponent.setText((String) v);
+                }
+            }
+            super.setValue(v);
+
+        }
+
+        public boolean stopCellEditing() {
+            //*DBG*/ System.out.println("stopCellEditing");
+            String res = textEditorComponent.getText();
+            res.trim();
+            if (res.length() > 0) {
+                setValue(res);
+                return true;
+            }
+            return false;
+        }
+
+        // Implementing ActionListener interface
+        public void actionPerformed(ActionEvent e) {
+            //*DBG*/ System.out.println("actionPerformed");
+            if (stopCellEditing())
+                fireEditingStopped();
+            else
+                fireEditingCanceled();
+        }
+
+        public String toString() {
+            return "Text Delegete " + value;
+        }
     }
 }

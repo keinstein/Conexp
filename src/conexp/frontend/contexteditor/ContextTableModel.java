@@ -15,6 +15,7 @@ import conexp.util.gui.paramseditor.ParamsProvider;
 import conexp.util.valuemodels.IntValueModel;
 import util.Assert;
 import util.BooleanUtil;
+import util.StringUtil;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -22,6 +23,8 @@ import javax.swing.event.UndoableEditListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoableEditSupport;
+
+import util.DataFormatException;
 
 public class ContextTableModel extends AbstractTableModel implements ParamsProvider {
 
@@ -155,12 +158,77 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         return isObjectRow(row) ? row - 1 : -1;
     }
 
-    private boolean isAttributeColumn(int col) {
+    public boolean isAttributeColumn(int col) {
         return col > 0;
     }
 
-    private boolean isObjectRow(int row) {
+    public boolean isObjectRow(int row) {
         return row > 0;
+    }
+
+    public Object getExternal(int row, int col){
+        Object valueAt = getValueAt(row, col);
+        if (isObjectRow(row) &&
+                isAttributeColumn(col)) {
+            valueAt = ((Boolean) valueAt).booleanValue() ? new Integer(1) : new Integer(0);
+        }
+        return valueAt;
+    }
+
+    public Object convertToInternal(String element, int row, int col) throws DataFormatException {
+        if (!isAttributeColumn(col)) {
+            //objectName column
+            if (!isObjectRow(row)) {
+                if (!StringUtil.isEmpty(element)) {
+                    throw new DataFormatException();
+                    //can't paste in empty cell
+                }
+            }else{
+                if(StringUtil.isEmpty(element)){
+                    throw new DataFormatException();
+                }
+            }
+            return element;
+        } else {
+
+            if (!isObjectRow(row)) {
+                if(StringUtil.isEmpty(element)){
+                    throw new DataFormatException();
+                    //element name can't be empty
+                }
+                return element;
+            } else {
+                try {
+                    int value = Integer.parseInt(element);
+                    if (value != 0 && value != 1) {
+                        throw new DataFormatException();
+                        //wrong element
+                    }
+                    if (value == 0) {
+                        return Boolean.FALSE;
+                    }
+                    return Boolean.TRUE;
+                } catch (NumberFormatException e) {
+                    throw new DataFormatException(e);
+                }
+            }
+        }
+    }
+
+    public boolean inCrossArea(int row, int column) {
+        if (!isObjectRow(row)) {
+            return false;
+        }
+        if (row >= getRowCount()) {
+            return false;
+        }
+        if (!isAttributeColumn(column)) {
+            return false;
+        }
+        if (column >= getColumnCount()) {
+            return false;
+        }
+        return true;
     }
 
     /**

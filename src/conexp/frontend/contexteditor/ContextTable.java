@@ -11,14 +11,25 @@ import conexp.core.ContextEditingInterface;
 import conexp.util.gui.Command;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
+import util.DataFormatException;
+import util.StringUtil;
 
 import javax.swing.*;
 import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.UndoableEditListener;
+import java.awt.Toolkit;
+import java.awt.datatransfer.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.util.StringTokenizer;
+import java.util.List;
+import java.util.ArrayList;
 
 
 public class ContextTable extends JTable implements ParamsProvider {
@@ -34,8 +45,8 @@ public class ContextTable extends JTable implements ParamsProvider {
     public ContextTable(ContextEditingInterface cxt) {
         super(new ContextTableModel(cxt));
         cellRenderer = new ContextTooltipTableCellRenderer();
-        cellRenderer.addRenderingChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+        cellRenderer.addRenderingChangeListener(new PropertyChangeListener() {
+            public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getNewValue() instanceof ArrowRelDrawStrategy) {
                     setRepaintMode(true);
                 } else {
@@ -65,6 +76,7 @@ public class ContextTable extends JTable implements ParamsProvider {
             }
         });
 
+        ContextTable.initKeyboard(this);
         addMouseListener(new PopupListener());
 
         setCellSelectionEnabled(true);
@@ -96,8 +108,13 @@ public class ContextTable extends JTable implements ParamsProvider {
     class ContextTablePopupMenuProvider implements PopupMenuProvider {
         public JPopupMenu makePopupMenu() {
             JPopupMenu popupMenu = new JPopupMenu();
+            popupMenu.add(new CutAction());
+            popupMenu.add(new CopyAction());
+            popupMenu.add(new PasteAction());
+            popupMenu.addSeparator();
             popupMenu.add(new RemoveAttributeAction());
             popupMenu.add(new RemoveObjectAction());
+            popupMenu.addSeparator();
             popupMenu.add(new FillCellAction());
             popupMenu.add(new ClearCellAction());
             popupMenu.add(new InverseCellAction());
@@ -130,6 +147,208 @@ public class ContextTable extends JTable implements ParamsProvider {
             putValue(AbstractAction.ACTION_COMMAND_KEY, key);
         }
     }
+
+
+    class CutAction extends ActionWithKey {
+        public CutAction() {
+            super("cut", "Cut");
+        }
+
+        public boolean isEnabled() {
+            //todo: write a correct handler
+            return true;
+        }
+
+        public void actionPerformed(ActionEvent e) {
+        }
+    }
+
+
+    class CopyAction extends ActionWithKey {
+        public CopyAction() {
+            super("copy", "Copy");
+        }
+
+        public boolean isEnabled() {
+            return getSelectedColumnCount() > 0 && getSelectedRowCount() > 0;
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            if (isEnabled()) {
+                int selectedColCount = getSelectedColumnCount();
+                int selectedRowCount = getSelectedRowCount();
+
+                int[] selectedRows = getSelectedRows();
+                int[] selectedColumns = getSelectedColumns();
+
+                String data = buildStringRepresentation(selectedRowCount, selectedColCount, selectedRows, selectedColumns);
+
+                StringSelection stringSelection = new StringSelection(data);
+                Clipboard systemClipboard = getSystemClipboard();
+                systemClipboard.setContents(stringSelection, stringSelection);
+            }
+        }
+
+
+    }
+
+    private static Clipboard getSystemClipboard() {
+        return Toolkit.getDefaultToolkit().getSystemClipboard();
+    }
+
+    public String buildStringRepresentation(int selectedRowCount, int selectedColCount, int[] selectedRows, int[] selectedColumns) {
+        StringBuffer buffer = new StringBuffer();
+        for (int i = 0; i < selectedRowCount; i++) {
+            for (int j = 0; j < selectedColCount; j++) {
+                int selectedRow = selectedRows[i];
+                final int selectedColumn = selectedColumns[j];
+                Object valueAt = getExternalValueRepresentation(selectedRow, selectedColumn);
+                buffer.append(valueAt);
+                if (j < selectedColCount - 1) {
+                    buffer.append("\t");
+                }
+            }
+            buffer.append("\n");
+        }
+        return buffer.toString();
+    }
+
+    private Object getExternalValueRepresentation(int selectedRow, int selectedColumn) {
+        return getContextTableModel().getExternal(selectedRow, convertColumnIndexToModel(selectedColumn));
+    }
+
+    class PasteAction extends ActionWithKey {
+        public PasteAction() {
+            super("paste", "Paste");
+        }
+
+        public boolean isEnabled() {
+            if (getSelectedRow() < 0) {
+                return false;
+            }
+            if (getSelectedColumn() < 0) {
+                return false;
+            }
+            final Transferable contents = getSystemClipboard().getContents(ContextTable.this);
+            if (null == contents) {
+                return false;
+            }
+            final boolean dataFlavorSupported = contents.isDataFlavorSupported(DataFlavor.stringFlavor);
+            if (!dataFlavorSupported) {
+                return false;
+            }
+            try {
+                String content = (String) contents.getTransferData(DataFlavor.stringFlavor);
+                return contentCanBePasted(content, getFirstSelectedRow(), getFirstSelectedColumn());
+            } catch (UnsupportedFlavorException e) {
+                return false;
+            } catch (IOException e) {
+                return false;//To change body of catch statement use Options | File Templates.
+            }
+        }
+
+        private int getFirstSelectedColumn() {
+            return getSelectedColumn();
+        }
+
+        public void actionPerformed(ActionEvent e) {
+
+            int startRow = getSelectedRow();
+            int startCol = getSelectedColumn();
+            try {
+                String clipboardContent =
+                        (String) (getSystemClipboard().getContents(ContextTable.this).getTransferData(DataFlavor.stringFlavor));
+
+              processCellsOnPaste(clipboardContent, startRow, startCol, new CellProcessor(){
+                    public void processCell(String element, int row, int col) throws DataFormatException {
+                        setValueAt(convertElement(element, row, col), row, col);
+                    }
+                });
+            } catch (UnsupportedFlavorException e1) {
+                e1.printStackTrace();  //To change body of catch statement use Options | File Templates.
+            } catch (IOException e1) {
+                e1.printStackTrace();  //To change body of catch statement use Options | File Templates.
+            }
+        }
+
+
+        private int getFirstSelectedRow() {
+            return (getSelectedRows())[0];
+        }
+    }
+
+
+
+
+    interface CellProcessor{
+        void processCell(String element, int row, int col) throws DataFormatException;
+    }
+
+    public boolean contentCanBePasted(String content, int firstSelectedRow, int firstSelectedColumn) {
+        CellProcessor cellProcessor = new CellProcessor(){
+            public void processCell(String element, int row, int col) throws DataFormatException {
+                 convertElement(element, row, col);
+            }
+        };
+        return processCellsOnPaste(content, firstSelectedRow, firstSelectedColumn, cellProcessor);
+    }
+
+    private boolean processCellsOnPaste(String content, int firstSelectedRow, int firstSelectedColumn, CellProcessor cellProcessor) {
+        StringTokenizer lineTokenizer = new StringTokenizer(content, "\n");
+        int currRow = firstSelectedRow;
+
+        int firstColCount = -1;
+        try {
+            while (lineTokenizer.hasMoreTokens()) {
+                if(currRow>=getRowCount()){
+                    return false;
+                }
+                String line = lineTokenizer.nextToken();
+
+
+                List elementTokenizer = split(line, '\t');
+                int colCounter = 0;
+                for (; colCounter < elementTokenizer.size(); colCounter++) {
+                    String element = (String)elementTokenizer.get(colCounter);
+                    final int currCol = firstSelectedColumn + colCounter;
+                    if(currCol>=getColumnCount()){
+                        return false;
+                    }
+                    cellProcessor.processCell(element, currRow, currCol);
+                }
+                if(firstColCount==-1){
+                    firstColCount = colCounter;
+                }else if(firstColCount!=colCounter) {
+                    //different number of elements in rows
+                    return false;
+                }
+                currRow++;
+            }
+
+        } catch (DataFormatException e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static List split(String line, char c) {
+        ArrayList result = new ArrayList();
+        int index = line.indexOf(c);
+        int startIndex = 0;
+        while(-1!=index){
+            result.add(line.substring(startIndex, index));
+            startIndex = index +1;
+            index = line.indexOf(c, startIndex);
+        }
+        result.add(line.substring(startIndex));
+        return result;
+    }
+
+    private Object convertElement(String element, int currRow, int currCol) throws DataFormatException {
+        return getContextTableModel().convertToInternal(element, currRow, convertColumnIndexToModel(currCol));
+    }
+
 
     class RemoveAttributeAction extends ActionWithKey {
         public RemoveAttributeAction() {
@@ -240,4 +459,24 @@ public class ContextTable extends JTable implements ParamsProvider {
         }
         return params;
     }
+
+    public static void initKeyboard(ContextTable contextTable) {
+        KeyStroke xPressed = KeyStroke.getKeyStroke('x');
+        KeyStroke dotPressed = KeyStroke.getKeyStroke('.');
+        KeyStroke space = KeyStroke.getKeyStroke(' ');
+
+        contextTable.registerKeyboardAction(new FastEditingListener(contextTable, Boolean.TRUE), xPressed, JComponent.WHEN_FOCUSED);
+        FastEditingListener makeCellEmptyListener = new FastEditingListener(contextTable, Boolean.FALSE);
+        contextTable.registerKeyboardAction(makeCellEmptyListener, space, JComponent.WHEN_FOCUSED);
+        contextTable.registerKeyboardAction(makeCellEmptyListener, dotPressed, JComponent.WHEN_FOCUSED);
+
+        KeyStroke copy = KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK, false);
+        KeyStroke paste = KeyStroke.getKeyStroke(KeyEvent.VK_V, ActionEvent.CTRL_MASK, false);
+        KeyStroke cut = KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK, false);
+
+        contextTable.registerKeyboardAction(contextTable.new CopyAction(), copy, JComponent.WHEN_FOCUSED);
+        contextTable.registerKeyboardAction(contextTable.new PasteAction(), paste, JComponent.WHEN_FOCUSED);
+        contextTable.registerKeyboardAction(contextTable.new CutAction(), cut, JComponent.WHEN_FOCUSED);
+    }
+
 }

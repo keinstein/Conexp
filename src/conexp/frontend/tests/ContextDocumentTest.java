@@ -143,7 +143,7 @@ public class ContextDocumentTest extends TestCase {
         LatticeComponent latticeComponent = doc.getLatticeComponent();
         assertEquals(latticeComponent.getLattice().conceptsCount(), 8);
         latticeComponent.getAttributeMask().addPropertyChangeListener(new AttributeMaskChangeController(latticeComponent));
-        latticeComponent.getAttributeMask().setAttributeSelected(2, false);
+        latticeComponent.getAttributeMask().setSelected(2, false);
         assertEquals(4, latticeComponent.getLattice().conceptsCount());
         doc.calculateLattice();
         assertEquals(4, latticeComponent.getLattice().conceptsCount());

@@ -17,17 +17,12 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import util.BooleanUtil;
+import util.DataFormatException;
 import util.testing.MockTableModelListener;
 import util.testing.MockUndoableEditListener;
 import util.testing.TestUtil;
 
 public class ContextTableModelTest extends TestCase {
-    private static final Class THIS = ContextTableModelTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     ContextTableModel tableModel;
 
     protected void setUp() {
@@ -393,6 +388,44 @@ public class ContextTableModelTest extends TestCase {
                 tableModel.performCommand(tableModel.new AddRowCommand());
             }
         });
+    }
+
+
+
+    public void testConvertToInternal() {
+        expectSuccessfullConvesion("", "", 0, 0);
+        expectUnsuccessfullConvesion("1",  0, 0);
+
+        expectSuccessfullConvesion("Obj 1", "Obj 1", 1, 0);
+        expectUnsuccessfullConvesion(" ", 1, 0);
+        expectSuccessfullConvesion("Attr 1", "Attr 1", 0, 1);
+        expectUnsuccessfullConvesion(" ", 0, 1);
+        expectSuccessfullConvesion("1", "1", 0, 1);
+        expectSuccessfullConvesion("1", "1", 1, 0);
+
+
+        expectUnsuccessfullConvesion("Obj", 1, 1);
+        expectSuccessfullConvesion("1", Boolean.TRUE, 1, 1);
+        expectSuccessfullConvesion("0", Boolean.FALSE, 1, 1);
+    }
+
+    private void expectSuccessfullConvesion(String input, Object expected, int row, int col) {
+        try {
+            Object result = tableModel.convertToInternal(input, row, col);
+            assertEquals(expected, result);
+        } catch (DataFormatException e) {
+            TestUtil.reportUnexpectedException(e);
+        }
+    }
+
+
+    private void expectUnsuccessfullConvesion(String input, int row, int col) {
+        try {
+            tableModel.convertToInternal(input, row, col);
+            fail("should not get here");
+        } catch (DataFormatException e) {
+            assertTrue("expect exception",true);
+        }
     }
 
 }

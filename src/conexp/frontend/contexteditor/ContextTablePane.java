@@ -16,6 +16,8 @@ import conexp.util.gui.Command;
 
 import javax.swing.*;
 import javax.swing.event.UndoableEditListener;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ContextTablePane extends JScrollPane {
 
@@ -29,6 +31,7 @@ public class ContextTablePane extends JScrollPane {
     protected void createComponent(ExtendedContextEditingInterface cxt) {
         contextTableView = new ContextTable(cxt);
         contextTableView.setFullContextMenuProvider();
+
         add(contextTableView);
         setViewportView(contextTableView);
     }

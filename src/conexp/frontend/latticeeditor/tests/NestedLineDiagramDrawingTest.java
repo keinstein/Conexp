@@ -31,10 +31,6 @@ public class NestedLineDiagramDrawingTest extends TestCase {
     private Lattice inner;
     private NestedLineDiagramDrawing drawing;
 
-    public static Test suite() {
-        return new TestSuite(NestedLineDiagramDrawingTest.class);
-    }
-
     public void testMappingOfOuterLineDiagram() {
         final NestedDiagramNodeFigure figureForOne = (NestedDiagramNodeFigure) drawing.getFigureForConcept(outer.getOne());
         assertEquals(14.11 / 2.0, figureForOne.getCenterX(), 0.01);
@@ -55,11 +51,11 @@ public class NestedLineDiagramDrawingTest extends TestCase {
                                                          {1, 0}}
         );
 
-        outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 0});
+        outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 0}, new int[]{1, 1});
         LatticeDrawing outerDrawing = new LatticeDrawing();
         outerDrawing.setLattice(outer);
 
-        inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 1});
+        inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 1}, new int[]{1, 1});
         LatticeDrawing innerDrawing = new LatticeDrawing();
         innerDrawing.setLattice(inner);
         innerDrawing.getFigureForConcept(inner.getOne()).setCoords(0, 0);
@@ -88,11 +84,11 @@ public class NestedLineDiagramDrawingTest extends TestCase {
                                                          {1, 1, 1, 0}}
         );
 
-        outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 1, 0, 0});
+        outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 1, 0, 0}, new int[]{1, 1, 0, 0});
         LatticeDrawing outerDrawing = new LatticeDrawing();
         outerDrawing.setLattice(outer);
 
-        inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 0, 1, 1});
+        inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 0, 1, 1}, new int[]{1, 1, 0, 0});
         LatticeDrawing innerDrawing = new LatticeDrawing();
         innerDrawing.setLattice(inner);
         //it can be also the set

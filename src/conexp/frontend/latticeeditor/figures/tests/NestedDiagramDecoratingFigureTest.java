@@ -27,11 +27,11 @@ public class NestedDiagramDecoratingFigureTest extends TestCase {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1},
                                                          {1, 0}});
 
-        Lattice outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 0});
+        Lattice outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 0}, new int[]{0, 1});
         LatticeDrawing outerDrawing = new LatticeDrawing();
         outerDrawing.setLattice(outer);
 
-        Lattice inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 1});
+        Lattice inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 1},new int[]{0, 1});
         LatticeDrawing innerDrawing = new LatticeDrawing();
         innerDrawing.setLattice(inner);
 

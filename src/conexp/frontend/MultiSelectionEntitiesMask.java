@@ -5,7 +5,7 @@ package conexp.frontend;
  * All rights reserved.
  * Please read license.txt for licensing issues.
  */
-public interface MultiSelectionAttributeMask extends AttributeMask{
+public interface MultiSelectionEntitiesMask extends EntitiesMask{
     void selectAll();
-    boolean hasUnselectedAttributes();
+    boolean hasUnselected();
 }

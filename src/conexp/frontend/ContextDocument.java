@@ -14,6 +14,7 @@ import conexp.core.calculationstrategies.DepthSearchCalculator;
 import conexp.core.enumcallbacks.ConceptNumCallback;
 import conexp.frontend.attributeexploration.AttributeExplorationUserCallbackImplementation;
 import conexp.frontend.components.AttributeMaskChangeController;
+import conexp.frontend.components.ObjectMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.contexteditor.ContextViewPanel;
 import conexp.frontend.latticeeditor.CEDiagramEditorPanel;
@@ -269,7 +270,8 @@ public class ContextDocument implements ActionChainBearer, Document {
     private View makeLatticeView() {
         LatticeComponent latticeSupplier = getLatticeComponent();
         latticeSupplier.getAttributeMask().addPropertyChangeListener(new AttributeMaskChangeController(latticeSupplier));
-        LatticeAndAttributeMaskSplitPane latticeSplitPane = new LatticeAndAttributeMaskSplitPane(latticeSupplier, getActionChain());
+    	latticeSupplier.getObjectMask().addPropertyChangeListener(new ObjectMaskChangeController(latticeSupplier));
+        LatticeAndEntitiesMaskSplitPane latticeSplitPane = new LatticeAndEntitiesMaskSplitPane(latticeSupplier, getActionChain());
         return new ToolbarComponentDecorator(latticeSplitPane, false);
     }
 
@@ -573,16 +575,16 @@ public class ContextDocument implements ActionChainBearer, Document {
         final LatticeComponent outer = new LatticeComponent(cxt);
         outer.setLayoutEngine(new SimpleLayoutEngine());
         outer.setLayouterProvider(new MinIntersectionLayouterProvider());
-        outer.getAttributeMask().setAttributeSelected(2, false);
-        outer.getAttributeMask().setAttributeSelected(3, false);
+        outer.getAttributeMask().setSelected(2, false);
+        outer.getAttributeMask().setSelected(3, false);
 
         outer.calculateAndLayoutPartialLattice();
 
         LatticeComponent inner = new LatticeComponent(cxt);
         inner.setLayoutEngine(new SimpleLayoutEngine());
         inner.setLayouterProvider(new MinIntersectionLayouterProvider());
-        inner.getAttributeMask().setAttributeSelected(0, false);
-        inner.getAttributeMask().setAttributeSelected(1, false);
+        inner.getAttributeMask().setSelected(0, false);
+        inner.getAttributeMask().setSelected(1, false);
         inner.calculateAndLayoutPartialLattice();
 
         //it can be also the set

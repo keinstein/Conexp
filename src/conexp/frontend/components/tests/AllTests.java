@@ -15,8 +15,8 @@ public class AllTests extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(LatticeComponentTest.suite());
-        suite.addTest(ContextAttributeMaskTest.suite());
+        suite.addTestSuite(LatticeComponentTest.class);
+        suite.addTestSuite(ContextAttributeMaskTest.class);
         return suite;
     }
 }

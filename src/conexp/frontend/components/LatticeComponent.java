@@ -14,7 +14,7 @@ import conexp.core.Set;
 import conexp.core.layout.LayouterProvider;
 import conexp.frontend.LatticeCalculator;
 import conexp.frontend.LatticeDrawingProvider;
-import conexp.frontend.SetProvidingAttributeMask;
+import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.LayoutEngine;
 import util.BasePropertyChangeSupplier;
@@ -24,6 +24,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     protected Context context;
     protected LatticeDrawing latticeDrawing;
     protected ContextAttributeMask attributeMask;
+	protected ContextObjectMask objectMask;
     protected Lattice lattice;
 
     public LatticeComponent() {
@@ -37,12 +38,17 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     public void setContext(Context cxt) {
         this.context = cxt;
         attributeMask = new ContextAttributeMask(cxt);
+    	objectMask = new ContextObjectMask(cxt);
         clearLattice();
     }
 
-    public SetProvidingAttributeMask getAttributeMask() {
+    public SetProvidingEntitiesMask getAttributeMask() {
         return attributeMask;
     }
+    
+	public SetProvidingEntitiesMask getObjectMask() {
+			return objectMask;
+		}
 
     protected Context getContext() {
         return context;
@@ -97,7 +103,8 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     }
 
     public void calculatePartialLattice() {
-        lattice = FCAEngineRegistry.buildPartialLattice(getContext(), getSelectedFeaturesSet());
+    	System.out.println("number of selected objects"+getSelectedObjectsSet().size());
+        lattice = FCAEngineRegistry.buildPartialLattice(getContext(), getSelectedFeaturesSet(), getSelectedObjectsSet());
         getDrawing().setLattice(getLattice());
         fireLatticeRecalced();
     }
@@ -110,6 +117,11 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     private Set getSelectedFeaturesSet() {
         return attributeMask.toSet();
     }
+    
+	private Set getSelectedObjectsSet() {
+			return objectMask.toSet();
+		}
+
 
     public void calculateAndLayoutLattice() {
         calculateLattice();

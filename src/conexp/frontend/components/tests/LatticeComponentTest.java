@@ -17,12 +17,6 @@ import junit.framework.TestSuite;
 import util.testing.SimpleMockPropertyChangeListener;
 
 public class LatticeComponentTest extends TestCase {
-    private static final Class THIS = LatticeComponentTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     LatticeComponent latticeComponent;
 
     protected void setUp() {
@@ -70,7 +64,7 @@ public class LatticeComponentTest extends TestCase {
         latticeComponent.calculateLattice();
         assertTrue(latticeComponent.getLattice().isValid());
         assertTrue(!latticeComponent.getDrawing().isEmpty());
-        latticeComponent.getAttributeMask().setAttributeSelected(0, false);
+        latticeComponent.getAttributeMask().setSelected(0, false);
         latticeComponent.calculatePartialLattice();
         assertTrue(latticeComponent.getLattice().isValid());
         assertTrue(!latticeComponent.getDrawing().isEmpty());

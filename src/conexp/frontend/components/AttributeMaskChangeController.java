@@ -8,7 +8,7 @@
 
 package conexp.frontend.components;
 
-import conexp.frontend.AttributeMask;
+import conexp.frontend.EntitiesMask;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -21,7 +21,7 @@ public class AttributeMaskChangeController implements PropertyChangeListener {
     }
 
     public void propertyChange(PropertyChangeEvent evt) {
-        if (AttributeMask.ATTRIBUTE_SELECTION_CHANGED.equals(evt.getPropertyName())) {
+        if (EntitiesMask.ENTITIES_SELECTION_CHANGED.equals(evt.getPropertyName())) {
             latticeComponent.calculateAndLayoutPartialLattice();
         }
     }

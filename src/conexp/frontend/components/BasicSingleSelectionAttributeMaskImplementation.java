@@ -9,15 +9,15 @@
 package conexp.frontend.components;
 
 
-public abstract class BasicSingleSelectionAttributeMaskImplementation extends BasicAttributeMaskImplementation {
+public abstract class BasicSingleSelectionAttributeMaskImplementation extends BasicEntityMaskImplementation {
     public BasicSingleSelectionAttributeMaskImplementation() {
         super();
     }
 
-    public void setAttributeSelected(int index, boolean attributeSelected) {
-        boolean oldValue = isAttributeSelected(index);
+    public void setSelected(int index, boolean attributeSelected) {
+        boolean oldValue = isSelected(index);
         if (oldValue != attributeSelected) {
-            final int attributeCount = getAttributeCount();
+            final int attributeCount = getCount();
             if (attributeSelected) {
                 for (int i = 0; i < attributeCount; i++) {
                     doSetAttributeSelected(i, i == index);
@@ -25,7 +25,7 @@ public abstract class BasicSingleSelectionAttributeMaskImplementation extends Ba
             } else {
                 doSetAttributeSelected(index, false);
             }
-            getPropertyChangeSupport().firePropertyChange(ATTRIBUTE_SELECTION_CHANGED, null, null);
+            getPropertyChangeSupport().firePropertyChange(ENTITIES_SELECTION_CHANGED, null, null);
         }
     }
 }

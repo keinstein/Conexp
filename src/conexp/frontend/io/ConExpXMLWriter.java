@@ -12,7 +12,7 @@ import canvas.figures.IFigureWithCoords;
 import conexp.core.*;
 import conexp.frontend.ContextDocument;
 import conexp.frontend.DocumentWriter;
-import conexp.frontend.SetProvidingAttributeMask;
+import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
@@ -86,7 +86,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         latticeElement.addContent(makeAttributeMaskElement(latticeComponent.getAttributeMask()));
     }
 
-    private Element makeAttributeMaskElement(SetProvidingAttributeMask attributeMask) {
+    private Element makeAttributeMaskElement(SetProvidingEntitiesMask attributeMask) {
         Element attributeMaskElement = new Element(ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT);
         writeSet(attributeMask.toSet(), attributeMaskElement);
         return attributeMaskElement;

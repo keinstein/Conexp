@@ -9,12 +9,12 @@
 package conexp.frontend.components;
 
 import conexp.core.*;
-import conexp.frontend.SetProvidingAttributeMask;
+import conexp.frontend.SetProvidingEntitiesMask;
 import util.Assert;
 
 import java.beans.PropertyChangeEvent;
 
-public class ContextAttributeMask extends BasicMultiSelectionAttributeMaskImplementation implements SetProvidingAttributeMask {
+public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplementation {
     ExtendedContextEditingInterface context;
 
     class AttributeMaskContextListener extends DefaultContextListener {
@@ -22,39 +22,39 @@ public class ContextAttributeMask extends BasicMultiSelectionAttributeMaskImplem
             switch (changeEvent.getType()) {
                 case ContextChangeEvent.ATTRIBUTE_REMOVED:
                     {
-                        int oldValue = selectedAttributes.size();
-                        selectedAttributes.remove(changeEvent.getColumn());
-                        getPropertyChangeSupport().firePropertyChange(ATTRIBUTE_COUNT_CHANGED, oldValue, selectedAttributes.size());
+                        int oldValue = selectedEntities.size();
+                        selectedEntities.remove(changeEvent.getColumn());
+                        getPropertyChangeSupport().firePropertyChange(ENTITIES_COUNT_CHANGED, oldValue, selectedEntities.size());
                         break;
                     }
                 case ContextChangeEvent.ATTRIBUTE_ADDED:
                     {
-                        int oldValue = selectedAttributes.size();
-                        selectedAttributes.add(Boolean.FALSE);
-                        getPropertyChangeSupport().firePropertyChange(ATTRIBUTE_COUNT_CHANGED, oldValue, selectedAttributes.size());
+                        int oldValue = selectedEntities.size();
+                        selectedEntities.add(Boolean.FALSE);
+                        getPropertyChangeSupport().firePropertyChange(ENTITIES_COUNT_CHANGED, oldValue, selectedEntities.size());
                         break;
                     }
             }
         }
 
         public void attributeNameChanged(PropertyChangeEvent evt) {
-            getPropertyChangeSupport().firePropertyChange(ATTRIBUTE_NAMES_CHANGED, null, null);
+            getPropertyChangeSupport().firePropertyChange(ENTITIES_NAMES_CHANGED, null, null);
         }
 
         public void contextTransposed() {
-            int newValue = getAttributeCount();
-            final int oldValue = selectedAttributes.size();
+            int newValue = getCount();
+            final int oldValue = selectedEntities.size();
             if (newValue < oldValue) {
                 for (int i = oldValue; --i >= newValue;) {
-                    selectedAttributes.remove(i);
+                    selectedEntities.remove(i);
                 }
             } else {
                 for (int i = oldValue; i < newValue; i++) {
-                    selectedAttributes.add(Boolean.TRUE);
+                    selectedEntities.add(Boolean.TRUE);
                 }
             }
-            Assert.isTrue(selectedAttributes.size() == newValue);
-            getPropertyChangeSupport().firePropertyChange(ATTRIBUTE_COUNT_CHANGED,
+            Assert.isTrue(selectedEntities.size() == newValue);
+            getPropertyChangeSupport().firePropertyChange(ENTITIES_COUNT_CHANGED,
                     oldValue, newValue);
             selectAll();
 
@@ -64,26 +64,16 @@ public class ContextAttributeMask extends BasicMultiSelectionAttributeMaskImplem
 
     public ContextAttributeMask(ExtendedContextEditingInterface context) {
         this.context = context;
-        initializeMask(getAttributeCount(), Boolean.TRUE);
+        initializeMask(getCount(), Boolean.TRUE);
         this.context.addContextListener(new AttributeMaskContextListener());
     }
 
-    public int getAttributeCount() {
+    public int getCount() {
         return context.getAttributeCount();
     }
 
-    public String getAttributeName(int index) {
+    public String getName(int index) {
         return context.getAttribute(index).getName();
-    }
-
-    public Set toSet() {
-        ModifiableSet result = ContextFactoryRegistry.createSet(getAttributeCount());
-        for (int j = getAttributeCount(); --j >= 0;) {
-            if (isAttributeSelected(j)) {
-                result.put(j);
-            }
-        }
-        return result;
     }
 
 }

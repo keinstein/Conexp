@@ -48,7 +48,7 @@ public class ContrExampleInputDialog extends JDialog {
 
 
         JPanel inputPanel = new JPanel();
-        JPanel TablePlaceHolder = new JPanel();
+        JPanel tablePlaceHolder = new JPanel();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -61,12 +61,12 @@ public class ContrExampleInputDialog extends JDialog {
 
         tmp = FCAEngineRegistry.makeContext(1, 1);
 
-        TablePlaceHolder.setLayout(new BorderLayout());
+        tablePlaceHolder.setLayout(new BorderLayout());
 
         contextEditor = new ContextTablePane(tmp);
-        TablePlaceHolder.add(contextEditor, BorderLayout.CENTER);
+        tablePlaceHolder.add(contextEditor, BorderLayout.CENTER);
 
-        inputPanel.add(TablePlaceHolder);
+        inputPanel.add(tablePlaceHolder);
 
         final int width = 500;
         inputPanel.setMinimumSize(new Dimension(width, 100));

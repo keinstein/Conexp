@@ -14,7 +14,7 @@ import conexp.core.tests.SetBuilder;
 import conexp.frontend.ContextDocument;
 import conexp.frontend.DocumentLoader;
 import conexp.frontend.DocumentWriter;
-import conexp.frontend.SetProvidingAttributeMask;
+import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.io.ConExpXMLReader;
 import conexp.frontend.io.ConExpXMLWriter;
@@ -49,9 +49,9 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         doc = new ContextDocument();
         doc.setContext(cxt);
         final LatticeComponent latticeComponent = doc.getLatticeComponent();
-        final SetProvidingAttributeMask attributeMask = latticeComponent.getAttributeMask();
-        assertEquals(2, attributeMask.getAttributeCount());
-        attributeMask.setAttributeSelected(1, false);
+        final SetProvidingEntitiesMask attributeMask = latticeComponent.getAttributeMask();
+        assertEquals(2, attributeMask.getCount());
+        attributeMask.setSelected(1, false);
         latticeComponent.calculatePartialLattice();
     }
 

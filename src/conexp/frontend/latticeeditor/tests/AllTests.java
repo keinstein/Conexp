@@ -21,7 +21,7 @@ public class AllTests extends TestCase {
         suite.addTest(LatticePainterPanelTest.suite());
         suite.addTest(LatticeCanvasTest.suite());
 
-        suite.addTest(NestedLineDiagramDrawingTest.suite());
+        suite.addTestSuite(NestedLineDiagramDrawingTest.class);
 
 
         suite.addTest(XmlFileStrategyModelTest.suite());

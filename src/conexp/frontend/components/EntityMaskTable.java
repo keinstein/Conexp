@@ -8,12 +8,12 @@
 
 package conexp.frontend.components;
 
-import conexp.frontend.AttributeMask;
+import conexp.frontend.EntitiesMask;
 
 import javax.swing.*;
 
-public class AttributeMaskTable extends JTable {
-    public AttributeMaskTable(AttributeMask attributeMask) {
+public class EntityMaskTable extends JTable {
+    public EntityMaskTable(EntitiesMask attributeMask) {
         super(new AttributeMaskTableModel(attributeMask));
         setRowSelectionAllowed(false);
         setColumnSelectionAllowed(false);
@@ -25,7 +25,7 @@ public class AttributeMaskTable extends JTable {
         return (AttributeMaskTableModel) getModel();
     }
 
-    public void setAttributeMask(AttributeMask newMask) {
+    public void setAttributeMask(EntitiesMask newMask) {
         getAttributeMaskTableModel().setAttributeMask(newMask);
     }
 
