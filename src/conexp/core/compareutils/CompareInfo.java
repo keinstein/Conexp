@@ -7,6 +7,8 @@
 
 package conexp.core.compareutils;
 
+import util.Assert;
+
 
 public class CompareInfo {
     public final static int IN_FIRST = 1;
@@ -30,14 +32,14 @@ public class CompareInfo {
     }
 
 
-    protected CompareInfo(Object el, int t) {
-        type = t;
+    protected CompareInfo(Object element, int type) {
+        this.type = type;
         switch (type) {
             case IN_FIRST:
-                one = el;
+                one = element;
                 break;
             case IN_SECOND:
-                two = el;
+                two = element;
                 break;
             default:
                 util.Assert.isTrue(false);
@@ -45,11 +47,18 @@ public class CompareInfo {
         }
     }
 
+    //todo: think about more clear compare model
     public boolean compare() {
         if (!isValid()) {
             return false;
         }
-        return doCompareElements();
+        final boolean result = doCompareElements();
+        if(type==IN_BOTH){
+            if(!result){
+                makeInBothDifferent();
+            }
+        }
+        return result;
     }
 
     protected boolean doCompareElements() {
@@ -63,6 +72,8 @@ public class CompareInfo {
      * @param writer java.io.PrintWriter
      */
     protected void doDumpDifferencesForInBoth(java.io.PrintWriter writer) {
+        writer.println("In first was: " + one);
+        writer.println("In second was: "+two);
     }
 
 
@@ -100,6 +111,7 @@ public class CompareInfo {
             return false;
         } else {
             if (null == two) {
+                Assert.isTrue(type == IN_FIRST);
                 two = second;
                 type = IN_BOTH;
                 return true;

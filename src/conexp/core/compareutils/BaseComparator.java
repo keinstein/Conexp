@@ -11,7 +11,7 @@ import java.util.Collection;
 
 
 public class BaseComparator {
-    public final DiffMap map;
+    private DiffMap map;
     private final boolean equal;
     protected String noDifferencesMessage = "No differences";
 
