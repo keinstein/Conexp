@@ -190,7 +190,7 @@ public class BinaryRelationUtils {
     public static ModifiableSet derivationOfObjectsSet(BinaryRelation relation, Set objectSubset) {
         final int attrCount = relation.getColCount();
         ModifiableSet attribsClosure = ContextFactoryRegistry.createSet(attrCount);
-        attribsClosure.fillByOne(attrCount);
+        attribsClosure.fill();
         for (int i = objectSubset.firstIn(); i != Set.NOT_IN_SET; i = objectSubset.nextIn(i)) {
             attribsClosure.and(relation.getSet(i));
         }
@@ -209,7 +209,7 @@ public class BinaryRelationUtils {
     public static ModifiableSet closureOfObject(BinaryRelation relation, Set objectToClose) {
         int colCount = relation.getColCount();
         ModifiableSet tempClosure = ContextFactoryRegistry.createSet(colCount);
-        tempClosure.fillByOne(colCount);
+        tempClosure.fill();
         int rowCount = relation.getRowCount();
         for (int k = 0; k < rowCount; k++) {
             Set set = relation.getSet(k);

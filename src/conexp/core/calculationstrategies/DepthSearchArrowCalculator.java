@@ -171,7 +171,7 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
         downArrow = downArrowRel;
 
         downArrow.setDimension(rel.getRowCount(), rel.getColCount());
-        newExtent.fillByOne(rel.getRowCount());
+        newExtent.fill();
         //clearing prohibited set
         tempAttrSet.clearSet();
         downArrow.clearRelation();
@@ -194,9 +194,9 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
 
         upArrow.setDimension(rows, cols);
 
-        newIntent.fillByOne(cols);
+        newIntent.fill();
 
-        newExtent.fillByOne(rows);
+        newExtent.fill();
         Assert.isTrue(newExtent.length() <= rel.getRowCount());
         //clearing prohibited set
         tempAttrSet.clearSet();

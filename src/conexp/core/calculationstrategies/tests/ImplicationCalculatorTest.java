@@ -215,7 +215,7 @@ public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBas
         Context cxt = new Context(rel);
         ImplicationCalcStrategy calc = makePreparedCalculator(cxt);
         calc.setImplications(new ImplicationSet(cxt));
-        calc.calcDuquenneGuiguiesSet();
+        calc.calcImplications();
     }
 
     public void testFindImplicationsFailingRandomTest2() {

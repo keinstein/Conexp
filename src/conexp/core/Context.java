@@ -241,7 +241,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         ModifiableSet outer = ContextFactoryRegistry.createSet(numAttr);
         ModifiableSet inner = ContextFactoryRegistry.createSet(numAttr);
         ModifiableSet allAttr = ContextFactoryRegistry.createSet(numAttr);
-        allAttr.fillByOne(numAttr);
+        allAttr.fill();
         for (int j = 0; j < numAttr; j++) {
             if (!toClear.in(j)) {
                 inner.copy(allAttr);

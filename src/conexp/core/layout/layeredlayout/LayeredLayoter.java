@@ -219,7 +219,7 @@ public class LayeredLayoter extends NonIncrementalLayouter {
         ModifiableSet elementOutOfSet = ContextFactoryRegistry.createSet(attributeCount);
         BinaryRelation relation = cxt.getRelation();
         for (int i = irreducibleElements.firstIn(); i != Set.NOT_IN_SET; i = irreducibleElements.nextIn(i)) {
-            elementLessOrEqual.fillByOne(attributeCount);
+            elementLessOrEqual.fill();
             elementOutOfSet.clearSet();
             for (int row = 0; row < relation.getRowCount(); row++) {
                 Set set = relation.getSet(row);

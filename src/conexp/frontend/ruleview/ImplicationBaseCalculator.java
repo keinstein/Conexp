@@ -40,6 +40,6 @@ public class ImplicationBaseCalculator extends AbstractDependencySetCalculator {
 
         implSet.clear();
         calc.setImplications(implSet);
-        calc.calcDuquenneGuiguiesSet();
+        calc.calcImplications();
     }
 }

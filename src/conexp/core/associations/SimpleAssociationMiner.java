@@ -61,7 +61,7 @@ public class SimpleAssociationMiner extends BaseAssociationMiner {
         implCalc.setRelation(cxt.getRelation());
         validImplications = new ImplicationSet(cxt);
         implCalc.setImplications(validImplications);
-        implCalc.calcDuquenneGuiguiesSet();
+        implCalc.calcImplications();
         selectDependenciesWithGreaterSupport(ret, validImplications, minSupport);
     }
 

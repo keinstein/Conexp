@@ -53,7 +53,7 @@ public class SecondAssociationMiner extends BaseAssociationMiner {
         LatticeImplicationCalculator calc = new LatticeImplicationCalculator();
         calc.setLattice(frequentItemsetLattice);
         calc.setImplications(validImplications);
-        calc.calcDuquenneGuiguiesSet();
+        calc.calcImplications();
         long exactTime = System.currentTimeMillis();
         System.out.println("Time for finding validImplications dependencies:" + (exactTime - latticeTime));
 

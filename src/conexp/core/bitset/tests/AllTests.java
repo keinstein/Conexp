@@ -17,7 +17,7 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
         suite.addTest(BitSetFactoryTest.suite());
-        suite.addTest(BitSetTest.suite());
+        suite.addTestSuite(BitSetTest.class);
         return suite;
     }
 }

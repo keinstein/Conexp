@@ -19,7 +19,7 @@ public abstract class ImplicationCalculatorBaseTest extends TestCase {
     protected static void doTestPreparedImplicationCalcStrategy(ImplicationCalcStrategy calc, Context cxt, int[][][] expImplicationsDescriptions) {
         ImplicationSet implications = new ImplicationSet(cxt);
         calc.setImplications(implications);
-        calc.calcDuquenneGuiguiesSet();
+        calc.calcImplications();
         ImplicationSet expImplication =
                 SetBuilder.makeImplicationSet(cxt,
                         expImplicationsDescriptions);

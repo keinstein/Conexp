@@ -35,7 +35,7 @@ public abstract class LatticeNeedingCalcStrategy extends DepthSearchBinaryRelati
     protected void calcOne() {
         int numObj = rel.getRowCount();
         newIntent.copy(allAttrSet);
-        newExtent.fillByOne(numObj);
+        newExtent.fill();
         for (int i = numObj; --i >= 0;) {
             newIntent.and(rel.getSet(i));
         }

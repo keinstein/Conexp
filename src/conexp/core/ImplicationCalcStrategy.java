@@ -11,5 +11,5 @@ package conexp.core;
 public interface ImplicationCalcStrategy extends BinaryRelationProcessor {
     void setImplications(ImplicationSet implSet);
 
-    void calcDuquenneGuiguiesSet();
+    void calcImplications();
 }

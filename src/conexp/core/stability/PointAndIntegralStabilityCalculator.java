@@ -35,7 +35,7 @@ public class PointAndIntegralStabilityCalculator extends DefaultBinaryRelationPr
             intersectionsByDepth[i] = ContextFactoryRegistry.createSet(colCount);
         }
         ModifiableSet currentIntersection = ContextFactoryRegistry.createSet(colCount);
-        currentIntersection.fillByOne(colCount);
+        currentIntersection.fill();
         doCalcStabilityOfSubsets(0, currentIntersection);
         intersectionsByDepth = null;
         powerOfObjectCount = MathUtil.powerOfTwo(rowCount);

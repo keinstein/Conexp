@@ -216,7 +216,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         ModifiableSet endsOfEdgesOfMatching = ContextFactoryRegistry.createSet(size);
         int[] matching = new int[size]; // matching[v] - end of edge in matching for entity v, or -1, if entity isn't in matching
 
-        notInStartOfEdgesOfMatching.fillByOne(size);
+        notInStartOfEdgesOfMatching.fill();
         endsOfEdgesOfMatching.clearSet();
 
         ModifiableSet temp = ContextFactoryRegistry.createSet(size);

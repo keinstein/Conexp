@@ -11,22 +11,24 @@ import conexp.core.ModifiableSet;
 import conexp.core.Set;
 import conexp.core.bitset.BitSet;
 import conexp.core.tests.SetBuilder;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class BitSetTest extends TestCase {
-    private static final Class THIS = BitSetTest.class;
-
     private ModifiableSet twoWordSet;
     private ModifiableSet emptySet;
     private ModifiableSet secondWord;
     private ModifiableSet firstWord;
     private ModifiableSet temp;
 
+    public static void fillFromStart(ModifiableSet set, int till){
+        for(int i=0; i<till; i++){
+            set.put(i);
+        }
+    }
+
     protected void setUp() {
         twoWordSet = new BitSet(96);
-        twoWordSet.fillByOne(65);
+        fillFromStart(twoWordSet, 65);
         emptySet = new BitSet(96);
 
         firstWord = new BitSet(96);
@@ -37,11 +39,6 @@ public class BitSetTest extends TestCase {
             secondWord.put(i);
 
         temp = new BitSet(96);
-    }
-
-
-    public static Test suite() {
-        return new TestSuite(THIS);
     }
 
 
@@ -70,7 +67,7 @@ public class BitSetTest extends TestCase {
         firstWord.andNot(twoWordSet);
         assertEquals(emptySet, firstWord);
         twoWordSet.andNot(secondWord);
-        temp.fillByOne(64);
+        fillFromStart(temp, 64);
         assertEquals(temp, twoWordSet);
         temp.copy(secondWord);
         secondWord.andNot(emptySet);
@@ -91,7 +88,7 @@ public class BitSetTest extends TestCase {
         testAppendTwoSets(firstWord, emptySet);
         testAppendTwoSets(emptySet, firstWord);
 
-        temp.fillByOne(64);
+        temp.fill();
         testAppendTwoSets(temp, temp);
         testAppendTwoSets(temp, firstWord);
         testAppendTwoSets(firstWord, temp);
@@ -247,21 +244,9 @@ public class BitSetTest extends TestCase {
 
 
     public void testFillByOne() {
-        temp.fillByOne(0);
-        assertEquals(emptySet, temp);
-        temp.fillByOne(65);
-        assertEquals(65, temp.length());
-        temp.fillByOne(64);
-        assertEquals(64, temp.length());
-        temp.put(68);
-        assertEquals(65, temp.elementCount());
-        temp.fillByOne(32);
-        assertEquals(firstWord, temp);
-
-        try {
-            temp.fillByOne(-1);
-            fail("IndexOutOfBoundsException was not thrown");
-        } catch (IndexOutOfBoundsException ex) {
+        temp.fill();
+        for(int i=0; i<temp.size(); i++){
+             assertTrue(temp.in(i));
         }
     }
 
@@ -567,7 +552,7 @@ public class BitSetTest extends TestCase {
 
     public void testLengthSizeInteraction() {
         temp = new BitSet(3);
-        temp.fillByOne(3);
+        temp.fill();
         assertEquals(3, temp.size());
         assertEquals(3, temp.length());
         temp.resize(2);

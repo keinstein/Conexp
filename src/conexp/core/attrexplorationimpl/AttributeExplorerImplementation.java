@@ -135,7 +135,7 @@ public class AttributeExplorerImplementation implements AttributeExplorer {
         implicationSet.clear(); // not neccesary true, but for first version is ok
         calculator.setImplications(implicationSet);
         calculator.setAttributeExplorationCallback(attributeExplorationCallback);
-        calculator.calcDuquenneGuiguiesSet();
+        calculator.calcImplications();
     }
 
     private class DefaultContextModificationCallback implements AttributeExplorer.ContextModificationCallback {

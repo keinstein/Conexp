@@ -35,7 +35,7 @@ public class DepthSearchBinaryRelationAlgorithm extends DefaultBinaryRelationPro
         newExtent = ContextFactoryRegistry.createSet(rows);
 
         allAttrSet = ContextFactoryRegistry.createSet(cols);
-        allAttrSet.fillByOne(cols);
+        allAttrSet.fill();
 
         currObjects = new ModifiableSet[maxDepth];
         currAttribs = new ModifiableSet[maxDepth];

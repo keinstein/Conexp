@@ -59,7 +59,7 @@ public class NextClosedSetCalculator extends AbstractConceptCalcStrategy impleme
     }
 
     //-----------------------------------------------------
-    public void calcDuquenneGuiguiesSet() {
+    public void calcImplications() {
         util.Assert.isTrue(implSet != null);
         startCalc();
         doCalcImplBase();
@@ -295,7 +295,7 @@ public class NextClosedSetCalculator extends AbstractConceptCalcStrategy impleme
         closedObjects = ContextFactoryRegistry.createSet(rel.getRowCount());
         attrSet = ContextFactoryRegistry.createSet(col);
         allAttrSet = ContextFactoryRegistry.createSet(col);
-        allAttrSet.fillByOne(rel.getColCount());
+        allAttrSet.fill();
         tempAttrSet = ContextFactoryRegistry.createSet(col);
         tempAttrSet2 = ContextFactoryRegistry.createSet(col);
     }
@@ -319,7 +319,7 @@ public class NextClosedSetCalculator extends AbstractConceptCalcStrategy impleme
     private void zeroClosureAttr() {
         int numObj = rel.getRowCount();
         objInImpl = numObj;
-        closedObjects.fillByOne(numObj);
+        closedObjects.fill();
         attrSet.copy(allAttrSet);
         for (int j = numObj; --j >= 0;) {
             attrSet.and(rel.getSet(j));

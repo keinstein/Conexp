@@ -34,7 +34,7 @@ public interface ModifiableSet extends Set, ModifiableFragment {
      *
      */
 
-    void fillByOne(int till);
+    void fill();
 
     /**
      *   performs inplace or operation

@@ -312,11 +312,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         }
     }
 
-    public void fillByOne(int num) {
-        if (num < 0)
-            throw new IndexOutOfBoundsException(Integer.toString(num));
-        if (0 == num) {
-            clearSet();
+    public void fill() {
+        int num = size;
+        if(num<=0){
             return;
         }
         final int bitTill = num - 1;
@@ -531,17 +529,17 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * value <code>true</code> or the corresponding bit in the bit set
      * argument has the value <code>true</code>.
      *
-     * @param   set   a bit set.
+     * @param   set  a bit set.
      */
-    public void or(Set s) {
-        if (this == s)
+    public void or(Set set) {
+        if (this == set)
             return;
-        BitSet set = (BitSet) s;
+        BitSet bitset = (BitSet) set;
         //*DBG*/util.Assert.isTrue(this.size ==set.size);
         //*DBG*/util.Assert.isTrue(this.unit.length==set.unit.length);
 
         for (int i = 0; i < unit.length; i++)
-            unit[i] |= set.unit[i];
+            unit[i] |= bitset.unit[i];
     }
 
     /**
@@ -678,7 +676,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * Insert the method's description here.
      * Creation date: (13.07.01 9:17:07)
      * @return boolean
-     * @param index int
+     * @param bitIndex int
      */
     public boolean out(int bitIndex) {
         if (bitIndex < 0)

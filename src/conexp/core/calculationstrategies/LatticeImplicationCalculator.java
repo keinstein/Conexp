@@ -52,7 +52,7 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
     }
 
 
-    public void calcDuquenneGuiguiesSet() {
+    public void calcImplications() {
         Assert.isTrue(lattice != null, "Lattice should be set for using lattice implications calculator");
         LatticeElement one = lattice.getOne();
         succCount = new int[lattice.conceptsCount()];
