@@ -8,6 +8,7 @@
 package cefacade;
 
 import cefacade.implementation.CEFacadeFactoryImplementation;
+import cefacade.implementation.ContextReducabilityAnalyserImplementation;
 
 
 public class CEFacadeFactory {
@@ -30,5 +31,11 @@ public class CEFacadeFactory {
 
     public static ISimpleContext makeContext() {
         return makeContext(0, 0);
+    }
+
+    public static IContextReducabilityAnalyser makeContextAnalyser(ISimpleContext context) {
+        ContextReducabilityAnalyserImplementation contextAnalyser = new ContextReducabilityAnalyserImplementation();
+        contextAnalyser.setContext(context);
+        return contextAnalyser;
     }
 }
