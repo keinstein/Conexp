@@ -30,6 +30,7 @@ public class AllTests extends TestCase {
         suite.addTest(conexp.frontend.latticeeditor.figures.tests.AllTests.suite());
         suite.addTest(conexp.frontend.latticeeditor.highlightstrategies.tests.PackageTest.suite());
         suite.addTest(conexp.frontend.latticeeditor.labelingstrategies.tests.PackageTest.suite());
+        suite.addTest(conexp.frontend.latticeeditor.movestrategies.tests.AllTests.suite());
         suite.addTest(conexp.frontend.latticeeditor.noderadiusstrategy.tests.AllTests.suite());
 
 //        suite.addTest(conexp.frontend.latticeeditor.queries.tests.AllTests.suite());
