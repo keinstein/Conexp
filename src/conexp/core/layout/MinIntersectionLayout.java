@@ -895,7 +895,6 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         return currEdge.getLength() - 1;
     }
 
-
     //------------------------------------------
     static void exchangeEdges(List edges, Edge toSwap) {
         int index = edges.indexOf(toSwap);

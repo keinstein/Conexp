@@ -80,6 +80,7 @@ public class LayeredLayoter extends NonIncrementalLayouter {
         evaluationFunctions.add(new DifferentEdgeVectorsEvaluationFunction(lattice, this));
         evaluationFunctions.add(new ThreeElementsChainCountEvaluationFunction(lattice, this));
         evaluationFunctions.add(new LengthOfEdgesEvaluationFunction(lattice, this));
+        evaluationFunctions.add(new EdgeIntersectionEvaluationFunction(lattice, this));
     }
 
     private void assignLayersToLatticeElements() {
