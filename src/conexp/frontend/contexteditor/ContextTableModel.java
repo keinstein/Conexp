@@ -15,6 +15,7 @@ import conexp.util.gui.paramseditor.ParamsProvider;
 import conexp.util.valuemodels.IntValueModel;
 import util.Assert;
 import util.BooleanUtil;
+import util.DataFormatException;
 import util.StringUtil;
 
 import javax.swing.event.TableModelEvent;
@@ -23,8 +24,6 @@ import javax.swing.event.UndoableEditListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoableEditSupport;
-
-import util.DataFormatException;
 
 public class ContextTableModel extends AbstractTableModel implements ParamsProvider {
 

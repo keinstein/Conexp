@@ -43,9 +43,6 @@ public class FCAEngineImplementation implements FCAEngine {
     }
 
     public Lattice buildPartialLattice(Context cxt, Set attributeMask, Set objectsMask) {
-        System.out.println("FCAEngineImplementation.buildPartialLattice");
-        System.out.println("attribute mask:"+attributeMask);
-        System.out.println("object mask:"+objectsMask);
         Assert.isTrue(cxt.getAttributeCount() == attributeMask.size());
         DepthSearchCalculatorWithFeatureMask calc = new DepthSearchCalculatorWithFeatureMask();
         calc.setFeatureMasks(attributeMask, objectsMask);

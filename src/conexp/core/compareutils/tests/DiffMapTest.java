@@ -13,9 +13,7 @@ import conexp.core.compareutils.ConceptCollectionCompareSet;
 import conexp.core.compareutils.DefaultCompareInfoFactory;
 import conexp.core.compareutils.DiffMap;
 import conexp.core.tests.SetBuilder;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class DiffMapTest extends TestCase {

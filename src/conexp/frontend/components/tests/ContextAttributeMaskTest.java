@@ -12,9 +12,7 @@ import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.EntitiesMask;
 import conexp.frontend.components.ContextAttributeMask;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import util.testing.SimpleMockPropertyChangeListener;
 
 

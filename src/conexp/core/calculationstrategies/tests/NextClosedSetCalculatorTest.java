@@ -10,8 +10,6 @@ package conexp.core.calculationstrategies.tests;
 import conexp.core.ItemSet;
 import conexp.core.calculationstrategies.NextClosedSetCalculator;
 import conexp.core.tests.SetBuilder;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 
 public class NextClosedSetCalculatorTest extends EnumerativeCalcStrategyTest {

@@ -7,8 +7,8 @@
 
 package conexp.core;
 
-import util.StringUtil;
 import util.BasePropertyChangeSupplier;
+import util.StringUtil;
 import util.collection.CollectionFactory;
 
 import java.util.*;

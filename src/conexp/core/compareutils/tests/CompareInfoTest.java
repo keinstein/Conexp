@@ -1,8 +1,8 @@
 package conexp.core.compareutils.tests;
 
-import junit.framework.TestCase;
 import conexp.core.compareutils.CompareInfo;
 import conexp.core.compareutils.DefaultCompareInfoFactory;
+import junit.framework.TestCase;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

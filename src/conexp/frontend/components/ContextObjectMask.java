@@ -7,7 +7,9 @@
 
 package conexp.frontend.components;
 
-import conexp.core.*;
+import conexp.core.ContextChangeEvent;
+import conexp.core.DefaultContextListener;
+import conexp.core.ExtendedContextEditingInterface;
 import conexp.frontend.SetProvidingEntitiesMask;
 import util.Assert;
 

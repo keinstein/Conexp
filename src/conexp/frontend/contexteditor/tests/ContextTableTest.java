@@ -1,12 +1,12 @@
 package conexp.frontend.contexteditor.tests;
 
-import junit.framework.TestCase;
-import conexp.frontend.contexteditor.ContextTable;
 import conexp.core.Context;
 import conexp.core.tests.SetBuilder;
+import conexp.frontend.contexteditor.ContextTable;
+import junit.framework.TestCase;
 
-import java.util.List;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

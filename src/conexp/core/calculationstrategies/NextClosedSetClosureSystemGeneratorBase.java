@@ -1,7 +1,7 @@
 package conexp.core.calculationstrategies;
 
-import conexp.core.ModifiableSet;
 import conexp.core.ContextFactoryRegistry;
+import conexp.core.ModifiableSet;
 import conexp.core.Set;
 
 /**

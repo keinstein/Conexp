@@ -18,9 +18,7 @@ import conexp.frontend.latticeeditor.NestedLineDiagramDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.DefaultFigureVisitor;
 import conexp.frontend.latticeeditor.figures.NestedDiagramNodeFigure;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import util.collection.CollectionFactory;
 
 import java.awt.Rectangle;

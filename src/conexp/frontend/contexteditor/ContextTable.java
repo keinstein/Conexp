@@ -12,7 +12,6 @@ import conexp.util.gui.Command;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
 import util.DataFormatException;
-import util.StringUtil;
 
 import javax.swing.*;
 import javax.swing.event.CellEditorListener;
@@ -27,9 +26,9 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.util.StringTokenizer;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 
 public class ContextTable extends JTable implements ParamsProvider {

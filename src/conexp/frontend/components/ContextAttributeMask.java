@@ -8,8 +8,9 @@
 
 package conexp.frontend.components;
 
-import conexp.core.*;
-import conexp.frontend.SetProvidingEntitiesMask;
+import conexp.core.ContextChangeEvent;
+import conexp.core.DefaultContextListener;
+import conexp.core.ExtendedContextEditingInterface;
 import util.Assert;
 
 import java.beans.PropertyChangeEvent;

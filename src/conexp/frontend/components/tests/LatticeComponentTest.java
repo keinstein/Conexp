@@ -11,9 +11,7 @@ package conexp.frontend.components.tests;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.LatticeCalculator;
 import conexp.frontend.components.LatticeComponent;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import util.testing.SimpleMockPropertyChangeListener;
 
 public class LatticeComponentTest extends TestCase {

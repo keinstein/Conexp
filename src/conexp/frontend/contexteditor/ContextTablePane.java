@@ -16,8 +16,6 @@ import conexp.util.gui.Command;
 
 import javax.swing.*;
 import javax.swing.event.UndoableEditListener;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class ContextTablePane extends JScrollPane {
 

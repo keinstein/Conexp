@@ -11,9 +11,7 @@ package conexp.frontend.contexteditor.tests;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.contexteditor.ContextViewPanel;
 import conexp.frontend.tests.ResourcesToolbarDefinitionTest;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class ContextViewPanelTest extends TestCase {
     public void testResources() {

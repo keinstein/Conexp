@@ -1,8 +1,8 @@
 package conexp.frontend.contexteditor;
 
 import javax.swing.table.TableCellEditor;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
