@@ -13,11 +13,17 @@ import javax.swing.*;
 
 
 public class UIDataFormatErrorHandler extends DataFormatErrorHandlerBase {
-    public UIDataFormatErrorHandler() {
+
+    JFrame mainFrame;
+
+    public UIDataFormatErrorHandler(JFrame mainAppWindow) {
+        super();
+        this.mainFrame = mainAppWindow;
     }
 
     public void handleUncriticalError(DataFormatException ex) throws DataFormatException {
-        int result = JOptionPane.showConfirmDialog(null, ex.getMessage(), "Error: continue loading?", JOptionPane.YES_NO_OPTION);
+
+        int result = JOptionPane.showConfirmDialog(mainFrame, ex.getMessage(), "Error: continue loading?", JOptionPane.YES_NO_OPTION);
         if (result != JOptionPane.YES_OPTION) {
             throw ex;
         }

@@ -147,7 +147,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
         public void actionPerformed(ActionEvent e) {
 
-            JOptionPane.showMessageDialog(null, FormatUtil.format(
+            JOptionPane.showMessageDialog(getMainFrame(), FormatUtil.format(
                     getLocalizedMessageSupplier().getMessage("ConceptNumMsg"),
                     actualContextDocument.getConceptCount())); //$NON-NLS-1$
         }

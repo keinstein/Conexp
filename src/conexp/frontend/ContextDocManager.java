@@ -280,7 +280,8 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         try {
             fileReader = new FileReader(f);
             //todo: set proper data format error handler
-            d = loader.loadDocument(fileReader, new UIDataFormatErrorHandler());
+            d = loader.loadDocument(fileReader, new UIDataFormatErrorHandler(getMainAppWindow()));
+
         } finally {
             if (null != fileReader) {
                 fileReader.close();
