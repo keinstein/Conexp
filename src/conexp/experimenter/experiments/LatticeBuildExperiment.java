@@ -3,7 +3,7 @@ package conexp.experimenter.experiments;
 import conexp.core.*;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import conexp.core.calculationstrategies.NextClosedSetCalculator;
-import conexp.core.calculationstrategies.AddAtomCalcStrategy;
+import research.conexp.core.calculationstrategies.AddAtomCalcStrategy;
 import conexp.core.enumcallbacks.NextClosedSetLatticeBuilderCallback;
 import conexp.experimenter.framework.MeasurementProtocol;
 import conexp.experimenter.framework.MeasurementSet;
