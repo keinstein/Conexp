@@ -351,12 +351,15 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
 //----------------------------------------------------------------
+    //todo: move from context, the only dependent part from context is addition of context entities
     public void locateElementsConcepts(Lattice lattice) {
         if (!lattice.isEmpty()) {
             findObjectsConcepts(lattice);
             findAttributesConcepts(lattice);
         }
     }
+
+
 
     public void locateElementsConcepts(Lattice lattice, Set attributeMask, Set objectMask) {
         if (!lattice.isEmpty()) {

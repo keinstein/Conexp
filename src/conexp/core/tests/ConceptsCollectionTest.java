@@ -16,4 +16,12 @@ public class ConceptsCollectionTest extends TestCase {
     public void testEquals() {
         TestUtil.testEqualsAndHashCode(new ConceptsCollection(), new ConceptsCollection());
     }
+
+    public void testEqualsAsSets(){
+        ConceptsCollection one = new ConceptsCollection();
+        ConceptsCollection two = new ConceptsCollection();
+        assertTrue(one.equalsAsSets(two));
+        two = SetBuilder.makeConceptSet(new int[][]{{0, 1},{1, 0}});
+        assertFalse(one.equalsAsSets(two));
+    }
 }

@@ -2,6 +2,7 @@ package conexp.experimenter.framework;
 
 import conexp.experimenter.setdecorator.CountingSetDecorator;
 import conexp.experimenter.setdecorator.OperationStatistic;
+import conexp.experimenter.setdecorator.OperationCountHolder;
 import conexp.core.bitset.BitSet;
 import conexp.core.ContextFactory;
 import conexp.core.ModifiableBinaryRelation;
@@ -27,7 +28,7 @@ public class ExperimentContextFactory implements ContextFactory {
         return new CountingSetDecorator(new BitSet(size), statistic);
     }
 
-    public OperationStatistic getSnapshot(){
+    public OperationCountHolder getSnapshot(){
         return statistic.makeCopy();
     }
 

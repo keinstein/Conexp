@@ -3,6 +3,7 @@ package conexp.experimenter.experiments;
 import conexp.experimenter.framework.BaseExperimentSuite;
 import conexp.experimenter.framework.RelationSequence;
 import conexp.experimenter.framework.RelationSequenceSet;
+import conexp.experimenter.framework.ExperimentSet;
 import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
 
 /**
@@ -40,8 +41,8 @@ public class ExperimentSuite extends BaseExperimentSuite {
 
         RelationSequence[] toTranspose = new RelationSequence[upperFillBound];
         for (int k = lowFillBound; k <= upperFillBound; k++) {
-            toTranspose[k - 1] = new PercentFilledRelationGenerationStrategy(1, 30, 5, 5, 30/*count*/, (double) k / 10);
-//            toTranspose[k - 1] = new PercentFilledRelationGenerationStrategy(10, 100, 20, 20, 10/*count*/, (double) k / 10);
+//            toTranspose[k - 1] = new PercentFilledRelationGenerationStrategy(1, 30, 5, 5, 30/*count*/, (double) k / 10);
+            toTranspose[k - 1] = new PercentFilledRelationGenerationStrategy(10, 100, 20, 20, 10/*count*/, (double) k / 10);
             relSet.addRelationSequence(toTranspose[k - 1]);
         }
 
@@ -55,6 +56,15 @@ public class ExperimentSuite extends BaseExperimentSuite {
         RelationSequence sparse = new conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy(100, 900, 50, 50, 9, 3);
         relSet.addRelationSequence(sparse);
         relSet.addRelationSequence(new conexp.experimenter.relationsequences.TransposeRelationSequenceDecorator(sparse));
+    }
+
+    /**
+     * Insert the method's description here.
+     * Creation date: (04.08.01 9:25:41)
+     */
+    protected static void doRunExperimentSet(ExperimentSet set) {
+        final RelationSequenceSet relSet = ExperimentSuite.makeRelationSequenceSet();
+        doRunTimeMeasurementExperiment(set, relSet);
     }
 
 }

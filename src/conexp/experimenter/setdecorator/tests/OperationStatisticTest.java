@@ -3,6 +3,7 @@ package conexp.experimenter.setdecorator.tests;
 import junit.framework.TestCase;
 import conexp.experimenter.setdecorator.OperationStatistic;
 import conexp.experimenter.setdecorator.OperationCodes;
+import conexp.experimenter.setdecorator.OperationCountHolder;
 import util.testing.TestUtil;
 
 /**
@@ -15,10 +16,10 @@ import util.testing.TestUtil;
 
 public class OperationStatisticTest extends TestCase {
     public void testMakeCopy() {
-        OperationStatistic statistic = new OperationStatistic();
+        OperationCountHolder statistic = new OperationStatistic();
         statistic.register(OperationCodes.IN);
         assertEquals(1, statistic.getOperationCount(OperationCodes.IN));
-        OperationStatistic copy = statistic.makeCopy();
+        OperationCountHolder copy = statistic.makeCopy();
         assertEquals(copy, statistic);
         statistic.register(OperationCodes.IN);
         TestUtil.testNotEquals(copy, statistic);

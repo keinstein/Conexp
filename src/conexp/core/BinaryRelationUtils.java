@@ -309,6 +309,18 @@ public class BinaryRelationUtils {
         return true;
     }
 
+
+    public static ModifiableSet objectContingentOfAttributeSet(BinaryRelation relation, Set attribsSubset) {
+        final int rowCount = relation.getRowCount();
+        ModifiableSet objectDerivation = ContextFactoryRegistry.createSet(rowCount);
+        for (int i = 0; i < rowCount; i++) {
+            if (attribsSubset.isEquals(relation.getSet(i))) {
+                objectDerivation.put(i);
+            }
+        }
+        return objectDerivation;
+    }
+
     public static ModifiableSet derivationOfAttributeSet(BinaryRelation relation, Set attribsSubset) {
         final int rowCount = relation.getRowCount();
         ModifiableSet objectDerivation = ContextFactoryRegistry.createSet(rowCount);

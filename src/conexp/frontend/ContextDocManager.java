@@ -320,11 +320,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return messageSupplier;
     }
 
-    LocalizedMessageSupplier messageSupplier = new LocalizedMessageSupplier() {
-        public String getMessage(String key) {
-            return resources.getString(key);
-        }
-    };
+    LocalizedMessageSupplier messageSupplier = new ContextDocManagerMessageSupplier();
 
     protected String getLocalizedMessage(String key) {
         return getLocalizedMessageSupplier().getMessage(key);
@@ -525,6 +521,12 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
     public JToolBar getActiveDocToolBar() {
         return getActiveDoc().getToolBar();
+    }
+
+    private static class ContextDocManagerMessageSupplier implements LocalizedMessageSupplier {
+        public String getMessage(String key) {
+            return resources.getString(key);
+        }
     }
 
 

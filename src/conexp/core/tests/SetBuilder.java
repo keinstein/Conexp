@@ -66,7 +66,10 @@ public class SetBuilder {
         strat.setRelation(rel);
         strat.setLattice(lat);
         strat.buildLattice();
+        Context cxt = new Context(rel.makeModifiableCopy());
         lat.calcHeight();
+        //todo: clean up this
+        cxt.locateElementsConcepts(lat);
     }
 
 

@@ -10,7 +10,7 @@ package conexp.core.enumcallbacks;
 import conexp.core.Set;
 
 public class ConceptNumCallback extends DefaultConceptEnumCallback {
-    int conCnt;
+    protected int conCnt;
 
 //-----------------------------------------------------------------
     public int getConceptCount() {

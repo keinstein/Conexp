@@ -10,7 +10,6 @@ package conexp.core;
 import util.Assert;
 import util.collection.CollectionFactory;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -88,7 +87,7 @@ public class ConceptsCollection {
         return Concept.makeFromSets(extent, intent);
     }
 
-    public Concept makeConceptFromSetsCopies(Set intent, Set extent) {
+    public Concept makeConceptFromSetsCopies(conexp.core.Set intent, conexp.core.Set extent) {
         return makeConcept(intent.makeModifiableSetCopy(), extent.makeModifiableSetCopy());
     }
 
@@ -104,6 +103,17 @@ public class ConceptsCollection {
 
     public String toString() {
         return elements.toString();
+    }
+
+    public boolean equalsAsSets(ConceptsCollection other){
+        if(this.conceptsCount()!=other.conceptsCount()){
+            return false;
+        }
+        return toSet(this.elements).equals(toSet(other.elements));
+    }
+
+    private static java.util.Set toSet(List elements) {
+        return CollectionFactory.createDefaultSet(elements);
     }
 
     public boolean equals(Object obj) {

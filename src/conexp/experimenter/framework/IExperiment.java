@@ -12,7 +12,7 @@ public interface IExperiment {
 
     void setUp(BinaryRelation rel);
 
-    void perform();
+    void perform() throws ExperimentException;
 
     void tearDown();
 

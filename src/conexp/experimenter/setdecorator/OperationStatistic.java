@@ -12,28 +12,19 @@ import java.util.Arrays;
  * Time: 2:27:06
  */
 
-public class OperationStatistic implements OperationCodes {
+public class OperationStatistic extends OperationCountHolder implements OperationCodes {
 
-    long[] operationFrequencies;
+    protected OperationStatistic(long[] frequencies){
+        super(frequencies);
+    }
 
     public OperationStatistic() {
-        this(makeOperationsArray());
+        this(new long[OPERATION_COUNT]);
     }
 
-    private static long[] makeOperationsArray() {
-        return new long[OPERATION_COUNT];
-    }
 
-    protected OperationStatistic(long[] operationCount) {
-        this.operationFrequencies = operationCount;
-    }
-
-    public void register(int opCode) {
-        operationFrequencies[opCode]++;
-    }
-
-    public long getOperationCount(int opCode) {
-        return operationFrequencies[opCode];
+    protected OperationCountHolder makeCopy(long[] frequencies) {
+        return new OperationStatistic(frequencies);
     }
 
     public boolean equals(Object obj) {
@@ -53,7 +44,7 @@ public class OperationStatistic implements OperationCodes {
     }
 
 
-    public static String opCodeToString(int opCode) {
+    public String opCodeToString(int opCode) {
         switch (opCode) {
             case SIZE:
                 return "SIZE";
@@ -142,37 +133,6 @@ public class OperationStatistic implements OperationCodes {
         }
 
         return "Bad operation code";
-    }
-
-    public String toString() {
-        StringBuffer result = new StringBuffer();
-        result.append("Operation count:\n");
-        for (int i = 0; i < operationFrequencies.length; i++) {
-            long frequency = operationFrequencies[i];
-            if (frequency != 0) {
-                result.append(opCodeToString(i));
-                result.append(":");
-                result.append(frequency);
-                result.append("\n");
-            }
-        }
-        return result.toString();
-    }
-
-    public int hashCode() {
-        return 0;
-        //todo: add when needed
-        //return ArraysUtil.arrayHashCode(operationCount);
-    }
-
-    public OperationStatistic makeCopy() {
-        long[] copy = makeOperationsArray();
-        System.arraycopy(operationFrequencies, 0, copy, 0, operationFrequencies.length);
-        return new OperationStatistic(copy);
-    }
-
-    public void clear() {
-        Arrays.fill(operationFrequencies, 0L);
     }
 
 

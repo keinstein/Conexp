@@ -2,6 +2,8 @@ package conexp.experimenter.framework;
 
 import conexp.experimenter.experiments.ExperimentSuite;
 import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.bitset.BitSetFactory;
 
 import java.io.PrintWriter;
 
@@ -14,12 +16,9 @@ import java.io.PrintWriter;
  */
 
 public class BaseExperimentSuite {
-    /**
-     * Insert the method's description here.
-     * Creation date: (04.08.01 9:25:41)
-     */
-    protected static void doRunExperimentSet(ExperimentSet set) {
-        doRunExperiment(set, ExperimentSuite.makeRelationSequenceSet(), null);
+
+    public static void doRunTimeMeasurementExperiment(ExperimentSet set, RelationSequenceSet relSet) {
+        doRunExperiment(set, relSet, null);
     }
 
     protected static void doRunExperiment(ExperimentSet set, RelationSequenceSet relSet, ExperimentContextFactory factory) {
@@ -49,5 +48,12 @@ public class BaseExperimentSuite {
         benchmark.setOutStream(pw);
         benchmark.setScreenStream(screenStream);
         return benchmark;
+    }
+
+    public static void doRunExperimentWithCountingOfSetOperations(final ExperimentSet experimentSet, final RelationSequenceSet relationSequence) {
+        ExperimentContextFactory factory = new ExperimentContextFactory();
+        ContextFactoryRegistry.setContextFactory(factory);
+        doRunExperiment(experimentSet, relationSequence, factory);
+        ContextFactoryRegistry.setContextFactory(new BitSetFactory());
     }
 }

@@ -13,19 +13,24 @@ import conexp.core.FCAEngineRegistry;
 import conexp.core.LocalizedMessageSupplier;
 import util.DataFormatException;
 import util.StringUtil;
+import util.FormatUtil;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.io.LineNumberReader;
 
 
 public class ConImpContextLoader implements ContextReader {
-    private BufferedReader reader;
+    private LineNumberReader reader;
 
     protected LocalizedMessageSupplier getLocalizedMessageSupplier() {
         if (null == localizedMessageSupplier) {
             localizedMessageSupplier = new LocalizedMessageSupplier() {
                 public String getMessage(String key) {
+                    if("ConImpLoader.ErrorInFileFormMsg".equals(key)){
+                        return "Error in data format on line {0}";
+                    }
                     return "";
                 }
             };
@@ -40,7 +45,7 @@ public class ConImpContextLoader implements ContextReader {
     LocalizedMessageSupplier localizedMessageSupplier;
 
     public Context parseContext(Reader r) throws IOException, DataFormatException {
-        reader = new BufferedReader(r);
+        reader = new LineNumberReader(new BufferedReader(r));
 
         String str = getNextLine();
 
@@ -110,7 +115,10 @@ public class ConImpContextLoader implements ContextReader {
     }
 
     private DataFormatException makeFileFormatException() {
-        return new DataFormatException(getLocalizedMessageSupplier().getMessage("ConImpLoader.ErrorInFileFormMsg"));
+        final String message = getLocalizedMessageSupplier().getMessage("ConImpLoader.ErrorInFileFormMsg");
+        return new DataFormatException(FormatUtil.format(message, reader.getLineNumber()));
     }
+
+
 
 }
