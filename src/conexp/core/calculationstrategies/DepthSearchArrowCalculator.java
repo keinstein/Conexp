@@ -100,7 +100,7 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
         ModifiableSet prohibitedSet = tempAttrSet;
         // here it plays this role
         //*DBG*/ System.out.println("doUpCalcArrow:====================  "+depth);
-        //*DBG*/ System.out.println("prohibited "+tempAttrSet);
+        //*DBG*/ System.out.println("prohibited "+nextClosure);
         ModifiableSet _currObjects = currObjects[depth];
         _currObjects.copy(objects);
         //*DBG*/ System.out.println("objects:"+_currObjects);

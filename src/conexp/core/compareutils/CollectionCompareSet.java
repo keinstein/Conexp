@@ -14,8 +14,8 @@ import java.util.Iterator;
 public class CollectionCompareSet extends CompareSetBase{
     final Collection collection;
 
-    public CollectionCompareSet(Collection implicationSet) {
-        this.collection = implicationSet;
+    public CollectionCompareSet(Collection collection) {
+        this.collection = collection;
     }
 
     protected Iterator getCollectionIterator() {

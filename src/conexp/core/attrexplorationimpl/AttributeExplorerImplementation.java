@@ -9,7 +9,7 @@
 package conexp.core.attrexplorationimpl;
 
 import conexp.core.*;
-import conexp.core.calculationstrategies.NextClosedSetCalculator;
+import conexp.core.calculationstrategies.NextClosedSetImplicationCalculator;
 import util.Assert;
 
 public class AttributeExplorerImplementation implements AttributeExplorer {
@@ -27,7 +27,7 @@ public class AttributeExplorerImplementation implements AttributeExplorer {
         this.contextModificationCallback = contextModificationCallback;
     }
 
-    NextClosedSetCalculator calculator;
+    NextClosedSetImplicationCalculator calculator;
 
     public void setContext(Context context) {
         this.context = context;
@@ -130,7 +130,7 @@ public class AttributeExplorerImplementation implements AttributeExplorer {
     public void performAttributeExploration() {
         Assert.isTrue(implicationSet.getAttributesInformation() == context);
         counterExample = ContextFactoryRegistry.createSet(context.getAttributeCount());
-        calculator = new NextClosedSetCalculator();
+        calculator = new NextClosedSetImplicationCalculator();
         calculator.setRelation(context.getRelation());
         implicationSet.clear(); // not neccesary true, but for first version is ok
         calculator.setImplications(implicationSet);

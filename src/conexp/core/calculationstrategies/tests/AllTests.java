@@ -26,7 +26,7 @@ public class AllTests extends TestCase {
         suite.addTest(FrequentSetMinerTest.suite());
 
         suite.addTest(LatticeImplicationCalculatorTest.suite());
-        suite.addTest(NextClosedSetImplicationCalculatorTest.suite());
+        suite.addTestSuite(NextClosedSetImplicationCalculatorTest.class);
         return suite;
     }
 

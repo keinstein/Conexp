@@ -9,7 +9,7 @@ package conexp.core.associations;
 
 import conexp.core.*;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
-import conexp.core.calculationstrategies.NextClosedSetCalculator;
+import conexp.core.calculationstrategies.NextClosedSetImplicationCalculator;
 
 import java.util.ArrayList;
 
@@ -57,7 +57,7 @@ public class SimpleAssociationMiner extends BaseAssociationMiner {
      * @param minSupport int
      */
     public void findExactDependencies(DependencySet ret, int minSupport) {
-        NextClosedSetCalculator implCalc = new NextClosedSetCalculator();
+        ImplicationCalcStrategy implCalc = new NextClosedSetImplicationCalculator();
         implCalc.setRelation(cxt.getRelation());
         validImplications = new ImplicationSet(cxt);
         implCalc.setImplications(validImplications);

@@ -1,7 +1,7 @@
 package conexp.frontend.ruleview;
 
 import conexp.core.ImplicationCalcStrategy;
-import conexp.core.calculationstrategies.NextClosedSetCalculator;
+import conexp.core.calculationstrategies.NextClosedSetImplicationCalculator;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
@@ -10,7 +10,7 @@ import conexp.core.calculationstrategies.NextClosedSetCalculator;
  */
 public class NextClosedSetImplicationCalculatorFactory implements ImplicationCalcStrategyFactory {
     public ImplicationCalcStrategy makeImplicationCalcStrategy() {
-        return new NextClosedSetCalculator();
+        return new NextClosedSetImplicationCalculator();
     }
 
     private NextClosedSetImplicationCalculatorFactory() {}

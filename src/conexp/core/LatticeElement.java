@@ -7,11 +7,10 @@
 
 package conexp.core;
 
+import conexp.util.IteratorWrapperBase;
 import util.Assert;
 
 import java.util.*;
-
-import conexp.util.IteratorWrapperBase;
 
 public class LatticeElement extends Concept {
     //--------------------------------------------

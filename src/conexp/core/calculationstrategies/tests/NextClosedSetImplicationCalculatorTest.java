@@ -9,20 +9,12 @@ package conexp.core.calculationstrategies.tests;
 
 import conexp.core.Context;
 import conexp.core.ImplicationCalcStrategy;
-import conexp.core.calculationstrategies.NextClosedSetCalculator;
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import conexp.core.calculationstrategies.NextClosedSetImplicationCalculator;
 
 public class NextClosedSetImplicationCalculatorTest extends ImplicationCalculatorTest {
-    private static final Class THIS = NextClosedSetImplicationCalculatorTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
 
     protected ImplicationCalcStrategy makePreparedCalculator(Context cxt) {
-        ImplicationCalcStrategy calc = new NextClosedSetCalculator();
+        ImplicationCalcStrategy calc = new NextClosedSetImplicationCalculator();
         calc.setRelation(cxt.getRelation());
         return calc;
     }
