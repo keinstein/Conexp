@@ -1,11 +1,9 @@
 package conexp.core.layout.layeredlayout.tests;
 
-import junit.framework.TestCase;
 import conexp.core.layout.layeredlayout.BacktrackingAlgorithm;
+import junit.framework.TestCase;
 
 import java.util.Arrays;
-
-import util.StringUtil;
 
 /**
  * Copyright (c) 2000-2003, Sergey Yevtushenko

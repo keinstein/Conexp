@@ -1,8 +1,8 @@
 package conexp.core.stability;
 
 import conexp.core.*;
-import util.collection.CollectionFactory;
 import util.MathUtil;
+import util.collection.CollectionFactory;
 
 import java.util.Iterator;
 import java.util.Map;

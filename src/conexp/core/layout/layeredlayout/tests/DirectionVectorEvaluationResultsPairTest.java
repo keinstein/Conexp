@@ -2,10 +2,9 @@ package conexp.core.layout.layeredlayout.tests;
 
 import conexp.core.layout.layeredlayout.DirectionVectorEvaluationResultsPair;
 import junit.framework.TestCase;
+import util.testing.TestUtil;
 
 import java.util.Arrays;
-
-import util.testing.TestUtil;
 
 /**
  * Copyright (c) 2000-2003, Sergey Yevtushenko

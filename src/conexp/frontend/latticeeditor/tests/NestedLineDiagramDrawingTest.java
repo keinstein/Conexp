@@ -23,7 +23,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import util.collection.CollectionFactory;
 
-import java.awt.*;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 
 public class NestedLineDiagramDrawingTest extends TestCase {

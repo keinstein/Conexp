@@ -9,9 +9,9 @@ import conexp.core.utils.MinimumPartialOrderedElementsCollection;
 import conexp.util.gui.paramseditor.ParamInfo;
 import util.collection.CollectionFactory;
 
-import java.util.List;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  * Copyright (c) 2000-2003, Sergey Yevtushenko

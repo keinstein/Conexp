@@ -8,7 +8,7 @@
 
 package canvas;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 
 public interface Figure {

@@ -7,10 +7,10 @@
 
 package conexp.core.tests;
 
+import conexp.core.Context;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import conexp.core.Context;
 
 public class ContextReductionTest extends TestCase {
     private static final Class THIS = ContextReductionTest.class;

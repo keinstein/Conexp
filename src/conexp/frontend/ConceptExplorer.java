@@ -12,7 +12,8 @@ import com.visibleworkings.trace.TraceController;
 import util.StringUtil;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class ConceptExplorer {
     private static java.util.ResourceBundle resConceptExplorer = java.util.ResourceBundle.getBundle("conexp/frontend/resources/ConceptExplorer");  //$NON-NLS-1$

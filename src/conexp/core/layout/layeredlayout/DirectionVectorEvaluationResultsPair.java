@@ -1,11 +1,10 @@
 package conexp.core.layout.layeredlayout;
 
 import conexp.core.IPartiallyOrdered;
-
-import java.util.Arrays;
-
 import util.ArraysUtil;
 import util.StringUtil;
+
+import java.util.Arrays;
 
 /**
  * Copyright (c) 2000-2003, Sergey Yevtushenko

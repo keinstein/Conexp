@@ -17,7 +17,7 @@ import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import java.awt.*;
+import java.awt.Dimension;
 
 public class LatticeCanvasTest extends junit.framework.TestCase {
 

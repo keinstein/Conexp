@@ -1,7 +1,7 @@
 package conexp.core.stability;
 
-import conexp.core.Set;
 import conexp.core.BinaryRelationProcessor;
+import conexp.core.Set;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

@@ -14,7 +14,9 @@ import conexp.frontend.contexteditor.ContextTablePane;
 import util.Assert;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

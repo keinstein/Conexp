@@ -16,7 +16,10 @@ import util.collection.CollectionFactory;
 import util.collection.IndexedSet;
 import util.gui.GraphicObjectsFactory;
 
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;

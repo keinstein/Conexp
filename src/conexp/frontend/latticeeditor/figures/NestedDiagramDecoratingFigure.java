@@ -13,7 +13,7 @@ import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
 import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 

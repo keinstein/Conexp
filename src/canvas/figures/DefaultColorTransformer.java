@@ -8,7 +8,7 @@
 
 package canvas.figures;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class DefaultColorTransformer implements ColorTransformer {
 

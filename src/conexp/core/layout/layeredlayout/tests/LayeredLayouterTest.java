@@ -7,10 +7,10 @@
 
 package conexp.core.layout.layeredlayout.tests;
 
-import conexp.core.layout.layeredlayout.LayeredLayoter;
-import conexp.core.layout.tests.GenericLayouterTest;
 import conexp.core.Context;
 import conexp.core.Set;
+import conexp.core.layout.layeredlayout.LayeredLayoter;
+import conexp.core.layout.tests.GenericLayouterTest;
 import conexp.core.tests.SetBuilder;
 
 public class LayeredLayouterTest extends GenericLayouterTest {

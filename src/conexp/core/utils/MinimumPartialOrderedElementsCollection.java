@@ -2,7 +2,6 @@ package conexp.core.utils;
 
 import conexp.core.IPartiallyOrdered;
 import util.collection.CollectionFactory;
-import util.collection.IndexedSet;
 
 import java.util.Iterator;
 import java.util.Set;

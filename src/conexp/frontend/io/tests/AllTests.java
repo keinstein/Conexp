@@ -15,9 +15,9 @@ public class AllTests extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(ConExpXMLReaderWriterTest.suite());
-        suite.addTest(ConImpContextReaderWriterTest.suite());
-        suite.addTest(ConImpContextReaderTest.suite());
+        suite.addTestSuite(ConExpXMLReaderWriterTest.class);
+        suite.addTestSuite(ConImpContextReaderWriterTest.class);
+        suite.addTestSuite(ConImpContextReaderTest.class);
         return suite;
     }
 }

@@ -12,8 +12,8 @@ import conexp.core.LatticeElement;
 import conexp.util.valuemodels.BoundedDoubleValue;
 import util.comparators.ComparatorUtil;
 
-import java.util.Comparator;
 import java.awt.geom.Point2D;
+import java.util.Comparator;
 
 
 public abstract class GenericForceDirectedLayouter extends GenericLayouter {

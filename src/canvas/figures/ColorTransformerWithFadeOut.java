@@ -10,7 +10,7 @@ package canvas.figures;
 
 import util.gui.ColorUtil;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class ColorTransformerWithFadeOut implements ColorTransformer {
 

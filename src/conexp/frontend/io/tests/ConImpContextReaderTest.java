@@ -10,9 +10,7 @@ package conexp.frontend.io.tests;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.io.ConImpContextLoader;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import util.StringUtil;
 import util.testing.TestUtil;
 
@@ -20,13 +18,6 @@ import java.io.StringReader;
 
 
 public class ConImpContextReaderTest extends TestCase {
-    private static final Class THIS = ConImpContextReaderTest.class;
-
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     public void testReading() {
         String[] data = {
             "B",

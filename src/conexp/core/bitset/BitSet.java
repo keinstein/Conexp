@@ -9,9 +9,9 @@ package conexp.core.bitset;
 
 
 import conexp.core.Fragment;
+import conexp.core.IPartiallyOrdered;
 import conexp.core.ModifiableSet;
 import conexp.core.Set;
-import conexp.core.IPartiallyOrdered;
 import util.Assert;
 
 import java.io.Serializable;

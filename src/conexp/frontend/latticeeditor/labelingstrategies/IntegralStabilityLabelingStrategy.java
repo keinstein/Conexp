@@ -1,10 +1,10 @@
 package conexp.frontend.latticeeditor.labelingstrategies;
 
-import conexp.frontend.latticeeditor.ConceptQuery;
-import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.core.BinaryRelationProcessor;
 import conexp.core.stability.BruteForceIntegralStabilityCalculator;
 import conexp.core.stability.IntegralStabilityCalculator;
+import conexp.frontend.latticeeditor.ConceptQuery;
+import conexp.frontend.latticeeditor.DrawParameters;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

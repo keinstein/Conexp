@@ -14,7 +14,7 @@ import conexp.frontend.ResourceLoader;
 import util.Assert;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 

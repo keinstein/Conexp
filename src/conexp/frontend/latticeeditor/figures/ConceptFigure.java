@@ -17,7 +17,7 @@ import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import util.StringUtil;
 
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.awt.geom.Arc2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;

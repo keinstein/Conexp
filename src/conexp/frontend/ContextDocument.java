@@ -16,6 +16,7 @@ import conexp.frontend.attributeexploration.AttributeExplorationUserCallbackImpl
 import conexp.frontend.components.AttributeMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.contexteditor.ContextViewPanel;
+import conexp.frontend.latticeeditor.CEDiagramEditorPanel;
 import conexp.frontend.ruleview.AssociationRulesView;
 import conexp.frontend.ruleview.ImplicationBaseCalculator;
 import conexp.frontend.ruleview.ImplicationsView;
@@ -24,13 +25,14 @@ import conexp.frontend.ui.ViewManagerException;
 import conexp.frontend.util.ActionChainUtil;
 import conexp.frontend.util.ResourceManager;
 import conexp.frontend.util.ToolBuilder;
-import conexp.frontend.latticeeditor.CEDiagramEditorPanel;
 import util.Assert;
 import util.FormatUtil;
 import util.StringUtil;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.util.ResourceBundle;

@@ -1,8 +1,7 @@
 package conexp.core.layout.layeredlayout;
 
-import conexp.core.layout.layeredlayout.IEvaluationFunction;
-import conexp.core.layout.ConceptCoordinateMapper;
 import conexp.core.Lattice;
+import conexp.core.layout.ConceptCoordinateMapper;
 
 /**
  * Copyright (c) 2000-2003, Sergey Yevtushenko

@@ -3,8 +3,8 @@ package conexp.core.layout.layeredlayout;
 import conexp.core.ConceptIterator;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
-import conexp.core.layout.PointUtilities;
 import conexp.core.layout.ConceptCoordinateMapper;
+import conexp.core.layout.PointUtilities;
 import util.collection.CollectionFactory;
 import util.gui.GraphicObjectsFactory;
 

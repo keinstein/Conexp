@@ -1,17 +1,16 @@
 package conexp.core.layout.layeredlayout.tests;
 
-import conexp.core.layout.ConceptCoordinateMapper;
 import conexp.core.ItemSet;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
+import conexp.core.layout.ConceptCoordinateMapper;
 import conexp.core.tests.SetBuilder;
-
-import java.util.Map;
-import java.awt.geom.Point2D;
-
+import junit.framework.Assert;
 import util.collection.CollectionFactory;
 import util.gui.GraphicObjectsFactory;
-import junit.framework.Assert;
+
+import java.awt.geom.Point2D;
+import java.util.Map;
 
 /**
  * Copyright (c) 2000-2003, Sergey Yevtushenko

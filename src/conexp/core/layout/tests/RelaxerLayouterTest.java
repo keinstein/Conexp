@@ -7,8 +7,7 @@
 
 package conexp.core.layout.tests;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+
 
 
 public class RelaxerLayouterTest extends GenericLayouterTest {

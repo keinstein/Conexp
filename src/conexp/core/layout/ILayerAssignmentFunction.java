@@ -1,7 +1,7 @@
 package conexp.core.layout;
 
-import conexp.core.LatticeElement;
 import conexp.core.Lattice;
+import conexp.core.LatticeElement;
 
 /**
  * Copyright (c) 2000-2003, Sergey Yevtushenko

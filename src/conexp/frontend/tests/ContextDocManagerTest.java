@@ -18,7 +18,7 @@ import util.gui.MostRecentUrlListManager;
 import util.testing.SimpleMockPropertyChangeListener;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
 

@@ -13,11 +13,10 @@ import conexp.core.DependencySet;
 import conexp.core.tests.ContextReductionTest;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.ContextDocument;
-import conexp.frontend.View;
 import conexp.frontend.ToolbarComponentDecorator;
-import conexp.frontend.contexteditor.ContextViewPanel;
 import conexp.frontend.components.AttributeMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.contexteditor.ContextViewPanel;
 import junit.framework.TestCase;
 
 import javax.swing.*;

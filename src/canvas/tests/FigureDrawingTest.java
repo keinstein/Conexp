@@ -15,7 +15,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import java.awt.*;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 
 public class FigureDrawingTest extends TestCase {

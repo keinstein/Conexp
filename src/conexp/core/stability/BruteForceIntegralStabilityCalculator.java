@@ -2,12 +2,11 @@ package conexp.core.stability;
 
 import conexp.core.*;
 import conexp.core.utils.PowerSetIterator;
+import util.DoubleUtil;
+import util.MathUtil;
+import util.collection.CollectionFactory;
 
 import java.util.Map;
-
-import util.collection.CollectionFactory;
-import util.MathUtil;
-import util.DoubleUtil;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

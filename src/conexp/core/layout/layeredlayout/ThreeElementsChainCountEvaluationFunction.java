@@ -3,12 +3,11 @@ package conexp.core.layout.layeredlayout;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 import conexp.core.LatticeElementCollection;
-import conexp.core.layout.PointUtilities;
 import conexp.core.layout.ConceptCoordinateMapper;
+import conexp.core.layout.PointUtilities;
+import util.gui.GraphicObjectsFactory;
 
 import java.awt.geom.Point2D;
-
-import util.gui.GraphicObjectsFactory;
 
 
 /**

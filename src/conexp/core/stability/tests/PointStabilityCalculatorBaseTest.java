@@ -1,9 +1,9 @@
 package conexp.core.stability.tests;
 
-import junit.framework.TestCase;
+import conexp.core.BinaryRelation;
 import conexp.core.stability.PointStabilityCalculator;
 import conexp.core.tests.SetBuilder;
-import conexp.core.BinaryRelation;
+import junit.framework.TestCase;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

@@ -7,11 +7,11 @@
 
 package conexp.core.layout;
 
-import java.awt.geom.Point2D;
-
 import conexp.util.gui.paramseditor.BoundedDoubleValueParamInfo;
 import conexp.util.gui.paramseditor.ParamInfo;
 import util.Assert;
+
+import java.awt.geom.Point2D;
 
 public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
     protected int currIter;

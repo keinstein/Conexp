@@ -18,7 +18,7 @@ import util.gui.fileselector.FileSelectorService;
 import util.gui.fileselector.GenericFileFilter;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -471,11 +471,20 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
     public void saveDocument(File f) throws java.io.IOException {
         final String extension = StringUtil.getExtension(f.getCanonicalPath());
-        DocumentWriter writer = getWriter(extension);
-        if (writer == null) {
+        DocumentWriter documentWriter = getWriter(extension);
+        if (documentWriter == null) {
             throw new IOException("Not supported extension " + extension);
         }
-        writer.storeDocument(getActiveDoc(), new FileWriter(f));
+
+        FileWriter fileWriter=null;
+        try {
+            fileWriter = new FileWriter(f);
+            documentWriter.storeDocument(getActiveDoc(), fileWriter);
+        } finally {
+            if(null!=fileWriter){
+                fileWriter.close();
+            }
+        }
     }
 
     private Document getActiveDoc() {
