@@ -1,2 +1,0 @@
-1.   Fix bug about recalculation of image size in lattice view panel DONE
-2.   Develop XML format for resources

@@ -144,10 +144,9 @@
     </target>
 
     <target name="makeFacadeSrc" depends="ensureLibsDirExists, compileFacade">
-        <zip zipfile="${distr.libs}/${facadePackage}.zip">
+        <zip zipfile="${distr.libs}/${facadePackage}-src.zip">
             <fileset dir="${src}">
                 <include name="${facadePackage}/**"/>
-                <exclude name="**/tests/"/>
                 <exclude name="**/implementation/"/>
             </fileset>
         </zip>
