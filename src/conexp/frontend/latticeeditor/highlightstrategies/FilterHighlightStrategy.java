@@ -8,9 +8,15 @@
 package conexp.frontend.latticeeditor.highlightstrategies;
 
 import conexp.core.Set;
+import conexp.frontend.latticeeditor.HighlightStrategy;
 
 
 public class FilterHighlightStrategy extends conexp.frontend.latticeeditor.HighlightStrategy {
+
+
+    protected HighlightStrategy createNew() {
+        return new FilterHighlightStrategy();
+    }
 
     protected boolean highlightQuery(Set attribs) {
         return query.isSupersetOf(attribs);

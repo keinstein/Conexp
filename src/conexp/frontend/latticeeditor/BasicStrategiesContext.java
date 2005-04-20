@@ -14,14 +14,29 @@ import conexp.util.gui.strategymodel.StrategyModel;
 import conexp.util.gui.strategymodel.StrategyValueItem;
 import util.BasePropertyChangeSupplier;
 
+import java.io.IOException;
+import java.util.prefs.BackingStoreException;
+import java.util.prefs.Preferences;
+
 public class BasicStrategiesContext extends BasePropertyChangeSupplier implements ParamsProvider {
 
     public BasicStrategiesContext(java.beans.PropertyChangeSupport propertyChange) {
         this.propertyChange = propertyChange;
     }
 
-    protected StrategyValueItem makeStrategyValueItem(String label, StrategyModel model) {
-        return new StrategyValueItem(label, model, getPropertyChangeSupport());
+    protected StrategyValueItem makeStrategyValueItem(String propertyName, StrategyModel model) {
+        return new StrategyValueItem(propertyName, model, getPropertyChangeSupport());
+    }
+
+    Preferences preferences;
+
+
+    public Preferences getPreferences() {
+        return preferences;
+    }
+
+    public void setPreferences(Preferences preferences) {
+        this.preferences = preferences;
     }
 
     private ParamInfo[] params;
@@ -35,6 +50,16 @@ public class BasicStrategiesContext extends BasePropertyChangeSupplier implement
             params = makeParamInfo();
         }
         return params;
+    }
+
+    public void printPreferences() {
+        try {
+            getPreferences().exportNode(System.out);
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use Options | File Templates.
+        } catch (BackingStoreException e) {
+            e.printStackTrace();  //To change body of catch statement use Options | File Templates.
+        }
     }
 
 }

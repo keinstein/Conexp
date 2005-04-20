@@ -10,16 +10,11 @@ package conexp.util.gui.strategymodel.tests;
 import conexp.util.GenericStrategy;
 import conexp.util.gui.strategymodel.GrowingStrategyModel;
 import conexp.util.gui.strategymodel.StrategyValueItem;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import util.testing.TestUtil;
 
 public class StrategyValueItemTest extends TestCase {
-    private static final Class THIS = StrategyValueItemTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
+    private GrowingStrategyModel model;
 
     static class MockGenericStrategy implements GenericStrategy {
     };
@@ -29,7 +24,7 @@ public class StrategyValueItemTest extends TestCase {
     private String SECOND_KEY = "two";
 
     protected void setUp() throws Exception {
-        GrowingStrategyModel model = new GrowingStrategyModel();
+        model = new GrowingStrategyModel();
 
 
         model.addStrategy(FIRST_KEY, "first test strategy", new MockGenericStrategy());
@@ -69,5 +64,11 @@ public class StrategyValueItemTest extends TestCase {
 
         assertEquals(false, valueItem.setValueByKey("Not a key"));
         assertEquals(1, valueItem.getValue());
+    }
+
+    public void testEquals(){
+       StrategyValueItem other = new StrategyValueItem(valueItem.getPropertyName(),
+               model, null);
+       TestUtil.testEqualsAndHashCode(valueItem, other); 
     }
 }

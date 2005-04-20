@@ -7,13 +7,13 @@
 
 package conexp.frontend.latticeeditor.labelingstrategies.tests;
 
-import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.labelingstrategies.AttributesLabelingStrategyModel;
 import conexp.util.gui.strategymodel.StrategyModel;
+import conexp.util.gui.strategymodel.tests.StrategyModelBaseTest;
 
-public class AttributesLabelingStrategyModelTest extends conexp.frontend.latticeeditor.tests.StrategyModelTest {
+public class AttributesLabelingStrategyModelTest extends StrategyModelBaseTest {
 
-    protected StrategyModel createStrategiesModel(DrawParameters opt) {
+    protected StrategyModel createStrategyModel() {
         return new AttributesLabelingStrategyModel();
     }
 }

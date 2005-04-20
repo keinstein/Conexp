@@ -6,11 +6,9 @@
 
 
 
-package conexp.frontend;
+package conexp.core.layout;
 
-import conexp.core.layout.Layouter;
-import conexp.core.layout.LayouterProvider;
-import conexp.core.layout.MinIntersectionLayout;
+
 
 public class MinIntersectionLayouterProvider implements LayouterProvider {
     Layouter layouter = new MinIntersectionLayout();

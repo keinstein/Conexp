@@ -5,16 +5,14 @@ import conexp.core.*;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
-import util.collection.CollectionFactory;
 import util.StringUtil;
 
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.io.BufferedWriter;
 import java.io.PrintWriter;
 import java.text.MessageFormat;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Locale;
 
 /**

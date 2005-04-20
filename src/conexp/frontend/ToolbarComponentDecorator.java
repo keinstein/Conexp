@@ -10,7 +10,7 @@ package conexp.frontend;
 import conexp.frontend.util.ToolBuilder;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
+import java.awt.*;
 
 
 public class ToolbarComponentDecorator extends JPanel implements View, OptionPaneProvider {

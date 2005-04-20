@@ -1,7 +1,7 @@
 package conexp.experimenter.relationsequences;
 
-import conexp.core.Context;
 import conexp.core.BinaryRelation;
+import conexp.core.Context;
 import util.Assert;
 
 /**

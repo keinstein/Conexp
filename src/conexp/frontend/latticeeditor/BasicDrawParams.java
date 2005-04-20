@@ -8,24 +8,22 @@
 
 package conexp.frontend.latticeeditor;
 
+import conexp.core.layout.DefaultLayoutParameters;
 
-public abstract class BasicDrawParams implements DrawParameters {
+
+public class BasicDrawParams extends DefaultLayoutParameters implements DrawParameters {
     protected static final int GAP_X = 80;
     protected static final int GAP_Y = 40;
 
-    protected static final int DEFAULT_GRID_SIZE_X = 80;
-    protected static final int MIN_GRID_SIZE_X = 10;
-    protected static final int MAX_GRID_SIZE_X = 200;
-
-    protected static final int DEFAULT_GRID_SIZE_Y = 60;
-    protected static final int MIN_GRID_SIZE_Y = 10;
-    protected static final int MAX_GRID_SIZE_Y = 200;
-
-    protected static final int DEFAULT_MAX_NODE_RADIUS = 12;
-    protected static final int MIN_MAX_NODE_RADIUS = 2;
-    protected static final int MAX_MAX_NODE_RADIUS = 40;
-
     protected static final float DEFAULT_MAX_EDGE_STROKE = 4.0f;
+
+    protected BasicDrawParams(){}
+
+    static final DrawParameters g_Instance = new BasicDrawParams();
+
+    public static final DrawParameters getInstance(){
+        return g_Instance;
+    }
 
     public int getMinGapX() {
         return GAP_X + getMaxNodeRadius();
@@ -36,4 +34,11 @@ public abstract class BasicDrawParams implements DrawParameters {
     }
 
 
+    public float getMaxEdgeStroke() {
+        return DEFAULT_MAX_EDGE_STROKE;
+    }
+
+    public DrawParameters makeCopy() {
+        return getInstance();
+    }
 }

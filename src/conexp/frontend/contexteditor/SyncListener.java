@@ -2,8 +2,8 @@ package conexp.frontend.contexteditor;
 
 import conexp.core.DefaultContextListener;
 
-import javax.swing.event.TableModelListener;
 import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

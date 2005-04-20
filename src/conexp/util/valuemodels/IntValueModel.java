@@ -56,4 +56,26 @@ public class IntValueModel extends conexp.util.valuemodels.VetoableValueModelBas
         value = newValue;
         getPropertyChange().firePropertyChange(propertyName, oldValue, value);
     }
+
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof IntValueModel)) return false;
+
+        final IntValueModel intValueModel = (IntValueModel) obj;
+
+        if (value != intValueModel.value) return false;
+
+        return true;
+    }
+
+    public int hashCode() {
+        return value;
+    }
+
+    public String toString() {
+        return "IntValueModel{" +
+                "value=" + value +
+                "}";
+    }
 }

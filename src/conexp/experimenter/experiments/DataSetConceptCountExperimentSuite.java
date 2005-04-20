@@ -2,11 +2,7 @@ package conexp.experimenter.experiments;
 
 import conexp.experimenter.framework.ExperimentSet;
 import conexp.experimenter.framework.RelationSequenceSet;
-import conexp.experimenter.framework.ExperimentContextFactory;
 import conexp.experimenter.relationsequences.ContextLoadingRelationGenerationStrategy;
-import conexp.core.ContextFactoryRegistry;
-import conexp.core.bitset.BitSetFactory;
-import conexp.core.bitset.BitSetFactory2;
 import util.DataFormatException;
 
 import java.io.IOException;

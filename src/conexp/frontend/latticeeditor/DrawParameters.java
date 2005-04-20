@@ -8,16 +8,15 @@
 
 package conexp.frontend.latticeeditor;
 
+import conexp.core.layout.LayoutParameters;
+
 
 /**
  * todo: specify responsibilities division
  * between DrawParams, and CanvasScheme
  */
 
-public interface DrawParameters {
-    int getGridSizeX();
-
-    int getGridSizeY();
+public interface DrawParameters extends LayoutParameters {
 
     int getMinGapX();
 
@@ -25,7 +24,6 @@ public interface DrawParameters {
 
     float getMaxEdgeStroke();
 
-    int getMinNodeRadius();
+    DrawParameters makeCopy();
 
-    int getMaxNodeRadius();
 }

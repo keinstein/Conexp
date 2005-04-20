@@ -7,12 +7,14 @@
 
 package conexp.frontend.latticeeditor.tests;
 
+import canvas.CanvasScheme;
 import conexp.core.Context;
 import conexp.core.Lattice;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.LatticeDrawingProvider;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.LatticeDrawing;
+import conexp.frontend.latticeeditor.LatticePainterOptions;
 import conexp.frontend.latticeeditor.LatticePainterPanel;
 import conexp.frontend.tests.ResourcesToolbarDefinitionTest;
 import junit.framework.TestCase;
@@ -75,6 +77,11 @@ public class LatticePainterPanelTest extends TestCase {
         supplier = new MockLatticeDrawingProvider();
         supplier.setLattice(SetBuilder.makeLattice(new int[][]{{0}}));
         pan = new LatticePainterPanel(supplier);
+    }
+
+    public void testDefaultLatticeComponentPainterOptions(){
+        CanvasScheme options = pan.getDrawing().getOptions();
+        assertTrue("Expect LatticePainterOptions but was "+options.getClass().getName(),options instanceof LatticePainterOptions);
     }
 
     public void testPaint() {

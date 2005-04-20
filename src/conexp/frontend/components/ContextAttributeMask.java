@@ -18,6 +18,12 @@ import java.beans.PropertyChangeEvent;
 public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplementation {
     ExtendedContextEditingInterface context;
 
+    public ContextAttributeMask makeCopy() {
+        ContextAttributeMask ret = new ContextAttributeMask(context);
+        uncheckedCopyTo(ret);
+        return ret;
+    }
+
     class AttributeMaskContextListener extends DefaultContextListener {
         public void attributeChanged(ContextChangeEvent changeEvent) {
             switch (changeEvent.getType()) {
@@ -76,5 +82,31 @@ public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplement
     public String getName(int index) {
         return context.getAttribute(index).getName();
     }
+
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    public boolean equals(Object other) {
+        if (this == other){
+            return true;
+        }
+        if (!(other instanceof ContextAttributeMask)){
+            return false;
+        }
+        if (!super.equals(other)){
+            return false;
+        }
+
+        final ContextAttributeMask contextAttributeMask = (ContextAttributeMask) other;
+
+        if (context != null ? !context.equals(contextAttributeMask.context) : contextAttributeMask.context != null){
+            return false;
+        }
+
+        return true;
+    }
+
+
 
 }

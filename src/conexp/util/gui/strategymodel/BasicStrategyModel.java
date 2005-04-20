@@ -5,12 +5,13 @@
  **/
 
 
-
 package conexp.util.gui.strategymodel;
 
 import conexp.util.GenericStrategy;
 import conexp.util.exceptions.ConfigFatalError;
 import util.StringUtil;
+
+import java.util.Arrays;
 
 public abstract class BasicStrategyModel implements StrategyModel {
     public int findStrategyIndex(String strategyName) {
@@ -39,6 +40,39 @@ public abstract class BasicStrategyModel implements StrategyModel {
             throw new ConfigFatalError("Error accessing class " + className);
         }
         return genericStrategy;
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof StrategyModel)) {
+            return false;
+        }
+        StrategyModel other = (StrategyModel) obj;
+        if(!this.getClass().equals(other.getClass())){
+            return false;
+        }
+        final int strategiesCount = getStrategiesCount();
+        if(strategiesCount!=other.getStrategiesCount()){
+            return false;
+        }
+        for(int i=strategiesCount; --i>=0; ){
+           if(!getStrategy(i).equals(other.getStrategy(i))){
+               return false;
+           }
+           if(!getStrategyName(i).equals(other.getStrategyName(i))){
+               return false;
+           }
+        }
+        if(!Arrays.equals(getStrategyDescription(), other.getStrategyDescription())){
+            return false;
+        }
+        return true;
+    }
+
+    public int hashCode() {
+        return getStrategiesCount();
     }
 
 }

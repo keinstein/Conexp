@@ -13,12 +13,14 @@ import junit.framework.TestCase;
 
 import java.awt.image.BufferedImage;
 
+import canvas.CanvasScheme;
+
 
 public class LatticePainterOptionsTest extends TestCase {
     private LatticePainterOptions latticePainterOptions;
 
     protected void setUp() {
-        latticePainterOptions = (new LatticePainterOptions(new LatticePainterDrawParams()));
+        latticePainterOptions = new LatticePainterOptions(new LatticePainterDrawParams());
     }
 
     public void testSmallGridSize() {
@@ -30,4 +32,8 @@ public class LatticePainterOptionsTest extends TestCase {
     }
 
 
+    public void testMakeCopy() throws Exception {
+        CanvasScheme other = latticePainterOptions.makeCopy();
+        assertEquals(latticePainterOptions, other);
+    }
 }

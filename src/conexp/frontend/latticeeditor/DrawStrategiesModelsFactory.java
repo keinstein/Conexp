@@ -17,4 +17,6 @@ public interface DrawStrategiesModelsFactory {
     StrategyModel makeLayoutStrategiesModel();
 
     StrategyModel makeNodeRadiusStrategiesModel();
+
+    DrawStrategiesModelsFactory makeCopy();
 }

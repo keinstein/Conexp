@@ -10,6 +10,7 @@ package conexp.frontend.latticeeditor.tests;
 import conexp.frontend.latticeeditor.XMLFileStrategyModel;
 import conexp.util.exceptions.ConfigFatalError;
 import junit.framework.TestCase;
+import util.testing.TestUtil;
 
 
 public class XmlFileStrategyModelTest extends TestCase {
@@ -90,5 +91,12 @@ public class XmlFileStrategyModelTest extends TestCase {
     public void testLoadNormalModel() {
         XMLFileStrategyModel model = new XMLFileStrategyModel("conexp/frontend/resources/tests/xmlConfigTest.xml", false);
         compareExpectedAndActualArrays(new String[][]{{"one", "test", "one.test"}, {"two", "test", "two.test"}}, model.getCreateInfo());
+    }
+
+    public void testEquals(){
+        XMLFileStrategyModel first = new XMLFileStrategyModel("conexp/frontend/resources/LayoutStrategyModel.xml", true);
+        XMLFileStrategyModel second = new XMLFileStrategyModel("conexp/frontend/resources/LayoutStrategyModel.xml", true);
+        TestUtil.testEqualsAndHashCode(first, second);
+
     }
 }

@@ -49,4 +49,22 @@ public class VetoableValueModelDecorator implements IVetoableValueModel {
     public void setPropertyChange(PropertyChangeSupport newPropertyChange) {
         valueModel.setPropertyChange(newPropertyChange);
     }
+
+    public boolean equals(Object obj) {
+        if (this == obj){
+            return true;
+        }
+        if (!(obj instanceof VetoableValueModelDecorator)){
+            return false;
+        }
+        return doEquals((VetoableValueModelDecorator) obj);
+    }
+
+    protected boolean doEquals(final VetoableValueModelDecorator vetoableValueModelDecorator) {
+        return valueModel.equals(vetoableValueModelDecorator.valueModel);
+    }
+
+    public int hashCode() {
+        return valueModel.hashCode();
+    }
 }

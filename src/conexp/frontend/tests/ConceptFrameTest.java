@@ -15,13 +15,6 @@ import util.StringUtil;
 
 
 public class ConceptFrameTest extends TestCase {
-    private static final Class THIS = ConceptFrameTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
-
     public void testConceptFrame() {
         try {
             new ConceptFrame();

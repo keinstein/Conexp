@@ -15,6 +15,7 @@ import conexp.frontend.latticeeditor.movestrategies.OneFigureMoveStrategy;
 import javax.swing.*;
 
 public class BaseConceptSetCanvas extends LatticeCanvas {
+
     class LatticePainterGenericEventHandler implements java.beans.PropertyChangeListener {
         public void propertyChange(java.beans.PropertyChangeEvent evt) {
             if (evt.getSource() == getPainterOptions()) {
@@ -44,6 +45,7 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
         getPainterOptions().addPropertyChangeListener(eventHandler);
     }
 
+
     public void refresh() {
         repaint();
         revalidate();
@@ -57,6 +59,10 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
     MoveStrategy ordinalMoveStrategy = new OneFigureMoveStrategy();
     MoveStrategy idealMoveStrategy = new FigureIdealMoveStrategy();
     PainterOptionsPaneEditor optionsEditor;
+
+    public boolean isUseIdealMoveStrategy() {
+        return useIdealMoveStrategy;
+    }
 
     public void setUseIdealMoveStrategy(final boolean selected) {
         useIdealMoveStrategy = selected;

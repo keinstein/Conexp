@@ -1,7 +1,7 @@
 package conexp.frontend.latticeeditor.tests;
 
-import junit.framework.TestCase;
 import conexp.frontend.latticeeditor.ConscriptLatticeExporter;
+import junit.framework.TestCase;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

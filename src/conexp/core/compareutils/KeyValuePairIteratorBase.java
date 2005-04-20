@@ -1,6 +1,6 @@
 package conexp.core.compareutils;
 
-import conexp.util.IteratorWrapperBase;
+import util.collection.IteratorWrapperBase;
 
 import java.util.Iterator;
 

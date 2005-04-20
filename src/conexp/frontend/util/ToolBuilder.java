@@ -8,10 +8,10 @@
 package conexp.frontend.util;
 
 import conexp.frontend.ResourceLoader;
+import conexp.util.gui.ToggleAbstractAction;
 
 import javax.swing.*;
-import java.awt.Dimension;
-import java.awt.Insets;
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ResourceBundle;
@@ -22,6 +22,7 @@ public class ToolBuilder {
 
     ActionMap actChain;
     public final static Insets insets0 = new Insets(1, 1, 1, 1);
+
 
     //----------------------------------------------
     // Yarked from JMenu, ideally this would be public.
@@ -73,7 +74,7 @@ public class ToolBuilder {
      * Create a menu for the app.  By default this pulls the
      * definition of the menu from the associated resource file.
      */
-    JMenu createMenu(String key) {
+    protected JMenu createMenu(String key) {
         String[] itemKeys = resManager.getResourceDescription(key);
         JMenu menu = makeMenu(key, resManager.getCommandLabel(key));
         for (int i = 0; i < itemKeys.length; i++) {
@@ -101,8 +102,14 @@ public class ToolBuilder {
         return createMenu(menu[0]);
     }
 
+    public JMenu createHelpMenu() {
+        String[] menu = resManager.getResourceDescription("helpMenu");
+        return createMenu(menu[0]);
+    }
+
+
     //----------------------------------------------
-    static JMenuItem createMenuItem(String name, String label, Icon icon, String shortCut, Action a) {
+    protected JMenuItem createMenuItem(String name, String label, Icon icon, String shortCut, Action a) {
         if (null == label) {
             return null;
         } // end of if ()
@@ -140,6 +147,9 @@ public class ToolBuilder {
     protected AbstractButton createToolbarButton(String command, Icon icon, boolean isToggle, String tooltip, Action action) {
         final AbstractButton but = createButton(isToggle);
         but.setIcon(icon);
+        if(isToggle){
+          but.setSelectedIcon(ResourceLoader.getIcon(resManager.getSelectedImage(command)));
+        }
         // but.setPreferredSize(new Dimension(27, 27));
         but.setToolTipText(tooltip);
         but.setContentAreaFilled(false);
@@ -155,6 +165,9 @@ public class ToolBuilder {
                 }
             });
             but.setEnabled(action.isEnabled());
+        }
+        if(isToggle && action instanceof ToggleAbstractAction){
+            but.setSelected(((ToggleAbstractAction)action).isSelected());
         }
         return but;
     }

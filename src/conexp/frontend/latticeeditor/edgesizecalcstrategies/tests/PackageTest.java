@@ -14,7 +14,9 @@ import junit.framework.TestSuite;
 public class PackageTest extends junit.framework.TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(EdgeSizeStrategyModelTest.suite());
+        suite.addTestSuite(ConceptConnectionEdgeSizeCalcStrategyTest.class);
+        suite.addTestSuite(EdgeSizeStrategyModelTest.class);
+        suite.addTestSuite(ObjectFlowEdgeSizeCalcStrategyTest.class);
         return suite;
     }
 }

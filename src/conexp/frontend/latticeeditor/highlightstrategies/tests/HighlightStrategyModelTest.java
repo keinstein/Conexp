@@ -10,14 +10,8 @@ package conexp.frontend.latticeeditor.highlightstrategies.tests;
 import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.highlightstrategies.HighlightStrategyModel;
 import conexp.util.gui.strategymodel.StrategyModel;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 public class HighlightStrategyModelTest extends conexp.frontend.latticeeditor.tests.StrategyModelTest {
-    public static Test suite() {
-        return new TestSuite(HighlightStrategyModelTest.class);
-    }
-
     /**
      * Insert the method's description here.
      * Creation date: (02.12.00 0:56:09)

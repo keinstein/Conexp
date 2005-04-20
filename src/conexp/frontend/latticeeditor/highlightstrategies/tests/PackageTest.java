@@ -14,7 +14,16 @@ import junit.framework.TestSuite;
 public class PackageTest extends junit.framework.TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(HighlightStrategyModelTest.suite());
+
+        suite.addTestSuite(FilterHighlightStrategyTest.class);
+        suite.addTestSuite(FilterIdealHighlightStrategyTest.class);
+        suite.addTestSuite(IdealHighlightStrategyTest.class);
+        suite.addTestSuite(HighlightStrategyModelTest.class);
+        suite.addTestSuite(OneNodeHighlightStrategyTest.class);
+        suite.addTestSuite(NeigboursHighlightStrategyTest.class);
+        suite.addTestSuite(NoHighlightStrategyTest.class);
+
+
         return suite;
     }
 }

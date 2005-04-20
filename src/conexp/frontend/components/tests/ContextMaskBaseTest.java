@@ -7,6 +7,7 @@ import conexp.frontend.EntitiesMask;
 import conexp.frontend.SetProvidingEntitiesMask;
 import junit.framework.TestCase;
 import util.testing.SimpleMockPropertyChangeListener;
+import util.testing.TestUtil;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
@@ -154,4 +155,13 @@ public abstract class ContextMaskBaseTest extends TestCase {
     }
 
     protected abstract void increaseOtherEntities(int increment);
+
+    public void testEqualsAndHashCode(){
+        SetProvidingEntitiesMask first = makeInstance();
+        SetProvidingEntitiesMask second = makeInstance();
+        TestUtil.testEqualsAndHashCode(first,second);
+
+    }
+
+    protected abstract SetProvidingEntitiesMask makeInstance();
 }

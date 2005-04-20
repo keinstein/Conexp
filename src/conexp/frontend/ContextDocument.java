@@ -8,6 +8,8 @@
 package conexp.frontend;
 
 import com.visibleworkings.trace.Trace;
+import com.gargoylesoftware.base.collections.NotificationList;
+import com.gargoylesoftware.base.collections.NotificationListListener;
 import conexp.core.*;
 import conexp.core.attrexplorationimpl.AttributeExplorerImplementation;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
@@ -23,21 +25,30 @@ import conexp.frontend.ruleview.ImplicationsView;
 import conexp.frontend.ruleview.NextClosedSetImplicationCalculatorFactory;
 import conexp.frontend.ui.ViewManager;
 import conexp.frontend.ui.ViewManagerException;
+import conexp.frontend.ui.tree.IconData;
+import conexp.frontend.ui.tree.IconCellRenderer;
 import conexp.frontend.util.ActionChainUtil;
 import conexp.frontend.util.ResourceManager;
 import conexp.frontend.util.ToolBuilder;
 import util.Assert;
 import util.FormatUtil;
 import util.StringUtil;
+import util.collection.CollectionFactory;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
+import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
-import java.util.ResourceBundle;
-import java.util.TooManyListenersException;
+import java.util.*;
+import java.util.List;
+
+import jp.ac.kobe_u.cs.cream.Domain;
 
 
 public class ContextDocument implements ActionChainBearer, Document {
@@ -57,6 +68,14 @@ public class ContextDocument implements ActionChainBearer, Document {
     private static final String NESTED_LINE_DIAGRAM_TYPE = "NESTED_LINE_DIAGRAM_VIEW";
 */
     private static final String DIAGRAM_CREATOR_TYPE = "DIAGRAM_CREATOR_VIEW";
+
+    private OidNode contextName = new OidNode("Not Empty String"); //if string is empty, it doesn't work :-((;
+    private JTree contentTree;
+    private DefaultMutableTreeNode contextTreeRoot;
+    private static final String CONTEXT__IMAGE = "resources/contextIcon.gif";
+    private static final String LATTICE_IMAGE = "resources/latticeIcon.gif";
+    public static final ImageIcon LATTICE_ICON = ResourceLoader.getIcon(LATTICE_IMAGE);
+    public static final ImageIcon CONTEXT_ICON = ResourceLoader.getIcon(CONTEXT__IMAGE);
 
 
     static {
@@ -114,20 +133,16 @@ public class ContextDocument implements ActionChainBearer, Document {
     private ActionMap actionChain = new ActionMap();
     //------------------------------------------------------------
     /**
-     *  Gets the ActionMap attribute of the ContextDocument object
+     * Gets the ActionMap attribute of the ContextDocument object
      *
-     *@return    The ActionMap value
+     * @return The ActionMap value
      */
     public ActionMap getActionChain() {
         return actionChain;
     }
 
-
-
     //------------------------------------------------------------
-
     //------------------------------------------------------------
-
     private Action[] actions = {
         new CalcConceptCountDS(),
         new BuildLatticeDS(),
@@ -138,6 +153,18 @@ public class ContextDocument implements ActionChainBearer, Document {
         new ShowDiagramEditor()
     };
 
+    public Collection getLatticeCollection() {
+        return contextDocumentModel.getLatticeComponents();
+    }
+
+    public void makeLatticeSnapshot() {
+        contextDocumentModel.makeLatticeSnapshot(0);
+    }
+
+    public LatticeComponent getLatticeComponent(int index) {
+        return contextDocumentModel.getLatticeComponent(index);
+    }
+
 
     class CalcConceptCountDS extends AbstractAction {
 
@@ -147,56 +174,23 @@ public class ContextDocument implements ActionChainBearer, Document {
 
         public void actionPerformed(ActionEvent e) {
 
-            JOptionPane.showMessageDialog(getMainFrame(), FormatUtil.format(
-                    getLocalizedMessageSupplier().getMessage("ConceptNumMsg"),
-                    actualContextDocument.getConceptCount())); //$NON-NLS-1$
+            JOptionPane.showMessageDialog(getMainFrame(), FormatUtil.format(getLocalizedMessageSupplier().getMessage("ConceptNumMsg"),
+                    contextDocumentModel.getConceptCount())); //$NON-NLS-1$
         }
 
     }
 
-    static class ActualContextDocument {
-        Context context;
-
-        ActualContextDocument(Context cxt) {
-            setContext(cxt);
-        }
-
-        public void setContext(Context cxt) {
-            this.context = cxt;
-            cxt.setArrowCalculator(FCAEngineRegistry.makeArrowCalculator());
-        }
-
-        public Context getContext() {
-            return context;
-        }
-
-        //----------------------------------------
-        public int getConceptCount() {
-            DepthSearchCalculator calc = new DepthSearchCalculator();
-            return doCalculateConceptCount(calc);
-        }
-
-        //----------------------------------------
-        protected int doCalculateConceptCount(ConceptCalcStrategy calc) {
-            calc.setRelation(getContext().getRelation());
-            ConceptNumCallback cnt = new ConceptNumCallback();
-            calc.setCallback(cnt);
-            calc.calculateConceptSet();
-            return cnt.getConceptCount();
-        }
-    }
-
-    ActualContextDocument actualContextDocument;
+    ContextDocumentModel contextDocumentModel;
 
     //----------------------------------------
     public Context getContext() {
-        return actualContextDocument.getContext();
+        return contextDocumentModel.getContext();
     }
 
     //------------------------------------------------
 
     public void setContext(Context cxt) {
-        actualContextDocument.setContext(cxt);
+        contextDocumentModel.setContext(cxt);
     }
 
 
@@ -215,63 +209,40 @@ public class ContextDocument implements ActionChainBearer, Document {
 
         public void actionPerformed(ActionEvent e) {
             calculateLattice();
+            addViewToTree();
             activateView(VIEW_LATTICE);
         }
-
 
     }
 
     public void calculateLattice() {
         getLatticeComponent().calculateAndLayoutPartialLattice();
+    }
+
+    private void addViewToTree() {
 
     }
 
     LatticeComponent latticeComponent;
 
+
     public LatticeComponent getLatticeComponent() {
-        if (null == latticeComponent) {
-            resetLatticeComponent();
-            getContext().addContextListener(getLatticeRecalcPolicy());
-        }
-        return latticeComponent;
+        return getLatticeComponent(0);
     }
 
     public void resetLatticeComponent() {
-        latticeComponent = makeLatticeComponentForDoc();
+        contextDocumentModel.resetLatticeComponent();
     }
 
-    private LatticeComponent makeLatticeComponentForDoc() {
-        return new LatticeComponent(getContext());
-    }
-
-    protected ContextListener latticeContextListener;
-
-    private ContextListener getLatticeRecalcPolicy() {
-        if (null == latticeContextListener) {
-            latticeContextListener = new DefaultContextListener() {
-                public void contextStructureChanged() {
-                    getLatticeComponent().clearLattice();
-                }
-
-                public void relationChanged() {
-                    getLatticeComponent().clearLattice();
-                }
-
-                public void contextReplaced(PropertyChangeEvent evt) {
-                    getLatticeComponent().clearLattice();
-                }
-            };
-        }
-        return latticeContextListener;
-    }
 
     //------------------------------------------------------------
     private View makeLatticeView() {
         LatticeComponent latticeSupplier = getLatticeComponent();
         EntityMaskChangeController entityMaskChangeController = new EntityMaskChangeController(latticeSupplier);
         latticeSupplier.getAttributeMask().addPropertyChangeListener(entityMaskChangeController);
-    	latticeSupplier.getObjectMask().addPropertyChangeListener(entityMaskChangeController);
+        latticeSupplier.getObjectMask().addPropertyChangeListener(entityMaskChangeController);
         LatticeAndEntitiesMaskSplitPane latticeSplitPane = new LatticeAndEntitiesMaskSplitPane(latticeSupplier, getActionChain());
+        latticeSplitPane.restorePreferences();
         return new ToolbarComponentDecorator(latticeSplitPane, false);
     }
 
@@ -554,7 +525,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         main.add(pane, BorderLayout.CENTER);
         JToolBar toolbar = new JToolBar();
         Action actions[] = diagramEditorPanel.getActions();
-        for(int i=0; i<actions.length; i++){
+        for (int i = 0; i < actions.length; i++) {
             toolbar.add(actions[i]);
         }
         main.add(toolbar, BorderLayout.NORTH);
@@ -638,6 +609,87 @@ public class ContextDocument implements ActionChainBearer, Document {
         return getViewContainer();
     }
 
+
+    public JTree getTree() {
+        if (null == contentTree) {
+            contentTree = makeTree();
+        }
+        return contentTree;
+    }
+
+    private JTree makeTree() {
+        final JTree ret = new JTree(getTreeModel());
+        ret.setCellRenderer(new IconCellRenderer());
+        ret.setSelectionPath(getTreePath());
+        ret.setShowsRootHandles(true);
+        ret.setEditable(false);
+        JPopupMenu popup = new JPopupMenu();
+        ret.addMouseListener(new MouseAdapter(){
+            public void mouseReleased(MouseEvent e) {
+                if(e.isPopupTrigger()){
+                    //do popup processing
+                }else{
+                    //do navigation stuff
+                    int x = e.getX();
+                    int y = e.getY();
+                    TreePath path = ret.getPathForLocation(x, y);
+                    if(path!=null){
+                        
+                    }
+                }
+            }
+        });
+        return ret;
+    }
+
+    TreePath treePath;
+
+    public TreePath getTreePath() {
+        return treePath;
+    }
+
+
+    private DefaultTreeModel documentTreeModel;
+
+    public TreeModel getTreeModel() {
+        if (null == documentTreeModel) {
+            documentTreeModel = makeTreeModel();
+        }
+        return documentTreeModel;
+    }
+
+
+    private DefaultTreeModel makeTreeModel() {
+
+        DefaultMutableTreeNode[] node = new DefaultMutableTreeNode[2];
+        DefaultMutableTreeNode domain = new DefaultMutableTreeNode(new OidNode("Domain"));
+        node[0] = domain;
+        DefaultMutableTreeNode parent = domain;
+        contextTreeRoot = new DefaultMutableTreeNode(new IconData(CONTEXT_ICON, contextName));
+
+        node[1] = contextTreeRoot;
+        parent.add(node[1]);
+        treePath = new TreePath(node);
+        if (!contextDocumentModel.getLatticeComponents().isEmpty()) {
+            final int bound = contextDocumentModel.getLatticeComponents().size();
+            for (int i = 0; i < bound; i++) {
+                contextTreeRoot.add(makeLatticeTreeNode(i));
+            }
+        }
+        DefaultTreeModel newModel = new DefaultTreeModel(domain);
+        return newModel;
+    }
+
+    private DefaultMutableTreeNode makeLatticeTreeNode(int i) {
+        return new DefaultMutableTreeNode(new IconData(LATTICE_ICON, "Lattice " + (i + 1)), false);
+    }
+
+    public void setFileName(String fileName) {
+        contextName.setName(fileName);
+        getTree().invalidate();
+    }
+
+
 // MENUS and TOOLBARS
     private JToolBar toolBar;
 
@@ -676,7 +728,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     public ContextDocument(Context cxt) {
         ActionChainUtil.putActions(actionChain, actions);
-        actualContextDocument = new ActualContextDocument(cxt);
+        contextDocumentModel = new ContextDocumentModel(cxt);
     }
 
     public void setParentActionChain(ActionMap chain) {

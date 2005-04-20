@@ -13,36 +13,21 @@ import conexp.core.Context;
 import conexp.core.FCAEngineRegistry;
 import conexp.core.Lattice;
 import conexp.core.tests.SetBuilder;
+import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.NestedLineDiagramDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.DefaultFigureVisitor;
 import conexp.frontend.latticeeditor.figures.NestedDiagramNodeFigure;
-import junit.framework.TestCase;
 import util.collection.CollectionFactory;
 
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.geom.Point2D;
 
-public class NestedLineDiagramDrawingTest extends TestCase {
+public class NestedLineDiagramDrawingTest extends ConceptSetDrawingTest {
     private Lattice outer;
     private Lattice inner;
     private NestedLineDiagramDrawing drawing;
-
-    public void testMappingOfOuterLineDiagram() {
-        final NestedDiagramNodeFigure figureForOne = (NestedDiagramNodeFigure) drawing.getFigureForConcept(outer.getOne());
-        assertEquals(14.11 / 2.0, figureForOne.getCenterX(), 0.01);
-    }
-
-    public void testFindFigureInside() {
-        final NestedDiagramNodeFigure figureForOne = (NestedDiagramNodeFigure) drawing.getFigureForConcept(outer.getOne());
-        final AbstractConceptCorrespondingFigure figureForOneInnerOneFigure = figureForOne.getFigureForConcept(inner.getOne());
-        Point2D innerPoint = figureForOneInnerOneFigure.getCenter();
-
-        assertTrue(figureForOneInnerOneFigure.contains(innerPoint.getX(), innerPoint.getY()));
-        assertTrue(figureForOne.contains(innerPoint.getX(), innerPoint.getY()));
-        assertEquals(figureForOneInnerOneFigure, drawing.findFigureInReverseOrder(innerPoint.getX(), innerPoint.getY()));
-    }
 
     protected void setUp() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1},
@@ -72,6 +57,25 @@ public class NestedLineDiagramDrawingTest extends TestCase {
         drawing = new NestedLineDiagramDrawing(
                 outerDrawing, innerDrawing, concepts
         );
+    }
+    
+    protected ConceptSetDrawing getDrawing() {
+        return drawing;
+    }
+
+    public void testMappingOfOuterLineDiagram() {
+        final NestedDiagramNodeFigure figureForOne = (NestedDiagramNodeFigure) drawing.getFigureForConcept(outer.getOne());
+        assertEquals(14.11 / 2.0, figureForOne.getCenterX(), 0.01);
+    }
+
+    public void testFindFigureInside() {
+        final NestedDiagramNodeFigure figureForOne = (NestedDiagramNodeFigure) drawing.getFigureForConcept(outer.getOne());
+        final AbstractConceptCorrespondingFigure figureForOneInnerOneFigure = figureForOne.getFigureForConcept(inner.getOne());
+        Point2D innerPoint = figureForOneInnerOneFigure.getCenter();
+
+        assertTrue(figureForOneInnerOneFigure.contains(innerPoint.getX(), innerPoint.getY()));
+        assertTrue(figureForOne.contains(innerPoint.getX(), innerPoint.getY()));
+        assertEquals(figureForOneInnerOneFigure, drawing.findFigureInReverseOrder(innerPoint.getX(), innerPoint.getY()));
     }
 
     public void testGatherInnerQuerys() {

@@ -2,15 +2,15 @@ package conexp.frontend.latticeeditor;
 
 import conexp.core.*;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
-
-import java.io.IOException;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.util.Iterator;
-import java.util.HashSet;
-import java.awt.geom.Point2D;
-
 import util.FileNameMangler;
+import util.IExporter;
+
+import java.awt.geom.Point2D;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashSet;
+import java.util.Iterator;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
@@ -20,7 +20,7 @@ import util.FileNameMangler;
  * Time: 13:28:13
  */
 
-public class PlainTextLatticeExporter implements ILatticeExporter {
+public class PlainTextLatticeExporter implements IExporter {
     LatticePainterPanel panel;
     public static final String PLAIN_TEXT_EXTENSION = "txt";
 

@@ -8,12 +8,13 @@
 package conexp.frontend.tests;
 
 
-import conexp.core.Context;
-import conexp.core.DependencySet;
+import conexp.core.*;
 import conexp.core.tests.ContextReductionTest;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.ContextDocument;
 import conexp.frontend.ToolbarComponentDecorator;
+import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
+import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.components.EntityMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.contexteditor.ContextViewPanel;
@@ -124,9 +125,9 @@ public class ContextDocumentTest extends TestCase {
 
     public void testViewActivation() {
         doc.setShowMessages(false);
-        expectViewActivationAfterCommand("calcAssociationRules", doc.VIEW_ASSOCIATIONS);
-        expectViewActivationAfterCommand("calcImplNCS", doc.VIEW_IMPLICATIONS);
-        expectViewActivationAfterCommand("buildLatticeDS", doc.VIEW_LATTICE);
+        expectViewActivationAfterCommand("calcAssociationRules", ContextDocument.VIEW_ASSOCIATIONS);
+        expectViewActivationAfterCommand("calcImplNCS", ContextDocument.VIEW_IMPLICATIONS);
+        expectViewActivationAfterCommand("buildLatticeDS", ContextDocument.VIEW_LATTICE);
     }
 
     public void testContextArrowCalculator() {
@@ -160,6 +161,47 @@ public class ContextDocumentTest extends TestCase {
         assertEquals(SetBuilder.makeContext(ContextReductionTest.BURMEISTER_EXAMPLE_REDUCED).getRelation(),
                 doc.getContext().getRelation());
 
+    }
+
+    public void testIcons(){
+
+        checkIcon(ContextDocument.CONTEXT_ICON);
+        checkIcon(ContextDocument.LATTICE_ICON);
+
+    }
+
+    private void checkIcon(ImageIcon contextIcon) {
+        assertTrue("width is "+contextIcon.getIconWidth(), contextIcon.getIconWidth()>0);
+        assertTrue("height is "+contextIcon.getIconHeight(), contextIcon.getIconHeight()>0);
+    }
+
+    public void testSnapshotLattice(){
+        Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
+                                                         {1, 0, 1},
+                                                         {1, 1, 0}});
+        doc = new ContextDocument(cxt);
+
+        assertEquals(true, doc.getLatticeCollection().isEmpty());
+        doc.calculateLattice();
+        assertEquals(1, doc.getLatticeCollection().size());
+        doc.makeLatticeSnapshot();
+        assertEquals(2, doc.getLatticeCollection().size());
+        final LatticeComponent first = doc.getLatticeComponent(0);
+        final LatticeComponent second = doc.getLatticeComponent(1);
+        assertNotSame(first, second);
+        final LatticeDrawing firstDrawing = first.getDrawing();
+        final LatticeDrawing secondDrawing = second.getDrawing();
+        first.getLattice().forEach(new Lattice.LatticeElementVisitor(){
+            public void visitNode(LatticeElement node) {
+                final AbstractConceptCorrespondingFigure firstFigure = firstDrawing.getFigureForConcept(node);
+                final AbstractConceptCorrespondingFigure secondFigure =secondDrawing.getFigureForConcept(node);
+                assertEquals(firstFigure.getCenter(), secondFigure.getCenter());
+            }
+        });
+
+
+
+       // assertEquals(first, second);
     }
 
 }

@@ -7,13 +7,13 @@
 
 package conexp.frontend.latticeeditor.tests;
 
-import conexp.frontend.latticeeditor.DrawParameters;
+import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.LabelingStrategyModelFactory;
 import junit.framework.TestCase;
 
 public abstract class LabelingStrategiesModelsFactoryTest extends TestCase{
     protected conexp.frontend.latticeeditor.LabelingStrategyModelFactory factory;
-    protected DrawParameters drawParams;
+    protected LayoutParameters drawParams;
 
     protected abstract LabelingStrategyModelFactory makeFactory();
 
@@ -28,7 +28,7 @@ public abstract class LabelingStrategiesModelsFactoryTest extends TestCase{
     }
 
 
-    protected DrawParameters getDrawParams() {
+    protected LayoutParameters getDrawParams() {
         return drawParams;
     }
 

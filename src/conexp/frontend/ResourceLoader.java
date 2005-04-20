@@ -8,9 +8,9 @@
 package conexp.frontend;
 
 import conexp.util.exceptions.ConfigFatalError;
+import util.ResourceHelper;
 
 import javax.swing.*;
-import java.net.URL;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -27,15 +27,7 @@ public class ResourceLoader {
 
     //----------------------------------------------
     static public ImageIcon getIcon(String path) {
-        if (null == path) {
-            return null;
-        } // end of if ()
-        URL url = ResourceLoader.class.getResource(path);
-        MyImageIcon icon = null;
-        if (null != url) {
-            icon = new MyImageIcon(url);
-        }
-        return icon;
+        return ResourceHelper.getIconFromResource(path, ResourceLoader.class);
     }
 
 

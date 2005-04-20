@@ -12,6 +12,10 @@ import conexp.frontend.latticeeditor.HighlightStrategy;
 
 public class OneNodeHighlightStrategy extends HighlightStrategy {
 
+    protected HighlightStrategy createNew() {
+        return new OneNodeHighlightStrategy();
+    }
+
     protected boolean highlightQuery(Set attribs) {
         return query.equals(attribs);
     }

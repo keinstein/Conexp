@@ -15,7 +15,7 @@ public class AllTests extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(StrategyValueItemTest.suite());
+        suite.addTestSuite(StrategyValueItemTest.class);
         return suite;
     }
 

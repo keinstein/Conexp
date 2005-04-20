@@ -450,7 +450,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         return contextListenersSupport.hasListener(lst);
     }
 
-    public void transpose() {
+    public synchronized void transpose() {
         ModifiableBinaryRelation newRel = BinaryRelationUtils.makeTransposedRelation(rel);
         List tmp = objects;
         objects = attributes;
@@ -483,6 +483,13 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
             return false;
         }
         return true;
+    }
+
+    public int hashCode() {
+        int ret = rel.hashCode();
+        ret=29*ret+attributes.hashCode();
+        ret=29*ret+objects.hashCode();
+        return ret;
     }
 
     public String toString() {

@@ -13,6 +13,7 @@ import conexp.core.ModifiableSet;
 import conexp.core.Set;
 import conexp.frontend.MultiSelectionEntitiesMask;
 import conexp.frontend.SetProvidingEntitiesMask;
+import util.Assert;
 
 
 public abstract class BasicMultiSelectionEntityMaskImplementation extends BasicEntityMaskImplementation implements MultiSelectionEntitiesMask, SetProvidingEntitiesMask{
@@ -57,4 +58,10 @@ public abstract class BasicMultiSelectionEntityMaskImplementation extends BasicE
         getPropertyChangeSupport().firePropertyChange(ENTITIES_SELECTION_CHANGED, null, null);
     }
 
+    protected void uncheckedCopyTo(BasicMultiSelectionEntityMaskImplementation ret) {
+        Assert.isTrue(getCount() == ret.getCount());
+        for(int i=getCount(); --i>=0;){
+            ret.setSelected(i, isSelected(i));
+        }
+    }
 }

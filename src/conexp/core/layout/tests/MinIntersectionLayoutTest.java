@@ -7,6 +7,7 @@
 
 package conexp.core.layout.tests;
 
+import conexp.core.layout.GenericLayouter;
 import conexp.core.layout.MinIntersectionLayout;
 
 public class MinIntersectionLayoutTest extends GenericLayouterTest {
@@ -14,7 +15,8 @@ public class MinIntersectionLayoutTest extends GenericLayouterTest {
         return false;
     }
 
-    protected conexp.core.layout.GenericLayouter makeLayouter() {
+    protected GenericLayouter makeLayouter() {
         return new MinIntersectionLayout();
     }
+
 }

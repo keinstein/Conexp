@@ -13,6 +13,7 @@ import conexp.frontend.latticeeditor.HighlightStrategy;
 
 public class NoHighlightStrategy extends HighlightStrategy {
 
+
     protected boolean doHighlightEdge(Set startAttribs, Set endAttribs) {
         return false;
     }
@@ -27,4 +28,10 @@ public class NoHighlightStrategy extends HighlightStrategy {
 
     public NoHighlightStrategy() {
     }
+
+    protected HighlightStrategy createNew() {
+        return new NoHighlightStrategy();
+    }
+
+
 }

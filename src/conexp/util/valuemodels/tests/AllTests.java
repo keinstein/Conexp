@@ -15,7 +15,8 @@ public class AllTests extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(BoundedIntValueTest.suite());
+        suite.addTestSuite(BoundedIntValueTest.class);
+        suite.addTestSuite(VetoableValueModelDecoratorTest.class);
         return suite;
     }
 

@@ -9,6 +9,7 @@ package conexp.core.tests;
 
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
+import conexp.core.Context;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import junit.framework.TestCase;
 
@@ -82,12 +83,14 @@ public class LatticeTest extends TestCase {
     }
 
     public void testMakeCopy(){
-        Lattice lat = SetBuilder.makeLattice(new int[][]{{0}});
+        Context cxt = SetBuilder.makeContext(new int[][]{{0}});
+        Lattice lat = SetBuilder.makeLattice(cxt);
+        assertEquals(2, lat.conceptsCount());
         Lattice copy = lat.makeCopy();
         assertEquals(lat.conceptsCount(), copy.conceptsCount());
         assertTrue(lat.isEqual(copy));
- // add this checks, when it will be truly important
-//        assertEquals(lat.getContext(), copy.getContext());
+        assertNotNull(lat.getContext());
+        assertSame(lat.getContext(), copy.getContext());
     }
 
 }

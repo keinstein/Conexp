@@ -1,12 +1,12 @@
 package conexp.frontend.latticeeditor;
 
+import conexp.frontend.io.LatticeCSCExporter;
 import util.FileNameMangler;
+import util.IExporter;
 
-import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-
-import conexp.frontend.io.LatticeCSCExporter;
+import java.io.IOException;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
@@ -15,7 +15,7 @@ import conexp.frontend.io.LatticeCSCExporter;
  * Date: 30/12/2003
  * Time: 15:17:46
  */
-public class ConscriptLatticeExporter implements ILatticeExporter {
+public class ConscriptLatticeExporter implements IExporter {
     LatticePainterPanel panel;
     public static final String CONSCRIPT_EXTENSION = "csc";
 

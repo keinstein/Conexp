@@ -1,11 +1,8 @@
 package conexp.experimenter.relationsequences;
 
-import conexp.core.BinaryRelation;
-import conexp.core.Context;
 import conexp.frontend.io.ConImpContextReaderFactory;
 import conexp.frontend.io.ContextReader;
 import conexp.frontend.io.ContextReaderFactory;
-import util.Assert;
 import util.DataFormatException;
 
 import java.io.FileReader;

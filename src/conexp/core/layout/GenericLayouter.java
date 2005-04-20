@@ -9,7 +9,6 @@ package conexp.core.layout;
 
 import com.visibleworkings.trace.Trace;
 import conexp.core.ItemSet;
-import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.util.gui.paramseditor.ParamInfo;
 import util.StringUtil;
 
@@ -21,7 +20,7 @@ import java.beans.PropertyChangeSupport;
 
 public abstract class GenericLayouter implements conexp.core.layout.Layouter {
     protected conexp.core.Lattice lattice;
-    protected DrawParameters drawParams;
+    protected LayoutParameters drawParams;
 
     protected static class LayoutConceptInfo {
         protected double x;
@@ -61,7 +60,7 @@ public abstract class GenericLayouter implements conexp.core.layout.Layouter {
 
     }
 
-    public void initLayout(conexp.core.Lattice l, DrawParameters drawParams) {
+    public void initLayout(conexp.core.Lattice l, LayoutParameters drawParams) {
         util.Assert.isTrue(l.isValid());
         setLayoutParams(l, drawParams);
         initMapping();
@@ -86,7 +85,7 @@ public abstract class GenericLayouter implements conexp.core.layout.Layouter {
 
     public abstract void performLayout();
 
-    protected void setLayoutParams(conexp.core.Lattice lat, DrawParameters drawParams) {
+    protected void setLayoutParams(conexp.core.Lattice lat, LayoutParameters drawParams) {
         this.lattice = lat;
         this.drawParams = drawParams;
     }
@@ -106,7 +105,7 @@ public abstract class GenericLayouter implements conexp.core.layout.Layouter {
         }
     }
 
-    protected DrawParameters getDrawParams() {
+    protected LayoutParameters getDrawParams() {
         return drawParams;
     }
 
@@ -147,4 +146,35 @@ public abstract class GenericLayouter implements conexp.core.layout.Layouter {
     protected void fireLayoutPropertyChanged(String propertyName) {
         getLayoutChange().firePropertyChange(new PropertyChangeEvent(this, propertyName, null, null));
     }
+
+    /**
+     * Generic equals for layouters
+     * the main value of equals is for the comparing whether layouters
+     * are of the same class and parameters
+     * @param obj
+     * @return
+     */
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof GenericLayouter)) {
+            return false;
+        }
+        GenericLayouter other = (GenericLayouter) obj;
+        if(!getClass().equals(other.getClass())){
+            return false;
+        }
+        if(drawParams==null ? other.drawParams!=null :!drawParams.equals(other.drawParams)){
+            return false;
+        }
+
+        return true;
+    }
+
+    public int hashCode() {
+        return 29*getClass().hashCode()+(drawParams==null? 0 :drawParams.hashCode());
+    }
+
+
 }

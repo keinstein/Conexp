@@ -1,14 +1,14 @@
 package canvas.util;
 
-import conexp.frontend.latticeeditor.ILatticeExporter;
 import canvas.IScreenImageProvider;
-import util.imagecodecs.ImageCodecsFactory;
-import util.imagecodecs.ImageCodec;
+import util.IExporter;
 import util.StringUtil;
+import util.imagecodecs.ImageCodec;
+import util.imagecodecs.ImageCodecsFactory;
 
-import java.io.IOException;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
@@ -17,10 +17,10 @@ import java.io.FileOutputStream;
  * Date: 30/12/2003
  * Time: 16:07:30
  */
-public class RasterImageLatticeExporter implements ILatticeExporter {
+public class RasterImageExporter implements IExporter {
     private final IScreenImageProvider screenImageProvider;
 
-    public RasterImageLatticeExporter(IScreenImageProvider screenImageProvider) {
+    public RasterImageExporter(IScreenImageProvider screenImageProvider) {
         this.screenImageProvider = screenImageProvider;
     }
 

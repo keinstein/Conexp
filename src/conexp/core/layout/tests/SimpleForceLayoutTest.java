@@ -9,10 +9,10 @@ package conexp.core.layout.tests;
 
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
+import conexp.core.layout.DefaultLayoutParameters;
 import conexp.core.layout.Layouter;
 import conexp.core.layout.SimpleForceLayout;
 import conexp.core.tests.SetBuilder;
-import conexp.frontend.latticeeditor.DefaultDrawParams;
 import conexp.util.valuemodels.BoundedDoubleValue;
 import util.testing.SimpleMockPropertyChangeListener;
 
@@ -58,7 +58,7 @@ public abstract class SimpleForceLayoutTest extends GenericLayouterTest {
 
     private SimpleForceLayout makeLayouterAndPerformLayout(Lattice lat) {
         SimpleForceLayout layouter = (SimpleForceLayout) makeLayouter();
-        layouter.initLayout(lat, new DefaultDrawParams());
+        layouter.initLayout(lat, new DefaultLayoutParameters());
         layouter.performLayout();
         return layouter;
     }
@@ -71,7 +71,7 @@ public abstract class SimpleForceLayoutTest extends GenericLayouterTest {
         final SimpleForceLayout layouter = (SimpleForceLayout) makeLayouter();
         BoundedDoubleValue attractionFactorModel = layouter.getForceDistribution().getAttractionFactorModel();
         attractionFactorModel.setValue(attractionFactorModel.maxVal);
-        layouter.initLayout(lat, new DefaultDrawParams());
+        layouter.initLayout(lat, new DefaultLayoutParameters());
         layouter.performLayout();
 
         lat.forEach(new Lattice.LatticeElementVisitor() {

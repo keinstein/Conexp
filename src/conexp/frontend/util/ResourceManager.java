@@ -19,6 +19,7 @@ public class ResourceManager implements IResourceManager {
     ResourceBundle res;
     public static final String actionSuffix = "Action";
     public static final String imageSuffix = "Image";
+    public static final String selectedImageSuffix = "SelectedImage";
     public static final String tooltipSuffix = "Tooltip";
     public static final String labelSuffix = "Label";
     public static final String shortcutSuffix = "Shortcut";
@@ -63,6 +64,10 @@ public class ResourceManager implements IResourceManager {
 
     public String getCommandImage(String command) {
         return getResourceString(command + imageSuffix);
+    }
+
+    public String getSelectedImage(String command) {
+        return getResourceString(command+selectedImageSuffix);
     }
 
     public String getCommandLabel(String key) {

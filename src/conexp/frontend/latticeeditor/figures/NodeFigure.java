@@ -11,8 +11,7 @@ package conexp.frontend.latticeeditor.figures;
 import canvas.Selectable;
 import canvas.figures.FigureUtils;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;

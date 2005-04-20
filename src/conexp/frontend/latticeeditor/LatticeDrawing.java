@@ -13,8 +13,10 @@ import canvas.Figure;
 import com.visibleworkings.trace.Trace;
 import conexp.core.*;
 import conexp.core.layout.ConceptCoordinateMapper;
+import conexp.core.layout.LayoutParameters;
 import conexp.core.layout.Layouter;
 import conexp.core.layout.LayouterProvider;
+import conexp.core.layoutengines.LayoutEngine;
 import conexp.core.layoutengines.LayoutListener;
 import conexp.core.layoutengines.ThreadedLayoutEngine;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
@@ -39,6 +41,15 @@ public class LatticeDrawing extends ConceptSetDrawing {
     public void setLayoutProvider(LayouterProvider layoutProvider) {
         this.layoutProvider = layoutProvider;
         getLayoutEngine().init(layoutProvider);
+    }
+
+
+    
+
+    public LatticeDrawing makeSetupCopy() {
+        LatticeDrawing ret = new LatticeDrawing();
+        ret.setOptions(getOptions().makeCopy());
+        return ret;
     }
 
     private class DefaultLayouterProvider implements LayouterProvider {
@@ -73,7 +84,6 @@ public class LatticeDrawing extends ConceptSetDrawing {
     private void markCollisionDetectionStarted() {
         needUpdateCollisions = false;
     }
-
 
     CollisionDetector collisionDetector = new CollisionDetector();
 
@@ -147,7 +157,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
         setLayoutProvider(new DefaultLayouterProvider());
     }
 
-    public DrawParameters getDrawParams() {
+    public LayoutParameters getDrawParams() {
         return getLatticeDrawingSchema().getDrawParams();
     }
 
@@ -167,6 +177,28 @@ public class LatticeDrawing extends ConceptSetDrawing {
     }
 
 
+
+    public Lattice getLattice() {
+        return lattice;
+    }
+
+    public ConceptsCollection getConceptSet() {
+        return getLattice();
+    }
+
+    public int getNumberOfLevelsInDrawing() {
+
+        return hasLattice() ? getLattice().getHeight(): 0;
+    }
+
+    public boolean hasConceptSet() {
+        return hasLattice();
+    }
+
+    public boolean hasLattice() {
+        return null != lattice;
+    }
+
     public String getAttributeLabelingStrategyKey() {
         return getLabelingStrategiesContext().getAttributeLabelingStrategyKey();
     }
@@ -181,30 +213,6 @@ public class LatticeDrawing extends ConceptSetDrawing {
 
     public boolean setObjectLabelingStrategyKey(String key) {
         return getLabelingStrategiesContext().setObjectLabelingStrategyKey(key);
-    }
-
-    public LatticePainterOptions getPainterOptions() {
-        return (LatticePainterOptions) getOptions();
-    }
-
-    public Lattice getLattice() {
-        return lattice;
-    }
-
-    public ConceptsCollection getConceptSet() {
-        return getLattice();
-    }
-
-    public int getNumberOfLevelsInDrawing() {
-        return getLattice().getHeight();
-    }
-
-    public boolean hasConceptSet() {
-        return hasLattice();
-    }
-
-    public boolean hasLattice() {
-        return null != lattice;
     }
 
     protected void makeLatticeDiagramFigures() {
@@ -267,6 +275,8 @@ public class LatticeDrawing extends ConceptSetDrawing {
             onCollisionThreadEnd();
         }
     }
+
+
 
 
 }

@@ -7,9 +7,9 @@
 
 package conexp.frontend.latticeeditor.labelingstrategies;
 
-import conexp.frontend.latticeeditor.DrawParamsIndependentStrategyModel;
+import conexp.util.gui.strategymodel.AbstractNonGrowingStrategyModel;
 
-public class AttributesLabelingStrategyModel extends DrawParamsIndependentStrategyModel {
+public class AttributesLabelingStrategyModel extends AbstractNonGrowingStrategyModel{
 
     public AttributesLabelingStrategyModel() {
         super();

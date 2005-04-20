@@ -1,16 +1,14 @@
 package conexp.frontend.io.tests;
 
-import junit.framework.TestCase;
+import conexp.core.tests.SetBuilder;
 import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.io.LatticeCSCExporter;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
-import conexp.frontend.io.LatticeCSCExporter;
-import conexp.core.tests.SetBuilder;
+import junit.framework.TestCase;
 
-import java.io.StringWriter;
 import java.io.BufferedWriter;
-import java.util.Locale;
-import java.text.MessageFormat;
+import java.io.StringWriter;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

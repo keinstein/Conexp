@@ -19,4 +19,6 @@ public interface IResourceManager {
     String getCommandShortcut(String command);
 
     String getCommandTooltip(String command);
+
+    String getSelectedImage(String command);
 }

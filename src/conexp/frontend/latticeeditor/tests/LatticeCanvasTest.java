@@ -9,6 +9,7 @@ package conexp.frontend.latticeeditor.tests;
 
 import canvas.IFigurePredicate;
 import canvas.IHighlightStrategy;
+import canvas.CanvasScheme;
 import canvas.figures.TrueFigurePredicate;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
@@ -24,10 +25,7 @@ import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
 import util.testing.TestUtil;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
+import java.awt.*;
 
 public class LatticeCanvasTest extends junit.framework.TestCase {
 
@@ -37,7 +35,11 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
                 return null;
             }
 
-            DrawParameters drawParams = new DefaultDrawParams();
+            public CanvasScheme makeCopy() {
+                return null;
+            }
+
+            DrawParameters drawParams = BasicDrawParams.getInstance();
             DrawStrategiesContext drawStrategiesContext = new LatticeCanvasDrawStrategiesContext(new DefaultDrawStrategiesModelsFactory(drawParams), null);
 
             public DrawStrategiesContext getDrawStrategiesContext() {
@@ -60,7 +62,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
 
         LatticeCanvas latCanvas = new LatticeCanvas(options) {
             protected double findMinimalYDistanceToPredecessorsFiguresCenters(AbstractConceptCorrespondingFigure f, IFigurePredicate includeInComputation) {
-                return 10 + 2 * (new DefaultDrawParams()).getMaxNodeRadius();
+                return 10 + 2 * (getDrawParameters()).getMaxNodeRadius();
             }
         };
         double res = latCanvas.getUpMoveConstraintForConcept(new ConceptFigure(

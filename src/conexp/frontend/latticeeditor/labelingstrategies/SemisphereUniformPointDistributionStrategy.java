@@ -7,7 +7,7 @@
 
 package conexp.frontend.latticeeditor.labelingstrategies;
 
-import conexp.frontend.latticeeditor.DrawParameters;
+import conexp.core.layout.LayoutParameters;
 
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
@@ -17,10 +17,10 @@ public abstract class SemisphereUniformPointDistributionStrategy implements Poin
     double angle;
     double centerX;
     double centerY;
-    DrawParameters opt;
+    LayoutParameters opt;
     Ellipse2D figureEllipse;
 
-    public SemisphereUniformPointDistributionStrategy(double centerX, double centerY, int numPoints, DrawParameters opt, Ellipse2D figureEllipse) {
+    public SemisphereUniformPointDistributionStrategy(double centerX, double centerY, int numPoints, LayoutParameters opt, Ellipse2D figureEllipse) {
         this.centerX = centerX;
         this.centerY = centerY;
         this.opt = opt;

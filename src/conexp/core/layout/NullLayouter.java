@@ -8,7 +8,6 @@
 package conexp.core.layout;
 
 import conexp.core.ItemSet;
-import conexp.frontend.latticeeditor.DrawParameters;
 
 import java.awt.geom.Point2D;
 
@@ -24,7 +23,7 @@ public class NullLayouter extends NonIncrementalLayouter {
         return new conexp.util.gui.paramseditor.ParamInfo[0];
     }
 
-    public void initLayout(conexp.core.Lattice l, DrawParameters drawParams) {
+    public void initLayout(conexp.core.Lattice l, LayoutParameters drawParams) {
     }
 
 //calcInitialPlacement and improveOnce are already empty in GenericLayouter

@@ -834,10 +834,12 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         calcZeroElementPosition(latticeWidth, height);
 
         ConnectedCollectionsSupplier supplier = new DirectConnectedCollectionsSupplier();
+
         for (int rank = 1; rank < ranks.length; rank++) {
             doAssignsCoordsForRank(rank, supplier);
             doStraytenLayoutForRank(rank);
         }
+
         applyElementInfoProcessor(new ElementInfoProcessor(){
             public void process(ElementInfo elementInfo) {
                 elementInfo.xPosDirect = elementInfo.x;

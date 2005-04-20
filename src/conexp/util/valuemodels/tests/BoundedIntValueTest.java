@@ -8,17 +8,11 @@
 package conexp.util.valuemodels.tests;
 
 import conexp.util.valuemodels.BoundedIntValue;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import java.beans.PropertyVetoException;
 
 public class BoundedIntValueTest extends TestCase {
-
-    public static Test suite() {
-        return new TestSuite(BoundedIntValueTest.class);
-    }
 
     private void doTestCreationWithIllegelParams(String propName, int value, int minValue, int maxValue) {
         try {

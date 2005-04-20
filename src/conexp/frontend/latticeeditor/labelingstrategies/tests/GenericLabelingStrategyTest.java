@@ -19,7 +19,8 @@ import conexp.frontend.latticeeditor.labelingstrategies.GenericLabelingStrategy;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import junit.framework.TestCase;
 
-import java.awt.Dimension;
+import java.awt.*;
+import java.awt.geom.Dimension2D;
 
 
 public abstract class GenericLabelingStrategyTest extends TestCase {

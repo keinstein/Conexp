@@ -11,10 +11,9 @@ package conexp.core.layoutengines;
 import com.visibleworkings.trace.Trace;
 import conexp.core.Lattice;
 import conexp.core.layout.ConceptCoordinateMapper;
+import conexp.core.layout.LayoutParameters;
 import conexp.core.layout.Layouter;
 import conexp.core.layout.LayouterProvider;
-import conexp.frontend.latticeeditor.DrawParameters;
-import conexp.frontend.latticeeditor.LayoutEngine;
 import util.Assert;
 
 import javax.swing.event.EventListenerList;
@@ -33,7 +32,7 @@ public abstract class LayoutEngineBase implements LayoutEngine {
     }
 
     Lattice currLattice;
-    DrawParameters currParameters;
+    LayoutParameters currParameters;
 
     protected PropertyChangeListener layoutChangeListener = new LayoutChangeListener();
 
@@ -78,9 +77,9 @@ public abstract class LayoutEngineBase implements LayoutEngine {
         }
     }
 
-    protected abstract void doRestartLayout(Lattice lattice, DrawParameters parameters);
+    protected abstract void doRestartLayout(Lattice lattice, LayoutParameters parameters);
 
-    public void startLayout(Lattice lattice, DrawParameters drawParameters) {
+    public void startLayout(Lattice lattice, LayoutParameters drawParameters) {
         Assert.isTrue(null != lattice);
         Assert.isTrue(null != drawParameters);
         if (lattice.isEmpty()) {
@@ -93,5 +92,5 @@ public abstract class LayoutEngineBase implements LayoutEngine {
 
     }
 
-    protected abstract void doStartLayout(Lattice lattice, DrawParameters parameters);
+    protected abstract void doStartLayout(Lattice lattice, LayoutParameters parameters);
 }

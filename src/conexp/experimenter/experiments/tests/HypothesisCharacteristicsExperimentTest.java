@@ -1,12 +1,6 @@
 package conexp.experimenter.experiments.tests;
 
 import junit.framework.TestCase;
-import conexp.core.Context;
-import conexp.core.Lattice;
-import conexp.core.FCAEngineRegistry;
-import conexp.core.tests.SetBuilder;
-
-import java.util.Set;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

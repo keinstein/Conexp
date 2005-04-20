@@ -26,8 +26,7 @@ public class ForceLayout extends SimpleForceLayout {
                     continue;
                 }
 
-                repulsion(
-                        currCoords,
+                repulsion(currCoords,
                         otherCoords,
                         repulsion, forces);
 

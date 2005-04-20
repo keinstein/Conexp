@@ -27,12 +27,6 @@ public class ObjectListContextCreator implements ContextCreator, DocumentLoader,
         objects = new Hashtable();
     }
 
-    //todo: Julian, have a look, whether this really was intended. Sergey
-    public ObjectListContextCreator(String COMMENTS) {
-        this();
-    }
-
-
     public Context createContextfromReader(Reader reader, DataFormatErrorHandler errorhandler) {
         try {
             Exception e;
@@ -72,9 +66,6 @@ public class ObjectListContextCreator implements ContextCreator, DocumentLoader,
             if ((input.equals("")) || (input.startsWith(COMMENTS))) {
                 continue;
             }
-            System.out.println("essai" + input + "öööö");
-            input = input.substring(0, input.length());//TODO check whether there is no mistake if there is ;
-
             tokenizer = new StringTokenizer(input, OBJECT_SEPARATOR, false);
 
 

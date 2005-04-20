@@ -8,6 +8,7 @@
 package conexp.frontend.latticeeditor;
 
 import conexp.util.exceptions.ConfigFatalError;
+import conexp.util.gui.strategymodel.AbstractNonGrowingStrategyModel;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -19,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class XMLFileStrategyModel extends DrawParamsIndependentStrategyModel {
+public class XMLFileStrategyModel extends AbstractNonGrowingStrategyModel{
     static class ConfigInfo {
         final String label;
         final String className;
@@ -126,10 +127,10 @@ public class XMLFileStrategyModel extends DrawParamsIndependentStrategyModel {
      * @test_public this constructor is for tests only
      */
     public XMLFileStrategyModel(String xmlFileUrl, boolean doCreateStrategies) {
-        super(true); //not create strategies();
+        super(false); //not create strategies();
         parse(xmlFileUrl);
         if (doCreateStrategies) {
-            createStrategies(null);
+            createStrategies();
         }
     }
 }

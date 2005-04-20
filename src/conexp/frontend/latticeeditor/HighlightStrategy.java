@@ -71,10 +71,42 @@ public abstract class HighlightStrategy implements GenericStrategy, IHighlightSt
         return query != null;
     }
 
-    /**
-     * AbstractHilightStrategy constructor comment.
-     */
     public HighlightStrategy() {
         super();
+    }
+
+    public IHighlightStrategy makeCopy() {
+        HighlightStrategy ret = createNew();
+        ret.setNode(node);
+        return ret;
+    }
+
+    protected abstract HighlightStrategy createNew();
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof HighlightStrategy)) return false;
+
+        final HighlightStrategy highlightStrategy = (HighlightStrategy) obj;
+        if(!getClass().equals(highlightStrategy.getClass())){
+            return false;
+        }
+
+        if (node != null ? !node.equals(highlightStrategy.node) : highlightStrategy.node != null) return false;
+        if (query != null ? !query.equals(highlightStrategy.query) : highlightStrategy.query != null) return false;
+
+        return true;
+    }
+
+    public int hashCode() {
+        int result;
+        result = (node != null ? node.hashCode() : 0);
+        result = 29 * result + (query != null ? query.hashCode() : 0);
+        return result;
+    }
+
+
+    public String toString() {
+        return getClass().getName();
     }
 }

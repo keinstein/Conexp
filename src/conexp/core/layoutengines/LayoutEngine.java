@@ -6,20 +6,22 @@
 
 
 
-package conexp.frontend.latticeeditor;
+package conexp.core.layoutengines;
 
 import conexp.core.Lattice;
+import conexp.core.layout.LayoutParameters;
 import conexp.core.layout.LayouterProvider;
-import conexp.core.layoutengines.LayoutListener;
 
 public interface LayoutEngine {
     void init(LayouterProvider provider);
 
     void shutdown();
 
-    void startLayout(Lattice lattice, DrawParameters drawParameters);
+    void startLayout(Lattice lattice, LayoutParameters drawParameters);
 
     void addLayoutListener(LayoutListener listener);
 
     void removeLayoutListener(LayoutListener listener);
+
+    LayoutEngine newInstance();
 }

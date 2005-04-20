@@ -58,13 +58,10 @@ public class StrategyValueItemParamInfo extends AbstractParamInfo {
 
     public void setValue(Object obj) throws IllegalArgumentException {
         if (!(obj instanceof Integer)) {
-            throw new IllegalArgumentException("Accept only Intager" + obj);
+            throw new IllegalArgumentException("Accept only Integer" + obj);
         }
         int newValue = ((Integer) obj).intValue();
         valueModel.setValue(newValue);
     }
 
-    /*  public Object getValueGroup() {
-          return new Integer(valueModel.getValueGroup());
-      } */
 }

@@ -8,7 +8,7 @@ import conexp.frontend.latticeeditor.figures.EdgeFigure;
 import util.collection.CollectionFactory;
 import util.comparators.ComparatorUtil;
 
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.geom.Line2D;
 import java.util.Collections;
 import java.util.Comparator;

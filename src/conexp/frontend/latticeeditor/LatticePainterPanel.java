@@ -8,34 +8,42 @@
 package conexp.frontend.latticeeditor;
 
 import com.visibleworkings.trace.Trace;
+import conexp.core.Lattice;
+import conexp.core.layout.LayoutParameters;
 import conexp.frontend.LatticeDrawingProvider;
 import conexp.frontend.ResourceLoader;
 import conexp.frontend.ViewChangeInterfaceWithConfig;
 import conexp.frontend.util.ActionChainUtil;
 import conexp.frontend.util.IResourceManager;
 import conexp.frontend.util.ResourceManager;
+import conexp.util.gui.ToggleAbstractAction;
 
 import javax.swing.*;
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 
 public class LatticePainterPanel extends BaseLatticePainterPane implements ViewChangeInterfaceWithConfig {
+
+    Preferences preferences = Preferences.userNodeForPackage(LatticePainterPanel.class);
+    public static final String USE_IDEAL_MOVE_STRATEGY_PROPERTY = "USE_IDEAL_MOVE_STRATEGY_PROPERTY";
+    public static final String FIT_TO_SIZE_PROPERTY = "FIT_TO_SIZE_PROPERTY";
+
+    public Preferences getPreferences() {
+        return preferences;
+    }
 
     class PanningTool extends canvas.DefaultTool {
         int xDiff = 0;
         int yDiff = 0;
 
         public void mousePressed(MouseEvent e) {
-            setCursor(Cursor.getPredefinedCursor(
-                    Cursor.MOVE_CURSOR));
+            setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
             xDiff = e.getX();
             yDiff = e.getY();
         }
@@ -106,9 +114,13 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         }
     }
 
-    class SelectMoveModeAction extends AbstractAction {
+    class SelectMoveModeAction extends ToggleAbstractAction {
         public SelectMoveModeAction() {
             super("selectMoveMode");
+        }
+
+        public boolean isSelected() {
+            return isUseIdealMoveStrategy();
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -118,12 +130,15 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
                 setUseIdealMoveStrategy(selected);
             }
         }
-
     }
 
-    class SelectScaleToFitModeAction extends AbstractAction {
+    class SelectScaleToFitModeAction extends ToggleAbstractAction {
         public SelectScaleToFitModeAction() {
             super("scaleToFitMode");
+        }
+
+        public boolean isSelected() {
+            return isFitToSize();
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -142,6 +157,50 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         public void actionPerformed(ActionEvent e) {
             setZoom(getZoom() * 1.1);
         }
+    }
+
+    //experimental
+    class AssignYCoordsAccordingToWeigthAction extends AbstractAction {
+        public AssignYCoordsAccordingToWeigthAction() {
+            super("assignYByWeightCoords");
+        }
+
+        public void actionPerformed(ActionEvent e) {
+           rescaleYByWeight();
+        }
+    }
+
+
+    class StorePreferencesAction extends AbstractAction {
+        public StorePreferencesAction() {
+            super("storePreferences");
+        }
+
+        public void actionPerformed(ActionEvent e) {
+              storePreferences();
+        }
+    }
+
+    private void storePreferences() {
+        getConceptSetDrawing().storePreferences();
+        doStorePreferences();
+    }
+
+    private void doStorePreferences() {
+        getPreferences().putBoolean(USE_IDEAL_MOVE_STRATEGY_PROPERTY, isUseIdealMoveStrategy());
+        getPreferences().putBoolean(FIT_TO_SIZE_PROPERTY, isFitToSize());
+    }
+
+
+    public void restorePreferences(){
+        //todo: check, whether here the restoration of preferences of Concept set drawing is required
+        getConceptSetDrawing().restorePreferences();
+        doRestorePreferences();
+    }
+
+    private void doRestorePreferences() {
+        setUseIdealMoveStrategy(getPreferences().getBoolean(USE_IDEAL_MOVE_STRATEGY_PROPERTY, false));
+        setFitToSize(getPreferences().getBoolean(FIT_TO_SIZE_PROPERTY, false));
     }
 
     class ReduceZoomAction extends AbstractAction {
@@ -164,6 +223,17 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         }
     }
 
+
+    class CreateLatticeViewAction extends AbstractAction{
+        public CreateLatticeViewAction(){
+            super("createLatticeView");
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            JOptionPane.showMessageDialog(JOptionPane.getFrameForComponent(LatticePainterPanel.this), "Not yet implemented");
+        }
+
+    }
 
     private boolean scrollMode = false;
 
@@ -233,8 +303,12 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         return actionChain;
     }
 
-    public LatticePainterPanel(LatticeDrawingProvider latticeDrawingProvider) {
-        super(latticeDrawingProvider);
+    protected void init() {
+        //restorePreferences();
+        super.init();
+    }
+
+    public LatticePainterPanel(LatticeDrawingProvider latticeDrawingProvider) {        super(latticeDrawingProvider);
         init();
         getPainterOptions().addPropertyChangeListener(layoutChangeHandler);
 
@@ -242,6 +316,7 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         addPropertyChangeListener(DRAWING, new DrawingPropertyChangeListener());
 
         ToolTipManager.sharedInstance().registerComponent(this);
+
         ActionChainUtil.putActions(getActionChain(), getActions());
     }
 
@@ -263,13 +338,17 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
     //---------------------------------------------------------------
     public Action[] getActions() {
         Action[] ret = {new AlignToGridAction(),
+                        new AssignYCoordsAccordingToWeigthAction(),
                         new GrabAndDragAction(),
                         new ExportLatticeInfoAction("saveImage", "Export diagram as", this),
                         new SelectMoveModeAction(),
                         new SelectScaleToFitModeAction(),
                         new AddZoomAction(),
                         new ReduceZoomAction(),
-                        new NoZoomAction()};
+                        new NoZoomAction(),
+                        new StorePreferencesAction(),
+                        new CreateLatticeViewAction()
+        };
         return ret;
 
     }
@@ -288,21 +367,27 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         return new ResourceManager(getResources());
     }
 
+    public void rescaleYByWeight(){
+        Lattice lattice = getLattice();
+        double startY = getLatticeDrawing().getFigureForConcept(lattice.getTop()).getCenterY();
+        double endY = getLatticeDrawing().getFigureForConcept(lattice.getBottom()).getCenterY();
+        double weightFactor = 1.0/lattice.getOne().getObjCnt();
+        visitFiguresAndRepaint(new RescaleByWeigthVisitor(startY, endY, weightFactor));
+    }
+
     public void rescaleByXCoord(double coeff) {
         visitFiguresAndRepaint(new RescaleByXFigureVisitor(getDrawParameters().getMinGapX(), coeff));
     }
 
     public void rescaleByYCoord() {
-        DrawParameters drawParams = getDrawParameters();
+        LayoutParameters drawParams = getDrawParameters();
         visitFiguresAndRepaint(new RescaleByYFigureVisitor(0, drawParams.getGridSizeY(), getConceptSetDrawing().getNumberOfLevelsInDrawing()));
     }
-
     //----------------------------------------------
     public String getToolTipText(MouseEvent evt) {
         return canDescribePoint(evt.getPoint()) ? describeActivePoint() : null;
     }
     //------------------------------------------------------------------
-
     private class DrawingPropertyChangeListener implements PropertyChangeListener {
         public void propertyChange(PropertyChangeEvent evt) {
             ConceptSetDrawing oldDrawing = (ConceptSetDrawing)evt.getOldValue();

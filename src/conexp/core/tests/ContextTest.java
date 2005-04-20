@@ -61,12 +61,32 @@ public class ContextTest extends TestCase {
             }
         };
 
-        cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0}, {0, 1, 0}, {0, 1, 0}});
+        cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
+                                                 {0, 1, 0},
+                                                 {0, 1, 0}});
         int expectedNumberOfCalls = 1;
 
         expectStructureChangedCall(cxt, expectedNumberOfCalls, modification);
         expectTransposedCall(cxt, expectedNumberOfCalls, modification);
     }
+
+    public void testTransposeChangingTypesOfObjectsAndAttributes(){
+        cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
+                                                 {0, 1, 0}});
+        checkObjectAndAttributesIntegrity(cxt);
+        cxt.transpose();
+        checkObjectAndAttributesIntegrity(cxt);
+    }
+
+    private static void checkObjectAndAttributesIntegrity(Context cxt) {
+        for(int i=0;i<cxt.getObjectCount(); i++){
+            assertEquals(true, cxt.getObject(i).isObject());
+        }
+        for(int i=0;i<cxt.getAttributeCount(); i++){
+            assertEquals(false,cxt.getAttribute(i).isObject());
+        }
+    }
+
 
     private void expectTransposedCall(Context cxt, int expectedNumberOfCalls, ContextStructureModification modification) {
         MockContextListener mock = new MockContextListener() {

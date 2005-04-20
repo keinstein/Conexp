@@ -7,7 +7,6 @@
 
 package conexp.core.calculationstrategies.tests;
 
-import com.mockobjects.ExpectationSet;
 import conexp.core.BinaryRelation;
 import conexp.core.ConceptsCollection;
 import conexp.core.Lattice;

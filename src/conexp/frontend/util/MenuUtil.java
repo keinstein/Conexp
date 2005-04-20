@@ -9,7 +9,7 @@
 package conexp.frontend.util;
 
 import javax.swing.*;
-import java.awt.Component;
+import java.awt.*;
 
 public class MenuUtil {
     public static int findIndexOfMenuComponentWithName(JMenu menu, String name) {

@@ -7,8 +7,8 @@
 
 package conexp.frontend.latticeeditor.labelingstrategies;
 
+import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
-import conexp.frontend.latticeeditor.DrawParameters;
 
 
 public class NullLabellingStrategy extends conexp.frontend.latticeeditor.LabelingStrategy {
@@ -32,7 +32,7 @@ public class NullLabellingStrategy extends conexp.frontend.latticeeditor.Labelin
     public void setContext(conexp.core.ExtendedContextEditingInterface cxt) {
     }
 
-    public canvas.BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing fd, DrawParameters opt) {
+    public canvas.BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing fd, LayoutParameters opt) {
         return visitor;
     }
 

@@ -43,9 +43,6 @@ public class ConceptsCollection {
 
 //------------------------------------------
 
-    /**
-     *  @deprecated
-     */
     public void clear() {
         elements.clear();
     }

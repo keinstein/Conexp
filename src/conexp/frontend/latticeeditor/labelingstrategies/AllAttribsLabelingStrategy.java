@@ -7,9 +7,9 @@
 
 package conexp.frontend.latticeeditor.labelingstrategies;
 
+import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
-import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 
 import java.awt.geom.Ellipse2D;
@@ -24,7 +24,7 @@ public class AllAttribsLabelingStrategy extends OneToManyConnectedFiguresLabelin
         return query.hasOwnAttribs();
     }
 
-    protected java.lang.Object makeConnectedObject(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure conceptFigure, DrawParameters opt) {
+    protected java.lang.Object makeConnectedObject(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure conceptFigure, LayoutParameters opt) {
         ConceptQuery conceptQuery = conceptFigure.getConceptQuery();
         int attrCount = conceptQuery.getOwnAttribsCount();
 
@@ -36,7 +36,7 @@ public class AllAttribsLabelingStrategy extends OneToManyConnectedFiguresLabelin
 
     }
 
-    protected PointDistributionStrategy makeCoordsDistributor(AbstractConceptCorrespondingFigure f, int numPoints, DrawParameters opt) {
+    protected PointDistributionStrategy makeCoordsDistributor(AbstractConceptCorrespondingFigure f, int numPoints, LayoutParameters opt) {
         return new UpperHemisphereUniformPointDistributionStrategy(f.getCenterX(),
                 f.getCenterY(),
                 numPoints,

@@ -12,6 +12,7 @@ import canvas.FigureDrawing;
 import canvas.FigureDrawingCanvas;
 import canvas.IFigurePredicate;
 import conexp.core.*;
+import conexp.core.layout.LayoutParameters;
 import conexp.frontend.ConceptSetDrawingConsumer;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
@@ -23,7 +24,7 @@ import java.awt.geom.Point2D;
 public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDrawingConsumer {
 
     public LatticeCanvas(LatticeCanvasScheme latticeCanvasScheme){
-        setOptions(latticeCanvasScheme);
+        super(latticeCanvasScheme);
     }
 
 
@@ -75,7 +76,7 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
 
     public double getUpMoveConstraintForConcept(AbstractConceptCorrespondingFigure f, IFigurePredicate predicate) {
         double ret = findMinimalYDistanceToPredecessorsFiguresCenters(f, predicate);
-        DrawParameters drawParams = getDrawParameters();
+        LayoutParameters drawParams = getDrawParameters();
         ret = Math.max(0, ret - 2 * drawParams.getMaxNodeRadius());
         Assert.isTrue(ret >= 0);
         return ret;
@@ -96,7 +97,7 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
 
     public double getDownMoveConstraintForConcept(ConceptFigure f) {
         double ret = findMinimalYDistanceToSuccesorFigureCenters(f);
-        DrawParameters drawParams = getDrawParameters();
+        LayoutParameters drawParams = getDrawParameters();
         ret = Math.max(0, ret - 2 * drawParams.getMaxNodeRadius());
         Assert.isTrue(ret >= 0);
         return ret;

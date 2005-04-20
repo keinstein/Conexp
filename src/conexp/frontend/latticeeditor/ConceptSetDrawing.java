@@ -21,7 +21,7 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.LineDiagramFigure;
 import conexp.util.gui.paramseditor.ParamInfo;
 
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.geom.Dimension2D;
 
 public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
@@ -33,7 +33,7 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
         setOptions(new LatticePainterOptions(getLatticeDrawingSchema().getDrawParams()));
     }
 
-    protected LatticeCanvasScheme getLatticeCanvasScheme() {
+    public LatticeCanvasScheme getLatticeCanvasScheme() {
         return (LatticeCanvasScheme) getOptions();
     }
 
@@ -67,6 +67,23 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
             labelingStrategiesContext.addPropertyChangeListener(new LabelingStrategiesEventHandler());
         }
         return labelingStrategiesContext;
+    }
+
+    public LatticePainterOptions getPainterOptions() {
+        return (LatticePainterOptions) getOptions();
+    }
+
+    public void restorePreferences(){
+        getLatticeDrawingOptions().getEditableDrawingOptions().restorePreferences();
+        getPainterOptions().restorePreferences();
+        getLabelingStrategiesContextImpl().restorePreferences();
+    }
+
+
+    public void storePreferences(){
+        getLatticeDrawingOptions().getEditableDrawingOptions().doStorePreferences();
+        getPainterOptions().doStorePreferences();
+        getLabelingStrategiesContextImpl().doStorePreferences();
     }
 
     class LabelingStrategiesEventHandler implements java.beans.PropertyChangeListener {
@@ -105,7 +122,6 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
     private FigureWithCoordsMap objectLabels = new FigureWithCoordsMap();
     private FigureWithCoordsMap conceptLabels = new FigureWithCoordsMap();
 
-    //todo: check transposing for preserving properties as object and attribute
     public void setFigureForContextObject(ContextEntity object, IFigureWithCoords figure) {
         if (object.isObject()) {
             objectLabels.put(object, figure);

@@ -10,9 +10,9 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 import canvas.BaseFigureVisitor;
 import canvas.Figure;
 import canvas.figures.BorderCalculatingFigure;
+import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
-import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.CompositeFigureWithFigureDimensionCalcStrategyProvider;
 import conexp.frontend.latticeeditor.figures.DefaultFigureVisitor;
@@ -24,9 +24,9 @@ public abstract class GenericLabelingStrategy extends conexp.frontend.latticeedi
 
     public class InitStrategyVisitor extends DefaultFigureVisitor {
         ConceptSetDrawing drawing;
-        DrawParameters opt;
+        LayoutParameters opt;
 
-        InitStrategyVisitor(ConceptSetDrawing drawing, DrawParameters opt) {
+        InitStrategyVisitor(ConceptSetDrawing drawing, LayoutParameters opt) {
             this.drawing = drawing;
             this.opt = opt;
         }
@@ -84,7 +84,7 @@ public abstract class GenericLabelingStrategy extends conexp.frontend.latticeedi
         return !conceptLabelsMap.isEmpty();
     }
 
-    protected abstract Object makeConnectedObject(ConceptSetDrawing fd, AbstractConceptCorrespondingFigure f, DrawParameters opt);
+    protected abstract Object makeConnectedObject(ConceptSetDrawing fd, AbstractConceptCorrespondingFigure f, LayoutParameters opt);
 
 
     private void removeConnectedObject(AbstractConceptCorrespondingFigure f) {
@@ -101,7 +101,7 @@ public abstract class GenericLabelingStrategy extends conexp.frontend.latticeedi
         //DEFAULT EMPTY IMPLEMENTATION
     }
 
-    public BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing drawing, DrawParameters opt) {
+    public BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing drawing, LayoutParameters opt) {
         return new InitStrategyVisitor(drawing, opt);
     }
 

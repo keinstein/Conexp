@@ -1,14 +1,14 @@
 package conexp.experimenter.experiments;
 
-import conexp.core.ConceptEnumCallback;
 import conexp.core.BinaryRelation;
-import conexp.core.searchconstraints.MinSupportConstrainer;
+import conexp.core.ConceptEnumCallback;
 import conexp.core.calculationstrategies.DepthSearchCalculatorWithFeatureMask;
 import conexp.core.enumcallbacks.ConceptNumCallback;
 import conexp.core.enumcallbacks.ConceptNumExperimentCallback;
+import conexp.core.searchconstraints.MinSupportConstrainer;
+import conexp.experimenter.framework.ExperimentRunner;
 import conexp.experimenter.framework.MeasurementProtocol;
 import conexp.experimenter.framework.MeasurementSet;
-import conexp.experimenter.framework.ExperimentRunner;
 
 
 /**

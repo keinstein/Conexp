@@ -15,12 +15,14 @@ public class AllTests extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(ConceptFrameTest.suite());
+        suite.addTestSuite(AboutConExpDialogTest.class);
+        suite.addTestSuite(ConceptFrameTest.class);
         suite.addTest(ContextDocManagerTest.suite());
         suite.addTest(PropertyChangeSupplierBaseControllerTest.suite());
         suite.addTestSuite(ContextDocumentTest.class);
         suite.addTest(JTabPaneViewManagerTest.suite());
         suite.addTest(ViewManagerTest.suite());
+
 
         suite.addTest(conexp.frontend.contexteditor.tests.AllTests.suite());
         suite.addTest(conexp.frontend.latticeeditor.tests.AllTests.suite());

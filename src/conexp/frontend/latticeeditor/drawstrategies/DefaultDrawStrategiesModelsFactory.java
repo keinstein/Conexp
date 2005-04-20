@@ -9,10 +9,10 @@ package conexp.frontend.latticeeditor.drawstrategies;
 
 import conexp.frontend.ResourceLoader;
 import conexp.frontend.latticeeditor.DrawParameters;
-import conexp.frontend.latticeeditor.ModelsFactory;
+import conexp.frontend.latticeeditor.DrawStrategiesModelsFactory;
 import conexp.util.gui.strategymodel.StrategyModel;
 
-public class DefaultDrawStrategiesModelsFactory implements ModelsFactory {
+public class DefaultDrawStrategiesModelsFactory implements DrawStrategiesModelsFactory {
 
     DrawParameters drawParams;
 
@@ -38,4 +38,7 @@ public class DefaultDrawStrategiesModelsFactory implements ModelsFactory {
         return new conexp.frontend.latticeeditor.noderadiusstrategy.NodeRadiusStrategyModel(drawParams);
     }
 
+    public DrawStrategiesModelsFactory makeCopy() {
+        return new DefaultDrawStrategiesModelsFactory(drawParams.makeCopy());
+    }
 }

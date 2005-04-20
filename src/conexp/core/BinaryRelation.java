@@ -28,7 +28,5 @@ public interface BinaryRelation {
      */
     Set getSet(int row);
 
-    boolean equals(Object other);
-
     ModifiableBinaryRelation makeModifiableCopy();
 }

@@ -11,16 +11,21 @@ import conexp.core.Context;
 import conexp.core.FCAEngineRegistry;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
+import conexp.core.layout.ConceptCoordinateMapper;
+import conexp.core.layout.DefaultLayoutParameters;
+import conexp.core.layoutengines.LayoutEngine;
+import conexp.core.layoutengines.LayoutListener;
 import conexp.core.layoutengines.SimpleLayoutEngine;
-import conexp.frontend.components.LatticeComponent;
-import conexp.frontend.latticeeditor.LatticeDrawing;
+import conexp.core.layout.MinIntersectionLayouterProvider;
 import junit.framework.TestCase;
 import util.collection.CollectionFactory;
 
+import java.awt.geom.Point2D;
 import java.util.Set;
 
 public class SimpleLayoutEngineTest extends TestCase {
-    public void testCoordinatesAssignment() {
+
+    public void testNativeCoordinatesAssignment() {
 
         Context cxt = FCAEngineRegistry.makeContext(3, 3);
         for (int i = 0; i < 3; i++) {
@@ -31,17 +36,29 @@ public class SimpleLayoutEngineTest extends TestCase {
             }
         }
 
-        LatticeComponent component = new LatticeComponent(cxt);
-        component.setLayoutEngine(new SimpleLayoutEngine());
-        component.calculateAndLayoutLattice();
-        final LatticeDrawing drawing = component.getDrawing();
+        final Lattice lattice = FCAEngineRegistry.buildLattice(cxt);
+
+        LayoutEngine layoutEngine = new SimpleLayoutEngine();
         final Set distinctCoors = CollectionFactory.createDefaultSet();
-        Lattice lattice = component.getLattice();
-        lattice.forEach(new Lattice.LatticeElementVisitor() {
-            public void visitNode(LatticeElement node) {
-                distinctCoors.add(drawing.getFigureForConcept(node).getCenter());
+
+
+        layoutEngine.addLayoutListener(new LayoutListener(){
+            Point2D.Double point = new Point2D.Double();
+
+            public void layoutChange(final ConceptCoordinateMapper mapper) {
+                lattice.forEach(new Lattice.LatticeElementVisitor() {
+                    public void visitNode(LatticeElement node) {
+                        mapper.setCoordsForConcept(node,point);
+                        distinctCoors.add(point.clone());
+                    }
+                });
             }
         });
-        System.out.println(distinctCoors.size());
+
+        MinIntersectionLayouterProvider layouterProvider = new MinIntersectionLayouterProvider();
+        layoutEngine.init(layouterProvider);
+        layoutEngine.startLayout(lattice, new DefaultLayoutParameters());
+        assertEquals(8, distinctCoors.size());
     }
+
 }

@@ -16,7 +16,7 @@ public class BaseLatticePainterPane extends BaseConceptSetCanvas {
 
     public BaseLatticePainterPane(LatticeDrawingProvider latticeDrawingProvider) {
         super(latticeDrawingProvider.getDrawing().getPainterOptions());
-        setLatticeSupplier(latticeDrawingProvider);
+        latticeSupplier = latticeDrawingProvider;
     }
 
     protected LatticeDrawing getLatticeDrawing() {
@@ -35,8 +35,4 @@ public class BaseLatticePainterPane extends BaseConceptSetCanvas {
         setConceptSetDrawing(getLatticeSupplier().getDrawing());
     }
 
-    protected void setLatticeSupplier(LatticeDrawingProvider supplier) {
-        latticeSupplier = supplier;
-        setOptions(latticeSupplier.getDrawing().getOptions());
-    }
 }

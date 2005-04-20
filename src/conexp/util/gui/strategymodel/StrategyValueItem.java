@@ -14,6 +14,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeSupport;
+import java.util.prefs.Preferences;
 
 public class StrategyValueItem implements ActionListener {
 
@@ -91,6 +92,45 @@ public class StrategyValueItem implements ActionListener {
         }
         setValue(index);
         return true;
-
     }
+
+    public String toString() {
+        return "StrategyValueItem["+getPropertyName()+":"+getValueDescription()+"]";
+    }
+
+    public void restoreFromPreferences(Preferences preferences){
+        setValueByKey(preferences.get(getPropertyName(), ""));
+    }
+
+    public void storeToPreferences(Preferences preferences){
+        preferences.put(getPropertyName(), getStrategyKey());
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof StrategyValueItem)) return false;
+
+        final StrategyValueItem strategyValueItem = (StrategyValueItem) obj;
+
+        if (value != strategyValueItem.value){
+            return false;
+        }
+        if (!model.equals(strategyValueItem.model)){
+            return false;
+        }
+        if (!propertyName.equals(strategyValueItem.propertyName)){
+            return false;
+        }
+
+        return true;
+    }
+
+    public int hashCode() {
+        int result;
+        result = value;
+        result = 29 * result + propertyName.hashCode();
+        result = 29 * result + model.hashCode();
+        return result;
+    }
+
 }

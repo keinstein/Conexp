@@ -50,4 +50,25 @@ public abstract class ConceptDependentRadiusCalcStrategy extends AbstractNodeRad
     protected double getMaximalValue() {
         return maximalValue;
     }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof ConceptDependentRadiusCalcStrategy)) return false;
+        if(!getClass().equals(obj.getClass())){
+            return false;
+        }
+        final ConceptDependentRadiusCalcStrategy conceptDependentRadiusCalcStrategy = (ConceptDependentRadiusCalcStrategy) obj;
+        if (deltaRadius != conceptDependentRadiusCalcStrategy.deltaRadius) return false;
+        if (maximalValue != conceptDependentRadiusCalcStrategy.maximalValue) return false;
+        return super.equals(obj);
+    }
+
+    public int hashCode() {
+        int result;
+        long temp;
+        result = deltaRadius;
+        temp = maximalValue != +0.0d ? Double.doubleToLongBits(maximalValue) : 0l;
+        result = 29 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 }

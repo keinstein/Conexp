@@ -8,11 +8,13 @@
 
 package conexp.frontend.latticeeditor;
 
+import conexp.core.layout.LayoutParameters;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.StrategyValueItemParamInfo;
 import conexp.util.gui.strategymodel.StrategyValueItem;
 
 import java.beans.PropertyChangeSupport;
+import java.util.prefs.Preferences;
 
 public class LabelingStrategiesContextImpl extends BasicStrategiesContext implements LabelingStrategiesContext {
     private StrategyValueItem attrLabelingStrategy;
@@ -23,6 +25,7 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
     public LabelingStrategiesContextImpl(LabelingStrategyModelFactory factory, PropertyChangeSupport propertyChange) {
         super(propertyChange);
         this.factory = factory;
+        setPreferences(Preferences.userNodeForPackage(LabelingStrategiesContextImpl.class));
     }
 
     public ILabelingStrategy getAttrLabelingStrategy() {
@@ -32,6 +35,7 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
     synchronized StrategyValueItem getAttrLabelingStrategyItem() {
         if (null == attrLabelingStrategy) {
             attrLabelingStrategy = makeStrategyValueItem("drawAttribs", factory.makeAttributeLabelingStrategiesModel());
+//            attrLabelingStrategy.restoreFromPreferences(getPreferences());
         }
         return attrLabelingStrategy;
     }
@@ -54,6 +58,7 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
                     makeStrategyValueItem(
                             "drawObjects",
                             factory.makeObjectsLabelingStrategiesModel());
+//            objLabelingStrategy.restoreFromPreferences(getPreferences());
         }
         return objLabelingStrategy;
     }
@@ -73,6 +78,18 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
         };
     }
 
+    public void doStorePreferences() {
+        getAttrLabelingStrategyItem().storeToPreferences(getPreferences());
+        getObjectsLabelingStrategyItem().storeToPreferences(getPreferences());
+    }
+
+
+    public void restorePreferences() {
+        getAttrLabelingStrategyItem().restoreFromPreferences(getPreferences());
+        getObjectsLabelingStrategyItem().restoreFromPreferences(getPreferences());
+    }
+
+
     public void initStrategies(conexp.core.ExtendedContextEditingInterface cxt, ConceptSetDrawing fd) {
 
         setupLabelingStrategies(cxt);
@@ -86,7 +103,7 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
     }
 
     private void doInitStrategies(ConceptSetDrawing fd) {
-        final DrawParameters drawParams = fd.getLatticeDrawingOptions().getDrawParams();
+        final LayoutParameters drawParams = fd.getLatticeDrawingOptions().getDrawParams();
         getAttrLabelingStrategy().init(fd, drawParams);
         getObjectsLabelingStrategy().init(fd, drawParams);
         fd.makeBoundsRectDirty();
@@ -96,4 +113,5 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
         getAttrLabelingStrategy().shutdown(fd);
         getObjectsLabelingStrategy().shutdown(fd);
     }
+
 }

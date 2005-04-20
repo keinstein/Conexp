@@ -26,4 +26,22 @@ public class FixedEdgeSizeCalcStrategy extends AbstractDimensionCalcStrategy imp
     public float edgeThickness(ItemSet start, ItemSet end) {
         return stroke;
     }
+
+    public boolean equals(Object obj) {
+        if (this == obj){
+            return true;
+        }
+        if (!(obj instanceof FixedEdgeSizeCalcStrategy)) {
+            return false;
+        }
+        FixedEdgeSizeCalcStrategy fixedEdgeSizeCalcStrategy = (FixedEdgeSizeCalcStrategy) obj;
+        if (stroke != fixedEdgeSizeCalcStrategy.stroke){
+            return false;
+        }
+        return true;
+    }
+
+    public int hashCode() {
+        return stroke != +0.0f ? Float.floatToIntBits(stroke) : 0;
+    }
 }

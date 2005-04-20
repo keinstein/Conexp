@@ -18,8 +18,6 @@ import util.BooleanUtil;
 import util.DataFormatException;
 import util.StringUtil;
 
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.undo.CompoundEdit;

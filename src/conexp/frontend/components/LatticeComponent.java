@@ -7,17 +7,17 @@
 
 package conexp.frontend.components;
 
-import conexp.core.Context;
-import conexp.core.FCAEngineRegistry;
-import conexp.core.Lattice;
-import conexp.core.Set;
+import conexp.core.*;
+import conexp.core.layout.ConceptCoordinateMapper;
 import conexp.core.layout.LayouterProvider;
+import conexp.core.layoutengines.LayoutEngine;
 import conexp.frontend.LatticeCalculator;
 import conexp.frontend.LatticeDrawingProvider;
 import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.latticeeditor.LatticeDrawing;
-import conexp.frontend.latticeeditor.LayoutEngine;
 import util.BasePropertyChangeSupplier;
+
+import java.awt.geom.Point2D;
 
 
 public class LatticeComponent extends BasePropertyChangeSupplier implements LatticeDrawingProvider, LatticeCalculator {
@@ -26,6 +26,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     protected ContextAttributeMask attributeMask;
     protected ContextObjectMask objectMask;
     protected Lattice lattice;
+    LayoutEngine layoutEngine;
 
     public LatticeComponent() {
         this(FCAEngineRegistry.makeContext(0, 0));
@@ -35,11 +36,19 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         setContext(cxt);
     }
 
+    protected LatticeComponent(Context cxt, ContextAttributeMask attributeMask, ContextObjectMask objectMask) {
+        setContextAndMasks(cxt, attributeMask, objectMask);
+    }
+
     public void setContext(Context cxt) {
-        this.context = cxt;
-        attributeMask = new ContextAttributeMask(cxt);
-        objectMask = new ContextObjectMask(cxt);
+        setContextAndMasks(cxt, new ContextAttributeMask(cxt), new ContextObjectMask(cxt));
         clearLattice();
+    }
+
+    private void setContextAndMasks(Context cxt, final ContextAttributeMask contextAttributeMask, final ContextObjectMask contextObjectMask) {
+        this.context = cxt;
+        attributeMask = contextAttributeMask;
+        objectMask = contextObjectMask;
     }
 
     public SetProvidingEntitiesMask getAttributeMask() {
@@ -74,7 +83,6 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         lattice = new Lattice();
     }
 
-    LayoutEngine layoutEngine;
 
     public void setLayoutEngine(LayoutEngine layoutEngine) {
         this.layoutEngine = layoutEngine;
@@ -97,9 +105,13 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     }
 
     public void calculateLattice() {
-        lattice = FCAEngineRegistry.buildLattice(getContext());
-        getDrawing().setLattice(getLattice());
+        doSetLattice(FCAEngineRegistry.buildLattice(getContext()));
         fireLatticeRecalced();
+    }
+
+    private void doSetLattice(final Lattice otherLattice) {
+        lattice = otherLattice;
+        getDrawing().setLattice(otherLattice);
     }
 
     public void calculatePartialLattice() {
@@ -137,4 +149,75 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         getPropertyChangeSupport().firePropertyChange(LatticeCalculator.LATTICE_DRAWING_CHANGED, null, getDrawing());
     }
 
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof LatticeComponent)) {
+            return false;
+        }
+
+        final LatticeComponent latticeComponent = (LatticeComponent) other;
+
+        if (attributeMask != null ? !attributeMask.equals(latticeComponent.attributeMask) : latticeComponent.attributeMask != null) {
+            return false;
+        }
+        if (context != null ? !context.equals(latticeComponent.context) : latticeComponent.context != null) {
+            return false;
+        }
+        if (lattice != null ? !lattice.equals(latticeComponent.lattice) : latticeComponent.lattice != null) {
+            return false;
+        }
+        if (objectMask != null ? !objectMask.equals(latticeComponent.objectMask) : latticeComponent.objectMask != null) {
+            return false;
+        }
+
+        if (layoutEngine != null) {
+            if (latticeComponent.layoutEngine != null) {
+                if (!layoutEngine.getClass().equals(latticeComponent.getClass())) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else if (latticeComponent.layoutEngine != null) {
+            return false;
+        }
+
+/*
+        if (latticeDrawing != null ? !latticeDrawing.equals(latticeComponent.latticeDrawing) : latticeComponent.latticeDrawing != null) {
+            return false;
+        }
+*/
+
+        return true;
+    }
+
+    public int hashCode() {
+        int result = (attributeMask != null ? attributeMask.hashCode() : 0);
+        result = 29 * result + (objectMask != null ? objectMask.hashCode() : 0);
+        return result;
+    }
+
+    public LatticeComponent makeCopy() {
+        final LatticeComponent other = new LatticeComponent(this.context, attributeMask.makeCopy(), objectMask.makeCopy());
+        if (null != latticeDrawing) {
+            other.latticeDrawing = latticeDrawing.makeSetupCopy();
+        }
+        if (null != layoutEngine) {
+            other.setLayoutEngine(layoutEngine.newInstance());
+        }
+        if (lattice != null) {
+            other.doSetLattice(getLattice().makeCopy());
+            if (null != latticeDrawing) {
+                other.getDrawing().setCoordinatesFromMapper(new ConceptCoordinateMapper() {
+                    public void setCoordsForConcept(ItemSet c, Point2D coords) {
+                        coords.setLocation(latticeDrawing.getFigureForConcept(c).getCenter());
+                    }
+                });
+            }
+        }
+
+        return other;
+    }
 }

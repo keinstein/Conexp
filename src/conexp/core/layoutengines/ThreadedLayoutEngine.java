@@ -10,7 +10,7 @@ package conexp.core.layoutengines;
 
 import com.visibleworkings.trace.Trace;
 import conexp.core.Lattice;
-import conexp.frontend.latticeeditor.DrawParameters;
+import conexp.core.layout.LayoutParameters;
 
 public class ThreadedLayoutEngine extends LayoutEngineBase {
     protected LayoutImproveThread layoutThread = null;
@@ -35,14 +35,18 @@ public class ThreadedLayoutEngine extends LayoutEngineBase {
         return layoutThread;
     }
 
-    protected void doStartLayout(Lattice lattice, DrawParameters drawParameters) {
+    protected void doStartLayout(Lattice lattice, LayoutParameters drawParameters) {
         getLayoutThread().postEvent(new LayoutEvent(lattice, drawParameters, getLayoter(), LayoutEvent.START_LAYOUT));
     }
 
-    protected void doRestartLayout(Lattice lattice, DrawParameters parameters) {
+    protected void doRestartLayout(Lattice lattice, LayoutParameters parameters) {
         getLayoutThread().postEvent(new LayoutEvent(lattice, parameters, getLayoter(), LayoutEvent.RESTART_LAYOUT));
 
     }
 
+
+    public LayoutEngine newInstance() {
+        return new ThreadedLayoutEngine();  //To change body of implemented methods use File | Settings | File Templates.
+    }
 
 }

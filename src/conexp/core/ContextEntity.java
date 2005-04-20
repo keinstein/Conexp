@@ -14,7 +14,7 @@ import java.beans.PropertyChangeEvent;
 
 public class ContextEntity {
     String name;
-    ContextEntityListener listener;
+    transient ContextEntityListener listener;
 
     public void setContextEntityListener(ContextEntityListener listener) {
         this.listener = listener;
@@ -71,6 +71,13 @@ public class ContextEntity {
             return false;
         }
         return true;
+    }
+
+    public int hashCode() {
+        int result;
+        result = (name != null ? name.hashCode() : 0);
+        result = 29 * result + (obj ? 1 : 0);
+        return result;
     }
 
     public String toString() {

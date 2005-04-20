@@ -10,13 +10,7 @@ package conexp.frontend;
 import util.ConfigurationManager;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreePath;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -28,11 +22,9 @@ public class ConceptFrame extends JFrame {
     }
 
     JSplitPane jSplitPaneMain = new JSplitPane();
-    JTabbedPane jTabbedPane1 = new JTabbedPane();
+    JTabbedPane docTreeTabPane = new JTabbedPane();
     JSplitPane jSplitPane1 = new JSplitPane();
-
-    JTree contextTree;
-
+    JTree documentTree;
 
     private void createMainPane() {
         jSplitPane1.setPreferredSize(new Dimension(SizeOptions.getProjectPaneWidth(), 150));
@@ -47,17 +39,13 @@ public class ConceptFrame extends JFrame {
         jSplitPaneMain.setOneTouchExpandable(true);
         jSplitPaneMain.add(jSplitPane1, JSplitPane.LEFT);
 
-        jTabbedPane1.setPreferredSize(new Dimension(SizeOptions.getProjectPaneWidth(), sizeTab));
-        jTabbedPane1.setMinimumSize(new Dimension(SizeOptions.getProjectPaneWidth(), sizeTab));
+        docTreeTabPane.setPreferredSize(new Dimension(SizeOptions.getProjectPaneWidth(), sizeTab));
+        docTreeTabPane.setMinimumSize(new Dimension(SizeOptions.getProjectPaneWidth(), sizeTab));
 
-        jSplitPane1.add(jTabbedPane1, JSplitPane.TOP);
+        jSplitPane1.add(docTreeTabPane, JSplitPane.TOP);
         jSplitPane1.add(optionPane, JSplitPane.BOTTOM);
         jSplitPane1.setDividerLocation(sizeTab);
 
-
-        contextTree = makeTree();
-        jTabbedPane1.add(contextTree, "Contexts");
-        // jTabbedPane1.add(scrollBrowserPane, "Diagram Browser");
         jSplitPaneMain.setDividerLocation(SizeOptions.getProjectPaneWidth());
 
     }
@@ -77,13 +65,12 @@ public class ConceptFrame extends JFrame {
         setTitle("Concept Explorer");
 
         optionPane.setLayout(new BorderLayout());
-        createMainPane();
-
         constructDocumentManager();
+        createMainPane();
 
 
         jSplitPaneMain.add(manager.getActiveDocComponent(), JSplitPane.RIGHT);
-
+        // docTreeTabPane.add(scrollBrowserPane, "Diagram Browser");
         setToolBar(manager.getActiveDocToolBar());
 
         statusBar.setText(" ");
@@ -102,7 +89,17 @@ public class ConceptFrame extends JFrame {
                 onActiveDocInfoChanged();
             }
         });
+        // should be done here because after the creation of the document the tree is referred
+
         manager.createNewDocument();
+
+        documentTree = doMakeTree();
+        setDocumentTree(documentTree);
+        docTreeTabPane.setTitleAt(0, "Document");
+    }
+
+    private JTree doMakeTree() {
+        return manager.getDocumentTree();
     }
 
     private ContextDocManager makeDocManager() {
@@ -120,61 +117,28 @@ public class ConceptFrame extends JFrame {
         return contextDocManager;
     }
 
-
-    OidNode cxtName;
-    TreeModel model;
-    TreePath treePath;
-    Object node[];
-
-
-    public JTree makeTree() {
-        node = new Object[2];
-//		DefaultMutableTreeNode top = new DefaultMutableTreeNode(new OidNode(0, "Landscape"));
-//		node[0] = top;
-//		DefaultMutableTreeNode parent = top;
-        DefaultMutableTreeNode contexts = new DefaultMutableTreeNode(new OidNode("Contexts"));
-        node[0] = contexts;
-        DefaultMutableTreeNode parent = contexts;
-//      DefaultMutableTreeNode scales = new DefaultMutableTreeNode(new OidNode(2, "Scales"));
-//		parent.add(contexts);
-//		parent.add(scales);
-
-        cxtName = new OidNode("Not Empty String"); //if string is empty, it doesn't work :-((
-        node[1] = new DefaultMutableTreeNode(cxtName);
-
-        parent.add((DefaultMutableTreeNode) node[1]);
-
-//		parent = scales;
-//		parent.add(new DefaultMutableTreeNode(new OidNode(5, "Not yet implemented")));
-
-        treePath = new TreePath(node);
-        model = new DefaultTreeModel(contexts);
-        JTree ret = new JTree(model);
-
-        ret.setSelectionPath(treePath);
-        ret.setShowsRootHandles(true);
-        ret.setEditable(false);
-
-        return ret;
+    void updateDocumentTree(ContextDocManager manager) {
+        setDocumentTree(manager.getDocumentTree());
+        manager.updateDocumentTree();
     }
 
-    void showContextName(String name) {
-        cxtName.setName(name);
-        contextTree.invalidate();
-        jTabbedPane1.invalidate();
-        jTabbedPane1.repaint();
-
+    private void setDocumentTree(JTree documentTree) {
+        if (docTreeTabPane.getComponentCount() == 0) {
+            docTreeTabPane.add(documentTree);
+        } else {
+            docTreeTabPane.setComponentAt(0, documentTree);
+        }
     }
 
 //-----------------------------------------------------------------------
     public void onActiveDocChanged() {
-        showContextName(manager.getFileName());
+        updateDocumentTree(manager);
         setToolBar(manager.getActiveDocToolBar());
         setDocComponent(manager.getActiveDocComponent());
     }
 
     public void onActiveDocInfoChanged() {
-        showContextName(manager.getFileName());
+        updateDocumentTree(manager);
     }
 
     private Component component;

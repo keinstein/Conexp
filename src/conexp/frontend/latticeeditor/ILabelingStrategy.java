@@ -8,6 +8,7 @@
 
 package conexp.frontend.latticeeditor;
 
+import conexp.core.layout.LayoutParameters;
 import conexp.util.GenericStrategy;
 
 public interface ILabelingStrategy extends GenericStrategy {
@@ -15,5 +16,5 @@ public interface ILabelingStrategy extends GenericStrategy {
 
     void shutdown(ConceptSetDrawing drawing);
 
-    void init(ConceptSetDrawing drawing, DrawParameters drawParams);
+    void init(ConceptSetDrawing drawing, LayoutParameters drawParams);
 }

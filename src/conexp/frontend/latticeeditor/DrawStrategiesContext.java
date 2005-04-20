@@ -8,6 +8,9 @@
 
 package conexp.frontend.latticeeditor;
 
+import java.util.prefs.Preferences;
+import java.beans.PropertyChangeSupport;
+
 
 public interface DrawStrategiesContext extends conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider {
     void setupStrategiesParams(conexp.core.ConceptsCollection conceptSet);
@@ -15,4 +18,11 @@ public interface DrawStrategiesContext extends conexp.frontend.latticeeditor.Fig
     EdgeSizeCalcStrategy getEdgeSizeCalcStrategy();
 
     HighlightStrategy getHighlightStrategy();
+
+    DrawStrategiesContext makeCopy(PropertyChangeSupport propertyChange);
+
+    void setPreferences(Preferences preferences);
+
+    void doStorePreferences();
+
 }

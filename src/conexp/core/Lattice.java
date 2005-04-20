@@ -70,11 +70,6 @@ public class Lattice extends ConceptsCollection {
         one = null;
     }
 
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (22.05.01 23:45:47)
-     */
     public Lattice() {
     }
 
@@ -411,6 +406,7 @@ public class Lattice extends ConceptsCollection {
 
     /**
      *  creates a deep copy of current lattice
+     *  for context the shallow copy is performed
      */
     public Lattice makeCopy() {
         final Lattice ret = new Lattice();
@@ -431,6 +427,7 @@ public class Lattice extends ConceptsCollection {
             }
         });
 
+        ret.setContext(getContext());
         return ret;
     }
 

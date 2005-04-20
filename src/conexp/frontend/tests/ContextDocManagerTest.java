@@ -5,10 +5,10 @@
  **/
 
 
-
 package conexp.frontend.tests;
 
 import conexp.frontend.*;
+import conexp.frontend.util.ToolBuilder;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -18,16 +18,15 @@ import util.gui.MostRecentUrlListManager;
 import util.testing.SimpleMockPropertyChangeListener;
 
 import javax.swing.*;
-import java.awt.Component;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
 public class ContextDocManagerTest extends TestCase {
-    private static final Class THIS = ContextDocManagerTest.class;
     private ContextDocManager docManager;
 
     public static Test suite() {
-        return new TestSuite(THIS);
+        return new TestSuite(ContextDocManagerTest.class);
     }
 
 
@@ -83,6 +82,14 @@ public class ContextDocManagerTest extends TestCase {
         public JToolBar getToolBar() {
             return null;
         }
+
+        public JTree getTree() {
+            return null;  //To change body of implemented methods use File | Settings | File Templates.
+        }
+
+        public void setFileName(String fileName) {
+            //To change body of implemented methods use File | Settings | File Templates.
+        }
     };
 
     public void testMruList() {
@@ -117,5 +124,10 @@ public class ContextDocManagerTest extends TestCase {
         assertEquals(expHasCorrespondingFile, firstDocRec.hasCorrespondingFile());
         docManager.addDocument(firstDocRec);
         return firstDocRec;
+    }
+
+    public void testMenuCreation() {
+        ResourcesToolbarDefinitionTest.testMenuDefinitionInResource(docManager.getResourceManager(), docManager.getActionChain(), false);
+        ResourcesToolbarDefinitionTest.testMenuDefinitionInResource(docManager.getResourceManager(), docManager.getActionChain(), true);
     }
 }

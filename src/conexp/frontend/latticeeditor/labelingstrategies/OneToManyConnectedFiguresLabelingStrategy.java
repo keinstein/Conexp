@@ -10,8 +10,8 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 import canvas.Figure;
 import canvas.figures.TextFigure;
 import conexp.core.ContextEntity;
+import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
-import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ContextObjectTextFigure;
 
@@ -61,6 +61,6 @@ public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericL
         return objectLabels;
     }
 
-    protected abstract PointDistributionStrategy makeCoordsDistributor(AbstractConceptCorrespondingFigure f, int numPoints, DrawParameters opt);
+    protected abstract PointDistributionStrategy makeCoordsDistributor(AbstractConceptCorrespondingFigure f, int numPoints, LayoutParameters opt);
 
 }

@@ -7,9 +7,9 @@
 
 package conexp.core.layout.chaindecomposition;
 
-import conexp.frontend.latticeeditor.DrawParamsIndependentStrategyModel;
+import conexp.util.gui.strategymodel.AbstractNonGrowingStrategyModel;
 
-public class ChainDecompositionStrategyModel extends DrawParamsIndependentStrategyModel {
+public class ChainDecompositionStrategyModel extends AbstractNonGrowingStrategyModel {
     public ChainDecompositionStrategyModel() {
         super();
     }

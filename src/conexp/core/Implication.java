@@ -37,6 +37,10 @@ public class Implication extends GenericDependency implements Cloneable {
 
     }
 
+
+
+
+
     public int getObjectCount() {
         return getRuleSupport();
     }
@@ -62,5 +66,13 @@ public class Implication extends GenericDependency implements Cloneable {
 
     public ModifiableSet getModifiablePremise() {
         return premise;
+    }
+
+    /**
+     *  explicit hashCode declaration
+     * @return
+     */
+    public int hashCode() {
+        return super.hashCode();
     }
 }

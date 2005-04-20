@@ -2,7 +2,7 @@ package conexp.util.gui.paramseditor;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;
-import java.awt.Component;
+import java.awt.*;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

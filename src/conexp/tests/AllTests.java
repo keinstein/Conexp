@@ -20,6 +20,7 @@ public class AllTests extends TestCase {
         test.addTest(conexp.experimenter.tests.AllTests.suite());
         test.addTest(conexp.frontend.tests.AllTests.suite());
         test.addTest(conexp.util.tests.UtilsAllTests.suite());
+        test.addTest(new TestSuite(ConExpDependenciesTest.class));
         return test;
     }
 }

@@ -7,6 +7,7 @@
 
 package conexp.frontend.latticeeditor;
 
+import canvas.CanvasScheme;
 import canvas.IHighlightStrategy;
 import conexp.core.layout.Layouter;
 import conexp.util.gui.paramseditor.BoundedIntValueParamInfo;
@@ -15,39 +16,40 @@ import conexp.util.gui.paramseditor.ParamsProvider;
 import conexp.util.valuemodels.BoundedIntValue;
 import util.BaseVetoablePropertyChangeSupplier;
 
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
+import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.prefs.Preferences;
 
 //todo: rename to LatticeCanvasSchemeWithOptions
 
 public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier implements LatticeCanvasScheme, ParamsProvider, LatticeCanvasSchemeProperties {
     private BoundedIntValue smallGridSize;
 
-
     private LatticeCanvasDrawStrategiesContext drawStrategiesContext;
 
     private canvas.CanvasColorScheme colorScheme = new canvas.DefaultColorScheme();
 
-    private ModelsFactory factory;
+    private DrawStrategiesModelsFactory factory;
     private ParamInfo[] paramInfos;
+    public static final int DEFAULT_LABEL_FONT_SIZE = 12;
 
     public LatticePainterOptions(DrawParameters drawParams) {
         factory = makeDrawStrategiesFactory(drawParams);
     }
 
+    private LatticePainterOptions(final DrawStrategiesModelsFactory modelsFactory) {
+        factory = modelsFactory;
+    }
+
     //for testing
     public LatticePainterOptions() {
-        this(new DefaultDrawParams());
+        this(BasicDrawParams.getInstance());
     }
 
-
-    protected ModelsFactory makeDrawStrategiesFactory(DrawParameters drawParams) {
+    protected DrawStrategiesModelsFactory makeDrawStrategiesFactory(DrawParameters drawParams) {
         return new conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory(drawParams);
     }
-
 
     public canvas.CanvasColorScheme getColorScheme() {
         return colorScheme;
@@ -90,8 +92,37 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
         return boundedIntValue;
     }
 
+    private BoundedIntValue makeBoundedIntValue(BoundedIntValue value) {
+        return makeBoundedIntValue(value.getPropertyName(), value.getValue(), value.minVal, value.maxVal);
+    }
+
     public boolean setFigureDrawingStrategy(String key) {
         return getLatticePainterDrawStrategyContext().getNodeRadiusStrategyItem().setValueByKey(key);
+    }
+
+    Preferences preferences = Preferences.userNodeForPackage(LatticePainterOptions.class);
+
+    public void setPreferences(Preferences preferences) {
+        this.preferences = preferences;
+    }
+
+    public Preferences getPreferences() {
+        return preferences;
+    }
+
+
+    public void doStorePreferences() {
+        getPreferences().putInt(LABELS_FONT_SIZE_PROPERTY, getLabelsFontSizeValue().getValue());
+        getLatticePainterDrawStrategyContext().doStorePreferences();
+    }
+
+    public void restorePreferences() {
+        try {
+            getLabelsFontSizeValue().setValue(getPreferences().getInt(LABELS_FONT_SIZE_PROPERTY, DEFAULT_LABEL_FONT_SIZE));
+        } catch (java.beans.PropertyVetoException e) {
+            //would be suppressed
+        }
+        getLatticePainterDrawStrategyContext().restorePreferences();
     }
 
     public int getLabelsFontSize() {
@@ -102,10 +133,10 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
 
     public synchronized BoundedIntValue getLabelsFontSizeValue() {
         if (null == labelsFontSize) {
-            labelsFontSize = makeBoundedIntValue(LABELS_FONT_SIZE_PROPERTY, 12, 6, 50);
-            labelsFontSize.addPropertyChangeListener(new PropertyChangeListener(){
+            labelsFontSize = makeBoundedIntValue(LABELS_FONT_SIZE_PROPERTY, DEFAULT_LABEL_FONT_SIZE, 6, 50);
+            labelsFontSize.addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent evt) {
-                    if(LABELS_FONT_SIZE_PROPERTY.equals(evt.getPropertyName())){
+                    if (LABELS_FONT_SIZE_PROPERTY.equals(evt.getPropertyName())) {
                         clearCachedFont();
                     }
                 }
@@ -115,23 +146,22 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
     }
 
     private void clearCachedFont() {
-        cachedFont=null;
+        cachedFont = null;
     }
 
-
-    Font cachedFont = null;
+    transient Font cachedFont = null;
 
     public Font getLabelsFont(Graphics g) {
-        if(cachedFont==null){
-            cachedFont = g.getFont().deriveFont((float)getLabelsFontSize());
+        if (cachedFont == null) {
+            cachedFont = g.getFont().deriveFont((float) getLabelsFontSize());
         }
         return cachedFont;
     }
 
+
     public FontMetrics getLabelsFontMetrics(Graphics g) {
         return g.getFontMetrics(getLabelsFont(g));
     }
-
 
     public ParamInfo[] getParams() {
         if (null == paramInfos) {
@@ -144,6 +174,69 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
         return new ParamInfo[]{
             new BoundedIntValueParamInfo("Label font size ", getLabelsFontSizeValue())
         };
+    }
+
+    public String toString() {
+        return "LatticePainterOptions{" +
+                "smallGridSize=" + smallGridSize +
+                ", drawStrategiesContext=" + drawStrategiesContext +
+                ", labelsFontSize=" + labelsFontSize +
+                "}";
+    }
+
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof LatticePainterOptions)) {
+            return false;
+        }
+        LatticePainterOptions other = (LatticePainterOptions) obj;
+        if (!colorScheme.equals(other.colorScheme)) {
+            return false;
+        }
+        if (labelsFontSize == null ?
+                other.labelsFontSize != null :
+                !labelsFontSize.equals(other.labelsFontSize)) {
+            return false;
+        }
+        if (smallGridSize == null ?
+                other.smallGridSize != null :
+                !smallGridSize.equals(other.smallGridSize)) {
+            return false;
+        }
+        if (labelsFontSize == null ?
+                other.labelsFontSize != null :
+                !labelsFontSize.equals(other.labelsFontSize)) {
+            return false;
+        }
+        if (drawStrategiesContext == null ?
+                other.drawStrategiesContext != null :
+                !drawStrategiesContext.equals(other.drawStrategiesContext)) {
+            return false;
+        }
+        return true;
+    }
+
+    public int hashCode() {
+        return 29*colorScheme.hashCode()+
+                (drawStrategiesContext!=null ? drawStrategiesContext.hashCode() : 0);
+    }
+
+    public CanvasScheme makeCopy() {
+        LatticePainterOptions ret = new LatticePainterOptions(factory.makeCopy());
+        ret.colorScheme = colorScheme.makeCopy();
+        if (labelsFontSize != null) {
+            ret.labelsFontSize = ret.makeBoundedIntValue(getLabelsFontSizeValue());
+        }
+        if (smallGridSize != null) {
+            ret.smallGridSize = ret.makeBoundedIntValue(getSmallGridSizeValue());
+        }
+        if (drawStrategiesContext != null) {
+            ret.drawStrategiesContext = drawStrategiesContext.makeNativeCopy(ret.getPropertyChangeSupport());
+        }
+
+        return ret;
     }
 }
 

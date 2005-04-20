@@ -52,4 +52,27 @@ public class DefaultDimensionCalcStrategy extends AbstractDimensionCalcStrategy 
     public void setConceptSet(ConceptsCollection conceptSet) {
         this.conceptSet = conceptSet;
     }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof DefaultDimensionCalcStrategy)) return false;
+        if(!(getClass().equals(obj.getClass()))){
+            return false;
+        }
+
+        final DefaultDimensionCalcStrategy defaultDimensionCalcStrategy = (DefaultDimensionCalcStrategy) obj;
+
+        if (conceptSet != null ? !conceptSet.equals(defaultDimensionCalcStrategy.conceptSet) : defaultDimensionCalcStrategy.conceptSet != null) return false;
+        if (options != null ? !options.equals(defaultDimensionCalcStrategy.options) : defaultDimensionCalcStrategy.options != null) return false;
+
+        return true;
+    }
+
+    public int hashCode() {
+        int result;
+        result = (options != null ? options.hashCode() : 0);
+        result = 29 * result + (conceptSet != null ? conceptSet.hashCode() : 0);
+        return result;
+    }
+
 }

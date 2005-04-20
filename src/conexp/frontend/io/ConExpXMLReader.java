@@ -282,6 +282,8 @@ public class ConExpXMLReader implements DocumentLoader {
         figureConceptMapper.getFigureForConcept(concept).setCoords(point);
     }
 
+
+
     private Point2D readFigureCoords(Element figureElement) throws DataFormatException {
         Element coords = XMLHelper.safeGetElement(figureElement, ConExpXMLElements.FIGURE_COORDS, "No coordinates are provided for figure");
         Element pointElement = XMLHelper.safeGetElement(coords, XMLGeneralTypesUtil.POINT2D, "Point element is absent in coordinates");

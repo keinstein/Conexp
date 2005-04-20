@@ -18,7 +18,7 @@ public class ContextAttributeMaskTest extends ContextMaskBaseTest {
 
     protected void setUp() throws Exception {
         cxt = SetBuilder.makeContext(new int[][]{{1, 0, 1}});
-        mask = makeMask(cxt);
+        mask = makeInstance();
     }
 
     protected SetProvidingEntitiesMask makeMask(ExtendedContextEditingInterface cxt) {
@@ -51,5 +51,19 @@ public class ContextAttributeMaskTest extends ContextMaskBaseTest {
         cxt.increaseObjects(increment);
     }
 
+    protected ContextAttributeMask getMask(){
+        return (ContextAttributeMask)mask;
+    }
 
+
+    public void testMakeCopy() throws Exception {
+        SetProvidingEntitiesMask other = getMask().makeCopy();
+        assertEquals(mask, other);
+        other.setSelected(0, false);
+        assertFalse(mask.equals(other));
+    }
+
+    protected SetProvidingEntitiesMask makeInstance() {
+        return makeMask(cxt);
+    }
 }

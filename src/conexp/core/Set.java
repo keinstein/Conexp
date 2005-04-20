@@ -9,8 +9,6 @@ package conexp.core;
 
 public interface Set extends Cloneable, IPartiallyOrdered {
 
-    int hashCode();
-
 //-------------------------
 
     ModifiableSet makeModifiableSetCopy();

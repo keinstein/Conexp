@@ -8,13 +8,13 @@
 package conexp.core.layout.tests;
 
 import conexp.core.Lattice;
+import conexp.core.layout.DefaultLayoutParameters;
 import conexp.core.layout.GenericLayouter;
 import conexp.core.layout.Layouter;
 import conexp.core.tests.SetBuilder;
-import conexp.frontend.latticeeditor.DefaultDrawParams;
-import conexp.frontend.latticeeditor.LatticePainterDrawParams;
 import junit.framework.TestCase;
 import util.testing.SimpleMockPropertyChangeListener;
+import util.testing.TestUtil;
 
 import java.awt.geom.Point2D;
 
@@ -34,7 +34,7 @@ public abstract class GenericLayouterTest extends TestCase {
         Lattice lat = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0, 0},
                                                                     {1, 1, 0},
                                                                     {0, 0, 1}});
-        layouter.initLayout(lat, new DefaultDrawParams());
+        layouter.initLayout(lat, new DefaultLayoutParameters());
         SimpleMockPropertyChangeListener listener = new SimpleMockPropertyChangeListener(Layouter.LAYOUT_CHANGE);
         layouter.addLayoutChangeListener(listener);
 
@@ -46,7 +46,8 @@ public abstract class GenericLayouterTest extends TestCase {
 
 
             listener.setExpected(1);
-            layouter.initLayout(lat, new LatticePainterDrawParams());
+            //layouter.initLayout(lat, new LatticePainterDrawParams());
+            layouter.initLayout(lat, new DefaultLayoutParameters());
             layouter.performLayout();
             listener.verify();
         }
@@ -62,7 +63,7 @@ public abstract class GenericLayouterTest extends TestCase {
         if (!isPureImprovingLayout()) {
             GenericLayouter layouter = makeLayouter();
             Lattice lat = SetBuilder.makeLatticeWithContext(new int[][]{{0}});
-            layouter.initLayout(lat, new DefaultDrawParams());
+            layouter.initLayout(lat, new DefaultLayoutParameters());
             layouter.performLayout();
 
             Point2D coordsZero = new Point2D.Double();
@@ -81,7 +82,7 @@ public abstract class GenericLayouterTest extends TestCase {
             GenericLayouter layouter = makeLayouter();
             Lattice lat = SetBuilder.makeLatticeWithContext(new int[][]{{1}});
             assertEquals(lat.getZero(), lat.getOne());
-            layouter.initLayout(lat, new DefaultDrawParams());
+            layouter.initLayout(lat, new DefaultLayoutParameters());
             layouter.performLayout();
             Point2D coordsZero = new Point2D.Double();
             layouter.setCoordsForConcept(lat.getZero(), coordsZero);
@@ -92,5 +93,11 @@ public abstract class GenericLayouterTest extends TestCase {
     protected void checkCoordsAreNotNaN(Point2D point) {
         assertEquals(false, Double.isNaN(point.getX()));
         assertEquals(false, Double.isNaN(point.getY()));
+    }
+
+    public void testEquals(){
+        GenericLayouter first = makeLayouter();
+        GenericLayouter second = makeLayouter();
+        TestUtil.testEqualsAndHashCode(first, second);
     }
 }

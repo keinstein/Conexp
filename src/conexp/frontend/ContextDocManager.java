@@ -18,7 +18,8 @@ import util.gui.fileselector.FileSelectorService;
 import util.gui.fileselector.GenericFileFilter;
 
 import javax.swing.*;
-import java.awt.Component;
+import javax.swing.tree.TreeModel;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -37,11 +38,16 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     private Action[] actions = {
         new ExitAppAction(), new OpenDocAction(),
         new NewDocAction(), new SaveDocAction(),
-        new SaveDocAsAction()
+        new SaveDocAsAction(), new AboutAppAction()
     };
 
     public ActionMap getActionChain() {
         return actionChain;
+    }
+
+    public JTree getDocumentTree() {
+        return getActiveDoc().getTree();
+
     }
 
     class ExitAppAction extends AbstractAction {
@@ -94,6 +100,18 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         }
     }
 
+    class AboutAppAction extends AbstractAction{
+
+        public AboutAppAction() {
+            super("aboutApp");
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            onAboutApp();
+        }
+
+    }
+
     private final String DOCUMENT_MANAGER_SECTION = "DocumentManager";
     private final String MOST_RECENT_URLS_KEY = "MostRecentUrls";
     MostRecentUrlListManager mruManager = new MostRecentUrlListManager();
@@ -135,7 +153,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         } catch (IOException e) {
             System.out.println("No configuration for loading");
         }
-        mruManager.setMostRecentUrlList(getConfigManager().fetchStringList(DOCUMENT_MANAGER_SECTION, MOST_RECENT_URLS_KEY, mruManager.getMaximalNumberOfFilesInMRUList()));
+        mruManager.setMostRecentUrlList(getConfigManager().fetchStringList(DOCUMENT_MANAGER_SECTION, MOST_RECENT_URLS_KEY, MostRecentUrlListManager.getMaximalNumberOfFilesInMRUList()));
 
     }
 
@@ -167,7 +185,8 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
             }
         });
         this.menuSite = new DefaultMenuSite(appMainWindow);
-        menuSite.addMenu(this, getMenu());
+        menuSite.addMenu(this, createMenu());
+        menuSite.addHelpMenu(this, createHelpMenu());
     }
 
 
@@ -323,7 +342,9 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     LocalizedMessageSupplier messageSupplier = new ContextDocManagerMessageSupplier();
 
     protected String getLocalizedMessage(String key) {
-        return getLocalizedMessageSupplier().getMessage(key);
+        String message = getLocalizedMessageSupplier().getMessage(key);
+        Assert.notNull(message);
+        return message;
     }
 
 
@@ -331,8 +352,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     public void onOpen() {
         FileSelectorService fileSelector =
                 ServiceRegistry.fileSelectorService();
-        if (fileSelector.performOpenService(
-                getMainAppWindow(),
+        if (fileSelector.performOpenService(getMainAppWindow(),
                 getLocalizedMessageSupplier().getMessage("OpenFileMsg"),
                 null, //default start dir
                 getLoadFilters())) {
@@ -400,11 +420,16 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return msg;
     }
 
+
+    private void onAboutApp() {
+        (new AboutConExpDialog(getMainAppWindow(), getLocalizedMessage("AboutAppMsg"), true)).show();
+    }
+
+
     public void onSaveAs() {
         FileSelectorService fileSelector = ServiceRegistry.fileSelectorService();
         if (fileSelector
-                .performSaveService(
-                        getMainAppWindow(),
+                .performSaveService(getMainAppWindow(),
                         getLocalizedMessage("SaveFileAsMsg"),
                         getDocDir(),
                         getFileName(),
@@ -422,8 +447,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
                     String msg = makeLocalizedMessageWithOneParam("FileExistsConfirmOverwriteMsg", f.getName());
 
                     if (JOptionPane.YES_OPTION
-                            != JOptionPane.showConfirmDialog(
-                                    getMainAppWindow(),
+                            != JOptionPane.showConfirmDialog(getMainAppWindow(),
                                     msg,
                                     getLocalizedMessage("ConfirmMsg"),
                                     JOptionPane.YES_NO_OPTION)) {
@@ -473,12 +497,12 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
             throw new IOException("Not supported extension " + extension);
         }
 
-        FileWriter fileWriter=null;
+        FileWriter fileWriter = null;
         try {
             fileWriter = new FileWriter(f);
             documentWriter.storeDocument(getActiveDoc(), fileWriter);
         } finally {
-            if(null!=fileWriter){
+            if (null != fileWriter) {
                 fileWriter.close();
             }
         }
@@ -490,7 +514,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
     private JMenu createMenu() {
         ToolBuilder toolBuilder = new ToolBuilder(getResourceManager(), getActionChain());
-        final JMenu menu = toolBuilder.createMenu();
+        JMenu menu = toolBuilder.createMenu();
         int reopenIndex = MenuUtil.findIndexOfMenuComponentWithName(menu, "reopen");
         if (reopenIndex >= 0) {
             JMenu mruMenu = (JMenu) menu.getMenuComponent(reopenIndex);
@@ -499,18 +523,15 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return menu;
     }
 
-    private ResourceManager getResourceManager() {
+    private JMenu createHelpMenu(){
+        ToolBuilder toolBuilder = new ToolBuilder(getResourceManager(), getActionChain());
+        return toolBuilder.createHelpMenu();
+    }
+
+    public ResourceManager getResourceManager() {
         return new ResourceManager(getResources());
     }
 
-    private JMenu menu = null;
-
-    public JMenu getMenu() {
-        if (null == menu) {
-            menu = createMenu();
-        }
-        return menu;
-    }
 
     // INTERFACE TO FRAME
     // SHOULD BE REVIEWED
@@ -522,6 +543,12 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     public JToolBar getActiveDocToolBar() {
         return getActiveDoc().getToolBar();
     }
+
+
+    public void updateDocumentTree() {
+        getActiveDoc().setFileName(getFileName());
+    }
+
 
     private static class ContextDocManagerMessageSupplier implements LocalizedMessageSupplier {
         public String getMessage(String key) {

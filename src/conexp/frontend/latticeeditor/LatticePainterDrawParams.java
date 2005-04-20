@@ -12,10 +12,8 @@ import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
 import conexp.util.valuemodels.BoundedIntValue;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
-import java.beans.VetoableChangeListener;
-import java.beans.VetoableChangeSupport;
+import java.beans.*;
+import java.util.prefs.Preferences;
 
 public class LatticePainterDrawParams extends BasicDrawParams implements ParamsProvider, DrawParamsProperties {
     private BoundedIntValue maxNodeRadius;
@@ -24,13 +22,52 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
 
     boolean drawConceptNo = false;//true;
 
-    PainterOptionsPaneEditor optionsEditor;
-
     protected transient VetoableChangeSupport vetoPropertyChange;
     protected transient PropertyChangeSupport propertyChange;
 
 
     private float maxEdgeStroke = DEFAULT_MAX_EDGE_STROKE;
+
+
+    public DrawParameters makeCopy() {
+        LatticePainterDrawParams ret = new LatticePainterDrawParams();
+        ret.maxNodeRadius=ret.makeBoundedIntValue(getMaxNodeRadiusValue());
+        ret.gridSizeX = ret.makeBoundedIntValue(getGridSizeXValue());
+        ret.gridSizeY = ret.makeBoundedIntValue(getGridSizeYValue());
+        ret.drawConceptNo = drawConceptNo;
+        ret.maxEdgeStroke = maxEdgeStroke;
+        return ret;
+    }
+
+    public boolean equals(Object obj) {
+        if(obj==this){
+            return true;
+        }
+        if(!(obj instanceof LatticePainterDrawParams)){
+            return false;
+        }
+        LatticePainterDrawParams other = (LatticePainterDrawParams)obj;
+        if(maxNodeRadius==null ? other.maxNodeRadius!=null:
+                    (!maxNodeRadius.equals(other.maxNodeRadius))){
+            return false;
+        }
+        if(gridSizeX==null? other.gridSizeX!=null: (!gridSizeX.equals(other.gridSizeX))){
+            return false;
+        }
+        if(gridSizeY==null? other.gridSizeY!=null: (!gridSizeY.equals(other.gridSizeY))){
+            return false;
+        }
+        if(drawConceptNo!=other.drawConceptNo){return false;}
+        if(maxEdgeStroke!=other.maxEdgeStroke){return false;}
+        return true;
+    }
+
+
+    public int hashCode() {
+        int ret = maxNodeRadius.getValue();
+        ret=29*ret + gridSizeX.getValue()+(drawConceptNo? 13:  0);
+        return ret;
+    }
 
 
     public LatticePainterDrawParams() {
@@ -111,6 +148,11 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         return ret;
     }
 
+    private BoundedIntValue makeBoundedIntValue(BoundedIntValue valueModel){
+        return makeBoundedIntValue(valueModel.getPropertyName(), valueModel.getValue(),
+                valueModel.minVal, valueModel.maxVal);
+    }
+
     public void setGridSizeX(int newGridSizeX) throws java.beans.PropertyVetoException {
         getGridSizeXValue().setValue(newGridSizeX);
     }
@@ -127,7 +169,8 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         getMaxNodeRadiusValue().setValue(newMaxNodeRadius);
     }
 
-    private ParamInfo[] params;
+    private transient ParamInfo[] params;
+
 
     public ParamInfo[] getParams() {
         if (null == params) {
@@ -138,6 +181,37 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
             };
         }
         return params;
+    }
+
+    transient Preferences preferences = Preferences.userNodeForPackage(LatticeCanvasDrawStrategiesContext.class);
+
+    public void setPreferences(Preferences newPreferences) {
+        this.preferences = newPreferences;
+    }
+
+
+    public Preferences getPreferences() {
+        return preferences;
+    }
+
+    public void doStorePreferences() {
+        getPreferences().putInt(GRID_SIZE_X_PROPERTY, getGridSizeX());
+        getPreferences().putInt(GRID_SIZE_Y_PROPERTY, getGridSizeY());
+        getPreferences().putInt(MAX_NODE_RADIUS_PROPERTY, getMaxNodeRadius());
+    }
+
+    public void doRestorePreferences(Preferences preferences) throws PropertyVetoException {
+        getGridSizeXValue().setValue(preferences.getInt(GRID_SIZE_X_PROPERTY, DEFAULT_GRID_SIZE_X));
+        getGridSizeYValue().setValue(preferences.getInt(GRID_SIZE_Y_PROPERTY, DEFAULT_GRID_SIZE_Y));
+        getMaxNodeRadiusValue().setValue(preferences.getInt(MAX_NODE_RADIUS_PROPERTY, DEFAULT_MAX_NODE_RADIUS));
+    }
+
+    public void restorePreferences() {
+        try {
+            doRestorePreferences(getPreferences());
+        } catch (java.beans.PropertyVetoException e) {
+            //ignored
+        }
     }
 
 
@@ -166,4 +240,14 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         getVetoPropertyChange().removeVetoableChangeListener(listener);
     }
 
+
+    public String toString() {
+        return "LatticePainterDrawParams{" +
+                "maxNodeRadius=" + maxNodeRadius +
+                ", gridSizeX=" + gridSizeX +
+                ", gridSizeY=" + gridSizeY +
+                ", drawConceptNo=" + drawConceptNo +
+                ", maxEdgeStroke=" + maxEdgeStroke +
+                "}";
+    }
 }

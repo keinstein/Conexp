@@ -7,8 +7,8 @@
 
 package conexp.core;
 
-import conexp.util.IteratorWrapperBase;
 import util.Assert;
+import util.collection.IteratorWrapperBase;
 
 import java.util.*;
 
@@ -279,6 +279,14 @@ public class LatticeElement extends Concept {
         }
 */
         return true;
+    }
+
+    /**
+     *  explicit call to hashCode in super
+     */
+
+    public int hashCode() {
+        return super.hashCode();
     }
 
     public static LatticeElement makeFromSetsCopies(Set extent, Set intent) {

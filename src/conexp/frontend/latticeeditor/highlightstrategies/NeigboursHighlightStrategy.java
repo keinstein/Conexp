@@ -8,23 +8,19 @@
 package conexp.frontend.latticeeditor.highlightstrategies;
 
 import conexp.core.Set;
+import conexp.frontend.latticeeditor.HighlightStrategy;
 
 
 public class NeigboursHighlightStrategy extends OneNodeHighlightStrategy {
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (02.12.00 1:15:36)
-     * @return boolean
-     * @param e conexp.core.Edge
-     */
+    protected HighlightStrategy createNew() {
+        return new NeigboursHighlightStrategy();
+    }
+
     protected boolean doHighlightEdge(Set startAttribs, Set endAttribs) {
         return highlightQuery(startAttribs) || highlightQuery(endAttribs);
     }
 
-    /**
-     * NeigboursHighlightStrategy constructor comment.
-     */
     public NeigboursHighlightStrategy() {
     }
 }

@@ -14,9 +14,7 @@ import conexp.frontend.util.IResourceManager;
 import util.gui.JSplitPaneWithFixedRightPane;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ResourceBundle;
@@ -28,8 +26,6 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
 
     public LatticeAndEntitiesMaskSplitPane(LatticeComponent latticeSupplier, ActionMap parentActionChain) {
         super();
-
-
         latticePanel = new LatticePainterPanel(latticeSupplier);
         latticePanel.setParentActionMap(parentActionChain);
         setLeftComponent(new JScrollPane(latticePanel));
@@ -104,6 +100,10 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
 
     public void initialUpdate() {
         latticePanel.initialUpdate();
+    }
+
+    public void restorePreferences(){
+        latticePanel.restorePreferences();
     }
 
     /* @deprecated*/

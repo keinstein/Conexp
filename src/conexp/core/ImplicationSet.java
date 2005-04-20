@@ -196,6 +196,10 @@ public class ImplicationSet extends DependencySet {
         return true;
     }
 
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public boolean equals(Object obj) {
         if (!(obj instanceof ImplicationSet)) {
             return false;

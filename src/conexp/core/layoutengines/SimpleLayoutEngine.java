@@ -9,19 +9,24 @@
 package conexp.core.layoutengines;
 
 import conexp.core.Lattice;
+import conexp.core.layout.LayoutParameters;
 import conexp.core.layout.Layouter;
-import conexp.frontend.latticeeditor.DrawParameters;
 import util.Assert;
 
 public class SimpleLayoutEngine extends LayoutEngineBase {
     public void shutdown() {
     }
 
-    protected void doRestartLayout(Lattice lattice, DrawParameters parameters) {
+
+    public LayoutEngine newInstance() {
+        return  new SimpleLayoutEngine();  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    protected void doRestartLayout(Lattice lattice, LayoutParameters parameters) {
         doStartLayout(lattice, parameters);
     }
 
-    protected void doStartLayout(Lattice lattice, DrawParameters parameters) {
+    protected void doStartLayout(Lattice lattice, LayoutParameters parameters) {
         Layouter layouter = getLayoter();
         if (layouter.isIncremental()) {
             Assert.isTrue(false, "Simple layout engine doesn't support incremental layouters");

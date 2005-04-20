@@ -3,8 +3,8 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 import canvas.Figure;
 import canvas.figures.BorderCalculatingFigure;
 import conexp.core.LatticeElement;
+import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
-import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 
 /**
@@ -26,7 +26,7 @@ public abstract class OneLabelConceptLabelingStrategy extends GenericLabelingStr
         this.cxt = cxt;
     }
 
-    protected Object makeConnectedObject(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure f, DrawParameters opt) {
+    protected Object makeConnectedObject(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure f, LayoutParameters opt) {
         double angle = 0.5 * Math.PI;
         double offX = opt.getGridSizeX() / 2 * Math.cos(angle);
         double offY = opt.getGridSizeY() / 3 * Math.sin(angle);

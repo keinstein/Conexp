@@ -11,26 +11,27 @@ import com.mockobjects.ExpectationSet;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 import conexp.core.Set;
+import conexp.core.layout.DefaultLayoutParameters;
 import conexp.core.layout.FreeseLayout;
+import conexp.core.layout.FreezeBaseLayout;
 import conexp.core.tests.SetBuilder;
-import conexp.frontend.latticeeditor.LatticePainterDrawParams;
 
 import java.util.Collection;
 import java.util.Iterator;
 
 
 public class FreezeLayoutTest extends SimpleForceLayoutTest {
-    FreeseLayout fLayout;
+    FreezeBaseLayout fLayout;
     Lattice lat;
 
-    protected static void checkIncomparablesForIntent(FreeseLayout fLayout, Lattice lat, int[] intent, int[][] expHighIncomparables) {
+    protected static void checkIncomparablesForIntent(FreezeBaseLayout fLayout, Lattice lat, int[] intent, int[][] expHighIncomparables) {
         Set sIntent = SetBuilder.makeSet(intent);
         ExpectationSet expSet = makeExpSetFromLatticeAndIntents("expSet for " + sIntent, lat, expHighIncomparables);
         fillExpectationSetFromCollection(expSet, fLayout.getHighIncomparablesForConcept(SetBuilder.findLatticeElementWithIntent(lat, intent)));
         expSet.verify();
     }
 
-    protected static void checkLowIncomparablesForIntent(FreeseLayout fLayout, Lattice lat, int[] intent, int[][] expHighIncomparables) {
+    protected static void checkLowIncomparablesForIntent(FreezeBaseLayout fLayout, Lattice lat, int[] intent, int[][] expHighIncomparables) {
         Set sIntent = SetBuilder.makeSet(intent);
         ExpectationSet expSet = makeExpSetFromLatticeAndIntents("expSet for " + sIntent, lat, expHighIncomparables);
         fillExpectationSetFromCollection(expSet, fLayout.getLowIncomparablesForConcept(SetBuilder.findLatticeElementWithIntent(lat, intent)));
@@ -65,7 +66,7 @@ public class FreezeLayoutTest extends SimpleForceLayoutTest {
         lat = SetBuilder.makeLattice(new int[][]{{1, 0, 0},
                                                  {1, 1, 0},
                                                  {0, 0, 1}});
-        fLayout.initLayout(lat, new LatticePainterDrawParams());
+        fLayout.initLayout(lat, new DefaultLayoutParameters());
         fLayout.calcInitialPlacement();
     }
 

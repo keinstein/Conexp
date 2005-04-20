@@ -184,6 +184,10 @@ public class SetRelation implements ModifiableBinaryRelation {
     }
 
 
+    public int hashCode() {
+        return 29*sizeY+sizeX;
+    }
+
     /**
      * Insert the method's description here.
      * Creation date: (04.08.01 8:39:27)

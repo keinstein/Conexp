@@ -8,8 +8,8 @@
 package conexp.core.layoutengines;
 
 import conexp.core.Lattice;
+import conexp.core.layout.LayoutParameters;
 import conexp.core.layout.Layouter;
-import conexp.frontend.latticeeditor.DrawParameters;
 
 import java.beans.PropertyChangeListener;
 
@@ -30,7 +30,7 @@ class LayoutImproveThread extends Thread {
         removeLayoutChangeListener();
     }
 
-    protected void performLayout(Lattice lat, DrawParameters drawParams) throws InterruptedException {
+    protected void performLayout(Lattice lat, LayoutParameters drawParams) throws InterruptedException {
         currentLayouter.initLayout(lat, drawParams);
         doRealLayout();
     }
