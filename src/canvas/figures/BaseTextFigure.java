@@ -11,7 +11,7 @@ package canvas.figures;
 import canvas.CanvasScheme;
 import canvas.IHighlightStrategy;
 
-import java.awt.Color;
+import java.awt.*;
 
 public abstract class BaseTextFigure extends RectangularFigure {
 

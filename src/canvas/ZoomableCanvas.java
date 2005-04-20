@@ -200,11 +200,9 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
             throws PrinterException {
         if (pageIndex == 0) {
             Graphics2D graphics2D = (Graphics2D) graphics;
-            Dimension printingDimension = new Dimension(
-                    (int) pageFormat.getImageableWidth(), (int) pageFormat.getImageableHeight());
+            Dimension printingDimension = new Dimension((int) pageFormat.getImageableWidth(), (int) pageFormat.getImageableHeight());
             drawOnGraphicsWithDimension(graphics2D, printingDimension,
-                    makeScalingTransform(zoomForDimension(printingDimension))
-            );
+                    makeScalingTransform(zoomForDimension(printingDimension)));
 
             return PAGE_EXISTS;
         } else {
@@ -214,7 +212,7 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
 
     protected abstract void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform);
 
-    protected void drawOnGraphicsWithDimension(Graphics g, Dimension dimension, AffineTransform scalingTransform){
+    protected void drawOnGraphicsWithDimension(Graphics g, Dimension dimension, AffineTransform scalingTransform) {
         if (g instanceof Graphics2D) {
             Graphics2D g2D = (Graphics2D) g;
             Object oldAntiAlias = g2D.getRenderingHint(RenderingHints.KEY_ANTIALIASING);

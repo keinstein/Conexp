@@ -18,16 +18,14 @@ import util.collection.IndexedSet;
 import util.gui.GraphicObjectsFactory;
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.geom.Dimension2D;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Collection;
@@ -45,7 +43,23 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
 
     Point2D viewPoint = GraphicObjectsFactory.makePoint2D(0, 0);
 
-    public FigureDrawingCanvas() {
+    private CanvasScheme options;
+
+    public void setOptions(CanvasScheme options) {
+        //*DBG*/ System.out.println("FigureDrawingCanvas.setOptions: newOptions "+options);
+        CanvasScheme oldValue = this.options;
+        this.options = options;
+        firePropertyChange("CanvasScheme", oldValue, this.options);
+    }
+
+    public CanvasScheme getOptions() {
+        return options;
+    }
+
+
+
+    public FigureDrawingCanvas(CanvasScheme canvasScheme){
+         this.options = canvasScheme;
         translatingTransform = makeTranslatingTransform(viewPoint);
 
         setActiveTool(getDefaultTool());
@@ -53,6 +67,10 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
         MouseHandler mouseHandler = new MouseHandler();
         addMouseListener(mouseHandler);
         addMouseMotionListener(mouseHandler);
+    }
+
+    public FigureDrawingCanvas() {
+        this(new DefaultCanvasScheme());
     }
 
     private PaintBlock paintBlock;
@@ -165,18 +183,6 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
         g.fillRect(0, 0, d.width, d.height);
     }
 
-
-    private CanvasScheme options = new DefaultCanvasScheme();
-
-    public void setOptions(CanvasScheme options) {
-        CanvasScheme oldValue = this.options;
-        this.options = options;
-        firePropertyChange("CanvasScheme", oldValue, this.options);
-    }
-
-    public CanvasScheme getOptions() {
-        return options;
-    }
 
     protected PaintBlock getPaintBlock() {
         if (null == paintBlock) {

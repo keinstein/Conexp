@@ -10,6 +10,7 @@ package canvas.highlightstrategies;
 import canvas.Figure;
 import canvas.FigureDrawingCanvas;
 import canvas.IHighlightStrategy;
+import util.Assert;
 
 
 public class SelectionHighlightStrategy implements IHighlightStrategy {
@@ -25,5 +26,14 @@ public class SelectionHighlightStrategy implements IHighlightStrategy {
 
     public boolean isActive() {
         return drawingEditor.hasSelection();
+    }
+
+    public IHighlightStrategy makeCopy() {
+        Assert.notImplemented();
+        return null;
+    }
+
+    public String toString() {
+        return "SelectionHighlightStrategy{}";
     }
 }

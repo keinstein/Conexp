@@ -29,4 +29,13 @@ public class NullHighlightStrategy implements IHighlightStrategy {
     public boolean isActive() {
         return true;
     }
+
+
+    public String toString() {
+        return "NullHighlightStrategy{}";
+    }
+
+    public IHighlightStrategy makeCopy() {
+        return getInstance();
+    }
 }

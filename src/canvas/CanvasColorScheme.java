@@ -5,10 +5,9 @@
  **/
 
 
-
 package canvas;
 
-import java.awt.Color;
+import java.awt.*;
 
 public interface CanvasColorScheme {
     Color getTextBackColor();
@@ -28,4 +27,6 @@ public interface CanvasColorScheme {
     Color getTextColor();
 
     Color getSelectedTextBackground();
+
+    CanvasColorScheme makeCopy();
 }

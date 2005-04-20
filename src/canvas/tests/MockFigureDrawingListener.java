@@ -11,6 +11,9 @@ import com.mockobjects.ExpectationCounter;
 import com.mockobjects.ExpectationList;
 import com.mockobjects.Verifiable;
 
+import java.awt.geom.Dimension2D;
+import java.awt.*;
+
 
 public class MockFigureDrawingListener implements Verifiable, canvas.FigureDrawingListener {
     public ExpectationCounter dimChangedCnt = new ExpectationCounter("Dimension changed");
@@ -19,7 +22,7 @@ public class MockFigureDrawingListener implements Verifiable, canvas.FigureDrawi
     /**
      * contextStructureChanged method comment.
      */
-    public void dimensionChanged(java.awt.Dimension newDim) {
+    public void dimensionChanged(Dimension newDim) {
         expDim.addActual(newDim);
         dimChangedCnt.inc();
     }

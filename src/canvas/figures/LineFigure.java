@@ -14,9 +14,7 @@ import canvas.IHighlightStrategy;
 import util.Assert;
 import util.gui.GraphicObjectsFactory;
 
-import java.awt.BasicStroke;
-import java.awt.Color;
-import java.awt.Stroke;
+import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
@@ -182,6 +180,9 @@ public class LineFigure extends AbstractFigure implements ConnectionFigure {
         try {
             g2D.setStroke(getLineStroke(thickness));
             g2D.draw(new Line2D.Double(startPoint, endPoint));
+        } catch(RuntimeException ex){
+            System.out.println("startPoint "+startPoint+" "+endPoint+ " endPoint ");
+            throw ex;
         } finally {
             g2D.setStroke(oldStroke);
         }

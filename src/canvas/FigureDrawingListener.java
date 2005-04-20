@@ -7,10 +7,13 @@
 
 package canvas;
 
+import java.awt.geom.Dimension2D;
+import java.awt.*;
+
 
 public interface FigureDrawingListener extends java.util.EventListener {
 
-    void dimensionChanged(java.awt.Dimension newDim);
+    void dimensionChanged(Dimension newDim);
 
     void needUpdate();
 }

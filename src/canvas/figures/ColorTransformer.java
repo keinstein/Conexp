@@ -8,7 +8,7 @@
 
 package canvas.figures;
 
-import java.awt.Color;
+import java.awt.*;
 
 public interface ColorTransformer {
     Color getColor(Color selectionColor, Color normalColor, boolean isSelected, boolean hasSelection);

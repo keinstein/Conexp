@@ -11,4 +11,6 @@ public interface IHighlightStrategy {
     boolean highlightFigure(Figure figure);
 
     boolean isActive();
+
+    IHighlightStrategy makeCopy();
 }

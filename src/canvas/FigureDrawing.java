@@ -13,8 +13,7 @@ import util.collection.CollectionFactory;
 import util.collection.ReverseListIterator;
 import util.gui.GraphicObjectsFactory;
 
-import java.awt.Dimension;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeEvent;
@@ -298,7 +297,7 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
 
             Assert.isTrue(null != fDimension);
         }
-        return (java.awt.Dimension) fDimension.clone();
+        return (Dimension) fDimension.clone();
     }
 
     private void setBounds(Rectangle2D rectangle) {
@@ -365,5 +364,28 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
 
     }
 
+    public boolean equals(Object obj) {
+        if(obj==this){
+            return true;
+        }
+        if(!(obj instanceof FigureDrawing)){
+            return false;
+        }
+        FigureDrawing other = (FigureDrawing)obj;
+        if(!figures.equals(other.figures)){
+            return false;
+        }
+        if(!foreground.equals(other.foreground)){
+            return false;
+        }
+        return true;
+    }
+
+
+    public int hashCode() {
+        int result = figures.hashCode();
+        result = 29 * result + foreground.hashCode();
+        return result;
+    }
 
 }

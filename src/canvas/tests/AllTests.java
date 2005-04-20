@@ -15,6 +15,7 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
 
+        suite.addTest(DefaultCanvasSchemeTest.suite());
         suite.addTest(DefaultToolTest.suite());
         suite.addTest(FigureDrawingCanvasTest.suite());
         suite.addTest(FigureDrawingTest.suite());

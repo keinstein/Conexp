@@ -12,10 +12,7 @@ import canvas.IHighlightStrategy;
 import util.StringUtil;
 import util.collection.CollectionFactory;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.font.TextLayout;
 import java.awt.geom.Rectangle2D;
