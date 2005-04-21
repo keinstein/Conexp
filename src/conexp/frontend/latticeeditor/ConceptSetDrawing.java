@@ -74,14 +74,18 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
     }
 
     public void restorePreferences(){
-        getLatticeDrawingOptions().getEditableDrawingOptions().restorePreferences();
+        getEditableDrawParameters().restorePreferences();
         getPainterOptions().restorePreferences();
         getLabelingStrategiesContextImpl().restorePreferences();
     }
 
+    public LatticePainterDrawParams getEditableDrawParameters() {
+        return getLatticeDrawingOptions().getEditableDrawingOptions();
+    }
+
 
     public void storePreferences(){
-        getLatticeDrawingOptions().getEditableDrawingOptions().doStorePreferences();
+        getEditableDrawParameters().doStorePreferences();
         getPainterOptions().doStorePreferences();
         getLabelingStrategiesContextImpl().doStorePreferences();
     }
@@ -187,10 +191,6 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
         getLabelingStrategiesContext().initStrategies(getConceptSet().getContext(), this);
     }
 
-    public void setLatticeDrawingOptions(LatticeDrawingOptions latticeDrawingOptions) {
-        this.latticeDrawingOptions = latticeDrawingOptions;
-    }
-
     public synchronized LatticeDrawingOptions getLatticeDrawingOptions() {
         if (null == latticeDrawingOptions) {
             latticeDrawingOptions = new LatticeDrawingOptions();
@@ -198,7 +198,7 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
         return latticeDrawingOptions;
     }
 
-    public LatticeDrawingSchema getLatticeDrawingSchema() {
+    public DrawParamsProvider getLatticeDrawingSchema() {
         return getLatticeDrawingOptions();
     }
 

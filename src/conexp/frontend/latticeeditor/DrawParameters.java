@@ -24,6 +24,8 @@ public interface DrawParameters extends LayoutParameters {
 
     float getMaxEdgeStroke();
 
+    boolean isShowCollisions();
+
     DrawParameters makeCopy();
 
 }

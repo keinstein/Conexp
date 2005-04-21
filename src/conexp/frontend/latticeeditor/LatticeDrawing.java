@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor;
 
 import canvas.BaseFigureVisitor;
@@ -28,11 +27,14 @@ import util.collection.CollectionFactory;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListenerProxy;
 
 public class LatticeDrawing extends ConceptSetDrawing {
 
     LayouterProvider layoutProvider = new DefaultLayouterProvider();
-    List edges=CollectionFactory.createDefaultList();
+    List edges = CollectionFactory.createDefaultList();
 
     public LayouterProvider getLayoutProvider() {
         return layoutProvider;
@@ -43,8 +45,6 @@ public class LatticeDrawing extends ConceptSetDrawing {
         getLayoutEngine().init(layoutProvider);
     }
 
-
-    
 
     public LatticeDrawing makeSetupCopy() {
         LatticeDrawing ret = new LatticeDrawing();
@@ -66,19 +66,21 @@ public class LatticeDrawing extends ConceptSetDrawing {
 
 
     public void drawingParametersChanged() {
-        needUpdateCollisions();
+        markNeedUpdateCollisions();
     }
 
-    private void needUpdateCollisions() {
-        this.needUpdateCollisions = true;
+    public void markNeedUpdateCollisions() {
+        if (isCollisionDetectionEnabled()) {
+            doMarkNeedUpdateCollisions();
+        }
     }
 
     public boolean hasNeedUpdateCollisions() {
         return needUpdateCollisions;
     }
 
-    public boolean isUpdatingCollisions(){
-        return collisionThread!=null;
+    public boolean isUpdatingCollisions() {
+        return collisionThread != null;
     }
 
     private void markCollisionDetectionStarted() {
@@ -89,20 +91,20 @@ public class LatticeDrawing extends ConceptSetDrawing {
 
     protected void onAfterFigureMove(Figure f) {
         super.onAfterFigureMove(f);
-        needUpdateCollisions();
+        markNeedUpdateCollisions();
     }
 
     Thread collisionThread;
 
-    public void onCollisionThreadEnd(){
+    public void onCollisionThreadEnd() {
         collisionThread = null;
         fireNeedUpdate();
     }
 
-    public void updateCollisions(){
-        if(hasNeedUpdateCollisions()){
-            if(collisionThread==null){
-                collisionThread =  new CollisionUpdateThread();
+    public void updateCollisions() {
+        if (hasNeedUpdateCollisions()) {
+            if (collisionThread == null) {
+                collisionThread = new CollisionUpdateThread();
                 collisionThread.start();
             }
         }
@@ -155,6 +157,19 @@ public class LatticeDrawing extends ConceptSetDrawing {
         super();
         setLayoutEngine(new ThreadedLayoutEngine());
         setLayoutProvider(new DefaultLayouterProvider());
+        getEditableDrawParameters().addPropertyChangeListener(new PropertyChangeListener() {
+            public void propertyChange(PropertyChangeEvent evt) {
+                if (LatticePainterDrawParams.SHOW_COLLISIONS_PROPERTY.equals(evt.getPropertyName())) {
+                    if (!isEmpty()) {
+                        doMarkNeedUpdateCollisions();
+                    }
+                }
+            }
+        });
+    }
+
+    private void doMarkNeedUpdateCollisions() {
+        needUpdateCollisions = true;
     }
 
     public LayoutParameters getDrawParams() {
@@ -172,10 +187,13 @@ public class LatticeDrawing extends ConceptSetDrawing {
         if (hasLattice()) {
             makeLatticeDiagramFigures();
             initStrategies();
-            needUpdateCollisions();
+            markNeedUpdateCollisions();
         }
     }
 
+    boolean isCollisionDetectionEnabled() {
+        return getEditableDrawParameters().isShowCollisions();
+    }
 
 
     public Lattice getLattice() {
@@ -188,7 +206,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
 
     public int getNumberOfLevelsInDrawing() {
 
-        return hasLattice() ? getLattice().getHeight(): 0;
+        return hasLattice() ? getLattice().getHeight() : 0;
     }
 
     public boolean hasConceptSet() {
@@ -253,8 +271,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
     }
 
     private EdgeFigure makeEdgeFigure(Edge e) {
-        return new EdgeFigure(
-                getFigureForConcept(e.getStart()),
+        return new EdgeFigure(getFigureForConcept(e.getStart()),
                 getFigureForConcept(e.getEnd()));
     }
 
@@ -264,7 +281,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
         shutdown();
     }
 
-    public List getEdges(){
+    public List getEdges() {
         return Collections.unmodifiableList(edges);
     }
 
@@ -275,8 +292,6 @@ public class LatticeDrawing extends ConceptSetDrawing {
             onCollisionThreadEnd();
         }
     }
-
-
 
 
 }

@@ -60,10 +60,39 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
         checkUpdateCycle(drawing);
     }
 
-    private void checkUpdateCycle(LatticeDrawing drawing) {
+    public void testCollisionUpdateWhenCollisionDetectionIsDisabled(){
+        assertFalse(drawing.hasNeedUpdateCollisions());
+        assertTrue(drawing.isEmpty());
+        drawing.getEditableDrawParameters().setShowCollisions(false);
+
+        assertFalse("Change in update collision option should not lead to update for empty drawing",
+                drawing.hasNeedUpdateCollisions());
+        final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1,0},
+                                                                                 {0,1}});
+        drawing.setLattice(lattice);
+        assertFalse(drawing.hasNeedUpdateCollisions());
+        drawing.setLayoutEngine(new SimpleLayoutEngine());
+        drawing.layoutLattice();
+        assertFalse(drawing.hasNeedUpdateCollisions());
+        drawing.getEditableDrawParameters().setShowCollisions(true);
+        assertTrue(drawing.hasNeedUpdateCollisions());
+        checkUpdateCycle(drawing);
+        assertFalse(drawing.hasNeedUpdateCollisions());
+        drawing.getEditableDrawParameters().setShowCollisions(false);
+
+        assertTrue("Change in update collision option should lead to update for non-empty drawing",
+                drawing.hasNeedUpdateCollisions());
+        checkUpdateCycle(drawing);
+        drawing.getFigureForConcept(lattice.getZero()).moveBy(3, 3);
+        assertFalse(drawing.hasNeedUpdateCollisions());
+    }
+
+    private static void checkUpdateCycle(LatticeDrawing drawing) {
         assertTrue(drawing.hasNeedUpdateCollisions());
         drawing.updateCollisions();
-        while(drawing.isUpdatingCollisions()){}
+        while(drawing.isUpdatingCollisions()){
+            /*intentionally empty*/
+        }
         assertFalse(drawing.hasNeedUpdateCollisions());
     }
 

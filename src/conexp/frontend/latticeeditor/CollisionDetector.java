@@ -34,36 +34,40 @@ public class CollisionDetector {
     public void detectCollisions(LatticeDrawing conceptSetDrawing) {
         List conceptFigures = getNodeListOrderedByYCoord(conceptSetDrawing);
         clearCollisions(conceptFigures);
-        LatticeDrawingSchema drawingSchema = conceptSetDrawing.getLatticeDrawingSchema();
-        final int cutoffDistance = 2*drawingSchema.getDrawParams().getMaxNodeRadius();
-        detectInternodeCollision(conceptFigures, cutoffDistance);
+        if (conceptSetDrawing.isCollisionDetectionEnabled()) {
+            DrawParamsProvider drawingSchema = conceptSetDrawing.getLatticeDrawingSchema();
+            final int cutoffDistance = 2 * drawingSchema.getDrawParams().getMaxNodeRadius();
+            detectInternodeCollision(conceptFigures, cutoffDistance);
+        }
         List edgeFigures = conceptSetDrawing.getEdges();
         clearCollisions(edgeFigures);
-        detectNodeEdgeCollisions(edgeFigures, conceptFigures);
+        if (conceptSetDrawing.isCollisionDetectionEnabled()){
+            detectNodeEdgeCollisions(edgeFigures, conceptFigures);
+        }
     }
 
     private void detectNodeEdgeCollisions(List edgeFigures, List conceptFigures) {
         final int edgeCount = edgeFigures.size();
-        Rectangle edgeRect =  new Rectangle();
+        Rectangle edgeRect = new Rectangle();
         Rectangle nodeRect = new Rectangle();
-        for(int i=0; i<edgeCount; i++){
-            EdgeFigure edgeFigure = (EdgeFigure)edgeFigures.get(i);
+        for (int i = 0; i < edgeCount; i++) {
+            EdgeFigure edgeFigure = (EdgeFigure) edgeFigures.get(i);
             edgeFigure.boundingBox(edgeRect);
             Line2D line = edgeFigure.getLine();
-            for(int nodeIndex = 0; nodeIndex<conceptFigures.size(); nodeIndex++){
-                AbstractConceptCorrespondingFigure nodeFigure = (AbstractConceptCorrespondingFigure)conceptFigures.get(nodeIndex);
+            for (int nodeIndex = 0; nodeIndex < conceptFigures.size(); nodeIndex++) {
+                AbstractConceptCorrespondingFigure nodeFigure = (AbstractConceptCorrespondingFigure) conceptFigures.get(nodeIndex);
                 nodeFigure.boundingBox(nodeRect);
                 nodeRect.grow(2, 2);
-                if(edgeRect.getMaxY()<nodeRect.getMinY()){
+                if (edgeRect.getMaxY() < nodeRect.getMinY()) {
                     break;
                 }
-                if(!nodeRect.intersects(edgeRect)){
+                if (!nodeRect.intersects(edgeRect)) {
                     continue;
                 }
-                if(edgeFigure.containsFigure(nodeFigure)){
+                if (edgeFigure.containsFigure(nodeFigure)) {
                     continue;
                 }
-                if(line.intersects(nodeRect)){
+                if (line.intersects(nodeRect)) {
                     edgeFigure.setCollision(true);
                     nodeFigure.setCollision(true);
                 }
@@ -73,15 +77,15 @@ public class CollisionDetector {
 
     private static void detectInternodeCollision(List conceptFigures, final int cutoffDistance) {
         final int bound = conceptFigures.size();
-        for(int i=0; i<bound; i++){
-            AbstractConceptCorrespondingFigure currentFigure = (AbstractConceptCorrespondingFigure)conceptFigures.get(i);
-            for(int j=i+1; j<bound; j++){
-                AbstractConceptCorrespondingFigure otherFigure = (AbstractConceptCorrespondingFigure)conceptFigures.get(j);
-                final double verticalDistance = Math.abs(otherFigure.getCenterY()-currentFigure.getCenterY());
-                if(verticalDistance>cutoffDistance){
+        for (int i = 0; i < bound; i++) {
+            AbstractConceptCorrespondingFigure currentFigure = (AbstractConceptCorrespondingFigure) conceptFigures.get(i);
+            for (int j = i + 1; j < bound; j++) {
+                AbstractConceptCorrespondingFigure otherFigure = (AbstractConceptCorrespondingFigure) conceptFigures.get(j);
+                final double verticalDistance = Math.abs(otherFigure.getCenterY() - currentFigure.getCenterY());
+                if (verticalDistance > cutoffDistance) {
                     break;
                 }
-                if(hasIntersection(currentFigure, otherFigure)){
+                if (hasIntersection(currentFigure, otherFigure)) {
                     currentFigure.setCollision(true);
                     otherFigure.setCollision(true);
                 }
@@ -89,7 +93,7 @@ public class CollisionDetector {
         }
     }
 
-    private static void clearCollisions(List conceptFigures) {
+    public static void clearCollisions(List conceptFigures) {
         for (Iterator iterator = conceptFigures.iterator(); iterator.hasNext();) {
             Collidable figure = (Collidable) iterator.next();
             figure.setCollision(false);
@@ -98,16 +102,16 @@ public class CollisionDetector {
 
     private static List getNodeListOrderedByYCoord(final ConceptSetDrawing conceptSetDrawing) {
         final List conceptFigures = CollectionFactory.createDefaultList();
-        conceptSetDrawing.getConceptSet().forEach(new ConceptsCollection.ConceptVisitor(){
+        conceptSetDrawing.getConceptSet().forEach(new ConceptsCollection.ConceptVisitor() {
             public void visitConcept(Concept c) {
                 AbstractConceptCorrespondingFigure figure = conceptSetDrawing.getFigureForConcept(c);
                 conceptFigures.add(figure);
             }
         });
-        Collections.sort(conceptFigures, new Comparator(){
+        Collections.sort(conceptFigures, new Comparator() {
             public int compare(Object o1, Object o2) {
-                AbstractConceptCorrespondingFigure f1 = (AbstractConceptCorrespondingFigure)o1;
-                AbstractConceptCorrespondingFigure f2 = (AbstractConceptCorrespondingFigure)o2;
+                AbstractConceptCorrespondingFigure f1 = (AbstractConceptCorrespondingFigure) o1;
+                AbstractConceptCorrespondingFigure f2 = (AbstractConceptCorrespondingFigure) o2;
                 return ComparatorUtil.compareDoubles(f1.getCenterY(), f2.getCenterY());
             }
         });
@@ -119,7 +123,7 @@ public class CollisionDetector {
         Rectangle otherFigureBounds = new Rectangle();
         currentFigure.boundingBox(currentFigureBounds);
         otherFigure.boundingBox(otherFigureBounds);
-        if(!currentFigureBounds.intersects(otherFigureBounds)){
+        if (!currentFigureBounds.intersects(otherFigureBounds)) {
             return false;
         }
         //todo: maybe implement more advanced strategy;

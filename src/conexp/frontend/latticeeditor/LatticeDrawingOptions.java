@@ -9,9 +9,7 @@ package conexp.frontend.latticeeditor;
 
 import util.BaseVetoablePropertyChangeSupplier;
 
-public class LatticeDrawingOptions extends BaseVetoablePropertyChangeSupplier implements LatticeDrawingSchema {
-    //PainterOptionsPaneEditor optionsEditor;
-
+public class LatticeDrawingOptions extends BaseVetoablePropertyChangeSupplier implements DrawParamsProvider {
     private DrawParameters drawParams;
 
     public LatticeDrawingOptions() {

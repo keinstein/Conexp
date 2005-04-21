@@ -17,6 +17,8 @@ public class BasicDrawParams extends DefaultLayoutParameters implements DrawPara
 
     protected static final float DEFAULT_MAX_EDGE_STROKE = 4.0f;
 
+    protected static boolean DEFAULT_SHOW_COLLISIONS = true;
+
     protected BasicDrawParams(){}
 
     static final DrawParameters g_Instance = new BasicDrawParams();
@@ -36,6 +38,10 @@ public class BasicDrawParams extends DefaultLayoutParameters implements DrawPara
 
     public float getMaxEdgeStroke() {
         return DEFAULT_MAX_EDGE_STROKE;
+    }
+
+    public boolean isShowCollisions() {
+        return DEFAULT_SHOW_COLLISIONS;
     }
 
     public DrawParameters makeCopy() {

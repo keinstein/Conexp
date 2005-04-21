@@ -278,9 +278,8 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
             if (DrawParamsProperties.GRID_SIZE_X_PROPERTY.equals(propertyName)) {
                 handleXGridChange(evt);
             }
-            //todo: move level up
-            if(DrawParamsProperties.MAX_NODE_RADIUS_PROPERTY.equals(propertyName)){
-                refresh();
+            if(LatticePainterDrawParams.SHOW_COLLISIONS_PROPERTY.equals(propertyName)){
+                repaint();
             }
         }
 

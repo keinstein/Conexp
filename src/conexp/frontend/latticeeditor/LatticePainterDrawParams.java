@@ -10,7 +10,9 @@ package conexp.frontend.latticeeditor;
 import conexp.util.gui.paramseditor.BoundedIntValueParamInfo;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
+import conexp.util.gui.paramseditor.BooleanParamInfo;
 import conexp.util.valuemodels.BoundedIntValue;
+import conexp.util.valuemodels.BooleanValueModel;
 
 import java.beans.*;
 import java.util.prefs.Preferences;
@@ -19,6 +21,7 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
     private BoundedIntValue maxNodeRadius;
     private BoundedIntValue gridSizeX;
     private BoundedIntValue gridSizeY;
+    private BooleanValueModel showCollisions;
 
     boolean drawConceptNo = false;//true;
 
@@ -34,6 +37,7 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         ret.maxNodeRadius=ret.makeBoundedIntValue(getMaxNodeRadiusValue());
         ret.gridSizeX = ret.makeBoundedIntValue(getGridSizeXValue());
         ret.gridSizeY = ret.makeBoundedIntValue(getGridSizeYValue());
+        ret.showCollisions=ret.makeBooleanValueModel(getShowCollisionsValue());
         ret.drawConceptNo = drawConceptNo;
         ret.maxEdgeStroke = maxEdgeStroke;
         return ret;
@@ -55,6 +59,9 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
             return false;
         }
         if(gridSizeY==null? other.gridSizeY!=null: (!gridSizeY.equals(other.gridSizeY))){
+            return false;
+        }
+        if(showCollisions==null? other.showCollisions!=null: (!showCollisions.equals(other.showCollisions))){
             return false;
         }
         if(drawConceptNo!=other.drawConceptNo){return false;}
@@ -84,6 +91,9 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         return getGridSizeXValue().getValue();
     }
 
+
+
+
     synchronized BoundedIntValue getGridSizeXValue() {
         if (null == gridSizeX) {
             gridSizeX = makeBoundedIntValue(GRID_SIZE_X_PROPERTY, DEFAULT_GRID_SIZE_X, MIN_GRID_SIZE_X, MAX_GRID_SIZE_X);
@@ -101,6 +111,8 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         }
         return gridSizeY;
     }
+
+
 
 
     public float getMaxEdgeStroke() {
@@ -123,6 +135,22 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         return getMaxNodeRadiusValue().minVal;
     }
 
+
+    synchronized BooleanValueModel getShowCollisionsValue(){
+        if(null==showCollisions){
+            showCollisions=makeBooleanValueModel(SHOW_COLLISIONS_PROPERTY, DEFAULT_SHOW_COLLISIONS);
+        }
+        return showCollisions;
+    }
+
+    public boolean isShowCollisions() {
+        return getShowCollisionsValue().getValue();
+    }
+
+    public void setShowCollisions(boolean newValue){
+        getShowCollisionsValue().setValue(newValue);
+    }
+
     protected PropertyChangeSupport getPropertyChange() {
         if (propertyChange == null) {
             propertyChange = new java.beans.PropertyChangeSupport(this);
@@ -137,9 +165,15 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         return vetoPropertyChange;
     }
 
+    public void setDrawConceptNo(boolean newValue){
+        drawConceptNo=newValue;
+    }
+
     public boolean isDrawConceptNo() {
         return drawConceptNo;
     }
+
+
 
     private BoundedIntValue makeBoundedIntValue(String name, int value, int lowBound, int upBound) {
         BoundedIntValue ret = new BoundedIntValue(name, value, lowBound, upBound);
@@ -151,6 +185,16 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
     private BoundedIntValue makeBoundedIntValue(BoundedIntValue valueModel){
         return makeBoundedIntValue(valueModel.getPropertyName(), valueModel.getValue(),
                 valueModel.minVal, valueModel.maxVal);
+    }
+
+    private BooleanValueModel makeBooleanValueModel(String name, boolean value){
+        BooleanValueModel ret = new BooleanValueModel(name, value);
+        ret.setPropertyChange(getPropertyChange());
+        return ret;
+    }
+
+    private BooleanValueModel makeBooleanValueModel(BooleanValueModel valueModel){
+        return makeBooleanValueModel(valueModel.getPropertyName(), valueModel.getValue());
     }
 
     public void setGridSizeX(int newGridSizeX) throws java.beans.PropertyVetoException {
@@ -177,7 +221,8 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
             params = new ParamInfo[]{
                 new BoundedIntValueParamInfo("Grid Size X", getGridSizeXValue()),
                 new BoundedIntValueParamInfo("Grid Size Y", getGridSizeYValue()),
-                new BoundedIntValueParamInfo("Node radius", getMaxNodeRadiusValue())
+                new BoundedIntValueParamInfo("Node radius", getMaxNodeRadiusValue()),
+                new BooleanParamInfo("Show collisions", getShowCollisionsValue())
             };
         }
         return params;
@@ -198,12 +243,14 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         getPreferences().putInt(GRID_SIZE_X_PROPERTY, getGridSizeX());
         getPreferences().putInt(GRID_SIZE_Y_PROPERTY, getGridSizeY());
         getPreferences().putInt(MAX_NODE_RADIUS_PROPERTY, getMaxNodeRadius());
+        getPreferences().putBoolean(SHOW_COLLISIONS_PROPERTY, isShowCollisions());
     }
 
     public void doRestorePreferences(Preferences preferences) throws PropertyVetoException {
         getGridSizeXValue().setValue(preferences.getInt(GRID_SIZE_X_PROPERTY, DEFAULT_GRID_SIZE_X));
         getGridSizeYValue().setValue(preferences.getInt(GRID_SIZE_Y_PROPERTY, DEFAULT_GRID_SIZE_Y));
         getMaxNodeRadiusValue().setValue(preferences.getInt(MAX_NODE_RADIUS_PROPERTY, DEFAULT_MAX_NODE_RADIUS));
+        getShowCollisionsValue().setValue(preferences.getBoolean(SHOW_COLLISIONS_PROPERTY, DEFAULT_SHOW_COLLISIONS));
     }
 
     public void restorePreferences() {
@@ -248,6 +295,7 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
                 ", gridSizeY=" + gridSizeY +
                 ", drawConceptNo=" + drawConceptNo +
                 ", maxEdgeStroke=" + maxEdgeStroke +
+                ", showCollisions="+showCollisions +
                 "}";
     }
 }

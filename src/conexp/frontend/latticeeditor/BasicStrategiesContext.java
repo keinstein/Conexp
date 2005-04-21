@@ -39,7 +39,7 @@ public class BasicStrategiesContext extends BasePropertyChangeSupplier implement
         this.preferences = preferences;
     }
 
-    private ParamInfo[] params;
+    private transient ParamInfo[] params;
 
     protected ParamInfo[] makeParamInfo() {
         return new ParamInfo[0];
@@ -56,9 +56,9 @@ public class BasicStrategiesContext extends BasePropertyChangeSupplier implement
         try {
             getPreferences().exportNode(System.out);
         } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use Options | File Templates.
+            e.printStackTrace();
         } catch (BackingStoreException e) {
-            e.printStackTrace();  //To change body of catch statement use Options | File Templates.
+            e.printStackTrace();  
         }
     }
 

@@ -27,7 +27,6 @@ public class ContextFunctions {
                 if (rel.getSet(i).equals(s)) {
                     extentSize++;
                 }
-                ;
             }
             return extentSize;
         }

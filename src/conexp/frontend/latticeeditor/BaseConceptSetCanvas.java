@@ -22,9 +22,11 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
                 Trace.gui.eventm("Get message for lattice painter", evt.getPropertyName());
                 String propertyName = evt.getPropertyName();
                 if (LatticeCanvasDrawStrategiesContextProperties.NODE_DRAW_STRATEGY_PROPERTY.equals(propertyName) ||
-                     LatticeCanvasDrawStrategiesContextProperties.EDGE_DRAW_STRATEGY_PROPERTY.equals(propertyName)) {
+                     LatticeCanvasDrawStrategiesContextProperties.EDGE_DRAW_STRATEGY_PROPERTY.equals(propertyName) ||
+                     DrawParamsProperties.MAX_NODE_RADIUS_PROPERTY.equals(propertyName)) {
                     refresh();
                 }
+
                 if (LatticeCanvasDrawStrategiesContextProperties.HIGHLIGHT_STRATEGY_PROPERTY.equals(propertyName)) {
                     repaint();
                 }
