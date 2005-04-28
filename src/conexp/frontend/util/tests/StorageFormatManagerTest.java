@@ -30,7 +30,7 @@ public class StorageFormatManagerTest extends TestCase {
         }
     }
 
-    public void testStorage() {
+    public static void testStorage() {
         StorageFormatManager manager = new StorageFormatManager();
         assertNotNull(manager.getLoadFilters());
 
@@ -58,7 +58,7 @@ public class StorageFormatManagerTest extends TestCase {
         assertEquals(mockDocumentWriter, manager.getWriter("cex"));
     }
 
-    public void testGetDefaultLoaderAndWriter() {
+    public static void testGetDefaultLoaderAndWriter() {
         StorageFormatManager manager = new StorageFormatManager();
         MockDocumentLoader mockDocumentLoader = new MockDocumentLoader();
         StorageFormatRecord format = new StorageFormatRecord("Test format", "cxt", mockDocumentLoader, null);

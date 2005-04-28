@@ -53,7 +53,7 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
     }
 
 
-    private LabelingStrategyModelFactory makeDrawStrategiesFactory() {
+    private static LabelingStrategyModelFactory makeDrawStrategiesFactory() {
         return new conexp.frontend.latticeeditor.drawstrategies.DefaultLabelingStrategiesFactory();
     }
 

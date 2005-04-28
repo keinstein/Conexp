@@ -19,7 +19,7 @@ public abstract class BaseRelationSequence implements RelationSequence {
     protected BinaryRelation[] relations;
     protected MeasurementProtocol measurementProtocol;
 
-    protected MeasurementProtocol makeMeasurementProtocol() {
+    protected static MeasurementProtocol makeMeasurementProtocol() {
         return MeasurementProtocol.buildMeasurementProtocolFromStrings(
                 new String[][]{
                     {"Rows", "false"},

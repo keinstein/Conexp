@@ -20,11 +20,11 @@ import java.io.StringReader;
 
 public class CSVContextLoaderTest extends TestCase {
 
-	protected ContextCreator getCreator(){
+	protected static ContextCreator getCreator(){
 		return new CSVContextCreator();
 	}
 	
-	public void testReadingWithEmptyLine() {
+	public static void testReadingWithEmptyLine() {
 		String[] data = {";A1;A2",
 								"O1;z;a",
 								""	,
@@ -42,7 +42,7 @@ public class CSVContextLoaderTest extends TestCase {
 		doTestReading(data2, expectedContext);
 	}
 
-	public void testReadingWithEmptyLastattribute() {
+	public static void testReadingWithEmptyLastattribute() {
 			String[] data = {";A1;A2",
 									""	,
 									"O1;1;",
@@ -55,7 +55,7 @@ public class CSVContextLoaderTest extends TestCase {
 	}
 
 
-	public void testReadingWithComments() {
+	public static void testReadingWithComments() {
 			String[] data = {";A1;A2",
 									"O1;1;0",
 									"%aaaaa;klklöklkök;äkkklölk",
@@ -69,7 +69,7 @@ public class CSVContextLoaderTest extends TestCase {
 
 
 	//Taken from ConImpTest
-	private void doTestReading(String[] data, ExtendedContextEditingInterface expectedContext) {
+	private static void doTestReading(String[] data, ExtendedContextEditingInterface expectedContext) {
 		StringReader reader = new StringReader(buildString(data));
 		try {
 			ExtendedContextEditingInterface cxt = getCreator().createContext(reader);

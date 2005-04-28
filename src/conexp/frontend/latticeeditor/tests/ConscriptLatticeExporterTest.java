@@ -11,7 +11,7 @@ import junit.framework.TestCase;
  * Time: 15:17:52
  */
 public class ConscriptLatticeExporterTest extends TestCase {
-    public void testAcceptanceOfExtension() {
+    public static void testAcceptanceOfExtension() {
         ConscriptLatticeExporter exporter = new ConscriptLatticeExporter(null);
         assertTrue(exporter.accepts("C:\\test.csc"));
         assertFalse(exporter.accepts("C:\\work.gif"));

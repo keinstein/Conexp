@@ -69,7 +69,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         System.arraycopy(other.unit, 0, unit, 0, other.unit.length);
     }
 
-    private int unitsNeeded(int nbits) {
+    private static int unitsNeeded(int nbits) {
         return (unitIndex(nbits - 1) + 1);
     }
 

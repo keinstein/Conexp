@@ -104,7 +104,7 @@ public class ConExpXMLReader implements DocumentLoader {
         loadConceptLabels(drawing, lineDiagramElement);
     }
 
-    private void doReadEntitiesMask(final SetProvidingEntitiesMask entityMask, Element entitiesMaskElement) throws DataFormatException {
+    private static void doReadEntitiesMask(final SetProvidingEntitiesMask entityMask, Element entitiesMaskElement) throws DataFormatException {
         int count = entityMask.getCount();
         ModifiableSet intent = ContextFactoryRegistry.createSet(count);
         doReadSet(intent, entitiesMaskElement);
@@ -140,7 +140,7 @@ public class ConExpXMLReader implements DocumentLoader {
         );
     }
 
-    private void loadObjectLabels(final LatticeDrawing drawing, Element lineDiagramElement) throws DataFormatException {
+    private static void loadObjectLabels(final LatticeDrawing drawing, Element lineDiagramElement) throws DataFormatException {
         if (!drawing.hasLabelsForObjects()) {
             return;
         }
@@ -155,7 +155,7 @@ public class ConExpXMLReader implements DocumentLoader {
         );
     }
 
-    private void readObjectLabelFigure(LatticeDrawing drawing, Element figureElement) throws DataFormatException {
+    private static void readObjectLabelFigure(LatticeDrawing drawing, Element figureElement) throws DataFormatException {
         Point2D point = readFigureCoords(figureElement);
         Element entityReference = XMLHelper.safeGetElement(figureElement, ConExpXMLElements.OBJECT_REFERENCE, "Object label element should contain object reference");
         ExtendedContextEditingInterface cxt = drawing.getConceptSet().getContext();
@@ -169,7 +169,7 @@ public class ConExpXMLReader implements DocumentLoader {
     }
 
 
-    private void loadAttributeLabels(final LatticeDrawing drawing, Element lineDiagramElement) throws DataFormatException {
+    private static void loadAttributeLabels(final LatticeDrawing drawing, Element lineDiagramElement) throws DataFormatException {
         if (!drawing.hasLabelsForAttributes()) {
             return;
         }
@@ -187,7 +187,7 @@ public class ConExpXMLReader implements DocumentLoader {
                 });
     }
 
-    private void processLabelsFromCollectionWithType(Element labelsCollection,
+    private static void processLabelsFromCollectionWithType(Element labelsCollection,
                                                      String figureType,
                                                      FigureElementsProcessor processor)
             throws DataFormatException {
@@ -203,7 +203,7 @@ public class ConExpXMLReader implements DocumentLoader {
         }
     }
 
-    private void readAttributeLabelFigure(LatticeDrawing drawing, Element figureElement) throws DataFormatException {
+    private static void readAttributeLabelFigure(LatticeDrawing drawing, Element figureElement) throws DataFormatException {
         Point2D point = readFigureCoords(figureElement);
         Element attributeReference = XMLHelper.safeGetElement(figureElement, ConExpXMLElements.ATTRIBUTE_REFERENCE, "Attribute label element should contain attribute reference");
         ExtendedContextEditingInterface cxt = drawing.getConceptSet().getContext();
@@ -236,7 +236,7 @@ public class ConExpXMLReader implements DocumentLoader {
         );
     }
 
-    private void loadDrawingSettings(LatticeDrawing drawing, Element lineDiagramElement) throws DataFormatException {
+    private static void loadDrawingSettings(LatticeDrawing drawing, Element lineDiagramElement) throws DataFormatException {
         Element lineDiagramSetting = XMLHelper.safeGetElement(lineDiagramElement, ConExpXMLElements.LATTICE_DIAGRAM_SETTINGS, "Line diagram should have settings");
         Element attributeDisplayMode = XMLHelper.safeGetElement(lineDiagramSetting, ConExpXMLElements.ATTRIBUTE_LABEL_DISPLAY_MODE, "Expect attribute display mode in settings");
         if (!drawing.setAttributeLabelingStrategyKey(attributeDisplayMode.getAttributeValue(ConExpXMLElements.VALUE_ATTRIBUTE))) {
@@ -284,7 +284,7 @@ public class ConExpXMLReader implements DocumentLoader {
 
 
 
-    private Point2D readFigureCoords(Element figureElement) throws DataFormatException {
+    private static Point2D readFigureCoords(Element figureElement) throws DataFormatException {
         Element coords = XMLHelper.safeGetElement(figureElement, ConExpXMLElements.FIGURE_COORDS, "No coordinates are provided for figure");
         Element pointElement = XMLHelper.safeGetElement(coords, XMLGeneralTypesUtil.POINT2D, "Point element is absent in coordinates");
 
@@ -332,12 +332,12 @@ public class ConExpXMLReader implements DocumentLoader {
         cxt.addObjectWithNameAndIntent(nameElement.getText(), intent);
     }
 
-    private void readIntent(Element intentElement, ModifiableSet intent) throws DataFormatException {
+    private static void readIntent(Element intentElement, ModifiableSet intent) throws DataFormatException {
         Assert.isTrue(intentElement.getName().equals(ConExpXMLElements.INTENT));
         doReadSet(intent, intentElement);
     }
 
-    private void doReadSet(ModifiableSet intent, Element intentElement) throws DataFormatException {
+    private static void doReadSet(ModifiableSet intent, Element intentElement) throws DataFormatException {
         intent.clearSet();
         List objIntent = intentElement.getChildren(ConExpXMLElements.OBJECT_HAS_ATTRIBUTE);
         Iterator iter = objIntent.iterator();
@@ -353,7 +353,7 @@ public class ConExpXMLReader implements DocumentLoader {
         }
     }
 
-    private int readIntAttributeFromElementAndCheckItsValidity(Element attr, String attributeToRead, int maxValue, final String message) throws DataFormatException {
+    private static int readIntAttributeFromElementAndCheckItsValidity(Element attr, String attributeToRead, int maxValue, final String message) throws DataFormatException {
         int index = -1;
         try {
             index = attr.getAttribute(attributeToRead).getIntValue();
@@ -366,11 +366,11 @@ public class ConExpXMLReader implements DocumentLoader {
         return index;
     }
 
-    private boolean badID(int attrCount, int attrIndex) {
+    private static boolean badID(int attrCount, int attrIndex) {
         return attrIndex < 0 || attrIndex >= attrCount;
     }
 
-    private void loadAttributes(Element context, Context cxt) throws DataFormatException {
+    private static void loadAttributes(Element context, Context cxt) throws DataFormatException {
 
         Element attributeCollection = XMLHelper.safeGetElement(context, ConExpXMLElements.ATTRIBUTE_COLLECTION, "Bad XML File: No attributes specified for context");
         List attributes = attributeCollection.getChildren(ConExpXMLElements.ATTRIBUTE_ELEMENT);
@@ -382,7 +382,7 @@ public class ConExpXMLReader implements DocumentLoader {
         }
     }
 
-    private ContextEntity makeContextAttribute(final String name) {
+    private static ContextEntity makeContextAttribute(final String name) {
         return ContextEntity.createContextAttribute(name);
     }
 

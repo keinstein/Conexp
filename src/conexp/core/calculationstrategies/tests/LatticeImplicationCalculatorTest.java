@@ -23,7 +23,7 @@ public class LatticeImplicationCalculatorTest extends ImplicationCalculatorTest 
         return calc;
     }
 
-    public void testIsUnionEqualsTo() {
+    public static void testIsUnionEqualsTo() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{0, 0, 1},
                                                          {0, 1, 0},
                                                          {1, 0, 0}});

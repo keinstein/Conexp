@@ -52,7 +52,7 @@ public class LatticeCSCExporterTest extends TestCase {
         latticeComponent.calculateAndLayoutLattice();
     }
 
-    public void testFormat() {
+    public static void testFormat() {
         String res = LatticeCSCExporter.format("{0, number, 0.##}", new Object[]{new Double(3.14)});
         assertEquals("should contain dot",-1, res.indexOf(','));
 /*
@@ -66,7 +66,7 @@ public class LatticeCSCExporterTest extends TestCase {
 */
     }
 
-    public void testEncodeName() throws Exception {
+    public static void testEncodeName() {
         assertEquals("Black \\\\& Decker", LatticeCSCExporter.encodeName("Black & Decker"));
     }
 }

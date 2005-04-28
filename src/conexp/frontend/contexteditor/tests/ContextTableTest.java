@@ -53,7 +53,7 @@ public class ContextTableTest extends TestCase {
         table = new ContextTable(cxt);
     }
 
-    public static void testSplit() throws Exception {
+    public static void testSplit() {
         List expected = Arrays.asList(new String[]{"1", "2"});
         assertEquals(expected, ContextTable.split("1\t2", '\t'));
         expected = Arrays.asList(new String[]{"1"});

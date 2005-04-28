@@ -11,8 +11,7 @@ package conexp.frontend.tests;
 import conexp.core.*;
 import conexp.core.tests.ContextReductionTest;
 import conexp.core.tests.SetBuilder;
-import conexp.frontend.ContextDocument;
-import conexp.frontend.ToolbarComponentDecorator;
+import conexp.frontend.*;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.components.EntityMaskChangeController;
@@ -21,6 +20,8 @@ import conexp.frontend.contexteditor.ContextViewPanel;
 import junit.framework.TestCase;
 
 import javax.swing.*;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class ContextDocumentTest extends TestCase {
     ContextDocument doc;
@@ -28,26 +29,6 @@ public class ContextDocumentTest extends TestCase {
     protected void setUp() {
         doc = new ContextDocument();
     }
-
-    public void testViewContainer() {
-        assertNotNull(doc.getViewContainer());
-    }
-
-    public void testViewsOptions() {
-        //TODO - move this test to test View Factory
-/*	contextComponent.getDocComponent();
-	for(int i=contextComponent.views.size(); --i>=0;){
-		isTrue(i+"th view should implement ViewChangeInterface", contextComponent.views.get(i) instanceof ViewChangeInterface);
-		isTrue("Options shouln't be null for "+i+"th view ",null!=((ViewChangeInterface)contextComponent.views.get(i)).getViewOptions());
-		isTrue(i+"th view should have a resources",null!=((ViewChangeInterface)contextComponent.views.get(i)).getResources());
-	}*/
-    }
-
-    public void expectViewActivationAfterCommand(String command, String expectedView) {
-        performCommand(command);
-        assertEquals("Unexpected view activated for command " + command, doc.getViewManager().getView(expectedView), doc.getViewManager().getActiveView());
-    }
-
 
     protected void performCommand(String command) {
         doc.getActionChain().get(command).actionPerformed(null);
@@ -95,10 +76,10 @@ public class ContextDocumentTest extends TestCase {
         supplier.calcDependencySet(doc);
         assertTrue(supplier.getDependencySet(doc).getSize() > 0);
         doc.getContext().removeAttribute(0);
-        // here different decision can be done.
-        // we can empty set of dependencies or recalculate it
+// here different decision can be done.
+// we can empty set of dependencies or recalculate it
 
-        //now we think about emptyng the implication set
+//now we think about emptyng the implication set
         assertEquals(0, supplier.getDependencySet(doc).getSize());
     }
 
@@ -119,6 +100,16 @@ public class ContextDocumentTest extends TestCase {
         testDependencySetUpdateOnRelation(rel, supplier);
     }
 
+    public void testViewContainer() {
+        assertNotNull(doc.getViewContainer());
+    }
+
+
+    public void expectViewActivationAfterCommand(String command, String expectedView) {
+        performCommand(command);
+        assertEquals("Unexpected view activated for command " + command, doc.getViewManager().getView(expectedView), doc.getViewManager().getActiveView());
+    }
+
     public void testGetViewManager() {
         doc.getViewManager();
     }
@@ -128,6 +119,33 @@ public class ContextDocumentTest extends TestCase {
         expectViewActivationAfterCommand("calcAssociationRules", ContextDocument.VIEW_ASSOCIATIONS);
         expectViewActivationAfterCommand("calcImplNCS", ContextDocument.VIEW_IMPLICATIONS);
         expectViewActivationAfterCommand("buildLatticeDS", ContextDocument.VIEW_LATTICE);
+    }
+
+
+    public void testViewsOptions() {
+        Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
+                                                         {1, 0, 1},
+                                                         {1, 1, 0}});
+        doc = new ContextDocument(cxt);
+
+        //createAllViews
+
+        doc.setShowMessages(false);
+        performCommand("buildLatticeDS");
+        performCommand("calcAssociationRules");
+        performCommand("calcImplNCS");
+        final Collection views = doc.getViewManager().getViews();
+
+        for (Iterator iterator = views.iterator(); iterator.hasNext();) {
+            Object o = iterator.next();
+            assertTrue("view "+o.getClass().getName()+" should implement View", o instanceof View);
+            assertTrue("view "+o.getClass().getName()+" should implement OptionPaneProvider", o instanceof OptionPaneProvider);
+
+            OptionPaneProvider view = (OptionPaneProvider) o;
+            assertTrue("Options shouln't be null for view ", null != view.getViewOptions());
+
+//            assertTrue("View should have a resources", null != view.getResourceManager());
+        }
     }
 
     public void testContextArrowCalculator() {
@@ -150,12 +168,12 @@ public class ContextDocumentTest extends TestCase {
         assertEquals(4, latticeComponent.getLattice().conceptsCount());
     }
 
-    public void testReduceContextCommand() throws Exception{
+    public void testReduceContextCommand() throws Exception {
         Context cxt = SetBuilder.makeContext(ContextReductionTest.BURMEISTER__EXAMPLE);
         doc = new ContextDocument(cxt);
         doc.getViewManager().addView(ContextDocument.VIEW_CONTEXT);
-        ToolbarComponentDecorator decorator = (ToolbarComponentDecorator)doc.getViewManager().getView(ContextDocument.VIEW_CONTEXT);
-        ContextViewPanel contextView  = (ContextViewPanel)decorator.getInner();
+        ToolbarComponentDecorator decorator = (ToolbarComponentDecorator) doc.getViewManager().getView(ContextDocument.VIEW_CONTEXT);
+        ViewChangeInterfaceWithConfig contextView = decorator.getInner();
         Action reduceObjects = contextView.getActionChain().get("reduceObj");
         reduceObjects.actionPerformed(null);
         assertEquals(SetBuilder.makeContext(ContextReductionTest.BURMEISTER_EXAMPLE_REDUCED).getRelation(),
@@ -163,19 +181,19 @@ public class ContextDocumentTest extends TestCase {
 
     }
 
-    public void testIcons(){
+    public static void testIcons() {
 
         checkIcon(ContextDocument.CONTEXT_ICON);
         checkIcon(ContextDocument.LATTICE_ICON);
 
     }
 
-    private void checkIcon(ImageIcon contextIcon) {
-        assertTrue("width is "+contextIcon.getIconWidth(), contextIcon.getIconWidth()>0);
-        assertTrue("height is "+contextIcon.getIconHeight(), contextIcon.getIconHeight()>0);
+    private static void checkIcon(ImageIcon contextIcon) {
+        assertTrue("width is " + contextIcon.getIconWidth(), contextIcon.getIconWidth() > 0);
+        assertTrue("height is " + contextIcon.getIconHeight(), contextIcon.getIconHeight() > 0);
     }
 
-    public void testSnapshotLattice(){
+    public void testSnapshotLattice() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
                                                          {1, 0, 1},
                                                          {1, 1, 0}});
@@ -191,17 +209,17 @@ public class ContextDocumentTest extends TestCase {
         assertNotSame(first, second);
         final LatticeDrawing firstDrawing = first.getDrawing();
         final LatticeDrawing secondDrawing = second.getDrawing();
-        first.getLattice().forEach(new Lattice.LatticeElementVisitor(){
+        first.getLattice().forEach(new Lattice.LatticeElementVisitor() {
             public void visitNode(LatticeElement node) {
                 final AbstractConceptCorrespondingFigure firstFigure = firstDrawing.getFigureForConcept(node);
-                final AbstractConceptCorrespondingFigure secondFigure =secondDrawing.getFigureForConcept(node);
+                final AbstractConceptCorrespondingFigure secondFigure = secondDrawing.getFigureForConcept(node);
                 assertEquals(firstFigure.getCenter(), secondFigure.getCenter());
             }
         });
 
 
 
-       // assertEquals(first, second);
+// assertEquals(first, second);
     }
 
 }

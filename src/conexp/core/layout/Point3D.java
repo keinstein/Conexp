@@ -25,7 +25,7 @@ public class Point3D extends java.awt.geom.Point2D.Double {
         proj2d = makePoint2D();
     }
 
-    private Point2D.Double makePoint2D() {
+    private static Point2D.Double makePoint2D() {
         return new Point2D.Double();
     }
 

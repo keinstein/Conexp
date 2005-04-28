@@ -28,7 +28,7 @@ public class AttributeExplorationUserCallbackImplementation implements Attribute
     }
     //------------------------------------------------------------
 
-    ResourceBundle getResources() {
+    static ResourceBundle getResources() {
         return resources;
     }
 

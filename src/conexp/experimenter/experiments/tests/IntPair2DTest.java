@@ -13,7 +13,7 @@ import util.testing.TestUtil;
  */
 
 public class IntPair2DTest extends TestCase {
-    public void testCompare() {
+    public static void testCompare() {
         IntPair2D first = new IntPair2D(1, 1);
         IntPair2D second = new IntPair2D(1, 1);
         assertEquals(0, first.compareTo(second));

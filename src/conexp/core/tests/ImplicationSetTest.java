@@ -49,7 +49,7 @@ public class ImplicationSetTest extends TestCase {
                 }));
     }
 
-    public void testMakeDuquenneGuigues2() {
+    public static void testMakeDuquenneGuigues2() {
         MockAttributeInformationSupplier supplier = new MockAttributeInformationSupplier(2);
         ImplicationSet implications =SetBuilder.makeImplicationSet(supplier, new int[][][]{
             {{0, 0}, {0, 1}},
@@ -134,7 +134,7 @@ public class ImplicationSetTest extends TestCase {
         assertEquals(5, impSet.getImplication(1).getObjectCount());
     }
 
-    public void testEqualToIsomorphism() {
+    public static void testEqualToIsomorphism() {
         AttributeInformationSupplier supplier = new MockAttributeInformationSupplier(4);
         ImplicationSet implicationSet1 = new ImplicationSet(supplier);
         ImplicationSet implicationSet2 = new ImplicationSet(supplier);
@@ -166,7 +166,7 @@ public class ImplicationSetTest extends TestCase {
         assertEquals(false, implicationSet1.equalsToIsomorphism(implicationSet2));
     }
 
-    public void testEquals() {
+    public static void testEquals() {
         MockAttributeInformationSupplier supplier = new MockAttributeInformationSupplier(3);
         ImplicationSet one = new ImplicationSet(supplier);
         ImplicationSet two = new ImplicationSet(supplier);

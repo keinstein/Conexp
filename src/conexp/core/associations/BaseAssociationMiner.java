@@ -32,7 +32,7 @@ public abstract class BaseAssociationMiner implements AssociationMiner {
      * Insert the method's description here.
      * Creation date: (20.06.01 2:03:38)
      */
-    protected void findApproximateBaseByCruscal(DependencySet ret, ArrayList frequentEdges, int frequentSetCount) {
+    protected static void findApproximateBaseByCruscal(DependencySet ret, ArrayList frequentEdges, int frequentSetCount) {
         DisjointSetsSystem cycleDetector = new DisjointSetsSystem(frequentSetCount);
         Iterator frequentEdgeIter = frequentEdges.iterator();
         while (frequentEdgeIter.hasNext()) {

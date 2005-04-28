@@ -13,11 +13,11 @@ import util.testing.TestUtil;
  */
 
 public class ConceptsCollectionTest extends TestCase {
-    public void testEquals() {
+    public static void testEquals() {
         TestUtil.testEqualsAndHashCode(new ConceptsCollection(), new ConceptsCollection());
     }
 
-    public void testEqualsAsSets(){
+    public static void testEqualsAsSets(){
         ConceptsCollection one = new ConceptsCollection();
         ConceptsCollection two = new ConceptsCollection();
         assertTrue(one.equalsAsSets(two));

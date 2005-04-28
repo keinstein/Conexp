@@ -25,7 +25,7 @@ public class MeasurementSetTest extends TestCase {
         return new TestSuite(THIS);
     }
 
-    public void testSetMeasurement() {
+    public static void testSetMeasurement() {
         MeasurementSet res = new MeasurementSet();
         res.setMeasurementProtocol(
                 MeasurementProtocol.buildMeasurementProtocolFromStrings(

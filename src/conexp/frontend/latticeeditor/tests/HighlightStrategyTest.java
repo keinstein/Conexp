@@ -14,7 +14,7 @@ import conexp.frontend.latticeeditor.DefaultDimensionCalcStrategy;
 import util.testing.TestUtil;
 
 public abstract class HighlightStrategyTest extends TestCase {
-    public void testEqualsAndHashCode() throws Exception {
+    public void testEqualsAndHashCode() {
         HighlightStrategy first = makeEqualInstance();
         HighlightStrategy second = makeEqualInstance();
         HighlightStrategy third = makeNotEqualInstance();

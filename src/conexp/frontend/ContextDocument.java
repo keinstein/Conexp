@@ -83,7 +83,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
     //------------------------------------------------------------
 
-    ResourceBundle getResources() {
+    static ResourceBundle getResources() {
         return resContextDocument;
     }
 
@@ -222,8 +222,6 @@ public class ContextDocument implements ActionChainBearer, Document {
     private void addViewToTree() {
 
     }
-
-    LatticeComponent latticeComponent;
 
 
     public LatticeComponent getLatticeComponent() {
@@ -623,10 +621,14 @@ public class ContextDocument implements ActionChainBearer, Document {
         ret.setSelectionPath(getTreePath());
         ret.setShowsRootHandles(true);
         ret.setEditable(false);
-        JPopupMenu popup = new JPopupMenu();
+        final JPopupMenu popup = new JPopupMenu();
         ret.addMouseListener(new MouseAdapter(){
             public void mouseReleased(MouseEvent e) {
                 if(e.isPopupTrigger()){
+                    //todo: add popup filling
+                    // with possible types of operations
+
+                    popup.setVisible(true);
                     //do popup processing
                 }else{
                     //do navigation stuff
@@ -680,7 +682,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         return newModel;
     }
 
-    private DefaultMutableTreeNode makeLatticeTreeNode(int i) {
+    private static DefaultMutableTreeNode makeLatticeTreeNode(int i) {
         return new DefaultMutableTreeNode(new IconData(LATTICE_ICON, "Lattice " + (i + 1)), false);
     }
 
@@ -698,7 +700,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         return toolBuilder.createToolBar(JToolBar.HORIZONTAL);
     }
 
-    private ResourceManager getResourceManager() {
+    private static ResourceManager getResourceManager() {
         return new ResourceManager(getResources());
     }
 

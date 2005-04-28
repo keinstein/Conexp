@@ -29,7 +29,7 @@ import java.awt.*;
 
 public class LatticeCanvasTest extends junit.framework.TestCase {
 
-    public void testGetUpMoveConstraintForConcept() {
+    public static void testGetUpMoveConstraintForConcept() {
         final LatticeCanvasScheme options = new LatticeCanvasScheme() {
             public canvas.CanvasColorScheme getColorScheme() {
                 return null;
@@ -70,7 +70,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
         assertEquals(10.0, res, 0.001);
     }
 
-    public void testGetUpAndDownMoveStrategiesForConcept() {
+    public static void testGetUpAndDownMoveStrategiesForConcept() {
         LatticeCanvas canvas = buildPreparedCanvas(TestDataHolder.FULL_RELATION_INTERVAL_4, TestDataHolder.LAYOUT_INTERVAL_4_ASSYMETRIC);
         ConceptSetDrawing drawing = canvas.getConceptSetDrawing();
         Lattice lattice = drawing.getLattice();
@@ -85,7 +85,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
 
     }
 
-    public void testDimensionUpdateDuringResetOfLatticeDrawing() {
+    public static void testDimensionUpdateDuringResetOfLatticeDrawing() {
         LatticeCanvas canvas = makeCanvas();
         LatticeDrawing drawing = new LatticeDrawing() {
             public Dimension getDimension() {
@@ -97,7 +97,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
         assertEquals(new Dimension(200, 150), canvas.getSize());
     }
 
-    public void testClearLatticeDrawing() {
+    public static void testClearLatticeDrawing() {
         LatticeDrawing drawing = makePreparedLatticeDrawing(new int[][]{{0},
                                                                         {1}});
         LatticeCanvas canvas = makeCanvas();
@@ -108,7 +108,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
         assertEquals(false, canvas.hasSelection());
     }
 
-    public void testResetOfSelectionAfterChangingDrawing() {
+    public static void testResetOfSelectionAfterChangingDrawing() {
         LatticeDrawing drawing = makePreparedLatticeDrawing(new int[][]{{0},
                                                                         {1}});
 
@@ -123,11 +123,11 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
 
     }
 
-    private LatticeCanvas makeCanvas() {
+    private static LatticeCanvas makeCanvas() {
         return new LatticeCanvas(new LatticePainterOptions());
     }
 
-    private LatticeDrawing makePreparedLatticeDrawing(final int[][] relation) {
+    private static LatticeDrawing makePreparedLatticeDrawing(final int[][] relation) {
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(SetBuilder.makeLatticeWithContext(relation));
         drawing.layoutLattice();

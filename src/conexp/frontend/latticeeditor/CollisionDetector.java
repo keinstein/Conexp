@@ -31,7 +31,7 @@ import java.util.List;
 
 public class CollisionDetector {
 
-    public void detectCollisions(LatticeDrawing conceptSetDrawing) {
+    public static void detectCollisions(LatticeDrawing conceptSetDrawing) {
         List conceptFigures = getNodeListOrderedByYCoord(conceptSetDrawing);
         clearCollisions(conceptFigures);
         if (conceptSetDrawing.isCollisionDetectionEnabled()) {
@@ -46,7 +46,7 @@ public class CollisionDetector {
         }
     }
 
-    private void detectNodeEdgeCollisions(List edgeFigures, List conceptFigures) {
+    private static void detectNodeEdgeCollisions(List edgeFigures, List conceptFigures) {
         final int edgeCount = edgeFigures.size();
         Rectangle edgeRect = new Rectangle();
         Rectangle nodeRect = new Rectangle();

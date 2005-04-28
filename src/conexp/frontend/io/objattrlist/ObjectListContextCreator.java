@@ -56,7 +56,7 @@ public class ObjectListContextCreator implements ContextCreator, DocumentLoader,
 
         String OBJECT_SEPARATOR = ":";
 
-        StringTokenizer tokenizer = null;
+
 
         String input;
 
@@ -66,7 +66,7 @@ public class ObjectListContextCreator implements ContextCreator, DocumentLoader,
             if ((input.equals("")) || (input.startsWith(COMMENTS))) {
                 continue;
             }
-            tokenizer = new StringTokenizer(input, OBJECT_SEPARATOR, false);
+            StringTokenizer tokenizer = new StringTokenizer(input, OBJECT_SEPARATOR, false);
 
 
             if (!tokenizer.hasMoreTokens()) {
@@ -138,35 +138,6 @@ public class ObjectListContextCreator implements ContextCreator, DocumentLoader,
 
     }
 
-    public int addCompleteAttribute(Context context, int i) {
-
-        int index = -1;
-
-        ContextEntity attribute;
-
-        if (attributes.contains(new Integer(i))) {
-
-            attribute = (ContextEntity) attributes.get(new Integer(i));
-
-        } else {
-
-            attribute = context.getAttribute(i);
-
-            attribute = ContextEntity.createContextAttribute(attribute.getName());
-
-            context.addAttribute(attribute);
-
-            index = context.getAttributeCount() - 1;
-
-            attributes.put(new Integer(i), attribute);
-
-        }
-
-        return index;
-
-    }
-
-
     public Context createContext(Object obj) {
 
         try {
@@ -185,13 +156,7 @@ public class ObjectListContextCreator implements ContextCreator, DocumentLoader,
 
 
     public static void main(String[] args) {
-        ObjectListContextCreator cc = null;
-
-//        if (args.length == 3){
-//            cc = new ObjectListContextCreator(args[2]);
-//        } else {
-        cc = new ObjectListContextCreator();
-//        }
+        ObjectListContextCreator cc = new ObjectListContextCreator();
         cc.createContext(args[0], args[1]);
     }
 

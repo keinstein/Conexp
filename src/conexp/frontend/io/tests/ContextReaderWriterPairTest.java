@@ -103,7 +103,7 @@ public abstract class ContextReaderWriterPairTest extends TestCase {
 
     protected abstract DocumentWriter makeDocumentWriter();
 
-    private void reportUnexpectedException(Throwable ex) {
+    private static void reportUnexpectedException(Throwable ex) {
         TestUtil.reportUnexpectedException(ex);
     }
 }

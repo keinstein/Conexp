@@ -16,7 +16,7 @@ public class ContextChangeEvent extends EventObject {
 	public final static int OBJECT_REMOVED = ATTRIBUTE_ADDED+1;
 	public final static int OBJECT_ADDED = OBJECT_REMOVED + 1;
 
-    protected ContextChangeEvent(Object source, int type, int column) {
+    private ContextChangeEvent(Object source, int type, int column) {
         super(source);
         this.type = type;
         this.column = column;
@@ -39,8 +39,8 @@ public class ContextChangeEvent extends EventObject {
     }
 
 
-    int type;
-    int column;
+    private int type;
+    private int column;
 
     public int getType() {
         return type;

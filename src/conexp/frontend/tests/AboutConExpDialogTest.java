@@ -10,7 +10,7 @@ import junit.framework.*;
 import conexp.frontend.AboutConExpDialog;
 
 public class AboutConExpDialogTest extends TestCase {
-    public void testLicenseUrl(){
+    public static void testLicenseUrl(){
         AboutConExpDialog aboutConExpDialog= new AboutConExpDialog(null, "title", true);
         assertNotNull(aboutConExpDialog.getLicenseUrl());
     }

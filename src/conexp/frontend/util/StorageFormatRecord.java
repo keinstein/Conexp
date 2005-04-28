@@ -27,7 +27,7 @@ public class StorageFormatRecord {
         this.writer = writer;
     }
 
-    private String bringExtensionToCanonicalForm(String ext) {
+    private static String bringExtensionToCanonicalForm(String ext) {
         return appendDotIfNeeded(StringUtil.safeTrim(ext)).toLowerCase();
     }
 

@@ -25,7 +25,7 @@ public class RasterImageExporter implements IExporter {
     }
 
 
-    ImageCodecsFactory getImageCodecsFactory() {
+    static ImageCodecsFactory getImageCodecsFactory() {
         return util.ServiceRegistry.imageCodecsFactory();
     }
 

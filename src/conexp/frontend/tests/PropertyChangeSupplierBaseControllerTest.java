@@ -25,7 +25,7 @@ public class PropertyChangeSupplierBaseControllerTest extends TestCase {
         return new TestSuite(THIS);
     }
 
-    public void testCallOfPropertyChangeController() {
+    public static void testCallOfPropertyChangeController() {
 
         MockPropertyChangeSupplier supplier = new MockPropertyChangeSupplier();
 
@@ -51,7 +51,7 @@ public class PropertyChangeSupplierBaseControllerTest extends TestCase {
         controller.verify();
     }
 
-    public void testWithTargetsController() {
+    public static void testWithTargetsController() {
         MockPropertyChangeSupplier supplier = new MockPropertyChangeSupplier();
 
 

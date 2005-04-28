@@ -32,7 +32,7 @@ public class LatticePainterOptionsTest extends TestCase {
     }
 
 
-    public void testMakeCopy() throws Exception {
+    public void testMakeCopy() {
         CanvasScheme other = latticePainterOptions.makeCopy();
         assertEquals(latticePainterOptions, other);
     }

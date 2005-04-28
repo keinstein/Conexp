@@ -128,7 +128,7 @@ public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDia
         g2D.setStroke(oldStroke);
     }
 
-    private Stroke getStroke(float thickness) {
+    private static Stroke getStroke(float thickness) {
         return new BasicStroke(thickness);
     }
 

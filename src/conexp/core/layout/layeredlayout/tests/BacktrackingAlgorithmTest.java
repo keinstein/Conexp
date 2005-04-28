@@ -11,7 +11,7 @@ import java.util.Arrays;
  * Please read license.txt for licensing issues.
  */
 public class BacktrackingAlgorithmTest extends TestCase {
-    public void testBactracking(){
+    public static void testBactracking(){
         BacktrackingAlgorithm algorithm = new BacktrackingAlgorithm();
         algorithm.setRange(-11, 11);
         algorithm.setStep(1);
@@ -25,7 +25,7 @@ public class BacktrackingAlgorithmTest extends TestCase {
         assertTrue(Arrays.equals(new double[]{-10, -11}, solutionVector));
     }
 
-    public void testHasMorePoints(){
+    public static void testHasMorePoints(){
         BacktrackingAlgorithm algorithm = new BacktrackingAlgorithm();
         algorithm.setRange(-11, 11);
         algorithm.setStep(1);

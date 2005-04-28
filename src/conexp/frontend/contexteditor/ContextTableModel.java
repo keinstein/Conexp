@@ -147,19 +147,19 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         return true;
     }
 
-    private int colToAttributeIndex(int col) {
+    private static int colToAttributeIndex(int col) {
         return isAttributeColumn(col) ? col - 1 : -1;
     }
 
-    private int rowToObjectIndex(int row) {
+    private static int rowToObjectIndex(int row) {
         return isObjectRow(row) ? row - 1 : -1;
     }
 
-    public boolean isAttributeColumn(int col) {
+    public static boolean isAttributeColumn(int col) {
         return col > 0;
     }
 
-    public boolean isObjectRow(int row) {
+    public static boolean isObjectRow(int row) {
         return row > 0;
     }
 
@@ -172,7 +172,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         return valueAt;
     }
 
-    public Object convertToInternal(String element, int row, int col) throws DataFormatException {
+    public static Object convertToInternal(String element, int row, int col) throws DataFormatException {
         if (!isAttributeColumn(col)) {
             //objectName column
             if (!isObjectRow(row)) {
@@ -238,10 +238,6 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         if (canDeleteColumn(colIndex)) {
             getContext().removeAttribute(colToAttributeIndex(colIndex));
         }
-    }
-
-    public boolean canDeleteRow(int row) {
-        return canDeleteRows(new int[]{row});
     }
 
     public boolean canDeleteRows(int[] rows) {
@@ -449,11 +445,11 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
     }
 
-    public boolean hasAtLeastOneNonHeaderCell(int[] rows, int[] columns) {
+    public static boolean hasAtLeastOneNonHeaderCell(int[] rows, int[] columns) {
         return (hasAtLeastOneObjectRow(rows) && hasAtLeastOneAttributeColumn(columns));
     }
 
-    private boolean hasAtLeastOneAttributeColumn(int[] columns) {
+    private static boolean hasAtLeastOneAttributeColumn(int[] columns) {
         for (int j = 0; j < columns.length; j++) {
             if (isAttributeColumn(columns[j])) {
                 return true;
@@ -462,7 +458,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         return false;
     }
 
-    private boolean hasAtLeastOneObjectRow(int[] rows) {
+    private static boolean hasAtLeastOneObjectRow(int[] rows) {
         for (int i = 0; i < rows.length; i++) {
             if (isObjectRow(rows[i])) {
                 return true;

@@ -109,7 +109,7 @@ public class BitSetTest extends TestCase {
      * @param one conexp.core.Set
      * @param two conexp.core.Set
      */
-    void testAppendTwoSets(Set one, Set two) {
+    static void testAppendTwoSets(Set one, Set two) {
         ModifiableSet res = (ModifiableSet) one.clone();
         res.append(two);
         assertEquals(one.size() + two.size(), res.size());
@@ -341,7 +341,7 @@ public class BitSetTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (10.07.01 8:17:29)
      */
-    public void testLexCompare() {
+    public static void testLexCompare() {
 /*	assertEquals(1, secondWord.lexCompareGanter(firstWord));
 	assertEquals(0, secondWord.lexCompareGanter(secondWord));
 	assertEquals(-1, firstWord.lexCompareGanter(secondWord));
@@ -520,7 +520,7 @@ public class BitSetTest extends TestCase {
     }
 
 
-    protected void utilTestElemCount(ModifiableSet toTest) {
+    protected static void utilTestElemCount(ModifiableSet toTest) {
         int elBefore = toTest.elementCount();
         if (!toTest.in(1)) {
             toTest.put(1);
@@ -540,7 +540,7 @@ public class BitSetTest extends TestCase {
     }
 
 
-    protected void utilTestIntersects(Set one, Set two, boolean expected) {
+    protected static void utilTestIntersects(Set one, Set two, boolean expected) {
         assertEquals(expected, one.intersects(two));
         assertEquals(expected, two.intersects(one));
     }

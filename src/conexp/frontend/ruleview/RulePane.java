@@ -59,11 +59,6 @@ public class RulePane extends TextPaneViewBase {
     }
 
 
-    public void setRenderer(RuleRenderer newRenderer) {
-        renderer = newRenderer;
-        generateContent();
-    }
-
     public void setRuleSet(conexp.core.DependencySet newRuleSet) {
         ruleSet = newRuleSet;
         generateContent();

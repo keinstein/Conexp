@@ -43,7 +43,7 @@ public class ContextDocManagerTest extends TestCase {
         listener.verify();
     }
 
-    private ContextDocManager makeDocManager() {
+    private static ContextDocManager makeDocManager() {
         return new ContextDocManager(new JFrame(), new MockOptionPaneSupplier());
     }
 
@@ -72,10 +72,6 @@ public class ContextDocManagerTest extends TestCase {
         }
 
         public Component getDocComponent() {
-            return null;
-        }
-
-        public JMenuBar getMenuBar() {
             return null;
         }
 

@@ -21,7 +21,7 @@ public class AssociationRulesViewTest extends TestCase {
         return new TestSuite(THIS);
     }
 
-    public void testResources() {
+    public static void testResources() {
         AssociationRulesView ruleView = new AssociationRulesView(new MockDependencySetSupplier(), null);
         ResourcesToolbarDefinitionTest.testToolbarDefinitionInResources(ruleView.getResources(), ruleView.getActionChain());
     }

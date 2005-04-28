@@ -156,7 +156,7 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
      * @param extent conexp.core.Set
      * @param intent conexp.core.Set
      */
-    protected DepthSearchLatticeElement makeDepthSearchLatticeElement(Set extent, Set intent) {
+    protected static DepthSearchLatticeElement makeDepthSearchLatticeElement(Set extent, Set intent) {
         return new DepthSearchLatticeElement(extent.makeModifiableSetCopy(), intent.makeModifiableSetCopy());
     }
 

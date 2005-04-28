@@ -178,7 +178,7 @@ public abstract class DiagramEditorPanel extends FigureDrawingCanvas {
 
     }
 
-    protected LineFigure makeConnectorFigure(BorderCalculatingFigure startFigure, BorderCalculatingFigure endFigure) {
+    protected static LineFigure makeConnectorFigure(BorderCalculatingFigure startFigure, BorderCalculatingFigure endFigure) {
         LineFigure connectorFigure = new LineFigure(startFigure, endFigure);
         connectorFigure.setSelectable(true);
         connectorFigure.setStartFigure(startFigure);

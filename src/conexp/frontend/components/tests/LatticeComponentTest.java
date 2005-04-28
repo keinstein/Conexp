@@ -103,7 +103,7 @@ public class LatticeComponentTest extends TestCase {
         assertEquals(8, distinctCoors.size());
     }
 
-    public void testMakeCopy() throws Exception {
+    public void testMakeCopy() {
         latticeComponent = new LatticeComponent(SetBuilder.makeContext(new int[][]{{0, 1, 1},
                                                                                    {1, 0, 1},
                                                                                    {1, 1, 0}}));

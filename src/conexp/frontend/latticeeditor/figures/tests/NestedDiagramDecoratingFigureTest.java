@@ -15,7 +15,7 @@ import conexp.frontend.latticeeditor.figures.NestedDiagramDecoratingFigure;
 import junit.framework.TestCase;
 
 public class NestedDiagramDecoratingFigureTest extends TestCase {
-    public void testGetIntentQuery() {
+    public static void testGetIntentQuery() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1},
                                                          {1, 0}});
 

@@ -24,7 +24,7 @@ public class AttributeExplorerTest extends TestCase {
         return new TestSuite(AttributeExplorerTest.class);
     }
 
-    private void doTestAttributeExploration(int[][] context, int[][][] expQuerySequence, int[][][] contrExamples, int[][] expContext, int[][][] expImplicationTheory) {
+    private static void doTestAttributeExploration(int[][] context, int[][][] expQuerySequence, int[][][] contrExamples, int[][] expContext, int[][][] expImplicationTheory) {
         AttributeExplorer explorer = new AttributeExplorerImplementation();
         Context cxt = SetBuilder.makeContext(context);
         ImplicationSet implicationSet = new ImplicationSet(cxt);
@@ -53,7 +53,7 @@ public class AttributeExplorerTest extends TestCase {
         assertEquals(SetBuilder.makeRelation(expContext), cxt.getRelation());
     }
 
-    public void testFullAcceptanceModeOfAttributeExploration() {
+    public static void testFullAcceptanceModeOfAttributeExploration() {
         int[][] context = new int[][]{{1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{{{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 0}, {1, 1, 1}}};
         int[][][] contrExamples = new int[0][0][0];
@@ -63,7 +63,7 @@ public class AttributeExplorerTest extends TestCase {
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
 
-    public void testInteractionMode() {
+    public static void testInteractionMode() {
 
         int[][] context = new int[][]{{1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{
@@ -79,7 +79,7 @@ public class AttributeExplorerTest extends TestCase {
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
 
-    public void testInteractionModeWithoutImplicationWithEmptyPremise() {
+    public static void testInteractionModeWithoutImplicationWithEmptyPremise() {
 
         int[][] context = new int[][]{{1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{
@@ -99,7 +99,7 @@ public class AttributeExplorerTest extends TestCase {
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
 
-    public void testInteractionModeWithRejectionOfUsualClosureNormalWay() {
+    public static void testInteractionModeWithRejectionOfUsualClosureNormalWay() {
 
         int[][] context = new int[][]{{1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{
@@ -124,7 +124,7 @@ public class AttributeExplorerTest extends TestCase {
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
 
-    public void testInteractionModeWithRejectionOfUsualClosure() {
+    public static void testInteractionModeWithRejectionOfUsualClosure() {
 
         int[][] context = new int[][]{{0, 0, 0},
                                       {1, 1, 1}};
@@ -147,7 +147,7 @@ public class AttributeExplorerTest extends TestCase {
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
 
-    public void testInteractionModeWithContrExampleNotContainingPremise() {
+    public static void testInteractionModeWithContrExampleNotContainingPremise() {
 
         int[][] context = new int[][]{{0, 0, 0},
                                       {1, 1, 1}};
@@ -173,7 +173,7 @@ public class AttributeExplorerTest extends TestCase {
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
 
-    public void testInteractionModeWithContrExampleThatIsNotARealContrExample() {
+    public static void testInteractionModeWithContrExampleThatIsNotARealContrExample() {
         int[][] context = new int[][]{{0, 0, 0},
                                       {1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{
@@ -199,7 +199,7 @@ public class AttributeExplorerTest extends TestCase {
 
     }
 
-    public void testInteractionModeWithContrExampleViolatingAcceptedImplications() {
+    public static void testInteractionModeWithContrExampleViolatingAcceptedImplications() {
 
 
         int[][] context = new int[][]{{0, 0, 1, 1},
@@ -230,7 +230,7 @@ public class AttributeExplorerTest extends TestCase {
     }
 
 
-    public void testAttributeExplorationSequence() {
+    public static void testAttributeExplorationSequence() {
         int[][] context = {{1, 0, 0, 0},
                            {0, 1, 0, 0},
                            {0, 0, 1, 0},

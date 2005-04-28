@@ -15,7 +15,7 @@ import util.testing.TestUtil;
 
 public class VetoableValueModelDecoratorTest extends TestCase {
  
-    public void testEquals() throws Exception {
+    public static void testEquals() {
         IntValueModel one = new IntValueModel("prop", 2);
         VetoableValueModelDecorator first = new VetoableValueModelDecorator(one);
         VetoableValueModelDecorator second = new VetoableValueModelDecorator(one);

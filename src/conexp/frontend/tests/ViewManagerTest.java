@@ -135,6 +135,7 @@ public class ViewManagerTest extends TestCase {
         }
     }
 
+    
 
     /**
      * Insert the method's description here.

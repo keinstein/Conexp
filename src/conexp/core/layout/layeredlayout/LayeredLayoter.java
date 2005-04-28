@@ -25,7 +25,7 @@ public class LayeredLayoter extends NonIncrementalLayouter {
     private int layerCount;
     private double xScale;
 
-    public class LayeredLayoutConceptInfo extends LayoutConceptInfo {
+    public static class LayeredLayoutConceptInfo extends LayoutConceptInfo {
         int layer = -1;
 
         public LayeredLayoutConceptInfo() {

@@ -49,11 +49,11 @@ public class StorageFormatLoader {
     }
 
 
-    public StorageFormatRecord createStorageFormatRecord(String description, String extension, String docloader, String docwriter) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
+    public static StorageFormatRecord createStorageFormatRecord(String description, String extension, String docloader, String docwriter) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
         return new StorageFormatRecord(description, extension, (DocumentLoader) safeLoadClass(docloader), (DocumentWriter) safeLoadClass(docwriter));
     }
 
-    private Object safeLoadClass(String docloader) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+    private static Object safeLoadClass(String docloader) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
         docloader = StringUtil.safeTrim(docloader);
         if(StringUtil.isEmpty(docloader)){
             return null;

@@ -25,14 +25,14 @@ public class MockPropertyChangeController extends PropertyChangeBaseController {
         setEventBroadcaster(new OneTargetEventBroadcaster());
         registerEventProcessor(propertyName, new EventProcessor() {
             public void processEventForTarget(PropertyChangeEvent event, Object target) {
-                doProcessEventForTarget(event, target);
+                doProcessEventForTarget();
             }
         });
     }
 
     ExpectationCounter counter = new ExpectationCounter("MockPropertyChangeController expected number of calls");
 
-    protected void doProcessEventForTarget(PropertyChangeEvent evt, Object target) {
+    protected void doProcessEventForTarget() {
         counter.inc();
     }
 

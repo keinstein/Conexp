@@ -22,7 +22,7 @@ public class FrequentSetSupportSupplierTest extends TestCase {
     }
 
 
-    public void testSupports() {
+    public static void testSupports() {
         ExtendedContextEditingInterface cxt = SetBuilder.makeContext(new int[][]{{1, 1, 1, 1},
                                                                                  {1, 1, 1, 0},
                                                                                  {1, 0, 0, 0}});

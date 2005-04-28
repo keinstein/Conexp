@@ -15,7 +15,7 @@ import junit.framework.TestCase;
  */
 
 public class RescaleByYFigureVisitorTest extends TestCase {
-    public void testRescaleByY(){
+    public static void testRescaleByY(){
 
         Context cxt =SetBuilder.makeContext(new int[][]{
             {1, 0, 0},

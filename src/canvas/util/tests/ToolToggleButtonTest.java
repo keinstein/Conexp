@@ -35,7 +35,7 @@ public class ToolToggleButtonTest extends TestCase {
         assertTrue(button.isSelected());
     }
 
-    public void testButtonStateChangeOnChangeOfEnabled() {
+    public static void testButtonStateChangeOnChangeOfEnabled() {
 
         DefaultTool actionTool = new DefaultTool();
         actionTool.setEnabled(false);

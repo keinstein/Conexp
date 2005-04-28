@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 
 public class IntFrequencyHistogram2DTest extends TestCase {
-    public void testFrequencyHistogram() {
+    public static void testFrequencyHistogram() {
         IntFrequencyHistogram2D histogram = new IntFrequencyHistogram2D("IntentExtentDistribution");
         histogram.putValue(0, 0);
         assertEquals(1, histogram.getFrequency(0, 0));

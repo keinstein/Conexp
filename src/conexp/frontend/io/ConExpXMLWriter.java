@@ -45,7 +45,7 @@ public class ConExpXMLWriter implements DocumentWriter {
     static final int MAJOR_VERSION = 1;
     static final int MINOR_VERSION = 0;
 
-    private Element storeVersion() {
+    private static Element storeVersion() {
         Element version = new Element(ConExpXMLElements.VERSION_ELEMENT);
         version.setAttribute(ConExpXMLElements.VERSION_MAJOR_NUMBER_ATTRIBUTE, Integer.toString(MAJOR_VERSION));
         version.setAttribute(ConExpXMLElements.VERSION_MINOR_NUMBER_ATTRIBUTE, Integer.toString(MINOR_VERSION));
@@ -78,12 +78,12 @@ public class ConExpXMLWriter implements DocumentWriter {
         return latticeElement;
     }
 
-    private void storeFeatureMask(LatticeComponent latticeComponent, Element latticeElement) {
+    private static void storeFeatureMask(LatticeComponent latticeComponent, Element latticeElement) {
         latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT, latticeComponent.getAttributeMask()));
         latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.OBJECT_MASK_ELEMENT, latticeComponent.getObjectMask()));
     }
 
-    private Element makeEntityMaskElement(final String elementName, SetProvidingEntitiesMask mask) {
+    private static Element makeEntityMaskElement(final String elementName, SetProvidingEntitiesMask mask) {
         Element entityMaskElement = new Element(elementName);
         writeSet(mask.toSet(), entityMaskElement);
         return entityMaskElement;
@@ -109,7 +109,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         return latticeDrawingElement;
     }
 
-    private Element storeConceptLabels(final LatticeDrawing drawing) {
+    private static Element storeConceptLabels(final LatticeDrawing drawing) {
         final Element conceptLabelFigures = new Element(ConExpXMLElements.CONCEPT_LABELS_ELEMENT);
         final Lattice lat = drawing.getLattice();
         lat.forEach(new Lattice.LatticeElementVisitor() {
@@ -128,7 +128,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         return conceptLabelFigures;
     }
 
-    private Element storeObjectLabels(LatticeDrawing drawing) {
+    private static Element storeObjectLabels(LatticeDrawing drawing) {
         Element objectFigures = new Element(ConExpXMLElements.OBJECT_LABELS_ELEMENT);
         ExtendedContextEditingInterface cxt = drawing.getConceptSet().getContext();
         for (int i = 0; i < cxt.getObjectCount(); i++) {
@@ -149,7 +149,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         return objectFigures;
     }
 
-    private Element storeAttributeLabels(LatticeDrawing drawing) {
+    private static Element storeAttributeLabels(LatticeDrawing drawing) {
         Element attributesFigures = new Element(ConExpXMLElements.ATTRIBUTE_LABELS_ELEMENT);
         ExtendedContextEditingInterface cxt = drawing.getConceptSet().getContext();
         for (int i = 0; i < cxt.getAttributeCount(); i++) {
@@ -168,7 +168,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         return attributesFigures;
     }
 
-    private Element storeDrawingSettings(LatticeDrawing drawing) {
+    private static Element storeDrawingSettings(LatticeDrawing drawing) {
         Element settingElement = new Element(ConExpXMLElements.LATTICE_DIAGRAM_SETTINGS);
         settingElement.addContent(storeAttributeDisplayMode(drawing));
         settingElement.addContent(storeObjectDisplayMode(drawing));
@@ -177,12 +177,12 @@ public class ConExpXMLWriter implements DocumentWriter {
     }
 
 
-    private Element storeObjectDisplayMode(LatticeDrawing drawing) {
+    private static Element storeObjectDisplayMode(LatticeDrawing drawing) {
         return makeSettingElement(ConExpXMLElements.OBJECT_LABEL_STRATEGY_DISPLAY_MODE,
                 drawing.getObjectLabelingStrategyKey());
     }
 
-    private Element storeAttributeDisplayMode(LatticeDrawing drawing) {
+    private static Element storeAttributeDisplayMode(LatticeDrawing drawing) {
         return makeSettingElement(ConExpXMLElements.ATTRIBUTE_LABEL_DISPLAY_MODE,
                 drawing.getAttributeLabelingStrategyKey());
     }
@@ -193,18 +193,18 @@ public class ConExpXMLWriter implements DocumentWriter {
         return element;
     }
 
-    private Element storeLabelsSize(LatticeDrawing drawing) {
+    private static Element storeLabelsSize(LatticeDrawing drawing) {
         return makeSettingElement(ConExpXMLElements.LABEL_FONT_SIZE, String.valueOf(drawing.getPainterOptions().getLabelsFontSize()));
     }
 
-    private Element makeLabelFigureElement(String labelType, IFigureWithCoords labelFigure, String referenceType, int i) {
+    private static Element makeLabelFigureElement(String labelType, IFigureWithCoords labelFigure, String referenceType, int i) {
         Element attributeLabelFigure = makeFigureElement(labelType);
         attributeLabelFigure.addContent(storeFigureLocation(labelFigure));
         attributeLabelFigure.addContent(makeReference(referenceType, i));
         return attributeLabelFigure;
     }
 
-    private Element makeReference(String referenceName, int i) {
+    private static Element makeReference(String referenceName, int i) {
         Element referenceElement = new Element(referenceName);
         referenceElement.setAttribute(ConExpXMLElements.ID_ATTRIBUTE, Integer.toString(i));
         return referenceElement;
@@ -222,24 +222,24 @@ public class ConExpXMLWriter implements DocumentWriter {
         return conceptDrawings;
     }
 
-    private Element storeConceptFigure(AttributeInformationSupplier attrInfo, AbstractConceptCorrespondingFigure conceptFigure) {
+    private static Element storeConceptFigure(AttributeInformationSupplier attrInfo, AbstractConceptCorrespondingFigure conceptFigure) {
         return storeFigureForConcept(ConExpXMLElements.CONCEPT_FIGURE_TYPE, conceptFigure, conceptFigure.getConcept(), attrInfo);
     }
 
-    private Element storeFigureForConcept(String figureType, IFigureWithCoords figure, ItemSet concept, AttributeInformationSupplier attrInfo) {
+    private static Element storeFigureForConcept(String figureType, IFigureWithCoords figure, ItemSet concept, AttributeInformationSupplier attrInfo) {
         Element conceptFigureElement = makeFigureElement(figureType);
         conceptFigureElement.addContent(storeFigureLocation(figure));
         conceptFigureElement.addContent(makeIntent(concept.getAttribs()));
         return conceptFigureElement;
     }
 
-    private Element makeFigureElement(String figureType) {
+    private static Element makeFigureElement(String figureType) {
         final Element conceptFigureElement = new Element(ConExpXMLElements.FIGURE);
         conceptFigureElement.setAttribute(ConExpXMLElements.FIGURE_TYPE_ATTRIBUTE, figureType);
         return conceptFigureElement;
     }
 
-    private Element storeFigureLocation(IFigureWithCoords f) {
+    private static Element storeFigureLocation(IFigureWithCoords f) {
         Element figureCenter = new Element(ConExpXMLElements.FIGURE_COORDS);
         figureCenter.addContent(XMLGeneralTypesUtil.storePoint2D(f.getCenter()));
         return figureCenter;
@@ -257,7 +257,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         return contextElement;
     }
 
-    private Element storeAttributes(ExtendedContextEditingInterface cxt) {
+    private static Element storeAttributes(ExtendedContextEditingInterface cxt) {
         Element attributes = new Element(ConExpXMLElements.ATTRIBUTE_COLLECTION);
         for (int i = 0; i < cxt.getAttributeCount(); i++) {
             attributes.addContent(makeAttributeElement(i, cxt));
@@ -265,14 +265,14 @@ public class ConExpXMLWriter implements DocumentWriter {
         return attributes;
     }
 
-    private Element makeAttributeElement(int i, ExtendedContextEditingInterface cxt) {
+    private static Element makeAttributeElement(int i, ExtendedContextEditingInterface cxt) {
         Element attribute = new Element(ConExpXMLElements.ATTRIBUTE_ELEMENT);
         attribute.setAttribute(ConExpXMLElements.ID_ATTRIBUTE, Integer.toString(i));
         attribute.addContent(makeNameElement(cxt.getAttribute(i).getName()));
         return attribute;
     }
 
-    private Element makeNameElement(final String entityName) {
+    private static Element makeNameElement(final String entityName) {
         Element nameElement = new Element(ConExpXMLElements.ELEMENT_NAME_ELEMENT);
         nameElement.addContent(entityName);
         return nameElement;
@@ -286,24 +286,24 @@ public class ConExpXMLWriter implements DocumentWriter {
         return objects;
     }
 
-    private Element makeObjectElement(ExtendedContextEditingInterface cxt, int i) {
+    private static Element makeObjectElement(ExtendedContextEditingInterface cxt, int i) {
         Element object = new Element(ConExpXMLElements.OBJECT_ELEMENT);
         object.addContent(makeNameElement(cxt.getObject(i).getName()));
         object.addContent(makeObjectIntent(cxt, i));
         return object;
     }
 
-    private Element makeObjectIntent(ExtendedContextEditingInterface cxt, int i) {
+    private static Element makeObjectIntent(ExtendedContextEditingInterface cxt, int i) {
         return makeIntent(cxt.getRelation().getSet(i));
     }
 
-    private Element makeIntent(Set intent) {
+    private static Element makeIntent(Set intent) {
         Element relation = new Element(ConExpXMLElements.INTENT);
         writeSet(intent, relation);
         return relation;
     }
 
-    private void writeSet(Set intent, Element relation) {
+    private static void writeSet(Set intent, Element relation) {
         final int size = intent.size();
         for (int j = 0; j < size; j++) {
             if (intent.in(j)) {

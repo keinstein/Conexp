@@ -20,7 +20,7 @@ import junit.framework.TestCase;
 public class ConceptFilterIteratorTest extends TestCase {
 
 
-    public void testExp() {
+    public static void testExp() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{1, 0},
                                                          {0, 1}}, new DepthSearchCalculator());
         testFilterEnumerator(lat, new int[]{0, 0}, new int[][]{{0, 0}});
@@ -35,7 +35,7 @@ public class ConceptFilterIteratorTest extends TestCase {
     }
 
 
-    public void testExp3() {
+    public static void testExp3() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{0, 1, 1},
                                                          {1, 0, 1},
                                                          {1, 1, 0}});
@@ -43,7 +43,7 @@ public class ConceptFilterIteratorTest extends TestCase {
         assertEquals(8, count);
     }
 
-    public void testExp4() {
+    public static void testExp4() {
         final int[][] relation = new int[][]{{0, 1, 1, 1},
                                              {1, 0, 1, 1},
                                              {1, 1, 0, 1},
@@ -53,7 +53,7 @@ public class ConceptFilterIteratorTest extends TestCase {
         assertEquals(16, count);
     }
 
-    public void testSpecialCaseForIncALgorithm() {
+    public static void testSpecialCaseForIncALgorithm() {
         int[][] rel = {
             {1, 0, 1, 0, 0},
             {0, 1, 1, 1, 0},
@@ -74,7 +74,7 @@ public class ConceptFilterIteratorTest extends TestCase {
     }
 
 
-    private int calculateElementsInFilterIterator(final LatticeElement bottom) {
+    private static int calculateElementsInFilterIterator(final LatticeElement bottom) {
         ConceptFilterIterator iterator = new ConceptFilterIterator(bottom);
         int count = 0;
         while (iterator.hasNext()) {
@@ -88,7 +88,7 @@ public class ConceptFilterIteratorTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (07.03.01 0:47:15)
      */
-    private void testFilterEnumerator(Lattice lat, int[] elIntent, int[][] expFilter) {
+    private static void testFilterEnumerator(Lattice lat, int[] elIntent, int[][] expFilter) {
         LatticeElement el = SetBuilder.findLatticeElementWithIntent(lat, elIntent);
         assertNotNull("Couldn't find expected lattice element", el);
         ExpectationSet expSet = SetBuilder.makeExpectationSetForIntents("extectedFilter", expFilter);
@@ -96,7 +96,7 @@ public class ConceptFilterIteratorTest extends TestCase {
         expSet.verify();
     }
 
-    public void testLinear() {
+    public static void testLinear() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{1, 0, 0},
                                                          {1, 1, 0},
                                                          {1, 1, 1}}, new DepthSearchCalculator());

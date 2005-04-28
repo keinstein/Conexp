@@ -14,7 +14,7 @@ import junit.framework.TestCase;
  */
 public class DifferentEdgeVectorsEvaluationFunctionTest extends TestCase {
 
-    public void testEvaluationFunction() {
+    public static void testEvaluationFunction() {
         Lattice lattice = SetBuilder.makeLattice(TestDataHolder.FULL_RELATION_NOMINAL_3);
         ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(
                 lattice, TestDataHolder.FULL_RELATION_NOMINAL_3,

@@ -90,7 +90,7 @@ public abstract class GenericLayouterTest extends TestCase {
         }
     }
 
-    protected void checkCoordsAreNotNaN(Point2D point) {
+    protected static void checkCoordsAreNotNaN(Point2D point) {
         assertEquals(false, Double.isNaN(point.getX()));
         assertEquals(false, Double.isNaN(point.getY()));
     }

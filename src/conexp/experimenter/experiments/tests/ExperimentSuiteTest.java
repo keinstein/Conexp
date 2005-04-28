@@ -14,7 +14,7 @@ import junit.framework.TestCase;
 
 public class ExperimentSuiteTest extends TestCase {
 
-    public void doTestCreateExperimentSet(ExperimentSet set) {
+    public static void doTestCreateExperimentSet(ExperimentSet set) {
         assertNotNull(set);
         conexp.core.BinaryRelation rel = conexp.core.tests.SetBuilder.makeRelation(new int[][]{{0, 0},
                                                                                                        {0, 0}});
@@ -32,12 +32,12 @@ public class ExperimentSuiteTest extends TestCase {
     }
 
 
-    public void testCreateExperimentSet() {
+    public static void testCreateExperimentSet() {
         ExperimentSet set = ConceptSetExperimentSuite.createExperimentSet();
         doTestCreateExperimentSet(set);
     }
 
-    public void testRelationSequence() {
+    public static void testRelationSequence() {
         RelationSequenceSet set = ExperimentSuite.makeRelationSequenceSet();
         assertNotNull(set);
         for (int i = 0; i < set.getRelationSequenceCount(); i++) {

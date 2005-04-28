@@ -12,7 +12,7 @@ import junit.framework.TestCase;
  * Please read license.txt for licensing issues.
  */
 public class LatticePictureWidthEvaluationFunctionTest extends TestCase {
-    public void testLatticeWidth(){
+    public static void testLatticeWidth(){
         Lattice lattice = SetBuilder.makeLattice(TestDataHolder.FULL_RELATION_NOMINAL_3);
         ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(lattice,
                 TestDataHolder.FULL_RELATION_NOMINAL_3, TestDataHolder.SYMMETRIC_LAYOUT_NOMINAL_3);

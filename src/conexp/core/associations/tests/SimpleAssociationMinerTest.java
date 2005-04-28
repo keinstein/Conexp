@@ -31,7 +31,7 @@ public class SimpleAssociationMinerTest extends AssociationMinerTest {
         return new SimpleAssociationMiner();
     }
 
-    public void testEdgeSelector() {
+    public static void testEdgeSelector() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{
             {1, 0, 0, 0, 0},
             {1, 1, 0, 0, 0},

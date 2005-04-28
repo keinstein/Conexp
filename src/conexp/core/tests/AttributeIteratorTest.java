@@ -23,7 +23,7 @@ public class AttributeIteratorTest extends TestCase {
     }
 
 
-    public void testIterator() {
+    public static void testIterator() {
         ExtendedContextEditingInterface cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
                                                                                  {1, 1, 0}});
         Set attributes = SetBuilder.makeSet(new int[]{0, 0, 0});

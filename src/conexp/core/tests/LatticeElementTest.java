@@ -10,7 +10,7 @@ import junit.framework.TestCase;
  */
 
 public class LatticeElementTest extends TestCase {
-    public void testAddRemoveSuccessor() throws Exception {
+    public static void testAddRemoveSuccessor() {
         LatticeElement parent = SetBuilder.makeLatticeElement(new int[]{1, 1}, new int[]{0, 0});
         LatticeElement child = SetBuilder.makeLatticeElement(new int[]{0, 1}, new int[]{1, 0});
         parent.addSucc(child);
@@ -28,7 +28,7 @@ public class LatticeElementTest extends TestCase {
         assertEquals(0, child.getPredCount());
     }
 
-    public void testAddRemovePredecessor(){
+    public static void testAddRemovePredecessor(){
         LatticeElement parent = SetBuilder.makeLatticeElement(new int[]{1, 1}, new int[]{0, 0});
         LatticeElement child = SetBuilder.makeLatticeElement(new int[]{0, 1}, new int[]{1, 0});
         child.addPred(parent);

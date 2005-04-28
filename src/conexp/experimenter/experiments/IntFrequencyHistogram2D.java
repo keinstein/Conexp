@@ -95,7 +95,7 @@ public class IntFrequencyHistogram2D {
         return res.toString();
     }
 
-    private void appendValues(StringBuffer res, String label, int[] valuesX, String separator) {
+    private static void appendValues(StringBuffer res, String label, int[] valuesX, String separator) {
         res.append(label);
         res.append(separator);
         for (int i = 0; i < valuesX.length; i++) {

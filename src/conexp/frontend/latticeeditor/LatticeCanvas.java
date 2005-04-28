@@ -57,16 +57,12 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
         return (ConceptSetDrawing) getDrawing();
     }
 
-    protected ConceptSetDrawing makeConceptSetDrawing() {
+    protected static ConceptSetDrawing makeConceptSetDrawing() {
         return new LatticeDrawing();
     }
 
     public void setConceptSetDrawing(ConceptSetDrawing drawing) {
         setFigureDrawing(drawing);
-    }
-
-    protected void setDrawing(FigureDrawing newDrawing) {
-        super.setDrawing(newDrawing);
     }
 
     public void clearConceptSetDrawing() {

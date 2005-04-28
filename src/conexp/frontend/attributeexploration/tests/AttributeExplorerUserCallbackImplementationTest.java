@@ -21,7 +21,7 @@ public class AttributeExplorerUserCallbackImplementationTest extends TestCase {
         return new TestSuite(THIS);
     }
 
-    public void testMessageSupplier() {
+    public static void testMessageSupplier() {
         AttributeExplorationUserCallbackImplementation callbackImpl = new AttributeExplorationUserCallbackImplementation(null);
         TestAttributeExplorerUserCallbackLocalisedMessageSupplier.testLocalizedMessageSupplier(callbackImpl.getLocalizedMessageSupplier());
     }

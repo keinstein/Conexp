@@ -20,7 +20,7 @@ import junit.framework.TestCase;
  */
 
 public class ExperimentRunnerTest extends TestCase {
-    public void testMeasurementOfOperationCount() {
+    public static void testMeasurementOfOperationCount() {
         ExperimentContextFactory experimentContextFactory = new ExperimentContextFactory();
         ContextFactoryRegistry.setContextFactory(experimentContextFactory);
         ExperimentRunner runner = new ExperimentRunner(experimentContextFactory);
@@ -41,7 +41,7 @@ public class ExperimentRunnerTest extends TestCase {
         ContextFactoryRegistry.setContextFactory(new BitSetFactory());
     }
 
-    public void testNoOperationCount() {
+    public static void testNoOperationCount() {
         ExperimentRunner runner = new ExperimentRunner();
 
         ExperimentSet experimentSet = new ExperimentSet();
@@ -57,7 +57,7 @@ public class ExperimentRunnerTest extends TestCase {
         assertNull(measurementValue);
     }
 
-    private BinaryRelationBasedRelationSequence makeRelationSequence() {
+    private static BinaryRelationBasedRelationSequence makeRelationSequence() {
         return new BinaryRelationBasedRelationSequence(SetBuilder.makeRelation(new int[][]{
                     {1, 1, 1},
                     {0, 1, 1},

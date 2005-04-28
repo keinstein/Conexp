@@ -18,7 +18,7 @@ public class NextClosedSetCalculatorTest extends EnumerativeCalcStrategyTest {
         return new NextClosedSetCalculator();
     }
 
-    public void testOrder() {
+    public static void testOrder() {
         NextClosedSetCalculator calc = new NextClosedSetCalculator();
         calc.setRelation(SetBuilder.makeRelation(new int[][]{{1, 0, 0},
                                                              {1, 1, 0},

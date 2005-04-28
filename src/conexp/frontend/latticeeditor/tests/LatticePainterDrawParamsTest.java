@@ -11,7 +11,7 @@ import conexp.frontend.latticeeditor.LatticePainterDrawParams;
 import conexp.frontend.latticeeditor.DrawParameters;
 
 public class LatticePainterDrawParamsTest extends TestCase {
-    public void testMakeCopy() throws Exception {
+    public static void testMakeCopy() throws Exception {
         LatticePainterDrawParams one = new LatticePainterDrawParams();
         one.setGridSizeX(20);
         one.setGridSizeY(30);

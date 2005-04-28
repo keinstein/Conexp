@@ -14,9 +14,7 @@ public class IconData
   protected Object data;
 
   public IconData(Icon icon, Object data) {
-    this.icon = icon;
-    expandedIcon = null;
-    this.data = data;
+    this(icon, null, data);
   }
 
   public IconData(Icon icon, Icon expandedIcon, Object data) {

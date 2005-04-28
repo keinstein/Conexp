@@ -48,7 +48,7 @@ public class ContextReductionTest extends TestCase {
         return new TestSuite(THIS);
     }
 
-    public void testReduceObjects() {
+    public static void testReduceObjects() {
 /*
           --------
         0!...x.xxx!

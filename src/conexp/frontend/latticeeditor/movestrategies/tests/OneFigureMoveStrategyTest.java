@@ -22,7 +22,7 @@ import junit.framework.TestCase;
 
 public class OneFigureMoveStrategyTest extends TestCase {
 
-    public void testCalculateYMoveValue() throws Exception {
+    public static void testCalculateYMoveValue() {
         LatticeCanvas canvas = LatticeCanvasTest.buildPreparedCanvas(TestDataHolder.FULL_RELATION_INTERVAL_4, TestDataHolder.LAYOUT_INTERVAL_4_ASSYMETRIC);
         ConceptSetDrawing drawing = canvas.getConceptSetDrawing();
         Lattice lattice = drawing.getLattice();

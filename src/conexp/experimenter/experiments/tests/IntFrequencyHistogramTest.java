@@ -14,7 +14,7 @@ import java.util.Arrays;
  */
 
 public class IntFrequencyHistogramTest extends TestCase {
-    public void testFrequencyHistogram() {
+    public static void testFrequencyHistogram() {
         IntFrequencyHistogram histogram = new IntFrequencyHistogram("Extents sizes");
         histogram.putValue(0);
         assertEquals(1, histogram.getFrequency(0));

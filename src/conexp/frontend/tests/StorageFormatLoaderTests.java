@@ -16,19 +16,19 @@ public class StorageFormatLoaderTests extends TestCase{
 	}
 
 
-	public void  testLoadStorageFormatList() {
+	public static void  testLoadStorageFormatList() {
 		makeStorageFormatLoader(realresource).loadStorageFormatList();
 	}
 
-	private StorageFormatLoader makeStorageFormatLoader(ResourceBundle resourceBundle){
+	private static StorageFormatLoader makeStorageFormatLoader(ResourceBundle resourceBundle){
 		return new StorageFormatLoader(resourceBundle);
 	}
 
-	private StorageFormatManager makeStorageFormatManager() {
+	private static StorageFormatManager makeStorageFormatManager() {
 		return new StorageFormatManager();
 	}
 	
-	public void testLoadStorageFormats(){
+	public static void testLoadStorageFormats(){
         makeStorageFormatLoader(realresource).loadStorageFormats(makeStorageFormatManager());
 	}
 

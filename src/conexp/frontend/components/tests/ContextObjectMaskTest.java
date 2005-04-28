@@ -62,7 +62,7 @@ public class ContextObjectMaskTest extends ContextMaskBaseTest {
     }
 
 
-    public void testMakeCopy() throws Exception {
+    public void testMakeCopy() {
         SetProvidingEntitiesMask other = getMask().makeCopy();
         assertEquals(mask, other);
         other.setSelected(0, false);

@@ -8,8 +8,4 @@ public class OneConceptPointStabilityCalculatorTest extends PointStabilityCalcul
         return new conexp.core.stability.OneConceptPointStabilityCalculator();
     }
 
-    public void testCalculateStabilityForCaseOfOnlyOneConcept() {
-        super.testCalculateStabilityForCaseOfOnlyOneConcept();
-    }
-
 }

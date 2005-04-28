@@ -32,7 +32,7 @@ abstract class SyncListener extends DefaultContextListener implements TableModel
         return reactOnInsertDeleteOrContextStructureChange(evt);
     }
 
-    protected boolean reactOnInsertDeleteOrContextStructureChange(TableModelEvent evt) {
+    protected static boolean reactOnInsertDeleteOrContextStructureChange(TableModelEvent evt) {
         return evt.getType() != TableModelEvent.UPDATE ||
                                     evt.getFirstRow() == TableModelEvent.HEADER_ROW;
     }

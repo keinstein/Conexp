@@ -88,7 +88,7 @@ public class ContextTest extends TestCase {
     }
 
 
-    private void expectTransposedCall(Context cxt, int expectedNumberOfCalls, ContextStructureModification modification) {
+    private static void expectTransposedCall(Context cxt, int expectedNumberOfCalls, ContextStructureModification modification) {
         MockContextListener mock = new MockContextListener() {
             public void contextTransposed() {
                 incCounter();
@@ -303,7 +303,7 @@ public class ContextTest extends TestCase {
 
     }
 
-    private MockContextListener makeObjectChangeListener() {
+    private static MockContextListener makeObjectChangeListener() {
         return new MockContextListener() {
             public void objectNameChanged(PropertyChangeEvent evt) {
                 counter.inc();
@@ -312,7 +312,7 @@ public class ContextTest extends TestCase {
         };
     }
 
-    private MockContextListener makeAttributeChangeListener() {
+    private static MockContextListener makeAttributeChangeListener() {
         return new MockContextListener() {
             public void attributeNameChanged(PropertyChangeEvent evt) {
                 counter.inc();
@@ -408,20 +408,20 @@ public class ContextTest extends TestCase {
         listener.verify();
     }
 
-    MockContextListener makeAttributeInsertionListener() {
+    static MockContextListener makeAttributeInsertionListener() {
         return new MockAttributeChangeContextListener(ContextChangeEvent.ATTRIBUTE_ADDED);
     }
 
 
-    MockContextListener makeAttributeRemovalListener() {
+    static MockContextListener makeAttributeRemovalListener() {
         return new MockAttributeChangeContextListener(ContextChangeEvent.ATTRIBUTE_REMOVED);
     }
 
-    MockContextListener makeObjectInsertionListener() {
+    static MockContextListener makeObjectInsertionListener() {
         return new MockObjectChangeContextListener(ContextChangeEvent.OBJECT_ADDED);
     }
 
-    MockContextListener makeObjectRemovalListener() {
+    static MockContextListener makeObjectRemovalListener() {
         return new MockObjectChangeContextListener(ContextChangeEvent.OBJECT_REMOVED);
     }
 
@@ -537,7 +537,7 @@ public class ContextTest extends TestCase {
 
     }
 
-    private void checkRelationSizes(final BinaryRelation binaryRelation, final int expRowCount, final int expColCount) {
+    private static void checkRelationSizes(final BinaryRelation binaryRelation, final int expRowCount, final int expColCount) {
         assertEquals(expColCount, binaryRelation.getColCount());
         assertEquals(expRowCount, binaryRelation.getRowCount());
     }

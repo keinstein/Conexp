@@ -92,7 +92,7 @@ public class ConceptFigure extends ConceptCorrespondingFigure implements Selecta
         return ret.toString();
     }
 
-    private String makeObjDesc(int cnt, int totalCnt) {
+    private static String makeObjDesc(int cnt, int totalCnt) {
         return "<i>" + cnt + " objects (" + StringUtil.formatPercents(totalCnt != 0 ? (double) cnt / totalCnt : 0.) + ")</i>";
     }
 

@@ -22,7 +22,7 @@ public class ConExpDependenciesTest extends TestCase {
 
 
 
-    public void testPackageDependencies() throws IOException {
+    public static void testPackageDependencies() throws IOException {
         JDepend jdepend = new JDepend();
         jdepend.addDirectory("./../../build");
         jdepend.analyze();

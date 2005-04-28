@@ -14,7 +14,7 @@ import junit.framework.TestCase;
 public class NumberOfSimmetricallyAllocatedChildrenEvaluationFunctionTest extends TestCase {
 
     //and what about parents ??? :-)
-    public void testNumberOfSimmetricallyAllocatedChildrenForThreeChildCase() {
+    public static void testNumberOfSimmetricallyAllocatedChildrenForThreeChildCase() {
         Lattice lattice = SetBuilder.makeLattice(TestDataHolder.FULL_RELATION_NOMINAL_3);
         ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(
                 lattice, TestDataHolder.FULL_RELATION_NOMINAL_3,
@@ -26,7 +26,7 @@ public class NumberOfSimmetricallyAllocatedChildrenEvaluationFunctionTest extend
         assertEquals(8, evaluationFunction.getEvaluationForLattice(), TestDataHolder.PRECISION);
     }
 
-    public void testNumberOfSimmetricallyAllocatedChildrenForTwoChildCase() {
+    public static void testNumberOfSimmetricallyAllocatedChildrenForTwoChildCase() {
         Lattice lattice = SetBuilder.makeLattice(TestDataHolder.FULL_RELATION_NOMINAL_2);
         ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(
                 lattice, TestDataHolder.FULL_RELATION_NOMINAL_2,

@@ -331,7 +331,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     }
     //------------------------------------------------------------
 
-    ResourceBundle getResources() {
+    static ResourceBundle getResources() {
         return resources;
     }
 
@@ -528,7 +528,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return toolBuilder.createHelpMenu();
     }
 
-    public ResourceManager getResourceManager() {
+    public static ResourceManager getResourceManager() {
         return new ResourceManager(getResources());
     }
 

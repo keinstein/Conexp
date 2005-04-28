@@ -21,11 +21,11 @@ import java.io.StringReader;
 
 public class ObjectListContextCreatorTest extends TestCase {
 
-	protected DocumentLoader getLoader(){
+	protected static DocumentLoader getLoader(){
 		return new ObjectListContextCreator();
 	}
 
-	public void testReadingWithEmptyLine() {
+	public static void testReadingWithEmptyLine() {
 		String[] data = {"O1:",		
 									""	,
 								"O2:A1;A2"
@@ -42,7 +42,7 @@ public class ObjectListContextCreatorTest extends TestCase {
 		doTestReading(data2, expectedContext);
 	}
 
-	public void testReadingWithComments() {
+	public static void testReadingWithComments() {
 			String[] data = {
 									"O1:A1",
 									"%aaaaa;klklöklkök;äkkklölk",
@@ -56,7 +56,7 @@ public class ObjectListContextCreatorTest extends TestCase {
 
 
 	//Taken from ConImpTest
-	private void doTestReading(String[] data, ExtendedContextEditingInterface expectedContext) {
+	private static void doTestReading(String[] data, ExtendedContextEditingInterface expectedContext) {
 		StringReader reader = new StringReader(buildString(data));
 		try {
 			ExtendedContextEditingInterface cxt = getLoader().loadDocument(reader,DefaultDataFormatErrorHandler.getInstance() ).getContext();

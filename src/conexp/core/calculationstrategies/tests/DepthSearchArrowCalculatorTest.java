@@ -13,14 +13,14 @@ import conexp.core.calculationstrategies.DepthSearchArrowCalculator;
 import junit.framework.TestCase;
 
 public class DepthSearchArrowCalculatorTest extends TestCase {
-    public void testDoCalcDownArrow() {
+    public static void testDoCalcDownArrow() {
         Context cxt = new Context(200, 12);
         ArrowCalculator arrowCalc = new DepthSearchArrowCalculator();
         cxt.setArrowCalculator(arrowCalc);
         cxt.getDownArrow();
     }
 
-    public void testDoCalcDownArrow2() {
+    public static void testDoCalcDownArrow2() {
         Context cxt = new Context(12, 200);
         ArrowCalculator arrowCalc = new DepthSearchArrowCalculator();
         cxt.setArrowCalculator(arrowCalc);
@@ -28,14 +28,14 @@ public class DepthSearchArrowCalculatorTest extends TestCase {
     }
 
 
-    public void testDoCalcUpArrow() {
+    public static void testDoCalcUpArrow() {
         Context cxt = new Context(200, 14);
         ArrowCalculator arrowCalc = new DepthSearchArrowCalculator();
         cxt.setArrowCalculator(arrowCalc);
         cxt.getUpArrow();
     }
 
-    public void testDoCalcUpArrow2() {
+    public static void testDoCalcUpArrow2() {
         Context cxt = new Context(12, 200);
         ArrowCalculator arrowCalc = new DepthSearchArrowCalculator();
         cxt.setArrowCalculator(arrowCalc);

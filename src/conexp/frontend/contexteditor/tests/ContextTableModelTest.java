@@ -33,7 +33,7 @@ public class ContextTableModelTest extends TestCase {
                 ));
     }
 
-    void doTestValueModelThatShouldBeGreaterOrEqualZero(IIntValueModel intValueModel) {
+    static void doTestValueModelThatShouldBeGreaterOrEqualZero(IIntValueModel intValueModel) {
         try {
             intValueModel.setValue(1);
             intValueModel.setValue(3);

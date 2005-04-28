@@ -69,10 +69,6 @@ public class ContextObjectMask extends BasicMultiSelectionEntityMaskImplementati
 	}
 
 
-    public int hashCode() {
-        return super.hashCode();
-    }
-
     public boolean equals(Object other) {
          if (this == other){
              return true;

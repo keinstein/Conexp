@@ -12,7 +12,7 @@ import junit.framework.TestCase;
 
 
 public class ContextListenerSupportTest extends TestCase {
-    public void testMarkStructureChange() {
+    public static void testMarkStructureChange() {
         ContextListenerSupport contextListenerSupport = new ContextListenerSupport(null);
         assertEquals(false, contextListenerSupport.hasStructureChangePostponed());
         contextListenerSupport.madePostponedStructureChange();

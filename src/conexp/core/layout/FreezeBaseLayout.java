@@ -142,10 +142,6 @@ public abstract class FreezeBaseLayout extends SimpleForceLayout {
         res[1] = att_fac * (pt2.getY() - pt1.getY());
     }
 
-    protected FreezeLayoutConceptInfo getLocalConceptInfo(int index) {
-        return (FreezeLayoutConceptInfo) elementMap[index];
-    }
-
     /**
      * Comments for the makeConceptInfo method.
      * @return conexp.core.layout.GenericLayouter$LayoutConceptInfo

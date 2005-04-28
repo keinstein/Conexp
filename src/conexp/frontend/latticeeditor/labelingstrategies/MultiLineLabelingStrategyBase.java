@@ -19,7 +19,7 @@ public abstract class MultiLineLabelingStrategyBase extends OneLabelConceptLabel
         super();
     }
 
-    protected BorderCalculatingFigure buildMultiLineFigureFromEntityIterator(Iterator iterator) {
+    protected static BorderCalculatingFigure buildMultiLineFigureFromEntityIterator(Iterator iterator) {
         StringBuffer names = new StringBuffer();
         boolean first = true;
         for(;iterator.hasNext(); ){

@@ -82,7 +82,7 @@ public class LatticeTest extends TestCase {
 
     }
 
-    public void testMakeCopy(){
+    public static void testMakeCopy(){
         Context cxt = SetBuilder.makeContext(new int[][]{{0}});
         Lattice lat = SetBuilder.makeLattice(cxt);
         assertEquals(2, lat.conceptsCount());
@@ -93,4 +93,10 @@ public class LatticeTest extends TestCase {
         assertSame(lat.getContext(), copy.getContext());
     }
 
+    public static void testFindLatticeElementForAttr(){
+        Context cxt = SetBuilder.makeContext(new int[][]{{1}});
+        Lattice lat = SetBuilder.makeLattice(cxt);
+        assertEquals(1, lat.conceptsCount());
+        assertEquals(lat.getZero(), lat.findLatticeElementForAttr(0));
+    }
 }

@@ -32,7 +32,7 @@ public class EdgeMinSupportSelectorTest extends TestCase {
         exp.verify();
     }
 
-    public void testAgainEdgeSelector() {
+    public static void testAgainEdgeSelector() {
         int[][] cxt = new int[][]{
             {1, 0, 0, 0, 0},
             {1, 1, 0, 0, 0},
@@ -60,7 +60,7 @@ public class EdgeMinSupportSelectorTest extends TestCase {
 
     }
 
-    public void testEdgeSelector() {
+    public static void testEdgeSelector() {
         int[][] cxt = new int[][]{{1, 0, 0}, {1, 1, 0}, {1, 1, 1}};
         int minSupport = 2;
         int[][][][] expEdges = new int[][][][]{

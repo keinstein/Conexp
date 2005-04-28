@@ -28,7 +28,7 @@ public abstract class BasicStrategyModel implements StrategyModel {
         return StringUtil.extractClassName(genericstrategy.getClass().toString());
     }
 
-    protected GenericStrategy makeGenericStrategyByClassName(String className) throws ConfigFatalError {
+    protected static GenericStrategy makeGenericStrategyByClassName(String className) throws ConfigFatalError {
         GenericStrategy genericStrategy;
         try {
             genericStrategy = (GenericStrategy) Class.forName(className).newInstance();

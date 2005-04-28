@@ -9,7 +9,6 @@ package conexp.core.layoutengines;
 
 
 class LayoutCommandQueue {
-    protected java.lang.Object syncLock = new Object();
     protected LayoutEvent startLayout;
     protected LayoutEvent restartLayout;
     protected int waitingForTake = 0;

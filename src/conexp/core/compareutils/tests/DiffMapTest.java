@@ -27,12 +27,12 @@ public class DiffMapTest extends TestCase {
     }
 
 
-    public void testEquals() {
+    public static void testEquals() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{0, 0}, {0, 0}});
         compareConceptCollection(lat, lat, true, false, false, false);
     }
 
-    public void testUnequal() {
+    public static void testUnequal() {
         Lattice one = SetBuilder.makeLattice(new int[][]{{0, 0}, {1, 0}});
         Lattice two = SetBuilder.makeLattice(new int[][]{{0, 0}, {1, 1}});
         compareConceptCollection(one, two, false, true, false, false);

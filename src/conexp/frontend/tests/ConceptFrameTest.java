@@ -15,7 +15,7 @@ import util.StringUtil;
 
 
 public class ConceptFrameTest extends TestCase {
-    public void testConceptFrame() {
+    public static void testConceptFrame() {
         try {
             new ConceptFrame();
         } catch (Throwable ex) {

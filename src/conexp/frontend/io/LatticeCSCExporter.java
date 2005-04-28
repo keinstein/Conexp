@@ -79,8 +79,8 @@ public class LatticeCSCExporter {
                     //attribute format - number, identifier, description, format
                     LatticeElement attrConcept = lat.findLatticeElementForAttr(attrIndex);
                     int id = attrConcept.getIndex();
-                    double offsetX = 0;
-                    double offsetY = 0;
+                    double offsetX;
+                    double offsetY;
                     if (drawing.getAttributeLabelingStrategyKey().equals(LabelingStrategiesKeys.ALL_ATTRIBS_LABELING_STRATEGY_KEY)) {
                         FigureWithCoords labelForAttributeFigure = drawing.getLabelForAttribute(attribute);
                         Rectangle boundingBox = new Rectangle();
@@ -223,7 +223,7 @@ public class LatticeCSCExporter {
         depthLevel--;
     }
 
-    private String getDiagramTitle() {
+    private static String getDiagramTitle() {
         return "\"\"";
     }
 
@@ -231,7 +231,7 @@ public class LatticeCSCExporter {
         depthLevel++;
     }
 
-    private String getDiagramId() {
+    private static String getDiagramId() {
         return "LineDiagramID";
     }
 

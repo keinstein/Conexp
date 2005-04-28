@@ -12,10 +12,6 @@ public class BooleanValueModel extends ValueModelBase {
 
     boolean value;
 
-    public BooleanValueModel(String propName) {
-        this(propName, false);
-    }
-
     public BooleanValueModel(String propName, boolean value) {
         super(propName);
         this.value = value;

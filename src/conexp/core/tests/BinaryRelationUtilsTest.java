@@ -20,13 +20,13 @@ public class BinaryRelationUtilsTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (04.08.01 8:36:57)
      */
-    protected void doTestLexSort(int[][] relToSort, int[][] sortedRel) {
+    protected static void doTestLexSort(int[][] relToSort, int[][] sortedRel) {
         BinaryRelation toSort = SetBuilder.makeRelation(relToSort);
         BinaryRelation sorted = SetBuilder.makeRelation(sortedRel);
         assertEquals(sorted, conexp.core.BinaryRelationUtils.lexSort(toSort));
     }
 
-    public void testLexSort() {
+    public static void testLexSort() {
         int[][] relToSort = new int[][]{
             {1, 0, 0, 1},
             {1, 1, 0, 0},
@@ -47,7 +47,7 @@ public class BinaryRelationUtilsTest extends TestCase {
     }
 
 
-    public void testOneColSort() {
+    public static void testOneColSort() {
         int[][] relToSort = new int[][]{
             {1},
             {1},
@@ -67,7 +67,7 @@ public class BinaryRelationUtilsTest extends TestCase {
         doTestLexSort(relToSort, sortedRel);
     }
 
-    public void testTransitiveClosure() {
+    public static void testTransitiveClosure() {
         int[][] relationToCloseDescr = {
             {0, 0, 0, 0, 0, 0, 0, 0},
             {1, 0, 0, 0, 0, 0, 0, 0},
@@ -92,14 +92,14 @@ public class BinaryRelationUtilsTest extends TestCase {
         doTestTransitiveClosure(relationToCloseDescr, expClosedRelationDescr);
     }
 
-    private void doTestTransitiveClosure(int[][] relationToCloseDescr, int[][] expClosedRelationDescr) {
+    private static void doTestTransitiveClosure(int[][] relationToCloseDescr, int[][] expClosedRelationDescr) {
         ModifiableBinaryRelation relationToClose = SetBuilder.makeRelation(relationToCloseDescr);
         BinaryRelation expRelation = SetBuilder.makeRelation(expClosedRelationDescr);
         BinaryRelationUtils.transitiveClosure(relationToClose);
         assertEquals(expRelation, relationToClose);
     }
 
-    public void testTransitiveClosureForTheWorstCase() {
+    public static void testTransitiveClosureForTheWorstCase() {
         int[][] relationToCloseDescr = {{0, 0, 0, 1},
                                         {0, 0, 0, 0},
                                         {0, 1, 0, 0},
@@ -114,7 +114,7 @@ public class BinaryRelationUtilsTest extends TestCase {
         doTestTransitiveClosure(relationToCloseDescr, expClosedRelationDescr);
     }
 
-    public void testAverageNumberOfAttributesPerRow(){
+    public static void testAverageNumberOfAttributesPerRow(){
         int [][] relationDescr={{}};
         BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
         double average = BinaryRelationUtils.averageNumberOfAttributesPerObject(relation);
@@ -135,7 +135,7 @@ public class BinaryRelationUtilsTest extends TestCase {
         assertEquals(1.5, BinaryRelationUtils.averageNumberOfAttributesPerObject(relation), PRECISION);
     }
 
-    public void testAverageNumberOfObjectsPerAttribute(){
+    public static void testAverageNumberOfObjectsPerAttribute(){
         int [][] relationDescr={{}};
         BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(0, BinaryRelationUtils.averageNumberOfObjectsPerAttribute(relation), PRECISION);
@@ -148,7 +148,7 @@ public class BinaryRelationUtilsTest extends TestCase {
         assertEquals(1, BinaryRelationUtils.averageNumberOfObjectsPerAttribute(relation), PRECISION);
     }
 
-    public void testVarianceOfObjectPerAttribute(){
+    public static void testVarianceOfObjectPerAttribute(){
         int [][] relationDescr={{}};
         BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(0, BinaryRelationUtils.varianceOfObjectPerAttribute(relation), PRECISION);
@@ -160,7 +160,7 @@ public class BinaryRelationUtilsTest extends TestCase {
         assertEquals(0.6666, BinaryRelationUtils.varianceOfObjectPerAttribute(relation), PRECISION);
     }
 
-    public void testVarianceOfAttributesPerObject(){
+    public static void testVarianceOfAttributesPerObject(){
         int [][] relationDescr={{}};
         BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(0, BinaryRelationUtils.varianceOfAttributesPerObjects(relation), PRECISION);
@@ -172,7 +172,7 @@ public class BinaryRelationUtilsTest extends TestCase {
         assertEquals(0.25, BinaryRelationUtils.varianceOfAttributesPerObjects(relation), PRECISION);
     }
 
-    public void testMax(){
+    public static void testMax(){
         assertEquals(3, BinaryRelationUtils.max(new int[]{1, 3, 2}));
         assertEquals(3, BinaryRelationUtils.max(new int[]{1, 2, 3}));
         assertEquals(3, BinaryRelationUtils.max(new int[]{3, 2, 1}));
@@ -186,7 +186,7 @@ public class BinaryRelationUtilsTest extends TestCase {
         }
     }
 
-    public void testMin() {
+    public static void testMin() {
         assertEquals(1, BinaryRelationUtils.min(new int[]{1, 3, 2}));
         assertEquals(1, BinaryRelationUtils.min(new int[]{3, 2, 1}));
         assertEquals(1, BinaryRelationUtils.min(new int[]{2, 1, 3}));

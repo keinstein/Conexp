@@ -88,10 +88,6 @@ public class LatticeElement extends Concept {
         public Object next() {
             return nextConcept();
         }
-
-        public void remove() {
-            super.remove();
-        }
     }
 
     protected LatticeElementCollection predecessorsNodes = new LatticeElementCollectionBase(predessors){
@@ -279,14 +275,6 @@ public class LatticeElement extends Concept {
         }
 */
         return true;
-    }
-
-    /**
-     *  explicit call to hashCode in super
-     */
-
-    public int hashCode() {
-        return super.hashCode();
     }
 
     public static LatticeElement makeFromSetsCopies(Set extent, Set intent) {

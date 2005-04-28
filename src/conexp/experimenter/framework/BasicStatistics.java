@@ -35,8 +35,11 @@ public class BasicStatistics {
      * @param timeOfExecution long
      */
     public static double calcVariation(long[] timeOfExecution) {
+        if(null== timeOfExecution){
+            return 0;
+        }
         final int size = timeOfExecution.length;
-        if (null == timeOfExecution || size <= 1) {
+        if (size <= 1) {
             return 0;
         }
 

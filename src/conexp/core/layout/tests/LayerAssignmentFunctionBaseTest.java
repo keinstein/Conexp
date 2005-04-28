@@ -36,7 +36,7 @@ public abstract class LayerAssignmentFunctionBaseTest extends TestCase{
         checkCorrectnessOfLayerFunction(lattice, latticeElementToLayerMap);
     }
 
-    private Map checkCompletenessOfLayerFunctionCalculation(ILayerAssignmentFunction layerFunction, Lattice lattice) {
+    private static Map checkCompletenessOfLayerFunctionCalculation(ILayerAssignmentFunction layerFunction, Lattice lattice) {
         final Map latticeElementToLayerMap = CollectionFactory.createDefaultMap();
         layerFunction.calculateLayersForLattice(lattice, new ILayerAssignmentFunction.ILayerAssignmentFunctionCallback(){
             public void layerForLatticeElement(LatticeElement latticeElement, int layer) {
@@ -48,7 +48,7 @@ public abstract class LayerAssignmentFunctionBaseTest extends TestCase{
         return latticeElementToLayerMap;
     }
 
-    private void checkCorrectnessOfLayerFunction(Lattice lattice, final Map latticeElementToLayerMap) {
+    private static void checkCorrectnessOfLayerFunction(Lattice lattice, final Map latticeElementToLayerMap) {
         int conceptCount = lattice.conceptsCount();
         for(int i=0; i<conceptCount; i++){
             LatticeElement one = lattice.elementAt(i);

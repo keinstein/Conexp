@@ -46,7 +46,7 @@ public class SetRelationTest extends TestCase {
 
     }
 
-    public void testSetDimension() {
+    public static void testSetDimension() {
         SetBuilder.makeRelation(new int[0][0]);
     }
 }

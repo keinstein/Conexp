@@ -10,7 +10,7 @@ import util.testing.TestUtil;
  */
 
 public class ContextLoadingRelationGenerationStrategyTest extends TestCase {
-    public void testLoading() {
+    public static void testLoading() {
         String url = "conexp/experimenter/relationsequences/tests/C2.cxt";
         try {
             ContextLoadingRelationGenerationStrategy strategy = new ContextLoadingRelationGenerationStrategy(url);

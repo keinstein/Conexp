@@ -15,7 +15,7 @@ import util.testing.TestUtil;
  */
 
 public class OperationStatisticTest extends TestCase {
-    public void testMakeCopy() {
+    public static void testMakeCopy() {
         OperationCountHolder statistic = new OperationStatistic();
         statistic.register(OperationCodes.IN);
         assertEquals(1, statistic.getOperationCount(OperationCodes.IN));
@@ -27,7 +27,7 @@ public class OperationStatisticTest extends TestCase {
         assertEquals(2, statistic.getOperationCount(OperationCodes.IN));
     }
 
-    public void testClear() {
+    public static void testClear() {
        OperationStatistic statistic =new OperationStatistic();
         statistic.register(OperationCodes.IN);
         assertEquals(1, statistic.getOperationCount(OperationCodes.IN));

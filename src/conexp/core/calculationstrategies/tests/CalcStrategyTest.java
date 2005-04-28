@@ -421,7 +421,7 @@ public abstract class CalcStrategyTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (13.07.01 22:02:30)
      */
-    protected void testIntentsAndExtentsSizes(ConceptsCollection conceptSet, BinaryRelation rel) {
+    protected static void testIntentsAndExtentsSizes(ConceptsCollection conceptSet, BinaryRelation rel) {
         final int rowCount = rel.getRowCount();
         final int colCount = rel.getColCount();
         for (int i = conceptSet.conceptsCount(); --i >= 0;) {

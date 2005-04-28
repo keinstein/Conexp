@@ -18,7 +18,7 @@ public class LayeredLayouterTest extends GenericLayouterTest {
         return false;
     }
 
-    public void testFindIrreducibleAttributes(){
+    public static void testFindIrreducibleAttributes(){
         Context cxt = SetBuilder.makeContext(new int[][]{
             {1, 0, 0},
             {0, 1, 0},

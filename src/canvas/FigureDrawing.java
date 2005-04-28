@@ -144,7 +144,7 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
     }
 
 
-    private Figure findContainingFigure(Iterator iter, double x, double y) {
+    private static Figure findContainingFigure(Iterator iter, double x, double y) {
         while (iter.hasNext()) {
             Figure curr = (Figure) iter.next();
             if (curr.contains(x, y)) {
@@ -154,7 +154,7 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
         return null;
     }
 
-    private Figure findContainingFigureExceptFor(Iterator iter, double x, double y, Figure toExclude) {
+    private static Figure findContainingFigureExceptFor(Iterator iter, double x, double y, Figure toExclude) {
         while (iter.hasNext()) {
             Figure curr = (Figure) iter.next();
             if (curr != toExclude && curr.contains(x, y)) {
@@ -186,7 +186,7 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
         forEachFigure(foreground.iterator(), b);
     }
 
-    private void forEachFigure(Iterator iter, FigureBlock b) {
+    private static void forEachFigure(Iterator iter, FigureBlock b) {
         while (iter.hasNext()) {
             Figure curr = (Figure) iter.next();
             b.exec(curr);

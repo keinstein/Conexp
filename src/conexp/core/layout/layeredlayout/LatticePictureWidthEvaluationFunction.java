@@ -13,8 +13,6 @@ import java.awt.geom.Point2D;
  * Please read license.txt for licensing issues.
  */
 public class LatticePictureWidthEvaluationFunction extends LatticeBasedEvaluationFunctionBase{
-    public LatticePictureWidthEvaluationFunction() {
-    }
 
     public LatticePictureWidthEvaluationFunction(Lattice lattice, ConceptCoordinateMapper conceptCoordinateMapper) {
         super(lattice, conceptCoordinateMapper);

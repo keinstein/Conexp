@@ -46,7 +46,7 @@ public class PlainTextLatticeExporter implements IExporter {
         printWriter.println("EOF");
     }
 
-    private void printNodesCoords(ConceptSetDrawing conceptSetDrawing, PrintWriter writer) {
+    private static void printNodesCoords(ConceptSetDrawing conceptSetDrawing, PrintWriter writer) {
         final ConceptsCollection conceptSet = conceptSetDrawing.getConceptSet();
         for (Iterator iterator = conceptSet.elements(); iterator.hasNext();) {
             Concept concept = (Concept) iterator.next();
@@ -56,7 +56,7 @@ public class PlainTextLatticeExporter implements IExporter {
         }
     }
 
-    private void printOwnObjectLabels(final ConceptSetDrawing conceptSetDrawing, PrintWriter writer) {
+    private static void printOwnObjectLabels(final ConceptSetDrawing conceptSetDrawing, PrintWriter writer) {
         final ConceptsCollection conceptSet = conceptSetDrawing.getConceptSet();
         for (Iterator iterator = conceptSet.elements(); iterator.hasNext();) {
             Concept concept = (Concept) iterator.next();
@@ -69,7 +69,7 @@ public class PlainTextLatticeExporter implements IExporter {
         }
     }
 
-    private void printOwnAttributesLabels(final ConceptSetDrawing conceptSetDrawing, PrintWriter writer) {
+    private static void printOwnAttributesLabels(final ConceptSetDrawing conceptSetDrawing, PrintWriter writer) {
         final ConceptsCollection conceptSet = conceptSetDrawing.getConceptSet();
         for (Iterator iterator = conceptSet.elements(); iterator.hasNext();) {
             Concept concept = (Concept) iterator.next();
@@ -114,12 +114,14 @@ public class PlainTextLatticeExporter implements IExporter {
 
     public void performExportService(String path) throws IOException {
         ConceptSetDrawing conceptSetDrawing = panel.getConceptSetDrawing();
-        FileWriter writer=null;
+        FileWriter writer = null;
         try {
             writer = new FileWriter(path, false);
             writeLattice(writer, conceptSetDrawing);
         } finally {
-            writer.close();
+            if (writer != null) {
+                writer.close();
+            }
         }
 
     }

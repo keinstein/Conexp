@@ -30,7 +30,7 @@ public class AssociationCoverCalculatorTest extends TestCase {
         return new TestSuite(THIS);
     }
 
-    public void testFindMaximalFrequentItemsetsForNormalLattice() {
+    public static void testFindMaximalFrequentItemsetsForNormalLattice() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{1}});
         List expList = CollectionFactory.createDefaultList();
         expList.add(lat.getZero());
@@ -38,7 +38,7 @@ public class AssociationCoverCalculatorTest extends TestCase {
         assertEquals(expList, actual);
     }
 
-    public void testFindMaximalFrequentItemsetsForIcebergLattice() {
+    public static void testFindMaximalFrequentItemsetsForIcebergLattice() {
         Lattice lat = SetBuilder.makeIcebergLattice(new int[][]{
             {1, 0},
             {0, 1}
@@ -67,7 +67,7 @@ public class AssociationCoverCalculatorTest extends TestCase {
         assertEquals(first, second);
     }
 
-    public void testFindParentWithMaximalSupportAndMinimalLengthCreatingAssociation() {
+    public static void testFindParentWithMaximalSupportAndMinimalLengthCreatingAssociation() {
         Lattice lat = SetBuilder.makeIcebergLattice(new int[][]{
             {1, 0, 1, 1, 0},
             {0, 1, 1, 0, 1},
@@ -85,7 +85,7 @@ public class AssociationCoverCalculatorTest extends TestCase {
         assertEquals(expFoundedParent, actual);
     }
 
-    public void testFindParentWithMaximalSupportAndMinimalLengthCreatingAssociationWhenConfidenceIsNotSufficient() {
+    public static void testFindParentWithMaximalSupportAndMinimalLengthCreatingAssociationWhenConfidenceIsNotSufficient() {
         //in these lattice, element {1, 0, 0} will be having bigger support, than other elements of equal size
         // size of context 4
         // size of support of current {1, 0, 0} - 2
@@ -104,7 +104,7 @@ public class AssociationCoverCalculatorTest extends TestCase {
         assertEquals(expFoundedParent, actual);
     }
 
-    public void testThereAreNoRuleThatCovers() {
+    public static void testThereAreNoRuleThatCovers() {
         final int[] BE = {0, 1, 0, 0, 1};
         final int[] ABCE = {1, 1, 1, 0, 1};
         final int[] C = new int[]{0, 0, 1, 0, 0};
@@ -138,7 +138,7 @@ public class AssociationCoverCalculatorTest extends TestCase {
                 SetBuilder.findLatticeElementWithIntent(lat, C)));
     }
 
-    public void testFindCover() {
+    public static void testFindCover() {
         final int[] ABCE = {1, 1, 1, 0, 1};
         final int[][] relation = new int[][]{
             {1, 0, 1, 1, 0},

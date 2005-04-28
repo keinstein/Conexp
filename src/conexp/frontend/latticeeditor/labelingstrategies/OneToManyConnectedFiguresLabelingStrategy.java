@@ -18,6 +18,7 @@ import conexp.frontend.latticeeditor.figures.ContextObjectTextFigure;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 
 public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericLabelingStrategy {
@@ -36,12 +37,12 @@ public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericL
         }
     }
 
-    protected Object addObjectsFromIteratorToDrawingAccordingToDistributor(ConceptSetDrawing drawing,
+    protected static Object addObjectsFromIteratorToDrawingAccordingToDistributor(ConceptSetDrawing drawing,
                                                                            AbstractConceptCorrespondingFigure f,
                                                                            Iterator iter,
                                                                            int attrCount,
                                                                            PointDistributionStrategy distributor) {
-        ArrayList objectLabels = new ArrayList(attrCount);
+        List objectLabels = new ArrayList(attrCount);
 
         Point2D coords = new Point2D.Double();
 

@@ -14,7 +14,7 @@ import java.beans.PropertyVetoException;
 
 public class BoundedIntValueTest extends TestCase {
 
-    private void doTestCreationWithIllegelParams(String propName, int value, int minValue, int maxValue) {
+    private static void doTestCreationWithIllegelParams(String propName, int value, int minValue, int maxValue) {
         try {
             new BoundedIntValue(propName, value, minValue, maxValue);
             fail("should throw IllegalArgument");
@@ -23,7 +23,7 @@ public class BoundedIntValueTest extends TestCase {
         }
     }
 
-    public void testCreateWithIllegalValue() {
+    public static void testCreateWithIllegalValue() {
         //0 is used for also testing that check is performed when value is equal to
         //"default value" of value
 
@@ -31,15 +31,15 @@ public class BoundedIntValueTest extends TestCase {
     }
 
 
-    public void testIllegalCreateWithEmptyName() {
+    public static void testIllegalCreateWithEmptyName() {
         doTestCreationWithIllegelParams(null, 0, -1, 1);
     }
 
-    public void testIllegalCreateWithWrongRange() {
+    public static void testIllegalCreateWithWrongRange() {
         doTestCreationWithIllegelParams("TestValue", 0, 1, 0);
     }
 
-    public void testNormalCreateAndSetValue() throws java.beans.PropertyVetoException {
+    public static void testNormalCreateAndSetValue() throws java.beans.PropertyVetoException {
         BoundedIntValue val = new BoundedIntValue("testValue", 0, -1, 1);
         val.setValue(-1);
         assertEquals(-1, val.getValue());
@@ -62,7 +62,7 @@ public class BoundedIntValueTest extends TestCase {
 
     }
 
-    public void testMaxCharLength() throws java.beans.PropertyVetoException {
+    public static void testMaxCharLength() {
         BoundedIntValue val = new BoundedIntValue("testValue", 0, -1, 1);
         assertEquals(2, val.maxCharsLength());
         val = new BoundedIntValue("testValue", 0, 0, 10);
@@ -73,7 +73,7 @@ public class BoundedIntValueTest extends TestCase {
         assertEquals(4, val.maxCharsLength());
     }
 
-    public void testGetAnsSetValueIndex() {
+    public static void testGetAnsSetValueIndex() {
         BoundedIntValue val = new BoundedIntValue("testValue", 5, 1, 10);
 
         assertEquals(4, val.getIndexOfValue());
@@ -85,7 +85,7 @@ public class BoundedIntValueTest extends TestCase {
         assertEquals(1, val.getValue());
     }
 
-    public void testMakeStringDescription() {
+    public static void testMakeStringDescription() {
         BoundedIntValue val = new BoundedIntValue("testValue", 1, 0, 2);
         String[] res = val.makeStringArrayOfValueDescription();
         assertEquals(3, res.length);

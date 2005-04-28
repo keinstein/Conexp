@@ -18,7 +18,7 @@ public abstract class BaseFullLabelingStrategy extends SimpleConceptLabelingStra
         super();
     }
 
-    protected void describeContextEntitySet(StringBuffer ret, Iterator iter) {
+    protected static void describeContextEntitySet(StringBuffer ret, Iterator iter) {
         ret.append("{ ");
         boolean first = true;
         while (iter.hasNext()) {

@@ -14,7 +14,7 @@ import conexp.frontend.tests.ResourcesToolbarDefinitionTest;
 import junit.framework.TestCase;
 
 public class ContextViewPanelTest extends TestCase {
-    public void testResources() {
+    public static void testResources() {
         ContextViewPanel panel = new ContextViewPanel(SetBuilder.makeContext(new int[][]{{0, 1}}));
         ResourcesToolbarDefinitionTest.testToolbarDefinitionInResources(panel.getResources(), panel.getActionChain());
     }

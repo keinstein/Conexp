@@ -13,14 +13,14 @@ import java.beans.PropertyChangeEvent;
 
 
 public class ContextEntity {
-    String name;
-    transient ContextEntityListener listener;
+    private String name;
+    private transient ContextEntityListener listener;
 
     public void setContextEntityListener(ContextEntityListener listener) {
         this.listener = listener;
     }
 
-    boolean obj = false;
+    private boolean obj = false;
 
     public String getName() {
         return name;

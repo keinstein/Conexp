@@ -13,7 +13,7 @@ import junit.framework.TestCase;
 
 
 public class DependencySetTest extends TestCase {
-    public void testEquals() {
+    public static void testEquals() {
         MockAttributeInformationSupplier supplier = new MockAttributeInformationSupplier(3);
         DependencySet one = new DependencySet(supplier);
         DependencySet two = new DependencySet(supplier);
@@ -30,7 +30,7 @@ public class DependencySetTest extends TestCase {
         assertEquals(false, one.equals(two));
     }
 
-    public void testHashCode() {
+    public static void testHashCode() {
         MockAttributeInformationSupplier supplier = new MockAttributeInformationSupplier(3);
         DependencySet one = new DependencySet(supplier);
         DependencySet two = new DependencySet(supplier);

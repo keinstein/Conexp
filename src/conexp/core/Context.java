@@ -34,12 +34,12 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         return ret;
     }
 
-    private String formAttributeName(int hintForName) {
+    private static String formAttributeName(int hintForName) {
         //TODO - extract string into properties
         return FormatUtil.format("Attr {0}", hintForName);
     }
 
-    private String formObjectName(int hint) {
+    private static String formObjectName(int hint) {
         //TODO - extract string into properties
         return FormatUtil.format("Obj {0}", hint);
     }
@@ -98,13 +98,13 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     private transient ContextListenerSupport contextListenersSupport;
 
 
-    protected transient ContextEntityListener objectNameListener = new DefaultContextObjectListener() {
+    private transient ContextEntityListener objectNameListener = new DefaultContextObjectListener() {
         public void nameChanged(PropertyChangeEvent evt) {
             getContextListenersSupport().fireObjectNameChanged(evt);
         }
     };
 
-    protected transient ContextEntityListener attributeNameListener = new DefaultContextObjectListener() {
+    private transient ContextEntityListener attributeNameListener = new DefaultContextObjectListener() {
         public void nameChanged(PropertyChangeEvent evt) {
             getContextListenersSupport().fireAttributeNameChanged(evt);
         }
@@ -298,7 +298,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         getContextListenersSupport().fireContextStructureChanged();
     }
 
-    protected void doRemoveAttribute(int index) {
+    private void doRemoveAttribute(int index) {
         rel.removeCol(index);
         ContextEntity attr = (ContextEntity) attributes.get(index);
         attr.setContextEntityListener(null);
@@ -427,7 +427,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
 
-    protected synchronized ContextListenerSupport getContextListenersSupport() {
+    private synchronized ContextListenerSupport getContextListenersSupport() {
         if (null == contextListenersSupport) {
             contextListenersSupport = new ContextListenerSupport(this);
         }
@@ -498,7 +498,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
 
     //---------------------------------------------------------------
 
-    ArrowCalculator arrowCalc;
+    private ArrowCalculator arrowCalc;
 
     public ArrowCalculator getArrowCalculator() {
         return arrowCalc;
@@ -638,7 +638,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         }
     }
 
-    ArrowRelationUpdatingContextListener arrowRelationUpdator = new ArrowRelationUpdatingContextListener();
+    private ArrowRelationUpdatingContextListener arrowRelationUpdator = new ArrowRelationUpdatingContextListener();
 
     public void copyFrom(ContextEditingInterface cxt) {
         setDimension(cxt.getObjectCount(), cxt.getAttributeCount());

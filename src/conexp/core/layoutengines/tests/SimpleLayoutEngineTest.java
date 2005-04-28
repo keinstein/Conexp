@@ -25,7 +25,7 @@ import java.util.Set;
 
 public class SimpleLayoutEngineTest extends TestCase {
 
-    public void testNativeCoordinatesAssignment() {
+    public static void testNativeCoordinatesAssignment() {
 
         Context cxt = FCAEngineRegistry.makeContext(3, 3);
         for (int i = 0; i < 3; i++) {

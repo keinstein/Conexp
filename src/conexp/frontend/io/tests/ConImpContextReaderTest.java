@@ -19,7 +19,7 @@ import java.io.StringReader;
 
 
 public class ConImpContextReaderTest extends TestCase {
-    public void testReading() {
+    public static void testReading() {
         String[] data = {
             "B",
             "Test cxt",
@@ -40,7 +40,7 @@ public class ConImpContextReaderTest extends TestCase {
         doTestReading(data, expectedContext);
     }
 
-    public void testReadingWithEmptyLineAfterDimensions() {
+    public static void testReadingWithEmptyLineAfterDimensions() {
         String[] data = {
             "B",
             "Test cxt",
@@ -63,7 +63,7 @@ public class ConImpContextReaderTest extends TestCase {
     }
 
 
-    private void doTestReading(String[] data, ExtendedContextEditingInterface expectedContext) {
+    private static void doTestReading(String[] data, ExtendedContextEditingInterface expectedContext) {
         StringReader reader = new StringReader(buildString(data));
         ContextReader loader = new ConImpContextLoader();
         try {

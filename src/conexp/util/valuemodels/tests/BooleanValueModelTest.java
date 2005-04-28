@@ -12,7 +12,7 @@ import util.testing.TestUtil;
 
 public class BooleanValueModelTest extends TestCase {
 
-    public void testEqualsAndHashCode(){
+    public static void testEqualsAndHashCode(){
         BooleanValueModel one=new BooleanValueModel("TEST", false);
         BooleanValueModel two=new BooleanValueModel("TEST", false);
         

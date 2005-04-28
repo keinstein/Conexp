@@ -80,7 +80,7 @@ public class CEDiagramEditorPanel extends DiagramEditorPanel implements View {
         return checker;
     }
 
-    private void buildCoversRelation(LatticeDiagramChecker checker, ObjectToIntMap nodeToIndexMap, java.util.List lines) {
+    private static void buildCoversRelation(LatticeDiagramChecker checker, ObjectToIntMap nodeToIndexMap, java.util.List lines) {
         for (Iterator linesIter = lines.iterator(); linesIter.hasNext();) {
             LineFigure lineFigure = (LineFigure) linesIter.next();
             IFigureWithCoords start = (IFigureWithCoords) lineFigure.getStartFigure();
@@ -114,7 +114,7 @@ public class CEDiagramEditorPanel extends DiagramEditorPanel implements View {
         return latticeDiagramChecker;
     }
 
-    protected void formObjectNamesInContext(LatticeDiagramChecker checker, List nodes) {
+    protected static void formObjectNamesInContext(LatticeDiagramChecker checker, List nodes) {
         ExtendedContextEditingInterface cxt = checker.getContext();
         for (int i = 0; i < cxt.getObjectCount(); i++) {
             NodeFigure figure = (NodeFigure) nodes.get(i);

@@ -22,14 +22,14 @@ public class ConceptIdealIteratorTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (07.03.01 0:47:15)
      */
-    private void testEnumerator(Lattice lat, int[] elIntent, int[][] expEnum) {
+    private static void testEnumerator(Lattice lat, int[] elIntent, int[][] expEnum) {
         LatticeElement el = SetBuilder.findLatticeElementWithIntent(lat, elIntent);
         ExpectationSet expSet = SetBuilder.makeExpectationSetForIntents("extectedEnumeration", expEnum);
-        fillActualIntentsFromLatticeEnumerator((makeIterator(el, lat)), expSet);
+        fillActualIntentsFromLatticeEnumerator(new ConceptIdealIterator(el), expSet);
         expSet.verify();
     }
 
-    public void testExp() {
+    public static void testExp() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{1, 0},
                                                          {0, 1}}, new DepthSearchCalculator());
         testEnumerator(lat, new int[]{1, 1}, new int[][]{{1, 1}});
@@ -44,7 +44,7 @@ public class ConceptIdealIteratorTest extends TestCase {
 
     }
 
-    public void testLinear() {
+    public static void testLinear() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{1, 0, 0},
                                                          {1, 1, 0},
                                                          {1, 1, 1}}, new DepthSearchCalculator());
@@ -69,7 +69,4 @@ public class ConceptIdealIteratorTest extends TestCase {
         }
     }
 
-    public ConceptIterator makeIterator(LatticeElement el, Lattice lat) {
-        return new ConceptIdealIterator(el);
-    }
 }

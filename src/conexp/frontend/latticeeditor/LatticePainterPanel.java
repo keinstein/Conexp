@@ -302,11 +302,6 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         return actionChain;
     }
 
-    protected void init() {
-        //restorePreferences();
-        super.init();
-    }
-
     public LatticePainterPanel(LatticeDrawingProvider latticeDrawingProvider) {        super(latticeDrawingProvider);
         init();
         getPainterOptions().addPropertyChangeListener(layoutChangeHandler);
@@ -358,7 +353,7 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
     }
 
     //----------------------------------------------
-    public ResourceBundle getResources() {
+    public static ResourceBundle getResources() {
         return LatticePainterPanel.resources;
     }
 

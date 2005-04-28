@@ -21,7 +21,7 @@ public class ImplicationsViewTest extends TestCase {
         return new TestSuite(THIS);
     }
 
-    public void testResources() {
+    public static void testResources() {
         ImplicationsView ruleView = new ImplicationsView(new MockDependencySetSupplier(), null);
         ResourcesToolbarDefinitionTest.testToolbarDefinitionInResources(ruleView.getResources(), ruleView.getActionChain());
     }

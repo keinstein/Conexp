@@ -16,7 +16,7 @@ import java.beans.PropertyChangeEvent;
 
 
 public class ContextEntityTest extends TestCase {
-    public void testContextEntityNameListener() {
+    public static void testContextEntityNameListener() {
         ContextEntity attribute = ContextEntity.createContextAttribute("One");
         final ExpectationCounter counter = new ExpectationCounter("Expected calls");
         DefaultContextObjectListener mockListener = new DefaultContextObjectListener() {
@@ -33,7 +33,7 @@ public class ContextEntityTest extends TestCase {
         counter.verify();
     }
 
-    public void testEquals() {
+    public static void testEquals() {
         final String firstName = "One";
         final String secondName = "Two";
         ContextEntity attr1 = ContextEntity.createContextAttribute(firstName);

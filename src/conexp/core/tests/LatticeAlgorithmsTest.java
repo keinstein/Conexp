@@ -21,7 +21,7 @@ import junit.framework.TestCase;
  */
 
 public class LatticeAlgorithmsTest extends TestCase {
-    public void testFindMinimalElementThatIncludesSet() {
+    public static void testFindMinimalElementThatIncludesSet() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{
             {0, 0, 0, 1},
             {0, 0, 1, 1},

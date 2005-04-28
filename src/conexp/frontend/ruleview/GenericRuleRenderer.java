@@ -13,7 +13,6 @@ import conexp.core.Set;
 import conexp.util.GenericStrategy;
 
 import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
 
 
 public abstract class GenericRuleRenderer implements RuleRenderer, GenericStrategy {
@@ -55,18 +54,7 @@ public abstract class GenericRuleRenderer implements RuleRenderer, GenericStrate
     }
 
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (06.05.01 20:26:26)
-     */
-    public void setFontParams(java.lang.String family, int size) {
-        StyleConstants.setFontFamily(getBaseStyle(), family);
-        StyleConstants.setFontSize(getBaseStyle(), size);
-        updateDependentStyles();
-    }
-
-
-    public void describeSet(StringBuffer buffer, AttributeInformationSupplier attrInfo, Set set) {
+    protected static void describeSet(StringBuffer buffer, AttributeInformationSupplier attrInfo, Set set) {
         AttributeInformationSupplierUtil.describeSet(buffer, attrInfo, set, " ", "{ }");
     }
 

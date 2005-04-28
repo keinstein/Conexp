@@ -22,7 +22,7 @@ public class ContextFunctionsTest extends TestCase {
     }
 
 
-    public void testStability() {
+    public static void testStability() {
         ExtendedContextEditingInterface cxt = SetBuilder.makeContext(new int[][]{{1, 0, 0},
                                                                                  {0, 1, 1},
                                                                                  {0, 1, 1},

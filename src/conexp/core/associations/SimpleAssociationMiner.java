@@ -72,7 +72,7 @@ public class SimpleAssociationMiner extends BaseAssociationMiner {
      * Creation date: (09.06.01 20:33:31)
      * @param minSupport int
      */
-    public void selectDependenciesWithGreaterSupport(DependencySet ret, DependencySet implSet, int minSupport) {
+    public static void selectDependenciesWithGreaterSupport(DependencySet ret, DependencySet implSet, int minSupport) {
         for (int i = implSet.getSize(); --i >= 0;) {
             Dependency dep = implSet.getDependency(i);
             if (dep.getRuleSupport() >= minSupport) {

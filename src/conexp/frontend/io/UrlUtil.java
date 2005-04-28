@@ -15,9 +15,8 @@ import java.net.URL;
 public class UrlUtil {
     public static Reader getReaderForFileOrURL(boolean debug1, String inputNameOrURL) {
         Reader reader = null;
-        URL url = null;
         try {
-            url = new URL(inputNameOrURL);
+            URL url = new URL(inputNameOrURL);
             InputStream in = url.openStream();
             reader = new InputStreamReader(in);
             return reader;

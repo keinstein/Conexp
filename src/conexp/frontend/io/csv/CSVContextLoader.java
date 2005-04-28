@@ -19,127 +19,124 @@ import java.net.URL;
 
 /**
  * @author Julien Tane
- *
  */
 public class CSVContextLoader implements DocumentLoader {
 
-	private boolean debug= true;
+    private boolean debug = true;
 
-	private String separator = ";";
+    private String separator = ";";
 
-	/**
-	 * 
-	 */
-	public CSVContextLoader() {
-		super();
-	}
+    /**
+     *
+     */
+    public CSVContextLoader() {
+        super();
+    }
 
-	/**
-	* 
-	*/
-	public CSVContextLoader(String sep) {
-		super();
-	}
+    /**
+     *
+     */
+    public CSVContextLoader(String sep) {
+        super();
+    }
 
-	/* (non-Javadoc)
-	 * @see conexp.frontend.DocumentLoader#loadDocument(java.io.Reader, conexp.frontend.DataFormatErrorHandler)
-	 */
-	public ContextDocument loadDocument( Reader reader, DataFormatErrorHandler errorHandler)
-		throws IOException, DataFormatException {
-		CSVContextCreator cc = new CSVContextCreator(getSeparator());
+    /* (non-Javadoc)
+     * @see conexp.frontend.DocumentLoader#loadDocument(java.io.Reader, conexp.frontend.DataFormatErrorHandler)
+     */
+    public ContextDocument loadDocument(Reader reader, DataFormatErrorHandler errorHandler)
+            throws IOException, DataFormatException {
+        CSVContextCreator cc = new CSVContextCreator(getSeparator());
         Context context = cc.parseContext(reader);
-		ContextDocument contextDocument = new ContextDocument(context);
-		return contextDocument;
-	}
-	/**
-	 * returns the separator of this CSV reader
-	 *  default value is ";"
-	 * @return
-	 */
-	public String getSeparator() {
-		return separator;
-	}
+        ContextDocument contextDocument = new ContextDocument(context);
+        return contextDocument;
+    }
 
-	/**
-	 *  sets the separator of this CSV reader
-	 * @param string
-	 */
-	public void setSeparator(String string) {
-		separator = string;
-	}
+    /**
+     * returns the separator of this CSV reader
+     * default value is ";"
+     *
+     * @return
+     */
+    public String getSeparator() {
+        return separator;
+    }
 
-
-	public static void main(String[] args) {
-		CSVContextLoader csvcl = null;
-		if (args.length == 3)
-			csvcl = new CSVContextLoader(args[2]);
-		else
-			csvcl = new CSVContextLoader();
-			try {
-					
-				FileReader  fr = new FileReader(args[0]);
-					
-				ContextDocument contextDocument = csvcl.loadDocument((Reader) fr, new DataFormatErrorHandler() {
-					/* (non-Javadoc)
-						 * @see conexp.frontend.DataFormatErrorHandler#handleCriticalError(util.DataFormatException)
-						 */
-					public void handleCriticalError(DataFormatException ex)
-						throws DataFormatException {
-						// TODO Auto-generated method stub
-					}
-				
-					/* (non-Javadoc)
-					 * @see conexp.frontend.DataFormatErrorHandler#handleUncriticalError(util.DataFormatException)
-					 */
-					public void handleUncriticalError(DataFormatException ex)
-						throws DataFormatException {
-						// TODO Auto-generated method stub
-				
-					}
-				});
-				
-				(new ConExpXMLWriter()).storeDocument(
-								contextDocument, 
-								new FileWriter(args[2]));				
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (DataFormatException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+    /**
+     * sets the separator of this CSV reader
+     *
+     * @param string
+     */
+    public void setSeparator(String string) {
+        separator = string;
+    }
 
 
+    public static void main(String[] args) {
+        CSVContextLoader csvcl = null;
+        if (args.length == 3) {
+            csvcl = new CSVContextLoader(args[2]);
+        } else {
+            csvcl = new CSVContextLoader();
+        }
+        try {
+
+            FileReader fr = new FileReader(args[0]);
+
+            ContextDocument contextDocument = csvcl.loadDocument(fr, new DataFormatErrorHandler() {
+                /* (non-Javadoc)
+                     * @see conexp.frontend.DataFormatErrorHandler#handleCriticalError(util.DataFormatException)
+                     */
+                public void handleCriticalError(DataFormatException ex)
+                        throws DataFormatException {
+                    // TODO Auto-generated method stub
+                }
+
+                /* (non-Javadoc)
+                 * @see conexp.frontend.DataFormatErrorHandler#handleUncriticalError(util.DataFormatException)
+                 */
+                public void handleUncriticalError(DataFormatException ex)
+                        throws DataFormatException {
+                    // TODO Auto-generated method stub
+
+                }
+            });
+
+            (new ConExpXMLWriter()).storeDocument(contextDocument,
+                    new FileWriter(args[2]));
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (DataFormatException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
 
-	}
+    }
 
 
+    public Reader getReaderForFileOrURL(String inputnameOrURL) {
+        Reader reader = null;
+        try {
+            URL url = new URL(inputnameOrURL);
+            InputStream in = url.openStream();
+            reader = new InputStreamReader(in);
+            return reader;
+        } catch (MalformedURLException e) {
+            if (debug) System.out.println(inputnameOrURL + " is not an URL");
+        } catch (IOException e) {
+            System.out.println("an exception Occured while trying to read " + inputnameOrURL);
+        }
 
-	public Reader getReaderForFileOrURL(String inputnameOrURL){
-		Reader reader = null;
-		URL url = null;
-		
-		try {
-			url= new URL(inputnameOrURL);
-			InputStream in = url.openStream();		 
-			reader = new InputStreamReader(in);
-			return reader;
-		} catch (MalformedURLException e) {
-			if (debug)	System.out.println(inputnameOrURL+" is not an URL");
-		} catch (IOException e) {
-			System.out.println( "an exception Occured while trying to read "+ inputnameOrURL);
-		}
-		
-		try {
-				reader = new FileReader(inputnameOrURL);
-			} catch (FileNotFoundException e) {
-			if (debug)	System.out.println("File "+ e + " couldn't be opened");
-			}
-				
-	return reader;	
-	}
+        try {
+            reader = new FileReader(inputnameOrURL);
+        } catch (FileNotFoundException e) {
+            if (debug) System.out.println("File " + e + " couldn't be opened");
+        }
+
+        return reader;
+    }
 }

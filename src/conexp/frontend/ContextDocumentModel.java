@@ -80,9 +80,6 @@ public class ContextDocumentModel {
                     clearLattices();
                 }
 
-                public void contextReplaced(PropertyChangeEvent evt) {
-                    clearLattices();
-                }
             };
         }
         return latticeContextListener;

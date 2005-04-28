@@ -17,7 +17,7 @@ import junit.framework.TestCase;
 public class LatticeCanvasDrawStrategiesContextTest extends TestCase {
     DrawStrategiesContext drawStrategiesContext;
 
-    public void testMakeCopy() throws Exception {
+    public void testMakeCopy() {
 
         DrawStrategiesModelsFactory factory = new DefaultDrawStrategiesModelsFactory(BasicDrawParams.getInstance());
         drawStrategiesContext = new LatticeCanvasDrawStrategiesContext(factory, null);

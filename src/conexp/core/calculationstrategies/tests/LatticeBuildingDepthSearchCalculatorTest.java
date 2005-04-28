@@ -89,7 +89,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
         return makeLattice();
     }
 
-    protected Lattice makeLattice() {
+    protected static Lattice makeLattice() {
         return new Lattice();
     }
 

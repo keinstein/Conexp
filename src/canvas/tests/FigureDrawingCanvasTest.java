@@ -60,7 +60,7 @@ public class FigureDrawingCanvasTest extends TestCase {
                                                 "deactivate"}), tool.getCallsList());
     }
 
-    public void testFiringOfSelectionEvent() {
+    public static void testFiringOfSelectionEvent() {
         FigureDrawingCanvas canvas = new FigureDrawingCanvas();
         MockFigure one = new MockFigure(5, 5);
         MockFigure two = new MockFigure(20, 24);
@@ -79,7 +79,7 @@ public class FigureDrawingCanvasTest extends TestCase {
         mockListener.verify();
     }
 
-    public void testResizeOfCanvasOnZoomChange() {
+    public static void testResizeOfCanvasOnZoomChange() {
         FigureDrawingCanvas canvas = new FigureDrawingCanvas();
         MockFigure one = new MockFigure(5, 5);
         MockFigure two = new MockFigure(95, 45);

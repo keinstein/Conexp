@@ -226,12 +226,6 @@ public class ContextViewPanel extends ContextTablePane implements ViewChangeInte
         getActionChain().setParent(parentActionChain);
     }
 
-    Context getContext() {
-        return cxt;
-    }
-
-    //----------------------------------------------
-
     //----------------------------------------------
     //Config Provider
 
@@ -241,7 +235,7 @@ public class ContextViewPanel extends ContextTablePane implements ViewChangeInte
         resContextViewPanel = ResourceLoader.getResourceBundle("conexp/frontend/resources/ContextViewPanel");  //$NON-NLS-1$
     }
 
-    public ResourceBundle getResources() {
+    public static ResourceBundle getResources() {
         return ContextViewPanel.resContextViewPanel;
     }
 

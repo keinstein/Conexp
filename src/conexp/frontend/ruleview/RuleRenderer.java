@@ -37,9 +37,4 @@ public interface RuleRenderer {
     javax.swing.text.SimpleAttributeSet getBaseStyle();
 
 
-    /**
-     * Insert the method's description here.
-     * Creation date: (06.05.01 20:25:51)
-     */
-    void setFontParams(String family, int size);
 }

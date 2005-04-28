@@ -21,7 +21,7 @@ import junit.framework.TestSuite;
 public class NextClosedSetBuilderCallbackTest extends TestCase {
     private static final Class THIS = NextClosedSetBuilderCallbackTest.class;
 
-    public void testSmoke() {
+    public static void testSmoke() {
         NextClosedSetCalculator calc = new NextClosedSetCalculator();
         BinaryRelation rel = SetBuilder.makeRelation(new int[][]{{1, 0, 0}, {1, 1, 0}, {0, 0, 1}});
         calc.setRelation(rel);
@@ -55,7 +55,7 @@ public class NextClosedSetBuilderCallbackTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (12.07.01 16:49:28)
      */
-    protected NextClosedSetLatticeBuilderCallback prepareCallbackForRelation(int[][] rel) {
+    protected static NextClosedSetLatticeBuilderCallback prepareCallbackForRelation(int[][] rel) {
         Lattice lat = makeLatticeForRelationByNextClosedSet(rel);
 
         NextClosedSetLatticeBuilderCallback callback = new NextClosedSetLatticeBuilderCallback(lat);

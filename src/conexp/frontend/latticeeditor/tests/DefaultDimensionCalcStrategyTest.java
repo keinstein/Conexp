@@ -14,7 +14,7 @@ import util.testing.TestUtil;
 
 public abstract class DefaultDimensionCalcStrategyTest extends TestCase {
 
-    public void testEqualsAndHashCode() throws Exception {
+    public void testEqualsAndHashCode() {
         final DefaultDimensionCalcStrategy first = makeEqualInstance();
         final DefaultDimensionCalcStrategy second = makeEqualInstance();
         DefaultDimensionCalcStrategy third = makeNotEqualInstance();

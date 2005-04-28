@@ -15,9 +15,9 @@ public abstract class ContextEntityIterator implements Iterator {
 
     final ExtendedContextEditingInterface cxt;
     final Set entities;
-    int currEntity = Set.NOT_IN_SET;
+    private int currEntity = Set.NOT_IN_SET;
 
-    public ContextEntityIterator(ExtendedContextEditingInterface cxt, Set entities) {
+    ContextEntityIterator(ExtendedContextEditingInterface cxt, Set entities) {
         this.cxt = cxt;
         this.entities = entities;
         checkConsistency();

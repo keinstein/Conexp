@@ -78,7 +78,7 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
         }
         float maxZ = getConceptInfo(lattice.getOne()).coords.z;
 
-        return (float)(maxZ * maxZ > 4 * maxSq ? maxZ : 2 * (float) Math.sqrt(maxSq));
+        return (maxZ * maxZ > 4 * maxSq ? maxZ : 2 * (float) Math.sqrt(maxSq));
     }
 
 

@@ -53,7 +53,7 @@ public abstract class OneLabelConceptLabelingStrategy extends GenericLabelingStr
         f.removeDependend((Figure) obj);
     }
 
-    protected void removeConnectedObjectFromContainer(java.util.Collection foreground, AbstractConceptCorrespondingFigure f, Object obj) {
+    protected static void removeConnectedObjectFromContainer(java.util.Collection foreground, AbstractConceptCorrespondingFigure f, Object obj) {
         foreground.remove(obj);
         f.removeDependend((Figure) obj);
     }

@@ -83,10 +83,6 @@ public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplement
         return context.getAttribute(index).getName();
     }
 
-    public int hashCode() {
-        return super.hashCode();
-    }
-
     public boolean equals(Object other) {
         if (this == other){
             return true;

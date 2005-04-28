@@ -109,7 +109,7 @@ public abstract class GenericLabelingStrategy extends conexp.frontend.latticeedi
         return new ShutDownStrategyVisitor(drawing);
     }
 
-    protected Figure makeConnectedFigure(AbstractConceptCorrespondingFigure f, BorderCalculatingFigure tf) {
+    protected static Figure makeConnectedFigure(AbstractConceptCorrespondingFigure f, BorderCalculatingFigure tf) {
         NodeObjectConnectionFigure connector = new NodeObjectConnectionFigure(f, tf);
         CompositeFigureWithFigureDimensionCalcStrategyProvider cf = new CompositeFigureWithFigureDimensionCalcStrategyProvider();
         cf.addFigure(tf);

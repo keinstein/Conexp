@@ -43,7 +43,7 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
         assertEquals(true, drawing.hasLabelsForAttributes());
     }
 
-    public void testNeedUpdateCollision() throws Exception{
+    public void testNeedUpdateCollision() {
         assertFalse(drawing.hasNeedUpdateCollisions());
         final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1,0},
                                                                                  {0,1}});
@@ -97,7 +97,7 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
     }
 
 
-    public void testMakeCopy() throws Exception {
+    public void testMakeCopy() {
         LatticeDrawing other = drawing.makeSetupCopy();
         assertNotNull(other);
         assertNotSame(drawing, other);

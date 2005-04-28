@@ -13,7 +13,7 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class ToolbarComponentDecorator extends JPanel implements View, OptionPaneProvider {
+public class ToolbarComponentDecorator extends JPanel implements OptionPaneProvider {
 
     private ViewChangeInterfaceWithConfig inner;
 

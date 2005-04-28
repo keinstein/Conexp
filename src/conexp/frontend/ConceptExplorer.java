@@ -50,7 +50,7 @@ public class ConceptExplorer {
         frame.setVisible(true);
     }
 
-    private void setupLookAndFeel() {
+    private static void setupLookAndFeel() {
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (Exception exc) {
@@ -58,7 +58,7 @@ public class ConceptExplorer {
         }
     }
 
-    private void setupTracer() {
+    private static void setupTracer() {
         TraceController.setProperty("TraceBuffer_default", resConceptExplorer.getString("TraceBuffer_Level")); //$NON-NLS-2$//$NON-NLS-1$
         TraceController.setProperty("TraceLog_default", resConceptExplorer.getString("TraceLog_Level")); //$NON-NLS-2$//$NON-NLS-1$
         if ("on".equalsIgnoreCase(resConceptExplorer.getString("Trace"))) {

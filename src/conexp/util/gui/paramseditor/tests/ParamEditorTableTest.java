@@ -20,14 +20,14 @@ public class ParamEditorTableTest extends TestCase {
         return new TestSuite(THIS);
     }
 
-    public void testCellMapper() {
+    public static void testCellMapper() {
         ParamEditorTable table = new ParamEditorTable();
         assertNotNull(table.getCellEditorMapper());
         assertTrue(table.getCellEditorMapper() instanceof ParamsTableModel);
     }
 
 
-    public void testCanGetGoodTip() {
+    public static void testCanGetGoodTip() {
         assertEquals(false, ParamEditorTable.canGetGoodTip(null));
         assertEquals(false, ParamEditorTable.canGetGoodTip(new Object() {
             public String toString() {

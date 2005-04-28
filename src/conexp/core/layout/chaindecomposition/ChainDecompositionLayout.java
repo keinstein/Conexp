@@ -124,7 +124,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         propertyChangeListener = newPropertyChangeListener;
     }
 
-    protected void assignChainNumbersForEntities(int[] chains, BinaryRelation order, Set reducibles, Set endsOfEdgesOfMatching, int[] matching) {
+    protected static void assignChainNumbersForEntities(int[] chains, BinaryRelation order, Set reducibles, Set endsOfEdgesOfMatching, int[] matching) {
 
         for (int v = order.getRowCount(); --v >= 0;) {
             chains[v] = -1;
@@ -185,7 +185,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         assignCoordsToLattice();
     }
 
-    protected BinaryRelation calcOrderGraphOfIrreducibleEntities(BinaryRelation order, Set reducibles) {
+    protected static BinaryRelation calcOrderGraphOfIrreducibleEntities(BinaryRelation order, Set reducibles) {
         ModifiableBinaryRelation edges = order.makeModifiableCopy();
         //Here is calculated graph of order, in which removed edges between same vertices
         // (diagonal elements of order)

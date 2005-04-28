@@ -15,7 +15,7 @@ import conexp.core.tests.SetBuilder;
 import junit.framework.TestCase;
 
 public class AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunctionTest extends TestCase {
-    public void testEvaluationFunction() {
+    public static void testEvaluationFunction() {
         int[][] arrRelation = new int[][]{
             {1, 0, 0},
             {0, 1, 0},

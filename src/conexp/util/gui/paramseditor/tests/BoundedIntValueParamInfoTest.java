@@ -12,7 +12,7 @@ import junit.framework.TestCase;
 
 public class BoundedIntValueParamInfoTest extends TestCase {
 
-    public void testEditor() {
+    public static void testEditor() {
         BoundedIntValue val = new BoundedIntValue("test", 10, 0, 80);
         conexp.util.gui.paramseditor.BoundedIntValueParamInfo paramInf = new conexp.util.gui.paramseditor.BoundedIntValueParamInfo("testLabel", val);
 

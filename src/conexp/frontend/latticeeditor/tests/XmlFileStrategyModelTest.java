@@ -58,32 +58,32 @@ public class XmlFileStrategyModelTest extends TestCase {
     }
 
 
-    public void testLoadBadXmlModel() {
+    public static void testLoadBadXmlModel() {
         expectConfigurationError("conexp/frontend/resources/tests/xmlBadXmlTest.xml");
     }
 
 
-    public void testLoadEmptyModel() {
+    public static void testLoadEmptyModel() {
         expectConfigurationError("conexp/frontend/resources/tests/xmlEmptyModelTest.xml");
     }
 
 
-    public void testLoadModelWithBadClassNameModel() {
+    public static void testLoadModelWithBadClassNameModel() {
         expectClassCreationError("conexp/frontend/resources/tests/xmlConfigTest.xml");
     }
 
 
-    public void testLoadNoClassNameModel() {
+    public static void testLoadNoClassNameModel() {
         expectConfigurationError("conexp/frontend/resources/tests/xmlBadConfig2Test.xml");
     }
 
 
-    public void testLoadNoLabelModel() {
+    public static void testLoadNoLabelModel() {
         expectConfigurationError("conexp/frontend/resources/tests/xmlBadConfig1Test.xml");
     }
 
 
-    public void testLoadNonExistingModel() {
+    public static void testLoadNonExistingModel() {
         expectConfigurationError("conexp/frontend/resources/tests/xmlNotExists.xml");
     }
 
@@ -93,7 +93,7 @@ public class XmlFileStrategyModelTest extends TestCase {
         compareExpectedAndActualArrays(new String[][]{{"one", "test", "one.test"}, {"two", "test", "two.test"}}, model.getCreateInfo());
     }
 
-    public void testEquals(){
+    public static void testEquals(){
         XMLFileStrategyModel first = new XMLFileStrategyModel("conexp/frontend/resources/LayoutStrategyModel.xml", true);
         XMLFileStrategyModel second = new XMLFileStrategyModel("conexp/frontend/resources/LayoutStrategyModel.xml", true);
         TestUtil.testEqualsAndHashCode(first, second);

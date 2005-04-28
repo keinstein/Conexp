@@ -14,6 +14,8 @@ import conexp.frontend.ViewFactory;
 import javax.swing.*;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Collection;
+import java.util.Collections;
 
 
 public class ViewManager {
@@ -46,7 +48,7 @@ public class ViewManager {
     }
 
     public void activateView(String id) throws ViewManagerException {
-        if (!getViews().containsKey(id)) {
+        if (!getViewsMap().containsKey(id)) {
             addView(id);
         }
         doActivate(getView(id));
@@ -62,7 +64,7 @@ public class ViewManager {
         if (null == view) {
             throw new ViewManagerException("Factory can't create view of type " + type);
         }
-        getViews().put(name, view);
+        getViewsMap().put(name, view);
         view.initialUpdate();
         doAddView(view, getViewCaption(name));
     }
@@ -80,7 +82,11 @@ public class ViewManager {
     }
 
     public JComponent getView(String name) {
-        return (JComponent) getViews().get(name);
+        return (JComponent) getViewsMap().get(name);
+    }
+
+    public Collection getViews(){
+        return Collections.unmodifiableCollection(getViewsMap().values());
     }
 
 
@@ -92,7 +98,7 @@ public class ViewManager {
     }
 
 
-    protected java.util.Map getViews() {
+    protected java.util.Map getViewsMap() {
         if (null == views) {
             views = new HashMap();
         }
@@ -104,7 +110,7 @@ public class ViewManager {
         if (null != view) {
             doRemoveView(view);
         }
-        getViews().remove(name);
+        getViewsMap().remove(name);
     }
 
     public void removeViewChangeListener(ViewChangeListener listener) {

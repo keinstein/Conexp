@@ -154,7 +154,7 @@ public class ExperimentRunner {
      * Insert the method's description here.
      * Creation date: (14.07.01 7:48:44)
      */
-    protected void interrupt() {
+    protected static void interrupt() {
         System.exit(-1);
     }
 
@@ -327,7 +327,7 @@ public class ExperimentRunner {
         outStream.println();
     }
 
-    private Set findNamesOfCommonParamsOfExperiments(ExperimentSet experimentSet) {
+    private static Set findNamesOfCommonParamsOfExperiments(ExperimentSet experimentSet) {
         Set measuredParams = new HashSet();
         Set commonParams = new HashSet();
         for (int i = 0; i < experimentSet.experimentCount(); i++) {
@@ -422,7 +422,8 @@ public class ExperimentRunner {
         util.Assert.isTrue(relGen != null);
         protocol = new ArrayList();
         try {
-            for (int i = 0; i < relGen.getRelationCount(); i++) {
+            final int relationCount = relGen.getRelationCount();
+            for (int i = 0; i < relationCount; i++) {
                 performExperiment(relGen, i);
             }
         } catch (ExperimentException ex) {

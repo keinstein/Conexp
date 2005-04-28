@@ -20,10 +20,6 @@ import java.util.ResourceBundle;
 
 public class ResourcesToolbarDefinitionTest extends TestCase {
 
-    public static Test suite() {
-        return new TestSuite(ResourcesToolbarDefinitionTest.class);
-    }
-
     public static void testMenuDefinitionInResource(IResourceManager resources, ActionMap actionMap, boolean helpMenu) {
         ToolBuilder toolBuilder = new ToolBuilder(resources, actionMap) {
             //----------------------------------------------

@@ -8,7 +8,7 @@ import junit.framework.TestCase;
  */
 
 public class PercentFilledRelationGeneratorTest extends TestCase {
-    public void testCalcRelationSize() {
+    public static void testCalcRelationSize() {
         PercentFilledRelationGenerationStrategy seq = new PercentFilledRelationGenerationStrategy(5, 100, 20, 20, 20, 0.1);
         assertEquals(20, seq.calcRelationSizeY(0));
         assertEquals(20, seq.calcRelationSizeY(19));

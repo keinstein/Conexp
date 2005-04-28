@@ -49,7 +49,7 @@ public abstract class TextFigure extends BaseTextFigure {
 
     }
 
-    private FontMetrics getFontMetrics(Graphics g, CanvasScheme opt) {
+    private static FontMetrics getFontMetrics(Graphics g, CanvasScheme opt) {
         return opt.getLabelsFontMetrics(g);
     }
 

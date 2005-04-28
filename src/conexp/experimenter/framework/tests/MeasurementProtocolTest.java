@@ -30,7 +30,7 @@ public class MeasurementProtocolTest extends TestCase {
         return new TestSuite(THIS);
     }
 
-    public void testAddMeasurement() {
+    public static void testAddMeasurement() {
         MeasurementProtocol protocol = new MeasurementProtocol();
         protocol.addMeasurement(new MeasurementDescription("One", false));
         assertTrue(protocol.hasMeasurementWithName("One"));
@@ -55,7 +55,7 @@ public class MeasurementProtocolTest extends TestCase {
 
     }
 
-    private void checkProtocolForExpectedTypesOfMeasures(IMeasurementProtocol protocol, String[] allMeasuresNames, String[] verifiedMeasuresNames) {
+    private static void checkProtocolForExpectedTypesOfMeasures(IMeasurementProtocol protocol, String[] allMeasuresNames, String[] verifiedMeasuresNames) {
         ExpectationSet expectedValidatedMeasurements = makeExpectationSet("Expected validated measurements", verifiedMeasuresNames);
         fillExpectationSetWithMeasurementsNames(expectedValidatedMeasurements, protocol.validatingMeasurementIterator());
         expectedValidatedMeasurements.verify();
@@ -66,14 +66,14 @@ public class MeasurementProtocolTest extends TestCase {
         expectedAllMeasurementsNames.verify();
     }
 
-    private void fillExpectationSetWithMeasurementsNames(ExpectationSet expectedValidatedMeasurements, Iterator validatedMeasurementIter) {
+    private static void fillExpectationSetWithMeasurementsNames(ExpectationSet expectedValidatedMeasurements, Iterator validatedMeasurementIter) {
         while (validatedMeasurementIter.hasNext()) {
             IMeasurementDescription descriptor = (IMeasurementDescription) validatedMeasurementIter.next();
             expectedValidatedMeasurements.addActual(descriptor.getName());
         }
     }
 
-    private ExpectationSet makeExpectationSet(String expectationSetName, String[] validatedMeasurementsNames) {
+    private static ExpectationSet makeExpectationSet(String expectationSetName, String[] validatedMeasurementsNames) {
         ExpectationSet expectedValidatedMeasurements = new ExpectationSet(expectationSetName);
 
         for (int i = 0; i < validatedMeasurementsNames.length; i++) {
@@ -82,7 +82,7 @@ public class MeasurementProtocolTest extends TestCase {
         return expectedValidatedMeasurements;
     }
 
-    public void testBuildFromStrings() {
+    public static void testBuildFromStrings() {
         IMeasurementProtocol protocol = MeasurementProtocol.buildMeasurementProtocolFromStrings(new String[][]{
             {"One", "false"},
             {"Two", "true"},

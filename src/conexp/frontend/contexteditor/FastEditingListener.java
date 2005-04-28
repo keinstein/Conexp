@@ -41,11 +41,11 @@ class FastEditingListener implements ActionListener {
         }
     }
 
-    private int getFirstRelationRow() {
+    private static int getFirstRelationRow() {
         return 1;
     }
 
-    private int getFirstRelationColumn() {
+    private static int getFirstRelationColumn() {
         return 1;
     }
 }

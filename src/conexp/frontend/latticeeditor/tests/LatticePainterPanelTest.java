@@ -112,7 +112,7 @@ public class LatticePainterPanelTest extends TestCase {
         ResourcesToolbarDefinitionTest.testToolbarDefinitionInResources(pan.getResources(), pan.getActionChain());
     }
 
-    public void testCorrectWorkingOfOptionsChanges() {
+    public static void testCorrectWorkingOfOptionsChanges() {
         Context cxt = SetBuilder.makeContext(new int[][]{
             {1, 0, 0},
             {0, 1, 0},

@@ -17,7 +17,7 @@ import conexp.frontend.latticeeditor.queries.GenericNodeQuery;
 import junit.framework.TestCase;
 
 public class NestedDiagramNodeFigureTest extends TestCase {
-    public void testGetIntentQuery() {
+    public static void testGetIntentQuery() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
                                                          {1, 0, 1},
                                                          {1, 1, 0}});

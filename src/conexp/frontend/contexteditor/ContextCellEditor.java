@@ -52,6 +52,7 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
         }
 
         public void cancelCellEditing() {
+            /*No op handler for overloading*/
         }
 
         // Implementing ActionListener interface
@@ -229,11 +230,6 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
             }
         }
 
-        // Implementing ActionListener interface
-        public void actionPerformed(ActionEvent e) {
-            super.actionPerformed(e);
-        }
-
         public boolean startCellEditing(EventObject anEvent) {
             if (anEvent instanceof AWTEvent) {
                 fireEditingStopped();
@@ -259,10 +255,6 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
             }
             super.setValue(v);
 
-        }
-
-        public boolean startCellEditing(EventObject anEvent) {
-            return super.startCellEditing(anEvent);
         }
 
         public boolean stopCellEditing() {

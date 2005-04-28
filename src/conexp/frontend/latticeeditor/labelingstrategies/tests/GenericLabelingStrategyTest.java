@@ -20,7 +20,6 @@ import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import junit.framework.TestCase;
 
 import java.awt.*;
-import java.awt.geom.Dimension2D;
 
 
 public abstract class GenericLabelingStrategyTest extends TestCase {
@@ -106,7 +105,7 @@ public abstract class GenericLabelingStrategyTest extends TestCase {
         assertEquals("Strategy should'nt have connected objects after clean up", false, labelStrategy.hasConnectedObjects());
     }
 
-    protected LatticePainterDrawParams makeDrawParams() {
+    protected static LatticePainterDrawParams makeDrawParams() {
         return new LatticePainterDrawParams();
     }
 }

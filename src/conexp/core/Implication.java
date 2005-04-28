@@ -68,11 +68,4 @@ public class Implication extends GenericDependency implements Cloneable {
         return premise;
     }
 
-    /**
-     *  explicit hashCode declaration
-     * @return
-     */
-    public int hashCode() {
-        return super.hashCode();
-    }
 }

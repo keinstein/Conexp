@@ -63,7 +63,7 @@ public class EntityMaskTableModel extends AbstractTableModel {
         }
     }
 
-    private boolean isNamesColumn(int columnIndex) {
+    private static boolean isNamesColumn(int columnIndex) {
         return 0 == columnIndex;
     }
 

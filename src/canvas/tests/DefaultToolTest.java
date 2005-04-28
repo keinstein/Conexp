@@ -77,7 +77,7 @@ public class DefaultToolTest extends TestCase {
         mockListener.verify();
     }
 
-    private Tool makeTool() {
+    private static Tool makeTool() {
         return new DefaultTool();
     }
 }

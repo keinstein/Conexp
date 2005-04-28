@@ -47,7 +47,7 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
         this(BasicDrawParams.getInstance());
     }
 
-    protected DrawStrategiesModelsFactory makeDrawStrategiesFactory(DrawParameters drawParams) {
+    protected static DrawStrategiesModelsFactory makeDrawStrategiesFactory(DrawParameters drawParams) {
         return new conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory(drawParams);
     }
 
