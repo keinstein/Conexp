@@ -13,6 +13,8 @@ import conexp.core.layout.Layouter;
 
 import java.beans.PropertyChangeListener;
 
+import com.visibleworkings.trace.Trace;
+
 class LayoutImproveThread extends Thread {
     protected LayoutCommandQueue inputQueue;
     protected PropertyChangeListener layoutListener;
@@ -36,7 +38,7 @@ class LayoutImproveThread extends Thread {
     }
 
     protected void doRealLayout() throws InterruptedException {
-        com.visibleworkings.trace.Trace.gui.debugm("inside do real layout");
+        Trace.gui.debugm("inside do real layout");
         if (!currentLayouter.isIncremental()) {
             currentLayouter.performLayout();
         } else {
@@ -54,9 +56,9 @@ class LayoutImproveThread extends Thread {
     public void run() {
         try {
             for (; ;) {
-                com.visibleworkings.trace.Trace.gui.debugm("waiting for layout command");
+                Trace.gui.debugm("waiting for layout command");
                 LayoutEvent evt = inputQueue.take();
-                com.visibleworkings.trace.Trace.gui.debugm("start processing layout command");
+                Trace.gui.debugm("start processing layout command");
                 switch (evt.command) {
                     case LayoutEvent.START_LAYOUT:
                         setCurrentLayouter(evt.layouter);

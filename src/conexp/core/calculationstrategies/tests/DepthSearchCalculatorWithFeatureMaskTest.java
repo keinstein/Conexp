@@ -9,6 +9,7 @@ package conexp.core.calculationstrategies.tests;
 
 import conexp.core.ContextFactoryRegistry;
 import conexp.core.ModifiableSet;
+import conexp.core.ConceptCalcStrategy;
 import conexp.core.calculationstrategies.DepthSearchCalculatorWithFeatureMask;
 import conexp.core.searchconstraints.MinSupportConstrainer;
 import conexp.core.tests.SetBuilder;
@@ -16,13 +17,13 @@ import conexp.core.tests.SetBuilder;
 
 public class DepthSearchCalculatorWithFeatureMaskTest extends EnumerativeCalcStrategyTest {
 
-    protected conexp.core.ConceptCalcStrategy makeCalcStrategy() {
+    protected ConceptCalcStrategy makeCalcStrategy() {
         return new DepthSearchCalculatorWithFeatureMask();
     }
 
 
     protected DepthSearchCalculatorWithFeatureMask getRealStrategy() {
-        return ((DepthSearchCalculatorWithFeatureMask) calcStrategy);
+        return (DepthSearchCalculatorWithFeatureMask) calcStrategy;
     }
 
     private void doTestCalcStrategyWithFeatureMask(int[][] context, int[] featureMask, int[][] expOutputIntent, final int[][] expOutputExtents, final int expectedEdgeCount) {

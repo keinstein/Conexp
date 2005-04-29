@@ -7,6 +7,8 @@
 
 package conexp.frontend.latticeeditor;
 
+import conexp.core.ConceptsCollection;
+
 
 public abstract class AbstractDimensionCalcStrategy implements DimensionCalcStrategy {
     public AbstractDimensionCalcStrategy() {
@@ -17,6 +19,6 @@ public abstract class AbstractDimensionCalcStrategy implements DimensionCalcStra
     }
 
 
-    public void setConceptSet(conexp.core.ConceptsCollection conceptSet) {
+    public void setConceptSet(ConceptsCollection conceptSet) {
     }
 }

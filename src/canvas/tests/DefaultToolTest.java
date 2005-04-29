@@ -10,6 +10,7 @@ package canvas.tests;
 import canvas.DefaultTool;
 import canvas.Tool;
 import canvas.ToolEvent;
+import canvas.DefaultToolListener;
 import com.mockobjects.ExpectationList;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -21,7 +22,7 @@ public class DefaultToolTest extends TestCase {
         return new TestSuite(DefaultToolTest.class);
     }
 
-    static class MockToolListener extends canvas.DefaultToolListener {
+    static class MockToolListener extends DefaultToolListener {
         ExpectationList expList;
 
         public MockToolListener() {
@@ -32,11 +33,11 @@ public class DefaultToolTest extends TestCase {
             expList = new ExpectationList("Expected events");
         }
 
-        public void toolStateChanged(canvas.ToolEvent toolEvent) {
+        public void toolStateChanged(ToolEvent toolEvent) {
             expList.addActual(toolEvent);
         }
 
-        public void addExpectedEvent(canvas.ToolEvent toolEvent) {
+        public void addExpectedEvent(ToolEvent toolEvent) {
             expList.addExpected(toolEvent);
         }
 
@@ -46,7 +47,7 @@ public class DefaultToolTest extends TestCase {
         }
     }
 
-    public void testFiringOfEventsOnActivate() {
+    public static void testFiringOfEventsOnActivate() {
         Tool tool = makeTool();
         MockToolListener mockListener = new MockToolListener();
         tool.addToolListener(mockListener);
@@ -61,7 +62,7 @@ public class DefaultToolTest extends TestCase {
         mockListener.verify();
     }
 
-    public void testFiringOfEventsOnEnabledChange() {
+    public static void testFiringOfEventsOnEnabledChange() {
         Tool tool = makeTool();
         MockToolListener mockListener = new MockToolListener();
         tool.addToolListener(mockListener);

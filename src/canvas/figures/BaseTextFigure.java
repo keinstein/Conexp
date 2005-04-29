@@ -10,6 +10,7 @@ package canvas.figures;
 
 import canvas.CanvasScheme;
 import canvas.IHighlightStrategy;
+import canvas.CanvasColorScheme;
 
 import java.awt.*;
 
@@ -30,7 +31,7 @@ public abstract class BaseTextFigure extends RectangularFigure {
 
     protected Color getBorderColor(CanvasScheme opt) {
         IHighlightStrategy highlightStrategy = opt.getHighlightStrategy();
-        canvas.CanvasColorScheme colorScheme = opt.getColorScheme();
+        CanvasColorScheme colorScheme = opt.getColorScheme();
         return colorTransformer.getColor(colorScheme.getHighlightColor(), colorScheme.getEdgeColor(),
                 shouldHighlight(highlightStrategy), highlightStrategy.isActive());
     }

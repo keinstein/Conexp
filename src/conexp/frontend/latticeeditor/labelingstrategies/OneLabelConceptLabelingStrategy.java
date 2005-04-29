@@ -3,9 +3,12 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 import canvas.Figure;
 import canvas.figures.BorderCalculatingFigure;
 import conexp.core.LatticeElement;
+import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
+
+import java.util.Collection;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
@@ -16,13 +19,13 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
  */
 
 public abstract class OneLabelConceptLabelingStrategy extends GenericLabelingStrategy {
-    protected conexp.core.ExtendedContextEditingInterface cxt;
+    protected ExtendedContextEditingInterface cxt;
 
     public OneLabelConceptLabelingStrategy() {
         super();
     }
 
-    public void setContext(conexp.core.ExtendedContextEditingInterface cxt) {
+    public void setContext(ExtendedContextEditingInterface cxt) {
         this.cxt = cxt;
     }
 
@@ -53,7 +56,7 @@ public abstract class OneLabelConceptLabelingStrategy extends GenericLabelingStr
         f.removeDependend((Figure) obj);
     }
 
-    protected static void removeConnectedObjectFromContainer(java.util.Collection foreground, AbstractConceptCorrespondingFigure f, Object obj) {
+    protected static void removeConnectedObjectFromContainer(Collection foreground, AbstractConceptCorrespondingFigure f, Object obj) {
         foreground.remove(obj);
         f.removeDependend((Figure) obj);
     }

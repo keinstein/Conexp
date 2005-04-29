@@ -10,24 +10,25 @@ import conexp.frontend.io.*;
 import util.DataFormatException;
 
 import java.io.*;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
 
 public class ObjectListContextCreator implements ContextCreator, DocumentLoader, ContextReader {
     boolean debug = false;
-    Hashtable attributes = null;
-    Hashtable objects = null;
+    Map attributes = null;
+    Map objects = null;
 
     public String COMMENTS = "%";
 
 
     public ObjectListContextCreator() {
-        attributes = new Hashtable();
-        objects = new Hashtable();
+        attributes = new HashMap();
+        objects = new HashMap();
     }
 
-    public Context createContextfromReader(Reader reader, DataFormatErrorHandler errorhandler) {
+    public Context createContextFromReader(Reader reader, DataFormatErrorHandler errorhandler) {
         try {
             Exception e;
             try {
@@ -63,7 +64,7 @@ public class ObjectListContextCreator implements ContextCreator, DocumentLoader,
         while ((input = bufferedReader.readLine()) != null) {
 
             input = input.trim();
-            if ((input.equals("")) || (input.startsWith(COMMENTS))) {
+            if ("".equals(input) || input.startsWith(COMMENTS)) {
                 continue;
             }
             StringTokenizer tokenizer = new StringTokenizer(input, OBJECT_SEPARATOR, false);
@@ -141,11 +142,10 @@ public class ObjectListContextCreator implements ContextCreator, DocumentLoader,
     public Context createContext(Object obj) {
 
         try {
-
             if (obj instanceof Reader) {
-                return createContextfromReader((Reader) obj, DefaultDataFormatErrorHandler.getInstance());
+                return createContextFromReader((Reader) obj, DefaultDataFormatErrorHandler.getInstance());
             }
-            return createContext(new FileReader((String) obj));
+            return createContextFromReader(new FileReader((String) obj), DefaultDataFormatErrorHandler.getInstance());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

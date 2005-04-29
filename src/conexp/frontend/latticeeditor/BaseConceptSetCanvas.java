@@ -13,11 +13,13 @@ import conexp.frontend.latticeeditor.movestrategies.FigureIdealMoveStrategy;
 import conexp.frontend.latticeeditor.movestrategies.OneFigureMoveStrategy;
 
 import javax.swing.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public class BaseConceptSetCanvas extends LatticeCanvas {
 
-    class LatticePainterGenericEventHandler implements java.beans.PropertyChangeListener {
-        public void propertyChange(java.beans.PropertyChangeEvent evt) {
+    class LatticePainterGenericEventHandler implements PropertyChangeListener {
+        public void propertyChange(PropertyChangeEvent evt) {
             if (evt.getSource() == getPainterOptions()) {
                 Trace.gui.eventm("Get message for lattice painter", evt.getPropertyName());
                 String propertyName = evt.getPropertyName();
@@ -35,7 +37,7 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
                 }
             }
         }
-    };
+    }
 
 
     public BaseConceptSetCanvas(LatticeCanvasScheme latticeCanvasScheme) {

@@ -18,7 +18,7 @@ public class EntityMaskTable extends JTable {
         setRowSelectionAllowed(false);
         setColumnSelectionAllowed(false);
         getTableHeader().setReorderingAllowed(false);
-        setBackground(javax.swing.UIManager.getColor("control"));
+        setBackground(UIManager.getColor("control"));
     }
 
     protected EntityMaskTableModel getAttributeMaskTableModel() {

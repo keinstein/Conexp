@@ -26,7 +26,7 @@ public class NextClosedSetBuilderCallbackTest extends TestCase {
         BinaryRelation rel = SetBuilder.makeRelation(new int[][]{{1, 0, 0}, {1, 1, 0}, {0, 0, 1}});
         calc.setRelation(rel);
         Lattice lat = new Lattice();
-        calc.setCallback(new conexp.core.enumcallbacks.NextClosedSetLatticeBuilderCallback(lat));
+        calc.setCallback(new NextClosedSetLatticeBuilderCallback(lat));
         calc.calculateConceptSet();
         assertEquals(2, lat.getOne().getPredCount());
         assertEquals(2, lat.getZero().getSuccCount());

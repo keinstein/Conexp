@@ -9,6 +9,7 @@
 package conexp.frontend.latticeeditor;
 
 import canvas.Figure;
+import canvas.FigureDrawing;
 import canvas.figures.FigureWithCoords;
 import canvas.figures.FigureWithCoordsMap;
 import canvas.figures.IFigureWithCoords;
@@ -19,12 +20,15 @@ import conexp.core.ItemSet;
 import conexp.core.Lattice;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.LineDiagramFigure;
+import conexp.frontend.latticeeditor.drawstrategies.DefaultLabelingStrategiesFactory;
 import conexp.util.gui.paramseditor.ParamInfo;
 
 import java.awt.*;
 import java.awt.geom.Dimension2D;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
-public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
+public abstract class ConceptSetDrawing extends FigureDrawing {
     FigureDimensionCalcStrategyProvider figureDimensionProvider = new FigureDimensionCalcStretegyProviderImplementation();
     LatticeDrawingOptions latticeDrawingOptions;
 
@@ -54,7 +58,7 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
 
 
     private static LabelingStrategyModelFactory makeDrawStrategiesFactory() {
-        return new conexp.frontend.latticeeditor.drawstrategies.DefaultLabelingStrategiesFactory();
+        return new DefaultLabelingStrategiesFactory();
     }
 
     private LabelingStrategiesContextImpl labelingStrategiesContext;
@@ -90,12 +94,12 @@ public abstract class ConceptSetDrawing extends canvas.FigureDrawing {
         getLabelingStrategiesContextImpl().doStorePreferences();
     }
 
-    class LabelingStrategiesEventHandler implements java.beans.PropertyChangeListener {
-        public void propertyChange(java.beans.PropertyChangeEvent evt) {
+    class LabelingStrategiesEventHandler implements PropertyChangeListener {
+        public void propertyChange(PropertyChangeEvent evt) {
             String propertyName = evt.getPropertyName();
             Trace.gui.eventm("Get message for lattice conceptSetDrawing labelingStrategy", evt.getPropertyName());
-            if (propertyName.equals("drawAttribs") ||
-                    propertyName.equals("drawObjects")) {
+            if ("drawAttribs".equals(propertyName) ||
+                    "drawObjects".equals(propertyName)) {
                 changeLabelingStrategy((ILabelingStrategy) evt.getOldValue(), (ILabelingStrategy) evt.getNewValue());
             }
         }

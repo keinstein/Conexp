@@ -9,10 +9,10 @@
 package conexp.frontend;
 
 public interface LatticeCalculator {
-    final static String LATTICE_DRAWING_CHANGED = "LATTICE_DRAWING_CHANGED";
-    final static String LATTICE_CLEARED = "LATTICE_CLEARED";
+    String LATTICE_DRAWING_CHANGED = "LATTICE_DRAWING_CHANGED";
+    String LATTICE_CLEARED = "LATTICE_CLEARED";
 
-    public void clearLattice();
+    void clearLattice();
 
-    public void calculateLattice();
+    void calculateLattice();
 }

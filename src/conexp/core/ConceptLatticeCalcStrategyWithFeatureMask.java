@@ -9,5 +9,5 @@
 package conexp.core;
 
 public interface ConceptLatticeCalcStrategyWithFeatureMask extends ConceptCalcStrategy, LatticeCalcStrategy {
-    public void setFeatureMasks(Set attributesMask, Set objectsMask);
+    void setFeatureMasks(Set attributesMask, Set objectsMask);
 }

@@ -10,5 +10,5 @@ package conexp.core;
 
 
 public interface SearchConstraint {
-    public boolean continueSearch(Set intent, int objectCount);
+    boolean continueSearch(Set intent, int objectCount);
 }

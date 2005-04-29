@@ -9,9 +9,11 @@ package conexp.frontend.contexteditor;
 
 import conexp.core.ContextEditingInterface;
 
+import javax.swing.*;
+
 
 public class SimpleContextDrawStrategy implements ContextRenderStrategy {
-    public javax.swing.Icon getRelationIcon(ContextEditingInterface cxt, int row, int col) {
+    public Icon getRelationIcon(ContextEditingInterface cxt, int row, int col) {
         if (cxt.getRelationAt(row - 1, col - 1)) {
             return CrossIcon.getCross();
         }

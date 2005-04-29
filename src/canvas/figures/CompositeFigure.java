@@ -87,9 +87,7 @@ public class CompositeFigure extends AbstractFigure {
     }
 
     public void boundingBox(Rectangle2D rect) {
-        BoundsBlock b = new BoundsBlock();
-        b.init(rect);
-        forEach(b);
+        forEach(new BoundsBlock(rect));
     }
 
     public boolean contains(double x, double y) {

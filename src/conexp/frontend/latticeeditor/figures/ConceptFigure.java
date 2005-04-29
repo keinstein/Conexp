@@ -9,6 +9,7 @@ package conexp.frontend.latticeeditor.figures;
 
 import canvas.IHighlightStrategy;
 import canvas.Selectable;
+import canvas.CanvasColorScheme;
 import canvas.figures.FigureUtils;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.frontend.latticeeditor.ConceptQuery;
@@ -62,7 +63,7 @@ public class ConceptFigure extends ConceptCorrespondingFigure implements Selecta
 
     protected void drawInterior(Graphics2D g2D, LatticeCanvasScheme opt) {
         double nodeRadius = opt.getDrawStrategiesContext().getFigureDimensionCalcStrategy().calcNodeRadius(getConceptQuery());
-        canvas.CanvasColorScheme colorScheme = opt.getColorScheme();
+        CanvasColorScheme colorScheme = opt.getColorScheme();
         IHighlightStrategy highlightStrategy = opt.getHighlightStrategy();
         g2D.setColor(transformColor(highlightStrategy, colorScheme.getNodeFillColor()));
         Arc2D arc = new Arc2D.Double(getCenterX() - nodeRadius, getCenterY() - nodeRadius, nodeRadius * 2, nodeRadius * 2, 0, 180, Arc2D.CHORD);

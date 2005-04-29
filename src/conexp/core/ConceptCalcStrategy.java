@@ -9,7 +9,7 @@ package conexp.core;
 
 
 public interface ConceptCalcStrategy extends BinaryRelationProcessor {
-    public void setCallback(ConceptEnumCallback _callback);
+    void setCallback(ConceptEnumCallback _callback);
 
-    public void calculateConceptSet();
+    void calculateConceptSet();
 }

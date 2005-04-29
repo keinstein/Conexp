@@ -7,6 +7,7 @@ import conexp.core.layout.ILayerAssignmentFunction;
 import conexp.core.layout.NonIncrementalLayouter;
 import conexp.core.utils.MinimumPartialOrderedElementsCollection;
 import conexp.util.gui.paramseditor.ParamInfo;
+import conexp.util.gui.paramseditor.ButtonParamInfo;
 import util.collection.CollectionFactory;
 
 import java.awt.event.ActionEvent;
@@ -267,12 +268,12 @@ public class LayeredLayoter extends NonIncrementalLayouter {
 
     protected ParamInfo[] makeParams() {
         return new ParamInfo[]{
-            new conexp.util.gui.paramseditor.ButtonParamInfo("Next layout", ">>", new ActionListener() {
+            new ButtonParamInfo("Next layout", ">>", new ActionListener() {
                 public void actionPerformed(ActionEvent ev) {
                     selectNextLayout();
                 }
             }),
-            new conexp.util.gui.paramseditor.ButtonParamInfo("Prev layout", "<<", new ActionListener() {
+            new ButtonParamInfo("Prev layout", "<<", new ActionListener() {
                 public void actionPerformed(ActionEvent ev) {
                     selectPrevLayout();
                 }

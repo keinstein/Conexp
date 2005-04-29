@@ -12,15 +12,17 @@ import conexp.core.ContextEditingInterfaceWithArrowRelations;
 
 import javax.swing.*;
 
+import util.Assert;
+
 public class ArrowRelDrawStrategy extends SimpleContextDrawStrategy {
     final static Class THIS = ArrowRelDrawStrategy.class;
     final static Icon doubleArrow = new ImageIcon(THIS.getResource("doubleArrow.gif"));
     final static Icon upArrow = new ImageIcon(THIS.getResource("upArrow.gif"));
     final static Icon downArrow = new ImageIcon(THIS.getResource("downArrow.gif"));
 
-    public javax.swing.Icon getRelationIcon(ContextEditingInterface cxt, int row, int col) {
-        util.Assert.isTrue(row > 0);
-        util.Assert.isTrue(col > 0);
+    public Icon getRelationIcon(ContextEditingInterface cxt, int row, int col) {
+        Assert.isTrue(row > 0);
+        Assert.isTrue(col > 0);
         if (!(cxt instanceof ContextEditingInterfaceWithArrowRelations)) {
             return super.getRelationIcon(cxt, row, col);
         }

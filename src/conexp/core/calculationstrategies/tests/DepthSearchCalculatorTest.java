@@ -8,11 +8,12 @@
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.calculationstrategies.DepthSearchCalculator;
+import conexp.core.ConceptCalcStrategy;
 
 
 public class DepthSearchCalculatorTest extends EnumerativeCalcStrategyTest {
 
-    protected conexp.core.ConceptCalcStrategy makeCalcStrategy() {
+    protected ConceptCalcStrategy makeCalcStrategy() {
         return new DepthSearchCalculator();
     }
 

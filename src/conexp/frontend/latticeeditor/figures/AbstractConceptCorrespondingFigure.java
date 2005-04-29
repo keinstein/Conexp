@@ -60,7 +60,7 @@ public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDia
 
         Iterator it = dependendFigures();
         while (it.hasNext()) {
-            canvas.Figure f = (canvas.Figure) it.next();
+            Figure f = (Figure) it.next();
             f.moveBy(dx, dy);
         }
     }
@@ -79,7 +79,7 @@ public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDia
     }
 
     protected Color getNodeBorderColor(CanvasScheme opt) {
-        canvas.CanvasColorScheme colorScheme = opt.getColorScheme();
+        CanvasColorScheme colorScheme = opt.getColorScheme();
         if(hasCollision()){
             return colorScheme.getCollisionColor();
         }
@@ -104,7 +104,7 @@ public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDia
         return ColorUtil.fadeOut(color);
     }
 
-    public void draw(Graphics g, canvas.CanvasScheme opt) {
+    public void draw(Graphics g, CanvasScheme opt) {
         Graphics2D g2D = (Graphics2D) g;
         LatticeCanvasScheme latticeCanvasSchema = (LatticeCanvasScheme) opt;
         drawBackground(g2D, latticeCanvasSchema);

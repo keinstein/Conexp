@@ -30,8 +30,8 @@ public class AnnealerForceDirectStrategy implements ForceDirectStrategy {
         LatticeElement from = e.getStart();
         LatticeElement to = e.getEnd();
         double k = fdParams.k();
-        double pullto = (distance / to.degree()) * (distance / to.degree()) / k;
-        double pullfrom = (distance / from.degree()) * (distance / from.degree()) / k;
+        double pullto = distance / to.degree() * (distance / to.degree()) / k;
+        double pullfrom = distance / from.degree() * (distance / from.degree()) / k;
         forceFactors[0] = -Math.max(pullfrom, 1.0) / distance * fa(distance); //from
         forceFactors[1] = -Math.max(pullto, 1.0) / distance * fa(distance); //to
     }

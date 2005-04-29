@@ -5,6 +5,7 @@ import util.gui.fileselector.ExtensionFileFilter;
 import util.gui.fileselector.FileSelectorService;
 import util.collection.CollectionFactory;
 import util.IExporter;
+import util.ServiceRegistry;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,7 +54,7 @@ public abstract class SaveImageActionBase extends AbstractAction {
     }
 
     public void actionPerformed(ActionEvent e) {
-        FileSelectorService fileSelector = util.ServiceRegistry.fileSelectorService();
+        FileSelectorService fileSelector = ServiceRegistry.fileSelectorService();
         try {
             if (fileSelector
                     .performSaveService(

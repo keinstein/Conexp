@@ -17,6 +17,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class ContrExampleInputDialog extends JDialog {
     LocalizedMessageSupplier localizedMessageSupplier;
@@ -48,14 +50,14 @@ public class ContrExampleInputDialog extends JDialog {
         JPanel inputPanel = new JPanel();
         JPanel tablePlaceHolder = new JPanel();
 
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent evt) {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
                 setRetCodeAndCloseDialog(AttributeExplorerImplementation.AttributeExplorerUserCallback.ACCEPT_IMPLICATION);
             }
         });
 
 
-        inputPanel.setLayout(new java.awt.GridLayout(1, 0));
+        inputPanel.setLayout(new GridLayout(1, 0));
 
         tmp = FCAEngineRegistry.makeContext(1, 1);
 
@@ -70,7 +72,7 @@ public class ContrExampleInputDialog extends JDialog {
         inputPanel.setMinimumSize(new Dimension(width, 100));
         inputPanel.setPreferredSize(new Dimension(width, 100));
 
-        getContentPane().add(inputPanel, java.awt.BorderLayout.CENTER);
+        getContentPane().add(inputPanel, BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel();
 
@@ -93,7 +95,7 @@ public class ContrExampleInputDialog extends JDialog {
         });
         buttonPanel.add(acceptButton);
 
-        JButton stopButton = new javax.swing.JButton();
+        JButton stopButton = new JButton();
         stopButton.setText(getLocalizedMessage("CounterExampleQuery.StopAttributeExplorationLabel"));
         stopButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -106,7 +108,7 @@ public class ContrExampleInputDialog extends JDialog {
         buttonPanel.setPreferredSize(new Dimension(width, buttonPanelHeight));
         buttonPanel.setMinimumSize(new Dimension(width, buttonPanelHeight));
 
-        getContentPane().add(buttonPanel, java.awt.BorderLayout.SOUTH);
+        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
 
     }
 
@@ -173,7 +175,6 @@ public class ContrExampleInputDialog extends JDialog {
                 return null;
             }
         }
-        ;
 
 
         setLocationRelativeTo(getOwner());

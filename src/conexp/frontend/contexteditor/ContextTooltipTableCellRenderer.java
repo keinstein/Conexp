@@ -10,12 +10,18 @@ package conexp.frontend.contexteditor;
 import conexp.core.ContextEditingInterface;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
+import conexp.util.gui.paramseditor.StrategyValueItemParamInfo;
 import conexp.util.gui.strategymodel.StrategyValueItem;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
 
-public class ContextTooltipTableCellRenderer extends util.gui.celleditors.MyDefaultCellRenderer implements ParamsProvider {
+import util.Assert;
+import util.gui.celleditors.MyDefaultCellRenderer;
+
+import java.beans.PropertyChangeListener;
+
+public class ContextTooltipTableCellRenderer extends MyDefaultCellRenderer implements ParamsProvider {
 
 
     protected StrategyValueItem drawStrategy;
@@ -45,7 +51,7 @@ public class ContextTooltipTableCellRenderer extends util.gui.celleditors.MyDefa
         setToolTipText(msg);
     }
 
-    protected void doSetupValue(javax.swing.JTable table, Object value, int row, int col) {
+    protected void doSetupValue(JTable table, Object value, int row, int col) {
         TableModel model = table.getModel();
 
         Icon icon = null;
@@ -78,7 +84,7 @@ public class ContextTooltipTableCellRenderer extends util.gui.celleditors.MyDefa
      * Creation date: (22.04.01 21:56:23)
      * @param lst java.beans.PropertyChangeListener
      */
-    public void addRenderingChangeListener(java.beans.PropertyChangeListener lst) {
+    public void addRenderingChangeListener(PropertyChangeListener lst) {
         getDrawStrategy().getPropertyChange().addPropertyChangeListener(lst);
     }
 
@@ -113,7 +119,7 @@ public class ContextTooltipTableCellRenderer extends util.gui.celleditors.MyDefa
     public ParamInfo[] getParams() {
         if (null == params) {
             params = new ParamInfo[]{
-                new conexp.util.gui.paramseditor.StrategyValueItemParamInfo("Show arrow relation", getDrawStrategy())
+                new StrategyValueItemParamInfo("Show arrow relation", getDrawStrategy())
             };
         }
         return params;
@@ -125,8 +131,8 @@ public class ContextTooltipTableCellRenderer extends util.gui.celleditors.MyDefa
      * Creation date: (22.04.01 21:09:13)
      */
     protected Icon getRelationIcon(ContextEditingInterface cxt, int row, int col) {
-        util.Assert.isTrue(row > 0);
-        util.Assert.isTrue(col > 0);
+        Assert.isTrue(row > 0);
+        Assert.isTrue(col > 0);
         return getContextRenderStrategy().getRelationIcon(cxt, row, col);
     }
 }

@@ -7,13 +7,15 @@
 
 package conexp.core;
 
+import util.Assert;
+
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.EventObject;
 
 
 public class ContextListenerSupport {
-    private transient java.util.ArrayList listeners;
+    private transient ArrayList listeners;
     private final ExtendedContextEditingInterface cxt;
 
     public ContextListenerSupport(ExtendedContextEditingInterface cxt) {
@@ -59,9 +61,9 @@ public class ContextListenerSupport {
         if (null == listeners) {
             return;
         }
-        java.util.ArrayList targets;
+        ArrayList targets;
         synchronized (this) {
-            targets = (java.util.ArrayList) listeners.clone();
+            targets = (ArrayList) listeners.clone();
         }
         binder.fireEventForCollection(targets);
     }
@@ -87,7 +89,7 @@ public class ContextListenerSupport {
     public void realisePostponedStructureChange() {
         if (structureChangePostponed) {
             fireContextStructureChanged();
-            util.Assert.isTrue(structureChangePostponed == false);
+            Assert.isTrue(!structureChangePostponed);
         }
     }
 
@@ -124,7 +126,7 @@ public class ContextListenerSupport {
 
     public void fireObjectNameChanged(final PropertyChangeEvent changeEvt) {
         eventFireHelper(new ContextListenerEventBinder() {
-            protected java.util.EventObject getEvent() {
+            protected EventObject getEvent() {
                 return changeEvt;
             }
 
@@ -136,7 +138,7 @@ public class ContextListenerSupport {
 
     public void fireAttributeNameChanged(final PropertyChangeEvent changeEvt) {
         eventFireHelper(new ContextListenerEventBinder() {
-            protected java.util.EventObject getEvent() {
+            protected EventObject getEvent() {
                 return changeEvt;
             }
 
@@ -151,9 +153,9 @@ public class ContextListenerSupport {
      * Creation date: (19.04.01 23:02:41)
      * @return java.util.ArrayList
      */
-    protected synchronized java.util.ArrayList getListeners() {
+    protected synchronized ArrayList getListeners() {
         if (null == listeners) {
-            listeners = new java.util.ArrayList();
+            listeners = new ArrayList();
         }
         return listeners;
     }

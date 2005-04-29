@@ -12,6 +12,7 @@ import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.LatticePainterPanel;
 import conexp.frontend.util.IResourceManager;
 import util.gui.JSplitPaneWithFixedRightPane;
+import util.Assert;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +43,7 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
         try {
             binder.addLatticeConsumer(latticePanel);
         } catch (TooManyListenersException ex) {
-            util.Assert.isTrue(false, "this can't happen");
+            Assert.isTrue(false, "this can't happen");
         }
     }
 

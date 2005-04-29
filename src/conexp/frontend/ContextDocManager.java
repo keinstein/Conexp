@@ -18,7 +18,6 @@ import util.gui.fileselector.FileSelectorService;
 import util.gui.fileselector.GenericFileFilter;
 
 import javax.swing.*;
-import javax.swing.tree.TreeModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -112,8 +111,8 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
     }
 
-    private final String DOCUMENT_MANAGER_SECTION = "DocumentManager";
-    private final String MOST_RECENT_URLS_KEY = "MostRecentUrls";
+    private static final String DOCUMENT_MANAGER_SECTION = "DocumentManager";
+    private static final String MOST_RECENT_URLS_KEY = "MostRecentUrls";
     MostRecentUrlListManager mruManager = new MostRecentUrlListManager();
 
     public MostRecentUrlListManager getMruManager() {
@@ -277,7 +276,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return getStorageFormatManager().getLoader(extension);
     }
 
-    public void loadDocument(File f) throws java.io.IOException, DataFormatException {
+    public void loadDocument(File f) throws IOException, DataFormatException {
         if (f.isFile()) {
             doLoadDocumentFromFile(f);
         }
@@ -324,7 +323,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         }
     }
 
-    private static java.util.ResourceBundle resources;
+    private static ResourceBundle resources;
 
     static {
         resources = ResourceLoader.getResourceBundle("conexp/frontend/resources/ContextDocManager");  //$NON-NLS-1$
@@ -490,7 +489,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     }
 
 
-    public void saveDocument(File f) throws java.io.IOException {
+    public void saveDocument(File f) throws IOException {
         final String extension = StringUtil.getExtension(f.getCanonicalPath());
         DocumentWriter documentWriter = getWriter(extension);
         if (documentWriter == null) {

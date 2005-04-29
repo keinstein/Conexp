@@ -8,6 +8,8 @@
 package conexp.frontend.contexteditor;
 
 
+import util.gui.celleditors.BaseCellEditor;
+
 import javax.swing.*;
 import javax.swing.event.CellEditorListener;
 import java.awt.*;
@@ -15,7 +17,7 @@ import java.awt.event.*;
 import java.io.Serializable;
 import java.util.EventObject;
 
-public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
+public class ContextCellEditor extends BaseCellEditor {
     protected Component editorComponent;
     protected JButton crossEditorComponent = new JButton();
     protected JTextField textEditorComponent = new JTextField();
@@ -124,8 +126,8 @@ public class ContextCellEditor extends util.gui.celleditors.BaseCellEditor {
     public Component getTableCellEditorComponent(JTable table, Object value,
                                                  boolean isSelected,
                                                  int row, int col) {
-        if ((0 == row && 0 != col)
-                || (0 == col && 0 != row)) {
+        if (0 == row && 0 != col
+                || 0 == col && 0 != row) {
             delegate = textDelegate;
             editorComponent = textEditorComponent;
         } else {

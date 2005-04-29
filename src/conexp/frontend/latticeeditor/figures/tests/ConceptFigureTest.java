@@ -8,10 +8,12 @@
 package conexp.frontend.latticeeditor.figures.tests;
 
 import canvas.tests.FigureTest;
+import canvas.Figure;
 import conexp.core.ConceptFactory;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
+import conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.noderadiusstrategy.AbstractNodeRadiusCalcStrategy;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
@@ -20,14 +22,14 @@ import java.awt.geom.Point2D;
 
 public class ConceptFigureTest extends FigureTest {
 
-    final int RADIUS = 5;
+    static final int RADIUS = 5;
 
-    protected canvas.Figure makeFigure() {
+    protected Figure makeFigure() {
         final ConceptFigure conceptFigure = new ConceptFigure(
                 new ConceptNodeQuery(SetBuilder.makeContext(new int[0][0]), ConceptFactory.makeEmptyLatticeElement(),
                         SetBuilder.makeSet(new int[0]))
         );
-        conceptFigure.setFigureDimensionCalcStrategyProvider(new conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider() {
+        conceptFigure.setFigureDimensionCalcStrategyProvider(new FigureDimensionCalcStrategyProvider() {
             FigureDimensionCalcStrategy figureDimensionCalcStrategy = makeFigureDimensionCalcStrategy(RADIUS);
 
             public FigureDimensionCalcStrategy getFigureDimensionCalcStrategy() {

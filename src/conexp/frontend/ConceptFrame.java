@@ -141,20 +141,20 @@ public class ConceptFrame extends JFrame {
         updateDocumentTree(manager);
     }
 
-    private Component component;
+    private Component docComponent;
 
     private void setDocComponent(Component comp) {
-        if (null != component) {
-            jSplitPaneMain.remove(component);
+        if (null != docComponent) {
+            jSplitPaneMain.remove(docComponent);
         } // end of if ()
 
         if (null != comp) {
             jSplitPaneMain.add(comp, JSplitPane.RIGHT);
         } // end of if ()
-        component = comp;
+        docComponent = comp;
     }
 
-    private JToolBar toolBar;
+    private JToolBar toolBar=null;
 
     private void setToolBar(JToolBar tool) {
         if (null != toolBar) {

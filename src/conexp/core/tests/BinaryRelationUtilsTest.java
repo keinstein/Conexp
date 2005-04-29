@@ -23,7 +23,7 @@ public class BinaryRelationUtilsTest extends TestCase {
     protected static void doTestLexSort(int[][] relToSort, int[][] sortedRel) {
         BinaryRelation toSort = SetBuilder.makeRelation(relToSort);
         BinaryRelation sorted = SetBuilder.makeRelation(sortedRel);
-        assertEquals(sorted, conexp.core.BinaryRelationUtils.lexSort(toSort));
+        assertEquals(sorted, BinaryRelationUtils.lexSort(toSort));
     }
 
     public static void testLexSort() {

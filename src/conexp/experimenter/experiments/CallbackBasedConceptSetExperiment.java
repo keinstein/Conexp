@@ -1,6 +1,8 @@
 package conexp.experimenter.experiments;
 
 import conexp.core.ConceptCalcStrategy;
+import conexp.core.ConceptsCollection;
+import conexp.core.enumcallbacks.ConceptSetCallback;
 
 
 /**
@@ -27,7 +29,7 @@ public class CallbackBasedConceptSetExperiment extends ConceptSetExperiment {
      */
     protected void doLocalSetup() {
         super.doLocalSetup();
-        ((ConceptCalcStrategy)strategy).setCallback(new conexp.core.enumcallbacks.ConceptSetCallback((conexp.core.ConceptsCollection) coll));
+        ((ConceptCalcStrategy)strategy).setCallback(new ConceptSetCallback((ConceptsCollection) coll));
     }
 
 

@@ -54,7 +54,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
     }
 
     protected void compareExpEdgeCount(BinaryRelation rel, Lattice lat, int expectedEdgeCount) {
-        LatticeComparator comp = new LatticeComparator(conexp.core.tests.SetBuilder.makeLattice(rel), lat);
+        LatticeComparator comp = new LatticeComparator(SetBuilder.makeLattice(rel), lat);
         if (!comp.isEqual() || expectedEdgeCount != lat.edgeCount()) {
             comp.dumpDifferencesToSout();
             assertEquals(expectedEdgeCount, lat.edgeCount());
@@ -77,7 +77,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
     }
 
     protected LatticeCalcStrategy getLatticeCalcStrategy() {
-        return ((LatticeCalcStrategy) calcStrategy);
+        return (LatticeCalcStrategy) calcStrategy;
     }
 
 

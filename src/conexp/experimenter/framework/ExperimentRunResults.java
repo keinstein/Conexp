@@ -8,6 +8,8 @@
  */
 package conexp.experimenter.framework;
 
+import util.Assert;
+
 public class ExperimentRunResults {
     MeasurementSet relationParams;
     MeasurementSet[] resultsOnExperimentSet;
@@ -18,7 +20,7 @@ public class ExperimentRunResults {
     }
 
     public void storeResultsForExperiment(int expNo, MeasurementSet results) {
-        util.Assert.isTrue(null == resultsOnExperimentSet[expNo]);
+        Assert.isTrue(null == resultsOnExperimentSet[expNo]);
         resultsOnExperimentSet[expNo] = results;
     }
 

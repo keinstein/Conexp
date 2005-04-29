@@ -56,7 +56,7 @@ public class DefaultDimensionCalcStrategy extends AbstractDimensionCalcStrategy 
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof DefaultDimensionCalcStrategy)) return false;
-        if(!(getClass().equals(obj.getClass()))){
+        if(!getClass().equals(obj.getClass())){
             return false;
         }
 
@@ -70,7 +70,7 @@ public class DefaultDimensionCalcStrategy extends AbstractDimensionCalcStrategy 
 
     public int hashCode() {
         int result;
-        result = (options != null ? options.hashCode() : 0);
+        result = options != null ? options.hashCode() : 0;
         result = 29 * result + (conceptSet != null ? conceptSet.hashCode() : 0);
         return result;
     }

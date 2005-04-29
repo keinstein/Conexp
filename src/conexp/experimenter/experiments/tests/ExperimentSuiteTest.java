@@ -6,6 +6,8 @@ import conexp.experimenter.framework.ExperimentSet;
 import conexp.experimenter.framework.IExperiment;
 import conexp.experimenter.framework.RelationSequence;
 import conexp.experimenter.framework.RelationSequenceSet;
+import conexp.core.BinaryRelation;
+import conexp.core.tests.SetBuilder;
 import junit.framework.TestCase;
 
 /**
@@ -16,7 +18,7 @@ public class ExperimentSuiteTest extends TestCase {
 
     public static void doTestCreateExperimentSet(ExperimentSet set) {
         assertNotNull(set);
-        conexp.core.BinaryRelation rel = conexp.core.tests.SetBuilder.makeRelation(new int[][]{{0, 0},
+        BinaryRelation rel = SetBuilder.makeRelation(new int[][]{{0, 0},
                                                                                                        {0, 0}});
         for (int i = 0; i < set.experimentCount(); i++) {
             IExperiment exp = set.experimentAt(i);

@@ -24,7 +24,7 @@ public class AllObjectsLabelingStrategy extends OneToManyConnectedFiguresLabelin
         return query.isInnermost() && query.hasOwnObjects();
     }
 
-    protected java.lang.Object makeConnectedObject(ConceptSetDrawing drawing,
+    protected Object makeConnectedObject(ConceptSetDrawing drawing,
                                                    AbstractConceptCorrespondingFigure conceptFigure, LayoutParameters opt) {
 
         ConceptQuery conceptQuery = conceptFigure.getConceptQuery();

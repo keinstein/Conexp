@@ -12,7 +12,7 @@ import conexp.core.DefaultContextListener;
 
 
 public class MockContextListener extends DefaultContextListener {
-    protected com.mockobjects.ExpectationCounter counter = new ExpectationCounter("Expected number of calls");
+    protected ExpectationCounter counter = new ExpectationCounter("Expected number of calls");
 
     /**
      * Insert the method's description here.

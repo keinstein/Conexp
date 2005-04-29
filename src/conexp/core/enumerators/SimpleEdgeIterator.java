@@ -13,10 +13,12 @@ import conexp.core.EdgeIterator;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 
+import java.util.Iterator;
+
 public class SimpleEdgeIterator implements EdgeIterator {
     protected Edge next;
-    protected java.util.Iterator predEdgeIter;
-    protected java.util.Iterator elemIter;
+    protected Iterator predEdgeIter;
+    protected Iterator elemIter;
 
     public SimpleEdgeIterator(Lattice lat) {
         elemIter = lat.elements();

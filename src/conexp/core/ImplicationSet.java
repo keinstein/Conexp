@@ -13,7 +13,7 @@ import java.util.Iterator;
 public class ImplicationSet extends DependencySet {
 
     public interface ImplicationProcessor {
-        public void processImplication(Implication implication);
+        void processImplication(Implication implication);
     }
 
     static class DependencyProcessorAdapter implements DependencyProcessor {
@@ -30,7 +30,7 @@ public class ImplicationSet extends DependencySet {
 
     public static class SupportDescComparator implements Comparator {
         public int compare(Object o1, Object o2) {
-            return (((Dependency) o2).getRuleSupport() - ((Dependency) o1).getRuleSupport());
+            return ((Dependency) o2).getRuleSupport() - ((Dependency) o1).getRuleSupport();
         }
     }
 

@@ -77,7 +77,7 @@ public abstract class FreezeBaseLayout extends SimpleForceLayout {
         if (dz == 0) {
             if (Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2) {
                 inv_d_cubed =  37.0f;
-            } else if (Math.abs(dx) < 1.0 && (Math.abs(dy) < 1.0)) {
+            } else if (Math.abs(dx) < 1.0 && Math.abs(dy) < 1.0) {
                 inv_d_cubed =  1.0f / ((float) Math.pow(Math.abs(dx), 2) +
                         (float) Math.pow(Math.abs(dy), 2));
             } else {

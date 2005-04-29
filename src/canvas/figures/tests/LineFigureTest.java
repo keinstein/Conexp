@@ -11,12 +11,13 @@ import canvas.figures.ConnectionFigure;
 import canvas.figures.LineFigure;
 import canvas.tests.FigureTest;
 import canvas.tests.MockFigure;
+import canvas.Figure;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
 public class LineFigureTest extends FigureTest {
 
-    protected canvas.Figure makeFigure() {
+    protected Figure makeFigure() {
         MockFigure start = new MockFigure(10, 10);
         MockFigure end = new MockFigure(20, 30);
         return new LineFigure(start, end);

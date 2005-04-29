@@ -10,6 +10,7 @@ package conexp.core.calculationstrategies.tests;
 import conexp.core.BinaryRelation;
 import conexp.core.ConceptSetNeedingCalcStrategy;
 import conexp.core.ConceptsCollection;
+import com.mockobjects.ExpectationSet;
 
 public abstract class ConceptSetNeedingCalcStrategyTest extends CalcStrategyTest {
 
@@ -17,7 +18,7 @@ public abstract class ConceptSetNeedingCalcStrategyTest extends CalcStrategyTest
         return (ConceptSetNeedingCalcStrategy) calcStrategy;
     }
 
-    protected void buildIntentsSetAndFillExpectationSet(BinaryRelation rel, com.mockobjects.ExpectationSet expSet, com.mockobjects.ExpectationSet expSetExtents) {
+    protected void buildIntentsSetAndFillExpectationSet(BinaryRelation rel, ExpectationSet expSet, ExpectationSet expSetExtents) {
         ConceptsCollection col = new ConceptsCollection();
         setupStrategy(col);
         generateIntents();

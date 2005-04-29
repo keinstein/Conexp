@@ -11,18 +11,21 @@ import util.gui.ActionWithKey;
 
 import java.awt.event.ActionEvent;
 
+import canvas.Tool;
+import canvas.FigureDrawingCanvas;
+
 
 public class ToolAction extends ActionWithKey {
-    canvas.Tool tool;
-    private canvas.FigureDrawingCanvas drawing;
+    Tool tool;
+    private FigureDrawingCanvas drawing;
 
-    public ToolAction(canvas.FigureDrawingCanvas drawing, String key, String name, canvas.Tool tool) {
+    public ToolAction(FigureDrawingCanvas drawing, String key, String name, Tool tool) {
         super(key, name);
         this.drawing = drawing;
         this.tool = tool;
     }
 
-    public canvas.Tool getTool() {
+    public Tool getTool() {
         return tool;
     }
 

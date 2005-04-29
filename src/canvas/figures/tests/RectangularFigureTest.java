@@ -10,6 +10,8 @@ package canvas.figures.tests;
 import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.RectangularFigure;
 import canvas.tests.FigureTest;
+import canvas.CanvasScheme;
+import canvas.Figure;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -27,9 +29,9 @@ public class RectangularFigureTest extends FigureTest {
     private static final double width = 40;
     private static final double height = 20;
 
-    protected canvas.Figure makeFigure() {
+    protected Figure makeFigure() {
         return new RectangularFigure(centerX, centerY, width, height) {
-            public void draw(Graphics g, canvas.CanvasScheme opt) {
+            public void draw(Graphics g, CanvasScheme opt) {
             }
         };
     }

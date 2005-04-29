@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Iterator;
 import java.util.List;
+import java.beans.PropertyVetoException;
 
 public class ConExpXMLReader implements DocumentLoader {
     public ContextDocument loadDocument(Reader reader, DataFormatErrorHandler errorHandler) throws IOException, DataFormatException {
@@ -115,7 +116,7 @@ public class ConExpXMLReader implements DocumentLoader {
 
     interface FigureElementsProcessor {
         void processFigureElement(Element figureElement) throws DataFormatException;
-    };
+    }
 
     private void loadConceptLabels(final LatticeDrawing drawing, Element lineDiagramElement) throws DataFormatException {
         if (!drawing.hasLabelsForConcepts()) {
@@ -134,7 +135,6 @@ public class ConExpXMLReader implements DocumentLoader {
                                         return drawing.getLabelForConcept(concept);
                                     }
                                 });
-                        ;
                     }
                 }
         );
@@ -256,7 +256,7 @@ public class ConExpXMLReader implements DocumentLoader {
         }
         try {
             drawing.getPainterOptions().getLabelsFontSizeValue().setValue(Integer.valueOf(value).intValue());
-        } catch (java.beans.PropertyVetoException e) {
+        } catch (PropertyVetoException e) {
             XMLHelper.throwDataFormatError("Wrong value of labels font size:"+e);
         } catch (NumberFormatException e) {
             XMLHelper.throwDataFormatError("Wrong value of labels font size:"+e);
@@ -267,7 +267,7 @@ public class ConExpXMLReader implements DocumentLoader {
         IFigureWithCoords getFigureForConcept(ItemSet concept);
     }
 
-    private void readConceptFigure(LatticeDrawing drawing, Element figureElement, FigureConceptMapper figureConceptMapper) throws DataFormatException {
+    private static void readConceptFigure(LatticeDrawing drawing, Element figureElement, FigureConceptMapper figureConceptMapper) throws DataFormatException {
         Point2D point = readFigureCoords(figureElement);
 
         Element intentElement = XMLHelper.safeGetElement(figureElement, ConExpXMLElements.INTENT, "No intent element for conexp figure");
@@ -318,7 +318,7 @@ public class ConExpXMLReader implements DocumentLoader {
         }
     }
 
-    private void readObject(Element objectElement, Context cxt) throws DataFormatException {
+    private static void readObject(Element objectElement, Context cxt) throws DataFormatException {
         Element nameElement = XMLHelper.safeGetElement(objectElement, ConExpXMLElements.ELEMENT_NAME_ELEMENT, "In context name is not specified for object");
 
         Element objAttrRelation = XMLHelper.safeGetElement(objectElement, ConExpXMLElements.INTENT, "Bad Xml file: missing description of attribute object relation for object");

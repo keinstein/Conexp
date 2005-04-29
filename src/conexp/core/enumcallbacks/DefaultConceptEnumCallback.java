@@ -9,6 +9,7 @@ package conexp.core.enumcallbacks;
 
 import conexp.core.ConceptEnumCallback;
 import conexp.core.Set;
+import conexp.core.BinaryRelation;
 
 
 public class DefaultConceptEnumCallback implements ConceptEnumCallback {
@@ -36,7 +37,7 @@ public class DefaultConceptEnumCallback implements ConceptEnumCallback {
      * Creation date: (14.07.01 20:05:23)
      * @param rel conexp.core.BinaryRelation
      */
-    public void setRelation(conexp.core.BinaryRelation rel) {
+    public void setRelation(BinaryRelation rel) {
     }
 
 

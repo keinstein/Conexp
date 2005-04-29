@@ -169,7 +169,7 @@ public class LatticeCSCExporter {
     }
 
     interface Block {
-        public void doBlock();
+        void doBlock();
     }
 
     private void printOutLines() {

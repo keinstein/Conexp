@@ -18,7 +18,7 @@ public abstract class BaseRelationGenerationStrategy extends BaseRelationSequenc
      * @return conexp.core.BinaryRelation
      * @param relNo int
      */
-    public abstract conexp.core.BinaryRelation makeRelation(int relNo);
+    public abstract BinaryRelation makeRelation(int relNo);
 
 
     /**
@@ -47,6 +47,6 @@ public abstract class BaseRelationGenerationStrategy extends BaseRelationSequenc
      * @param relNo int
      */
     public int interpolateSize(int relNo, int min, int max) {
-        return min + ((count > 1) ? (max - min) * relNo / (count - 1) : 0);
+        return min + (count > 1 ? (max - min) * relNo / (count - 1) : 0);
     }
 }

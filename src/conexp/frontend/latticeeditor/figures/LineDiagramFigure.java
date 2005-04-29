@@ -13,6 +13,6 @@ import conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider;
 
 public interface LineDiagramFigure extends Figure, Collidable {
 
-    public void setFigureDimensionCalcStrategyProvider(FigureDimensionCalcStrategyProvider figureDimensionProvider);
+    void setFigureDimensionCalcStrategyProvider(FigureDimensionCalcStrategyProvider figureDimensionProvider);
 
 }

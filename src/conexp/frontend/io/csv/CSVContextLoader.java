@@ -72,7 +72,7 @@ public class CSVContextLoader implements DocumentLoader {
 
 
     public static void main(String[] args) {
-        CSVContextLoader csvcl = null;
+        CSVContextLoader csvcl;
         if (args.length == 3) {
             csvcl = new CSVContextLoader(args[2]);
         } else {

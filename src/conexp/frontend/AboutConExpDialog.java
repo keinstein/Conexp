@@ -3,6 +3,7 @@ package conexp.frontend;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 
@@ -48,7 +49,7 @@ public class AboutConExpDialog extends JDialog{
     void buildGui() {
         final JButton closeButton = new JButton();
         closeButton.setText("Close");
-        closeButton.addActionListener(new java.awt.event.ActionListener() {
+        closeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }

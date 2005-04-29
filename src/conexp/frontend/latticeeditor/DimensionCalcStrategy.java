@@ -8,9 +8,10 @@
 package conexp.frontend.latticeeditor;
 
 import conexp.util.GenericStrategy;
+import conexp.core.ConceptsCollection;
 
 public interface DimensionCalcStrategy extends GenericStrategy {
     void initCalc();
 
-    void setConceptSet(conexp.core.ConceptsCollection conceptSet);
+    void setConceptSet(ConceptsCollection conceptSet);
 }

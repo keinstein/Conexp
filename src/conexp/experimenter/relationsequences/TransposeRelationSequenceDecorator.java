@@ -1,6 +1,8 @@
 package conexp.experimenter.relationsequences;
 
 import conexp.experimenter.framework.RelationSequence;
+import conexp.core.BinaryRelation;
+import conexp.core.BinaryRelationUtils;
 
 /**
  * Insert the type's description here.
@@ -8,7 +10,7 @@ import conexp.experimenter.framework.RelationSequence;
  * @author
  */
 public class TransposeRelationSequenceDecorator extends BaseRelationGenerationStrategy {
-    protected conexp.experimenter.framework.RelationSequence sourceSequence;
+    protected RelationSequence sourceSequence;
 
     /**
      * Insert the method's description here.
@@ -38,7 +40,7 @@ public class TransposeRelationSequenceDecorator extends BaseRelationGenerationSt
      * @return conexp.core.BinaryRelation
      * @param relNo int
      */
-    public conexp.core.BinaryRelation makeRelation(int relNo) {
-        return conexp.core.BinaryRelationUtils.makeTransposedRelation(sourceSequence.getRelation(relNo));
+    public BinaryRelation makeRelation(int relNo) {
+        return BinaryRelationUtils.makeTransposedRelation(sourceSequence.getRelation(relNo));
     }
 }

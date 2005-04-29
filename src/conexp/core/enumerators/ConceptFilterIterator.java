@@ -10,8 +10,10 @@ package conexp.core.enumerators;
 import conexp.core.LatticeElement;
 import util.collection.CollectionFactory;
 
+import java.util.Set;
+
 public class ConceptFilterIterator extends DepthSearchIterator {
-    private java.util.Set visited;
+    private Set visited;
 
     //todo: add API for skipping first element
     //todo: allow to add antimonotonic search constraints

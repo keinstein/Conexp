@@ -14,6 +14,7 @@ import conexp.core.Set;
 import conexp.core.layout.DefaultLayoutParameters;
 import conexp.core.layout.FreeseLayout;
 import conexp.core.layout.FreezeBaseLayout;
+import conexp.core.layout.GenericLayouter;
 import conexp.core.tests.SetBuilder;
 
 import java.util.Collection;
@@ -100,7 +101,7 @@ public class FreezeLayoutTest extends SimpleForceLayoutTest {
 
     }
 
-    protected conexp.core.layout.GenericLayouter makeLayouter() {
+    protected GenericLayouter makeLayouter() {
         return new FreeseLayout();
     }
 }

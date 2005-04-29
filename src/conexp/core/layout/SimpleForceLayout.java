@@ -12,6 +12,8 @@ import conexp.util.gui.paramseditor.ParamInfo;
 import util.Assert;
 
 import java.awt.geom.Point2D;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
     protected int currIter;
@@ -32,7 +34,7 @@ public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
         double yScaleFactor = maxYProjection - minYProjection;
         Assert.isTrue(yScaleFactor >= 0);
 
-        final double sizeY = yScaleFactor > 0.02 ? (levels * drawParams.getGridSizeY() / yScaleFactor) : 1;
+        final double sizeY = yScaleFactor > 0.02 ? levels * drawParams.getGridSizeY() / yScaleFactor : 1;
 
         double minX = 0;
 
@@ -134,8 +136,8 @@ public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
         if (null == forceDistribution) {
             forceDistribution = new ForceDistribution();
             forceDistribution.getPropertyChange().addPropertyChangeListener(
-                    new java.beans.PropertyChangeListener() {
-                        public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                    new PropertyChangeListener() {
+                        public void propertyChange(PropertyChangeEvent evt) {
                             fireLayoutPropertyChanged(LAYOUT_PARAMS_CHANGE);
                         }
                     }

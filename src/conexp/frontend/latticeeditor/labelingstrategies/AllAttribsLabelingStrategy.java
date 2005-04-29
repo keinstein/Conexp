@@ -24,7 +24,7 @@ public class AllAttribsLabelingStrategy extends OneToManyConnectedFiguresLabelin
         return query.hasOwnAttribs();
     }
 
-    protected java.lang.Object makeConnectedObject(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure conceptFigure, LayoutParameters opt) {
+    protected Object makeConnectedObject(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure conceptFigure, LayoutParameters opt) {
         ConceptQuery conceptQuery = conceptFigure.getConceptQuery();
         int attrCount = conceptQuery.getOwnAttribsCount();
 

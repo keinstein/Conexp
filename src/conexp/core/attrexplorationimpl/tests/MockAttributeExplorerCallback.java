@@ -25,7 +25,7 @@ public class MockAttributeExplorerCallback extends Assert implements AttributeEx
             this.expPremise = expPremise;
             this.expConclusion = expConclusion;
         }
-    };
+    }
 
     public static class ContrExampleInfo {
         int response;
@@ -35,7 +35,7 @@ public class MockAttributeExplorerCallback extends Assert implements AttributeEx
             this.response = response;
             this.contrExample = contrexample;
         }
-    };
+    }
 
     public MockAttributeExplorerCallback() {
         this.acceptCounter = 0;

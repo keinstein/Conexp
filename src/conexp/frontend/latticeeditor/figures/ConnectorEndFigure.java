@@ -8,6 +8,8 @@
 
 package conexp.frontend.latticeeditor.figures;
 
+import canvas.CanvasScheme;
+
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
@@ -17,7 +19,7 @@ public class ConnectorEndFigure extends NodeFigure{
     }
 
 
-    public void draw(Graphics g, canvas.CanvasScheme opt) {
+    public void draw(Graphics g, CanvasScheme opt) {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setColor(opt.getColorScheme().getNodeColor());
         Ellipse2D ellipse = getFigureEllipse();

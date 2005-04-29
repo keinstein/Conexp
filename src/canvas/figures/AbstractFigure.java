@@ -9,19 +9,20 @@ package canvas.figures;
 
 import canvas.BaseFigureVisitor;
 import canvas.Figure;
+import canvas.FigureListener;
 import util.Assert;
 
 import java.awt.geom.Point2D;
 
 
 public abstract class AbstractFigure implements Figure {
-    protected canvas.FigureListener fListener;
+    protected FigureListener fListener;
 
     public void removeFigureListener() {
         fListener = null;
     }
 
-    public void setFigureListener(canvas.FigureListener newFListener) {
+    public void setFigureListener(FigureListener newFListener) {
         fListener = newFListener;
     }
 

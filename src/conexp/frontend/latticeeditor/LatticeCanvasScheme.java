@@ -8,7 +8,9 @@
 
 package conexp.frontend.latticeeditor;
 
+import canvas.CanvasScheme;
 
-public interface LatticeCanvasScheme extends canvas.CanvasScheme {
+
+public interface LatticeCanvasScheme extends CanvasScheme {
     DrawStrategiesContext getDrawStrategiesContext();
 }

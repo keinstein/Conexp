@@ -11,16 +11,20 @@ import canvas.BaseFigureVisitor;
 import canvas.Figure;
 import canvas.figures.BorderCalculatingFigure;
 import conexp.core.layout.LayoutParameters;
+import conexp.core.ExtendedContextEditingInterface;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
+import conexp.frontend.latticeeditor.LabelingStrategy;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.CompositeFigureWithFigureDimensionCalcStrategyProvider;
 import conexp.frontend.latticeeditor.figures.DefaultFigureVisitor;
 import conexp.frontend.latticeeditor.figures.NodeObjectConnectionFigure;
 
-public abstract class GenericLabelingStrategy extends conexp.frontend.latticeeditor.LabelingStrategy {
+import java.util.HashMap;
 
-    private java.util.HashMap conceptLabelsMap = new java.util.HashMap();
+public abstract class GenericLabelingStrategy extends LabelingStrategy {
+
+    private HashMap conceptLabelsMap = new HashMap();
 
     public class InitStrategyVisitor extends DefaultFigureVisitor {
         ConceptSetDrawing drawing;
@@ -97,7 +101,7 @@ public abstract class GenericLabelingStrategy extends conexp.frontend.latticeedi
         conceptLabelsMap.put(f, obj);
     }
 
-    public void setContext(conexp.core.ExtendedContextEditingInterface cxt) {
+    public void setContext(ExtendedContextEditingInterface cxt) {
         //DEFAULT EMPTY IMPLEMENTATION
     }
 

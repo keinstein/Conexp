@@ -37,7 +37,7 @@ public class AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunction imp
                 Double xcoord = new Double(coords.getX());
                 coordinatesOfElementsInLayer.add(xcoord);
             }
-            violatedConstraints+=(layerInfo.length - coordinatesOfElementsInLayer.size());
+            violatedConstraints+=layerInfo.length - coordinatesOfElementsInLayer.size();
         }
         return -violatedConstraints;
     }

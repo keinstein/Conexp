@@ -17,68 +17,6 @@ public class LatticeElement extends Concept {
     public List predessors = new ArrayList();
     public List successors = new ArrayList();
 
-    protected static abstract class LatticeElementCollectionBase implements LatticeElementCollection {
-        List collection;
-
-        public LatticeElementCollectionBase(List collection) {
-            this.collection = collection;
-        }
-
-        protected abstract LatticeElement doGet(Object collElement);
-
-        public int getSize() {
-            return collection.size();
-        }
-
-        public boolean isEmpty() {
-            return collection.isEmpty();
-        }
-
-        public LatticeElement get(int index) {
-            return doGet(collection.get(index));
-        }
-
-        public ConceptIterator iterator() {
-            return new EdgeCollectionIterator();
-        }
-
-        public void sort(final Comparator latticeElementComparator) {
-            Collections.sort(collection, new Comparator(){
-                public int compare(Object o1, Object o2) {
-                    LatticeElement one = doGet(o1);
-                    LatticeElement two = doGet(o2);
-                    return latticeElementComparator.compare(one, two);
-                }
-            });
-        }
-
-
-        protected abstract void removeFromOtherCollection(Object lastObject);
-
-        private class EdgeCollectionIterator extends EdgeIteratorWrapper {
-            public EdgeCollectionIterator() {
-                super(collection.iterator());
-            }
-
-            Object lastObject;
-
-            public LatticeElement nextConcept() {
-                lastObject = innerIterator.next();
-                return doGet(lastObject);
-            }
-
-            public void remove() {
-                super.remove();
-                removeFromOtherCollection(lastObject);
-                lastObject = null;
-            }
-
-        }
-
-
-    }
-
-
 
     protected static abstract class EdgeIteratorWrapper extends IteratorWrapperBase implements ConceptIterator {
         EdgeIteratorWrapper(Iterator edgeIterator) {

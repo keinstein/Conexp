@@ -12,6 +12,7 @@ import conexp.util.gui.Command;
 import conexp.util.gui.CommandBase;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
+import conexp.util.gui.paramseditor.IntValueParamInfo;
 import conexp.util.valuemodels.IntValueModel;
 import util.Assert;
 import util.BooleanUtil;
@@ -22,6 +23,10 @@ import javax.swing.event.UndoableEditListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoableEditSupport;
+import java.beans.PropertyVetoException;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.VetoableChangeListener;
 
 public class ContextTableModel extends AbstractTableModel implements ParamsProvider {
 
@@ -327,8 +332,8 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         void doSync() {
             try {
                 valueModel.setValue(getValue());
-            } catch (java.beans.PropertyVetoException ex) {
-                util.Assert.isTrue(false);
+            } catch (PropertyVetoException ex) {
+                Assert.isTrue(false);
             }
         }
 
@@ -344,8 +349,8 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
             attribCountModel = new IntValueModel("Attrib Count", context.getAttributeCount());
             attribCountModel.addVetoableChangeListener(makeVetoableGreaterOrEqualToZeroChecker("Number of attributes should be greater than zero"));
 
-            attribCountModel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-                public void propertyChange(java.beans.PropertyChangeEvent evt) {
+            attribCountModel.addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent evt) {
                     final int objectCount = getContext().getObjectCount();
                     final int numAttr = ((Number) evt.getNewValue()).intValue();
                     if (numAttr != getContext().getAttributeCount()) {
@@ -376,8 +381,8 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         if (null == objectCountModel) {
             objectCountModel = new IntValueModel("Object Count", context.getObjectCount());
             objectCountModel.addVetoableChangeListener(makeVetoableGreaterOrEqualToZeroChecker("Object Count should be greater than zero"));
-            objectCountModel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-                public void propertyChange(java.beans.PropertyChangeEvent evt) {
+            objectCountModel.addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent evt) {
                     final int numObj = ((Number) evt.getNewValue()).intValue();
                     final int attributeCount = getContext().getAttributeCount();
                     if (numObj != getContext().getObjectCount()) {
@@ -407,26 +412,26 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     public ParamInfo[] getParams() {
         if (null == params) {
             params = new ParamInfo[]{
-                new conexp.util.gui.paramseditor.IntValueParamInfo("Object count", getObjectCountModel()),
-                new conexp.util.gui.paramseditor.IntValueParamInfo("Attribute count", getAttribCountModel())
+                new IntValueParamInfo("Object count", getObjectCountModel()),
+                new IntValueParamInfo("Attribute count", getAttribCountModel())
             };
         }
         return params;
     }
 
-    protected java.beans.VetoableChangeListener makeVetoableGreaterOrEqualToZeroChecker(String msg) {
+    protected VetoableChangeListener makeVetoableGreaterOrEqualToZeroChecker(String msg) {
 
-        class GreaterOrEqualToZeroChecker implements java.beans.VetoableChangeListener {
+        class GreaterOrEqualToZeroChecker implements VetoableChangeListener {
             final String prefix;
 
             GreaterOrEqualToZeroChecker(String msg) {
                 prefix = msg;
             }
 
-            public void vetoableChange(java.beans.PropertyChangeEvent evt)
-                    throws java.beans.PropertyVetoException {
+            public void vetoableChange(PropertyChangeEvent evt)
+                    throws PropertyVetoException {
                 if (((Number) evt.getNewValue()).intValue() < 0) {
-                    throw new java.beans.PropertyVetoException(prefix, evt);
+                    throw new PropertyVetoException(prefix, evt);
                 }
             }
         }
@@ -446,7 +451,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     }
 
     public static boolean hasAtLeastOneNonHeaderCell(int[] rows, int[] columns) {
-        return (hasAtLeastOneObjectRow(rows) && hasAtLeastOneAttributeColumn(columns));
+        return hasAtLeastOneObjectRow(rows) && hasAtLeastOneAttributeColumn(columns);
     }
 
     private static boolean hasAtLeastOneAttributeColumn(int[] columns) {
@@ -652,7 +657,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
 
         public ExtendedContextDestroyingCommandBase(String name) {
             super(name);
-            enabled = (getContext() instanceof ExtendedContextEditingInterface);
+            enabled = getContext() instanceof ExtendedContextEditingInterface;
         }
 
         protected ExtendedContextEditingInterface getExtendedContext() {

@@ -18,7 +18,7 @@ import java.util.LinkedList;
 public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
     ImplicationSet implications;
     private LinkedList queue;
-    private int[] succCount;
+    private int[] successorCounts;
     private int attrCount;
 
     int cacheHits = 0;
@@ -55,9 +55,9 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
     public void calcImplications() {
         Assert.isTrue(lattice != null, "Lattice should be set for using lattice implications calculator");
         LatticeElement one = lattice.getOne();
-        succCount = new int[lattice.conceptsCount()];
-        for (int i = 0; i < succCount.length; i++) {
-            succCount[i] = lattice.elementAt(i).getSuccCount();
+        successorCounts = new int[lattice.conceptsCount()];
+        for (int i = 0; i < successorCounts.length; i++) {
+            successorCounts[i] = lattice.elementAt(i).getSuccCount();
         }
 
         if (!one.getAttribs().isEmpty()) {
@@ -208,7 +208,7 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
     private void addDownElementsWithAllVisitedParentsToQueue(LatticeElement current) {
         for (int i = 0; i < current.getPredCount(); i++) {
             LatticeElement pred = current.getPred(i);
-            if (--succCount[pred.getIndex()] == 0) {
+            if (--successorCounts[pred.getIndex()] == 0) {
                 queue.addLast(pred);
             }
         }

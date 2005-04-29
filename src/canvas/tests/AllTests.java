@@ -10,6 +10,7 @@ package canvas.tests;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import canvas.util.tests.AllUtilsTests;
 
 public class AllTests extends TestCase {
     public static Test suite() {
@@ -21,7 +22,7 @@ public class AllTests extends TestCase {
         suite.addTest(FigureDrawingTest.suite());
 
         suite.addTest(canvas.figures.tests.AllTests.suite());
-        suite.addTest(canvas.util.tests.AllUtilsTests.suite());
+        suite.addTest(AllUtilsTests.suite());
 
         return suite;
     }

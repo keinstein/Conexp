@@ -8,23 +8,24 @@
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.*;
+import conexp.core.enumcallbacks.ConceptSetCallback;
 import conexp.core.calculationstrategies.DepthSearchCalculatorWithFeatureMask;
 import conexp.core.searchconstraints.MinSupportConstrainer;
 import conexp.core.tests.SetBuilder;
 
 
 public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBuildingDepthSearchCalculatorTest {
-    protected conexp.core.ConceptCalcStrategy makeCalcStrategy() {
+    protected ConceptCalcStrategy makeCalcStrategy() {
         return new DepthSearchCalculatorWithFeatureMask();
     }
 
     protected void setupStrategy(ConceptsCollection lat) {
-        getRealStrategy().setCallback(new conexp.core.enumcallbacks.ConceptSetCallback(lat));
+        getRealStrategy().setCallback(new ConceptSetCallback(lat));
         getRealStrategy().setLattice((Lattice) lat);
     }
 
     protected DepthSearchCalculatorWithFeatureMask getRealStrategy() {
-        return ((DepthSearchCalculatorWithFeatureMask) calcStrategy);
+        return (DepthSearchCalculatorWithFeatureMask) calcStrategy;
     }
 
     private void doTestCalcStrategyWithFeatureMask(int[][] context, int[] featureMask, int[][] expOutputIntent, final int[][] expOutputExtents, final int expectedEdgeCount) {

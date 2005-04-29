@@ -11,7 +11,6 @@ import util.collection.CollectionFactory;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.beans.PropertyChangeEvent;
 
 /**
  * User: sergey

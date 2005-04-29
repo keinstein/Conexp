@@ -70,7 +70,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     }
 
     private static int unitsNeeded(int nbits) {
-        return (unitIndex(nbits - 1) + 1);
+        return unitIndex(nbits - 1) + 1;
     }
 
     /**
@@ -130,7 +130,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         }
         BitSet set = (BitSet) s;
         int startUnitIndex = unitIndex(size);
-        int shiftCount = (size & BIT_INDEX_MASK);
+        int shiftCount = size & BIT_INDEX_MASK;
         if (0 == shiftCount) {
             for (int i = unitIndex(set.size - 1); i >= 0; i--) {
                 unit[startUnitIndex + i] = set.unit[i];
@@ -138,7 +138,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         } else {
 
             long startMaskInThis = ~(0xFFFFFFFFFFFFFFFFL << shiftCount);
-            long startMaskInOther = (0xFFFFFFFFFFFFFFFFL >>> shiftCount);
+            long startMaskInOther = 0xFFFFFFFFFFFFFFFFL >>> shiftCount;
             long endMaskInOther = ~startMaskInOther;
 
             long prev = unit[startUnitIndex] & startMaskInThis;
@@ -148,15 +148,14 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
             //for each long in second set
             //form new value from end of previous and begin of current
             for (int i = 0; i <= unitsCount; i++) {
-                unit[startUnitIndex + i] = prev | ((set.unit[i] & startMaskInOther) << shiftCount);
-                prev = ((set.unit[i] & endMaskInOther) >>> secondPart);
+                unit[startUnitIndex + i] = prev | (set.unit[i] & startMaskInOther) << shiftCount;
+                prev = (set.unit[i] & endMaskInOther) >>> secondPart;
             }
             //add last value, if any
             int difference = set.size - secondPart;
-            if ((difference > 0) && (difference & BIT_INDEX_MASK) != 0) {
+            if (difference > 0 && (difference & BIT_INDEX_MASK) != 0) {
                 unit[startUnitIndex + unitsCount + 1] = prev;
             }
-            ;
 
         }
         size = newSize;
@@ -192,11 +191,11 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      */
     private static int bitCount(long val) {
         val -= (val & 0xaaaaaaaaaaaaaaaaL) >>> 1;
-        val = (val & 0x3333333333333333L) + ((val >>> 2) & 0x3333333333333333L);
-        val = (val + (val >>> 4)) & 0x0f0f0f0f0f0f0f0fL;
+        val = (val & 0x3333333333333333L) + (val >>> 2 & 0x3333333333333333L);
+        val = val + (val >>> 4) & 0x0f0f0f0f0f0f0f0fL;
         val += val >>> 8;
         val += val >>> 16;
-        return ((int) (val) + (int) (val >>> 32)) & 0xff;
+        return (int) val + (int) (val >>> 32) & 0xff;
     }
 
     public ModifiableSet makeModifiableSetCopy() {
@@ -210,7 +209,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
             return EQUAL;
 
         BitSet _other = (BitSet) other;
-        util.Assert.isTrue(this.size() == other.size());
+        Assert.isTrue(this.size() == other.size());
         //*DBG*/util.Assert.isTrue(this.size ==_other.size);
         //*DBG*/util.Assert.isTrue(this.unit.length==_other.unit.length);
         int ret = Set.EQUAL;
@@ -260,8 +259,8 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
 //-------------------------------------------------------------------------
 
     private void resizeSetAndCopyOldValues(int unitsRequired) {
-        util.Assert.isTrue(unitsRequired >= 0);
-        long newBits[] = new long[unitsRequired];
+        Assert.isTrue(unitsRequired >= 0);
+        long[]  newBits= new long[unitsRequired];
         System.arraycopy(unit, 0, newBits, 0, Math.min(unit.length, unitsRequired));
         unit = newBits;
     }
@@ -285,7 +284,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         long mask;
         int indexInMask = bitIndex & BIT_INDEX_MASK;
         if (indexInMask != 0) {
-            mask = 0xffffffffffffffffL >>> (BITS_PER_UNIT - indexInMask);
+            mask = 0xffffffffffffffffL >>> BITS_PER_UNIT - indexInMask;
         } else {
             mask = 0L;
         }
@@ -304,7 +303,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
             --size;
             if (unitIndex(size - 1) < unit.length - 1) {
                 int newSize = unitIndex(size - 1) + 1;
-                long newBits[] = new long[newSize];
+                long[] newBits = new long[newSize];
                 System.arraycopy(unit, 0, newBits, 0, newSize);
                 unit = newBits;
             }
@@ -342,10 +341,10 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         int i = 0;
         int upperBound = unit.length - 1;
         for (int k = 0; k < upperBound; k++) {
-            final long unit = this.unit[k];
+            final long currentUnit = this.unit[k];
             long mask = 0x1L;
             while (mask != 0) {
-                if ((unit & mask) != 0) {
+                if ((currentUnit & mask) != 0) {
                     return i;
                 }
                 mask <<= 1;
@@ -410,7 +409,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         for (int i = unit.length; --i >= 0;)
             h ^= unit[i] * (i + 1);
 
-        return (int) ((h >> 32) ^ h);
+        return (int) (h >> 32 ^ h);
     }
 
     /**
@@ -426,11 +425,11 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     public boolean in(int bitIndex) {
         if (bitIndex < 0)
             throw new IndexOutOfBoundsException(Integer.toString(bitIndex));
-        util.Assert.isTrue(bitIndex < size, "Size is " + size + " index =" + bitIndex);
+        Assert.isTrue(bitIndex < size, "Size is " + size + " index =" + bitIndex);
         int unitIndex = unitIndex(bitIndex);
         if (unitIndex >= unit.length)
             return false;
-        return ((unit[unitIndex] & bit(bitIndex)) != 0);
+        return (unit[unitIndex] & bit(bitIndex)) != 0;
     }
 
     public boolean intersects(Set s) {
@@ -463,7 +462,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         int k = unit.length;
         while (--k >= 0) {
             if (unit[k] != 0) {
-                int highestBit = (k) * BITS_PER_UNIT;
+                int highestBit = k * BITS_PER_UNIT;
                 long highestUnit = unit[k];
                 do {
                     highestUnit = highestUnit >>> 1;
@@ -595,7 +594,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
             long xorMask = unit[k] ^ other.unit[k];
             while (mask != 0) {
                 if ((mask & xorMask) != 0) {
-                    return ((mask & unit[k]) != 0) ? 1 : -1;
+                    return (mask & unit[k]) != 0 ? 1 : -1;
                 }
                 mask <<= 1;
             }
@@ -605,7 +604,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         int i = upperBound * BITS_PER_UNIT;
         while (i < size) {
             if ((mask & xorMask) != 0) {
-                return ((mask & unit[upperBound]) != 0) ? 1 : -1;
+                return (mask & unit[upperBound]) != 0 ? 1 : -1;
             }
             mask <<= 1;
             i++;
@@ -622,11 +621,11 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     public void resize(int newSize) {
         if (size != newSize) {
             final int newUnitsNeeded = unitsNeeded(newSize);
-            util.Assert.isTrue(newUnitsNeeded >= 0);
+            Assert.isTrue(newUnitsNeeded >= 0);
             if (newUnitsNeeded != unit.length) {
                 resizeSetAndCopyOldValues(newUnitsNeeded);
             }
-            util.Assert.isTrue(newUnitsNeeded == unit.length);
+            Assert.isTrue(newUnitsNeeded == unit.length);
 
             clearBitsInLastUnitFromSetIndexTillEnd(newSize);
 
@@ -684,7 +683,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         int unitIndex = unitIndex(bitIndex);
         if (unitIndex >= unit.length)
             return true;
-        return ((unit[unitIndex] & bit(bitIndex)) == 0);
+        return (unit[unitIndex] & bit(bitIndex)) == 0;
     }
 
 
@@ -707,7 +706,6 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
                 bitMask >>>= 1;
             }
         }
-        ;
         return highestBit + 1;
     }
 

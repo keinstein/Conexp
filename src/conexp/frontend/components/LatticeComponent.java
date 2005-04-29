@@ -194,7 +194,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     }
 
     public int hashCode() {
-        int result = (attributeMask != null ? attributeMask.hashCode() : 0);
+        int result = attributeMask != null ? attributeMask.hashCode() : 0;
         result = 29 * result + (objectMask != null ? objectMask.hashCode() : 0);
         return result;
     }

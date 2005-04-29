@@ -12,10 +12,12 @@ import conexp.core.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import util.Assert;
+
 
 public class NextClosedSetLatticeBuilderCallback extends ConceptSetCallback {
 
-    protected conexp.core.BinaryRelation rel;
+    protected BinaryRelation rel;
 
     /*****************************************
      * this function is called at the end of
@@ -60,7 +62,7 @@ public class NextClosedSetLatticeBuilderCallback extends ConceptSetCallback {
     }
 
 
-    public NextClosedSetLatticeBuilderCallback(conexp.core.Lattice lat) {
+    public NextClosedSetLatticeBuilderCallback(Lattice lat) {
         super(lat);
     }
 
@@ -91,7 +93,7 @@ public class NextClosedSetLatticeBuilderCallback extends ConceptSetCallback {
                 return (LatticeElement) midVal;
             }
         }
-        util.Assert.isTrue(false);
+        Assert.isTrue(false);
         return null;
     }
 
@@ -101,7 +103,7 @@ public class NextClosedSetLatticeBuilderCallback extends ConceptSetCallback {
      * Creation date: (14.07.01 20:05:23)
      * @param rel conexp.core.BinaryRelation
      */
-    public void setRelation(conexp.core.BinaryRelation rel) {
+    public void setRelation(BinaryRelation rel) {
         this.rel = rel;
     }
 }

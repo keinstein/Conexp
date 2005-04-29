@@ -9,5 +9,5 @@ package conexp.frontend.io;
  */
 
 public interface ContextReaderFactory {
-    public ContextReader makeContextReader();
+    ContextReader makeContextReader();
 }

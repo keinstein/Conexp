@@ -19,7 +19,7 @@ public class ContextFunctions {
         final int colCount = rel.getColCount();
         int[] attributeStabilities = new int[colCount];
         final int rowCount = rel.getRowCount();
-        boolean isFull = (s.elementCount() == colCount);
+        boolean isFull = s.elementCount() == colCount;
 
         if (isFull) {
             int extentSize = 0;

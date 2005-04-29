@@ -13,6 +13,8 @@ import conexp.core.calculationstrategies.NextClosedSetImplicationCalculator;
 
 import java.util.ArrayList;
 
+import util.Assert;
+
 
 public class SimpleAssociationMiner extends BaseAssociationMiner {
 
@@ -21,7 +23,7 @@ public class SimpleAssociationMiner extends BaseAssociationMiner {
     }
 
     public void findAssociations(DependencySet depSet, int minSupport, double minConfidence) {
-        util.Assert.isTrue(cxt != null);
+        Assert.isTrue(cxt != null);
         depSet.clear();
 //        long startTime = System.currentTimeMillis();
         findExactDependencies(depSet, minSupport);

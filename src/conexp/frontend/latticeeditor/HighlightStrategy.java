@@ -10,6 +10,7 @@ package conexp.frontend.latticeeditor;
 import canvas.Figure;
 import canvas.IHighlightStrategy;
 import conexp.core.Set;
+import conexp.core.LatticeElement;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptRelatedTextFigure;
 import conexp.frontend.latticeeditor.figures.EdgeFigure;
@@ -18,7 +19,7 @@ import conexp.util.GenericStrategy;
 
 
 public abstract class HighlightStrategy implements GenericStrategy, IHighlightStrategy {
-    protected conexp.core.LatticeElement node;
+    protected LatticeElement node;
     protected Set query;
 
     public boolean highlightFigure(Figure figure) {
@@ -54,7 +55,7 @@ public abstract class HighlightStrategy implements GenericStrategy, IHighlightSt
 
     protected abstract boolean doHighlightEdge(Set startAttribs, Set endAttribs);
 
-    public void setNode(conexp.core.LatticeElement el) {
+    public void setNode(LatticeElement el) {
         node = el;
         if (null != el) {
             query = el.getAttribs();
@@ -100,7 +101,7 @@ public abstract class HighlightStrategy implements GenericStrategy, IHighlightSt
 
     public int hashCode() {
         int result;
-        result = (node != null ? node.hashCode() : 0);
+        result = node != null ? node.hashCode() : 0;
         result = 29 * result + (query != null ? query.hashCode() : 0);
         return result;
     }

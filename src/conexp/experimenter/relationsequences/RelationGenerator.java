@@ -4,6 +4,8 @@ import conexp.core.ContextFactoryRegistry;
 import conexp.core.ModifiableBinaryRelation;
 import conexp.core.ModifiableSet;
 
+import java.util.Random;
+
 /**
  * Insert the type's description here.
  * Creation date: (28.02.01 23:44:56)
@@ -67,12 +69,12 @@ public class RelationGenerator {
      */
     public static ModifiableBinaryRelation makeFilledWithMaxIntent(int sizeX, int sizeY, int maxIntent) {
         ModifiableBinaryRelation ret = ContextFactoryRegistry.createRelation(sizeX, sizeY);
-        java.util.Random randGen = new java.util.Random(); //based on current time
+        Random randGen = new Random(); //based on current time
         for (int i = sizeX; --i >= 0;) {
             ModifiableSet curr = ret.getModifiableSet(i);
             for (int k = maxIntent; --k >= 0;) {
                 double next = randGen.nextDouble();
-                int pos = ((int) (next * sizeY));
+                int pos = (int) (next * sizeY);
                 curr.put(pos);
             }
         }
@@ -83,7 +85,7 @@ public class RelationGenerator {
     public static ModifiableBinaryRelation makeFilledWithMinMaxIntent(int sizeX, int sizeY, int minIntent, int maxIntent) {
         ModifiableBinaryRelation ret = ContextFactoryRegistry.createRelation(sizeX, sizeY);
         int delta = maxIntent - minIntent;
-        java.util.Random randGen = new java.util.Random(); //based on current time
+        Random randGen = new Random(); //based on current time
         for (int i = sizeX; --i >= 0;) {
             ModifiableSet curr = ret.getModifiableSet(i);
             int currDelta = randGen.nextInt() % delta; // check for 0 delta;
@@ -99,7 +101,7 @@ public class RelationGenerator {
 
     public static ModifiableBinaryRelation makeFilledWithPercent(int sizeX, int sizeY, float fillFactor) {
         ModifiableBinaryRelation ret = ContextFactoryRegistry.createRelation(sizeX, sizeY);
-        java.util.Random randGen = new java.util.Random(); //based on current time
+        Random randGen = new Random(); //based on current time
         for (int i = sizeX; --i >= 0;) {
             ModifiableSet curr = ret.getModifiableSet(i);
             for (int j = sizeY; --j >= 0;) {

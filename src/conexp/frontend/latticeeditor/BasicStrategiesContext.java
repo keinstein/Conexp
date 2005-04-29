@@ -17,10 +17,11 @@ import util.BasePropertyChangeSupplier;
 import java.io.IOException;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
+import java.beans.PropertyChangeSupport;
 
 public class BasicStrategiesContext extends BasePropertyChangeSupplier implements ParamsProvider {
 
-    public BasicStrategiesContext(java.beans.PropertyChangeSupport propertyChange) {
+    public BasicStrategiesContext(PropertyChangeSupport propertyChange) {
         this.propertyChange = propertyChange;
     }
 

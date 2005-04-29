@@ -7,15 +7,12 @@
 
 package conexp.core.enumerators;
 
-import conexp.core.ContextFactoryRegistry;
-import conexp.core.LatticeElement;
-import conexp.core.ModifiableSet;
-import conexp.core.Set;
+import conexp.core.*;
 
 import java.util.ArrayList;
 
 
-public abstract class DepthSearchIterator implements conexp.core.ConceptIterator {
+public abstract class DepthSearchIterator implements ConceptIterator {
 
     static class PosInfo {
         LatticeElement curr;
@@ -25,7 +22,7 @@ public abstract class DepthSearchIterator implements conexp.core.ConceptIterator
         public PosInfo(int setSize) {
             mask = ContextFactoryRegistry.createSet(setSize);
         }
-    };
+    }
 
     protected ArrayList newStack;
     int setSize;

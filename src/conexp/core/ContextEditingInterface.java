@@ -13,7 +13,7 @@ public interface ContextEditingInterface {
 
     int getObjectCount();
 
-    public void setDimension(int numObj, int numAttr);
+    void setDimension(int numObj, int numAttr);
 
     boolean getRelationAt(int objectId, int attrId);
 
@@ -23,9 +23,9 @@ public interface ContextEditingInterface {
 
     ContextEntity getAttribute(int index);
 
-    public void removeAttribute(int index);
+    void removeAttribute(int index);
 
-    public void removeObject(int index);
+    void removeObject(int index);
 
     BinaryRelation getRelation();
 

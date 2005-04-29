@@ -8,7 +8,6 @@ package conexp.frontend.latticeeditor.edgesizecalcstrategies.tests;
  * To change this template use File | Settings | File Templates.
  */
 
-import junit.framework.*;
 import conexp.frontend.latticeeditor.edgesizecalcstrategies.ConceptConnectionEdgeSizeCalcStrategy;
 import conexp.frontend.latticeeditor.tests.DefaultDimensionCalcStrategyTest;
 import conexp.frontend.latticeeditor.DefaultDimensionCalcStrategy;

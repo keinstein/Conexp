@@ -22,7 +22,7 @@ public class ExponentialPlacementStrategy implements ConceptPlacementStrategy {
         double factor = base / (ldexp(1.0, med) + ldexp(1.0, maxChain - med));
         double x = ldexp(factor, currChain);
         double y = ldexp(factor, maxChain - currChain);
-        return (x - y);
+        return x - y;
     }
 
     /**
@@ -43,7 +43,7 @@ public class ExponentialPlacementStrategy implements ConceptPlacementStrategy {
         double factor = base / (ldexp(1.0, med) + ldexp(1.0, maxChain - med));
         double x = ldexp(factor, currChain);
         double y = ldexp(factor, maxChain - currChain);
-        return (x + y);
+        return x + y;
     }
 
     /**

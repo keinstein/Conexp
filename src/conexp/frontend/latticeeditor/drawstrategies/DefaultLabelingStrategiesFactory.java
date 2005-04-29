@@ -9,6 +9,8 @@
 package conexp.frontend.latticeeditor.drawstrategies;
 
 import conexp.frontend.latticeeditor.LabelingStrategyModelFactory;
+import conexp.frontend.latticeeditor.labelingstrategies.ObjectsLabelingStrategyModel;
+import conexp.frontend.latticeeditor.labelingstrategies.AttributesLabelingStrategyModel;
 import conexp.util.gui.strategymodel.StrategyModel;
 
 public class DefaultLabelingStrategiesFactory implements LabelingStrategyModelFactory {
@@ -16,10 +18,10 @@ public class DefaultLabelingStrategiesFactory implements LabelingStrategyModelFa
     }
 
     public StrategyModel makeAttributeLabelingStrategiesModel() {
-        return new conexp.frontend.latticeeditor.labelingstrategies.AttributesLabelingStrategyModel();
+        return new AttributesLabelingStrategyModel();
     }
 
     public StrategyModel makeObjectsLabelingStrategiesModel() {
-        return new conexp.frontend.latticeeditor.labelingstrategies.ObjectsLabelingStrategyModel();
+        return new ObjectsLabelingStrategyModel();
     }
 }

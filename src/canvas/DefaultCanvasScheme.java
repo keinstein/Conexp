@@ -62,7 +62,7 @@ public class DefaultCanvasScheme implements CanvasScheme {
 
     public int hashCode() {
         int result;
-        result = (colorScheme != null ? colorScheme.hashCode() : 0);
+        result = colorScheme != null ? colorScheme.hashCode() : 0;
         result = 29 * result + (highlightStrategy != null ? highlightStrategy.hashCode() : 0);
         return result;
     }

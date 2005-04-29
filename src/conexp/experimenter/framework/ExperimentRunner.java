@@ -3,23 +3,22 @@ package conexp.experimenter.framework;
 import conexp.core.BinaryRelation;
 import conexp.core.BinaryRelationUtils;
 import util.MemoryUtil;
+import util.Assert;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
+import java.text.DecimalFormat;
 
 /**
  * Creation date: (06.07.01 12:00:23)
  * @author
  */
 public class ExperimentRunner {
-    java.util.List protocol;
+    List protocol;
 
-    protected java.io.PrintWriter outStream;
-    protected java.io.PrintWriter screenStream;
+    protected PrintWriter outStream;
+    protected PrintWriter screenStream;
     protected ExperimentSet experimentSet;
 
     protected IMeasurementProtocol expRunnerMeasurementProtocol;
@@ -115,14 +114,14 @@ public class ExperimentRunner {
             if(isStoreOperationCount()){
                 setFactory.resetStatictics();
             }
-            long startMemory = util.MemoryUtil.freeMemory();
+            long startMemory = MemoryUtil.freeMemory();
             long start = System.currentTimeMillis();
             experiment.perform();
 
             long end = System.currentTimeMillis();
             long timeOfExecution = end - start;
 
-            long endMemory = util.MemoryUtil.freeMemory();
+            long endMemory = MemoryUtil.freeMemory();
             long memoryUsed = startMemory - endMemory;
 
             res.setMeasurementProtocol(getExpRunnerMeasurementProtocol());
@@ -146,7 +145,7 @@ public class ExperimentRunner {
     }
 
     public static String formatDouble(double temp) {
-        return java.text.DecimalFormat.getNumberInstance().format(temp);
+        return DecimalFormat.getNumberInstance().format(temp);
     }
 
 
@@ -267,7 +266,7 @@ public class ExperimentRunner {
             Iterator iter = protocol.validatingMeasurementIterator();
             while (iter.hasNext()) {
                 IMeasurementDescription description = (IMeasurementDescription) iter.next();
-                util.Assert.isTrue(description.isValidating());
+                Assert.isTrue(description.isValidating());
                 if (!validatingParams.contains(description.getName())) {
                     validatingParams.add(description.getName());
 
@@ -419,7 +418,7 @@ public class ExperimentRunner {
     }
 
     public void runExperiment(RelationSequence relGen) {
-        util.Assert.isTrue(relGen != null);
+        Assert.isTrue(relGen != null);
         protocol = new ArrayList();
         try {
             final int relationCount = relGen.getRelationCount();
@@ -437,11 +436,11 @@ public class ExperimentRunner {
         experimentSet = newExperimentSet;
     }
 
-    public void setOutStream(java.io.PrintWriter newOutStream) {
+    public void setOutStream(PrintWriter newOutStream) {
         outStream = newOutStream;
     }
 
-    public void setScreenStream(java.io.PrintWriter newScreenStream) {
+    public void setScreenStream(PrintWriter newScreenStream) {
         screenStream = newScreenStream;
     }
 

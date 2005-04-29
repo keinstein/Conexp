@@ -9,10 +9,12 @@ package conexp.core.layout.chaindecomposition.tests;
 
 import conexp.util.gui.strategymodel.StrategyModel;
 import conexp.util.gui.strategymodel.tests.StrategyModelBaseTest;
+import conexp.core.layout.chaindecomposition.ConceptPlacementStrategyModel;
 import junit.framework.TestSuite;
+import junit.framework.Test;
 
 public class ConceptPlacementStrategyModelTest extends StrategyModelBaseTest {
-    public static junit.framework.Test suite() {
+    public static Test suite() {
         return new TestSuite(ChainDecompositionStrategyModelTest.class);
     }
 
@@ -22,6 +24,6 @@ public class ConceptPlacementStrategyModelTest extends StrategyModelBaseTest {
      * @return conexp.frontend.latticeeditor.StrategyModel
      */
     protected StrategyModel createStrategyModel() {
-        return new conexp.core.layout.chaindecomposition.ConceptPlacementStrategyModel();
+        return new ConceptPlacementStrategyModel();
     }
 }

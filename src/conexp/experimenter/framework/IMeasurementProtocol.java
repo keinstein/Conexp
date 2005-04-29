@@ -11,9 +11,9 @@ package conexp.experimenter.framework;
 import java.util.Iterator;
 
 public interface IMeasurementProtocol {
-    public boolean hasMeasurementWithName(String name);
+    boolean hasMeasurementWithName(String name);
 
-    public Iterator measurementsIterator();
+    Iterator measurementsIterator();
 
-    public Iterator validatingMeasurementIterator();
+    Iterator validatingMeasurementIterator();
 }

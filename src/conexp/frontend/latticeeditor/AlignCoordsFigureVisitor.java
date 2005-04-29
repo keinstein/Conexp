@@ -19,7 +19,7 @@ public class AlignCoordsFigureVisitor extends ConceptFigureCoordinatesChangingFi
     }
 
     protected double alignToGrid(double val) {
-        return (double) (((int) (val + smallGridSize / 2) / smallGridSize) * smallGridSize);
+        return (double) ((int) (val + smallGridSize / 2) / smallGridSize * smallGridSize);
     }
 
     protected Point2D getCoordsForFigure(AbstractConceptCorrespondingFigure f) {

@@ -13,7 +13,7 @@ import conexp.frontend.latticeeditor.figures.DefaultFigureVisitor;
 
 
 public class MockFigureVisitor extends DefaultFigureVisitor {
-    private com.mockobjects.ExpectationCounter counter = new ExpectationCounter("Expected number of visits");
+    private ExpectationCounter counter = new ExpectationCounter("Expected number of visits");
 
     /**
      * Insert the method's description here.

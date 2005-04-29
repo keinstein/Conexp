@@ -92,7 +92,7 @@ public class DefaultColorScheme implements CanvasColorScheme {
 
     public int hashCode() {
         int result;
-        result = (edgeColor != null ? edgeColor.hashCode() : 0);
+        result = edgeColor != null ? edgeColor.hashCode() : 0;
         result = 29 * result + (nodeFillColor != null ? nodeFillColor.hashCode() : 0);
         result = 29 * result + (nodeColor != null ? nodeColor.hashCode() : 0);
         result = 29 * result + (nodeBorderColor != null ? nodeBorderColor.hashCode() : 0);

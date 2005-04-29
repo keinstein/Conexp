@@ -16,7 +16,7 @@ import java.util.List;
 public class ConceptsCollection {
 
     public interface ConceptVisitor {
-        public void visitConcept(Concept c);
+        void visitConcept(Concept c);
     }
 
     public void forEach(ConceptVisitor visitor) {
@@ -50,7 +50,7 @@ public class ConceptsCollection {
 
 //------------------------------------------
     public Concept conceptAt(int index) {
-        return ((Concept) elements.get(index));
+        return (Concept) elements.get(index);
     }
 
     public int conceptsCount() {
@@ -84,7 +84,7 @@ public class ConceptsCollection {
         return Concept.makeFromSets(extent, intent);
     }
 
-    public Concept makeConceptFromSetsCopies(conexp.core.Set intent, conexp.core.Set extent) {
+    public Concept makeConceptFromSetsCopies(Set intent, Set extent) {
         return makeConcept(intent.makeModifiableSetCopy(), extent.makeModifiableSetCopy());
     }
 

@@ -9,6 +9,8 @@ package conexp.core.compareutils;
 
 import util.Assert;
 
+import java.io.PrintWriter;
+
 
 public class CompareInfo {
     public final static int IN_FIRST = 1;
@@ -28,7 +30,7 @@ public class CompareInfo {
     }
 
     protected void makeInBothDifferent() {
-        util.Assert.isTrue(IN_BOTH == type);
+        Assert.isTrue(IN_BOTH == type);
         type = IN_BOTH_BUT_DIFFERENT;
     }
 
@@ -44,7 +46,7 @@ public class CompareInfo {
                 two = element;
                 break;
             default:
-                util.Assert.isTrue(false);
+                Assert.isTrue(false);
                 break;
         }
     }
@@ -73,7 +75,7 @@ public class CompareInfo {
      * Creation date: (13.07.01 17:19:35)
      * @param writer java.io.PrintWriter
      */
-    protected void doDumpDifferencesForInBoth(java.io.PrintWriter writer) {
+    protected void doDumpDifferencesForInBoth(PrintWriter writer) {
         writer.println("For key :"+key);
         writer.println("In first was: " + one);
         writer.println("In second was: "+two);
@@ -85,7 +87,7 @@ public class CompareInfo {
      * Creation date: (13.07.01 16:51:13)
      * @param writer java.io.PrintWriter
      */
-    public void dumpDifferences(java.io.PrintWriter writer) {
+    public void dumpDifferences(PrintWriter writer) {
         switch (getType()) {
             case IN_FIRST:
                 writer.println("Object " + one + "is only in first set");

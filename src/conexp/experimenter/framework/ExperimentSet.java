@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author
  */
 public class ExperimentSet {
-    protected java.util.ArrayList experiments;
+    protected ArrayList experiments;
 
     /**
      * ExperimentSet constructor comment.

@@ -25,7 +25,7 @@ public class ContextLoadingRelation10IncreasingPartsGenerationStrategy extends C
 
     public BinaryRelation makeRelation(int relNo) {
         BinaryRelation baseRelation = getContext().getRelation();
-        if(relNo==(count-1)){
+        if(relNo==count - 1){
             return baseRelation;
         }
         float part = (relNo+1f)/(float)count;

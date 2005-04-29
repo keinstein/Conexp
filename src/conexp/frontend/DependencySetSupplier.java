@@ -14,8 +14,8 @@ import util.PropertyChangeSupplier;
 
 public interface DependencySetSupplier extends PropertyChangeSupplier, ParamsProvider {
 
-    public final static String RULE_SET_PROPERTY = "RULE_SET";
-    public final static String RULE_SET_CLEARED = "RULE_SET_CLEARED";
+    String RULE_SET_PROPERTY = "RULE_SET";
+    String RULE_SET_CLEARED = "RULE_SET_CLEARED";
 
     DependencySet getDependencySet();
 

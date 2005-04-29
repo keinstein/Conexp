@@ -14,5 +14,5 @@ import java.io.IOException;
 import java.io.Reader;
 
 public interface DocumentLoader {
-    public ContextDocument loadDocument(Reader reader, DataFormatErrorHandler errorHandler) throws IOException, DataFormatException;
+    ContextDocument loadDocument(Reader reader, DataFormatErrorHandler errorHandler) throws IOException, DataFormatException;
 }

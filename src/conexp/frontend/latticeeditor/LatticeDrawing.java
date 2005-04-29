@@ -29,7 +29,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListenerProxy;
 
 public class LatticeDrawing extends ConceptSetDrawing {
 
@@ -141,7 +140,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
     }
 
     public void setLayoutEngine(LayoutEngine layoutEngine) {
-        if (layoutEngine != this.layoutEngine) {
+        if (!layoutEngine.equals(this.layoutEngine)) {
             if (null != this.layoutEngine) {
                 this.layoutEngine.removeLayoutListener(layoutListener);
             }
@@ -276,7 +275,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
     }
 
 
-    public void finalize() throws java.lang.Throwable {
+    protected void finalize() throws Throwable {
         super.finalize();
         shutdown();
     }

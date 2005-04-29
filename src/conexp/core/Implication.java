@@ -50,7 +50,7 @@ public class Implication extends GenericDependency implements Cloneable {
     }
 
     public boolean isEmptyObjectSet() {
-        return (0 == getObjectCount());
+        return 0 == getObjectCount();
     }
 
     public void makeDisjoint() {

@@ -7,11 +7,13 @@
 
 package conexp.frontend.latticeeditor.drawstrategies.tests;
 
+import conexp.frontend.latticeeditor.DrawStrategiesModelsFactory;
+import conexp.frontend.latticeeditor.tests.DrawStrategiesModelsFactoryTest;
+import conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory;
 
 
-
-public class DefaultDrawStrategiesModelsFactoryTest extends conexp.frontend.latticeeditor.tests.DrawStrategiesModelsFactoryTest {
-    protected conexp.frontend.latticeeditor.DrawStrategiesModelsFactory makeFactory() {
-        return new conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory(getDrawParams());
+public class DefaultDrawStrategiesModelsFactoryTest extends DrawStrategiesModelsFactoryTest {
+    protected DrawStrategiesModelsFactory makeFactory() {
+        return new DefaultDrawStrategiesModelsFactory(getDrawParams());
     }
 }

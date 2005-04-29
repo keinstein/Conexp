@@ -79,8 +79,8 @@ public class SetRelation implements ModifiableBinaryRelation {
 
 
     public void removeCol(int col) {
-        util.Assert.isTrue(0 <= col, "removeCol: col should be greater or equal to zero");
-        util.Assert.isTrue(col < sizeY, "removeCol: col = " + col + "  should be less then relation column count");
+        Assert.isTrue(0 <= col, "removeCol: col should be greater or equal to zero");
+        Assert.isTrue(col < sizeY, "removeCol: col = " + col + "  should be less then relation column count");
         for (int j = sizeX; --j >= 0;) {
             relation[j].exclude(col);
         }
@@ -88,8 +88,8 @@ public class SetRelation implements ModifiableBinaryRelation {
     }
 
     public void removeRow(int row) {
-        util.Assert.isTrue(0 <= row, "removeRow: row should be greater or equal to zero");
-        util.Assert.isTrue(row < sizeX, "removeRow: row should be less then relation row count");
+        Assert.isTrue(0 <= row, "removeRow: row should be greater or equal to zero");
+        Assert.isTrue(row < sizeX, "removeRow: row should be less then relation row count");
         int lastElIndex = sizeX - 1;
         if (row != lastElIndex) {
             System.arraycopy(relation, row + 1, relation, row, lastElIndex - row);
@@ -106,13 +106,13 @@ public class SetRelation implements ModifiableBinaryRelation {
             throw new IndexOutOfBoundsException("Dimension Y of relation should be nonnegative");
         } // end of if ()
         if (null == relation) {
-            relation = new conexp.core.ModifiableSet[rows];
+            relation = new ModifiableSet[rows];
             for (int j = 0; j < rows; j++) {
                 relation[j] = ContextFactoryRegistry.createSet(cols);
             }
         } else {
             if (sizeX < rows) {
-                ModifiableSet[] temp = new conexp.core.ModifiableSet[rows];
+                ModifiableSet[] temp = new ModifiableSet[rows];
                 System.arraycopy(relation, 0, temp, 0, sizeX);
                 relation = temp;
                 for (int j = sizeX; j < rows; j++) {
@@ -193,7 +193,7 @@ public class SetRelation implements ModifiableBinaryRelation {
      * Creation date: (04.08.01 8:39:27)
      */
     public String toString() {
-        StringWriter sw = new java.io.StringWriter();
+        StringWriter sw = new StringWriter();
         BinaryRelationUtils.logRelation(this, new PrintWriter(sw));
         return sw.getBuffer().toString();
     }

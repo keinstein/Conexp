@@ -36,15 +36,15 @@ public abstract class RectangularFigure extends FigureWithCoords{
         double dy = getCenterY() - outPoint.getY();
 
         if (Math.abs(dx) * getHeight() <= Math.abs(dy) * getWidth()) {
-            double dh = (dy > 0 ? -getHeight() / 2 : getHeight() / 2);
-            result.setLocation(getCenterX() + (dy != 0 ? (dx * dh) / dy : 0),
+            double dh = dy > 0 ? -getHeight() / 2 : getHeight() / 2;
+            result.setLocation(getCenterX() + (dy != 0 ? dx * dh / dy : 0),
                     getCenterY() + dh);
         } else {
 
-            double dw = (dx > 0 ? -getWidth() / 2 : getWidth() / 2);
+            double dw = dx > 0 ? -getWidth() / 2 : getWidth() / 2;
 
             result.setLocation(getCenterX() + dw,
-                    getCenterY() + (dx != 0 ? (dy * dw) / dx : 0));
+                    getCenterY() + (dx != 0 ? dy * dw / dx : 0));
         }
     }
 
@@ -53,7 +53,7 @@ public abstract class RectangularFigure extends FigureWithCoords{
     }
 
     protected double getLeftX() {
-        return (getCenterX() - getWidth() / 2);
+        return getCenterX() - getWidth() / 2;
     }
 
     protected double getTopY() {
@@ -65,7 +65,7 @@ public abstract class RectangularFigure extends FigureWithCoords{
     }
 
     protected double getBottomY() {
-        return (getCenterY() + getHeight() / 2);
+        return getCenterY() + getHeight() / 2;
     }
 
     public boolean contains(double X, double Y) {

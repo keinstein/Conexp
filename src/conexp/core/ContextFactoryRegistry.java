@@ -7,6 +7,8 @@
 
 package conexp.core;
 
+import conexp.core.bitset.BitSetFactory;
+
 
 public class ContextFactoryRegistry {
     private static ContextFactory factory;
@@ -46,7 +48,7 @@ public class ContextFactoryRegistry {
 
     private synchronized static ContextFactory getFactory() {
         if (null == factory) {
-            factory = new conexp.core.bitset.BitSetFactory();
+            factory = new BitSetFactory();
         }
         return factory;
     }

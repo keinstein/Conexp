@@ -9,6 +9,7 @@
 package conexp.core.associations;
 
 import conexp.core.*;
+import conexp.core.enumerators.EdgeMinSupportSelector;
 import util.Assert;
 import util.collection.disjointset.DisjointSetsSystem;
 import util.comparators.ComparatorUtil;
@@ -61,7 +62,7 @@ public abstract class BaseAssociationMiner implements AssociationMiner {
      */
     public static ArrayList findFrequentEdgesSortedByConfidence(Lattice lat, double minConfidence, int minSupport) {
         ArrayList frequentEdges = new ArrayList();
-        EdgeIterator selector = new conexp.core.enumerators.EdgeMinSupportSelector(lat, minSupport);
+        EdgeIterator selector = new EdgeMinSupportSelector(lat, minSupport);
         while (selector.hasNextEdge()) {
             Edge e = selector.nextEdge();
             if (e.getConfidence() >= minConfidence) {

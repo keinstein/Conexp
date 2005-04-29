@@ -26,7 +26,7 @@ public class FigureDrawingTest extends TestCase {
     protected FigureWithCoords f2;
 
     protected void setUp() {
-        figureDrawing = new canvas.FigureDrawing();
+        figureDrawing = new FigureDrawing();
         f1 = new MockFigure(5, 5);
         figureDrawing.addFigure(f1);
         f2 = new MockFigure(15, 15);
@@ -73,7 +73,7 @@ public class FigureDrawingTest extends TestCase {
 
 
     public void testFindFigure() {
-        canvas.Figure f = figureDrawing.findFigureInReverseOrder(6, 6);
+        Figure f = figureDrawing.findFigureInReverseOrder(6, 6);
         assertSame("should find first figure", f1, f);
         f = figureDrawing.findFigureInReverseOrder(11, 11);
         assertSame("should find second figure", f2, f);
@@ -90,7 +90,7 @@ public class FigureDrawingTest extends TestCase {
      * Creation date: (13.01.01 2:16:15)
      */
     public void testGetUserBoundsRect() {
-        assertEquals(new java.awt.Rectangle(0, 0, 20, 20), figureDrawing.getUserBoundsRect());
+        assertEquals(new Rectangle(0, 0, 20, 20), figureDrawing.getUserBoundsRect());
 
         MockFigureDrawingListener mockListener = new MockFigureDrawingListener();
         mockListener.expDim.addExpected(figureDrawing.makeDrawingDimension(25, 25));
@@ -98,7 +98,7 @@ public class FigureDrawingTest extends TestCase {
         figureDrawing.addDrawingChangedListener(mockListener);
 
         f1.moveBy(-5, -5);
-        assertEquals(new java.awt.Rectangle(-5, -5, 25, 25), figureDrawing.getUserBoundsRect());
+        assertEquals(new Rectangle(-5, -5, 25, 25), figureDrawing.getUserBoundsRect());
         mockListener.verify();
 
         mockListener.reset();
@@ -106,7 +106,7 @@ public class FigureDrawingTest extends TestCase {
         mockListener.expDim.addExpected(figureDrawing.makeDrawingDimension(20, 30));
 
         f2.moveBy(-5, 5);
-        assertEquals(new java.awt.Rectangle(-5, -5, 20, 30), figureDrawing.getUserBoundsRect());
+        assertEquals(new Rectangle(-5, -5, 20, 30), figureDrawing.getUserBoundsRect());
         mockListener.verify();
 
 
@@ -115,7 +115,7 @@ public class FigureDrawingTest extends TestCase {
         mockListener.expDim.addExpected(figureDrawing.makeDrawingDimension(15, 25));
 
         f2.moveBy(-5, -5);
-        assertEquals(new java.awt.Rectangle(-5, -5, 15, 25), figureDrawing.getUserBoundsRect());
+        assertEquals(new Rectangle(-5, -5, 15, 25), figureDrawing.getUserBoundsRect());
         mockListener.verify();
     }
 
@@ -130,18 +130,18 @@ public class FigureDrawingTest extends TestCase {
      * Creation date: (20.01.01 0:16:06)
      */
     public void testLayOnBorder() {
-        assertEquals(new java.awt.Rectangle(0, 0, 20, 20), figureDrawing.getUserBoundsRect());
-        assertTrue(figureDrawing.layOnBorder(new java.awt.Rectangle(0, 0, 1, 1)));
-        assertTrue(figureDrawing.layOnBorder(new java.awt.Rectangle(0, 1, 1, 1)));
-        assertTrue(figureDrawing.layOnBorder(new java.awt.Rectangle(1, 0, 1, 1)));
-        assertTrue(figureDrawing.layOnBorder(new java.awt.Rectangle(1, 19, 1, 1)));
-        assertTrue(figureDrawing.layOnBorder(new java.awt.Rectangle(19, 18, 1, 1)));
-        assertEquals(false, figureDrawing.layOnBorder(new java.awt.Rectangle(5, 5, 5, 5)));
-        assertEquals(false, figureDrawing.layOnBorder(new java.awt.Rectangle(18, 18, 1, 1)));
+        assertEquals(new Rectangle(0, 0, 20, 20), figureDrawing.getUserBoundsRect());
+        assertTrue(figureDrawing.layOnBorder(new Rectangle(0, 0, 1, 1)));
+        assertTrue(figureDrawing.layOnBorder(new Rectangle(0, 1, 1, 1)));
+        assertTrue(figureDrawing.layOnBorder(new Rectangle(1, 0, 1, 1)));
+        assertTrue(figureDrawing.layOnBorder(new Rectangle(1, 19, 1, 1)));
+        assertTrue(figureDrawing.layOnBorder(new Rectangle(19, 18, 1, 1)));
+        assertEquals(false, figureDrawing.layOnBorder(new Rectangle(5, 5, 5, 5)));
+        assertEquals(false, figureDrawing.layOnBorder(new Rectangle(18, 18, 1, 1)));
     }
 
     public void testClear() {
-        assertEquals(new java.awt.Rectangle(0, 0, 20, 20), figureDrawing.getUserBoundsRect());
+        assertEquals(new Rectangle(0, 0, 20, 20), figureDrawing.getUserBoundsRect());
         assertEquals(figureDrawing.makeDrawingDimension(20, 20), figureDrawing.getDimension());
 
         figureDrawing.clear();

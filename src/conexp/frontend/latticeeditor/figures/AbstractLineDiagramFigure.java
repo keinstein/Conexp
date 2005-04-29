@@ -14,7 +14,7 @@ import conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider;
 
 public abstract class AbstractLineDiagramFigure extends FigureWithCoords implements LineDiagramFigure{
 
-    conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider figureDimensionProvider;
+    FigureDimensionCalcStrategyProvider figureDimensionProvider;
 
     public AbstractLineDiagramFigure() {
         this(0, 0);
@@ -24,7 +24,7 @@ public abstract class AbstractLineDiagramFigure extends FigureWithCoords impleme
         super(x, y);
     }
 
-    public void setFigureDimensionCalcStrategyProvider(conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider figureDimensionProvider) {
+    public void setFigureDimensionCalcStrategyProvider(FigureDimensionCalcStrategyProvider figureDimensionProvider) {
         this.figureDimensionProvider = figureDimensionProvider;
     }
 

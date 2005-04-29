@@ -12,11 +12,11 @@ import canvas.Figure;
 
 
 public interface ConnectionFigure extends Figure {
-    canvas.Figure getStartFigure();
+    Figure getStartFigure();
 
-    canvas.Figure getEndFigure();
+    Figure getEndFigure();
 
-    boolean canConnect(canvas.Figure startFigure, canvas.Figure endFigure);
+    boolean canConnect(Figure startFigure, Figure endFigure);
 
     void setStartFigure(BorderCalculatingFigure start);
 

@@ -229,7 +229,7 @@ public class ContextViewPanel extends ContextTablePane implements ViewChangeInte
     //----------------------------------------------
     //Config Provider
 
-    private static java.util.ResourceBundle resContextViewPanel;
+    private static ResourceBundle resContextViewPanel;
 
     static {
         resContextViewPanel = ResourceLoader.getResourceBundle("conexp/frontend/resources/ContextViewPanel");  //$NON-NLS-1$

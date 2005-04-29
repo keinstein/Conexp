@@ -8,6 +8,7 @@
 package conexp.core.layout;
 
 import conexp.core.LatticeElement;
+import util.Assert;
 
 public class RelaxerLayouter extends GenericLayouter {
     static class RelaxerLayoutConceptInfo extends LayoutConceptInfo {
@@ -66,9 +67,9 @@ public class RelaxerLayouter extends GenericLayouter {
                 for (int j = curr.getPredCount(); --j >= 0;) {
                     LatticeElement other = curr.getPred(j);
                     double len = distanceBetween(curr, other);
-                    int deltaHeight = (curr.getHeight() - other.getHeight());
-                    util.Assert.isTrue(deltaHeight > 0);
-                    idealLenUnit += (len / deltaHeight);
+                    int deltaHeight = curr.getHeight() - other.getHeight();
+                    Assert.isTrue(deltaHeight > 0);
+                    idealLenUnit += len / deltaHeight;
                 }
                 idealLenUnit /= curr.getPredCount();
                 for (int j = curr.getPredCount(); --j >= 0;) {
@@ -80,8 +81,8 @@ public class RelaxerLayouter extends GenericLayouter {
                     if (0 == len) {
                         dx = Math.random();
                     } else {
-                        int deltaHeight = (curr.getHeight() - other.getHeight());
-                        util.Assert.isTrue(deltaHeight > 0);
+                        int deltaHeight = curr.getHeight() - other.getHeight();
+                        Assert.isTrue(deltaHeight > 0);
                         double idealEdgeLen = idealLenUnit * deltaHeight;
                         double force = (idealEdgeLen - len) / (3 * len);
                         dx = force * vx;
@@ -98,9 +99,9 @@ public class RelaxerLayouter extends GenericLayouter {
                 for (int j = curr.getSuccCount(); --j >= 0;) {
                     LatticeElement other = curr.getSucc(j);
                     double len = distanceBetween(curr, other);
-                    int deltaHeight = (other.getHeight() - curr.getHeight());
-                    util.Assert.isTrue(deltaHeight > 0);
-                    idealLenUnit += (len / deltaHeight);
+                    int deltaHeight = other.getHeight() - curr.getHeight();
+                    Assert.isTrue(deltaHeight > 0);
+                    idealLenUnit += len / deltaHeight;
                 }
                 idealLenUnit /= curr.getSuccCount();
                 for (int j = curr.getSuccCount(); --j >= 0;) {
@@ -112,8 +113,8 @@ public class RelaxerLayouter extends GenericLayouter {
                     if (0 == len) {
                         dx = Math.random();
                     } else {
-                        int deltaHeight = (other.getHeight() - curr.getHeight());
-                        util.Assert.isTrue(deltaHeight > 0);
+                        int deltaHeight = other.getHeight() - curr.getHeight();
+                        Assert.isTrue(deltaHeight > 0);
                         double idealEdgeLen = idealLenUnit * deltaHeight;
                         double force = (idealEdgeLen - len) / (3 * len);
                         dx = force * vx;
@@ -169,7 +170,7 @@ public class RelaxerLayouter extends GenericLayouter {
             double dlen = dx * dx + dy * dy;
             if (dlen != 0) {
                 dlen = Math.sqrt(dlen);
-                currInfo.dx += (dx / dlen) * repel;
+                currInfo.dx += dx / dlen * repel;
             } //no attraction due to absence of grid points
         }
     }

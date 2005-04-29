@@ -42,7 +42,7 @@ public abstract class TextFigure extends BaseTextFigure {
             g2D.setColor(getBorderColor(opt));
             g2D.draw(rect);
             g2D.setColor(getTextColor(opt));
-            g2D.drawString(getString(), (float) (getCenterX() - (getWidth() - xTextOffset) / 2), (float) ((getCenterY() - (getHeight() - yTextOffset) / 2) + fm.getAscent()));
+            g2D.drawString(getString(), (float) (getCenterX() - (getWidth() - xTextOffset) / 2), (float) (getCenterY() - (getHeight() - yTextOffset) / 2 + fm.getAscent()));
         } finally {
             g.setFont(oldFont);
         }

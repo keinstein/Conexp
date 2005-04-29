@@ -21,6 +21,9 @@ import junit.framework.TestCase;
 
 import java.awt.*;
 
+import canvas.FigureDrawingListener;
+import canvas.BaseFigureVisitor;
+
 
 public abstract class GenericLabelingStrategyTest extends TestCase {
     protected GenericLabelingStrategy labelStrategy;
@@ -54,7 +57,7 @@ public abstract class GenericLabelingStrategyTest extends TestCase {
         assertTrue(labelStrategy.accept(makeAcceptable()));
     }
 
-    static class MockFigureDrawingListener implements canvas.FigureDrawingListener {
+    static class MockFigureDrawingListener implements FigureDrawingListener {
         ExpectationCounter counter = new ExpectationCounter("DimensionChanged counter");
 
         boolean expectedCalled = false;
@@ -94,7 +97,7 @@ public abstract class GenericLabelingStrategyTest extends TestCase {
         LatticeDrawing drawing = new LatticeDrawing();
         assertTrue("Array should be empty", drawing.isEmpty());
         drawing.addFigure(f);
-        canvas.BaseFigureVisitor visitor = labelStrategy.makeInitStrategyVisitor(drawing, new LatticePainterDrawParams());
+        BaseFigureVisitor visitor = labelStrategy.makeInitStrategyVisitor(drawing, new LatticePainterDrawParams());
         f.visit(visitor);
         assertEquals("Strategy should add figires", false, drawing.isEmpty());
         assertTrue("Strategy should have connected figires", labelStrategy.hasConnectedObjects());

@@ -117,11 +117,11 @@ public class ContextReducabilityAnalyserImplementation implements IContextReduca
         return objectIdToReducabilityInfoMap;
     }
 
-    private Set getSetForClass(BinaryRelation relation, EntityReducabilityInfo reducabilityInfo) {
+    private static Set getSetForClass(BinaryRelation relation, EntityReducabilityInfo reducabilityInfo) {
         return relation.getSet(((Integer) reducabilityInfo.getClassOfEquivalence().get(0)).intValue());
     }
 
-    private ListMultiMap findObjectClassesOfEquivalence(BinaryRelation relation) {
+    private static ListMultiMap findObjectClassesOfEquivalence(BinaryRelation relation) {
         ListMultiMap classesOfEquivalence = new ListMultiMap();
         Map intentObjectIdMap = CollectionFactory.createDefaultMap();
         int objectCount = relation.getRowCount();

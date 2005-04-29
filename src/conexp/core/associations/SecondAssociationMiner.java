@@ -15,6 +15,8 @@ import conexp.core.calculationstrategies.LatticeImplicationCalculator;
 
 import java.util.ArrayList;
 
+import util.Assert;
+
 
 public class SecondAssociationMiner extends BaseAssociationMiner {
 
@@ -23,7 +25,7 @@ public class SecondAssociationMiner extends BaseAssociationMiner {
     }
 
     public void findAssociations(DependencySet depSet, int minSupport, double minConfidence) {
-        util.Assert.isTrue(cxt != null);
+        Assert.isTrue(cxt != null);
         depSet.clear();
         findFrequentItemsetsAndImplications(minSupport);
 //        long exactTime = System.currentTimeMillis();

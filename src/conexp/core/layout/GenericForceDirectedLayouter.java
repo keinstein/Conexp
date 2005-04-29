@@ -14,6 +14,9 @@ import util.comparators.ComparatorUtil;
 
 import java.awt.geom.Point2D;
 import java.util.Comparator;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeSupport;
 
 
 public abstract class GenericForceDirectedLayouter extends GenericLayouter {
@@ -43,8 +46,8 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
         }
     }
 
-    private java.beans.PropertyChangeSupport propertyChange;
-    private java.beans.PropertyChangeListener propertyChangeListener;
+    private PropertyChangeSupport propertyChange;
+    private PropertyChangeListener propertyChangeListener;
 
     static final String ROTATION_ANGLE_PROPERTY = "rotationAngle";
 
@@ -78,7 +81,7 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
         }
         float maxZ = getConceptInfo(lattice.getOne()).coords.z;
 
-        return (maxZ * maxZ > 4 * maxSq ? maxZ : 2 * (float) Math.sqrt(maxSq));
+        return maxZ * maxZ > 4 * maxSq ? maxZ : 2 * (float) Math.sqrt(maxSq);
     }
 
 
@@ -181,18 +184,18 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
     protected abstract void localInit();
 
 
-    protected synchronized java.beans.PropertyChangeSupport getPropertyChange() {
+    protected synchronized PropertyChangeSupport getPropertyChange() {
         if (null == propertyChange) {
-            propertyChange = new java.beans.PropertyChangeSupport(this);
+            propertyChange = new PropertyChangeSupport(this);
             propertyChange.addPropertyChangeListener(getPropertyChangeListener());
         }
         return propertyChange;
     }
 
-    protected synchronized java.beans.PropertyChangeListener getPropertyChangeListener() {
+    protected synchronized PropertyChangeListener getPropertyChangeListener() {
         if (null == propertyChangeListener) {
-            propertyChangeListener = new java.beans.PropertyChangeListener() {
-                public void propertyChange(java.beans.PropertyChangeEvent evt) {
+            propertyChangeListener = new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent evt) {
                     if (ROTATION_ANGLE_PROPERTY.equals(evt.getPropertyName())) {
                         projectAndAssignCoords();
                     }

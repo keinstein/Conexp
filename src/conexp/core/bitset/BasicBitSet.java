@@ -34,7 +34,7 @@ public abstract class BasicBitSet implements ModifiableSet, Cloneable {
     }
 
     public boolean equals(Object obj) {
-        if (obj == null || !(this.getClass().isInstance(obj)))
+        if (obj == null || !this.getClass().isInstance(obj))
             return false;
         if (this == obj)
             return true;

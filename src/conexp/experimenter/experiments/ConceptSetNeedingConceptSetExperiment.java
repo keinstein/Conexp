@@ -1,6 +1,7 @@
 package conexp.experimenter.experiments;
 
 import conexp.core.ConceptSetNeedingCalcStrategy;
+import conexp.core.ConceptsCollection;
 
 /**
  * Insert the type's description here.
@@ -25,7 +26,7 @@ public class ConceptSetNeedingConceptSetExperiment extends ConceptSetExperiment 
      */
     protected void doLocalSetup() {
         super.doLocalSetup();
-        ((ConceptSetNeedingCalcStrategy) strategy).setConceptSet((conexp.core.ConceptsCollection) coll);
+        ((ConceptSetNeedingCalcStrategy) strategy).setConceptSet((ConceptsCollection) coll);
     }
 
 }

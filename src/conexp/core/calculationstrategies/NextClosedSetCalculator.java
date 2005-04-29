@@ -92,7 +92,7 @@ public class NextClosedSetCalculator extends NextClosedSetClosureSystemGenerator
 
     //-----------------------------------------------------
     public void buildLattice() {
-        Assert.isTrue(callback instanceof conexp.core.enumcallbacks.NextClosedSetLatticeBuilderCallback);
+        Assert.isTrue(callback instanceof NextClosedSetLatticeBuilderCallback);
         calculateConceptSet();
     }
 }

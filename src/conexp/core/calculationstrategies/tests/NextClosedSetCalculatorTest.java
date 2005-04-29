@@ -8,13 +8,16 @@
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.ItemSet;
+import conexp.core.ConceptsCollection;
+import conexp.core.ConceptCalcStrategy;
+import conexp.core.enumcallbacks.ConceptSetCallback;
 import conexp.core.calculationstrategies.NextClosedSetCalculator;
 import conexp.core.tests.SetBuilder;
 
 
 public class NextClosedSetCalculatorTest extends EnumerativeCalcStrategyTest {
 
-    protected conexp.core.ConceptCalcStrategy makeCalcStrategy() {
+    protected ConceptCalcStrategy makeCalcStrategy() {
         return new NextClosedSetCalculator();
     }
 
@@ -24,8 +27,8 @@ public class NextClosedSetCalculatorTest extends EnumerativeCalcStrategyTest {
                                                              {1, 1, 0},
                                                              {0, 0, 1}}));
 
-        conexp.core.ConceptsCollection col = new conexp.core.ConceptsCollection();
-        conexp.core.enumcallbacks.ConceptSetCallback callback = new conexp.core.enumcallbacks.ConceptSetCallback(col);
+        ConceptsCollection col = new ConceptsCollection();
+        ConceptSetCallback callback = new ConceptSetCallback(col);
         calc.setCallback(callback);
         calc.calculateConceptSet();
 

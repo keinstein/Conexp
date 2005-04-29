@@ -27,9 +27,9 @@ public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericL
         super();
     }
 
-    protected void removeConnectedObjectFromContainer(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure f, java.lang.Object obj) {
+    protected void removeConnectedObjectFromContainer(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure f, Object obj) {
         ArrayList arr = (ArrayList) obj;
-        java.util.Iterator iter = arr.iterator();
+        Iterator iter = arr.iterator();
         while (iter.hasNext()) {
             Figure curr = (Figure) iter.next();
             drawing.removeForegroundFigure(curr);

@@ -7,21 +7,18 @@
 
 package conexp.core.layout.chaindecomposition;
 
-import conexp.core.BinaryRelation;
-import conexp.core.ContextFactoryRegistry;
-import conexp.core.ModifiableBinaryRelation;
-import conexp.core.Set;
+import conexp.core.*;
 
 
 public class ObjectsDecompositionStrategy implements ChainDecompositionStrategy {
-    private conexp.core.ExtendedContextEditingInterface cxt;
+    private ExtendedContextEditingInterface cxt;
 
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 19:08:06)
      * @return conexp.core.BinaryRelation
      */
-    public conexp.core.BinaryRelation computeEntitiesOrder() {
+    public BinaryRelation computeEntitiesOrder() {
         final int size = getEntitiesCount();
         BinaryRelation rel = cxt.getRelation();
         ModifiableBinaryRelation ret = ContextFactoryRegistry.createRelation(size, size);
@@ -44,7 +41,7 @@ public class ObjectsDecompositionStrategy implements ChainDecompositionStrategy 
      * @param vectorsY double[]
      * @param pt conexp.core.layout.Point2D
      */
-    public conexp.core.Set conceptRepresentation(conexp.core.LatticeElement el) {
+    public Set conceptRepresentation(LatticeElement el) {
         return el.getObjects();
     }
 
@@ -86,7 +83,7 @@ public class ObjectsDecompositionStrategy implements ChainDecompositionStrategy 
      * Creation date: (10.03.01 10:23:43)
      * @param newCxt conexp.core.Context
      */
-    public void setContext(conexp.core.ExtendedContextEditingInterface newCxt) {
+    public void setContext(ExtendedContextEditingInterface newCxt) {
         cxt = newCxt;
     }
 

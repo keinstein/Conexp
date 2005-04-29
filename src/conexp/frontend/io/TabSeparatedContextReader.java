@@ -54,7 +54,6 @@ public class TabSeparatedContextReader implements ContextReader {
         while (stringTokenizer.hasMoreTokens()) {
             names.add(stringTokenizer.nextToken());
         }
-        ;
         int numAttr = names.size();
 
         safeGetLine();//skipping

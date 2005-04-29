@@ -8,6 +8,8 @@
 package canvas.util;
 
 import canvas.ToolEvent;
+import canvas.DefaultToolListener;
+import canvas.Tool;
 
 import javax.swing.*;
 
@@ -15,15 +17,15 @@ import javax.swing.*;
 public class ToolToggleButton extends JToggleButton {
     public ToolToggleButton(ToolAction toolAction) {
         super(toolAction);
-        canvas.Tool tool = toolAction.getTool();
+        Tool tool = toolAction.getTool();
         setEnabled(tool.isEnabled());
         setSelected(tool.isActive());
-        tool.addToolListener(new canvas.DefaultToolListener() {
-            protected void onToolDeactivated(canvas.ToolEvent toolEvent) {
+        tool.addToolListener(new DefaultToolListener() {
+            protected void onToolDeactivated(ToolEvent toolEvent) {
                 ToolToggleButton.this.setSelected(false);
             }
 
-            protected void onToolActivated(canvas.ToolEvent toolEvent) {
+            protected void onToolActivated(ToolEvent toolEvent) {
                 ToolToggleButton.this.setSelected(true);
             }
 

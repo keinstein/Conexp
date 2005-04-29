@@ -23,6 +23,7 @@ import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 import util.testing.TestUtil;
 
 import java.awt.geom.Point2D;
+import java.beans.PropertyVetoException;
 
 public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     protected DocumentLoader makeDocumentLoader() {
@@ -112,7 +113,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         setUpFullLatticeCase();
         try {
             doc.getLatticeComponent().getDrawing().getPainterOptions().getLabelsFontSizeValue().setValue(16);
-        } catch (java.beans.PropertyVetoException e) {
+        } catch (PropertyVetoException e) {
             TestUtil.reportUnexpectedException(e);
         }
         ContextDocument loadedDoc = doTestWriteAndReadForDocWithLattice(doc, cxt);

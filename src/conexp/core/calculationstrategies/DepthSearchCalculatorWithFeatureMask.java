@@ -72,7 +72,7 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
     }
 
     private boolean hasFeatureMask() {
-        return (null != attributesMask || null != objectsMask);
+        return null != attributesMask || null != objectsMask;
     }
 
     public void removeAllSearchConstraints() {

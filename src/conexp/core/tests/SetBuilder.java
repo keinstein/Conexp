@@ -98,10 +98,10 @@ public class SetBuilder {
     }
 
 
-    public static conexp.core.ConceptsCollection makeConceptSet(int[][] rel) {
+    public static ConceptsCollection makeConceptSet(int[][] rel) {
         NextClosedSetCalculator strat = new NextClosedSetCalculator();
         strat.setRelation(SetBuilder.makeRelation(rel));
-        conexp.core.ConceptsCollection ret = new conexp.core.ConceptsCollection();
+        ConceptsCollection ret = new ConceptsCollection();
         strat.setCallback(new ConceptSetCallback(ret));
         strat.calculateConceptSet();
         return ret;
@@ -145,7 +145,7 @@ public class SetBuilder {
     public static Edge makeEdge(int[][] start, int[][] end) {
         Edge ret = new Edge(makeConcept(start[0], start[1]),
                 makeConcept(end[0], end[1]));
-        util.Assert.isTrue(ret.isValid());
+        Assert.isTrue(ret.isValid());
         return ret;
     }
 

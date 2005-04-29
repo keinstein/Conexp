@@ -7,11 +7,12 @@
 
 package conexp.frontend.latticeeditor;
 
-import java.awt.geom.Dimension2D;
+import canvas.FigureDrawingListener;
+
 import java.awt.*;
 
 
-public class DefaulFigureDrawingListener implements canvas.FigureDrawingListener {
+public class DefaulFigureDrawingListener implements FigureDrawingListener {
     public void dimensionChanged(Dimension newDim) {
     }
 

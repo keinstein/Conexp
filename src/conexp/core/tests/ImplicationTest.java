@@ -24,7 +24,7 @@ public class ImplicationTest extends DependencyTest {
     public void testEquals() {
         assertTrue("Self equals failure", impOverlap.equals(impOverlap));
         assertEquals("Equality to zero failure", false, impOverlap.equals(null));
-        assertEquals("Equality to other type failure", false, impOverlap.equals(new String()));
+        assertEquals("Equality to other type failure", false, impOverlap.equals(new Object()));
         assertTrue("Clone equals failure", impOverlap.equals(impOverlap.clone()));
         assertEquals("Not equals failure", false, impOverlap.equals(impDisjoint));
     }

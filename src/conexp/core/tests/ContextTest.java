@@ -572,7 +572,7 @@ public class ContextTest extends TestCase {
         assertEquals(cxt, other);
 
         assertNotNull(cxt.getArrowCalculator());
-        Context otherCxt = ((Context) other);
+        Context otherCxt = (Context) other;
         assertNotNull(otherCxt.getArrowCalculator());
 
         checkArrowCalculatorsIndependent(otherCxt);

@@ -7,11 +7,11 @@
 
 package conexp.core.layout.chaindecomposition;
 
-import conexp.core.BinaryRelationUtils;
+import conexp.core.*;
 
 
 public class AttributtesDecompositionStrategy implements ChainDecompositionStrategy {
-    private conexp.core.ExtendedContextEditingInterface cxt;
+    private ExtendedContextEditingInterface cxt;
 
     /**
      * AttributtesDecompositionStrategy constructor comment.
@@ -25,7 +25,7 @@ public class AttributtesDecompositionStrategy implements ChainDecompositionStrat
      * Creation date: (09.03.01 19:10:47)
      * @return conexp.core.BinaryRelation
      */
-    public conexp.core.BinaryRelation computeEntitiesOrder() {
+    public BinaryRelation computeEntitiesOrder() {
         return BinaryRelationUtils.calcAttributesOrder(cxt.getRelation());
     }
 
@@ -37,7 +37,7 @@ public class AttributtesDecompositionStrategy implements ChainDecompositionStrat
      * @param vectorsY double[]
      * @param pt conexp.core.layout.Point2D
      */
-    public conexp.core.Set conceptRepresentation(conexp.core.LatticeElement el) {
+    public Set conceptRepresentation(LatticeElement el) {
         return el.getAttribs();
     }
 
@@ -77,7 +77,7 @@ public class AttributtesDecompositionStrategy implements ChainDecompositionStrat
     /**
      * setContext method comment.
      */
-    public void setContext(conexp.core.ExtendedContextEditingInterface cxt) {
+    public void setContext(ExtendedContextEditingInterface cxt) {
         this.cxt = cxt;
     }
 

@@ -9,9 +9,10 @@ package conexp.frontend.latticeeditor.edgesizecalcstrategies.tests;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
+import junit.framework.TestCase;
 
 
-public class PackageTest extends junit.framework.TestCase {
+public class PackageTest extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
         suite.addTestSuite(ConceptConnectionEdgeSizeCalcStrategyTest.class);

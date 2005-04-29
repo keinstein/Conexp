@@ -22,10 +22,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.Dimension2D;
+import java.awt.geom.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Collection;
@@ -101,7 +98,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     }
 
 
-    private java.awt.geom.AffineTransform translatingTransform;
+    private AffineTransform translatingTransform;
 
     protected AffineTransform makeTranslatingTransform(Point2D viewPoint) {
         return AffineTransform.getTranslateInstance(-viewPoint.getX(), -viewPoint.getY());
@@ -119,7 +116,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
         Point2D ptDest = GraphicObjectsFactory.makePoint2D();
         try {
             translatingTransform.inverseTransform(clientCoords, ptDest);
-        } catch (java.awt.geom.NoninvertibleTransformException ex) {
+        } catch (NoninvertibleTransformException ex) {
             Trace.gui.errorm(StringUtil.stackTraceToString(ex));
             ptDest = clientCoords;
         }
@@ -208,7 +205,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
         drawLineDiagram(g, scalingTransform);
     }
 
-    protected void visitFiguresAndRepaint(canvas.BaseFigureVisitor visitor) {
+    protected void visitFiguresAndRepaint(BaseFigureVisitor visitor) {
         getDrawing().applyUpdatingFigureVisitor(visitor);
     }
 
@@ -260,7 +257,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
 
     public boolean isDiscernibleDifference(Point2D ptStart, Point2D ptCurrent) {
         //todo: take into account zoom factor
-        return (Math.abs(ptCurrent.getX() - ptStart.getX()) > 4) || (Math.abs(ptCurrent.getY() - ptStart.getY()) > 4);
+        return Math.abs(ptCurrent.getX() - ptStart.getX()) > 4 || Math.abs(ptCurrent.getY() - ptStart.getY()) > 4;
     }
 
 

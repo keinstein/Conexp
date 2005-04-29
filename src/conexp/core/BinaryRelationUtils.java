@@ -12,6 +12,7 @@ import util.DoubleUtil;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.io.PrintWriter;
 
 
 public class BinaryRelationUtils {
@@ -60,9 +61,13 @@ public class BinaryRelationUtils {
         return frequencies;
     }
 
+    public static final boolean isSquare(BinaryRelation rel){
+        return rel.getRowCount()==rel.getColCount();
+    }
+
+
     public static double varianceOfAttributesPerObjects(BinaryRelation rel) {
-        int[] attributePerObject = attributePerObjectFrequencies(rel);
-        return variance(attributePerObject);
+        return variance(attributePerObjectFrequencies(rel));
     }
 
     public static double average(int[] frequencies) {
@@ -222,7 +227,7 @@ public class BinaryRelationUtils {
      * @param rel conexp.core.BinaryRelation
      * @param pw java.io.PrintWriter
      */
-    public static void logRelation(BinaryRelation rel, java.io.PrintWriter pw) {
+    public static void logRelation(BinaryRelation rel, PrintWriter pw) {
         pw.println("===============================================");
         pw.println(" Rows " + rel.getRowCount());
         pw.println(" Cols " + rel.getColCount());
@@ -274,7 +279,7 @@ public class BinaryRelationUtils {
      * @param rel conexp.core.BinaryRelation
      */
     public static void transitiveClosure(ModifiableBinaryRelation rel) {
-        if (rel.getRowCount() != rel.getColCount()) {
+        if (!BinaryRelationUtils.isSquare(rel)) {
             throw new IllegalArgumentException("transitiveClosure can be applyied only to square relations");
         }
 
@@ -391,4 +396,16 @@ public class BinaryRelationUtils {
         return relation;
     }
 
+    public static boolean haveNoBidirectionalEdges(BinaryRelation lessThanRelation) {
+        Assert.isTrue(isSquare(lessThanRelation));
+        final int size = lessThanRelation.getRowCount();
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (lessThanRelation.getRelationAt(i, j) && lessThanRelation.getRelationAt(j, i)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

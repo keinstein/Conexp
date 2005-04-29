@@ -8,6 +8,8 @@
 package conexp.core.associations.tests;
 
 import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.associations.FrequentSetSupportSupplier;
+import conexp.core.associations.ContextFrequentSetSupportSupplier;
 import conexp.core.tests.SetBuilder;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -26,8 +28,8 @@ public class FrequentSetSupportSupplierTest extends TestCase {
         ExtendedContextEditingInterface cxt = SetBuilder.makeContext(new int[][]{{1, 1, 1, 1},
                                                                                  {1, 1, 1, 0},
                                                                                  {1, 0, 0, 0}});
-        conexp.core.associations.FrequentSetSupportSupplier fsSuppSupplier =
-                new conexp.core.associations.ContextFrequentSetSupportSupplier(cxt);
+        FrequentSetSupportSupplier fsSuppSupplier =
+                new ContextFrequentSetSupportSupplier(cxt);
 
         assertEquals(3, fsSuppSupplier.supportForSet(SetBuilder.makeSet(new int[]{0, 0, 0, 0})));
         assertEquals(3, fsSuppSupplier.supportForSet(SetBuilder.makeSet(new int[]{1, 0, 0, 0})));

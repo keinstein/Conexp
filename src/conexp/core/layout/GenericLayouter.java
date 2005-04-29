@@ -9,8 +9,10 @@ package conexp.core.layout;
 
 import com.visibleworkings.trace.Trace;
 import conexp.core.ItemSet;
+import conexp.core.Lattice;
 import conexp.util.gui.paramseditor.ParamInfo;
 import util.StringUtil;
+import util.Assert;
 
 import java.awt.geom.Point2D;
 import java.beans.PropertyChangeEvent;
@@ -18,8 +20,8 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 
-public abstract class GenericLayouter implements conexp.core.layout.Layouter {
-    protected conexp.core.Lattice lattice;
+public abstract class GenericLayouter implements Layouter {
+    protected Lattice lattice;
     protected LayoutParameters drawParams;
 
     protected static class LayoutConceptInfo {
@@ -46,7 +48,7 @@ public abstract class GenericLayouter implements conexp.core.layout.Layouter {
     protected LayoutConceptInfo[] elementMap;
 
     protected PropertyChangeSupport layoutChange;
-    private conexp.util.gui.paramseditor.ParamInfo[] params;
+    private ParamInfo[] params;
 
     public GenericLayouter() {
         super();
@@ -60,8 +62,8 @@ public abstract class GenericLayouter implements conexp.core.layout.Layouter {
 
     }
 
-    public void initLayout(conexp.core.Lattice l, LayoutParameters drawParams) {
-        util.Assert.isTrue(l.isValid());
+    public void initLayout(Lattice l, LayoutParameters drawParams) {
+        Assert.isTrue(l.isValid());
         setLayoutParams(l, drawParams);
         initMapping();
         afterInitLayout();
@@ -85,7 +87,7 @@ public abstract class GenericLayouter implements conexp.core.layout.Layouter {
 
     public abstract void performLayout();
 
-    protected void setLayoutParams(conexp.core.Lattice lat, LayoutParameters drawParams) {
+    protected void setLayoutParams(Lattice lat, LayoutParameters drawParams) {
         this.lattice = lat;
         this.drawParams = drawParams;
     }
@@ -109,14 +111,14 @@ public abstract class GenericLayouter implements conexp.core.layout.Layouter {
         return drawParams;
     }
 
-    protected synchronized java.beans.PropertyChangeSupport getLayoutChange() {
+    protected synchronized PropertyChangeSupport getLayoutChange() {
         if (null == layoutChange) {
             layoutChange = new PropertyChangeSupport(this);
         }
         return layoutChange;
     }
 
-    public synchronized conexp.util.gui.paramseditor.ParamInfo[] getParams() {
+    public synchronized ParamInfo[] getParams() {
         if (null == params) {
             params = makeParams();
         }
@@ -127,11 +129,11 @@ public abstract class GenericLayouter implements conexp.core.layout.Layouter {
         return new ParamInfo[0];
     }
 
-    public void removeLayoutChangeListener(java.beans.PropertyChangeListener listener) {
+    public void removeLayoutChangeListener(PropertyChangeListener listener) {
         getLayoutChange().removePropertyChangeListener(listener);
     }
 
-    public void setLayoutChange(java.beans.PropertyChangeSupport newLayoutChange) {
+    public void setLayoutChange(PropertyChangeSupport newLayoutChange) {
         layoutChange = newLayoutChange;
     }
 

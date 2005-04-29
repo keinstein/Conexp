@@ -11,7 +11,7 @@ import java.awt.*;
 
 
 public class PaintBlock implements FigureBlock {
-    Graphics2D g;
+    Graphics2D graphics=null;
     private CanvasScheme opt;
 
     public PaintBlock(CanvasScheme opt) {
@@ -20,11 +20,11 @@ public class PaintBlock implements FigureBlock {
     }
 
     public void exec(Figure f) {
-        f.draw(g, getOpt());
+        f.draw(graphics, getOpt());
     }
 
     public Graphics2D getGraphics2D() {
-        return g;
+        return graphics;
     }
 
     CanvasScheme getOpt() {
@@ -32,6 +32,6 @@ public class PaintBlock implements FigureBlock {
     }
 
     public void setGraphics(Graphics graphics) {
-        g = (Graphics2D) graphics;
+        this.graphics = (Graphics2D) graphics;
     }
 }

@@ -31,7 +31,7 @@ public class Edge {
      * @param el conexp.core.LatticeElement
      */
     public boolean contains(final LatticeElement el) {
-        return el == start || el == end;
+        return start.equals(el)|| end.equals(el);
     }
 //------------------------------------------------------------
     public LatticeElement getEnd() {

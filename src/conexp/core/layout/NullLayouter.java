@@ -8,22 +8,25 @@
 package conexp.core.layout;
 
 import conexp.core.ItemSet;
+import conexp.core.Lattice;
+import conexp.util.gui.paramseditor.ParamInfo;
 
 import java.awt.geom.Point2D;
+import java.beans.PropertyChangeListener;
 
 public class NullLayouter extends NonIncrementalLayouter {
 
-    public void addLayoutChangeListener(java.beans.PropertyChangeListener listener) {
+    public void addLayoutChangeListener(PropertyChangeListener listener) {
     }
 
-    public void removeLayoutChangeListener(java.beans.PropertyChangeListener listener) {
+    public void removeLayoutChangeListener(PropertyChangeListener listener) {
     }
 
-    public conexp.util.gui.paramseditor.ParamInfo[] getParams() {
-        return new conexp.util.gui.paramseditor.ParamInfo[0];
+    public ParamInfo[] getParams() {
+        return new ParamInfo[0];
     }
 
-    public void initLayout(conexp.core.Lattice l, LayoutParameters drawParams) {
+    public void initLayout(Lattice l, LayoutParameters drawParams) {
     }
 
 //calcInitialPlacement and improveOnce are already empty in GenericLayouter

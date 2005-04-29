@@ -10,8 +10,8 @@ package conexp.core;
 
 public interface ContextEditingInterfaceWithArrowRelations extends ContextEditingInterface {
 
-    public boolean hasDownArrow(int row, int col);
+    boolean hasDownArrow(int row, int col);
 
     //---------------------------------------------------------------
-    public boolean hasUpArrow(int row, int col);
+    boolean hasUpArrow(int row, int col);
 }

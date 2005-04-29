@@ -8,11 +8,15 @@
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.core.layout.LayoutParameters;
+import conexp.core.ExtendedContextEditingInterface;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
+import conexp.frontend.latticeeditor.LabelingStrategy;
+import conexp.frontend.latticeeditor.figures.DefaultFigureVisitor;
+import canvas.BaseFigureVisitor;
 
 
-public class NullLabellingStrategy extends conexp.frontend.latticeeditor.LabelingStrategy {
-    private static conexp.frontend.latticeeditor.figures.DefaultFigureVisitor visitor = new conexp.frontend.latticeeditor.figures.DefaultFigureVisitor();
+public class NullLabellingStrategy extends LabelingStrategy {
+    private static DefaultFigureVisitor visitor = new DefaultFigureVisitor();
     private static NullLabellingStrategy singleton;
 
     /**
@@ -29,14 +33,14 @@ public class NullLabellingStrategy extends conexp.frontend.latticeeditor.Labelin
         return singleton;
     }
 
-    public void setContext(conexp.core.ExtendedContextEditingInterface cxt) {
+    public void setContext(ExtendedContextEditingInterface cxt) {
     }
 
-    public canvas.BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing fd, LayoutParameters opt) {
+    public BaseFigureVisitor makeInitStrategyVisitor(ConceptSetDrawing fd, LayoutParameters opt) {
         return visitor;
     }
 
-    public canvas.BaseFigureVisitor makeShutDownVisitor(conexp.frontend.latticeeditor.ConceptSetDrawing fd) {
+    public BaseFigureVisitor makeShutDownVisitor(ConceptSetDrawing fd) {
         return visitor;
     }
 }

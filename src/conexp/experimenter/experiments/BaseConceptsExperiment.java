@@ -1,6 +1,7 @@
 package conexp.experimenter.experiments;
 
 import conexp.core.BinaryRelationProcessor;
+import conexp.core.BinaryRelation;
 import conexp.experimenter.framework.MeasurementProtocol;
 import conexp.experimenter.framework.MeasurementSet;
 import util.StringUtil;
@@ -28,13 +29,13 @@ public abstract class BaseConceptsExperiment extends BasicExperiment {
 
     public abstract BinaryRelationProcessor makeStrategy();
 
-    public void setUp(conexp.core.BinaryRelation rel) {
+    public void setUp(BinaryRelation rel) {
         strategy = makeStrategy();
         setRelationToStrategy(rel);
         doLocalSetup();
     }
 
-    protected void setRelationToStrategy(conexp.core.BinaryRelation rel) {
+    protected void setRelationToStrategy(BinaryRelation rel) {
         strategy.setRelation(rel);
     }
 

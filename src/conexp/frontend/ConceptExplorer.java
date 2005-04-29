@@ -13,9 +13,10 @@ import util.StringUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ResourceBundle;
 
 public class ConceptExplorer {
-    private static java.util.ResourceBundle resConceptExplorer = java.util.ResourceBundle.getBundle("conexp/frontend/resources/ConceptExplorer");  //$NON-NLS-1$
+    private static ResourceBundle resConceptExplorer = ResourceBundle.getBundle("conexp/frontend/resources/ConceptExplorer");  //$NON-NLS-1$
 
     //Construct the application
     public ConceptExplorer() {
@@ -24,11 +25,11 @@ public class ConceptExplorer {
         setupLookAndFeel();
         try {
             makeMainFrame();
-        } catch (java.lang.Exception ex) {
+        } catch (Exception ex) {
             //System.out.println(StringUtil.stackTraceToString(ex));
             Trace.gui.errorm(StringUtil.stackTraceToString(ex));
             //application will be running further
-        } catch (java.lang.Error er) {
+        } catch (Error er) {
             Trace.gui.errorm(StringUtil.stackTraceToString(er));
             throw er;
         }

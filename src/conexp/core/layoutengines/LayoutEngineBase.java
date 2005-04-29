@@ -18,6 +18,7 @@ import util.Assert;
 
 import javax.swing.event.EventListenerList;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public abstract class LayoutEngineBase implements LayoutEngine {
 
@@ -36,8 +37,8 @@ public abstract class LayoutEngineBase implements LayoutEngine {
 
     protected PropertyChangeListener layoutChangeListener = new LayoutChangeListener();
 
-    class LayoutChangeListener implements java.beans.PropertyChangeListener {
-        public void propertyChange(java.beans.PropertyChangeEvent evt) {
+    class LayoutChangeListener implements PropertyChangeListener {
+        public void propertyChange(PropertyChangeEvent evt) {
             Trace.gui.debugm("Layout change ", evt.getPropertyName());
             if (Layouter.LAYOUT_CHANGE.equals(evt.getPropertyName())) {
                 ConceptCoordinateMapper mapper = getLayoter();

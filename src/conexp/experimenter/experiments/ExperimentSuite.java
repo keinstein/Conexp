@@ -5,6 +5,9 @@ import conexp.experimenter.framework.ExperimentSet;
 import conexp.experimenter.framework.RelationSequence;
 import conexp.experimenter.framework.RelationSequenceSet;
 import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
+import conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy;
+import conexp.experimenter.relationsequences.TransposeRelationSequenceDecorator;
+import conexp.experimenter.relationsequences.ExponentialRelationGenerationStrategy;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
@@ -31,7 +34,7 @@ public class ExperimentSuite extends BaseExperimentSuite {
     }
 
     private static void addExponentialSequence(RelationSequenceSet relSet) {
-        relSet.addRelationSequence(new conexp.experimenter.relationsequences.ExponentialRelationGenerationStrategy(5, 19, 19-5+1));
+        relSet.addRelationSequence(new ExponentialRelationGenerationStrategy(5, 19, 19-5+1));
     }
 
     private static void addTypicalSequenceAndTransposed(RelationSequenceSet relSet) {
@@ -49,16 +52,16 @@ public class ExperimentSuite extends BaseExperimentSuite {
         }
 
         for (int k = lowFillBound; k <= upperFillBound; k++) {
-            relSet.addRelationSequence(new conexp.experimenter.relationsequences.TransposeRelationSequenceDecorator(toTranspose[k - 1]));
+            relSet.addRelationSequence(new TransposeRelationSequenceDecorator(toTranspose[k - 1]));
         }
     }
 
     private static void addSparseSequence(RelationSequenceSet relSet) {
 //        RelationSequence sparse = new conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy(100, 500, 100, 100, 5, 4);
         //RelationSequence sparse = new conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy(100, 900, 100, 100, 9, 3);
-        RelationSequence sparse = new conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy(1000, 9000, 100, 100, 9, 3);
+        RelationSequence sparse = new FixedIntentSizeRelationGenerationStrategy(1000, 9000, 100, 100, 9, 3);
         relSet.addRelationSequence(sparse);
-        relSet.addRelationSequence(new conexp.experimenter.relationsequences.TransposeRelationSequenceDecorator(sparse));
+        relSet.addRelationSequence(new TransposeRelationSequenceDecorator(sparse));
     }
 
     /**

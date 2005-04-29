@@ -10,7 +10,6 @@ package conexp.frontend.latticeeditor.tests;
 
 import junit.framework.*;
 import conexp.frontend.latticeeditor.HighlightStrategy;
-import conexp.frontend.latticeeditor.DefaultDimensionCalcStrategy;
 import util.testing.TestUtil;
 
 public abstract class HighlightStrategyTest extends TestCase {

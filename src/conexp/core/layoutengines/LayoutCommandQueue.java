@@ -7,6 +7,9 @@
 
 package conexp.core.layoutengines;
 
+import util.Assert;
+import com.visibleworkings.trace.Trace;
+
 
 class LayoutCommandQueue {
     protected LayoutEvent startLayout;
@@ -32,10 +35,10 @@ class LayoutCommandQueue {
 
 
     public void put(LayoutEvent evt) throws InterruptedException {
-        util.Assert.isTrue(null != evt);
+        Assert.isTrue(null != evt);
         if (Thread.interrupted()) throw new InterruptedException();
         synchronized (this) {
-            com.visibleworkings.trace.Trace.gui.debugm("processing post command");
+            Trace.gui.debugm("processing post command");
             switch (evt.command) {
                 case LayoutEvent.START_LAYOUT:
                     startLayout = evt;
@@ -45,7 +48,7 @@ class LayoutCommandQueue {
                     restartLayout = evt;
                     break;
                 default :
-                    util.Assert.isTrue(false);
+                    Assert.isTrue(false);
             }
             if (waitingForTake > 0) {
                 notify();

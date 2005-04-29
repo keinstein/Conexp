@@ -9,6 +9,6 @@
 package conexp.core;
 
 public interface LatticeCalcStrategy extends BinaryRelationProcessor {
-    public void buildLattice();
-    public void setLattice(Lattice lattice);
+    void buildLattice();
+    void setLattice(Lattice lattice);
 }

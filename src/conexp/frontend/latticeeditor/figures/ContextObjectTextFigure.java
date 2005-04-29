@@ -9,13 +9,14 @@ package conexp.frontend.latticeeditor.figures;
 
 import canvas.CanvasScheme;
 import conexp.frontend.latticeeditor.ConceptQuery;
+import conexp.core.ContextEntity;
 
 import java.awt.*;
 
 public class ContextObjectTextFigure extends ConceptRelatedTextFigure {
-    protected conexp.core.ContextEntity obj;
+    protected ContextEntity obj;
 
-    public ContextObjectTextFigure(ConceptQuery conceptQuery, conexp.core.ContextEntity obj) {
+    public ContextObjectTextFigure(ConceptQuery conceptQuery, ContextEntity obj) {
         super(conceptQuery);
         this.obj = obj;
     }

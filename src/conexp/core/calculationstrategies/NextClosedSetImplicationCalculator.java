@@ -120,34 +120,32 @@ public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBa
             //that is a not equal g
             j = numAttr - 1;
             notJ.clearSet();
-            getNextImplicationLoop:{
-                for (; j >= 0; j--) {
-                    notJ.put(j);
+            for (; j >= 0; j--) {
+                notJ.put(j);
 
-                    if (!attrSet.in(j)) {
-                        nextClosedSet.copy(attrSet);
-                        nextClosedSet.andNot(notJ);
-                        if (closureImpl(nextClosedSet, j, notJ)) {//isPseudoIntentPart1 //
-                            //for all Q \subseteq P  Q" \subseteq P should also hold
-                            if (!isAttrSetClosed(nextClosedSet)) {
-                                nextClosure.andNot(nextClosedSet);
-                                int acceptRes = acceptImplication(nextClosedSet, nextClosure);
-                                if (acceptRes == AttributeExplorationCallback.STOP) {
-                                    return;
-                                }
-                                if (acceptRes == AttributeExplorationCallback.ACCEPT) {
-                                    addImplication(nextClosedSet, nextClosure);
-                                } else {
-                                    Assert.isTrue(acceptRes == AttributeExplorationCallback.REJECT);
-                                    break; // restart after rejection of current implication
-                                }
+                if (!attrSet.in(j)) {
+                    nextClosedSet.copy(attrSet);
+                    nextClosedSet.andNot(notJ);
+                    if (closureImpl(nextClosedSet, j, notJ)) {//isPseudoIntentPart1 //
+                        //for all Q \subseteq P  Q" \subseteq P should also hold
+                        if (!isAttrSetClosed(nextClosedSet)) {
+                            nextClosure.andNot(nextClosedSet);
+                            int acceptRes = acceptImplication(nextClosedSet, nextClosure);
+                            if (acceptRes == AttributeExplorationCallback.STOP) {
+                                return;
                             }
-                            attrSet.copy(nextClosedSet);
-                            break;
+                            if (acceptRes == AttributeExplorationCallback.ACCEPT) {
+                                addImplication(nextClosedSet, nextClosure);
+                            } else {
+                                Assert.isTrue(acceptRes == AttributeExplorationCallback.REJECT);
+                                break; // restart after rejection of current implication
+                            }
                         }
+                        attrSet.copy(nextClosedSet);
+                        break;
                     }
-
                 }
+
             }
         }
     }

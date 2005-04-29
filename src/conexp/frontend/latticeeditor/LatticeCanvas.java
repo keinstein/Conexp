@@ -8,9 +8,9 @@
 
 package conexp.frontend.latticeeditor;
 
-import canvas.FigureDrawing;
 import canvas.FigureDrawingCanvas;
 import canvas.IFigurePredicate;
+import canvas.Figure;
 import conexp.core.*;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.ConceptSetDrawingConsumer;
@@ -20,6 +20,7 @@ import util.Assert;
 
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.awt.*;
 
 public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDrawingConsumer {
 
@@ -130,7 +131,7 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
         this.figureMoveStrategy = figureMoveStrategy;
     }
 
-    public void moveFigure(canvas.Figure f, double dx, double dy) {
+    public void moveFigure(Figure f, double dx, double dy) {
         getFigureMoveStrategy().moveFigure(this, f, dx, dy);
     }
 
@@ -145,7 +146,7 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
         return null;
     }
 
-    protected boolean canDescribePoint(java.awt.Point ptSrc) {
+    protected boolean canDescribePoint(Point ptSrc) {
         if (!hasSelection()) {
             return false;
         }

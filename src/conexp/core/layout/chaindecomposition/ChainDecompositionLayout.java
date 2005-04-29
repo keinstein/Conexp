@@ -11,6 +11,8 @@ import com.visibleworkings.trace.Trace;
 import conexp.core.*;
 import conexp.core.layout.NonIncrementalLayouter;
 import conexp.util.gui.paramseditor.ParamInfo;
+import conexp.util.gui.paramseditor.StrategyValueItemParamInfo;
+import conexp.util.gui.paramseditor.ButtonParamInfo;
 import conexp.util.gui.strategymodel.StrategyValueItem;
 
 import java.awt.event.ActionEvent;
@@ -18,6 +20,9 @@ import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.beans.PropertyChangeEvent;
+
+import util.Assert;
 
 
 public class ChainDecompositionLayout extends NonIncrementalLayouter {
@@ -76,18 +81,18 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         return (ConceptPlacementStrategy) getConceptPlacementStrategyItem().getStrategy();
     }
 
-    protected synchronized java.beans.PropertyChangeSupport getPropertyChange() {
+    protected synchronized PropertyChangeSupport getPropertyChange() {
         if (null == propertyChange) {
-            propertyChange = new java.beans.PropertyChangeSupport(this);
+            propertyChange = new PropertyChangeSupport(this);
             propertyChange.addPropertyChangeListener(getPropertyChangeListener());
         }
         return propertyChange;
     }
 
-    protected synchronized java.beans.PropertyChangeListener getPropertyChangeListener() {
+    protected synchronized PropertyChangeListener getPropertyChangeListener() {
         if (null == propertyChangeListener) {
-            propertyChangeListener = new java.beans.PropertyChangeListener() {
-                public void propertyChange(java.beans.PropertyChangeEvent evt) {
+            propertyChangeListener = new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent evt) {
                     Trace.gui.debugm("ChainDecompositionLayout get property change ", evt.getPropertyName());
                     if (CONCEPT_PLACEMENT_EVENT.equals(evt.getPropertyName())) {
                         performLayout();
@@ -104,14 +109,14 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
     protected ParamInfo[] makeParams() {
 
         return new ParamInfo[]{
-            new conexp.util.gui.paramseditor.StrategyValueItemParamInfo("Representation", getDecompositionStrategyItem()),
-            new conexp.util.gui.paramseditor.StrategyValueItemParamInfo("Placement", getConceptPlacementStrategyItem()),
-            new conexp.util.gui.paramseditor.ButtonParamInfo("Rotate left", "<<", new ActionListener() {
+            new StrategyValueItemParamInfo("Representation", getDecompositionStrategyItem()),
+            new StrategyValueItemParamInfo("Placement", getConceptPlacementStrategyItem()),
+            new ButtonParamInfo("Rotate left", "<<", new ActionListener() {
                 public void actionPerformed(ActionEvent ev) {
                     rotateChainsLeft();
                 }
             }),
-            new conexp.util.gui.paramseditor.ButtonParamInfo("Rotate right", ">>", new ActionListener() {
+            new ButtonParamInfo("Rotate right", ">>", new ActionListener() {
                 public void actionPerformed(ActionEvent ev) {
                     rotateChainsRight();
                 }
@@ -120,7 +125,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         };
     }
 
-    public synchronized void setPropertyChangeListener(java.beans.PropertyChangeListener newPropertyChangeListener) {
+    public synchronized void setPropertyChangeListener(PropertyChangeListener newPropertyChangeListener) {
         propertyChangeListener = newPropertyChangeListener;
     }
 
@@ -167,7 +172,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         double yDiff = Math.abs(maxY - minY);
         lattice.calcHeight();
         double realYSize = lattice.getHeight() * drawParams.getGridSizeY();
-        double yScale = (yDiff != 0) ? realYSize / yDiff : 1;
+        double yScale = yDiff != 0 ? realYSize / yDiff : 1;
         double xScale = yScale * drawParams.getGridSizeX() / drawParams.getGridSizeY();
 
         for (int i = lattice.conceptsCount(); --i >= 0;) {
@@ -204,8 +209,8 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
     }
 
     private void computeChainDecomposition(BinaryRelation order) {
-        util.Assert.isTrue(null != order);
-        util.Assert.isTrue(order.getRowCount() == order.getColCount());
+        Assert.isTrue(null != order);
+        Assert.isTrue(order.getRowCount() == order.getColCount());
 
         Set reducibles = findReducibleEntities(order);
         BinaryRelation edges = calcOrderGraphOfIrreducibleEntities(order, reducibles);
@@ -258,13 +263,13 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
             label[v] = unlabelled;
         }
 
-        while (!(Q.isEmpty())) {
+        while (!Q.isEmpty()) {
             int v = Q.firstIn();
             Q.remove(v);
 
             if (label[v] != unlabelled &&
                     exposed[v] != unknown &&
-                    !(endsOfEdgesOfMatching.in(exposed[v]))) {
+                    !endsOfEdgesOfMatching.in(exposed[v])) {
                 //we find a path, that enlarges the matching.
                 //calculating new matching
                 endsOfEdgesOfMatching.put(exposed[v]);
@@ -300,7 +305,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
                     //if(v == matching[width]) ==> edges.getRelationAt(v, matching[width]) == false);
                     //if(v==width) ==> edges.getRelationAt(v, matching[width]) == false
                     if (label[w] == unlabelled
-                            && (matching[w] >= 0)
+                            && matching[w] >= 0
                             && edges.getRelationAt(v, matching[w])) {
                         //this mean, that edge (width, matching[width])	in matching can be replaced by edge (v, matching[width])
                         Q.put(w);

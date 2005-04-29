@@ -41,9 +41,9 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         public void restorePosition() {
             posInRank = savedPosInRank;
         }
-    };
+    }
 //------------------------------------------
-    class MedComparator implements java.util.Comparator {
+    class MedComparator implements Comparator {
         public int compare(Object obj, Object obj1) {
             double i1 = getElementInfo((LatticeElement) obj).median;
             double i2 = getElementInfo((LatticeElement) obj1).median;
@@ -54,7 +54,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         }
     }
     //------------------------------------------
-    class PositionInRankComparator implements java.util.Comparator {
+    class PositionInRankComparator implements Comparator {
         public int compare(Object o1, Object o2) {
             double i1 = getElementInfo((LatticeElement)o1).posInRank;
             double i2 = getElementInfo((LatticeElement)o2).posInRank;
@@ -163,7 +163,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         assignCoordsToLattice();
     }
 
-    boolean transposeRank[];
+    boolean[] transposeRank;
     LatticeElement[][] ranks; //arrays of elements of lattice
 
     private void initSearch() {
@@ -179,7 +179,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             ranks[i] = new LatticeElement[ranksSize[i]];
         }
 
-        int currRankPos[] = new int[height + 1];
+        int[] currRankPos = new int[height + 1];
         Arrays.fill(currRankPos, 0);
         calculateInitialNodeOrderByDepthSearch(lattice.getZero(), currRankPos);
 
@@ -242,7 +242,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             wmedian(iterNo);
             transpose(iterNo);
 
-            int delta = (bestCrossing - calcCrossings());
+            int delta = bestCrossing - calcCrossings();
             if (delta > 0) {
                 bestCrossing -= delta;
 
@@ -324,7 +324,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
                     firstElement = firstEdges.nextConcept();
                     ret += prevEdgeCross;         //next edge has all crossings, that a previous one
                 }
-                util.Assert.isTrue(getElementInfo(firstElement).posInRank > getElementInfo(secondElement).posInRank, "Position should be greater");
+                Assert.isTrue(getElementInfo(firstElement).posInRank > getElementInfo(secondElement).posInRank, "Position should be greater");
 
                 int edgeOwnCrossing = 0;
                 noMoreSecEdges:{
@@ -397,7 +397,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
 
     //------------------------------------------
     void improveOrderingPred(LatticeElement elm1, LatticeElement elm2) {
-        util.Assert.isTrue(getElementInfo(elm1).posInRank < getElementInfo(elm2).posInRank);
+        Assert.isTrue(getElementInfo(elm1).posInRank < getElementInfo(elm2).posInRank);
         Iterator pred1 = elm1.predessorsEdges();
         Iterator pred2 = elm2.predessorsEdges();
         Edge e1 = (Edge) pred1.next();
@@ -434,7 +434,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
 
     //------------------------------------------
     void improveOrderingSucc(LatticeElement elm1, LatticeElement elm2) {
-        util.Assert.isTrue(getElementInfo(elm1).posInRank < getElementInfo(elm2).posInRank);
+        Assert.isTrue(getElementInfo(elm1).posInRank < getElementInfo(elm2).posInRank);
         //*DBG*/ elm1.printSuccPos();
         //*DBG*/ elm2.printSuccPos();
         Iterator succ1 = elm1.successorsEdges();
@@ -604,7 +604,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         do {
             improved = false;
             int maxBound = ranks.length;
-            if (1 == (iter % 2)) {
+            if (1 == iter % 2) {
                 for (int i = maxBound - 1; --i > 1;) {
                     if (transposeOneRank(i)) {
                         improved = true;
@@ -740,7 +740,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
                         }
                     }
                     Assert.isTrue(pos != -1);
-                    currInfo.x = parentInfo.x - ((numChildsOfParent - 1) * deltaX / 2) + pos * deltaX;
+                    currInfo.x = parentInfo.x - (numChildsOfParent - 1) * deltaX / 2 + pos * deltaX;
                 }
             } else {
                 currInfo.x = (getElementInfo(connected.get(0)).x + getElementInfo(connected.get(numParents - 1)).x) / 2;
@@ -900,7 +900,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     //------------------------------------------
     static void exchangeEdges(List edges, Edge toSwap) {
         int index = edges.indexOf(toSwap);
-        util.Assert.isTrue(-1 != index);
+        Assert.isTrue(-1 != index);
         edges.set(index, edges.get(index + 1));
         edges.set(index + 1, toSwap);
     }

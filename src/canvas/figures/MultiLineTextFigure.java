@@ -43,7 +43,7 @@ public class MultiLineTextFigure extends BaseTextFigure {
     }
 
 
-    public void draw(Graphics g, canvas.CanvasScheme opt) {
+    public void draw(Graphics g, CanvasScheme opt) {
         Graphics2D graphics2d = (Graphics2D) g;
         if (contentDirty) {
             newSize(graphics2d.getFontRenderContext());

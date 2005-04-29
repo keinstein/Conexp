@@ -24,10 +24,10 @@ public class Lattice extends ConceptsCollection {
     }
 
     public interface TopSortBlock {
-        public void elementAction(LatticeElement currentElement, LatticeElement lastPredecessor);
+        void elementAction(LatticeElement currentElement, LatticeElement lastPredecessor);
 
-        public void assignTopSortNumberToElement(LatticeElement currentElement, int topSortNumber);
-    };
+        void assignTopSortNumberToElement(LatticeElement currentElement, int topSortNumber);
+    }
 
     public static class DefaultTopSortBlock implements TopSortBlock {
         public void elementAction(LatticeElement currentElement, LatticeElement lastPredecessor) {
@@ -35,13 +35,13 @@ public class Lattice extends ConceptsCollection {
 
         public void assignTopSortNumberToElement(LatticeElement currentElement, int topSortNumber) {
         }
-    };
+    }
 
     static class CalcHeightTopSortBlock extends DefaultTopSortBlock {
         public void elementAction(LatticeElement currentElement, LatticeElement lastPredecessor) {
             currentElement.setHeight(lastPredecessor.getHeight() + 1);
         }
-    };
+    }
 
 //------------------------------------------
     protected LatticeElement one;
@@ -90,7 +90,7 @@ public class Lattice extends ConceptsCollection {
 
 //------------------------------------------
     public LatticeElement elementAt(int index) {
-        return ((LatticeElement) conceptAt(index));
+        return (LatticeElement) conceptAt(index);
     }
 
 
@@ -144,7 +144,7 @@ public class Lattice extends ConceptsCollection {
 
         LatticeElement curr = getOne();
         Assert.isTrue(null != curr, "One in findElement can't be null");
-        boolean find = (Set.EQUAL == attribs.compare(curr.getAttribs()));
+        boolean find = Set.EQUAL == attribs.compare(curr.getAttribs());
 
         while (!find) {
             ConceptIterator enum = curr.getPredecessors().iterator();

@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 public class AttributeExplorationUserCallbackImplementation implements AttributeExplorerImplementation.AttributeExplorerUserCallback {
     Component parentComponent;
 
-    private static java.util.ResourceBundle resources;
+    private static ResourceBundle resources;
 
     static {
         resources = ResourceLoader.getResourceBundle("conexp/frontend/resources/AttributeExplorerImplementation");  //$NON-NLS-1$

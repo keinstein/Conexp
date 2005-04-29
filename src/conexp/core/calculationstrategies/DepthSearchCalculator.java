@@ -26,7 +26,7 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
             firstTimePredecessors.put(getPredCount());
             addPred(predecessor);
         }
-    };
+    }
 
     //-----------------------------------------------------------------
     /**

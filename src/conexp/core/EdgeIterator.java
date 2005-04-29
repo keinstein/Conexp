@@ -9,7 +9,7 @@ package conexp.core;
 
 
 public interface EdgeIterator {
-    public boolean hasNextEdge();
+    boolean hasNextEdge();
 
-    public Edge nextEdge();
+    Edge nextEdge();
 }

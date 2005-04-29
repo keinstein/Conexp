@@ -1,5 +1,7 @@
 package conexp.experimenter.relationsequences;
 
+import conexp.core.BinaryRelation;
+
 
 /**
  * Insert the type's description here.
@@ -29,7 +31,7 @@ public class FixedIntentSizeRelationGenerationStrategy extends ParametricRelatio
      * Creation date: (06.07.01 16:23:41)
      * @return java.lang.String
      */
-    public java.lang.String describeStrategy() {
+    public String describeStrategy() {
         return super.describeStrategy() + "IntentSize;" + intentSize;
     }
 
@@ -40,7 +42,7 @@ public class FixedIntentSizeRelationGenerationStrategy extends ParametricRelatio
      * @return conexp.core.BinaryRelation
      * @param relNo int
      */
-    public conexp.core.BinaryRelation makeRelation(int relNo) {
+    public BinaryRelation makeRelation(int relNo) {
         return RelationGenerator.makeFilledWithMaxIntent(calcRelationSizeX(relNo), calcRelationSizeY(relNo), intentSize);
     }
 }

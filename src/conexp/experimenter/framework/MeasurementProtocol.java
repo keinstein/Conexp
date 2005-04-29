@@ -9,10 +9,12 @@
 package conexp.experimenter.framework;
 
 import java.util.Iterator;
+import java.util.Collection;
+import java.util.ArrayList;
 
 public class MeasurementProtocol implements IMeasurementProtocol {
-    protected java.util.Collection measurementsDescriptors = new java.util.ArrayList();
-    protected java.util.Collection validatedMeasurements = new java.util.ArrayList();
+    protected Collection measurementsDescriptors = new ArrayList();
+    protected Collection validatedMeasurements = new ArrayList();
 
 
     public MeasurementProtocol() {
@@ -65,9 +67,8 @@ public class MeasurementProtocol implements IMeasurementProtocol {
             if (!checkValidatingParam(validatingString)) {
                 throw new IllegalArgumentException("Param " + paramName + " for creating measurement protocol is bad in position " + i);
             }
-            ;
 
-            boolean validating = validatingString.equalsIgnoreCase("true");
+            boolean validating = "true".equalsIgnoreCase(validatingString);
             ret.addMeasurement(new MeasurementDescription(paramName, validating));
         }
         return ret;

@@ -9,6 +9,7 @@
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.Selectable;
+import canvas.CanvasScheme;
 import canvas.figures.FigureUtils;
 
 import java.awt.*;
@@ -40,7 +41,7 @@ public class NodeFigure extends AbstractLineDiagramFigure implements Selectable 
         );
     }
 
-    public void draw(Graphics g, canvas.CanvasScheme opt) {
+    public void draw(Graphics g, CanvasScheme opt) {
         Graphics2D g2D = (Graphics2D) g;
         g2D.setColor(opt.getColorScheme().getNodeBorderColor());
         Ellipse2D ellipse = getFigureEllipse();

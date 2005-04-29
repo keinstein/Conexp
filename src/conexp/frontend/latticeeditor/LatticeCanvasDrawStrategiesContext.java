@@ -8,6 +8,7 @@
 package conexp.frontend.latticeeditor;
 
 import conexp.core.layout.Layouter;
+import conexp.core.ConceptsCollection;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.StrategyValueItemParamInfo;
 import conexp.util.gui.strategymodel.StrategyValueItem;
@@ -49,7 +50,7 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
     private DrawStrategiesModelsFactory factory;
 
 
-    public void setupStrategiesParams(conexp.core.ConceptsCollection conceptSet) {
+    public void setupStrategiesParams(ConceptsCollection conceptSet) {
         getFigureDimensionCalcStrategy().setConceptSet(conceptSet);
         getFigureDimensionCalcStrategy().initCalc();
         getEdgeSizeCalcStrategy().setConceptSet(conceptSet);
@@ -164,7 +165,7 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
 
     public int hashCode() {
         int result;
-        result = (layoutStrategy != null ? layoutStrategy.hashCode() : 0);
+        result = layoutStrategy != null ? layoutStrategy.hashCode() : 0;
         result = 29 * result + (highlightStrategy != null ? highlightStrategy.hashCode() : 0);
         result = 29 * result + (nodeRadiusStrategy != null ? nodeRadiusStrategy.hashCode() : 0);
         result = 29 * result + (edgeSizeCalcStrategy != null ? edgeSizeCalcStrategy.hashCode() : 0);

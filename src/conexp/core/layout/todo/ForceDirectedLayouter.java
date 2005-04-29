@@ -36,7 +36,8 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
 
             coords.z += deltaMove.z * factor;
         }
-    };
+    }
+
     protected double _time;
     private ForceDirectStrategy strategy;
     private ForceDirectParams fdParams = new ForceDirectParams();

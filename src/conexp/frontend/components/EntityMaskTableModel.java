@@ -34,7 +34,7 @@ public class EntityMaskTableModel extends AbstractTableModel {
                 fireTableStructureChanged();
             }
         }
-    };
+    }
 
     public EntityMaskTableModel(EntitiesMask attributeMask) {
         setEntitiesMask(attributeMask);

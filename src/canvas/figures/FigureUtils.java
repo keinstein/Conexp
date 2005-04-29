@@ -38,10 +38,10 @@ public class FigureUtils {
         double a, b, x, y;
 
         if (x1 == x2) {
-            return (Math.abs(px - x1) <= acceptableDeviation / 2);
+            return Math.abs(px - x1) <= acceptableDeviation / 2;
         }
         if (y1 == y2) {
-            return (Math.abs(py - y1) <= acceptableDeviation / 2);
+            return Math.abs(py - y1) <= acceptableDeviation / 2;
         }
 
         a = (double) (y1 - y2) / (double) (x1 - x2);
@@ -49,6 +49,6 @@ public class FigureUtils {
         x = (py - b) / a;
         y = a * px + b;
 
-        return (Math.min(Math.abs(x - px), Math.abs(y - py)) < acceptableDeviation);
+        return Math.min(Math.abs(x - px), Math.abs(y - py)) < acceptableDeviation;
     }
 }

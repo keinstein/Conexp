@@ -16,7 +16,6 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.components.EntityMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
-import conexp.frontend.contexteditor.ContextViewPanel;
 import junit.framework.TestCase;
 
 import javax.swing.*;

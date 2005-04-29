@@ -18,6 +18,7 @@ import java.awt.event.ComponentListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.NoninvertibleTransformException;
 import java.awt.image.BufferedImage;
 import java.awt.print.PageFormat;
 import java.awt.print.Printable;
@@ -99,7 +100,7 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         Point2D unscaledPoint = new Point2D.Double();
         try {
             scalingTransform.inverseTransform(srcPoint, unscaledPoint);
-        } catch (java.awt.geom.NoninvertibleTransformException ex) {
+        } catch (NoninvertibleTransformException ex) {
             Trace.gui.errorm(StringUtil.stackTraceToString(ex));
             unscaledPoint = srcPoint;
         }
@@ -244,7 +245,7 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
 
     public void setAntiAlias(boolean antiAlias) {
         this.antiAlias = antiAlias;
-        this.AntiAlias = (antiAlias ? RenderingHints.VALUE_ANTIALIAS_ON : RenderingHints.VALUE_ANTIALIAS_OFF);
+        this.AntiAlias = antiAlias ? RenderingHints.VALUE_ANTIALIAS_ON : RenderingHints.VALUE_ANTIALIAS_OFF;
     }
 
 

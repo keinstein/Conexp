@@ -12,7 +12,7 @@ import conexp.core.registries.FCAEngineImplementation;
 
 public class FCAEngineRegistry {
 
-    static FCAEngine fcaEngine;
+    private static FCAEngine fcaEngine;
 
     public static FCAEngine getFcaEngine() {
         if (null == fcaEngine) {

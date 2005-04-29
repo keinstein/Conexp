@@ -10,6 +10,10 @@ package conexp.frontend.latticeeditor.drawstrategies;
 import conexp.frontend.ResourceLoader;
 import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.DrawStrategiesModelsFactory;
+import conexp.frontend.latticeeditor.XMLFileStrategyModel;
+import conexp.frontend.latticeeditor.highlightstrategies.HighlightStrategyModel;
+import conexp.frontend.latticeeditor.edgesizecalcstrategies.EdgeSizeStrategyModel;
+import conexp.frontend.latticeeditor.noderadiusstrategy.NodeRadiusStrategyModel;
 import conexp.util.gui.strategymodel.StrategyModel;
 
 public class DefaultDrawStrategiesModelsFactory implements DrawStrategiesModelsFactory {
@@ -21,21 +25,21 @@ public class DefaultDrawStrategiesModelsFactory implements DrawStrategiesModelsF
     }
 
     public StrategyModel makeEdgeSizeStrategiesModel() {
-        return new conexp.frontend.latticeeditor.edgesizecalcstrategies.EdgeSizeStrategyModel(drawParams);
+        return new EdgeSizeStrategyModel(drawParams);
     }
 
     public StrategyModel makeHighlightStrategiesModel() {
-        return new conexp.frontend.latticeeditor.highlightstrategies.HighlightStrategyModel(drawParams);
+        return new HighlightStrategyModel(drawParams);
     }
 
 
     public StrategyModel makeLayoutStrategiesModel() {
         String xmlFileUrl = ResourceLoader.getResourceUrl("resources/LayoutStrategyModel.xml").toString();
-        return new conexp.frontend.latticeeditor.XMLFileStrategyModel(xmlFileUrl);
+        return new XMLFileStrategyModel(xmlFileUrl);
     }
 
     public StrategyModel makeNodeRadiusStrategiesModel() {
-        return new conexp.frontend.latticeeditor.noderadiusstrategy.NodeRadiusStrategyModel(drawParams);
+        return new NodeRadiusStrategyModel(drawParams);
     }
 
     public DrawStrategiesModelsFactory makeCopy() {

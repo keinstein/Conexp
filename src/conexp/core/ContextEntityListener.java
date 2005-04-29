@@ -8,6 +8,8 @@
 
 package conexp.core;
 
+import java.beans.PropertyChangeEvent;
+
 public interface ContextEntityListener {
-    public void nameChanged(java.beans.PropertyChangeEvent evt);
+    void nameChanged(PropertyChangeEvent evt);
 }

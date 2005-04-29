@@ -13,8 +13,8 @@ import conexp.core.*;
 public abstract class AbstractAttributeExplorationError implements AttributeExplorationError {
     protected AttributeInformationSupplier attrInfo;
     protected String objectName;
-    protected final String separator = " , ";
-    protected final String emptySetDescriptor = "";
+    protected static final String separator = " , ";
+    protected static final String emptySetDescriptor = "";
 
     public AbstractAttributeExplorationError(AttributeInformationSupplier attrInfo, String objectName) {
         this.attrInfo = attrInfo;

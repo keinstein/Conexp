@@ -7,10 +7,12 @@
 
 package conexp.core.layout.todo;
 
+import conexp.core.Lattice;
+
 
 public class ForceDirectParams {
     protected int D = 20;
-    private conexp.core.Lattice lattice;
+    private Lattice lattice;
 
     /**
      * ForceDirectParams constructor comment.
@@ -79,7 +81,7 @@ public class ForceDirectParams {
      * Creation date: (11.03.01 2:43:42)
      * @param newLattice conexp.core.Lattice
      */
-    public void setLattice(conexp.core.Lattice newLattice) {
+    public void setLattice(Lattice newLattice) {
         lattice = newLattice;
     }
 }

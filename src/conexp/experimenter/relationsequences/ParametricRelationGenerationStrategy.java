@@ -19,7 +19,7 @@ public abstract class ParametricRelationGenerationStrategy extends BaseRelationG
      * Creation date: (06.07.01 16:23:41)
      * @return java.lang.String
      */
-    public java.lang.String describeStrategy() {
+    public String describeStrategy() {
         return "MinSize X;" + minSizeX + ";MaxSizeX;" + maxSizeX + ";minSizeY;" + minSizeY + ";maxSizeY;" + maxSizeY + ";";
     }
 

@@ -10,6 +10,8 @@ package conexp.core.tests;
 import conexp.core.*;
 import junit.framework.TestCase;
 
+import java.util.Iterator;
+
 
 public class ImplicationSetTest extends TestCase {
     ImplicationSet impSet;
@@ -79,7 +81,7 @@ public class ImplicationSetTest extends TestCase {
     public void testMakeDisjoint() {
         impSet.addDependency(makeImplication(new int[]{0, 1, 0, 0}, new int[]{0, 0, 1, 0}));
         impSet.makeDisjoint();
-        java.util.Iterator it = impSet.dependencies().iterator();
+        Iterator it = impSet.dependencies().iterator();
         while (it.hasNext()) {
             assertTrue(((Implication) it.next()).isDisjoint());
         } // end of while ()

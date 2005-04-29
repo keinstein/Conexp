@@ -9,7 +9,7 @@
 package conexp.core;
 
 public interface AttributeInformationSupplier {
-    public ContextEntity getAttribute(int index);
+    ContextEntity getAttribute(int index);
 
-    public int getAttributeCount();
+    int getAttributeCount();
 }

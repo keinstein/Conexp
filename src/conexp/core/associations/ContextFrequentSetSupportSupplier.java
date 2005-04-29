@@ -12,14 +12,14 @@ import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.Set;
 
 public class ContextFrequentSetSupportSupplier implements FrequentSetSupportSupplier {
-    protected conexp.core.ExtendedContextEditingInterface cxt;
+    protected ExtendedContextEditingInterface cxt;
 
     public ContextFrequentSetSupportSupplier(ExtendedContextEditingInterface cxt) {
         super();
         this.cxt = cxt;
     }
 
-    public int supportForSet(conexp.core.Set attribs) {
+    public int supportForSet(Set attribs) {
         BinaryRelation rel = cxt.getRelation();
         int ret = 0;
         for (int i = rel.getRowCount(); --i >= 0;) {

@@ -9,16 +9,20 @@ package conexp.frontend.latticeeditor;
 
 import canvas.CanvasScheme;
 import canvas.IHighlightStrategy;
+import canvas.CanvasColorScheme;
+import canvas.DefaultColorScheme;
 import conexp.core.layout.Layouter;
 import conexp.util.gui.paramseditor.BoundedIntValueParamInfo;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
 import conexp.util.valuemodels.BoundedIntValue;
+import conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory;
 import util.BaseVetoablePropertyChangeSupplier;
 
 import java.awt.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyVetoException;
 import java.util.prefs.Preferences;
 
 //todo: rename to LatticeCanvasSchemeWithOptions
@@ -28,7 +32,7 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
 
     private LatticeCanvasDrawStrategiesContext drawStrategiesContext;
 
-    private canvas.CanvasColorScheme colorScheme = new canvas.DefaultColorScheme();
+    private CanvasColorScheme colorScheme = new DefaultColorScheme();
 
     private DrawStrategiesModelsFactory factory;
     private ParamInfo[] paramInfos;
@@ -48,10 +52,10 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
     }
 
     protected static DrawStrategiesModelsFactory makeDrawStrategiesFactory(DrawParameters drawParams) {
-        return new conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory(drawParams);
+        return new DefaultDrawStrategiesModelsFactory(drawParams);
     }
 
-    public canvas.CanvasColorScheme getColorScheme() {
+    public CanvasColorScheme getColorScheme() {
         return colorScheme;
     }
 
@@ -119,7 +123,7 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
     public void restorePreferences() {
         try {
             getLabelsFontSizeValue().setValue(getPreferences().getInt(LABELS_FONT_SIZE_PROPERTY, DEFAULT_LABEL_FONT_SIZE));
-        } catch (java.beans.PropertyVetoException e) {
+        } catch (PropertyVetoException e) {
             //would be suppressed
         }
         getLatticePainterDrawStrategyContext().restorePreferences();

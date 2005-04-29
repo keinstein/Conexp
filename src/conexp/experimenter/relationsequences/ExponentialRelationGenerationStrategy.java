@@ -1,5 +1,7 @@
 package conexp.experimenter.relationsequences;
 
+import conexp.core.BinaryRelation;
+
 
 /**
  * Insert the type's description here.
@@ -27,7 +29,7 @@ public class ExponentialRelationGenerationStrategy extends BaseRelationGeneratio
      * Creation date: (21.07.01 18:20:28)
      * @return java.lang.String
      */
-    public java.lang.String describeStrategy() {
+    public String describeStrategy() {
         return "Exponential;MinSize;" + minSize + ";MaxSize;" + maxSize + ";";
     }
 
@@ -38,7 +40,7 @@ public class ExponentialRelationGenerationStrategy extends BaseRelationGeneratio
      * @return conexp.core.BinaryRelation
      * @param relNo int
      */
-    public conexp.core.BinaryRelation makeRelation(int relNo) {
+    public BinaryRelation makeRelation(int relNo) {
         return RelationGenerator.makeExponential(interpolateSize(relNo, minSize, maxSize));
     }
 }

@@ -10,5 +10,5 @@ package canvas;
 
 public interface Selectable {
     boolean isSelected();
-    public void setSelected(boolean newValue);
+    void setSelected(boolean newValue);
 }

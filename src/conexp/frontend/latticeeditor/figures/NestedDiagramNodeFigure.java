@@ -9,16 +9,14 @@
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.BaseFigureVisitor;
+import canvas.Figure;
 import canvas.figures.CenterPointLocator;
 import canvas.figures.ConnectionFigure;
 import conexp.core.Edge;
 import conexp.core.ItemSet;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
-import conexp.frontend.latticeeditor.ConceptQuery;
-import conexp.frontend.latticeeditor.ConceptSetDrawing;
-import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
-import conexp.frontend.latticeeditor.LatticeCanvasScheme;
+import conexp.frontend.latticeeditor.*;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 
 import java.awt.*;
@@ -45,7 +43,7 @@ public class NestedDiagramNodeFigure extends ConceptCorrespondingFigure {
         buildInnerFigures();
     }
 
-    public void setFigureDimensionCalcStrategyProvider(conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider figureDimensionProvider) {
+    public void setFigureDimensionCalcStrategyProvider(FigureDimensionCalcStrategyProvider figureDimensionProvider) {
         super.setFigureDimensionCalcStrategyProvider(figureDimensionProvider);
         innerFigures.setFigureDimensionCalcStrategyProvider(figureDimensionProvider);
         //what about inner diagrams
@@ -88,7 +86,7 @@ public class NestedDiagramNodeFigure extends ConceptCorrespondingFigure {
     }
 
 
-    AbstractConceptCorrespondingFigure elementFigureMap[];
+    AbstractConceptCorrespondingFigure[] elementFigureMap;
 
     private void makeEdgeFigures() {
         Lattice lattice = innerDiagram.getLattice();
@@ -183,7 +181,7 @@ public class NestedDiagramNodeFigure extends ConceptCorrespondingFigure {
                 "Concept: " + getConcept();
     }
 
-    public canvas.Figure findFigureInside(double x, double y) {
+    public Figure findFigureInside(double x, double y) {
         if (innerFigures.contains(x, y)) {
             return innerFigures.findFigureInside(x, y);
         }

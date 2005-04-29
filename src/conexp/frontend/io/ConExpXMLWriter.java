@@ -210,7 +210,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         return referenceElement;
     }
 
-    private Element storeConceptFigures(final LatticeDrawing drawing) {
+    private static Element storeConceptFigures(final LatticeDrawing drawing) {
         final Element conceptDrawings = new Element(ConExpXMLElements.CONCEPT_FIGURES_ELEMENT);
         final Lattice lat = drawing.getLattice();
         lat.forEach(new Lattice.LatticeElementVisitor() {
@@ -278,7 +278,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         return nameElement;
     }
 
-    private Element storeObjects(ExtendedContextEditingInterface cxt) {
+    private static Element storeObjects(ExtendedContextEditingInterface cxt) {
         Element objects = new Element(ConExpXMLElements.OBJECT_COLLECTION);
         for (int i = 0; i < cxt.getObjectCount(); i++) {
             objects.addContent(makeObjectElement(cxt, i));

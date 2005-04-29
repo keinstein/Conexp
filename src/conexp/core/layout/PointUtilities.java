@@ -14,8 +14,8 @@ public class PointUtilities {
         return point2D.distance(0,0);
     }
 
-    public static double dotProduct(java.awt.geom.Point2D first, java.awt.geom.Point2D second){
-        return (first.getX() * second.getX() + first.getY() * second.getY());
+    public static double dotProduct(Point2D first, Point2D second){
+        return first.getX() * second.getX() + first.getY() * second.getY();
     }
 
     public static double correlation(Point2D first, Point2D second) {
@@ -24,7 +24,7 @@ public class PointUtilities {
         if (len1 == 0.0 || len2 == 0.0) {
             return 0.0;
         } else {
-            return (dotProduct(first, second) / (len1 * len2));
+            return dotProduct(first, second) / (len1 * len2);
         }
     }
 

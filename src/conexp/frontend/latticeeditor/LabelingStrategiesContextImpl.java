@@ -9,6 +9,7 @@
 package conexp.frontend.latticeeditor;
 
 import conexp.core.layout.LayoutParameters;
+import conexp.core.ExtendedContextEditingInterface;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.StrategyValueItemParamInfo;
 import conexp.util.gui.strategymodel.StrategyValueItem;
@@ -90,14 +91,14 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
     }
 
 
-    public void initStrategies(conexp.core.ExtendedContextEditingInterface cxt, ConceptSetDrawing fd) {
+    public void initStrategies(ExtendedContextEditingInterface cxt, ConceptSetDrawing fd) {
 
         setupLabelingStrategies(cxt);
 
         doInitStrategies(fd);
     }
 
-    public void setupLabelingStrategies(conexp.core.ExtendedContextEditingInterface cxt) {
+    public void setupLabelingStrategies(ExtendedContextEditingInterface cxt) {
         getAttrLabelingStrategy().setContext(cxt);
         getObjectsLabelingStrategy().setContext(cxt);
     }

@@ -3,6 +3,7 @@ package canvas.util;
 import canvas.IScreenImageProvider;
 import util.IExporter;
 import util.StringUtil;
+import util.ServiceRegistry;
 import util.imagecodecs.ImageCodec;
 import util.imagecodecs.ImageCodecsFactory;
 
@@ -26,7 +27,7 @@ public class RasterImageExporter implements IExporter {
 
 
     static ImageCodecsFactory getImageCodecsFactory() {
-        return util.ServiceRegistry.imageCodecsFactory();
+        return ServiceRegistry.imageCodecsFactory();
     }
 
     public String[][] getDescriptions() {

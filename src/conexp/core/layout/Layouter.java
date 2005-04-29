@@ -9,15 +9,16 @@ package conexp.core.layout;
 
 import conexp.util.GenericStrategy;
 import conexp.util.gui.paramseditor.ParamsProvider;
+import conexp.core.Lattice;
 
 import java.beans.PropertyChangeListener;
 
 
 public interface Layouter extends GenericStrategy, ConceptCoordinateMapper, ParamsProvider {
-    static final String LAYOUT_CHANGE = "layoutChanged";
-    static final String LAYOUT_PARAMS_CHANGE = "layoutParamsChanged";
+    String LAYOUT_CHANGE = "layoutChanged";
+    String LAYOUT_PARAMS_CHANGE = "layoutParamsChanged";
 
-    void initLayout(conexp.core.Lattice l, LayoutParameters drawParams);
+    void initLayout(Lattice l, LayoutParameters drawParams);
 
     void addLayoutChangeListener(PropertyChangeListener listener);
 

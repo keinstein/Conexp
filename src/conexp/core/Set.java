@@ -15,14 +15,14 @@ public interface Set extends Cloneable, IPartiallyOrdered {
 
 //-------------------------
 
-    final int NOT_IN_SET = -1;
+    int NOT_IN_SET = -1;
     /**
      *  set of values for return from compare function
      */
-    final int EQUAL = 0;
-    final int SUBSET = 1;
-    final int SUPERSET = 2;
-    final int NOT_COMPARABLE = 3;
+    int EQUAL = 0;
+    int SUBSET = 1;
+    int SUPERSET = 2;
+    int NOT_COMPARABLE = 3;
 //-----------------------------
     /**
      *  compares two sets

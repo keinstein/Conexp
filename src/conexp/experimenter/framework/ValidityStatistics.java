@@ -1,5 +1,7 @@
 package conexp.experimenter.framework;
 
+import java.io.PrintWriter;
+
 
 /**
  * Insert the type's description here.
@@ -21,5 +23,5 @@ public interface ValidityStatistics {
      * Creation date: (14.07.01 7:23:27)
      * @param pw java.io.PrintWriter
      */
-    void printOn(java.io.PrintWriter pw);
+    void printOn(PrintWriter pw);
 }

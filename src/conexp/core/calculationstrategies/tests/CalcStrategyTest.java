@@ -291,7 +291,7 @@ public abstract class CalcStrategyTest extends TestCase {
         doTestCalcStrategyForExpectedIntentsAndExtents(LINEAR_2_NODE_2_ATTR, LINEAR_2_NODE_2_ATTR, new int[][]{{1, 1}, {0, 1}}, 1);
     }
 
-    protected void buildIntentsSetAndFillExpectationSet(BinaryRelation rel, com.mockobjects.ExpectationSet expSet, com.mockobjects.ExpectationSet expSetExtents) {
+    protected void buildIntentsSetAndFillExpectationSet(BinaryRelation rel, ExpectationSet expSet, ExpectationSet expSetExtents) {
         conceptSet = makeConceptCollection();
         setupStrategy(conceptSet);
         generateIntents();
@@ -322,24 +322,24 @@ public abstract class CalcStrategyTest extends TestCase {
 
 
     protected void doTestCalcStrategyForExpectedSizeForFullLatticeCase(int[][] input, int expectedSize) {
-        ConceptsCollection conceptSet = buildConceptCollection(input);
-        if (conceptSet.conceptsCount() != expectedSize) {
+        ConceptsCollection conceptsCollection = buildConceptCollection(input);
+        if (conceptsCollection.conceptsCount() != expectedSize) {
             ConceptCollectionComparator comparator = new ConceptCollectionComparator(
                     SetBuilder.makeConceptSet(input),
-                    conceptSet
+                    conceptsCollection
             );
             comparator.dumpDifferencesToSout();
-            assertEquals(expectedSize, conceptSet.conceptsCount());
+            assertEquals(expectedSize, conceptsCollection.conceptsCount());
         }
     }
 
     private ConceptsCollection buildConceptCollection(int[][] input) {
         BinaryRelation rel = SetBuilder.makeRelation(input);
         calcStrategy.setRelation(rel);
-        ConceptsCollection conceptSet = makeConceptCollection();
-        setupStrategy(conceptSet);
+        ConceptsCollection conceptsCollection = makeConceptCollection();
+        setupStrategy(conceptsCollection);
         calcStrategy.calculateConceptSet();
-        return conceptSet;
+        return conceptsCollection;
     }
 
     protected void generateIntents() {
@@ -356,7 +356,7 @@ public abstract class CalcStrategyTest extends TestCase {
 
 
     public void testBadDepthSearchCalc() {
-        int expIntents[][] = {
+        int[][] expIntents = {
             {0, 0, 0, 0, 0},
             {0, 0, 0, 0, 1},
             {0, 0, 0, 1, 0},
@@ -379,7 +379,7 @@ public abstract class CalcStrategyTest extends TestCase {
             {1, 0, 1, 1, 0},
             {1, 1, 1, 1, 1}
         };
-        int expextedExtents[][] = {
+        int[][] expextedExtents = {
             {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
             {0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 0},
             {0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1},

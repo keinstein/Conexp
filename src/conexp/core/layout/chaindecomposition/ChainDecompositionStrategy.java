@@ -36,7 +36,7 @@ public interface ChainDecompositionStrategy extends GenericStrategy {
      * Creation date: (09.03.01 15:41:59)
      * @return int
      */
-    public int getEntitiesCount();
+    int getEntitiesCount();
 
     /**
      * Insert the method's description here.
@@ -53,5 +53,5 @@ public interface ChainDecompositionStrategy extends GenericStrategy {
      */
     boolean isEntityIrreducible(int v);
 
-    public void setContext(ExtendedContextEditingInterface cxt);
+    void setContext(ExtendedContextEditingInterface cxt);
 }

@@ -25,7 +25,7 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
 
     public static final String BOUNDS_BOX_PROPERTY = "BoundsBox";
 
-    private canvas.FigureListener figureListener = new DrawingFigureListener();
+    private FigureListener figureListener = new DrawingFigureListener();
 
     public FigureDrawing() {
         super();
@@ -221,7 +221,7 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
         return fBoundsRectDirty;
     }
 
-    public boolean layOnBorder(java.awt.Rectangle rect) {
+    public boolean layOnBorder(Rectangle rect) {
         final double precision = 0.01;
         if (Math.abs(bounds.getMinX() - rect.x) < precision) {
             return true;
@@ -272,12 +272,12 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
         public void afterFigureMove(Figure f) {
             onAfterFigureMove(f);
         }
-    };
+    }
 
 
-    private Rectangle2D bounds;
+    private Rectangle2D bounds=null;
 
-    private Dimension2D fDimension;
+    private Dimension2D fDimension=null;
 
     private void setDimension(Dimension2D newFDimension) {
         if (null == fDimension || !fDimension.equals(newFDimension)) {
@@ -310,18 +310,16 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
     }
 
     private void addFigureRectToBounds(Figure f) {
-        Rectangle rect = new java.awt.Rectangle();
+        Rectangle rect = new Rectangle();
         f.boundingBox(rect);
         setBounds(bounds.createUnion(rect));
     }
 
     private Rectangle calculateUserBoundsRect() {
-        Rectangle bounds = new Rectangle();
-
-        BoundsBlock b = new BoundsBlock();
-        b.init(bounds);
+        Rectangle boundsRect = new Rectangle();
+        BoundsBlock b = new BoundsBlock(boundsRect);
         forAllFigures(b);
-        return bounds;
+        return boundsRect;
     }
 
     public Rectangle2D getUserBoundsRect() {

@@ -11,6 +11,7 @@ import conexp.core.Context;
 import conexp.core.Set;
 import conexp.core.layout.layeredlayout.LayeredLayoter;
 import conexp.core.layout.tests.GenericLayouterTest;
+import conexp.core.layout.GenericLayouter;
 import conexp.core.tests.SetBuilder;
 
 public class LayeredLayouterTest extends GenericLayouterTest {
@@ -47,7 +48,7 @@ public class LayeredLayouterTest extends GenericLayouterTest {
 
 
 
-    protected conexp.core.layout.GenericLayouter makeLayouter() {
+    protected GenericLayouter makeLayouter() {
         return new LayeredLayoter();
     }
 }

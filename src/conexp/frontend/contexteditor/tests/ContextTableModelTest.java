@@ -20,6 +20,8 @@ import util.testing.MockTableModelListener;
 import util.testing.MockUndoableEditListener;
 import util.testing.TestUtil;
 
+import java.beans.PropertyVetoException;
+
 public class ContextTableModelTest extends TestCase {
     ContextTableModel tableModel;
 
@@ -39,13 +41,13 @@ public class ContextTableModelTest extends TestCase {
             intValueModel.setValue(3);
             intValueModel.setValue(0);
 
-        } catch (java.beans.PropertyVetoException ex) {
+        } catch (PropertyVetoException ex) {
             fail("values greater or equal to zero should be accepted");
         }
         try {
             intValueModel.setValue(-1);
             fail("value should be greater than zero");
-        } catch (java.beans.PropertyVetoException ex) {
+        } catch (PropertyVetoException ex) {
         }
     }
 
@@ -59,12 +61,12 @@ public class ContextTableModelTest extends TestCase {
     public void testAttribCountIntModelConnectionWithContext() {
         IIntValueModel intValueModel = tableModel.getAttribCountModel();
         assertEquals(tableModel.getContext().getAttributeCount(), intValueModel.getValue());
-        util.testing.MockTableModelListener mockListener = new util.testing.MockTableModelListener();
+        MockTableModelListener mockListener = new MockTableModelListener();
         tableModel.addTableModelListener(mockListener);
         mockListener.setExpectStructureChanged();
         try {
             intValueModel.setValue(5);
-        } catch (java.beans.PropertyVetoException ex) {
+        } catch (PropertyVetoException ex) {
             fail("Exception shoud'nt be thrown");
         }
         assertEquals(intValueModel.getValue(), tableModel.getContext().getAttributeCount());
@@ -89,7 +91,7 @@ public class ContextTableModelTest extends TestCase {
         mockListener.setExpectStructureChanged();
         try {
             intValueModel.setValue(5);
-        } catch (java.beans.PropertyVetoException ex) {
+        } catch (PropertyVetoException ex) {
             fail("Exception shoud'nt be thrown");
         }
         assertEquals(intValueModel.getValue(), tableModel.getContext().getObjectCount());
@@ -278,7 +280,7 @@ public class ContextTableModelTest extends TestCase {
             public void modifyTable(ContextTableModel tableModel) {
                 try {
                     tableModel.getObjectCountModel().setValue(5);
-                } catch (java.beans.PropertyVetoException e) {
+                } catch (PropertyVetoException e) {
                     TestUtil.reportUnexpectedException(e);
                 }
             }
@@ -290,7 +292,7 @@ public class ContextTableModelTest extends TestCase {
             public void modifyTable(ContextTableModel tableModel) {
                 try {
                     tableModel.getAttribCountModel().setValue(5);
-                } catch (java.beans.PropertyVetoException e) {
+                } catch (PropertyVetoException e) {
                     TestUtil.reportUnexpectedException(e);
                 }
             }

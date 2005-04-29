@@ -47,7 +47,7 @@ public class IContextReducabilityAnalyserTest extends TestCase {
     }
 
 
-    public void testRecalcalationOnAdditionOfObjectOrAttribute() {
+    public static void testRecalcalationOnAdditionOfObjectOrAttribute() {
         ISimpleContext context = CEFacadeFactory.makeContext(3, 3);
 
         IContextReducabilityAnalyser contextAnalyser = CEFacadeFactory.makeContextAnalyser(context);
@@ -67,7 +67,7 @@ public class IContextReducabilityAnalyserTest extends TestCase {
 
     }
 
-    public void testCorrectDefinitionOfIrreducibilityInformation() {
+    public static void testCorrectDefinitionOfIrreducibilityInformation() {
         ISimpleContext context = ObjectMother.buildContext(new int[][]{
             {1, 1, 0},
             {0, 1, 0},

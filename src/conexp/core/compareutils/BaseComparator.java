@@ -8,6 +8,7 @@
 package conexp.core.compareutils;
 
 import java.util.Collection;
+import java.io.PrintWriter;
 
 
 public class BaseComparator {
@@ -29,11 +30,11 @@ public class BaseComparator {
     }
 
     public void dumpDifferencesToSout() {
-        java.io.PrintWriter writer = new java.io.PrintWriter(System.out, true);
+        PrintWriter writer = new PrintWriter(System.out, true);
         writeReport(writer);
     }
 
-    public void writeReport(java.io.PrintWriter writer) {
+    public void writeReport(PrintWriter writer) {
         if(isEqual()){
             writer.println(noDifferencesMessage);
         }else{

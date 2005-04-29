@@ -67,12 +67,12 @@ public class ContextTable extends JTable implements ParamsProvider {
         setDefaultRenderer(String.class, cellRenderer);
 
 
-        final ContextCellEditor cellEditor = new ContextCellEditor();
+        final ContextCellEditor contextCellEditor = new ContextCellEditor();
 
-        setDefaultEditor(Boolean.class, cellEditor);
-        setDefaultEditor(String.class, cellEditor);
+        setDefaultEditor(Boolean.class, contextCellEditor);
+        setDefaultEditor(String.class, contextCellEditor);
 
-        cellEditor.addCellEditorListener(new CellEditorListener() {
+        contextCellEditor.addCellEditorListener(new CellEditorListener() {
             public void editingStopped(ChangeEvent e) {
                 if (repaintMode) {
                     repaint();
@@ -139,8 +139,8 @@ public class ContextTable extends JTable implements ParamsProvider {
 
     private void doSetCompresedView(boolean compressed) {
         final int preferredWidth = compressed ? COMPRESSED_WIDTH : USUAL_WIDTH;
-        TableColumnModel columnModel = getColumnModel();
-        for (int i = 1; i < getColumnCount(); i++) {
+        final int columnCount = getColumnCount();
+        for (int i = 1; i < columnCount; i++) {
             TableColumn column = columnModel.getColumn(i);
             column.setPreferredWidth(preferredWidth);
         }
@@ -199,7 +199,7 @@ public class ContextTable extends JTable implements ParamsProvider {
         private void maybeShowPopup(MouseEvent e) {
             if (e.isPopupTrigger()) {
                 JPopupMenu popupMenu = makePopupMenu();
-                if (null != popupMenu && (popupMenu.getComponentCount() != 0)) {
+                if (null != popupMenu && popupMenu.getComponentCount() != 0) {
                     popupMenu.show(e.getComponent(), e.getX(), e.getY());
                 }
             }
@@ -323,7 +323,7 @@ public class ContextTable extends JTable implements ParamsProvider {
             int startCol = getSelectedColumn();
             try {
                 String clipboardContent =
-                        (String) (getSystemClipboard().getContents(ContextTable.this).getTransferData(DataFlavor.stringFlavor));
+                        (String) getSystemClipboard().getContents(ContextTable.this).getTransferData(DataFlavor.stringFlavor);
 
                 try {
                     getContextTableModel().startCompoundCommand();
@@ -505,7 +505,7 @@ public class ContextTable extends JTable implements ParamsProvider {
     }
 
     protected ContextTableModel getContextTableModel() {
-        return ((ContextTableModel) getModel());
+        return (ContextTableModel) getModel();
     }
 
     public void setContext(ContextEditingInterface cxt) {

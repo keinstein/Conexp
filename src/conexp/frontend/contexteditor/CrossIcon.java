@@ -11,8 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 
 class CrossIcon implements Icon {
-    final int height = 16;
-    final int width = 16;
+    private static final int height = 16;
+    private static final int width = 16;
 
     private static Icon cross;
 

@@ -11,6 +11,7 @@ import conexp.core.GenericDependency;
 import conexp.core.ItemSet;
 import conexp.core.ModifiableSet;
 import conexp.core.Set;
+import util.Assert;
 
 
 public class AssociationRule extends GenericDependency {
@@ -21,7 +22,7 @@ public class AssociationRule extends GenericDependency {
 
 
     public static AssociationRule makeFromItemsets(ItemSet premise, ItemSet conclusion) {
-        util.Assert.isTrue(premise.getObjCnt() >= conclusion.getObjCnt());
+        Assert.isTrue(premise.getObjCnt() >= conclusion.getObjCnt());
         ModifiableSet temp = conclusion.getAttribs().makeModifiableSetCopy();
         temp.andNot(premise.getAttribs());
         //copy is done in constructor of GenericDependency

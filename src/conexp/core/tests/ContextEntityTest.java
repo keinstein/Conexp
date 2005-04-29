@@ -52,6 +52,7 @@ public class ContextEntityTest extends TestCase {
 
 
         attr2 = ContextEntity.createContextAttribute(new String(firstName));
+        //new String(firstName )specially performed in order that equality (not sameness) was tested
         assertEquals(attr1, attr2);
     }
 

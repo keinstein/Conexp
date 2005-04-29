@@ -23,7 +23,7 @@ public class FreeseLayout extends FreezeBaseLayout {
         for (int i = 0; i < size; i++) {
             LatticeElement x = lattice.elementAt(i);
             Point3D currCoords = getConceptInfo(x).coords;
-            ConceptIterator filter = (currIter % 2 == 0 ? (ConceptIterator) new ConceptFilterIterator(x) : (ConceptIterator) new ConceptIdealIterator(x));
+            ConceptIterator filter = currIter % 2 == 0 ? (ConceptIterator) new ConceptFilterIterator(x) : (ConceptIterator) new ConceptIdealIterator(x);
             filter.nextConcept(); // Skip the first element which is x.
             while (filter.hasNext()) {
                 Point3D otherCoords = getConceptInfo(filter.nextConcept()).coords;

@@ -29,7 +29,7 @@ public interface ISimpleContext {
 
     String[] getObjectName();
 
-    public void setDimension(int numObj, int numAttr);
+    void setDimension(int numObj, int numAttr);
 
     boolean getRelationAt(int objectId, int attrId);
 

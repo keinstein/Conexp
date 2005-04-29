@@ -2,17 +2,7 @@ package conexp.frontend.latticeeditor;
 
 import canvas.util.RasterImageExporter;
 import canvas.util.SaveImageActionBase;
-import util.collection.CollectionFactory;
-import util.gui.fileselector.ExtensionFileFilter;
-import util.gui.fileselector.FileSelectorService;
-import util.gui.fileselector.GenericFileFilter;
 import util.IExporter;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-import java.util.List;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

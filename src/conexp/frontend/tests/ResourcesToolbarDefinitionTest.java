@@ -10,9 +10,7 @@ package conexp.frontend.tests;
 import conexp.frontend.util.IResourceManager;
 import conexp.frontend.util.ResourceManager;
 import conexp.frontend.util.ToolBuilder;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import util.StringUtil;
 
 import javax.swing.*;

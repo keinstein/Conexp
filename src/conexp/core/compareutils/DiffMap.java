@@ -8,12 +8,13 @@
 package conexp.core.compareutils;
 
 import java.util.*;
+import java.io.PrintWriter;
 
 
 public class DiffMap {
     protected Map map;
     protected final CompareInfoFactory factory;
-    protected java.util.HashSet corruptValues;
+    protected HashSet corruptValues;
     protected Collection inFirst;
     protected Collection inSecond;
     protected Collection inBothButDifferent;
@@ -58,7 +59,7 @@ public class DiffMap {
      * Creation date: (13.07.01 16:53:29)
      * @param writer java.io.PrintWriter
      */
-    public void dumpDifferences(java.io.PrintWriter writer) {
+    public void dumpDifferences(PrintWriter writer) {
         writer.println("COMPARATOR: Start logging ");
         if (isCorrupt()) {
             writer.println("Compared sets where corrupt and contained non unique values");
@@ -108,7 +109,7 @@ public class DiffMap {
     }
 
 
-    public java.util.Collection getInBothButDifferent() {
+    public Collection getInBothButDifferent() {
         return unmodifiableCopy(getInBothButDifferentIntern());
     }
 
@@ -119,7 +120,7 @@ public class DiffMap {
         return inBothButDifferent;
     }
 
-    public java.util.Collection getInFirst() {
+    public Collection getInFirst() {
         return unmodifiableCopy(getInFirstIntern());
     }
 
@@ -131,7 +132,7 @@ public class DiffMap {
     }
 
 
-    public java.util.Collection getInSecond() {
+    public Collection getInSecond() {
         return unmodifiableCopy(getInSecondIntern());
     }
 
@@ -154,7 +155,7 @@ public class DiffMap {
     }
 
     protected static Collection makeCollection() {
-        return new java.util.LinkedList();
+        return new LinkedList();
     }
 
 
@@ -163,7 +164,7 @@ public class DiffMap {
     }
 
 
-    protected static void printCollection(java.io.PrintWriter writer, Iterator iter) {
+    protected static void printCollection(PrintWriter writer, Iterator iter) {
         while (iter.hasNext()) {
             writer.println(iter.next());
         }

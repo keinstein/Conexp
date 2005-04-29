@@ -165,16 +165,7 @@ public class LatticeDiagramChecker {
     }
 
     private boolean isOrderRelationAcyclic() {
-        BinaryRelation lessThanRelation = getLessThanRelation();
-
-        for (int i = 0; i < nodeCount; i++) {
-            for (int j = 0; j < nodeCount; j++) {
-                if (lessThanRelation.getRelationAt(i, j) && lessThanRelation.getRelationAt(j, i)) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return BinaryRelationUtils.haveNoBidirectionalEdges(getLessThanRelation());
     }
 
     public BinaryRelation getLessThanRelation() {

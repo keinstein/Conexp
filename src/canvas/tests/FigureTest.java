@@ -10,6 +10,8 @@ package canvas.tests;
 import canvas.Figure;
 import junit.framework.TestCase;
 
+import java.awt.*;
+
 
 public abstract class FigureTest extends TestCase {
     protected Figure f;
@@ -21,7 +23,7 @@ public abstract class FigureTest extends TestCase {
     }
 
     public void testBoundingBox() {
-        java.awt.Rectangle rect = new java.awt.Rectangle();
+        Rectangle rect = new Rectangle();
         assertTrue(rect.isEmpty());
         f.boundingBox(rect);
         assertEquals(false, rect.isEmpty());

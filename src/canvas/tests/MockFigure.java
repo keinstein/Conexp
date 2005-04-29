@@ -8,6 +8,7 @@
 package canvas.tests;
 
 import canvas.figures.RectangularFigure;
+import canvas.CanvasScheme;
 
 import java.awt.*;
 
@@ -20,7 +21,7 @@ public class MockFigure extends RectangularFigure {
         super(x, y, w, h);
     }
 
-    public void draw(Graphics g, canvas.CanvasScheme opt) {
+    public void draw(Graphics g, CanvasScheme opt) {
     }
 
 }

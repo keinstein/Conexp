@@ -9,8 +9,10 @@ package conexp.core;
 
 import util.Assert;
 import util.collection.CollectionFactory;
+import util.collection.NullIterator;
 
 import java.util.Iterator;
+import java.util.Collection;
 
 
 public class Concept implements ItemSet {
@@ -29,10 +31,10 @@ public class Concept implements ItemSet {
     private static final int HAS_OBJECTS = 0x1;
 
 
-    private java.util.Collection ownAttribs;
+    private Collection ownAttribs;
 
 
-    private java.util.Collection ownObjects;
+    private Collection ownObjects;
 
     /**
      * descriptor of conexp type *
@@ -91,7 +93,7 @@ public class Concept implements ItemSet {
                 return GREATER;
             case Set.SUPERSET:
                 return LESS;
-            default:
+            default:  //FALLTHROUGH
             case Set.NOT_COMPARABLE:
                 return NOT_COMPARABLE;
         }
@@ -146,7 +148,7 @@ public class Concept implements ItemSet {
     }
 
     public int getOwnObjCnt() {
-        return (null == ownObjects) ? 0 : ownObjects.size();
+        return null == ownObjects ? 0 : ownObjects.size();
     }
 
     public int hashCode() {
@@ -218,7 +220,7 @@ public class Concept implements ItemSet {
      * @return java.util.Iterator
      */
     public Iterator ownAttribsIterator() {
-        return null == ownAttribs ? util.collection.NullIterator.makeNull() : ownAttribs.iterator();
+        return null == ownAttribs ? NullIterator.makeNull() : ownAttribs.iterator();
     }
 
 
@@ -228,7 +230,7 @@ public class Concept implements ItemSet {
      * @return java.util.Iterator
      */
     public Iterator ownObjectsIterator() {
-        return null == ownObjects ? util.collection.NullIterator.makeNull() : ownObjects.iterator();
+        return null == ownObjects ? NullIterator.makeNull() : ownObjects.iterator();
     }
 
 

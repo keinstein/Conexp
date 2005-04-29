@@ -70,7 +70,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
     }
 
     private static int unitsNeeded(int nbits) {
-        return (unitIndex(nbits - 1) + 1);
+        return unitIndex(nbits - 1) + 1;
     }
 
     /**
@@ -130,7 +130,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         }
         BitSet2 set = (BitSet2) s;
         int startUnitIndex = unitIndex(size);
-        int shiftCount = (size & BIT_INDEX_MASK);
+        int shiftCount = size & BIT_INDEX_MASK;
         if (0 == shiftCount) {
             for (int i = unitIndex(set.size - 1); i >= 0; i--) {
                 unit[startUnitIndex + i] = set.unit[i];
@@ -138,7 +138,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         } else {
 
             long startMaskInThis = ~(0xFFFFFFFFFFFFFFFFL << shiftCount);
-            long startMaskInOther = (0xFFFFFFFFFFFFFFFFL >>> shiftCount);
+            long startMaskInOther = 0xFFFFFFFFFFFFFFFFL >>> shiftCount;
             long endMaskInOther = ~startMaskInOther;
 
             long prev = unit[startUnitIndex] & startMaskInThis;
@@ -148,15 +148,14 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
             //for each long in second set
             //form new value from end of previous and begin of current
             for (int i = 0; i <= unitsCount; i++) {
-                unit[startUnitIndex + i] = prev | ((set.unit[i] & startMaskInOther) << shiftCount);
-                prev = ((set.unit[i] & endMaskInOther) >>> secondPart);
+                unit[startUnitIndex + i] = prev | (set.unit[i] & startMaskInOther) << shiftCount;
+                prev = (set.unit[i] & endMaskInOther) >>> secondPart;
             }
             //add last value, if any
             int difference = set.size - secondPart;
-            if ((difference > 0) && (difference & BIT_INDEX_MASK) != 0) {
+            if (difference > 0 && (difference & BIT_INDEX_MASK) != 0) {
                 unit[startUnitIndex + unitsCount + 1] = prev;
             }
-            ;
 
         }
         size = newSize;
@@ -192,11 +191,11 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      */
     private static int bitCount(long val) {
         val -= (val & 0xaaaaaaaaaaaaaaaaL) >>> 1;
-        val = (val & 0x3333333333333333L) + ((val >>> 2) & 0x3333333333333333L);
-        val = (val + (val >>> 4)) & 0x0f0f0f0f0f0f0f0fL;
+        val = (val & 0x3333333333333333L) + (val >>> 2 & 0x3333333333333333L);
+        val = val + (val >>> 4) & 0x0f0f0f0f0f0f0f0fL;
         val += val >>> 8;
         val += val >>> 16;
-        return ((int) (val) + (int) (val >>> 32)) & 0xff;
+        return (int) val + (int) (val >>> 32) & 0xff;
     }
 
     public ModifiableSet makeModifiableSetCopy() {
@@ -261,7 +260,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
 
     private void resizeSetAndCopyOldValues(int unitsRequired) {
         Assert.isTrue(unitsRequired >= 0);
-        long newBits[] = new long[unitsRequired];
+        long[] newBits = new long[unitsRequired];
         System.arraycopy(unit, 0, newBits, 0, Math.min(unit.length, unitsRequired));
         unit = newBits;
     }
@@ -285,7 +284,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         long mask;
         int indexInMask = bitIndex & BIT_INDEX_MASK;
         if (indexInMask != 0) {
-            mask = 0xffffffffffffffffL >>> (BITS_PER_UNIT - indexInMask);
+            mask = 0xffffffffffffffffL >>> BITS_PER_UNIT - indexInMask;
         } else {
             mask = 0L;
         }
@@ -304,7 +303,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
             --size;
             if (unitIndex(size - 1) < unit.length - 1) {
                 int newSize = unitIndex(size - 1) + 1;
-                long newBits[] = new long[newSize];
+                long[] newBits = new long[newSize];
                 System.arraycopy(unit, 0, newBits, 0, newSize);
                 unit = newBits;
             }
@@ -342,10 +341,10 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         int i = 0;
         int upperBound = unit.length - 1;
         for (int k = 0; k < upperBound; k++) {
-            final long unit = this.unit[k];
+            final long currentUnit = this.unit[k];
             long mask = 0x1L;
             while (mask != 0) {
-                if ((unit & mask) != 0) {
+                if ((currentUnit & mask) != 0) {
                     return i;
                 }
                 mask <<= 1;
@@ -403,7 +402,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      * trailingZeroTable[i] is the number of trailing zero bits in the binary
      * representaion of i.
      */
-    private final static byte trailingZeroTable[] = {
+    private final static byte[] trailingZeroTable = {
         -25, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
         4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
         5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
@@ -441,13 +440,13 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         int u = unitIndex(fromIndex);
         if (u >= unit.length)
             return fromIndex;
-        int testIndex = (fromIndex & BIT_INDEX_MASK);
+        int testIndex = fromIndex & BIT_INDEX_MASK;
         long word = unit[u] >> testIndex;
 
-        if (word == (WORD_MASK >> testIndex))
+        if (word == WORD_MASK >> testIndex)
             testIndex = 0;
 
-        while ((word == WORD_MASK) && (u < unit.length - 1))
+        while (word == WORD_MASK && u < unit.length - 1)
             word = unit[++u];
 
         if (word == WORD_MASK)
@@ -457,7 +456,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
             return u * BITS_PER_UNIT + testIndex;
 
         testIndex += trailingZeroCnt(~word);
-        return ((u * BITS_PER_UNIT) + testIndex);
+        return u * BITS_PER_UNIT + testIndex;
     }
 
 
@@ -507,7 +506,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         for (int i = unit.length; --i >= 0;)
             h ^= unit[i] * (i + 1);
 
-        return (int) ((h >> 32) ^ h);
+        return (int) (h >> 32 ^ h);
     }
 
     /**
@@ -527,7 +526,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         int unitIndex = unitIndex(bitIndex);
         if (unitIndex >= unit.length)
             return false;
-        return ((unit[unitIndex] & bit(bitIndex)) != 0);
+        return (unit[unitIndex] & bit(bitIndex)) != 0;
     }
 
     public boolean intersects(Set s) {
@@ -580,7 +579,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
             if (unit[k] != 0) {
                 long highestUnit = unit[k];
                 int highPart = (int) (highestUnit >>> 32);
-                return 64 * (k) +
+                return 64 * k +
                         (highPart == 0 ? bitLen((int) highestUnit)
                         : 32 + bitLen((int) highPart));
             }
@@ -594,21 +593,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
     private static int bitLen(int w) {
         // Binary search - decision tree (5 tests, rarely 6)
         return
-                (w < 1 << 15 ?
-                (w < 1 << 7 ?
-                (w < 1 << 3 ?
-                (w < 1 << 1 ? (w < 1 << 0 ? (w < 0 ? 32 : 0) : 1) : (w < 1 << 2 ? 2 : 3)) :
-                (w < 1 << 5 ? (w < 1 << 4 ? 4 : 5) : (w < 1 << 6 ? 6 : 7))) :
-                (w < 1 << 11 ?
-                (w < 1 << 9 ? (w < 1 << 8 ? 8 : 9) : (w < 1 << 10 ? 10 : 11)) :
-                (w < 1 << 13 ? (w < 1 << 12 ? 12 : 13) : (w < 1 << 14 ? 14 : 15)))) :
-                (w < 1 << 23 ?
-                (w < 1 << 19 ?
-                (w < 1 << 17 ? (w < 1 << 16 ? 16 : 17) : (w < 1 << 18 ? 18 : 19)) :
-                (w < 1 << 21 ? (w < 1 << 20 ? 20 : 21) : (w < 1 << 22 ? 22 : 23))) :
-                (w < 1 << 27 ?
-                (w < 1 << 25 ? (w < 1 << 24 ? 24 : 25) : (w < 1 << 26 ? 26 : 27)) :
-                (w < 1 << 29 ? (w < 1 << 28 ? 28 : 29) : (w < 1 << 30 ? 30 : 31)))));
+                w < 1 << 15 ? w < 1 << 7 ? w < 1 << 3 ? w < 1 << 1 ? w < 1 ? w < 0 ? 32 : 0 : 1 : w < 1 << 2 ? 2 : 3 : w < 1 << 5 ? w < 1 << 4 ? 4 : 5 : w < 1 << 6 ? 6 : 7 : w < 1 << 11 ? w < 1 << 9 ? w < 1 << 8 ? 8 : 9 : w < 1 << 10 ? 10 : 11 : w < 1 << 13 ? w < 1 << 12 ? 12 : 13 : w < 1 << 14 ? 14 : 15 : w < 1 << 23 ? w < 1 << 19 ? w < 1 << 17 ? w < 1 << 16 ? 16 : 17 : w < 1 << 18 ? 18 : 19 : w < 1 << 21 ? w < 1 << 20 ? 20 : 21 : w < 1 << 22 ? 22 : 23 : w < 1 << 27 ? w < 1 << 25 ? w < 1 << 24 ? 24 : 25 : w < 1 << 26 ? 26 : 27 : w < 1 << 29 ? w < 1 << 28 ? 28 : 29 : w < 1 << 30 ? 30 : 31;
     }
 
 
@@ -623,7 +608,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         int u = unitIndex(i);
         if (u >= unit.length)
             return -1;
-        int testIndex = (i & BIT_INDEX_MASK);
+        int testIndex = i & BIT_INDEX_MASK;
         long word = unit[u] >> testIndex;
 
         if (word == 0) {
@@ -631,7 +616,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         }
         int endUnit = unit.length - 1;
 
-        while ((word == 0) && (u < endUnit)) {
+        while (word == 0 && u < endUnit) {
             word = unit[++u];
         }
 
@@ -640,7 +625,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         }
 
         testIndex += trailingZeroCnt(word);
-        return ((u * BITS_PER_UNIT) + testIndex);
+        return u * BITS_PER_UNIT + testIndex;
     }
 
 
@@ -765,7 +750,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
             long xorMask = unit[k] ^ other.unit[k];
             while (mask != 0) {
                 if ((mask & xorMask) != 0) {
-                    return ((mask & unit[k]) != 0) ? 1 : -1;
+                    return (mask & unit[k]) != 0 ? 1 : -1;
                 }
                 mask <<= 1;
             }
@@ -775,7 +760,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         int i = upperBound * BITS_PER_UNIT;
         while (i < size) {
             if ((mask & xorMask) != 0) {
-                return ((mask & unit[upperBound]) != 0) ? 1 : -1;
+                return (mask & unit[upperBound]) != 0 ? 1 : -1;
             }
             mask <<= 1;
             i++;
@@ -854,7 +839,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         int unitIndex = unitIndex(bitIndex);
         if (unitIndex >= unit.length)
             return true;
-        return ((unit[unitIndex] & bit(bitIndex)) == 0);
+        return (unit[unitIndex] & bit(bitIndex)) == 0;
     }
 
 
@@ -877,7 +862,6 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
                 bitMask >>>= 1;
             }
         }
-        ;
         return highestBit + 1;
     }
 

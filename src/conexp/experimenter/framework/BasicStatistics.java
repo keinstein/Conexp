@@ -50,7 +50,7 @@ public class BasicStatistics {
             long tempDelta = size * timeOfExecution[i] - totalSum;
             dispSum += tempDelta * tempDelta;
         }
-        return ((double) dispSum) / (double) (size * (size - 1));
+        return (double) dispSum / (double) (size * (size - 1));
     }
 
 

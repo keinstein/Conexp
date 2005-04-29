@@ -9,12 +9,13 @@ package conexp.core.calculationstrategies.tests;
 
 import conexp.core.ConceptsCollection;
 import conexp.core.Lattice;
+import conexp.core.ConceptCalcStrategy;
 import conexp.core.calculationstrategies.NextClosedSetCalculator;
 import conexp.core.enumcallbacks.NextClosedSetLatticeBuilderCallback;
 
 
 public class NextClosedSetCalcBuildLatTest extends LatticeBuildingDepthSearchCalculatorTest {
-    protected conexp.core.ConceptCalcStrategy makeCalcStrategy() {
+    protected ConceptCalcStrategy makeCalcStrategy() {
         return new NextClosedSetCalculator();
     }
 

@@ -8,21 +8,14 @@
 package conexp.frontend;
 
 import com.visibleworkings.trace.Trace;
-import com.gargoylesoftware.base.collections.NotificationList;
-import com.gargoylesoftware.base.collections.NotificationListListener;
 import conexp.core.*;
 import conexp.core.attrexplorationimpl.AttributeExplorerImplementation;
-import conexp.core.calculationstrategies.DepthSearchCalculator;
-import conexp.core.enumcallbacks.ConceptNumCallback;
 import conexp.frontend.attributeexploration.AttributeExplorationUserCallbackImplementation;
 import conexp.frontend.components.EntityMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.contexteditor.ContextViewPanel;
 import conexp.frontend.latticeeditor.CEDiagramEditorPanel;
-import conexp.frontend.ruleview.AssociationRulesView;
-import conexp.frontend.ruleview.ImplicationBaseCalculator;
-import conexp.frontend.ruleview.ImplicationsView;
-import conexp.frontend.ruleview.NextClosedSetImplicationCalculatorFactory;
+import conexp.frontend.ruleview.*;
 import conexp.frontend.ui.ViewManager;
 import conexp.frontend.ui.ViewManagerException;
 import conexp.frontend.ui.tree.IconData;
@@ -33,7 +26,6 @@ import conexp.frontend.util.ToolBuilder;
 import util.Assert;
 import util.FormatUtil;
 import util.StringUtil;
-import util.collection.CollectionFactory;
 
 import javax.swing.*;
 import javax.swing.tree.TreeModel;
@@ -44,11 +36,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.*;
-import java.beans.PropertyChangeEvent;
 import java.util.*;
-import java.util.List;
-
-import jp.ac.kobe_u.cs.cream.Domain;
 
 
 public class ContextDocument implements ActionChainBearer, Document {
@@ -58,7 +46,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     //todo:
     // problems with setting context (if lattice component was created and context was set after it, than lattice component
     // will not know about context
-    private static java.util.ResourceBundle resContextDocument;
+    private static ResourceBundle resContextDocument;
     private static final String CONTEXT_EDITOR_TYPE = "CONTEXT_EDITOR";
     private static final String LINE_DIAGRAM_EDITOR_TYPE = "LINE_DIAGRAM_EDITOR";
     private static final String IMPLICATION_VIEW_TYPE = "IMPLICATION_VIEW";
@@ -391,12 +379,12 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
     //CONTROLLER STUFF
-    protected conexp.frontend.ruleview.AssociationRuleCalculator associationMiner;
+    protected AssociationRuleCalculator associationMiner;
 
     //------------------------------------------------------------
-    public conexp.frontend.ruleview.AssociationRuleCalculator getAssociationMiner() {
+    public AssociationRuleCalculator getAssociationMiner() {
         if (null == associationMiner) {
-            associationMiner = new conexp.frontend.ruleview.AssociationRuleCalculator(getContext());
+            associationMiner = new AssociationRuleCalculator(getContext());
             getContext().addContextListener(getAssociationRulesRecalcPolicy());
         }
         return associationMiner;
@@ -416,7 +404,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
 
     //------------------------------------------------------------
-    public conexp.core.DependencySet getAssociationRules() {
+    public DependencySet getAssociationRules() {
         return getAssociationMiner().getDependencySet();
     }
 
@@ -470,7 +458,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
 
         } catch (ViewManagerException ex) {
-            util.Assert.isTrue(false, "registration of view types failed");
+            Assert.isTrue(false, "registration of view types failed");
         }
     }
 
@@ -522,7 +510,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         main.setLayout(new BorderLayout());
         main.add(pane, BorderLayout.CENTER);
         JToolBar toolbar = new JToolBar();
-        Action actions[] = diagramEditorPanel.getActions();
+        Action[] actions = diagramEditorPanel.getActions();
         for (int i = 0; i < actions.length; i++) {
             toolbar.add(actions[i]);
         }
@@ -571,7 +559,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         try {
             getViewManager().activateView(viewName);
         } catch (ViewManagerException ex) {
-            util.Assert.isTrue(false, "activation of view with id=" + viewName + " failed");
+            Assert.isTrue(false, "activation of view with id=" + viewName + " failed");
         }
     }
 
@@ -579,7 +567,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         if (null == viewManager) {
             viewManager = new JTabPaneViewManager();
             viewManager.setViewFactory(getViewFactory());
-            util.Assert.isTrue(null != viewManager);
+            Assert.isTrue(null != viewManager);
             registerViews();
         }
         return viewManager;

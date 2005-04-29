@@ -9,7 +9,7 @@ package conexp.core.layout;
 
 import java.awt.geom.Point2D;
 
-public class Point3D extends java.awt.geom.Point2D.Double {
+public class Point3D extends Point2D.Double {
     public int z;
     private Point2D currentForce;
     private Point2D previousForce;

@@ -7,8 +7,10 @@
 
 package conexp.frontend.contexteditor;
 
+import conexp.util.gui.strategymodel.NonGrowingStrategyModel;
 
-public class DrawArrowsStrategyModel extends conexp.util.gui.strategymodel.NonGrowingStrategyModel {
+
+public class DrawArrowsStrategyModel extends NonGrowingStrategyModel {
     /**
      * Insert the method's description here.
      * Creation date: (22.04.01 21:05:23)

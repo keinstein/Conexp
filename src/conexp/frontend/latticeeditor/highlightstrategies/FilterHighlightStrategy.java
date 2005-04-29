@@ -11,7 +11,7 @@ import conexp.core.Set;
 import conexp.frontend.latticeeditor.HighlightStrategy;
 
 
-public class FilterHighlightStrategy extends conexp.frontend.latticeeditor.HighlightStrategy {
+public class FilterHighlightStrategy extends HighlightStrategy {
 
 
     protected HighlightStrategy createNew() {

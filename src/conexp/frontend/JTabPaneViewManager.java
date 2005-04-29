@@ -11,10 +11,12 @@ import conexp.frontend.ui.ViewManager;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import java.awt.*;
 
 
 public class JTabPaneViewManager extends ViewManager {
-    protected javax.swing.JTabbedPane tabPane;
+    protected JTabbedPane tabPane;
 
     /**
      * JTabPaneViewManager constructor comment.
@@ -34,7 +36,7 @@ public class JTabPaneViewManager extends ViewManager {
             tabPane = new JTabbedPane(JTabbedPane.BOTTOM);
             tabPane.addChangeListener(
                     new ChangeListener() {
-                        public void stateChanged(javax.swing.event.ChangeEvent e) {
+                        public void stateChanged(ChangeEvent e) {
                             JComponent newView = (JComponent) getTabPane().getSelectedComponent();
                             setActiveView(newView);
                         }
@@ -50,7 +52,7 @@ public class JTabPaneViewManager extends ViewManager {
      * Creation date: (14.05.2001 16:58:07)
      * @return java.awt.Container
      */
-    public java.awt.Container getViewContainer() {
+    public Container getViewContainer() {
         return getTabPane();
     }
 

@@ -9,6 +9,8 @@ package conexp.core.layout;
 
 import conexp.util.valuemodels.BoundedDoubleValue;
 
+import java.beans.PropertyChangeSupport;
+
 
 public class ForceDistribution {
     static final String REPULSION_PROPERTY = "repulsion";
@@ -17,7 +19,7 @@ public class ForceDistribution {
     private BoundedDoubleValue attractionFactorModel;
     private BoundedDoubleValue repulsionFactorModel;
 
-    private java.beans.PropertyChangeSupport propertyChange;
+    private PropertyChangeSupport propertyChange;
 
     private final static int PHASE_COUNT = 3;
     private int[] phaseBounds = new int[PHASE_COUNT - 1];
@@ -85,9 +87,9 @@ public class ForceDistribution {
     }
 
 
-    protected java.beans.PropertyChangeSupport getPropertyChange() {
+    protected PropertyChangeSupport getPropertyChange() {
         if (null == propertyChange) {
-            propertyChange = new java.beans.PropertyChangeSupport(this);
+            propertyChange = new PropertyChangeSupport(this);
         }
         return propertyChange;
     }
@@ -98,7 +100,7 @@ public class ForceDistribution {
     }
 
 
-    public conexp.util.valuemodels.BoundedDoubleValue getRepulsionFactorModel() {
+    public BoundedDoubleValue getRepulsionFactorModel() {
         if (null == repulsionFactorModel) {
             repulsionFactorModel = new BoundedDoubleValue(REPULSION_PROPERTY, 1.0, 0.1, 3.0, 29);
             repulsionFactorModel.setPropertyChange(getPropertyChange());

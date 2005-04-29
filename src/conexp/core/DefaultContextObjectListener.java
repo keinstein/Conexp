@@ -8,8 +8,10 @@
 
 package conexp.core;
 
+import java.beans.PropertyChangeEvent;
+
 
 public class DefaultContextObjectListener implements ContextEntityListener {
-    public void nameChanged(java.beans.PropertyChangeEvent evt) {
+    public void nameChanged(PropertyChangeEvent evt) {
     }
 }

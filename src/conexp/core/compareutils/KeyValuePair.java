@@ -9,8 +9,8 @@ package conexp.core.compareutils;
 
 
 public class KeyValuePair {
-    public final java.lang.Object key;
-    public final java.lang.Object value;
+    public final Object key;
+    public final Object value;
 
     public KeyValuePair(Object k, Object v) {
         super();

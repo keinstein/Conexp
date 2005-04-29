@@ -9,9 +9,11 @@ package conexp.frontend.latticeeditor.edgesizecalcstrategies;
 
 import conexp.core.ItemSet;
 import conexp.frontend.latticeeditor.DrawParameters;
+import conexp.frontend.latticeeditor.EdgeSizeCalcStrategy;
+import conexp.frontend.latticeeditor.DefaultDimensionCalcStrategy;
 
 
-public class ConceptConnectionEdgeSizeCalcStrategy extends conexp.frontend.latticeeditor.DefaultDimensionCalcStrategy implements conexp.frontend.latticeeditor.EdgeSizeCalcStrategy {
+public class ConceptConnectionEdgeSizeCalcStrategy extends DefaultDimensionCalcStrategy implements EdgeSizeCalcStrategy {
     /**
      * OnePixelEdgeSizeCalcStrategy constructor comment.
      * @param opt conexp.frontend.latticeeditor.LatticePainterOptions

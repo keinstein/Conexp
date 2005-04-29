@@ -8,11 +8,14 @@
 package conexp.core.layout.chaindecomposition.tests;
 
 import conexp.core.layout.chaindecomposition.ChainDecompositionLayout;
+import conexp.core.layout.tests.GenericLayouterTest;
+import conexp.core.layout.GenericLayouter;
 import junit.framework.TestSuite;
+import junit.framework.Test;
 import util.testing.SimpleMockPropertyChangeListener;
 
 
-public class ChainDecompositionLayoutTest extends conexp.core.layout.tests.GenericLayouterTest {
+public class ChainDecompositionLayoutTest extends GenericLayouterTest {
     protected boolean isTestImproveOnce() {
         return false;
     }
@@ -22,7 +25,7 @@ public class ChainDecompositionLayoutTest extends conexp.core.layout.tests.Gener
      * Creation date: (30.03.01 3:57:11)
      * @return conexp.core.layout.GenericLayouter
      */
-    protected conexp.core.layout.GenericLayouter makeLayouter() {
+    protected GenericLayouter makeLayouter() {
         return new ChainDecompositionLayout();
     }
 
@@ -31,7 +34,7 @@ public class ChainDecompositionLayoutTest extends conexp.core.layout.tests.Gener
      * Creation date: (30.03.01 3:59:35)
      * @return junit.framework.Test
      */
-    public static junit.framework.Test suite() {
+    public static Test suite() {
         return new TestSuite(ChainDecompositionLayoutTest.class);
     }
 

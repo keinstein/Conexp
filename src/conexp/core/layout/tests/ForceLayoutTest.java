@@ -8,9 +8,10 @@
 package conexp.core.layout.tests;
 
 import conexp.core.layout.ForceLayout;
+import conexp.core.layout.GenericLayouter;
 
 public class ForceLayoutTest extends SimpleForceLayoutTest {
-    protected conexp.core.layout.GenericLayouter makeLayouter() {
+    protected GenericLayouter makeLayouter() {
         return new ForceLayout();
     }
 }

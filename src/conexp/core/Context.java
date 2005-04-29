@@ -158,7 +158,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
 
     //---------------------------------------------------------------
     public void increaseAttributes(int incrAttr) {
-        util.Assert.isTrue(incrAttr > 0, "Attrib increment should be greater than zero");
+        Assert.isTrue(incrAttr > 0, "Attrib increment should be greater than zero");
         int oldColCnt = rel.getColCount();
         int newColCnt = oldColCnt + incrAttr;
         ensureRelationsSizes(rel.getRowCount(), newColCnt);
@@ -203,7 +203,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
 
     //---------------------------------------------------------------
     public void increaseObjects(int incrObjects) {
-        util.Assert.isTrue(incrObjects > 0, "Objects increment should be greater than zero");
+        Assert.isTrue(incrObjects > 0, "Objects increment should be greater than zero");
         int oldRowCnt = rel.getRowCount();
         int newRowCnt = oldRowCnt + incrObjects;
         ensureRelationsSizes(newRowCnt, rel.getColCount());
@@ -213,7 +213,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
 
     private void addObjectsWithDefaultNamesInRange(int from, int till) {
         for (int j = from; j < till; j++) {
-            int hint = (j + 1);
+            int hint = j + 1;
             ContextEntity newObject = ContextEntity.createContextObject(formObjectName(hint));
             addObjectToObjectList(newObject, j);
         }
@@ -473,7 +473,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
             return false;
         }
         Context that = (Context) obj;
-        if (!(this.getRelation().equals(that.getRelation()))) {
+        if (!this.getRelation().equals(that.getRelation())) {
             return false;
         }
         if (!this.attributes.equals(that.attributes)) {
@@ -558,7 +558,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
 
     //---------------------------------------------------------------
     public boolean hasDownArrow(int row, int col) {
-        return (getDownArrow().getRelationAt(row, col));
+        return getDownArrow().getRelationAt(row, col);
     }
 
     //---------------------------------------------------------------
@@ -588,8 +588,8 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
 
     //---------------------------------------------------------------
     private void calcUpArrow() {
-        util.Assert.isTrue(arrowCalc != null, "For calculating arrows calculator should be set!");
-        util.Assert.isTrue(upArrow != null);
+        Assert.isTrue(arrowCalc != null, "For calculating arrows calculator should be set!");
+        Assert.isTrue(upArrow != null);
         arrowCalc.calcUpArrow(upArrow);
         setUpArrowUpdate(false);
     }

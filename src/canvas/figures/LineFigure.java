@@ -45,11 +45,11 @@ public class LineFigure extends AbstractFigure implements ConnectionFigure {
         this.selectable = selectable;
     }
 
-    public canvas.Figure getStartFigure() {
+    public Figure getStartFigure() {
         return startFigure;
     }
 
-    public canvas.Figure getEndFigure() {
+    public Figure getEndFigure() {
         return endFigure;
     }
 
@@ -63,7 +63,7 @@ public class LineFigure extends AbstractFigure implements ConnectionFigure {
         this.endFigure = end;
     }
 
-    public boolean canConnect(canvas.Figure startFigure, canvas.Figure endFigure) {
+    public boolean canConnect(Figure startFigure, Figure endFigure) {
         return startFigure != endFigure;
     }
 
@@ -162,8 +162,8 @@ public class LineFigure extends AbstractFigure implements ConnectionFigure {
         return false;
     }
 
-    public void draw(java.awt.Graphics g, CanvasScheme opt) {
-        java.awt.Graphics2D g2D = (java.awt.Graphics2D) g;
+    public void draw(Graphics g, CanvasScheme opt) {
+        Graphics2D g2D = (Graphics2D) g;
         Point2D startPoint = getStartPoint();
         Point2D endPoint = getEndPoint();
 
