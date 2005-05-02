@@ -60,8 +60,8 @@ public class TabSeparatedContextReader implements ContextReader {
 
         //name
         Context cxt = FCAEngineRegistry.makeContext(0, numAttr);
-        for(int i=0; i<names.size(); i++){
-            cxt.getAttribute(i).setName((String)names.get(i));
+        for (int i = 0; i < names.size(); i++) {
+            cxt.getAttribute(i).setName((String) names.get(i));
         }
         ModifiableSet intent = ContextFactoryRegistry.createSet(numAttr);
         for (str = getNextLine(); str != null; str = getNextLine()) {

@@ -12,7 +12,7 @@ import java.awt.geom.Point2D;
  * All rights reserved.
  * Please read license.txt for licensing issues.
  */
-public class LatticePictureWidthEvaluationFunction extends LatticeBasedEvaluationFunctionBase{
+public class LatticePictureWidthEvaluationFunction extends LatticeBasedEvaluationFunctionBase {
 
     public LatticePictureWidthEvaluationFunction(Lattice lattice, ConceptCoordinateMapper conceptCoordinateMapper) {
         super(lattice, conceptCoordinateMapper);
@@ -34,16 +34,16 @@ public class LatticePictureWidthEvaluationFunction extends LatticeBasedEvaluatio
         public void visitNode(LatticeElement node) {
             conceptCoordinateMapper.setCoordsForConcept(node, coords);
             final double xCoord = coords.getX();
-            if(empty){
+            if (empty) {
                 empty = false;
                 minX = maxX = xCoord;
-            }else{
+            } else {
                 minX = Math.min(minX, xCoord);
                 maxX = Math.max(maxX, xCoord);
             }
         }
 
-        public double getWidth(){
+        public double getWidth() {
             return maxX - minX;
         }
 

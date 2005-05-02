@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.calculationstrategies;
 
 import conexp.core.*;
@@ -16,14 +15,14 @@ import util.collection.CollectionFactory;
 import java.util.LinkedList;
 
 public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
-    ImplicationSet implications;
+    private ImplicationSet implications;
     private LinkedList queue;
     private int[] successorCounts;
     private int attrCount;
 
-    int cacheHits = 0;
-    int callsToFindFromInteraction = 0;
-    int returnsDueNotUnion = 0;
+    private int cacheHits = 0;
+    private int callsToFindFromInteraction = 0;
+    private int returnsDueNotUnion = 0;
 
     public int getReturnsDueNotUnion() {
         return returnsDueNotUnion;
@@ -43,7 +42,7 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
         this.implications = implSet;
     }
 
-    Lattice lattice;
+    private Lattice lattice;
 
     public void setLattice(Lattice lat) {
         this.lattice = lat;
@@ -97,7 +96,7 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
         }
     }
 
-    java.util.Set exploredChains = CollectionFactory.createDefaultSet();
+    private java.util.Set exploredChains = CollectionFactory.createDefaultSet();
 
     private void findImplicationFromJoinOfParents(LatticeElement currConcept) {
         //finding implications, that appears from interplay of parents
@@ -135,7 +134,7 @@ public class LatticeImplicationCalculator implements ImplicationCalcStrategy {
     }
 
 
-    ModifiableSet tempPremise;
+    private ModifiableSet tempPremise;
 
     private void findImplicationsFromInteractionOfTwoParents(LatticeElement currConcept, LatticeElement firstParent, LatticeElement secondParent) {
         callsToFindFromInteraction++;

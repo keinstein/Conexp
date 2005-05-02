@@ -17,7 +17,7 @@ public interface Set extends Cloneable, IPartiallyOrdered {
 
     int NOT_IN_SET = -1;
     /**
-     *  set of values for return from compare function
+     * set of values for return from compare function
      */
     int EQUAL = 0;
     int SUBSET = 1;
@@ -25,11 +25,12 @@ public interface Set extends Cloneable, IPartiallyOrdered {
     int NOT_COMPARABLE = 3;
 //-----------------------------
     /**
-     *  compares two sets
-     *  @return EQUAL if sets are equal
-     *          SUBSET if this set is subset of other set
-     *          SUPERSET if this set is superset of other set
-     *          NOT_COMPARABLE otherwise
+     * compares two sets
+     *
+     * @return EQUAL if sets are equal
+     *         SUBSET if this set is subset of other set
+     *         SUPERSET if this set is superset of other set
+     *         NOT_COMPARABLE otherwise
      */
     int compare(Set other);
 
@@ -42,9 +43,11 @@ public interface Set extends Cloneable, IPartiallyOrdered {
     /* return maximal number of elements in set*/
     int size();
 //-------------------------
-    /********************************************************
+    /**
+     * *****************************************************
      * return number of elements in set
-     *******************************************************/
+     * *****************************************************
+     */
 
     int elementCount();
 

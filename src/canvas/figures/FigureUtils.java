@@ -12,6 +12,9 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class FigureUtils {
+    private FigureUtils() {
+    }
+
     public static void calcEllipseBorder(double radius, double centerX, double centerY, Point2D outPoint, Point2D result) {
         double dx = outPoint.getX() - centerX;
         double dy = outPoint.getY() - centerY;

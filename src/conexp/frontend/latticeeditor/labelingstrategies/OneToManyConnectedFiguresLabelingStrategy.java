@@ -23,12 +23,12 @@ import java.util.List;
 
 public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericLabelingStrategy {
 
-    public OneToManyConnectedFiguresLabelingStrategy() {
+    protected OneToManyConnectedFiguresLabelingStrategy() {
         super();
     }
 
     protected void removeConnectedObjectFromContainer(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure f, Object obj) {
-        ArrayList arr = (ArrayList) obj;
+        List arr = (List) obj;
         Iterator iter = arr.iterator();
         while (iter.hasNext()) {
             Figure curr = (Figure) iter.next();
@@ -38,10 +38,10 @@ public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericL
     }
 
     protected static Object addObjectsFromIteratorToDrawingAccordingToDistributor(ConceptSetDrawing drawing,
-                                                                           AbstractConceptCorrespondingFigure f,
-                                                                           Iterator iter,
-                                                                           int attrCount,
-                                                                           PointDistributionStrategy distributor) {
+                                                                                  AbstractConceptCorrespondingFigure f,
+                                                                                  Iterator iter,
+                                                                                  int attrCount,
+                                                                                  PointDistributionStrategy distributor) {
         List objectLabels = new ArrayList(attrCount);
 
         Point2D coords = new Point2D.Double();

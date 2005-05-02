@@ -32,7 +32,7 @@ public class BoundedDoubleValueParamInfo extends AbstractParamInfo {
      * Creation date: (30.03.01 23:55:57)
      * @return javax.swing.JSlider
      */
-    public javax.swing.JSlider getFSlider() {
+    private javax.swing.JSlider getFSlider() {
         if (null == fSlider) {
             BoundedRangeModel rangeModel = new DefaultBoundedRangeModel(0, 0, 0, valueModel.getResolution()) {
                 public void setValue(int value) {

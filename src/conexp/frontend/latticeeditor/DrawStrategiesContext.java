@@ -5,13 +5,12 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor;
 
 import conexp.core.ConceptsCollection;
 
-import java.util.prefs.Preferences;
 import java.beans.PropertyChangeSupport;
+import java.util.prefs.Preferences;
 
 
 public interface DrawStrategiesContext extends FigureDimensionCalcStrategyProvider {

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.layoutengines;
 
 import com.visibleworkings.trace.Trace;
@@ -17,12 +16,12 @@ import conexp.core.layout.LayouterProvider;
 import util.Assert;
 
 import javax.swing.event.EventListenerList;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public abstract class LayoutEngineBase implements LayoutEngine {
 
-    LayouterProvider layouterProvider;
+    private LayouterProvider layouterProvider;
 
     public void init(LayouterProvider provider) {
         this.layouterProvider = provider;
@@ -32,8 +31,8 @@ public abstract class LayoutEngineBase implements LayoutEngine {
         return layouterProvider.getLayouter();
     }
 
-    Lattice currLattice;
-    LayoutParameters currParameters;
+    private Lattice currLattice;
+    private LayoutParameters currParameters;
 
     protected PropertyChangeListener layoutChangeListener = new LayoutChangeListener();
 
@@ -51,7 +50,7 @@ public abstract class LayoutEngineBase implements LayoutEngine {
         }
     }
 
-    protected void restartLayout() {
+    private void restartLayout() {
         Trace.gui.debugm("called restart layout");
         if (null != currLattice && null != currParameters) {
             doRestartLayout(currLattice, currParameters);
@@ -59,7 +58,7 @@ public abstract class LayoutEngineBase implements LayoutEngine {
     }
 
 
-    EventListenerList listenerList = new EventListenerList();
+    private EventListenerList listenerList = new EventListenerList();
 
     public void addLayoutListener(LayoutListener listener) {
         listenerList.add(LayoutListener.class, listener);
@@ -69,7 +68,7 @@ public abstract class LayoutEngineBase implements LayoutEngine {
         listenerList.remove(LayoutListener.class, listener);
     }
 
-    protected void fireLayoutChanged(ConceptCoordinateMapper mapper) {
+    private void fireLayoutChanged(ConceptCoordinateMapper mapper) {
         Object[] listeners = listenerList.getListenerList();
         for (int i = listeners.length - 2; i >= 0; i -= 2) {
             if (listeners[i] == LayoutListener.class) {

@@ -11,8 +11,8 @@ import util.Assert;
 import util.collection.CollectionFactory;
 import util.collection.NullIterator;
 
-import java.util.Iterator;
 import java.util.Collection;
+import java.util.Iterator;
 
 
 public class Concept implements ItemSet {
@@ -44,6 +44,7 @@ public class Concept implements ItemSet {
     /**
      * Insert the method's description here.
      * Creation date: (02.07.01 18:49:42)
+     *
      * @param extent conexp.core.Set
      * @param intent conexp.core.Set
      */
@@ -58,6 +59,7 @@ public class Concept implements ItemSet {
     /**
      * Insert the method's description here.
      * Creation date: (22.12.00 1:25:08)
+     *
      * @param obj conexp.core.ContextEntity
      */
     public void addOwnAttrib(ContextEntity obj) {
@@ -72,6 +74,7 @@ public class Concept implements ItemSet {
     /**
      * Insert the method's description here.
      * Creation date: (22.12.00 1:33:17)
+     *
      * @param obj conexp.core.ContextEntity
      */
     public void addOwnObject(ContextEntity obj) {
@@ -205,9 +208,10 @@ public class Concept implements ItemSet {
     /**
      * Insert the method's description here.
      * Creation date: (04.05.01 21:49:09)
-     * @return conexp.core.LatticeElement
+     *
      * @param intent conexp.core.Set
      * @param extent conexp.core.Set
+     * @return conexp.core.LatticeElement
      */
     public static Concept makeFromSets(ModifiableSet extent, ModifiableSet intent) {
         return new Concept(extent, intent);
@@ -217,6 +221,7 @@ public class Concept implements ItemSet {
     /**
      * Insert the method's description here.
      * Creation date: (22.12.00 1:27:03)
+     *
      * @return java.util.Iterator
      */
     public Iterator ownAttribsIterator() {
@@ -227,6 +232,7 @@ public class Concept implements ItemSet {
     /**
      * Insert the method's description here.
      * Creation date: (22.12.00 1:27:03)
+     *
      * @return java.util.Iterator
      */
     public Iterator ownObjectsIterator() {
@@ -245,6 +251,7 @@ public class Concept implements ItemSet {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 3:45:26)
+     *
      * @return java.lang.String
      */
     public String toString() {

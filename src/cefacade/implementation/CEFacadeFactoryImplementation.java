@@ -11,6 +11,9 @@ import conexp.core.FCAEngineRegistry;
 
 
 public class CEFacadeFactoryImplementation {
+    private CEFacadeFactoryImplementation() {
+    }
+
     public static SimpleContextImplementation makeContext(int objectCount, int attributeCount) {
         return new SimpleContextImplementation(FCAEngineRegistry.makeContext(objectCount, attributeCount));
     }

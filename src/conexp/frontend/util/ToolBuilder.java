@@ -20,8 +20,8 @@ import java.util.ResourceBundle;
 public class ToolBuilder {
 
 
-    ActionMap actChain;
-    public final static Insets insets0 = new Insets(1, 1, 1, 1);
+    private ActionMap actChain;
+    private final static Insets insets0 = new Insets(1, 1, 1, 1);
 
 
     //----------------------------------------------
@@ -46,10 +46,10 @@ public class ToolBuilder {
         }
     }
 
-    protected IResourceManager resManager;
+    private IResourceManager resManager;
 
     /**
-     *  @deprecated
+     * @deprecated
      */
     public ToolBuilder(ResourceBundle res, ActionMap actChain) {
         this(new ResourceManager(res), actChain);
@@ -61,12 +61,12 @@ public class ToolBuilder {
     }
 
     //----------------------------------------------
-    protected static PropertyChangeListener createActionChangeListener(JMenuItem b) {
+    private static PropertyChangeListener createActionChangeListener(JMenuItem b) {
         return new ActionChangedListener(b);
     }
 
     //----------------------------------------------
-    static AbstractButton createButton(boolean isToggle) {
+    private static AbstractButton createButton(boolean isToggle) {
         return (isToggle ? (AbstractButton) new JToggleButton() : (AbstractButton) new JButton());
     }
     //----------------------------------------------
@@ -74,7 +74,7 @@ public class ToolBuilder {
      * Create a menu for the app.  By default this pulls the
      * definition of the menu from the associated resource file.
      */
-    protected JMenu createMenu(String key) {
+    private JMenu createMenu(String key) {
         String[] itemKeys = resManager.getResourceDescription(key);
         JMenu menu = makeMenu(key, resManager.getCommandLabel(key));
         for (int i = 0; i < itemKeys.length; i++) {
@@ -147,8 +147,8 @@ public class ToolBuilder {
     protected AbstractButton createToolbarButton(String command, Icon icon, boolean isToggle, String tooltip, Action action) {
         final AbstractButton but = createButton(isToggle);
         but.setIcon(icon);
-        if(isToggle){
-          but.setSelectedIcon(ResourceLoader.getIcon(resManager.getSelectedImage(command)));
+        if (isToggle) {
+            but.setSelectedIcon(ResourceLoader.getIcon(resManager.getSelectedImage(command)));
         }
         // but.setPreferredSize(new Dimension(27, 27));
         but.setToolTipText(tooltip);
@@ -166,8 +166,8 @@ public class ToolBuilder {
             });
             but.setEnabled(action.isEnabled());
         }
-        if(isToggle && action instanceof ToggleAbstractAction){
-            but.setSelected(((ToggleAbstractAction)action).isSelected());
+        if (isToggle && action instanceof ToggleAbstractAction) {
+            but.setSelected(((ToggleAbstractAction) action).isSelected());
         }
         return but;
     }
@@ -177,7 +177,7 @@ public class ToolBuilder {
      * Insert the method's description here.
      * Creation date: (23.05.01 20:12:20)
      */
-    protected void addToMenu(JMenu menu, String command) {
+    private void addToMenu(JMenu menu, String command) {
         if (command.equals("-")) {
             menu.addSeparator();
         } else if (command.startsWith("+")) {
@@ -197,7 +197,7 @@ public class ToolBuilder {
      * Insert the method's description here.
      * Creation date: (23.05.01 21:16:42)
      */
-    public void addToMenuBar(JMenuBar mb, String command) {
+    private void addToMenuBar(JMenuBar mb, String command) {
         JMenu m = createMenu(command);
         if (m != null) {
             mb.add(m);
@@ -209,7 +209,7 @@ public class ToolBuilder {
      * Insert the method's description here.
      * Creation date: (23.05.01 20:03:25)
      */
-    public void addToToolbar(JToolBar tool, String command) {
+    private void addToToolbar(JToolBar tool, String command) {
         if (command.equals("-")) {
             tool.addSeparator(new Dimension(3, 3));
         } else {
@@ -233,7 +233,7 @@ public class ToolBuilder {
      * Insert the method's description here.
      * Creation date: (23.05.01 20:13:54)
      */
-    protected static JMenu makeMenu(String name, String label) {
+    private static JMenu makeMenu(String name, String label) {
         int mnemonic = 0;
         if (null != label) {
             int pos = label.indexOf('&');
@@ -255,7 +255,7 @@ public class ToolBuilder {
      * Insert the method's description here.
      * Creation date: (23.05.01 20:13:54)
      */
-    protected static JMenuItem makeMenuItem(String name, String label) {
+    private static JMenuItem makeMenuItem(String name, String label) {
         int mnemonic = 0;
         if (null != label) {
             int pos = label.indexOf('&');

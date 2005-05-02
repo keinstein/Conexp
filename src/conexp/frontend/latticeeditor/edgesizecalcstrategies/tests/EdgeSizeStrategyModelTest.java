@@ -8,8 +8,8 @@
 package conexp.frontend.latticeeditor.edgesizecalcstrategies.tests;
 
 import conexp.frontend.latticeeditor.DrawParameters;
-import conexp.frontend.latticeeditor.tests.StrategyModelTest;
 import conexp.frontend.latticeeditor.edgesizecalcstrategies.EdgeSizeStrategyModel;
+import conexp.frontend.latticeeditor.tests.StrategyModelTest;
 import conexp.util.gui.strategymodel.StrategyModel;
 
 public class EdgeSizeStrategyModelTest extends StrategyModelTest {

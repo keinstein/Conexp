@@ -18,7 +18,7 @@ public class NextClosedSetCalculator extends NextClosedSetClosureSystemGenerator
         super();
     }
 
-    protected ModifiableSet closedObjects;
+    private ModifiableSet closedObjects;
 
 
     public void setLattice(Lattice lattice) {
@@ -35,7 +35,7 @@ public class NextClosedSetCalculator extends NextClosedSetClosureSystemGenerator
         closedObjects = ContextFactoryRegistry.createSet(getObjectCount());
     }
 
-    protected int getObjectCount() {
+    private int getObjectCount() {
         return rel.getRowCount();
     }
 

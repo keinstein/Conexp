@@ -19,6 +19,7 @@ public class RescaleByXFigureVisitor extends DefaultFigureVisitor {
     /**
      * Insert the method's description here.
      * Creation date: (25.12.00 21:54:43)
+     *
      * @param shift int
      * @param coeff double
      */

@@ -7,12 +7,12 @@
 
 package conexp.frontend.latticeeditor;
 
-import conexp.core.layout.LayoutParameters;
 import canvas.BaseFigureVisitor;
+import conexp.core.layout.LayoutParameters;
 
 
 public abstract class LabelingStrategy implements ILabelingStrategy {
-    public LabelingStrategy() {
+    protected LabelingStrategy() {
         super();
     }
 

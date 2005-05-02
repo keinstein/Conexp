@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core;
 
 public interface ModifiableBinaryRelation extends BinaryRelation {
@@ -18,10 +17,11 @@ public interface ModifiableBinaryRelation extends BinaryRelation {
     void setDimension(int rows, int cols);
 
     /**
-     set value of cell with coordinates (x, y)
-     @param x - x  coordinate
-     @param y - y coordinate
-     @param value
+     * set value of cell with coordinates (x, y)
+     *
+     * @param x     - x  coordinate
+     * @param y     - y coordinate
+     * @param value
      */
     void setRelationAt(int x, int y, boolean value);
     //ModifiableBinaryRelation

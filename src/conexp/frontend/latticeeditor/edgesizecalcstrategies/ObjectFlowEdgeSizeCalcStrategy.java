@@ -8,14 +8,15 @@
 package conexp.frontend.latticeeditor.edgesizecalcstrategies;
 
 import conexp.core.ItemSet;
-import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.DefaultDimensionCalcStrategy;
+import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.EdgeSizeCalcStrategy;
 
 
 public class ObjectFlowEdgeSizeCalcStrategy extends DefaultDimensionCalcStrategy implements EdgeSizeCalcStrategy {
     /**
      * OnePixelEdgeSizeCalcStrategy constructor comment.
+     *
      * @param opt conexp.frontend.latticeeditor.LatticePainterOptions
      */
     public ObjectFlowEdgeSizeCalcStrategy(DrawParameters opt) {

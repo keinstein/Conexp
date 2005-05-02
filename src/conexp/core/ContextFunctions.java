@@ -5,13 +5,15 @@
  **/
 
 
-
 package conexp.core;
 
 import util.Assert;
 
 
 public class ContextFunctions {
+    private ContextFunctions() {
+    }
+
     //TODO: think about variant with attribute mask
     public static int stabilityToDesctruction(Set s, ExtendedContextEditingInterface cxt) {
 

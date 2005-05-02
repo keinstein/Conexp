@@ -34,11 +34,11 @@ public class Point3D extends Point2D.Double {
     }
 
     public float getProjectedX() {
-        return (float)proj2d.getX();
+        return (float) proj2d.getX();
     }
 
     public float getProjectedY() {
-        return (float)proj2d.getY();
+        return (float) proj2d.getY();
     }
 
     public void update() {
@@ -50,28 +50,27 @@ public class Point3D extends Point2D.Double {
             previousForce = makePoint2D();
         }
         this.setLocation(getX() + correction * currentForce.getX(),
-                    getY() + correction * currentForce.getY());
+                getY() + correction * currentForce.getY());
 
         previousForce.setLocation(currentForce);
         currentForce.setLocation(0.0, 0.0);
     }
 
     public void adjustForce(double dx, double dy) {
-        currentForce.setLocation(
-                currentForce.getX() + dx,
+        currentForce.setLocation(currentForce.getX() + dx,
                 currentForce.getY() + dy);
     }
 
     protected void setNormalizedCoords(float scaleFactor) {
-        normalizedX = (float)getX() / scaleFactor;
-        normalizedY = (float)getY() / scaleFactor;
+        normalizedX = (float) getX() / scaleFactor;
+        normalizedY = (float) getY() / scaleFactor;
         normalizedZ = z / scaleFactor;
     }
 
 
     public String toString() {
-        return "(" + getX() + ", " + getY() + ", " + z + ")"
-                + "[" + proj2d.getX() + ", " + proj2d.getY() + "]";
+        return "(" + getX() + ", " + getY() + ", " + z + ')'
+                + '[' + proj2d.getX() + ", " + proj2d.getY() + ']';
     }
 
     public static double distance(Point3D one, Point3D two) {
@@ -84,6 +83,7 @@ public class Point3D extends Point2D.Double {
     /**
      * Insert the method's description here.
      * Creation date: (04.03.01 11:20:07)
+     *
      * @return double
      */
     public double size() {
@@ -91,8 +91,7 @@ public class Point3D extends Point2D.Double {
     }
 
     public void project2d(double angle) {
-        proj2d.setLocation(
-                Math.cos(angle) * normalizedX + Math.sin(angle) * normalizedY,
+        proj2d.setLocation(Math.cos(angle) * normalizedX + Math.sin(angle) * normalizedY,
                 normalizedZ);
     }
 }

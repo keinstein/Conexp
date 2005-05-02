@@ -16,7 +16,7 @@ import junit.framework.TestCase;
 
 public class ExperimentSuiteTest extends TestCase {
 
-    public static void doTestCreateExperimentSet(ExperimentSet set) {
+    protected static void doTestCreateExperimentSet(ExperimentSet set) {
         assertNotNull(set);
         BinaryRelation rel = SetBuilder.makeRelation(new int[][]{{0, 0},
                                                                                                        {0, 0}});

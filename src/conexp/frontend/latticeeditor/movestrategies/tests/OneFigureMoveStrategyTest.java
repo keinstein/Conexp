@@ -29,7 +29,7 @@ public class OneFigureMoveStrategyTest extends TestCase {
 
 
         LatticeElement concept = lattice.findElementWithIntent(SetBuilder.makeSet(new int[]{1, 1, 0, 0}));
-        final ConceptFigure conceptFigure = (ConceptFigure)drawing.getFigureForConcept(concept);
+        final ConceptFigure conceptFigure = (ConceptFigure) drawing.getFigureForConcept(concept);
 
         double upConstraint = canvas.getUpMoveConstraintForConcept(conceptFigure, TrueFigurePredicate.getInstance());
         double downConstraint = canvas.getDownMoveConstraintForConcept(conceptFigure);
@@ -37,8 +37,8 @@ public class OneFigureMoveStrategyTest extends TestCase {
         assertEquals(60.0, downConstraint, TestDataHolder.PRECISION);
 
 
-        assertEquals("Up constraint calculation is wrong ",-20, OneFigureMoveStrategy.calculateYMoveValue(canvas, conceptFigure, -20), TestDataHolder.PRECISION);
-        assertEquals("Up move is not properly constrained ",-40, OneFigureMoveStrategy.calculateYMoveValue(canvas, conceptFigure, -50), TestDataHolder.PRECISION);
+        assertEquals("Up constraint calculation is wrong ", -20, OneFigureMoveStrategy.calculateYMoveValue(canvas, conceptFigure, -20), TestDataHolder.PRECISION);
+        assertEquals("Up move is not properly constrained ", -40, OneFigureMoveStrategy.calculateYMoveValue(canvas, conceptFigure, -50), TestDataHolder.PRECISION);
 
         assertEquals("Down constraint calculation is wrong", 40, OneFigureMoveStrategy.calculateYMoveValue(canvas, conceptFigure, 40), TestDataHolder.PRECISION);
         assertEquals("Down move is not properly constrained", 60, OneFigureMoveStrategy.calculateYMoveValue(canvas, conceptFigure, 70), TestDataHolder.PRECISION);

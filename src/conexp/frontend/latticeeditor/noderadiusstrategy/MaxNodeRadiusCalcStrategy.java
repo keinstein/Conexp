@@ -15,6 +15,7 @@ public class MaxNodeRadiusCalcStrategy extends AbstractNodeRadiusCalcStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (11.10.00 22:15:09)
+     *
      * @param opt conexp.frontend.LatticePainterOptions
      */
     public MaxNodeRadiusCalcStrategy(DrawParameters opt) {

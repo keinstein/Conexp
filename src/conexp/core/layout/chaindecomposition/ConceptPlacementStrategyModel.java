@@ -10,7 +10,7 @@ package conexp.core.layout.chaindecomposition;
 import conexp.util.gui.strategymodel.AbstractNonGrowingStrategyModel;
 
 
-public class ConceptPlacementStrategyModel extends AbstractNonGrowingStrategyModel{
+public class ConceptPlacementStrategyModel extends AbstractNonGrowingStrategyModel {
     public ConceptPlacementStrategyModel() {
     }
 

@@ -12,7 +12,7 @@ import conexp.core.ConceptCalcStrategy;
  */
 
 public abstract class BaseConceptCalcExperiment extends BaseConceptsExperiment {
-    public BaseConceptCalcExperiment(String strategyName) {
+    protected BaseConceptCalcExperiment(String strategyName) {
         super(strategyName);
     }
 

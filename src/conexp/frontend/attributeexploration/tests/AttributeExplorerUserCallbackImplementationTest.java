@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.attributeexploration.tests;
 
 import conexp.core.tests.TestAttributeExplorerUserCallbackLocalisedMessageSupplier;

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor;
 
 import canvas.figures.ConnectionFigure;
@@ -130,8 +129,7 @@ public class NestedLineDiagramDrawing extends ConceptSetDrawing {
     }
 
     private ConnectionFigure makeEdgeFigure(Edge e) {
-        return new EdgeFigure(
-                getFigureForConcept(e.getStart()),
+        return new EdgeFigure(getFigureForConcept(e.getStart()),
                 getFigureForConcept(e.getEnd()));
     }
 

@@ -22,39 +22,39 @@ import java.util.Iterator;
 
 
 public class FreezeLayoutTest extends SimpleForceLayoutTest {
-    FreezeBaseLayout fLayout;
-    Lattice lat;
+    private FreezeBaseLayout fLayout;
+    private Lattice lat;
 
-    protected static void checkIncomparablesForIntent(FreezeBaseLayout fLayout, Lattice lat, int[] intent, int[][] expHighIncomparables) {
+    private static void checkIncomparablesForIntent(FreezeBaseLayout fLayout, Lattice lat, int[] intent, int[][] expHighIncomparables) {
         Set sIntent = SetBuilder.makeSet(intent);
         ExpectationSet expSet = makeExpSetFromLatticeAndIntents("expSet for " + sIntent, lat, expHighIncomparables);
         fillExpectationSetFromCollection(expSet, fLayout.getHighIncomparablesForConcept(SetBuilder.findLatticeElementWithIntent(lat, intent)));
         expSet.verify();
     }
 
-    protected static void checkLowIncomparablesForIntent(FreezeBaseLayout fLayout, Lattice lat, int[] intent, int[][] expHighIncomparables) {
+    private static void checkLowIncomparablesForIntent(FreezeBaseLayout fLayout, Lattice lat, int[] intent, int[][] expHighIncomparables) {
         Set sIntent = SetBuilder.makeSet(intent);
         ExpectationSet expSet = makeExpSetFromLatticeAndIntents("expSet for " + sIntent, lat, expHighIncomparables);
         fillExpectationSetFromCollection(expSet, fLayout.getLowIncomparablesForConcept(SetBuilder.findLatticeElementWithIntent(lat, intent)));
         expSet.verify();
     }
 
-    protected void checkRankForConceptWithIntent(int[] intent, int expRank) {
+    private void checkRankForConceptWithIntent(int[] intent, int expRank) {
         assertEquals(expRank, fLayout.getConceptInfo(findElementForIntent(lat, intent)).rank);
     }
 
-    protected static void fillExpectationSetFromCollection(ExpectationSet expSet, Collection actual) {
+    private static void fillExpectationSetFromCollection(ExpectationSet expSet, Collection actual) {
         Iterator iter = actual.iterator();
         while (iter.hasNext()) {
             expSet.addActual(iter.next());
         }
     }
 
-    protected static LatticeElement findElementForIntent(Lattice lat, int[] currIntent) {
+    private static LatticeElement findElementForIntent(Lattice lat, int[] currIntent) {
         return SetBuilder.findLatticeElementWithIntent(lat, currIntent);
     }
 
-    protected static ExpectationSet makeExpSetFromLatticeAndIntents(String name, Lattice lat, int[][] intents) {
+    private static ExpectationSet makeExpSetFromLatticeAndIntents(String name, Lattice lat, int[][] intents) {
         ExpectationSet expSet = new ExpectationSet(name);
         for (int i = intents.length; --i >= 0;) {
             expSet.addExpected(findElementForIntent(lat, intents[i]));

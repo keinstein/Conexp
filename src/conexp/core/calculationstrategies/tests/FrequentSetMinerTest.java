@@ -21,8 +21,7 @@ public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeB
         },
                 new int[0][0],
                 new int[0][0],
-                0
-        );
+                0);
     }
 
     public void testWithMinSupportSearchConstraint() {
@@ -39,8 +38,7 @@ public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeB
                 new int[][]{{
                     1, 1, 1
                 }},
-                0
-        );
+                0);
     }
 
     public void testWithMinSupportSearchConstraintSecVariant() {
@@ -63,8 +61,7 @@ public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeB
                     {1, 0, 1},
                     {1, 1, 0}
                 },
-                3
-        );
+                3);
     }
 
     public void testWithMinSupportSearchConstraintLinearChain() {
@@ -83,8 +80,7 @@ public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeB
                     {1, 1, 1},
                     {0, 1, 1}
                 },
-                1
-        );
+                1);
     }
 
     public void testWhenZeroElementExtentIsEmpty() {
@@ -107,8 +103,7 @@ public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeB
                     {0, 1, 0},
                     {0, 0, 1}
                 },
-                3
-        );
+                3);
 
     }
 

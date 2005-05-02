@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend;
 
 import util.PropertyChangeSupplier;

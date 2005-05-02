@@ -14,7 +14,7 @@ import util.collection.CollectionFactory;
 import java.util.*;
 
 
-public class DependencySet extends BasePropertyChangeSupplier{
+public class DependencySet extends BasePropertyChangeSupplier {
 
     public static final String DEPENDENCY_ADDED = "DependencyAdded";
     public static final String DEPENDENCY_REMOVED = "DependencyRemoved";
@@ -22,12 +22,11 @@ public class DependencySet extends BasePropertyChangeSupplier{
     public static final String DEPENDENCY_SET_CHANGED = "DependencySetChanged";
 
 
-
     public interface DependencyProcessor {
         void processDependency(Dependency dependency);
     }
 
-    protected AttributeInformationSupplier attrInfo;
+    private AttributeInformationSupplier attrInfo;
 
     protected List dependencies;
 
@@ -78,11 +77,11 @@ public class DependencySet extends BasePropertyChangeSupplier{
     }
 
     public void removeDependency(int index) {
-        Dependency dependency = (Dependency)dependencies.remove(index);
+        Dependency dependency = (Dependency) dependencies.remove(index);
         firePropertyChange(DEPENDENCY_REMOVED, null, dependency);
     }
 
-    public void removeAll(DependencySet toRemove){
+    public void removeAll(DependencySet toRemove) {
         for (Iterator iterator = toRemove.iterator(); iterator.hasNext();) {
             Dependency dependency = (Dependency) iterator.next();
             removeDependency(dependency);
@@ -112,7 +111,7 @@ public class DependencySet extends BasePropertyChangeSupplier{
         forEach(new DependencyProcessor() {
             public void processDependency(Dependency dependency) {
                 ret.append(dependency.toString());
-                ret.append("\n");
+                ret.append('\n');
             }
         });
         ret.append("}\n}");
@@ -161,7 +160,7 @@ public class DependencySet extends BasePropertyChangeSupplier{
     }
 
     public void setDependency(int selectedIndex, Dependency newValue) {
-        Dependency oldValue = (Dependency)dependencies.set(selectedIndex, newValue);
+        Dependency oldValue = (Dependency) dependencies.set(selectedIndex, newValue);
         firePropertyChange(DEPENDENCY_UPDATED, oldValue, newValue);
     }
 

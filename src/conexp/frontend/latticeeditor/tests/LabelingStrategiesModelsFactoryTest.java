@@ -11,9 +11,9 @@ import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.LabelingStrategyModelFactory;
 import junit.framework.TestCase;
 
-public abstract class LabelingStrategiesModelsFactoryTest extends TestCase{
-    protected conexp.frontend.latticeeditor.LabelingStrategyModelFactory factory;
-    protected LayoutParameters drawParams;
+public abstract class LabelingStrategiesModelsFactoryTest extends TestCase {
+    private conexp.frontend.latticeeditor.LabelingStrategyModelFactory factory;
+    private LayoutParameters drawParams;
 
     protected abstract LabelingStrategyModelFactory makeFactory();
 

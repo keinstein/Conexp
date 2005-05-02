@@ -1,11 +1,11 @@
 package conexp.frontend;
 
-import conexp.core.*;
-import conexp.core.enumcallbacks.ConceptNumCallback;
-import conexp.core.calculationstrategies.DepthSearchCalculator;
-import conexp.frontend.components.LatticeComponent;
 import com.gargoylesoftware.base.collections.NotificationList;
 import com.gargoylesoftware.base.collections.NotificationListListener;
+import conexp.core.*;
+import conexp.core.calculationstrategies.DepthSearchCalculator;
+import conexp.core.enumcallbacks.ConceptNumCallback;
+import conexp.frontend.components.LatticeComponent;
 import util.collection.CollectionFactory;
 
 import java.util.Collection;
@@ -18,7 +18,7 @@ import java.util.Iterator;
  * Time: 21:10:14
  */
 public class ContextDocumentModel {
-    Context context;
+    private Context context;
 
     ContextDocumentModel(Context cxt) {
         setContext(cxt);
@@ -40,7 +40,7 @@ public class ContextDocumentModel {
     }
 
     //----------------------------------------
-    protected int doCalculateConceptCount(ConceptCalcStrategy calc) {
+    private int doCalculateConceptCount(ConceptCalcStrategy calc) {
         calc.setRelation(getContext().getRelation());
         ConceptNumCallback cnt = new ConceptNumCallback();
         calc.setCallback(cnt);
@@ -48,7 +48,7 @@ public class ContextDocumentModel {
         return cnt.getConceptCount();
     }
 
-    NotificationList latticeComponents = new NotificationList(CollectionFactory.createDefaultList());
+    private NotificationList latticeComponents = new NotificationList(CollectionFactory.createDefaultList());
 
     public void addLatticeComponentsListener(NotificationListListener listener) {
         latticeComponents.addNotificationListListener(listener);
@@ -66,7 +66,7 @@ public class ContextDocumentModel {
         return new LatticeComponent(getContext());
     }
 
-    protected ContextListener latticeContextListener;
+    private ContextListener latticeContextListener;
 
     private ContextListener getLatticeRecalcPolicy() {
         if (null == latticeContextListener) {

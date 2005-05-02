@@ -14,7 +14,7 @@ import java.util.Iterator;
 
 
 public abstract class BaseFullLabelingStrategy extends SimpleConceptLabelingStrategy {
-    public BaseFullLabelingStrategy() {
+    protected BaseFullLabelingStrategy() {
         super();
     }
 

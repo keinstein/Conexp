@@ -23,18 +23,16 @@ public class NestedDiagramDecoratingFigureTest extends TestCase {
         LatticeDrawing outerDrawing = new LatticeDrawing();
         outerDrawing.setLattice(outer);
 
-        Lattice inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 1},new int[]{1, 1});
+        Lattice inner = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{0, 1}, new int[]{1, 1});
         LatticeDrawing innerDrawing = new LatticeDrawing();
         innerDrawing.setLattice(inner);
 
-        NestedDiagramDecoratingFigure figure = new NestedDiagramDecoratingFigure(
-                innerDrawing.getFigureForConcept(inner.getZero()),
+        NestedDiagramDecoratingFigure figure = new NestedDiagramDecoratingFigure(innerDrawing.getFigureForConcept(inner.getZero()),
 
                 outerDrawing.getFigureForConcept(outer.getZero()).getConceptQuery(), false);
         assertEquals(SetBuilder.makeSet(new int[]{1, 1}), figure.getIntentQuery());
 
-        figure = new NestedDiagramDecoratingFigure(
-                innerDrawing.getFigureForConcept(inner.getOne()),
+        figure = new NestedDiagramDecoratingFigure(innerDrawing.getFigureForConcept(inner.getOne()),
                 outerDrawing.getFigureForConcept(outer.getOne()).getConceptQuery(), false);
         assertEquals(SetBuilder.makeSet(new int[]{0, 0}), figure.getIntentQuery());
     }

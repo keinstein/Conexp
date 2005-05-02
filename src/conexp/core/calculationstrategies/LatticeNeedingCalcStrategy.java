@@ -26,20 +26,20 @@ public abstract class LatticeNeedingCalcStrategy extends DepthSearchConceptCalcS
 
     //-----------------------------------------------------------------
     /**
-     *  creates new conexp lattice element with objects obj and attributes attr
+     * creates new conexp lattice element with objects obj and attributes attr
      *
-     *@param  obj   Description of Parameter
-     *@param  attr  Description of Parameter
-     *@return       Description of the Returned Value
+     * @param obj  Description of Parameter
+     * @param attr Description of Parameter
+     * @return Description of the Returned Value
      */
     protected static LatticeElement makeLatticeElement(Set obj, Set attr) {
         return LatticeElement.makeFromSetsCopies(obj, attr);
     }
     //-----------------------------------------------------------------
     /**
-     *  Sets the Lattice attribute of the DepthSearchCalculator object
+     * Sets the Lattice attribute of the DepthSearchCalculator object
      *
-     *@param  _lat  The new Lattice value
+     * @param _lat The new Lattice value
      */
     public void setLattice(Lattice _lat) {
         lattice = _lat;
@@ -61,8 +61,8 @@ public abstract class LatticeNeedingCalcStrategy extends DepthSearchConceptCalcS
     }
 
     /**
-     *  calculates Zero element of conexp lattice object set is in newExtent
-     *  attributes set is in outerSet
+     * calculates Zero element of conexp lattice object set is in newExtent
+     * attributes set is in outerSet
      */
     protected void calcZero() {
         int numObj = rel.getRowCount();

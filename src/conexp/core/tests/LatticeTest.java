@@ -7,15 +7,15 @@
 
 package conexp.core.tests;
 
+import conexp.core.Context;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
-import conexp.core.Context;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import junit.framework.TestCase;
 
 
 public class LatticeTest extends TestCase {
-    Lattice lat;
+    private Lattice lat;
 
     /**
      * Insert the method's description here.
@@ -54,20 +54,13 @@ public class LatticeTest extends TestCase {
             {0, 0, 0},
             {0, 1, 1}
         });
-        assertSame(lat.getOne(), lat.findLatticeElementFromOne(
-                SetBuilder.makeSet(new int[]{0, 0, 0})
-        ));
+        assertSame(lat.getOne(), lat.findLatticeElementFromOne(SetBuilder.makeSet(new int[]{0, 0, 0})));
         LatticeElement elem = SetBuilder.findLatticeElementWithIntent(lat,
-                new int[]{0, 1, 1}
-        );
+                new int[]{0, 1, 1});
 
-        assertSame(elem, lat.findLatticeElementFromOne(
-                SetBuilder.makeSet(new int[]{0, 1, 1})
-        ));
+        assertSame(elem, lat.findLatticeElementFromOne(SetBuilder.makeSet(new int[]{0, 1, 1})));
 
-        assertSame(lat.getZero(), lat.findLatticeElementFromOne(
-                SetBuilder.makeSet(new int[]{1, 1, 1})
-        ));
+        assertSame(lat.getZero(), lat.findLatticeElementFromOne(SetBuilder.makeSet(new int[]{1, 1, 1})));
 
 
 /*
@@ -82,7 +75,7 @@ public class LatticeTest extends TestCase {
 
     }
 
-    public static void testMakeCopy(){
+    public static void testMakeCopy() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0}});
         Lattice lat = SetBuilder.makeLattice(cxt);
         assertEquals(2, lat.conceptsCount());
@@ -93,7 +86,7 @@ public class LatticeTest extends TestCase {
         assertSame(lat.getContext(), copy.getContext());
     }
 
-    public static void testFindLatticeElementForAttr(){
+    public static void testFindLatticeElementForAttr() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1}});
         Lattice lat = SetBuilder.makeLattice(cxt);
         assertEquals(1, lat.conceptsCount());

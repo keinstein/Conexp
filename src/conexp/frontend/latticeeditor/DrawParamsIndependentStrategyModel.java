@@ -10,9 +10,9 @@ package conexp.frontend.latticeeditor;
 import conexp.util.gui.strategymodel.AbstractNonGrowingStrategyModel;
 
 
-public abstract class DrawParamsIndependentStrategyModel extends AbstractNonGrowingStrategyModel{
+public abstract class DrawParamsIndependentStrategyModel extends AbstractNonGrowingStrategyModel {
 
-    public DrawParamsIndependentStrategyModel() {
+    protected DrawParamsIndependentStrategyModel() {
     }
 
 }

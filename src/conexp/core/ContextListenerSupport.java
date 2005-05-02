@@ -12,6 +12,7 @@ import util.Assert;
 import java.beans.PropertyChangeEvent;
 import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
 
 
 public class ContextListenerSupport {
@@ -37,12 +38,12 @@ public class ContextListenerSupport {
 
 
     interface EventBinder {
-        void fireEventForCollection(ArrayList events);
+        void fireEventForCollection(List events);
 
     }
 
     abstract static class ContextListenerEventBinder implements EventBinder {
-        public void fireEventForCollection(ArrayList targets) {
+        public void fireEventForCollection(List targets) {
             EventObject evt = getEvent();
             for (int i = 0; i < targets.size(); i++) {
                 fireEventFor((ContextListener) targets.get(i), evt);
@@ -58,12 +59,12 @@ public class ContextListenerSupport {
     }
 
     protected void eventFireHelper(EventBinder binder) {
-        if (null == listeners) {
-            return;
-        }
-        ArrayList targets;
+        List targets;
         synchronized (this) {
-            targets = (ArrayList) listeners.clone();
+            if (null == listeners) {
+                return;
+            }
+            targets = (List) listeners.clone();
         }
         binder.fireEventForCollection(targets);
     }
@@ -72,7 +73,7 @@ public class ContextListenerSupport {
 
     /**
      * @test_public
-     * */
+     */
     public boolean hasStructureChangePostponed() {
         return structureChangePostponed;
     }
@@ -151,9 +152,10 @@ public class ContextListenerSupport {
     /**
      * Insert the method's description here.
      * Creation date: (19.04.01 23:02:41)
+     *
      * @return java.util.ArrayList
      */
-    protected synchronized ArrayList getListeners() {
+    protected synchronized List getListeners() {
         if (null == listeners) {
             listeners = new ArrayList();
         }
@@ -163,6 +165,7 @@ public class ContextListenerSupport {
     /**
      * Insert the method's description here.
      * Creation date: (19.04.01 23:05:21)
+     *
      * @param lst conexp.core.ContextListener
      */
     public synchronized void removeContextListener(ContextListener lst) {
@@ -201,16 +204,16 @@ public class ContextListenerSupport {
     }
 
 
-    public void fireObjectInserted(final int objIndex){
-        eventFireHelper(new ObjectEventBinder(){
+    public void fireObjectInserted(final int objIndex) {
+        eventFireHelper(new ObjectEventBinder() {
             protected EventObject getEvent() {
                 return ContextChangeEvent.makeObjectInsertedEvent(cxt, objIndex);
             }
         });
     }
 
-    public void fireObjectRemoved(final int objIndex){
-        eventFireHelper(new ObjectEventBinder(){
+    public void fireObjectRemoved(final int objIndex) {
+        eventFireHelper(new ObjectEventBinder() {
             protected EventObject getEvent() {
                 return ContextChangeEvent.makeObjectRemovedEvent(cxt, objIndex);
             }

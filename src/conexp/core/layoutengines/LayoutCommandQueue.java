@@ -7,17 +7,17 @@
 
 package conexp.core.layoutengines;
 
-import util.Assert;
 import com.visibleworkings.trace.Trace;
+import util.Assert;
 
 
 class LayoutCommandQueue {
-    protected LayoutEvent startLayout;
-    protected LayoutEvent restartLayout;
-    protected int waitingForTake = 0;
+    private LayoutEvent startLayout;
+    private LayoutEvent restartLayout;
+    private int waitingForTake = 0;
 
 
-    protected synchronized LayoutEvent extract() {
+    private synchronized LayoutEvent extract() {
         LayoutEvent x = startLayout;
         if (x != null) {
             startLayout = null;

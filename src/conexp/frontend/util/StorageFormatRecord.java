@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.util;
 
 import conexp.frontend.DocumentLoader;
@@ -15,10 +14,10 @@ import util.gui.fileselector.ExtensionFileFilter;
 import util.gui.fileselector.GenericFileFilter;
 
 public class StorageFormatRecord {
-    String extension;
-    String description;
-    DocumentLoader loader;
-    DocumentWriter writer;
+    private String extension;
+    private String description;
+    private DocumentLoader loader;
+    private DocumentWriter writer;
 
     public StorageFormatRecord(String description, String ext, DocumentLoader loader, DocumentWriter writer) {
         this.description = StringUtil.safeTrim(description);

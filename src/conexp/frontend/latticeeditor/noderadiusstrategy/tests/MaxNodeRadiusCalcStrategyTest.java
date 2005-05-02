@@ -14,7 +14,7 @@ import conexp.frontend.latticeeditor.tests.DefaultDimensionCalcStrategyTest;
 
 public class MaxNodeRadiusCalcStrategyTest extends DefaultDimensionCalcStrategyTest {
 
-    protected DefaultDimensionCalcStrategy  makeEqualInstance() {
+    protected DefaultDimensionCalcStrategy makeEqualInstance() {
         return new MaxNodeRadiusCalcStrategy(BasicDrawParams.getInstance());
     }
 

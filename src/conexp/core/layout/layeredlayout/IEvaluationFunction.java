@@ -5,7 +5,7 @@ package conexp.core.layout.layeredlayout;
  * All rights reserved.
  * Please read license.txt for licensing issues.
  */
-public interface IEvaluationFunction{
+public interface IEvaluationFunction {
     //the bigger value of evaluation function is better
     double getEvaluationForLattice();
 }

@@ -7,13 +7,12 @@
 
 package conexp.frontend.latticeeditor.tests;
 
+import canvas.CanvasScheme;
 import conexp.frontend.latticeeditor.LatticePainterDrawParams;
 import conexp.frontend.latticeeditor.LatticePainterOptions;
 import junit.framework.TestCase;
 
 import java.awt.image.BufferedImage;
-
-import canvas.CanvasScheme;
 
 
 public class LatticePainterOptionsTest extends TestCase {

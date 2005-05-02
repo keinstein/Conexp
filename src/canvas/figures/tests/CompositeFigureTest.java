@@ -14,11 +14,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 public class CompositeFigureTest extends TestCase {
-    private static final Class THIS = CompositeFigureTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
     public void testFindFigureInside() {
         CompositeFigure figure = new CompositeFigure();

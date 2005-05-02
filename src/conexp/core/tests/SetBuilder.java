@@ -22,6 +22,9 @@ import java.util.List;
 
 
 public class SetBuilder {
+    private SetBuilder() {
+    }
+
     public static ModifiableBinaryRelation makeRelation(int[][] arrRelation) {
         ModifiableBinaryRelation rel;
         if (arrRelation.length > 0) {
@@ -46,17 +49,17 @@ public class SetBuilder {
         return set;
     }
 
-    public static List makeListOfSets(int[][] sets){
-        return (List)fillCollection(sets, CollectionFactory.createDefaultList());
+    public static List makeListOfSets(int[][] sets) {
+        return (List) fillCollection(sets, CollectionFactory.createDefaultList());
     }
 
-    public static java.util.Set makeSetOfSets(int[][] sets){
-        return (java.util.Set)fillCollection(sets, CollectionFactory.createDefaultSet());
+    public static java.util.Set makeSetOfSets(int[][] sets) {
+        return (java.util.Set) fillCollection(sets, CollectionFactory.createDefaultSet());
     }
 
 
     private static Collection fillCollection(int[][] sets, Collection ret) {
-        for(int i=0;i<sets.length; i++){
+        for (int i = 0; i < sets.length; i++) {
             ret.add(makeSet(sets[i]));
         }
         return ret;
@@ -81,7 +84,7 @@ public class SetBuilder {
         return makeImplication(premise, concslusion, 0);
     }
 
-    public static Implication makeImplication(int[][] implication){
+    public static Implication makeImplication(int[][] implication) {
         return makeImplication(implication[0], implication[1]);
     }
 
@@ -121,7 +124,7 @@ public class SetBuilder {
         return ret;
     }
 
-    public static Context makeContextWithAttributeNames(String[] attrNames, int[][] relation){
+    public static Context makeContextWithAttributeNames(String[] attrNames, int[][] relation) {
         Context ret = makeContext(relation);
         setAttributesNames(ret, attrNames);
         return ret;
@@ -233,9 +236,8 @@ public class SetBuilder {
     }
 
     public static LatticeElement makeLatticeElement(int[] extent, int[] intent) {
-        return LatticeElement.makeLatticeElementFromSets(
-                        makeSet(extent),
-                        makeSet(intent));
+        return LatticeElement.makeLatticeElementFromSets(makeSet(extent),
+                makeSet(intent));
     }
 
 }

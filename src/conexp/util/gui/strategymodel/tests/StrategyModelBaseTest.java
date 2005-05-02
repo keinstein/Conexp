@@ -16,7 +16,7 @@ public abstract class StrategyModelBaseTest extends junit.framework.TestCase {
         testStrategyModel(model);
     }
 
-    public static void testGetStrategyNameAndFindIndex(final StrategyModel model) {
+    private static void testGetStrategyNameAndFindIndex(final StrategyModel model) {
         int strategiesCount = model.getStrategiesCount();
         assertTrue("Tested strategy model shouldn't be empty", strategiesCount > 0);
         for (int i = 0; i < strategiesCount; i++) {
@@ -26,7 +26,7 @@ public abstract class StrategyModelBaseTest extends junit.framework.TestCase {
         }
     }
 
-    public static void testStrategiesExistense(StrategyModel model) {
+    private static void testStrategiesExistense(StrategyModel model) {
         for (int i = model.getStrategiesCount(); --i >= 0;) {
             assertNotNull("Strategy can't be null", model.getStrategy(i));
         }
@@ -39,7 +39,7 @@ public abstract class StrategyModelBaseTest extends junit.framework.TestCase {
         testGetStrategyNameAndFindIndex(model);
     }
 
-    public static void testStrategyUniquieness(StrategyModel model) {
+    private static void testStrategyUniquieness(StrategyModel model) {
         java.util.HashSet set = new java.util.HashSet();
         String[] strDesc = model.getStrategyDescription();
         assertNotNull("Strategies should have descriptions", strDesc);

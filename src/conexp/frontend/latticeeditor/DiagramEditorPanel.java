@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor;
 
 import canvas.*;
@@ -23,8 +22,8 @@ import java.awt.geom.Point2D;
 public abstract class DiagramEditorPanel extends FigureDrawingCanvas {
 
     /**
-     *  todo: remove connectors figures, when one from connected figures are removed from conceptSetDrawing
-     * */
+     * todo: remove connectors figures, when one from connected figures are removed from conceptSetDrawing
+     */
 
     public Action[] getActions() {
         return new Action[]{
@@ -174,7 +173,7 @@ public abstract class DiagramEditorPanel extends FigureDrawingCanvas {
 
     }
 
-    public DiagramEditorPanel() {
+    protected DiagramEditorPanel() {
 
     }
 

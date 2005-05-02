@@ -14,15 +14,15 @@ import contingencytable.RuleMeasures;
 import util.Assert;
 
 
-public abstract class GenericDependency implements Dependency {
+public class GenericDependency implements Dependency {
 
     protected ModifiableSet conclusion;
 
     protected ModifiableSet premise;
 
-    ExtendedContingencyTable ruleCharacteristics = new ExtendedContingencyTable();
+    private ExtendedContingencyTable ruleCharacteristics = new ExtendedContingencyTable();
 
-    public GenericDependency(Set premise, Set conclusion, int premiseSupport, int ruleSupport) {
+    protected GenericDependency(Set premise, Set conclusion, int premiseSupport, int ruleSupport) {
         this.premise = premise.makeModifiableSetCopy();
         this.conclusion = conclusion.makeModifiableSetCopy();
         ruleCharacteristics.setCharacteristic(IContingencyTable.PREMISE,
@@ -78,7 +78,7 @@ public abstract class GenericDependency implements Dependency {
         return this.getClass().getName() + " : " + premise + "==>" + conclusion;
     }
 
-    int cachedPremiseLength = -1;
+    private int cachedPremiseLength = -1;
 
     public int getPremiseLength() {
         if (cachedPremiseLength == -1) {
@@ -97,8 +97,7 @@ public abstract class GenericDependency implements Dependency {
                 IContingencyTable.CONCLUSION, conclusionSupport - RuleMeasures.support(ruleCharacteristics));
         ruleCharacteristics.setCharacteristic(IContingencyTable.PREMISE_COMPLEMENT,
                 IContingencyTable.CONCLUSION_COMPLEMENT, totalObjectCount - conclusionSupport -
-                ruleCharacteristics.getCharacteristic(IContingencyTable.PREMISE, IContingencyTable.CONCLUSION_COMPLEMENT)
-        );
+                ruleCharacteristics.getCharacteristic(IContingencyTable.PREMISE, IContingencyTable.CONCLUSION_COMPLEMENT));
 
         Assert.isTrue(ruleCharacteristics.getCharacteristicTotal(IContingencyTable.PREMISE) +
                 ruleCharacteristics.getCharacteristicTotal(IContingencyTable.PREMISE_COMPLEMENT) == totalObjectCount);

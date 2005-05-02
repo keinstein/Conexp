@@ -5,10 +5,10 @@
  **/
 
 
-
 package conexp.core;
 
 public interface LatticeCalcStrategy extends BinaryRelationProcessor {
     void buildLattice();
+
     void setLattice(Lattice lattice);
 }

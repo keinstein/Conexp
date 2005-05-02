@@ -14,15 +14,15 @@ import util.collection.IntStack;
 
 public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorithm implements ArrowCalculator {
 
-    protected ModifiableSet outAttribsDelta;
-    protected ModifiableSet tempObjectSet;
+    private ModifiableSet outAttribsDelta;
+    private ModifiableSet tempObjectSet;
 
     //-----------------------------------------------------
     private ModifiableBinaryRelation upArrow;
     //-----------------------------------------------------
     private ModifiableBinaryRelation downArrow;
     //-----------------------------------------------------
-    IntStack tmpStack = new IntStack();
+    private IntStack tmpStack = new IntStack();
     //-----------------------------------------------------------------
 
     public DepthSearchArrowCalculator() {
@@ -30,7 +30,7 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
     }
 
     //-----------------------------------------------------------------
-    public DepthSearchArrowCalculator(BinaryRelation rel) {
+    private DepthSearchArrowCalculator(BinaryRelation rel) {
         super();
         this.rel = rel;
     }
@@ -50,7 +50,7 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
     }
 
     //-----------------------------------------------------
-    void doCalcDownArrow(Set objects, int depth) {
+    private void doCalcDownArrow(Set objects, int depth) {
         ModifiableSet prohibitedSet = tempObjectSet;
         // here it plays this role
         //*DBG*/ System.out.println("doCalcDownArrow:====================  "+depth);
@@ -96,7 +96,7 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
     }
 
     //-----------------------------------------------------
-    void doCalcUpArrow(Set objects, Set attribs, int depth) {
+    private void doCalcUpArrow(Set objects, Set attribs, int depth) {
         ModifiableSet prohibitedSet = tempAttrSet;
         // here it plays this role
         //*DBG*/ System.out.println("doUpCalcArrow:====================  "+depth);
@@ -164,7 +164,7 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
 
     //-----------------------------------------------------
     /**
-     *  Description of the Method
+     * Description of the Method
      */
     public void calcDownArrow(ModifiableBinaryRelation downArrowRel) {
         initObjectsAndAttribs();
@@ -183,7 +183,7 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
 
     //-----------------------------------------------------
     /**
-     *  Description of the Method
+     * Description of the Method
      */
     public void calcUpArrow(ModifiableBinaryRelation upArrowRel) {
         initObjectsAndAttribs();

@@ -10,26 +10,25 @@ package conexp.core.layout.chaindecomposition;
 import com.visibleworkings.trace.Trace;
 import conexp.core.*;
 import conexp.core.layout.NonIncrementalLayouter;
+import conexp.util.gui.paramseditor.ButtonParamInfo;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.StrategyValueItemParamInfo;
-import conexp.util.gui.paramseditor.ButtonParamInfo;
 import conexp.util.gui.strategymodel.StrategyValueItem;
+import util.Assert;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.beans.PropertyChangeEvent;
-
-import util.Assert;
 
 
 public class ChainDecompositionLayout extends NonIncrementalLayouter {
 
 
-    double[] vectorsX;
-    double[] vectorsY;
+    private double[] vectorsX;
+    private double[] vectorsY;
 
     public static final String CONCEPT_PLACEMENT_EVENT = "placementStrategy";
     private transient StrategyValueItem conceptPlacementStrategyItem;
@@ -38,10 +37,10 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
     private PropertyChangeSupport propertyChange;
     private PropertyChangeListener propertyChangeListener;
 
-    protected final static int unknown = -1;
-    protected int[] chains;
-    protected double base;
-    protected double stretch;
+    private final static int unknown = -1;
+    private int[] chains;
+    private double base;
+    private double stretch;
 
     /**
      * ScorskyLayout constructor comment.
@@ -73,15 +72,15 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         calcInitialPlacement();
     }
 
-    protected ChainDecompositionStrategy getDecompositionStrategy() {
+    private ChainDecompositionStrategy getDecompositionStrategy() {
         return (ChainDecompositionStrategy) getDecompositionStrategyItem().getStrategy();
     }
 
-    protected ConceptPlacementStrategy getPlacementStrategy() {
+    private ConceptPlacementStrategy getPlacementStrategy() {
         return (ConceptPlacementStrategy) getConceptPlacementStrategyItem().getStrategy();
     }
 
-    protected synchronized PropertyChangeSupport getPropertyChange() {
+    private synchronized PropertyChangeSupport getPropertyChange() {
         if (null == propertyChange) {
             propertyChange = new PropertyChangeSupport(this);
             propertyChange.addPropertyChangeListener(getPropertyChangeListener());
@@ -89,7 +88,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         return propertyChange;
     }
 
-    protected synchronized PropertyChangeListener getPropertyChangeListener() {
+    private synchronized PropertyChangeListener getPropertyChangeListener() {
         if (null == propertyChangeListener) {
             propertyChangeListener = new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent evt) {
@@ -129,7 +128,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         propertyChangeListener = newPropertyChangeListener;
     }
 
-    protected static void assignChainNumbersForEntities(int[] chains, BinaryRelation order, Set reducibles, Set endsOfEdgesOfMatching, int[] matching) {
+    private static void assignChainNumbersForEntities(int[] chains, BinaryRelation order, Set reducibles, Set endsOfEdgesOfMatching, int[] matching) {
 
         for (int v = order.getRowCount(); --v >= 0;) {
             chains[v] = -1;
@@ -185,12 +184,12 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         fireLayoutChanged();
     }
 
-    protected void calcConceptsPlacement() {
+    private void calcConceptsPlacement() {
         computeVectors();
         assignCoordsToLattice();
     }
 
-    protected static BinaryRelation calcOrderGraphOfIrreducibleEntities(BinaryRelation order, Set reducibles) {
+    private static BinaryRelation calcOrderGraphOfIrreducibleEntities(BinaryRelation order, Set reducibles) {
         ModifiableBinaryRelation edges = order.makeModifiableCopy();
         //Here is calculated graph of order, in which removed edges between same vertices
         // (diagonal elements of order)
@@ -348,7 +347,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         }
     }
 
-    protected int findChainCount() {
+    private int findChainCount() {
         int max = 0;
         for (int i = chains.length; --i >= 0;) {
             if (max < chains[i]) {
@@ -358,7 +357,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         return max;
     }
 
-    protected Set findReducibleEntities(BinaryRelation order) {
+    private Set findReducibleEntities(BinaryRelation order) {
         int size = order.getRowCount();
 
         ModifiableSet reducibles = ContextFactoryRegistry.createSet(size);
@@ -394,7 +393,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         return decompositionStrategyItem;
     }
 
-    protected void rotateChainsLeft() {
+    private void rotateChainsLeft() {
         int max = findChainCount();
         for (int i = chains.length; --i >= 0;) {
             if (chains[i] < 0) {
@@ -408,7 +407,7 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
         calcConceptsPlacement();
     }
 
-    protected void rotateChainsRight() {
+    private void rotateChainsRight() {
         int max = findChainCount();
         for (int i = chains.length; --i >= 0;) {
             if (chains[i] < 0) {

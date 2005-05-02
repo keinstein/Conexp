@@ -7,14 +7,14 @@
 
 package conexp.core.compareutils;
 
-import java.util.*;
 import java.io.PrintWriter;
+import java.util.*;
 
 
 public class DiffMap {
     protected Map map;
     protected final CompareInfoFactory factory;
-    protected HashSet corruptValues;
+    protected Set corruptValues;
     protected Collection inFirst;
     protected Collection inSecond;
     protected Collection inBothButDifferent;
@@ -42,7 +42,7 @@ public class DiffMap {
             KeyValuePair pair = iterator.nextKeyValuePair();
             putFirst(pair.key, pair.value);
         }
-        for(KeyValuePairIterator iterator = two.iterator(); iterator.hasNext();){
+        for (KeyValuePairIterator iterator = two.iterator(); iterator.hasNext();) {
             KeyValuePair pair = iterator.nextKeyValuePair();
             ret = putSecond(pair.key, pair.value) & ret;
         }
@@ -57,6 +57,7 @@ public class DiffMap {
     /**
      * Insert the method's description here.
      * Creation date: (13.07.01 16:53:29)
+     *
      * @param writer java.io.PrintWriter
      */
     public void dumpDifferences(PrintWriter writer) {
@@ -101,7 +102,7 @@ public class DiffMap {
     }
 
 
-    protected HashSet getCorruptValues() {
+    protected Set getCorruptValues() {
         if (null == corruptValues) {
             corruptValues = new HashSet();
         }

@@ -59,7 +59,7 @@ public class BruteForceIntegralStabilityCalculator extends DefaultBinaryRelation
 
     public double getIntegralStabilityForSet(Set set) {
         Integer occurences = (Integer) attributeSetToOccurencesMap.get(set);
-        if(null==occurences){
+        if (null == occurences) {
             return 0;
         }
         return DoubleUtil.getRate(occurences.intValue(), powerSetSize);

@@ -14,7 +14,7 @@ import junit.framework.TestCase;
 public abstract class PointStabilityCalculatorBaseTest extends TestCase {
     protected static final double PRECISION = 0.01;
 
-    public void testCalculateStabilityForSetThatIsNotInLattice(){
+    public void testCalculateStabilityForSetThatIsNotInLattice() {
         int[][] arrRelation = new int[][]{
             {0, 0, 1}
         };
@@ -24,15 +24,15 @@ public abstract class PointStabilityCalculatorBaseTest extends TestCase {
 
     }
 
-    public void testCalculateStabilityForConcept(){
+    public void testCalculateStabilityForConcept() {
         //formalization of the idea of algorithm:
-        int [][] arrRelation= new int[][]{
+        int[][] arrRelation = new int[][]{
             {0, 1},
             {1, 0}
         };
 
         BinaryRelation relation = SetBuilder.makeRelation(arrRelation);
-        PointStabilityCalculator oneConceptStabilityCalculator  = makePointStabilityCalculator();
+        PointStabilityCalculator oneConceptStabilityCalculator = makePointStabilityCalculator();
         oneConceptStabilityCalculator.setRelation(relation);
         assertEquals(0.25, oneConceptStabilityCalculator.getPointStabilityOfSet(SetBuilder.makeSet(new int[]{0, 1})), OneConceptPointStabilityCalculatorTest.PRECISION);
         assertEquals(0.25, oneConceptStabilityCalculator.getPointStabilityOfSet(SetBuilder.makeSet(new int[]{0, 0})), OneConceptPointStabilityCalculatorTest.PRECISION);
@@ -43,14 +43,14 @@ public abstract class PointStabilityCalculatorBaseTest extends TestCase {
 
     protected abstract PointStabilityCalculator makePointStabilityCalculator();
 
-    public void testCalculateStabilityForCaseOfOnlyOneConcept(){
+    public void testCalculateStabilityForCaseOfOnlyOneConcept() {
         int[][] arrRelation = new int[][]{
             {1, 1},
             {1, 1}
         };
 
         BinaryRelation relation = SetBuilder.makeRelation(arrRelation);
-        PointStabilityCalculator oneConceptStabilityCalculator  = makePointStabilityCalculator();
+        PointStabilityCalculator oneConceptStabilityCalculator = makePointStabilityCalculator();
         oneConceptStabilityCalculator.setRelation(relation);
 
         assertEquals(1, oneConceptStabilityCalculator.getPointStabilityOfSet(SetBuilder.makeSet(new int[]{1, 1})), OneConceptPointStabilityCalculatorTest.PRECISION);

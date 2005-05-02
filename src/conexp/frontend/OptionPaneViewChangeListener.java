@@ -11,7 +11,7 @@ import javax.swing.*;
 
 
 public class OptionPaneViewChangeListener implements ViewChangeListener {
-    protected javax.swing.JComponent optPane;
+    private javax.swing.JComponent optPane;
 
     /**
      * OptionPaneViewChangeListener constructor comment.

@@ -56,7 +56,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
     public String makeUniqueObjectName() {
-        int startValue = getObjectCount()+1;
+        int startValue = getObjectCount() + 1;
         String candName;
         do {
             candName = formObjectName(startValue++);
@@ -76,7 +76,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
     public boolean hasAttributeWithName(String cand) {
-        return indexOfAttribute(cand)!=-1;
+        return indexOfAttribute(cand) != -1;
     }
 
 
@@ -360,7 +360,6 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
 
-
     public void locateElementsConcepts(Lattice lattice, Set attributeMask, Set objectMask) {
         if (!lattice.isEmpty()) {
             findObjectsConcepts(lattice, objectMask);
@@ -390,9 +389,11 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
 //----------------------------------------------------------------
-    /******************************************************************
+    /**
+     * ***************************************************************
      * for objects from core find correpondent concepts
-     *****************************************************************/
+     * ***************************************************************
+     */
     private void findObjectsConcepts(Lattice lattice) {
         Assert.isTrue(null != lattice);
         for (int j = getObjectCount(); --j >= 0;) {
@@ -487,13 +488,13 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
 
     public int hashCode() {
         int ret = rel.hashCode();
-        ret=29*ret+attributes.hashCode();
-        ret=29*ret+objects.hashCode();
+        ret = 29 * ret + attributes.hashCode();
+        ret = 29 * ret + objects.hashCode();
         return ret;
     }
 
     public String toString() {
-        return "Attributes[" + attributes + "] Objects[" + objects + "] Relation [\n" + getRelation() + "]";
+        return "Attributes[" + attributes + "] Objects[" + objects + "] Relation [\n" + getRelation() + ']';
     }
 
     //---------------------------------------------------------------

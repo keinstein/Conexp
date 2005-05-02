@@ -7,11 +7,11 @@
 
 package conexp.core.layout.chaindecomposition.tests;
 
+import conexp.core.layout.chaindecomposition.ConceptPlacementStrategyModel;
 import conexp.util.gui.strategymodel.StrategyModel;
 import conexp.util.gui.strategymodel.tests.StrategyModelBaseTest;
-import conexp.core.layout.chaindecomposition.ConceptPlacementStrategyModel;
-import junit.framework.TestSuite;
 import junit.framework.Test;
+import junit.framework.TestSuite;
 
 public class ConceptPlacementStrategyModelTest extends StrategyModelBaseTest {
     public static Test suite() {
@@ -21,6 +21,7 @@ public class ConceptPlacementStrategyModelTest extends StrategyModelBaseTest {
     /**
      * Insert the method's description here.
      * Creation date: (30.03.01 0:59:29)
+     *
      * @return conexp.frontend.latticeeditor.StrategyModel
      */
     protected StrategyModel createStrategyModel() {

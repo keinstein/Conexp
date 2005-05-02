@@ -60,10 +60,11 @@ public class ConceptIdealIteratorTest extends TestCase {
     /**
      * Insert the method's description here.
      * Creation date: (07.03.01 0:33:07)
-     * @param enum conexp.core.LatticeEnumerator
+     *
+     * @param enum   conexp.core.LatticeEnumerator
      * @param expSet com.xpdeveloper.testing.ExpectationSet
      */
-    protected static void fillActualIntentsFromLatticeEnumerator(ConceptIterator enum, ExpectationSet expSet) {
+    private static void fillActualIntentsFromLatticeEnumerator(ConceptIterator enum, ExpectationSet expSet) {
         while (enum.hasNext()) {
             expSet.addActual(enum.nextConcept().getAttribs());
         }

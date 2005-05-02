@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.IHighlightStrategy;
@@ -13,11 +12,11 @@ import canvas.figures.TextFigure;
 import conexp.core.Set;
 import conexp.frontend.latticeeditor.ConceptQuery;
 
-public abstract class ConceptRelatedTextFigure extends TextFigure{
+public abstract class ConceptRelatedTextFigure extends TextFigure {
 
     protected ConceptQuery concept;
 
-    public ConceptRelatedTextFigure(ConceptQuery conceptQuery) {
+    protected ConceptRelatedTextFigure(ConceptQuery conceptQuery) {
         this.concept = conceptQuery;
     }
 

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.ui;
 
 import util.Assert;
@@ -93,15 +92,15 @@ public class DefaultMenuSite
             found = findMenuBarSubMenuByLabel(toThisMenu);
         }
         if (null == found) {
-            throw new IllegalArgumentException(
-                    "Can't find menu ("
+            throw new IllegalArgumentException("Can't find menu ("
                     + toThisMenu + ")");
         }
         return found;
     }
 
 
-    /************************************************************
+    /**
+     * *********************************************************
      * Return a vector of menu items associated with a given
      * requester. A new (empty) vector is created and returned
      * if there are no menus associated with the requester at
@@ -174,7 +173,8 @@ public class DefaultMenuSite
             this.isHelpMenu = isHelpMenu;
         }
 
-        /********************************************************
+        /**
+         * *****************************************************
          * Attach a menu item to it's container (either a menu
          * bar or a menu.) Items are added at the end of the
          * <code>menu_bar_contents</code> list unless a help
@@ -209,7 +209,8 @@ public class DefaultMenuSite
             }
         }
 
-        /********************************************************
+        /**
+         * *****************************************************
          * Remove the current menu item from its container
          * (either a menu bar or a menu.)
          */

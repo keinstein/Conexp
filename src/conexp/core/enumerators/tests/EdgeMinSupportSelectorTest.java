@@ -17,7 +17,7 @@ import junit.framework.TestCase;
 
 public class EdgeMinSupportSelectorTest extends TestCase {
 
-    protected static void doTestEdgeSelector(int[][] cxt, int minSupport, int[][][][] expEdges) {
+    private static void doTestEdgeSelector(int[][] cxt, int minSupport, int[][][][] expEdges) {
         ExpectationSet exp = new ExpectationSet("expected edges");
         for (int i = 0; i < expEdges.length; i++) {
             exp.addExpected(SetBuilder.makeEdge(expEdges[i][0], expEdges[i][1]));

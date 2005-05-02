@@ -29,7 +29,7 @@ public class ConceptCollectionCompareSet extends CompareSetBase {
     }
 
     protected KeyValuePair makeKeyValuePair(Object obj) {
-        ItemSet con = (ItemSet)obj;
+        ItemSet con = (ItemSet) obj;
         return new KeyValuePair(con.getAttribs(), con);
     }
 

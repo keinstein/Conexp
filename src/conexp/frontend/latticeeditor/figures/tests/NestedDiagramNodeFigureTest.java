@@ -35,15 +35,13 @@ public class NestedDiagramNodeFigureTest extends TestCase {
                 inner.getZero(),
                 inner.getAttributesMask());
 
-        NestedDiagramNodeFigure figure = new NestedDiagramNodeFigure(
-                innerMostDrawing, nativeConceptQuery,
+        NestedDiagramNodeFigure figure = new NestedDiagramNodeFigure(innerMostDrawing, nativeConceptQuery,
                 new GenericNodeQuery(inner.getContext(), SetBuilder.makeSet(new int[]{1, 1, 0}), null, false,
                         SetBuilder.makeSet(new int[]{1, 1, 1})), false);
         assertEquals(SetBuilder.makeSet(new int[]{1, 1, 0}), figure.getIntentQuery());
 
 
-        figure = new NestedDiagramNodeFigure(
-                innerMostDrawing, nativeConceptQuery,
+        figure = new NestedDiagramNodeFigure(innerMostDrawing, nativeConceptQuery,
                 null, false);
         assertEquals(SetBuilder.makeSet(new int[]{0, 1, 0}), figure.getIntentQuery());
 

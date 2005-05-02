@@ -15,7 +15,7 @@ import conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsF
 import junit.framework.TestCase;
 
 public class LatticeCanvasDrawStrategiesContextTest extends TestCase {
-    DrawStrategiesContext drawStrategiesContext;
+    private DrawStrategiesContext drawStrategiesContext;
 
     public void testMakeCopy() {
 
@@ -23,7 +23,7 @@ public class LatticeCanvasDrawStrategiesContextTest extends TestCase {
         drawStrategiesContext = new LatticeCanvasDrawStrategiesContext(factory, null);
         DrawStrategiesContext other = drawStrategiesContext.makeCopy(null);
         assertNotNull(other);
-        assertEquals("draw strategies should be equal",drawStrategiesContext,other);
+        assertEquals("draw strategies should be equal", drawStrategiesContext, other);
 
     }
 }

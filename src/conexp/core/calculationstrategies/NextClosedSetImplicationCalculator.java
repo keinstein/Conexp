@@ -13,9 +13,9 @@ import util.Assert;
 
 public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBase implements ImplicationCalcStrategy {
     //-----------------------------------------------------
-    int objInImpl;
-    protected ImplicationSet implSet;
-    protected ModifiableSet closedObjects;
+    private int objInImpl;
+    private ImplicationSet implSet;
+    private ModifiableSet closedObjects;
 
 
     //----------------------------------------------------
@@ -23,7 +23,7 @@ public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBa
         this.implSet = implSet;
     }
 
-    protected AttributeExplorationCallback attributeExplorationCallback = new AttributeExplorationCallback() {
+    private AttributeExplorationCallback attributeExplorationCallback = new AttributeExplorationCallback() {
         public int acceptImplication(Set premise, Set conclusion) {
             return ACCEPT;
         }
@@ -34,7 +34,7 @@ public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBa
     }
     //-----------------------------------------------------
     /**
-     *  Constructor for the NextClosedSetCalculator object
+     * Constructor for the NextClosedSetCalculator object
      */
     public NextClosedSetImplicationCalculator() {
         super();
@@ -46,7 +46,7 @@ public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBa
     }
 
     //-----------------------------------------------------
-    void addImplication(Set premise, Set conclusion) {
+    private void addImplication(Set premise, Set conclusion) {
         implSet.addDependency(new Implication(premise, conclusion, objInImpl));
         //*DBG*/ System.out.println("----------------------------");
         //*DBG*/ System.out.println(implSet.size() + "  " + premise + " ==> " + conclusion);
@@ -92,7 +92,7 @@ public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBa
     }
 
     //-----------------------------------------------------
-    public void doCalcImplBase() {
+    private void doCalcImplBase() {
         int numAttr = rel.getColCount();
 
         nextClosure.clearSet();
@@ -164,7 +164,7 @@ public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBa
         return nextClosure.equals(set);
     }
 
-    public int getObjectCount(){
+    private int getObjectCount() {
         return rel.getRowCount();
     }
 

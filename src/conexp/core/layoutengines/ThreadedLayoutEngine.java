@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.layoutengines;
 
 import com.visibleworkings.trace.Trace;
@@ -13,7 +12,7 @@ import conexp.core.Lattice;
 import conexp.core.layout.LayoutParameters;
 
 public class ThreadedLayoutEngine extends LayoutEngineBase {
-    protected LayoutImproveThread layoutThread = null;
+    private LayoutImproveThread layoutThread = null;
 
     public void shutdown() {
         shutdownThread();
@@ -27,7 +26,7 @@ public class ThreadedLayoutEngine extends LayoutEngineBase {
         }
     }
 
-    protected synchronized LayoutImproveThread getLayoutThread() {
+    private synchronized LayoutImproveThread getLayoutThread() {
         if (null == layoutThread) {
             layoutThread = new LayoutImproveThread(layoutChangeListener);
             layoutThread.start();

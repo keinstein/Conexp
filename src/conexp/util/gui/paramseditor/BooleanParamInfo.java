@@ -19,7 +19,7 @@ import java.awt.event.ItemListener;
 
 public class BooleanParamInfo extends AbstractParamInfo {
 
-    BooleanValueModel valueModel;
+    private BooleanValueModel valueModel;
 
     public BooleanParamInfo(String label, BooleanValueModel valueModel) {
         super(label);

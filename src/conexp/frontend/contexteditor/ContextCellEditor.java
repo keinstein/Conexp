@@ -100,11 +100,11 @@ public class ContextCellEditor extends BaseCellEditor {
     }
 
     /**
-     *  clickCountToStart controls the number of clicks required to start
-     *  editing if the event passed to isCellEditable() or startCellEditing() is
-     *  a MouseEvent.  For example, by default the clickCountToStart for
-     *  a JTextField is set to 2, so in a JTable the user will need to
-     *  double click to begin editing a cell.
+     * clickCountToStart controls the number of clicks required to start
+     * editing if the event passed to isCellEditable() or startCellEditing() is
+     * a MouseEvent.  For example, by default the clickCountToStart for
+     * a JTextField is set to 2, so in a JTable the user will need to
+     * double click to begin editing a cell.
      */
     public int getClickCountToStart() {
         return clickCountToStart;
@@ -177,7 +177,7 @@ public class ContextCellEditor extends BaseCellEditor {
     /**
      * Specifies the number of clicks needed to start editing.
      *
-     * @param count  an int specifying the number of clicks needed to start editing
+     * @param count an int specifying the number of clicks needed to start editing
      * @see #getClickCountToStart
      */
     public void setClickCountToStart(int count) {

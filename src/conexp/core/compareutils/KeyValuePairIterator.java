@@ -8,6 +8,6 @@ import java.util.Iterator;
  * Please read license.txt for licensing issues.
  */
 
-public interface KeyValuePairIterator extends Iterator{
+public interface KeyValuePairIterator extends Iterator {
     KeyValuePair nextKeyValuePair();
 }

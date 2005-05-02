@@ -14,15 +14,15 @@ import java.net.URL;
  * Time: 0:12:22
  * To change this template use File | Settings | File Templates.
  */
-public class AboutConExpDialog extends JDialog{
-    JEditorPane copyrightTextArea;
+public class AboutConExpDialog extends JDialog {
+    private JEditorPane copyrightTextArea;
 
     public URL getLicenseUrl() {
         return AboutConExpDialog.class.getResource("resources/AboutConExp.html");
     }
 
 
-    JEditorPane getCopyrightAreaPane() {
+    private JEditorPane getCopyrightAreaPane() {
         if (null == copyrightTextArea) {
             try {
                 copyrightTextArea = new JEditorPane(getLicenseUrl());
@@ -46,7 +46,7 @@ public class AboutConExpDialog extends JDialog{
         }
     }
 
-    void buildGui() {
+    private void buildGui() {
         final JButton closeButton = new JButton();
         closeButton.setText("Close");
         closeButton.addActionListener(new ActionListener() {

@@ -13,12 +13,12 @@ public class BoundedIntValue extends conexp.util.valuemodels.VetoableValueModelD
     public final int minVal;
     public final int maxVal;
 
-    public IIntValueModel getIntValueModel() {
+    private IIntValueModel getIntValueModel() {
         return (IIntValueModel) valueModel;
     }
 
 
-    public BoundedIntValue(IIntValueModel valueModel, int minVal, int maxVal) throws
+    private BoundedIntValue(IIntValueModel valueModel, int minVal, int maxVal) throws
             IllegalArgumentException {
         super(valueModel);
         if (minVal > maxVal) {

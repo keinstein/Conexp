@@ -10,13 +10,13 @@ package conexp.frontend;
 import conexp.frontend.ui.ViewManager;
 
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 
 public class JTabPaneViewManager extends ViewManager {
-    protected JTabbedPane tabPane;
+    private JTabbedPane tabPane;
 
     /**
      * JTabPaneViewManager constructor comment.
@@ -29,19 +29,18 @@ public class JTabPaneViewManager extends ViewManager {
     /**
      * Insert the method's description here.
      * Creation date: (14.05.2001 16:56:52)
+     *
      * @return javax.swing.JTabbedPane
      */
-    protected JTabbedPane getTabPane() {
+    private JTabbedPane getTabPane() {
         if (null == tabPane) {
             tabPane = new JTabbedPane(JTabbedPane.BOTTOM);
-            tabPane.addChangeListener(
-                    new ChangeListener() {
-                        public void stateChanged(ChangeEvent e) {
-                            JComponent newView = (JComponent) getTabPane().getSelectedComponent();
-                            setActiveView(newView);
-                        }
-                    }
-            );
+            tabPane.addChangeListener(new ChangeListener() {
+                public void stateChanged(ChangeEvent e) {
+                    JComponent newView = (JComponent) getTabPane().getSelectedComponent();
+                    setActiveView(newView);
+                }
+            });
         }
         return tabPane;
     }
@@ -50,6 +49,7 @@ public class JTabPaneViewManager extends ViewManager {
     /**
      * Insert the method's description here.
      * Creation date: (14.05.2001 16:58:07)
+     *
      * @return java.awt.Container
      */
     public Container getViewContainer() {
@@ -60,6 +60,7 @@ public class JTabPaneViewManager extends ViewManager {
     /**
      * Insert the method's description here.
      * Creation date: (14.05.2001 15:21:51)
+     *
      * @param view javax.swing.JComponent
      */
     protected void doActivate(JComponent view) {
@@ -70,6 +71,7 @@ public class JTabPaneViewManager extends ViewManager {
     /**
      * Insert the method's description here.
      * Creation date: (14.05.2001 17:33:12)
+     *
      * @param view javax.swing.JComponent
      */
     public void doAddView(View view, String caption) {

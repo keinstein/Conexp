@@ -22,7 +22,6 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.event.ActionEvent;
@@ -128,9 +127,9 @@ public class ContextTable extends JTable implements ParamsProvider {
 
     protected void afterTableChanged(TableModelEvent e) {
         //is called here because the table column model is rebuilt after the change
-       if(compressView!=null){
-        setCompressedView(compressView.getValue());
-       }
+        if (compressView != null) {
+            setCompressedView(compressView.getValue());
+        }
     }
 
     private void setCompressedView(boolean compressed) {
@@ -168,10 +167,9 @@ public class ContextTable extends JTable implements ParamsProvider {
     }
 
     /**
-     *  @deprecated
-     *  will be changed, when implement mechanism for declaring action and
-     *  loading actions from XML resources
-     * */
+     * @deprecated will be changed, when implement mechanism for declaring action and
+     *             loading actions from XML resources
+     */
     public void setFullContextMenuProvider() {
         setPopupMenuProvider(new ContextTablePopupMenuProvider());
     }
@@ -274,10 +272,10 @@ public class ContextTable extends JTable implements ParamsProvider {
                 Object valueAt = getExternalValueRepresentation(selectedRow, selectedColumn);
                 buffer.append(valueAt);
                 if (j < selectedColCount - 1) {
-                    buffer.append("\t");
+                    buffer.append('\t');
                 }
             }
-            buffer.append("\n");
+            buffer.append('\n');
         }
         return buffer.toString();
     }
@@ -401,7 +399,7 @@ public class ContextTable extends JTable implements ParamsProvider {
     }
 
     public static List split(String line, char c) {
-        ArrayList result = new ArrayList();
+        List result = new ArrayList();
         int index = line.indexOf(c);
         int startIndex = 0;
         while (-1 != index) {
@@ -447,7 +445,7 @@ public class ContextTable extends JTable implements ParamsProvider {
     }
 
     abstract class ActionOnSelectedContextCells extends ActionWithKey {
-        public ActionOnSelectedContextCells(String key, String name) {
+        protected ActionOnSelectedContextCells(String key, String name) {
             super(key, name);
         }
 

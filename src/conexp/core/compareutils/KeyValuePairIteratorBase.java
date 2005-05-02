@@ -9,8 +9,8 @@ import java.util.Iterator;
  * All rights reserved.
  * Please read license.txt for licensing issues.
  */
-public abstract class KeyValuePairIteratorBase extends IteratorWrapperBase implements KeyValuePairIterator{
-    public KeyValuePairIteratorBase(Iterator innerIterator) {
+public abstract class KeyValuePairIteratorBase extends IteratorWrapperBase implements KeyValuePairIterator {
+    protected KeyValuePairIteratorBase(Iterator innerIterator) {
         super(innerIterator);
     }
 

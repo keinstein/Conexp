@@ -17,11 +17,11 @@ public abstract class CalcStrategyTest extends TestCase {
 
     protected ConceptCalcStrategy calcStrategy;
     protected ConceptsCollection conceptSet;
-    public static final int[][] ONE_NODE_LATTICE = new int[][]{
+    private static final int[][] ONE_NODE_LATTICE = new int[][]{
         {1}
     };
 
-    public static final int[][] TWO_NODE_LATTICE = new int[][]{
+    private static final int[][] TWO_NODE_LATTICE = new int[][]{
         {0}
     };
     public static final int[][] BOOLEAN_3_ATTR = new int[][]{
@@ -75,7 +75,7 @@ public abstract class CalcStrategyTest extends TestCase {
         {0, 0, 0, 0, 1, 0, 0, 1},
         {0, 0, 1, 1, 0, 1, 0, 0}
     };
-    public static final int[][] BAD_NOURINE_RAYNAUD = new int[][]{
+    private static final int[][] BAD_NOURINE_RAYNAUD = new int[][]{
         {1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0},
         {1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1, 0, 1},
         {0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -97,7 +97,7 @@ public abstract class CalcStrategyTest extends TestCase {
         {0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1},
         {1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0}
     };
-    public static final int[][] LECTICAL_TREE_ERROR_CONTEXT = new int[][]{
+    private static final int[][] LECTICAL_TREE_ERROR_CONTEXT = new int[][]{
         {1, 0, 1, 1, 0},
         {1, 0, 0, 1, 0},
         {0, 1, 1, 1, 0},
@@ -117,27 +117,22 @@ public abstract class CalcStrategyTest extends TestCase {
     }
 
     public void testOneNodeLattice() {
-        doTestCalcStrategyForExpectedIntentsAndExtents(
-                ONE_NODE_LATTICE, new int[][]{{1}},
+        doTestCalcStrategyForExpectedIntentsAndExtents(ONE_NODE_LATTICE, new int[][]{{1}},
                 new int[][]{{1}},
-                0
-        );
+                0);
 
     }
 
 
     public void testTwoNodeLattice() {
-        doTestCalcStrategyForExpectedIntentsAndExtents(
-                TWO_NODE_LATTICE, new int[][]{{0}, {1}},
+        doTestCalcStrategyForExpectedIntentsAndExtents(TWO_NODE_LATTICE, new int[][]{{0}, {1}},
                 new int[][]{{1}, {0}},
-                1
-        );
+                1);
 
     }
 
     public void testBuildLexicograficalTree() {
-        doTestCalcStrategyForExpectedIntentsAndExtents(
-                LECTICAL_TREE_ERROR_CONTEXT,
+        doTestCalcStrategyForExpectedIntentsAndExtents(LECTICAL_TREE_ERROR_CONTEXT,
                 new int[][]{
                     {0, 0, 0, 0, 0},
                     {1, 0, 1, 1, 0},
@@ -160,11 +155,10 @@ public abstract class CalcStrategyTest extends TestCase {
                     {1, 1, 1, 0},
                     {1, 1, 1, 1}
                 },
-                12
-        );
+                12);
     }
 
-    protected void doTestCalcStrategyForExpectedConcepts(int[][] input, int[][][] concepts, int edgeCount) {
+    private void doTestCalcStrategyForExpectedConcepts(int[][] input, int[][][] concepts, int edgeCount) {
         BinaryRelation rel = SetBuilder.makeRelation(input);
         calcStrategy.setRelation(rel);
         setupResultCollectorAndStrategy();
@@ -191,7 +185,7 @@ public abstract class CalcStrategyTest extends TestCase {
         ConceptCollectionComparator comparator = new ConceptCollectionComparator(expConcepts, actualConcepts);
         if (!comparator.isEqual()) {
             comparator.dumpDifferencesToSout();
-            assertTrue("concept set compare failed expected"+expConcepts + " but was "+actualConcepts, false);
+            assertTrue("concept set compare failed expected" + expConcepts + " but was " + actualConcepts, false);
         }
     }
 
@@ -226,8 +220,7 @@ public abstract class CalcStrategyTest extends TestCase {
                     {1, 1, 0},
                     {1, 1, 1}
                 },
-                12
-        );
+                12);
     }
 
     /**
@@ -253,8 +246,7 @@ public abstract class CalcStrategyTest extends TestCase {
                     {{1, 0, 0, 0}, {1, 0, 0, 0}},
                 }
                 , 8);
-        doTestCalcStrategyForExpectedIntentsAndExtents(
-                NOMINAL_4_NODE_4_ATTR,
+        doTestCalcStrategyForExpectedIntentsAndExtents(NOMINAL_4_NODE_4_ATTR,
                 new int[][]{
                     {0, 0, 0, 0},
                     {1, 0, 0, 0},
@@ -271,8 +263,7 @@ public abstract class CalcStrategyTest extends TestCase {
                     {0, 0, 0, 1},
                     {1, 1, 1, 1}
                 },
-                8
-        );
+                8);
     }
 
 
@@ -314,6 +305,7 @@ public abstract class CalcStrategyTest extends TestCase {
 
     /**
      * this method should be overriden if one would like to check for expected edge count
+     *
      * @param expectedEdgeCount
      */
     protected void checkEdgeCount(BinaryRelation rel, int expectedEdgeCount) {
@@ -324,10 +316,8 @@ public abstract class CalcStrategyTest extends TestCase {
     protected void doTestCalcStrategyForExpectedSizeForFullLatticeCase(int[][] input, int expectedSize) {
         ConceptsCollection conceptsCollection = buildConceptCollection(input);
         if (conceptsCollection.conceptsCount() != expectedSize) {
-            ConceptCollectionComparator comparator = new ConceptCollectionComparator(
-                    SetBuilder.makeConceptSet(input),
-                    conceptsCollection
-            );
+            ConceptCollectionComparator comparator = new ConceptCollectionComparator(SetBuilder.makeConceptSet(input),
+                    conceptsCollection);
             comparator.dumpDifferencesToSout();
             assertEquals(expectedSize, conceptsCollection.conceptsCount());
         }
@@ -421,7 +411,7 @@ public abstract class CalcStrategyTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (13.07.01 22:02:30)
      */
-    protected static void testIntentsAndExtentsSizes(ConceptsCollection conceptSet, BinaryRelation rel) {
+    private static void testIntentsAndExtentsSizes(ConceptsCollection conceptSet, BinaryRelation rel) {
         final int rowCount = rel.getRowCount();
         final int colCount = rel.getColCount();
         for (int i = conceptSet.conceptsCount(); --i >= 0;) {
@@ -470,20 +460,18 @@ public abstract class CalcStrategyTest extends TestCase {
                     {0, 0, 0, 1, 0, 1},
                     {0, 1, 0, 1, 0, 0}
                 },
-                24
-        );
+                24);
     }
 
     public void testCharmExample() {
-        doTestCalcStrategyForExpectedConcepts(
-                new int[][]{
-                    {1, 1, 0, 1, 1},
-                    {0, 1, 1, 0, 1},
-                    {1, 1, 0, 1, 1},
-                    {1, 1, 1, 0, 1},
-                    {1, 1, 1, 1, 1},
-                    {0, 1, 1, 1, 0}
-                },
+        doTestCalcStrategyForExpectedConcepts(new int[][]{
+            {1, 1, 0, 1, 1},
+            {0, 1, 1, 0, 1},
+            {1, 1, 0, 1, 1},
+            {1, 1, 1, 0, 1},
+            {1, 1, 1, 1, 1},
+            {0, 1, 1, 1, 0}
+        },
                 new int[][][]{
                     {{1, 1, 1, 1, 1, 1}, {0, 1, 0, 0, 0}},
                     {{0, 0, 0, 0, 1, 0}, {1, 1, 1, 1, 1}},
@@ -496,9 +484,7 @@ public abstract class CalcStrategyTest extends TestCase {
                     {{0, 0, 0, 0, 1, 1}, {0, 1, 1, 1, 0}},
                     {{0, 1, 0, 1, 1, 1}, {0, 1, 1, 0, 0}},
                 }
-                , 15
-
-        );
+                , 15);
 
     }
 }

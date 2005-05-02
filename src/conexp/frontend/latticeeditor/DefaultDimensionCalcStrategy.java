@@ -18,6 +18,7 @@ public class DefaultDimensionCalcStrategy extends AbstractDimensionCalcStrategy 
     /**
      * Insert the method's description here.
      * Creation date: (11.10.00 22:14:00)
+     *
      * @param opt conexp.frontend.LatticePainterOptions
      */
     public DefaultDimensionCalcStrategy(DrawParameters opt) {
@@ -28,6 +29,7 @@ public class DefaultDimensionCalcStrategy extends AbstractDimensionCalcStrategy 
     /**
      * Insert the method's description here.
      * Creation date: (11.10.00 21:40:03)
+     *
      * @param newOptions conexp.frontend.LatticePainterOptions
      */
     public void setDrawParams(DrawParameters newOptions) {
@@ -56,7 +58,7 @@ public class DefaultDimensionCalcStrategy extends AbstractDimensionCalcStrategy 
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof DefaultDimensionCalcStrategy)) return false;
-        if(!getClass().equals(obj.getClass())){
+        if (!getClass().equals(obj.getClass())) {
             return false;
         }
 

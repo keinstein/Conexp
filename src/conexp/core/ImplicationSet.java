@@ -50,7 +50,7 @@ public class ImplicationSet extends DependencySet {
         super.addDependency(dep);
     }
 
-    public void addAll(ImplicationSet other){
+    public void addAll(ImplicationSet other) {
         for (Iterator iterator = other.iterator(); iterator.hasNext();) {
             addImplication((Implication) iterator.next());
         }
@@ -92,7 +92,7 @@ public class ImplicationSet extends DependencySet {
     }
 
     private void removeRedundantAndFindClosure() {
-        for(int j=dependencies.size(); --j>=0;){
+        for (int j = dependencies.size(); --j >= 0;) {
             Implication imp = getImplication(j);
             imp.conclusion.or(imp.getPremise());
             setClosure(imp.conclusion);
@@ -121,7 +121,6 @@ public class ImplicationSet extends DependencySet {
     //---------------------------------------
 
     /**
-     *
      * @param toClose
      * @return whether set to close was modified
      */

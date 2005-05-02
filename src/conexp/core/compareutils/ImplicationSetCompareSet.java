@@ -5,14 +5,13 @@
  **/
 
 
-
 package conexp.core.compareutils;
 
 import conexp.core.ImplicationSet;
 
 import java.util.Iterator;
 
-public class ImplicationSetCompareSet extends CompareSetBase{
+public class ImplicationSetCompareSet extends CompareSetBase {
     final ImplicationSet implicationSet;
 
     public ImplicationSetCompareSet(ImplicationSet implicationSet) {

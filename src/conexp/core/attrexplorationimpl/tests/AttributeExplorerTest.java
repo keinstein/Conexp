@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.attrexplorationimpl.tests;
 
 import conexp.core.AttributeExplorer;
@@ -33,13 +32,10 @@ public class AttributeExplorerTest extends TestCase {
 
         MockAttributeExplorerCallback attrExpCallback = new MockAttributeExplorerCallback();
 
-        attrExpCallback.setExpSequence(MockAttributeExplorerCallback.makeAcceptImplicationInfoSequence(
-                expQuerySequence));
+        attrExpCallback.setExpSequence(MockAttributeExplorerCallback.makeAcceptImplicationInfoSequence(expQuerySequence));
 
 
-        attrExpCallback.setContrExamples(MockAttributeExplorerCallback.makeContrExampleSequence(
-                contrExamples
-        ));
+        attrExpCallback.setContrExamples(MockAttributeExplorerCallback.makeContrExampleSequence(contrExamples));
 
         explorer.setUserCallback(attrExpCallback);
         explorer.performAttributeExploration();

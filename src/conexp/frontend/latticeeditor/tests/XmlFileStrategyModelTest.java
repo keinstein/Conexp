@@ -15,7 +15,7 @@ import util.testing.TestUtil;
 
 public class XmlFileStrategyModelTest extends TestCase {
 
-    protected void compareExpectedAndActualArrays(Object[][] exp, Object[][] act) {
+    private void compareExpectedAndActualArrays(Object[][] exp, Object[][] act) {
         assertEquals(exp.length, act.length);
         for (int i = exp.length; --i >= 0;) {
             assertEquals(exp[i].length, act[i].length);
@@ -34,7 +34,7 @@ public class XmlFileStrategyModelTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (15.06.01 21:20:54)
      */
-    protected static void expectClassCreationError(String testFileName) {
+    private static void expectClassCreationError(String testFileName) {
         try {
             new XMLFileStrategyModel(testFileName, true);
             fail();
@@ -48,7 +48,7 @@ public class XmlFileStrategyModelTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (15.06.01 21:20:54)
      */
-    protected static void expectConfigurationError(String testFileName) {
+    private static void expectConfigurationError(String testFileName) {
         try {
             new XMLFileStrategyModel(testFileName, false);
             fail();
@@ -93,7 +93,7 @@ public class XmlFileStrategyModelTest extends TestCase {
         compareExpectedAndActualArrays(new String[][]{{"one", "test", "one.test"}, {"two", "test", "two.test"}}, model.getCreateInfo());
     }
 
-    public static void testEquals(){
+    public static void testEquals() {
         XMLFileStrategyModel first = new XMLFileStrategyModel("conexp/frontend/resources/LayoutStrategyModel.xml", true);
         XMLFileStrategyModel second = new XMLFileStrategyModel("conexp/frontend/resources/LayoutStrategyModel.xml", true);
         TestUtil.testEqualsAndHashCode(first, second);

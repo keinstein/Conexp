@@ -8,14 +8,17 @@
 package conexp.frontend.tests;
 
 
-import conexp.core.*;
+import conexp.core.Context;
+import conexp.core.DependencySet;
+import conexp.core.Lattice;
+import conexp.core.LatticeElement;
 import conexp.core.tests.ContextReductionTest;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.*;
-import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
-import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.components.EntityMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.latticeeditor.LatticeDrawing;
+import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import junit.framework.TestCase;
 
 import javax.swing.*;
@@ -23,13 +26,13 @@ import java.util.Collection;
 import java.util.Iterator;
 
 public class ContextDocumentTest extends TestCase {
-    ContextDocument doc;
+    private ContextDocument doc;
 
     protected void setUp() {
         doc = new ContextDocument();
     }
 
-    protected void performCommand(String command) {
+    private void performCommand(String command) {
         doc.getActionChain().get(command).actionPerformed(null);
     }
 
@@ -104,7 +107,7 @@ public class ContextDocumentTest extends TestCase {
     }
 
 
-    public void expectViewActivationAfterCommand(String command, String expectedView) {
+    private void expectViewActivationAfterCommand(String command, String expectedView) {
         performCommand(command);
         assertEquals("Unexpected view activated for command " + command, doc.getViewManager().getView(expectedView), doc.getViewManager().getActiveView());
     }
@@ -137,8 +140,8 @@ public class ContextDocumentTest extends TestCase {
 
         for (Iterator iterator = views.iterator(); iterator.hasNext();) {
             Object o = iterator.next();
-            assertTrue("view "+o.getClass().getName()+" should implement View", o instanceof View);
-            assertTrue("view "+o.getClass().getName()+" should implement OptionPaneProvider", o instanceof OptionPaneProvider);
+            assertTrue("view " + o.getClass().getName() + " should implement View", o instanceof View);
+            assertTrue("view " + o.getClass().getName() + " should implement OptionPaneProvider", o instanceof OptionPaneProvider);
 
             OptionPaneProvider view = (OptionPaneProvider) o;
             assertTrue("Options shouln't be null for view ", null != view.getViewOptions());

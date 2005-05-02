@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor;
 
 public interface DrawParamsProvider {

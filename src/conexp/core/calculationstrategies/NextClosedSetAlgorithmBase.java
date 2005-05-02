@@ -18,7 +18,7 @@ public abstract class NextClosedSetAlgorithmBase extends AbstractConceptCalcStra
     protected ModifiableSet allAttrSet;
 
     /**
-     *  Description of the Method
+     * Description of the Method
      */
     protected void startCalc() {
         int col = getAttributeCount();
@@ -40,6 +40,6 @@ public abstract class NextClosedSetAlgorithmBase extends AbstractConceptCalcStra
     }
 
     //-----------------------------------------------------
-    protected abstract void zeroClosureAttr() ;
+    protected abstract void zeroClosureAttr();
 
 }

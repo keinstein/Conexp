@@ -12,15 +12,15 @@ import canvas.figures.FigureWithCoords;
 import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
 import conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider;
 
-public abstract class AbstractLineDiagramFigure extends FigureWithCoords implements LineDiagramFigure{
+public abstract class AbstractLineDiagramFigure extends FigureWithCoords implements LineDiagramFigure {
 
     FigureDimensionCalcStrategyProvider figureDimensionProvider;
 
-    public AbstractLineDiagramFigure() {
+    protected AbstractLineDiagramFigure() {
         this(0, 0);
     }
 
-    public AbstractLineDiagramFigure(double x, double y) {
+    protected AbstractLineDiagramFigure(double x, double y) {
         super(x, y);
     }
 

@@ -5,13 +5,12 @@
  **/
 
 
-
 package conexp.core.compareutils;
 
 import java.util.Collection;
 import java.util.Iterator;
 
-public class CollectionCompareSet extends CompareSetBase{
+public class CollectionCompareSet extends CompareSetBase {
     final Collection collection;
 
     public CollectionCompareSet(Collection collection) {

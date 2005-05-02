@@ -5,11 +5,10 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor;
 
-import conexp.core.layout.LayoutParameters;
 import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.layout.LayoutParameters;
 import conexp.util.GenericStrategy;
 
 public interface ILabelingStrategy extends GenericStrategy {

@@ -14,12 +14,12 @@ import util.Assert;
 
 public class PowerSetIterator {
 
-    protected ModifiableSet current;
-    protected ModifiableSet next = null;
-    protected int sizeOfSet;
+    private ModifiableSet current;
+    private ModifiableSet next = null;
+    private int sizeOfSet;
 
     public PowerSetIterator(int size) {
-        Assert.isTrue(size>=0);
+        Assert.isTrue(size >= 0);
         current = ContextFactoryRegistry.createSet(size);
         next = current;
         sizeOfSet = current.size();
@@ -27,7 +27,7 @@ public class PowerSetIterator {
 
 
     public boolean hasNext() {
-        return next!=null;
+        return next != null;
     }
 
     public ModifiableSet nextSet() {
@@ -35,15 +35,15 @@ public class PowerSetIterator {
         ModifiableSet toReturn = next.makeModifiableSetCopy();
         next = null;
         boolean wasModified = false;
-        for(int i=sizeOfSet; --i>=0; ){
-            if(!current.in(i)){
+        for (int i = sizeOfSet; --i >= 0;) {
+            if (!current.in(i)) {
                 current.put(i);
                 wasModified = true;
                 break;
             }
             current.remove(i);
         }
-        if(wasModified){
+        if (wasModified) {
             next = current;
         }
         return toReturn;

@@ -14,6 +14,7 @@ public class ConceptSetNeedingCalcStrategy extends AbstractConceptCalcStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (02.07.01 18:35:03)
+     *
      * @param col conexp.core.ConceptsCollection
      */
     public void setConceptSet(ConceptsCollection col) {

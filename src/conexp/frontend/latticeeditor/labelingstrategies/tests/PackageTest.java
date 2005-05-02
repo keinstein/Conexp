@@ -8,10 +8,11 @@
 package conexp.frontend.latticeeditor.labelingstrategies.tests;
 
 import junit.framework.Test;
-import junit.framework.TestSuite;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 //todo: rename to AllTests
+
 public class PackageTest extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();

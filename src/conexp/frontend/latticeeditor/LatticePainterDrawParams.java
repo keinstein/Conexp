@@ -7,12 +7,12 @@
 
 package conexp.frontend.latticeeditor;
 
+import conexp.util.gui.paramseditor.BooleanParamInfo;
 import conexp.util.gui.paramseditor.BoundedIntValueParamInfo;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
-import conexp.util.gui.paramseditor.BooleanParamInfo;
-import conexp.util.valuemodels.BoundedIntValue;
 import conexp.util.valuemodels.BooleanValueModel;
+import conexp.util.valuemodels.BoundedIntValue;
 
 import java.beans.*;
 import java.util.prefs.Preferences;
@@ -34,45 +34,49 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
 
     public DrawParameters makeCopy() {
         LatticePainterDrawParams ret = new LatticePainterDrawParams();
-        ret.maxNodeRadius=ret.makeBoundedIntValue(getMaxNodeRadiusValue());
+        ret.maxNodeRadius = ret.makeBoundedIntValue(getMaxNodeRadiusValue());
         ret.gridSizeX = ret.makeBoundedIntValue(getGridSizeXValue());
         ret.gridSizeY = ret.makeBoundedIntValue(getGridSizeYValue());
-        ret.showCollisions=ret.makeBooleanValueModel(getShowCollisionsValue());
+        ret.showCollisions = ret.makeBooleanValueModel(getShowCollisionsValue());
         ret.drawConceptNo = drawConceptNo;
         ret.maxEdgeStroke = maxEdgeStroke;
         return ret;
     }
 
     public boolean equals(Object obj) {
-        if(obj==this){
+        if (obj == this) {
             return true;
         }
-        if(!(obj instanceof LatticePainterDrawParams)){
+        if (!(obj instanceof LatticePainterDrawParams)) {
             return false;
         }
-        LatticePainterDrawParams other = (LatticePainterDrawParams)obj;
-        if(maxNodeRadius==null ? other.maxNodeRadius!=null:
-                !maxNodeRadius.equals(other.maxNodeRadius)){
+        LatticePainterDrawParams other = (LatticePainterDrawParams) obj;
+        if (maxNodeRadius == null ? other.maxNodeRadius != null :
+                !maxNodeRadius.equals(other.maxNodeRadius)) {
             return false;
         }
-        if(gridSizeX==null? other.gridSizeX!=null: !gridSizeX.equals(other.gridSizeX)){
+        if (gridSizeX == null ? other.gridSizeX != null : !gridSizeX.equals(other.gridSizeX)) {
             return false;
         }
-        if(gridSizeY==null? other.gridSizeY!=null: !gridSizeY.equals(other.gridSizeY)){
+        if (gridSizeY == null ? other.gridSizeY != null : !gridSizeY.equals(other.gridSizeY)) {
             return false;
         }
-        if(showCollisions==null? other.showCollisions!=null: !showCollisions.equals(other.showCollisions)){
+        if (showCollisions == null ? other.showCollisions != null : !showCollisions.equals(other.showCollisions)) {
             return false;
         }
-        if(drawConceptNo!=other.drawConceptNo){return false;}
-        if(maxEdgeStroke!=other.maxEdgeStroke){return false;}
+        if (drawConceptNo != other.drawConceptNo) {
+            return false;
+        }
+        if (maxEdgeStroke != other.maxEdgeStroke) {
+            return false;
+        }
         return true;
     }
 
 
     public int hashCode() {
         int ret = maxNodeRadius.getValue();
-        ret=29*ret + gridSizeX.getValue()+(drawConceptNo? 13:  0);
+        ret = 29 * ret + gridSizeX.getValue() + (drawConceptNo ? 13 : 0);
         return ret;
     }
 
@@ -92,8 +96,6 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
     }
 
 
-
-
     synchronized BoundedIntValue getGridSizeXValue() {
         if (null == gridSizeX) {
             gridSizeX = makeBoundedIntValue(GRID_SIZE_X_PROPERTY, DEFAULT_GRID_SIZE_X, MIN_GRID_SIZE_X, MAX_GRID_SIZE_X);
@@ -111,8 +113,6 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         }
         return gridSizeY;
     }
-
-
 
 
     public float getMaxEdgeStroke() {
@@ -136,9 +136,9 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
     }
 
 
-    synchronized BooleanValueModel getShowCollisionsValue(){
-        if(null==showCollisions){
-            showCollisions=makeBooleanValueModel(SHOW_COLLISIONS_PROPERTY, DEFAULT_SHOW_COLLISIONS);
+    synchronized BooleanValueModel getShowCollisionsValue() {
+        if (null == showCollisions) {
+            showCollisions = makeBooleanValueModel(SHOW_COLLISIONS_PROPERTY, DEFAULT_SHOW_COLLISIONS);
         }
         return showCollisions;
     }
@@ -147,7 +147,7 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         return getShowCollisionsValue().getValue();
     }
 
-    public void setShowCollisions(boolean newValue){
+    public void setShowCollisions(boolean newValue) {
         getShowCollisionsValue().setValue(newValue);
     }
 
@@ -165,14 +165,13 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         return vetoPropertyChange;
     }
 
-    public void setDrawConceptNo(boolean newValue){
-        drawConceptNo=newValue;
+    public void setDrawConceptNo(boolean newValue) {
+        drawConceptNo = newValue;
     }
 
     public boolean isDrawConceptNo() {
         return drawConceptNo;
     }
-
 
 
     private BoundedIntValue makeBoundedIntValue(String name, int value, int lowBound, int upBound) {
@@ -182,18 +181,18 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         return ret;
     }
 
-    private BoundedIntValue makeBoundedIntValue(BoundedIntValue valueModel){
+    private BoundedIntValue makeBoundedIntValue(BoundedIntValue valueModel) {
         return makeBoundedIntValue(valueModel.getPropertyName(), valueModel.getValue(),
                 valueModel.minVal, valueModel.maxVal);
     }
 
-    private BooleanValueModel makeBooleanValueModel(String name, boolean value){
+    private BooleanValueModel makeBooleanValueModel(String name, boolean value) {
         BooleanValueModel ret = new BooleanValueModel(name, value);
         ret.setPropertyChange(getPropertyChange());
         return ret;
     }
 
-    private BooleanValueModel makeBooleanValueModel(BooleanValueModel valueModel){
+    private BooleanValueModel makeBooleanValueModel(BooleanValueModel valueModel) {
         return makeBooleanValueModel(valueModel.getPropertyName(), valueModel.getValue());
     }
 
@@ -295,7 +294,7 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
                 ", gridSizeY=" + gridSizeY +
                 ", drawConceptNo=" + drawConceptNo +
                 ", maxEdgeStroke=" + maxEdgeStroke +
-                ", showCollisions="+showCollisions +
-                "}";
+                ", showCollisions=" + showCollisions +
+                '}';
     }
 }

@@ -12,7 +12,7 @@ import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.Set;
 
 public class ContextFrequentSetSupportSupplier implements FrequentSetSupportSupplier {
-    protected ExtendedContextEditingInterface cxt;
+    private ExtendedContextEditingInterface cxt;
 
     public ContextFrequentSetSupportSupplier(ExtendedContextEditingInterface cxt) {
         super();

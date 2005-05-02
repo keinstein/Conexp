@@ -5,11 +5,10 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor;
 
-import conexp.core.layout.LayoutParameters;
 import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.layout.LayoutParameters;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.StrategyValueItemParamInfo;
 import conexp.util.gui.strategymodel.StrategyValueItem;
@@ -56,8 +55,7 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
     synchronized StrategyValueItem getObjectsLabelingStrategyItem() {
         if (null == objLabelingStrategy) {
             objLabelingStrategy =
-                    makeStrategyValueItem(
-                            "drawObjects",
+                    makeStrategyValueItem("drawObjects",
                             factory.makeObjectsLabelingStrategiesModel());
 //            objLabelingStrategy.restoreFromPreferences(getPreferences());
         }

@@ -30,8 +30,9 @@ public class ForceDistribution {
     /**
      * Insert the method's description here.
      * Creation date: (12.03.01 22:43:06)
-     * @return double[]
+     *
      * @param currIter int
+     * @return double[]
      */
     public float[] forceConstantsForIterations(int currIter) {
         for (int i = 0; i < PHASE_COUNT - 1; i++) {
@@ -45,6 +46,7 @@ public class ForceDistribution {
     /**
      * Insert the method's description here.
      * Creation date: (12.03.01 22:42:22)
+     *
      * @param verticeCount int
      */
     public void init(int verticeCount) {
@@ -112,8 +114,9 @@ public class ForceDistribution {
     /**
      * Insert the method's description here.
      * Creation date: (04.06.01 14:07:38)
-     * @return boolean
+     *
      * @param iterCount int
+     * @return boolean
      */
     public boolean isDone(int iterCount) {
         return iterCount > iterPerPhase * PHASE_COUNT;

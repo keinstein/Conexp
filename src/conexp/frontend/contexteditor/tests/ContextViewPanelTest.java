@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.contexteditor.tests;
 
 import conexp.core.tests.SetBuilder;

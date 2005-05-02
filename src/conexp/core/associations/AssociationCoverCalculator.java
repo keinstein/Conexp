@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.associations;
 
 import conexp.core.*;
@@ -15,7 +14,7 @@ import util.collection.CollectionFactory;
 import java.util.LinkedList;
 
 public class AssociationCoverCalculator {
-    protected int[] predCount;
+    private int[] predCount;
 
     public void findAssociationsRuleCover(DependencySet result, Lattice frequentItemsetCollection,
                                           double confidence) {

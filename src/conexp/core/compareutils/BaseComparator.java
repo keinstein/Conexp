@@ -7,8 +7,8 @@
 
 package conexp.core.compareutils;
 
-import java.util.Collection;
 import java.io.PrintWriter;
+import java.util.Collection;
 
 
 public class BaseComparator {
@@ -18,8 +18,7 @@ public class BaseComparator {
 
     public BaseComparator(CompareInfoFactory compareInfoFactory,
                           ICompareSet compareSetOne,
-                          ICompareSet compareSetTwo
-                          ) {
+                          ICompareSet compareSetTwo) {
         super();
         map = new DiffMap(compareInfoFactory);
         equal = map.compareSets(compareSetOne, compareSetTwo);
@@ -35,9 +34,9 @@ public class BaseComparator {
     }
 
     public void writeReport(PrintWriter writer) {
-        if(isEqual()){
+        if (isEqual()) {
             writer.println(noDifferencesMessage);
-        }else{
+        } else {
             map.dumpDifferences(writer);
         }
     }
@@ -47,15 +46,15 @@ public class BaseComparator {
         return equal;
     }
 
-    public Collection getOnlyInFirst(){
+    public Collection getOnlyInFirst() {
         return map.getInFirst();
     }
 
-    public Collection getOnlyInSecond(){
+    public Collection getOnlyInSecond() {
         return map.getInSecond();
     }
 
-    public Collection getInBothButDifferent(){
+    public Collection getInBothButDifferent() {
         return map.getInBothButDifferent();
     }
 

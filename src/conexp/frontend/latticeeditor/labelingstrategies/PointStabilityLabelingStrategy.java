@@ -23,8 +23,8 @@ public class PointStabilityLabelingStrategy extends SubcontextStabilityLabelingS
         return new PointAndIntegralStabilityCalculator();
     }
 
-    protected PointStabilityCalculator getPointStabilityCalculator(){
-        return (PointStabilityCalculator)stabilityCalculator;
+    protected PointStabilityCalculator getPointStabilityCalculator() {
+        return (PointStabilityCalculator) stabilityCalculator;
     }
 
     protected double getStabilityValue(ConceptQuery conceptQuery) {

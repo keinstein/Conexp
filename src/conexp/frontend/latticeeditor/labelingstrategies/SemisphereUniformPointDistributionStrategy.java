@@ -20,7 +20,7 @@ public abstract class SemisphereUniformPointDistributionStrategy implements Poin
     LayoutParameters opt;
     Ellipse2D figureEllipse;
 
-    public SemisphereUniformPointDistributionStrategy(double centerX, double centerY, int numPoints, LayoutParameters opt, Ellipse2D figureEllipse) {
+    protected SemisphereUniformPointDistributionStrategy(double centerX, double centerY, int numPoints, LayoutParameters opt, Ellipse2D figureEllipse) {
         this.centerX = centerX;
         this.centerY = centerY;
         this.opt = opt;

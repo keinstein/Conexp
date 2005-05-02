@@ -10,8 +10,8 @@ package conexp.frontend.latticeeditor;
 import conexp.core.ConceptsCollection;
 
 
-public abstract class AbstractDimensionCalcStrategy implements DimensionCalcStrategy {
-    public AbstractDimensionCalcStrategy() {
+public class AbstractDimensionCalcStrategy implements DimensionCalcStrategy {
+    protected AbstractDimensionCalcStrategy() {
         super();
     }
 

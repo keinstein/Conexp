@@ -11,7 +11,7 @@ package conexp.frontend;
 class OidNode {
 
 
-    protected String m_name;
+    private String m_name;
 
 
     public OidNode(String name) {

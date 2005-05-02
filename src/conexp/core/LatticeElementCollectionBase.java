@@ -1,8 +1,8 @@
 package conexp.core;
 
-import java.util.List;
-import java.util.Comparator;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * User: sergey
@@ -10,9 +10,9 @@ import java.util.Collections;
  * Time: 15:02:23
  */
 abstract class LatticeElementCollectionBase implements LatticeElementCollection {
-    List collection;
+    private List collection;
 
-    public LatticeElementCollectionBase(List collection) {
+    protected LatticeElementCollectionBase(List collection) {
         this.collection = collection;
     }
 
@@ -35,7 +35,7 @@ abstract class LatticeElementCollectionBase implements LatticeElementCollection 
     }
 
     public void sort(final Comparator latticeElementComparator) {
-        Collections.sort(collection, new Comparator(){
+        Collections.sort(collection, new Comparator() {
             public int compare(Object o1, Object o2) {
                 LatticeElement one = doGet(o1);
                 LatticeElement two = doGet(o2);

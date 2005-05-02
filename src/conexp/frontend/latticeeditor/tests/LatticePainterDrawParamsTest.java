@@ -6,9 +6,9 @@ package conexp.frontend.latticeeditor.tests;
  * Time: 1:51:54
  */
 
-import junit.framework.*;
-import conexp.frontend.latticeeditor.LatticePainterDrawParams;
 import conexp.frontend.latticeeditor.DrawParameters;
+import conexp.frontend.latticeeditor.LatticePainterDrawParams;
+import junit.framework.TestCase;
 
 public class LatticePainterDrawParamsTest extends TestCase {
     public static void testMakeCopy() throws Exception {

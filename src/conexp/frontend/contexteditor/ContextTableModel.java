@@ -10,9 +10,9 @@ package conexp.frontend.contexteditor;
 import conexp.core.*;
 import conexp.util.gui.Command;
 import conexp.util.gui.CommandBase;
+import conexp.util.gui.paramseditor.IntValueParamInfo;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
-import conexp.util.gui.paramseditor.IntValueParamInfo;
 import conexp.util.valuemodels.IntValueModel;
 import util.Assert;
 import util.BooleanUtil;
@@ -23,16 +23,16 @@ import javax.swing.event.UndoableEditListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.undo.CompoundEdit;
 import javax.swing.undo.UndoableEditSupport;
-import java.beans.PropertyVetoException;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyVetoException;
 import java.beans.VetoableChangeListener;
 
 public class ContextTableModel extends AbstractTableModel implements ParamsProvider {
 
-    UndoableEditSupport undoableEditSupport = new UndoableEditSupport(this);
+    private UndoableEditSupport undoableEditSupport = new UndoableEditSupport(this);
 
-    CompoundEdit compoundEdit = null;
+    private CompoundEdit compoundEdit = null;
 
 
     protected synchronized void startCompoundCommand() {
@@ -42,7 +42,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         compoundEdit = new CompoundEdit();
     }
 
-    protected boolean inCompoundEdit() {
+    protected synchronized boolean inCompoundEdit() {
         return compoundEdit != null;
     }
 
@@ -54,11 +54,11 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     }
 
 
-    public void addUndoableEditListener(UndoableEditListener listener) {
+    public synchronized void addUndoableEditListener(UndoableEditListener listener) {
         undoableEditSupport.addUndoableEditListener(listener);
     }
 
-    public void removeUndoableEditListener(UndoableEditListener listener) {
+    public synchronized void removeUndoableEditListener(UndoableEditListener listener) {
         undoableEditSupport.removeUndoableEditListener(listener);
     }
 
@@ -71,7 +71,8 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         }
     }
 
-    ContextEditingInterface context;
+    private ContextEditingInterface context;
+
 
     ContextListener listener = new DefaultContextListener() {
         public void contextStructureChanged() {
@@ -86,9 +87,9 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
 
 
     /**
-     *  Constructor for the ContextTableModel object
+     * Constructor for the ContextTableModel object
      *
-     *@param  context  Description of Parameter
+     * @param context Description of Parameter
      */
     public ContextTableModel(ContextEditingInterface context) {
         super();
@@ -168,7 +169,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         return row > 0;
     }
 
-    public Object getExternal(int row, int col){
+    public Object getExternal(int row, int col) {
         Object valueAt = getValueAt(row, col);
         if (isObjectRow(row) &&
                 isAttributeColumn(col)) {
@@ -185,8 +186,8 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
                     throw new DataFormatException();
                     //can't paste in empty cell
                 }
-            }else{
-                if(StringUtil.isEmpty(element)){
+            } else {
+                if (StringUtil.isEmpty(element)) {
                     throw new DataFormatException();
                 }
             }
@@ -194,7 +195,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         } else {
 
             if (!isObjectRow(row)) {
-                if(StringUtil.isEmpty(element)){
+                if (StringUtil.isEmpty(element)) {
                     throw new DataFormatException();
                     //element name can't be empty
                 }
@@ -234,9 +235,9 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     }
 
     /**
-     *  performs actual column removal
-     *  is not public because all work should go
-     *  through removeColumns(int[] columns)
+     * performs actual column removal
+     * is not public because all work should go
+     * through removeColumns(int[] columns)
      */
 
     protected void doRemoveColumn(int colIndex) {
@@ -277,11 +278,11 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
 	 * editable.
 	 */
     /**
-     *  Gets the CellEditable attribute of the ContextTableModel object
+     * Gets the CellEditable attribute of the ContextTableModel object
      *
-     *@param  row  Description of Parameter
-     *@param  col  Description of Parameter
-     *@return      The CellEditable value
+     * @param row Description of Parameter
+     * @param col Description of Parameter
+     * @return The CellEditable value
      */
     public boolean isCellEditable(int row, int col) {
         //Note that the data/cell address is constant,
@@ -293,12 +294,14 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     }
 
     public void setContext(ContextEditingInterface cxt) {
+        synchronized(this){
         if (null != context) {
             cxt.removeContextListener(listener);
         }
         Assert.isTrue(null != cxt, "Context can't be null");
         context = cxt;
         context.addContextListener(listener);
+        }
         fireTableStructureChanged();
         fireTableDataChanged();
     }
@@ -321,11 +324,10 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     }
 
 
-
     static abstract class SyncValueListener extends SyncListener {
         IntValueModel valueModel;
 
-        public SyncValueListener(IntValueModel valueModel) {
+        protected SyncValueListener(IntValueModel valueModel) {
             this.valueModel = valueModel;
         }
 
@@ -342,8 +344,6 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     }
 
 
-
-
     public synchronized IntValueModel getAttribCountModel() {
         if (null == attribCountModel) {
             attribCountModel = new IntValueModel("Attrib Count", context.getAttributeCount());
@@ -357,8 +357,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
                         performCommand(new SetDimensionCommand("Set attribute count", objectCount, numAttr));
                     }
                 }
-            }
-            );
+            });
 
             SyncValueListener lst = new SyncValueListener(attribCountModel) {
                 protected int getValue() {
@@ -372,7 +371,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         return attribCountModel;
     }
 
-    public ContextEditingInterface getContext() {
+    public synchronized ContextEditingInterface getContext() {
         return context;
     }
 
@@ -389,8 +388,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
                         performCommand(new SetDimensionCommand("Set objects count", numObj, attributeCount));
                     }
                 }
-            }
-            );
+            });
 
             SyncValueListener lst = new SyncValueListener(objectCountModel) {
                 protected int getValue() {
@@ -407,6 +405,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     /**
      * Insert the method's description here.
      * Creation date: (29.03.01 22:40:44)
+     *
      * @return conexp.util.gui.paramseditor.ParamInfo[]
      */
     public ParamInfo[] getParams() {
@@ -496,7 +495,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
 
 
     private abstract class SetValueBase extends CommandBase {
-        public SetValueBase(String name) {
+        protected SetValueBase(String name) {
             super(name);
         }
 
@@ -522,7 +521,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         String oldName;
         private final Object value;
 
-        public ContextEntityCommand(String name, Object value) {
+        protected ContextEntityCommand(String name, Object value) {
             super(name);
             this.value = value;
         }
@@ -623,7 +622,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
 
 
     protected abstract class ContextDestroyingCommandBase extends CommandBase {
-        public ContextDestroyingCommandBase(String name) {
+        protected ContextDestroyingCommandBase(String name) {
             super(name);
         }
 
@@ -655,7 +654,7 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     protected abstract class ExtendedContextDestroyingCommandBase extends ContextDestroyingCommandBase {
         boolean enabled;
 
-        public ExtendedContextDestroyingCommandBase(String name) {
+        protected ExtendedContextDestroyingCommandBase(String name) {
             super(name);
             enabled = getContext() instanceof ExtendedContextEditingInterface;
         }

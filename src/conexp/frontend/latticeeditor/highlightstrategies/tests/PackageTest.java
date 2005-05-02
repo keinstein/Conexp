@@ -8,8 +8,8 @@
 package conexp.frontend.latticeeditor.highlightstrategies.tests;
 
 import junit.framework.Test;
-import junit.framework.TestSuite;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 
 public class PackageTest extends TestCase {

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.Figure;

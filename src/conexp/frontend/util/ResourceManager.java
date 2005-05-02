@@ -16,13 +16,13 @@ import java.util.StringTokenizer;
 public class ResourceManager implements IResourceManager {
 
 
-    ResourceBundle res;
+    private ResourceBundle res;
     public static final String actionSuffix = "Action";
-    public static final String imageSuffix = "Image";
-    public static final String selectedImageSuffix = "SelectedImage";
-    public static final String tooltipSuffix = "Tooltip";
-    public static final String labelSuffix = "Label";
-    public static final String shortcutSuffix = "Shortcut";
+    private static final String imageSuffix = "Image";
+    private static final String selectedImageSuffix = "SelectedImage";
+    private static final String tooltipSuffix = "Tooltip";
+    private static final String labelSuffix = "Label";
+    private static final String shortcutSuffix = "Shortcut";
 
     //----------------------------------------------
     private String getResourceString(String nm) {
@@ -67,7 +67,7 @@ public class ResourceManager implements IResourceManager {
     }
 
     public String getSelectedImage(String command) {
-        return getResourceString(command+selectedImageSuffix);
+        return getResourceString(command + selectedImageSuffix);
     }
 
     public String getCommandLabel(String key) {

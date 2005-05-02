@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.tests;
 
 import conexp.core.LocalizedMessageSupplier;

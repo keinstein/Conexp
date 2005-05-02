@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.associations;
 
 import conexp.core.Context;
@@ -13,7 +12,7 @@ import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.Set;
 
 public class NullFrequentSetSupportSupplier implements FrequentSetSupportSupplier {
-    ExtendedContextEditingInterface cxt = new Context(0, 0);
+    private ExtendedContextEditingInterface cxt = new Context(0, 0);
 
     public int supportForSet(Set attribs) {
         return 0;

@@ -20,10 +20,6 @@ import java.awt.geom.Point2D;
 
 public class RectangularFigureTest extends FigureTest {
 
-    public static Test suite() {
-        return new TestSuite(RectangularFigureTest.class);
-    }
-
     private static final double centerX = 0;
     private static final double centerY = 0;
     private static final double width = 40;

@@ -10,10 +10,9 @@ package conexp.core.associations;
 import conexp.core.*;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import conexp.core.calculationstrategies.NextClosedSetImplicationCalculator;
-
-import java.util.ArrayList;
-
 import util.Assert;
+
+import java.util.List;
 
 
 public class SimpleAssociationMiner extends BaseAssociationMiner {
@@ -36,9 +35,9 @@ public class SimpleAssociationMiner extends BaseAssociationMiner {
 */
     }
 
-    public void findApproximateDependencies(DependencySet ret, int minSupport, double minConfidence) {
+    private void findApproximateDependencies(DependencySet ret, int minSupport, double minConfidence) {
         frequentItemsetLattice = findFrequentItemsetsAndImplications(minSupport);
-        ArrayList frequentEdges = findFrequentEdgesSortedByConfidence(frequentItemsetLattice, minConfidence, minSupport);
+        List frequentEdges = findFrequentEdgesSortedByConfidence(frequentItemsetLattice, minConfidence, minSupport);
         findApproximateBaseByCruscal(ret, frequentEdges, frequentItemsetLattice.conceptsCount());
     }
 
@@ -58,9 +57,10 @@ public class SimpleAssociationMiner extends BaseAssociationMiner {
     /**
      * Insert the method's description here.
      * Creation date: (04.05.01 23:59:03)
+     *
      * @param minSupport int
      */
-    public void findExactDependencies(DependencySet ret, int minSupport) {
+    private void findExactDependencies(DependencySet ret, int minSupport) {
         ImplicationCalcStrategy implCalc = new NextClosedSetImplicationCalculator();
         implCalc.setRelation(cxt.getRelation());
         validImplications = new ImplicationSet(cxt);
@@ -72,9 +72,10 @@ public class SimpleAssociationMiner extends BaseAssociationMiner {
     /**
      * Insert the method's description here.
      * Creation date: (09.06.01 20:33:31)
+     *
      * @param minSupport int
      */
-    public static void selectDependenciesWithGreaterSupport(DependencySet ret, DependencySet implSet, int minSupport) {
+    private static void selectDependenciesWithGreaterSupport(DependencySet ret, DependencySet implSet, int minSupport) {
         for (int i = implSet.getSize(); --i >= 0;) {
             Dependency dep = implSet.getDependency(i);
             if (dep.getRuleSupport() >= minSupport) {

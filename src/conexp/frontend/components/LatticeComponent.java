@@ -63,7 +63,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         return context;
     }
 
-    public void clearLattice() {
+    public synchronized void clearLattice() {
         lattice = null;
         fireLatticeCleared();
     }
@@ -74,15 +74,10 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
 
     public synchronized Lattice getLattice() {
         if (null == lattice) {
-            createNewLattice();
+            lattice = new Lattice();
         }
         return lattice;
     }
-
-    private void createNewLattice() {
-        lattice = new Lattice();
-    }
-
 
     public void setLayoutEngine(LayoutEngine layoutEngine) {
         this.layoutEngine = layoutEngine;
@@ -105,19 +100,20 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     }
 
     public void calculateLattice() {
-        doSetLattice(FCAEngineRegistry.buildLattice(getContext()));
-        fireLatticeRecalced();
+        doSetLatticeAndFireRecalced(FCAEngineRegistry.buildLattice(getContext()));
     }
 
-    private void doSetLattice(final Lattice otherLattice) {
-        lattice = otherLattice;
-        getDrawing().setLattice(otherLattice);
+    protected void doSetLatticeAndFireRecalced(final Lattice otherLattice) {
+        synchronized (this) {
+            lattice = otherLattice;
+            getDrawing().setLattice(otherLattice);
+        }
+        fireLatticeRecalced();
+
     }
 
     public void calculatePartialLattice() {
-        lattice = FCAEngineRegistry.buildPartialLattice(getContext(), getSelectedAttributes(), getSelectedObjects());
-        getDrawing().setLattice(getLattice());
-        fireLatticeRecalced();
+        doSetLatticeAndFireRecalced(FCAEngineRegistry.buildPartialLattice(getContext(), getSelectedAttributes(), getSelectedObjects()));
     }
 
     public void calculateAndLayoutPartialLattice() {
@@ -199,7 +195,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         return result;
     }
 
-    public LatticeComponent makeCopy() {
+    public synchronized LatticeComponent makeCopy() {
         final LatticeComponent other = new LatticeComponent(this.context, attributeMask.makeCopy(), objectMask.makeCopy());
         if (null != latticeDrawing) {
             other.latticeDrawing = latticeDrawing.makeSetupCopy();
@@ -208,7 +204,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
             other.setLayoutEngine(layoutEngine.newInstance());
         }
         if (lattice != null) {
-            other.doSetLattice(getLattice().makeCopy());
+            other.doSetLatticeAndFireRecalced(getLattice().makeCopy());
             if (null != latticeDrawing) {
                 other.getDrawing().setCoordinatesFromMapper(new ConceptCoordinateMapper() {
                     public void setCoordsForConcept(ItemSet c, Point2D coords) {

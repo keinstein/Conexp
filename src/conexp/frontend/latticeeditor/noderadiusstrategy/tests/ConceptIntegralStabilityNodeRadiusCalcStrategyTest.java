@@ -14,7 +14,7 @@ import conexp.frontend.latticeeditor.LatticePainterDrawParams;
 import conexp.frontend.latticeeditor.noderadiusstrategy.ConceptIntegralStabilityNodeRadiusCalcStrategy;
 import conexp.frontend.latticeeditor.tests.DefaultDimensionCalcStrategyTest;
 
-public class ConceptIntegralStabilityNodeRadiusCalcStrategyTest extends DefaultDimensionCalcStrategyTest{
+public class ConceptIntegralStabilityNodeRadiusCalcStrategyTest extends DefaultDimensionCalcStrategyTest {
     protected DefaultDimensionCalcStrategy makeNotEqualInstance() {
         return new ConceptIntegralStabilityNodeRadiusCalcStrategy(new LatticePainterDrawParams());
     }

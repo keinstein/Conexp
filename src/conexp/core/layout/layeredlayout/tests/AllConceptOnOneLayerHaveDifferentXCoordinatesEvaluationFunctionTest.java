@@ -30,27 +30,22 @@ public class AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunctionTest
             {first, second, third}
         };
 
-        ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(
-                lattice, arrRelation,
+        ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(lattice, arrRelation,
                 new double[][]{
                     {1, 2},
                     {0, 2},
                     {1, 2}
-                }
-        );
+                });
         AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunction evaluationFunction = new
                 AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunction(mapper, layer);
 
         assertEquals(-1, evaluationFunction.getEvaluationForLattice(), TestDataHolder.PRECISION);
-        mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(
-                lattice, arrRelation,
+        mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(lattice, arrRelation,
                 new double[][]{
                     {1, 2},
                     {2, 2},
                     {3, 2}
-                }
-
-        );
+                });
         evaluationFunction.setConceptCoordinateMapper(mapper);
         assertEquals(0, evaluationFunction.getEvaluationForLattice(), TestDataHolder.PRECISION);
     }

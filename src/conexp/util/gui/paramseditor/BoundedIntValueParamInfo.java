@@ -16,7 +16,7 @@ import java.beans.PropertyVetoException;
 
 public class BoundedIntValueParamInfo extends IntValueParamInfo {
 
-    protected BoundedIntValue getBoundedIntValue() {
+    private BoundedIntValue getBoundedIntValue() {
         return (BoundedIntValue) valueModel;
     }
 

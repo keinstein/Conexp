@@ -21,13 +21,13 @@ public class CountingSetDecorator implements ModifiableSet{
         this.statistic = statistic;
     }
 
-    ModifiableSet inner;
+    private ModifiableSet inner;
 
-    protected ModifiableSet getInner() {
+    private ModifiableSet getInner() {
         return inner;
     }
 
-    OperationStatistic statistic;
+    private OperationStatistic statistic;
 
     public void put(int elId) {
         statistic.register(OperationCodes.PUT_OPERATION);

@@ -8,7 +8,7 @@ import conexp.core.layout.ILayerAssignmentFunction;
  * All rights reserved.
  * Please read license.txt for licensing issues.
  */
-public class HeightInLatticeLayerAssignmentFuctionTest extends LayerAssignmentFunctionBaseTest{
+public class HeightInLatticeLayerAssignmentFuctionTest extends LayerAssignmentFunctionBaseTest {
     protected ILayerAssignmentFunction makeLayerAssignmentFunction() {
         return HeightInLatticeLayerAssignmentFunction.getInstance();
     }

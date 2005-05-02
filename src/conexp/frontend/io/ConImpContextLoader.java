@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.io;
 
 import conexp.core.Context;
@@ -28,7 +27,7 @@ public class ConImpContextLoader implements ContextReader {
         if (null == localizedMessageSupplier) {
             localizedMessageSupplier = new LocalizedMessageSupplier() {
                 public String getMessage(String key) {
-                    if("ConImpLoader.ErrorInFileFormMsg".equals(key)){
+                    if ("ConImpLoader.ErrorInFileFormMsg".equals(key)) {
                         return "Error in data format on line {0}";
                     }
                     return "";
@@ -42,7 +41,7 @@ public class ConImpContextLoader implements ContextReader {
         this.localizedMessageSupplier = localizedMessageSuplier;
     }
 
-    LocalizedMessageSupplier localizedMessageSupplier;
+    private LocalizedMessageSupplier localizedMessageSupplier;
 
     public Context parseContext(Reader r) throws IOException, DataFormatException {
         reader = new LineNumberReader(new BufferedReader(r));
@@ -99,7 +98,7 @@ public class ConImpContextLoader implements ContextReader {
 
     }
 
-    String storedLine;
+    private String storedLine;
 
     private void pushBack(String str) {
         storedLine = str;
@@ -118,7 +117,6 @@ public class ConImpContextLoader implements ContextReader {
         final String message = getLocalizedMessageSupplier().getMessage("ConImpLoader.ErrorInFileFormMsg");
         return new DataFormatException(FormatUtil.format(message, reader.getLineNumber()));
     }
-
 
 
 }

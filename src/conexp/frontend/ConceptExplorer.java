@@ -35,7 +35,7 @@ public class ConceptExplorer {
         }
     }
 
-    boolean packFrame = false;
+    private boolean packFrame = false;
 
     private void makeMainFrame() {
         ConceptFrame frame = new ConceptFrame();
@@ -67,15 +67,14 @@ public class ConceptExplorer {
         }
     }
 
-    protected static void centerFrameWindow(ConceptFrame frame) {
+    private static void centerFrameWindow(ConceptFrame frame) {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = frame.getSize();
         if (frameSize.height > screenSize.height)
             frameSize.height = screenSize.height;
         if (frameSize.width > screenSize.width)
             frameSize.width = screenSize.width;
-        frame.setLocation(
-                (screenSize.width - frameSize.width) / 2,
+        frame.setLocation((screenSize.width - frameSize.width) / 2,
                 (screenSize.height - frameSize.height) / 2);
     }
 

@@ -7,11 +7,11 @@
 
 package conexp.core.calculationstrategies.tests;
 
+import conexp.core.ConceptCalcStrategy;
 import conexp.core.ConceptsCollection;
 import conexp.core.Lattice;
-import conexp.core.ConceptCalcStrategy;
-import conexp.core.enumcallbacks.ConceptSetCallback;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
+import conexp.core.enumcallbacks.ConceptSetCallback;
 
 
 public class DepthSearchCalcLatticeBuildingTest extends LatticeBuildingDepthSearchCalculatorTest {

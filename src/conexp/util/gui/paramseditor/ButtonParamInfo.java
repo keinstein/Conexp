@@ -11,9 +11,9 @@ import java.awt.event.ActionListener;
 
 
 public class ButtonParamInfo extends AbstractParamInfo {
-    protected final java.lang.String buttonLabel;
+    private final java.lang.String buttonLabel;
     private static util.gui.celleditors.JButtonRenderer sButtonRenderer = new util.gui.celleditors.JButtonRenderer();
-    protected final java.awt.event.ActionListener buttonAction;
+    private final java.awt.event.ActionListener buttonAction;
 
     /**
      * ButtonParamInfo constructor comment.

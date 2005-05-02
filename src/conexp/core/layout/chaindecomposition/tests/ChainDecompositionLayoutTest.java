@@ -7,11 +7,11 @@
 
 package conexp.core.layout.chaindecomposition.tests;
 
+import conexp.core.layout.GenericLayouter;
 import conexp.core.layout.chaindecomposition.ChainDecompositionLayout;
 import conexp.core.layout.tests.GenericLayouterTest;
-import conexp.core.layout.GenericLayouter;
-import junit.framework.TestSuite;
 import junit.framework.Test;
+import junit.framework.TestSuite;
 import util.testing.SimpleMockPropertyChangeListener;
 
 
@@ -23,6 +23,7 @@ public class ChainDecompositionLayoutTest extends GenericLayouterTest {
     /**
      * Insert the method's description here.
      * Creation date: (30.03.01 3:57:11)
+     *
      * @return conexp.core.layout.GenericLayouter
      */
     protected GenericLayouter makeLayouter() {
@@ -32,6 +33,7 @@ public class ChainDecompositionLayoutTest extends GenericLayouterTest {
     /**
      * Insert the method's description here.
      * Creation date: (30.03.01 3:59:35)
+     *
      * @return junit.framework.Test
      */
     public static Test suite() {

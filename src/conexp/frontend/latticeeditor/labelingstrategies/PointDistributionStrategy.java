@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import java.awt.geom.Point2D;

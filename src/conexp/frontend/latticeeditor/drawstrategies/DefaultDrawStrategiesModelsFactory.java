@@ -11,8 +11,8 @@ import conexp.frontend.ResourceLoader;
 import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.DrawStrategiesModelsFactory;
 import conexp.frontend.latticeeditor.XMLFileStrategyModel;
-import conexp.frontend.latticeeditor.highlightstrategies.HighlightStrategyModel;
 import conexp.frontend.latticeeditor.edgesizecalcstrategies.EdgeSizeStrategyModel;
+import conexp.frontend.latticeeditor.highlightstrategies.HighlightStrategyModel;
 import conexp.frontend.latticeeditor.noderadiusstrategy.NodeRadiusStrategyModel;
 import conexp.util.gui.strategymodel.StrategyModel;
 

@@ -15,18 +15,18 @@ public abstract class RectangularFigure extends FigureWithCoords{
     private double width;
     private double height;
 
-    public RectangularFigure(double x, double y, double w, double h) {
+    protected RectangularFigure(double x, double y, double w, double h) {
         super(x, y);
         this.setWidth(w);
         this.setHeight(h);
     }
 
-    public RectangularFigure(Rectangle2D rect) {
+    protected RectangularFigure(Rectangle2D rect) {
         this(rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
     }
 
 
-    public RectangularFigure() {
+    protected RectangularFigure() {
         this(0, 0, 0, 0);
     }
 

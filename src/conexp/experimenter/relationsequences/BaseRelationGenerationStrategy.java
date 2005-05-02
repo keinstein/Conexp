@@ -25,7 +25,7 @@ public abstract class BaseRelationGenerationStrategy extends BaseRelationSequenc
      * Insert the method's description here.
      * Creation date: (06.07.01 13:51:23)
      */
-    public BaseRelationGenerationStrategy(int count) {
+    protected BaseRelationGenerationStrategy(int count) {
         this.count = count;
     }
 

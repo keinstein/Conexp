@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core;
 
 import util.Assert;
@@ -13,14 +12,14 @@ import util.collection.disjointset.DisjointSetsSystem;
 
 public class LatticeDiagramChecker {
 
-    int nodeCount;
-    ModifiableBinaryRelation lessThanCoverRelation;
-    protected ModifiableBinaryRelation lessThanRelation;
-    protected Context context;
-    protected Lattice lattice;
-    boolean notDiagramMode = false;
+    private int nodeCount;
+    private ModifiableBinaryRelation lessThanCoverRelation;
+    private ModifiableBinaryRelation lessThanRelation;
+    private Context context;
+    private Lattice lattice;
+    private boolean notDiagramMode = false;
 
-    public boolean isNotDiagramMode() {
+    private boolean isNotDiagramMode() {
         return notDiagramMode;
     }
 
@@ -84,7 +83,7 @@ public class LatticeDiagramChecker {
         return getLattice().conceptsCount() == expectedNodeCount;
     }
 
-    public boolean hasMinimalElement() {
+    private boolean hasMinimalElement() {
         BinaryRelation lessThan = getLessThanRelation();
         int minElementCount = 0;
         for (int i = 0; i < nodeCount; i++) {
@@ -124,8 +123,8 @@ public class LatticeDiagramChecker {
 
 
     public ExtendedContextEditingInterface getContext() {
-        if(null==context){
-           buildContextOfRelation();
+        if (null == context) {
+            buildContextOfRelation();
         }
         return context;
     }
@@ -168,7 +167,7 @@ public class LatticeDiagramChecker {
         return BinaryRelationUtils.haveNoBidirectionalEdges(getLessThanRelation());
     }
 
-    public BinaryRelation getLessThanRelation() {
+    private BinaryRelation getLessThanRelation() {
         if (null == lessThanRelation) {
             lessThanRelation = lessThanCoverRelation.makeModifiableCopy();
             BinaryRelationUtils.transitiveClosure(lessThanRelation);
@@ -176,7 +175,7 @@ public class LatticeDiagramChecker {
         return lessThanRelation;
     }
 
-    boolean isDiagramConnected() {
+    private boolean isDiagramConnected() {
         if (nodeCount == 0) {
             return true;
         }

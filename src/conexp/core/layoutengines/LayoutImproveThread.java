@@ -7,20 +7,19 @@
 
 package conexp.core.layoutengines;
 
+import com.visibleworkings.trace.Trace;
 import conexp.core.Lattice;
 import conexp.core.layout.LayoutParameters;
 import conexp.core.layout.Layouter;
 
 import java.beans.PropertyChangeListener;
 
-import com.visibleworkings.trace.Trace;
-
 class LayoutImproveThread extends Thread {
-    protected LayoutCommandQueue inputQueue;
-    protected PropertyChangeListener layoutListener;
+    private LayoutCommandQueue inputQueue;
+    private PropertyChangeListener layoutListener;
     private Layouter currentLayouter;
 
-    protected void setCurrentLayouter(Layouter layouter) {
+    private void setCurrentLayouter(Layouter layouter) {
         if (currentLayouter != layouter) {
             removeLayoutChangeListener();
             currentLayouter = layouter;
@@ -32,12 +31,12 @@ class LayoutImproveThread extends Thread {
         removeLayoutChangeListener();
     }
 
-    protected void performLayout(Lattice lat, LayoutParameters drawParams) throws InterruptedException {
+    private void performLayout(Lattice lat, LayoutParameters drawParams) throws InterruptedException {
         currentLayouter.initLayout(lat, drawParams);
         doRealLayout();
     }
 
-    protected void doRealLayout() throws InterruptedException {
+    private void doRealLayout() throws InterruptedException {
         Trace.gui.debugm("inside do real layout");
         if (!currentLayouter.isIncremental()) {
             currentLayouter.performLayout();
@@ -91,7 +90,7 @@ class LayoutImproveThread extends Thread {
         }
     }
 
-    protected void removeLayoutChangeListener() {
+    private void removeLayoutChangeListener() {
         if (null != currentLayouter) {
             currentLayouter.removeLayoutChangeListener(layoutListener);
         }

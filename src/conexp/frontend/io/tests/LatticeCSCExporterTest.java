@@ -42,11 +42,9 @@ public class LatticeCSCExporterTest extends TestCase {
     }
 
     protected void setUp() {
-        latticeComponent = new LatticeComponent(SetBuilder.makeContext(
-                        new int[][]{{0, 0, 1},
-                                    {1, 0, 0},
-                                    {0, 1, 1}}
-                ));
+        latticeComponent = new LatticeComponent(SetBuilder.makeContext(new int[][]{{0, 0, 1},
+                                                                                   {1, 0, 0},
+                                                                                   {0, 1, 1}}));
 
 
         latticeComponent.calculateAndLayoutLattice();
@@ -54,7 +52,7 @@ public class LatticeCSCExporterTest extends TestCase {
 
     public static void testFormat() {
         String res = LatticeCSCExporter.format("{0, number, 0.##}", new Object[]{new Double(3.14)});
-        assertEquals("should contain dot",-1, res.indexOf(','));
+        assertEquals("should contain dot", -1, res.indexOf(','));
 /*
         Locale[] availableLocales = Locale.getAvailableLocales();
         for (int i = 0; i < availableLocales.length; i++) {

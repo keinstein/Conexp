@@ -24,11 +24,11 @@ import conexp.frontend.latticeeditor.figures.EdgeFigure;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 import util.collection.CollectionFactory;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 
 public class LatticeDrawing extends ConceptSetDrawing {
 

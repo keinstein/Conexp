@@ -30,16 +30,16 @@ public class MapBasedConceptCoordinateMapper implements ConceptCoordinateMapper 
     }
 
     public static ConceptCoordinateMapper buildMapperForLattice(Lattice lattice,
-                                                                int[][] intents, double[][] coordinates){
+                                                                int[][] intents, double[][] coordinates) {
         Map map = CollectionFactory.createDefaultMap();
         Assert.assertEquals(intents.length, coordinates.length);
-        for(int i=0; i<intents.length; i++){
+        for (int i = 0; i < intents.length; i++) {
             LatticeElement latticeElement = lattice.findElementWithIntent(SetBuilder.makeSet(intents[i]));
             double[] currentCoordinates = coordinates[i];
             Assert.assertEquals("there are should be only two coordinates", 2, currentCoordinates.length);
             Point2D point = GraphicObjectsFactory.makePoint2D(currentCoordinates[0], currentCoordinates[1]);
             Object prevValue = map.put(latticeElement, point);
-            Assert.assertNull("intents shouldn't be repeated "+intents[i], prevValue);
+            Assert.assertNull("intents shouldn't be repeated " + intents[i], prevValue);
         }
         return new MapBasedConceptCoordinateMapper(map);
     }

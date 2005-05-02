@@ -12,12 +12,10 @@ import junit.framework.TestCase;
  * Please read license.txt for licensing issues.
  */
 public class ThreeElementsChainCountEvaluationFunctionTest extends TestCase {
-    public static void testThreeElementChainCount(){
+    public static void testThreeElementChainCount() {
         Lattice lattice = SetBuilder.makeLattice(TestDataHolder.FULL_RELATION_NOMINAL_3);
-        ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(
-                lattice, TestDataHolder.FULL_RELATION_NOMINAL_3,
-                TestDataHolder.SYMMETRIC_LAYOUT_NOMINAL_3
-        );
+        ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(lattice, TestDataHolder.FULL_RELATION_NOMINAL_3,
+                TestDataHolder.SYMMETRIC_LAYOUT_NOMINAL_3);
         ThreeElementsChainCountEvaluationFunction evaluationFunction = new ThreeElementsChainCountEvaluationFunction();
         evaluationFunction.setLattice(lattice);
         evaluationFunction.setConceptCoordinateMapper(mapper);

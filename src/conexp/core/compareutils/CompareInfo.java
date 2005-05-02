@@ -57,8 +57,8 @@ public class CompareInfo {
             return false;
         }
         final boolean result = doCompareElements();
-        if(type==IN_BOTH){
-            if(!result){
+        if (type == IN_BOTH) {
+            if (!result) {
                 makeInBothDifferent();
             }
         }
@@ -73,18 +73,20 @@ public class CompareInfo {
     /**
      * Insert the method's description here.
      * Creation date: (13.07.01 17:19:35)
+     *
      * @param writer java.io.PrintWriter
      */
     protected void doDumpDifferencesForInBoth(PrintWriter writer) {
-        writer.println("For key :"+key);
+        writer.println("For key :" + key);
         writer.println("In first was: " + one);
-        writer.println("In second was: "+two);
+        writer.println("In second was: " + two);
     }
 
 
     /**
      * Insert the method's description here.
      * Creation date: (13.07.01 16:51:13)
+     *
      * @param writer java.io.PrintWriter
      */
     public void dumpDifferences(PrintWriter writer) {
@@ -120,7 +122,7 @@ public class CompareInfo {
                 two = second;
                 type = IN_BOTH;
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }

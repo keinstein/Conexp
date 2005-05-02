@@ -12,7 +12,7 @@ import conexp.frontend.latticeeditor.LatticePainterDrawParams;
 import conexp.frontend.latticeeditor.noderadiusstrategy.OwnObjectsVolumeNodeRadiusCalcStrategy;
 import conexp.frontend.latticeeditor.tests.DefaultDimensionCalcStrategyTest;
 
-public class OwnObjectsVolumeNodeRadiusCalcStrategyTest extends DefaultDimensionCalcStrategyTest{
+public class OwnObjectsVolumeNodeRadiusCalcStrategyTest extends DefaultDimensionCalcStrategyTest {
     protected DefaultDimensionCalcStrategy makeNotEqualInstance() {
         return new OwnObjectsVolumeNodeRadiusCalcStrategy(new LatticePainterDrawParams());
     }

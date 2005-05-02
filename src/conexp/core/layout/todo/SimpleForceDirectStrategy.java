@@ -16,6 +16,7 @@ public class SimpleForceDirectStrategy implements ForceDirectStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (16.11.00 23:03:11)
+     *
      * @param graph graphlib.GraphModel
      */
     public SimpleForceDirectStrategy() {
@@ -24,6 +25,7 @@ public class SimpleForceDirectStrategy implements ForceDirectStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (16.11.00 21:49:29)
+     *
      * @param e graphlib.Edge
      */
     public void attractEdgeNodes(Edge e, double distance, double[] forceFactors) {
@@ -33,10 +35,11 @@ public class SimpleForceDirectStrategy implements ForceDirectStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (16.11.00 21:28:43)
-     * @return double
-     * @param v graphlib.Node
+     *
+     * @param v     graphlib.Node
      * @param force double
-     * @param Temp double
+     * @param Temp  double
+     * @return double
      */
     public double deltaMove(LatticeElement v, double force, double Temp) {
         return 1.0 / force * Math.min(force, Temp);
@@ -59,8 +62,9 @@ public class SimpleForceDirectStrategy implements ForceDirectStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (16.11.00 21:22:40)
-     * @return double
+     *
      * @param v graphlib.Node
+     * @return double
      */
     public double repulsiveForce(LatticeElement v, double distance) {
         return 1.0 / distance * fr(distance);

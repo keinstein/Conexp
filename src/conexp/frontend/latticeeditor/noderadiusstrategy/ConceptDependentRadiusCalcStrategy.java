@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.noderadiusstrategy;
 
 import conexp.core.ConceptsCollection;
@@ -54,7 +53,7 @@ public abstract class ConceptDependentRadiusCalcStrategy extends AbstractNodeRad
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (!(obj instanceof ConceptDependentRadiusCalcStrategy)) return false;
-        if(!getClass().equals(obj.getClass())){
+        if (!getClass().equals(obj.getClass())) {
             return false;
         }
         final ConceptDependentRadiusCalcStrategy conceptDependentRadiusCalcStrategy = (ConceptDependentRadiusCalcStrategy) obj;

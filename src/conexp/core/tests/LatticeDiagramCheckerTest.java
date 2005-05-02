@@ -12,7 +12,7 @@ import junit.framework.TestCase;
 
 
 public class LatticeDiagramCheckerTest extends TestCase {
-    protected LatticeDiagramChecker checker;
+    private LatticeDiagramChecker checker;
 
     protected void setUp() {
         checker = new LatticeDiagramChecker();
@@ -88,7 +88,7 @@ public class LatticeDiagramCheckerTest extends TestCase {
 
     }
 
-    public void testGetContext(){
+    public void testGetContext() {
         checker.setNodeCount(3);
         checker.setLessThan(1, 0);
         checker.setLessThan(2, 0);

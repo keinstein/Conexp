@@ -74,7 +74,7 @@ public class ConImpContextReaderTest extends TestCase {
         }
     }
 
-    public static String buildString(String[] strings) {
+    private static String buildString(String[] strings) {
         return StringUtil.join(strings, "\n");
     }
 }

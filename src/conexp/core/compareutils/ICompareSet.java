@@ -15,6 +15,7 @@ public interface ICompareSet {
     /**
      * Insert the method's description here.
      * Creation date: (13.07.01 19:04:49)
+     *
      * @return int
      */
     int getSize();

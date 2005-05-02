@@ -23,6 +23,7 @@ public class DependencySupportDescComparator implements Comparator {
     /**
      * Insert the method's description here.
      * Creation date: (07.05.01 22:00:57)
+     *
      * @return java.util.Comparator
      */
     public static Comparator getComparator() {

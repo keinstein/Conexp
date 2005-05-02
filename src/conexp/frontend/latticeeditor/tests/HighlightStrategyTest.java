@@ -8,8 +8,8 @@ package conexp.frontend.latticeeditor.tests;
  * To change this template use File | Settings | File Templates.
  */
 
-import junit.framework.*;
 import conexp.frontend.latticeeditor.HighlightStrategy;
+import junit.framework.TestCase;
 import util.testing.TestUtil;
 
 public abstract class HighlightStrategyTest extends TestCase {

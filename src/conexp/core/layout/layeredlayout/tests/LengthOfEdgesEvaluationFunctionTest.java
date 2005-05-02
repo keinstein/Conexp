@@ -12,7 +12,7 @@ import junit.framework.TestCase;
  * Please read license.txt for licensing issues.
  */
 public class LengthOfEdgesEvaluationFunctionTest extends TestCase {
-    public static void testLengthOfEdges(){
+    public static void testLengthOfEdges() {
         Lattice lattice = SetBuilder.makeLattice(TestDataHolder.FULL_RELATION_NOMINAL_3);
         ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(lattice,
                 TestDataHolder.FULL_RELATION_NOMINAL_3, TestDataHolder.SYMMETRIC_LAYOUT_NOMINAL_3);
@@ -21,6 +21,6 @@ public class LengthOfEdgesEvaluationFunctionTest extends TestCase {
         function.setLattice(lattice);
         function.setConceptCoordinateMapper(mapper);
 
-        assertEquals(-(2+4*Math.sqrt(2)),function.getEvaluationForLattice(), TestDataHolder.PRECISION);
+        assertEquals(-(2 + 4 * Math.sqrt(2)), function.getEvaluationForLattice(), TestDataHolder.PRECISION);
     }
 }

@@ -15,20 +15,20 @@ import java.util.Iterator;
  */
 
 public abstract class MultiLineLabelingStrategyBase extends OneLabelConceptLabelingStrategy {
-    public MultiLineLabelingStrategyBase() {
+    protected MultiLineLabelingStrategyBase() {
         super();
     }
 
     protected static BorderCalculatingFigure buildMultiLineFigureFromEntityIterator(Iterator iterator) {
         StringBuffer names = new StringBuffer();
         boolean first = true;
-        for(;iterator.hasNext(); ){
-            if(first){
+        for (; iterator.hasNext();) {
+            if (first) {
                 first = false;
-            }else{
-                names.append("\n");
+            } else {
+                names.append('\n');
             }
-            names.append(((ContextEntity)iterator.next()).getName());
+            names.append(((ContextEntity) iterator.next()).getName());
         }
         MultiLineTextFigure figure = new MultiLineTextFigure();
         figure.setText(names.toString());

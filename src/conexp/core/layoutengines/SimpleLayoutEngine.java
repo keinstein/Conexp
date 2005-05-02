@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.layoutengines;
 
 import conexp.core.Lattice;
@@ -19,7 +18,7 @@ public class SimpleLayoutEngine extends LayoutEngineBase {
 
 
     public LayoutEngine newInstance() {
-        return  new SimpleLayoutEngine();  //To change body of implemented methods use File | Settings | File Templates.
+        return new SimpleLayoutEngine();  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     protected void doRestartLayout(Lattice lattice, LayoutParameters parameters) {

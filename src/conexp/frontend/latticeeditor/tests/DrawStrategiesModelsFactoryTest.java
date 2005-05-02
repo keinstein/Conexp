@@ -12,8 +12,8 @@ import junit.framework.TestCase;
 
 
 public abstract class DrawStrategiesModelsFactoryTest extends TestCase {
-    protected conexp.frontend.latticeeditor.DrawStrategiesModelsFactory factory;
-    protected DrawParameters drawParams;
+    private conexp.frontend.latticeeditor.DrawStrategiesModelsFactory factory;
+    private DrawParameters drawParams;
 
     protected abstract conexp.frontend.latticeeditor.DrawStrategiesModelsFactory makeFactory();
 

@@ -16,7 +16,7 @@ public class FullConceptLabelingStrategy extends BaseFullLabelingStrategy {
 
     protected String getDescriptionString(ConceptQuery conceptQuery) {
         StringBuffer ret = new StringBuffer();
-        ret.append("(");
+        ret.append('(');
         describeContextEntitySet(ret, conceptQuery.extentIterator());
         ret.append(" , ");
 

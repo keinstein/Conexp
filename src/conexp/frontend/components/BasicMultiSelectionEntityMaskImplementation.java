@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.components;
 
 import conexp.core.ContextFactoryRegistry;
@@ -16,7 +15,7 @@ import conexp.frontend.SetProvidingEntitiesMask;
 import util.Assert;
 
 
-public abstract class BasicMultiSelectionEntityMaskImplementation extends BasicEntityMaskImplementation implements MultiSelectionEntitiesMask, SetProvidingEntitiesMask{
+public abstract class BasicMultiSelectionEntityMaskImplementation extends BasicEntityMaskImplementation implements MultiSelectionEntitiesMask, SetProvidingEntitiesMask {
 
     public void setSelected(int index, boolean attributeSelected) {
         boolean oldValue = isSelected(index);
@@ -35,8 +34,8 @@ public abstract class BasicMultiSelectionEntityMaskImplementation extends BasicE
     }
 
     public boolean hasUnselected() {
-        for(int i=getCount(); --i>=0;){
-            if(!isSelected(i)){
+        for (int i = getCount(); --i >= 0;) {
+            if (!isSelected(i)) {
                 return true;
             }
         }
@@ -60,7 +59,7 @@ public abstract class BasicMultiSelectionEntityMaskImplementation extends BasicE
 
     protected void uncheckedCopyTo(BasicMultiSelectionEntityMaskImplementation ret) {
         Assert.isTrue(getCount() == ret.getCount());
-        for(int i=getCount(); --i>=0;){
+        for (int i = getCount(); --i >= 0;) {
             ret.setSelected(i, isSelected(i));
         }
     }

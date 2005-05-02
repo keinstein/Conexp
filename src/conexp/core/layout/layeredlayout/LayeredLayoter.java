@@ -6,8 +6,8 @@ import conexp.core.layout.HeightInLatticeLayerAssignmentFunction;
 import conexp.core.layout.ILayerAssignmentFunction;
 import conexp.core.layout.NonIncrementalLayouter;
 import conexp.core.utils.MinimumPartialOrderedElementsCollection;
-import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ButtonParamInfo;
+import conexp.util.gui.paramseditor.ParamInfo;
 import util.collection.CollectionFactory;
 
 import java.awt.event.ActionEvent;
@@ -164,7 +164,7 @@ public class LayeredLayoter extends NonIncrementalLayouter {
                 bestLayouts.add(new DirectionVectorEvaluationResultsPair(directionVector, currentEvaluation));
             }
             searchSteps++;
-           if(searchSteps>100000 && !bestLayouts.isEmpty()){
+            if (searchSteps > 100000 && !bestLayouts.isEmpty()) {
                 break;
             }
         }
@@ -247,16 +247,16 @@ public class LayeredLayoter extends NonIncrementalLayouter {
         if (!bestLayouts.isEmpty()) {
 //            System.out.println("bestLayouts:" + bestLayouts);
             setCurrentLayout(0);
-        }else{
+        } else {
             fireLayoutChanged(); //simple for proform. This is posi
         }
     }
 
     private void setCurrentLayout(int layoutIndex) {
-        if(layoutIndex<0){
+        if (layoutIndex < 0) {
             return;
         }
-        if(layoutIndex>=getBestLayoutCount()){
+        if (layoutIndex >= getBestLayoutCount()) {
             return;
         }
         currentLayoutIndex = layoutIndex;
@@ -291,9 +291,9 @@ public class LayeredLayoter extends NonIncrementalLayouter {
     }
 
     private void selectNextLayout() {
-        int nextIndex = currentLayoutIndex+1;
-        if(nextIndex>=getBestLayoutCount()){
-            nextIndex= 0;
+        int nextIndex = currentLayoutIndex + 1;
+        if (nextIndex >= getBestLayoutCount()) {
+            nextIndex = 0;
         }
         setCurrentLayout(nextIndex);
     }

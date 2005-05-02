@@ -19,10 +19,10 @@ public class FigureIdealMoveStrategyTest extends TestCase {
         ConceptSetDrawing drawing = canvas.getConceptSetDrawing();
         Lattice lattice = drawing.getLattice();
 
-        ConceptFigure figure = (ConceptFigure)canvas.getFigureForConcept(lattice.findConceptWithIntent(SetBuilder.makeSet(new int[]{1, 0})));
+        ConceptFigure figure = (ConceptFigure) canvas.getFigureForConcept(lattice.findConceptWithIntent(SetBuilder.makeSet(new int[]{1, 0})));
         assertEquals(150, figure.getCenterY(), TestDataHolder.PRECISION);
         FigureIdealMoveStrategy strategy = new FigureIdealMoveStrategy();
-        double constraint = strategy.constraintMinimalUpMoveSizeForIdeal(canvas,figure, -200);
+        double constraint = strategy.constraintMinimalUpMoveSizeForIdeal(canvas, figure, -200);
         assertEquals(-80, constraint, TestDataHolder.PRECISION);
     }
 
@@ -32,7 +32,7 @@ public class FigureIdealMoveStrategyTest extends TestCase {
         Lattice lattice = drawing.getLattice();
 
         LatticeElement concept = lattice.findElementWithIntent(SetBuilder.makeSet(new int[]{1, 1, 0, 0}));
-        final ConceptFigure conceptFigure = (ConceptFigure)drawing.getFigureForConcept(concept);
+        final ConceptFigure conceptFigure = (ConceptFigure) drawing.getFigureForConcept(concept);
 
         double upConstraint = canvas.getUpMoveConstraintForConcept(conceptFigure, TrueFigurePredicate.getInstance());
         double downConstraint = canvas.getDownMoveConstraintForConcept(conceptFigure);
@@ -40,8 +40,8 @@ public class FigureIdealMoveStrategyTest extends TestCase {
         assertEquals(60.0, downConstraint, TestDataHolder.PRECISION);
 
 
-        assertEquals("Up constraint calculation is wrong ",-20, FigureIdealMoveStrategy.constraintMinimalUpMoveSizeForIdeal(canvas, conceptFigure, -20), TestDataHolder.PRECISION);
-        assertEquals("Up move is not properly constrained ",-40, FigureIdealMoveStrategy.constraintMinimalUpMoveSizeForIdeal(canvas, conceptFigure, -50), TestDataHolder.PRECISION);
+        assertEquals("Up constraint calculation is wrong ", -20, FigureIdealMoveStrategy.constraintMinimalUpMoveSizeForIdeal(canvas, conceptFigure, -20), TestDataHolder.PRECISION);
+        assertEquals("Up move is not properly constrained ", -40, FigureIdealMoveStrategy.constraintMinimalUpMoveSizeForIdeal(canvas, conceptFigure, -50), TestDataHolder.PRECISION);
 
         assertEquals("Down constraint calculation is wrong", 40, FigureIdealMoveStrategy.constraintMinimalUpMoveSizeForIdeal(canvas, conceptFigure, 40), TestDataHolder.PRECISION);
         assertEquals("Down move shouldnot be constrained in this strategy", 70, FigureIdealMoveStrategy.constraintMinimalUpMoveSizeForIdeal(canvas, conceptFigure, 70), TestDataHolder.PRECISION);

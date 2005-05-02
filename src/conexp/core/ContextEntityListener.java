@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core;
 
 import java.beans.PropertyChangeEvent;

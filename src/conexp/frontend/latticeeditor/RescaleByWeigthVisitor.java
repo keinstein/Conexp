@@ -24,7 +24,7 @@ public class RescaleByWeigthVisitor extends DefaultFigureVisitor {
 
     public void visitConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {
         double centerX = f.getCenterX();
-        double newY = endY + f.getConcept().getObjCnt()*weightFactor*(startY-endY);
+        double newY = endY + f.getConcept().getObjCnt() * weightFactor * (startY - endY);
         f.setCoords(centerX, newY);
     }
 }

@@ -13,29 +13,32 @@ import conexp.core.bitset.BitSetFactory;
 public class ContextFactoryRegistry {
     private static ContextFactory factory;
 
+    private ContextFactoryRegistry() {
+    }
+
     /**
-     *  Description of the Method
+     * Description of the Method
      *
-     *@param  rowCount  Number of rows in relation
-     *@param  colCount  Number of columns in relation
-     *@return        new  BinaryRelation
+     * @param rowCount Number of rows in relation
+     * @param colCount Number of columns in relation
+     * @return new  BinaryRelation
      */
     public static ModifiableBinaryRelation createRelation(int rowCount, int colCount) {
         return getFactory().createRelation(rowCount, colCount);
     }
 
     /**
-     *  Description of the Method
+     * Description of the Method
      *
-     *@param  size  maximum number of attributes in set
-     *@return       new Set
+     * @param size maximum number of attributes in set
+     * @return new Set
      */
     public static ModifiableSet createSet(int size) {
         return getFactory().createSet(size);
     }
 
 
-    public static void setContextFactory(ContextFactory newFactory){
+    public synchronized static void setContextFactory(ContextFactory newFactory) {
         factory = newFactory;
     }
 
@@ -43,6 +46,7 @@ public class ContextFactoryRegistry {
     /**
      * Insert the method's description here.
      * Creation date: (07.03.01 21:11:13)
+     *
      * @return conexp.core.ContextFactory
      */
 

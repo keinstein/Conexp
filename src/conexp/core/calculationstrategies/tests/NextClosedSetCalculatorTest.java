@@ -7,11 +7,11 @@
 
 package conexp.core.calculationstrategies.tests;
 
-import conexp.core.ItemSet;
-import conexp.core.ConceptsCollection;
 import conexp.core.ConceptCalcStrategy;
-import conexp.core.enumcallbacks.ConceptSetCallback;
+import conexp.core.ConceptsCollection;
+import conexp.core.ItemSet;
 import conexp.core.calculationstrategies.NextClosedSetCalculator;
+import conexp.core.enumcallbacks.ConceptSetCallback;
 import conexp.core.tests.SetBuilder;
 
 

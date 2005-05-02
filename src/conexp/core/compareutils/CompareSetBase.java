@@ -14,7 +14,7 @@ public abstract class CompareSetBase implements ICompareSet {
     protected abstract KeyValuePair makeKeyValuePair(Object obj);
 
     public KeyValuePairIterator iterator() {
-        KeyValuePairIterator keyValuePairIterator = new KeyValuePairIteratorBase(getCollectionIterator()){
+        KeyValuePairIterator keyValuePairIterator = new KeyValuePairIteratorBase(getCollectionIterator()) {
             public KeyValuePair nextKeyValuePair() {
                 return makeKeyValuePair(innerIterator.next());
             }

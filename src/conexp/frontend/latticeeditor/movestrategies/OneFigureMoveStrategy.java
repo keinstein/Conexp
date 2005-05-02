@@ -22,11 +22,11 @@ public class OneFigureMoveStrategy implements MoveStrategy {
     }
 
     /**
-     * @test_public
      * @param dy
      * @param canvas
      * @param conceptFigure
      * @return
+     * @test_public
      */
 
 

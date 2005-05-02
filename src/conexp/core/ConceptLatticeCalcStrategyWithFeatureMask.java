@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core;
 
 public interface ConceptLatticeCalcStrategyWithFeatureMask extends ConceptCalcStrategy, LatticeCalcStrategy {

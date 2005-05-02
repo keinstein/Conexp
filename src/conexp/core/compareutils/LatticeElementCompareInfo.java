@@ -47,15 +47,15 @@ public class LatticeElementCompareInfo extends CompareInfo {
         writer.println("LatticeElement with desription " + one + " were different");
         writer.println("one :" + one);
         writer.println("two :" + two);
-        final Set oneObjects = ((LatticeElement)one).getObjects();
-        final Set twoObjects = ((LatticeElement)two).getObjects();
+        final Set oneObjects = ((LatticeElement) one).getObjects();
+        final Set twoObjects = ((LatticeElement) two).getObjects();
         ModifiableSet oneMinusTwo = oneObjects.makeModifiableSetCopy();
         oneMinusTwo.andNot(twoObjects);
         ModifiableSet twoMinusOne = twoObjects.makeModifiableSetCopy();
         twoMinusOne.andNot(oneObjects);
         oneMinusTwo.or(twoMinusOne);
-        if(!oneMinusTwo.isEmpty()){
-            writer.println("following objects are different "+oneMinusTwo);
+        if (!oneMinusTwo.isEmpty()) {
+            writer.println("following objects are different " + oneMinusTwo);
         }
 
         if (!predSame) {

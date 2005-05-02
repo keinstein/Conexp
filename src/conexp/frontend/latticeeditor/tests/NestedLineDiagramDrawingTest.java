@@ -31,8 +31,7 @@ public class NestedLineDiagramDrawingTest extends ConceptSetDrawingTest {
 
     protected void setUp() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1},
-                                                         {1, 0}}
-        );
+                                                         {1, 0}});
 
         outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 0}, new int[]{1, 1});
         LatticeDrawing outerDrawing = new LatticeDrawing();
@@ -54,11 +53,9 @@ public class NestedLineDiagramDrawingTest extends ConceptSetDrawingTest {
         //it can be also the set
         ConceptsCollection concepts = FCAEngineRegistry.buildLattice(cxt);
 
-        drawing = new NestedLineDiagramDrawing(
-                outerDrawing, innerDrawing, concepts
-        );
+        drawing = new NestedLineDiagramDrawing(outerDrawing, innerDrawing, concepts);
     }
-    
+
     protected ConceptSetDrawing getDrawing() {
         return drawing;
     }
@@ -83,8 +80,7 @@ public class NestedLineDiagramDrawingTest extends ConceptSetDrawingTest {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1, 1},
                                                          {1, 0, 1, 1},
                                                          {1, 1, 0, 1},
-                                                         {1, 1, 1, 0}}
-        );
+                                                         {1, 1, 1, 0}});
 
         outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 1, 0, 0}, new int[]{1, 1, 1, 1});
         LatticeDrawing outerDrawing = new LatticeDrawing();
@@ -96,9 +92,7 @@ public class NestedLineDiagramDrawingTest extends ConceptSetDrawingTest {
         //it can be also the set
         ConceptsCollection concepts = FCAEngineRegistry.buildLattice(cxt);
 
-        drawing = new NestedLineDiagramDrawing(
-                outerDrawing, innerDrawing, concepts
-        );
+        drawing = new NestedLineDiagramDrawing(outerDrawing, innerDrawing, concepts);
 
         final java.util.Set innerQueries = CollectionFactory.createDefaultSet();
         BaseFigureVisitor visitor = new DefaultFigureVisitor() {

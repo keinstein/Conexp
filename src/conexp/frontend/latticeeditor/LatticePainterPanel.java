@@ -26,6 +26,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
+import java.text.MessageFormat;
 
 
 public class LatticePainterPanel extends BaseLatticePainterPane implements ViewChangeInterfaceWithConfig {
@@ -75,8 +76,7 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         }
 
         public void mouseReleased(MouseEvent e) {
-            setCursor(Cursor.getPredefinedCursor(
-                    Cursor.DEFAULT_CURSOR));
+            setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
 
 
@@ -149,6 +149,17 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         }
     }
 
+    class ShowLatticeStatisticsAction extends AbstractAction{
+        public ShowLatticeStatisticsAction() {
+            super("showLatticeStatistics");
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            showStatistics();
+        }
+    }
+
+
     class AddZoomAction extends AbstractAction {
         public AddZoomAction() {
             super("addZoom");
@@ -166,7 +177,7 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         }
 
         public void actionPerformed(ActionEvent e) {
-           rescaleYByWeight();
+            rescaleYByWeight();
         }
     }
 
@@ -177,9 +188,11 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         }
 
         public void actionPerformed(ActionEvent e) {
-              storePreferences();
+            storePreferences();
         }
     }
+
+
 
     private void storePreferences() {
         getConceptSetDrawing().storePreferences();
@@ -192,7 +205,7 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
     }
 
 
-    public void restorePreferences(){
+    public void restorePreferences() {
         //todo: check, whether here the restoration of preferences of Concept set drawing is required
         getConceptSetDrawing().restorePreferences();
         doRestorePreferences();
@@ -224,15 +237,21 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
     }
 
 
-    class CreateLatticeViewAction extends AbstractAction{
-        public CreateLatticeViewAction(){
+    class CreateLatticeViewAction extends AbstractAction {
+        public CreateLatticeViewAction() {
             super("createLatticeView");
         }
 
         public void actionPerformed(ActionEvent e) {
-            JOptionPane.showMessageDialog(JOptionPane.getFrameForComponent(LatticePainterPanel.this), "Not yet implemented");
+            final String message = "Not yet implemented";
+            showMessage(message);
         }
 
+
+    }
+
+    private void showMessage(final String message) {
+        JOptionPane.showMessageDialog(JOptionPane.getFrameForComponent(LatticePainterPanel.this), message);
     }
 
     private boolean scrollMode = false;
@@ -278,7 +297,7 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
             if (DrawParamsProperties.GRID_SIZE_X_PROPERTY.equals(propertyName)) {
                 handleXGridChange(evt);
             }
-            if(LatticePainterDrawParams.SHOW_COLLISIONS_PROPERTY.equals(propertyName)){
+            if (LatticePainterDrawParams.SHOW_COLLISIONS_PROPERTY.equals(propertyName)) {
                 repaint();
             }
         }
@@ -302,7 +321,8 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         return actionChain;
     }
 
-    public LatticePainterPanel(LatticeDrawingProvider latticeDrawingProvider) {        super(latticeDrawingProvider);
+    public LatticePainterPanel(LatticeDrawingProvider latticeDrawingProvider) {
+        super(latticeDrawingProvider);
         init();
         getPainterOptions().addPropertyChangeListener(layoutChangeHandler);
 
@@ -319,8 +339,8 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
     }
 
     /**
-     *  this function for each lattice node sets up a position, which is nearest to
-     *  small grid position
+     * this function for each lattice node sets up a position, which is nearest to
+     * small grid position
      */
 
     public void alignCoordsToGrid() {
@@ -341,12 +361,18 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
                         new ReduceZoomAction(),
                         new NoZoomAction(),
                         new StorePreferencesAction(),
+                        new ShowLatticeStatisticsAction(),
                         new CreateLatticeViewAction()
         };
         return ret;
 
     }
 
+    private void showStatistics(){
+        Lattice lat = getLattice();
+        String msg = MessageFormat.format("Concept count {0} \n Lattice height {1} \n. Lattice width estimation [{2}, {3}]", new Object[]{new Integer(lat.conceptsCount()), new Integer(lat.getHeight())});
+        showMessage(msg);
+    }
     //---------------------------------------------------------------
     public Dimension getMinimumSize() {
         return new Dimension(25, 25);
@@ -361,11 +387,11 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         return new ResourceManager(getResources());
     }
 
-    public void rescaleYByWeight(){
+    public void rescaleYByWeight() {
         Lattice lattice = getLattice();
         double startY = getLatticeDrawing().getFigureForConcept(lattice.getTop()).getCenterY();
         double endY = getLatticeDrawing().getFigureForConcept(lattice.getBottom()).getCenterY();
-        double weightFactor = 1.0/lattice.getOne().getObjCnt();
+        double weightFactor = 1.0 / lattice.getOne().getObjCnt();
         visitFiguresAndRepaint(new RescaleByWeigthVisitor(startY, endY, weightFactor));
     }
 
@@ -377,19 +403,21 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         LayoutParameters drawParams = getDrawParameters();
         visitFiguresAndRepaint(new RescaleByYFigureVisitor(0, drawParams.getGridSizeY(), getConceptSetDrawing().getNumberOfLevelsInDrawing()));
     }
+
     //----------------------------------------------
     public String getToolTipText(MouseEvent evt) {
         return canDescribePoint(evt.getPoint()) ? describeActivePoint() : null;
     }
+
     //------------------------------------------------------------------
     private class DrawingPropertyChangeListener implements PropertyChangeListener {
         public void propertyChange(PropertyChangeEvent evt) {
-            ConceptSetDrawing oldDrawing = (ConceptSetDrawing)evt.getOldValue();
-            if(null!=oldDrawing){
+            ConceptSetDrawing oldDrawing = (ConceptSetDrawing) evt.getOldValue();
+            if (null != oldDrawing) {
                 oldDrawing.getLatticeDrawingOptions().removePropertyChangeListener(drawParamsEventHandler);
             }
-            ConceptSetDrawing newDrawing = (ConceptSetDrawing)evt.getNewValue();
-            if(null!=newDrawing){
+            ConceptSetDrawing newDrawing = (ConceptSetDrawing) evt.getNewValue();
+            if (null != newDrawing) {
                 newDrawing.getLatticeDrawingOptions().addPropertyChangeListener(drawParamsEventHandler);
             }
         }

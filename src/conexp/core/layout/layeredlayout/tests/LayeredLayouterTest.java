@@ -9,9 +9,9 @@ package conexp.core.layout.layeredlayout.tests;
 
 import conexp.core.Context;
 import conexp.core.Set;
+import conexp.core.layout.GenericLayouter;
 import conexp.core.layout.layeredlayout.LayeredLayoter;
 import conexp.core.layout.tests.GenericLayouterTest;
-import conexp.core.layout.GenericLayouter;
 import conexp.core.tests.SetBuilder;
 
 public class LayeredLayouterTest extends GenericLayouterTest {
@@ -19,7 +19,7 @@ public class LayeredLayouterTest extends GenericLayouterTest {
         return false;
     }
 
-    public static void testFindIrreducibleAttributes(){
+    public static void testFindIrreducibleAttributes() {
         Context cxt = SetBuilder.makeContext(new int[][]{
             {1, 0, 0},
             {0, 1, 0},
@@ -45,7 +45,6 @@ public class LayeredLayouterTest extends GenericLayouterTest {
         expectedIrreducible = SetBuilder.makeSet(new int[]{0, 1, 1, 1, 0});
         assertEquals(expectedIrreducible, LayeredLayoter.findIrreducibleAttributes(cxt));
     }
-
 
 
     protected GenericLayouter makeLayouter() {

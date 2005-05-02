@@ -21,17 +21,17 @@ import java.io.IOException;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class SaveImageActionBase extends AbstractAction {
-    protected String title;
-    protected Frame parentFrame = null;
-    protected GenericFileFilter[] formatFilters;
+    private String title;
+    private Frame parentFrame = null;
+    private GenericFileFilter[] formatFilters;
     protected IExporter[] exporters;
 
-    public SaveImageActionBase(String name, String title) {
+    protected SaveImageActionBase(String name, String title) {
         super(name);
         this.title = title;
     }
 
-    public Frame getParentFrame() {
+    private Frame getParentFrame() {
         return parentFrame;
     }
 
@@ -39,7 +39,7 @@ public abstract class SaveImageActionBase extends AbstractAction {
         this.parentFrame = parentFrame;
     }
 
-    protected GenericFileFilter[] getFormatFilters() {
+    private GenericFileFilter[] getFormatFilters() {
         if (null == formatFilters) {
             java.util.List filters = CollectionFactory.createDefaultList();
             for (int exporterIndex = 0; exporterIndex < exporters.length; exporterIndex++) {

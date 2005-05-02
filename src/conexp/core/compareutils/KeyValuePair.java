@@ -19,7 +19,7 @@ public class KeyValuePair {
     }
 
     public String toString() {
-        return "Key: ["+key+ "] Value: ["+value+"]";
+        return "Key: [" + key + "] Value: [" + value + ']';
     }
 
 }

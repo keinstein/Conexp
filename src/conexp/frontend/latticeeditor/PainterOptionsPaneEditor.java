@@ -24,7 +24,7 @@ public class PainterOptionsPaneEditor extends javax.swing.JPanel {
     private LatticePainterDrawParams latticeDrawParams;
 
     /**
-     *  Constructor for the PainterOptionsEditor object
+     * Constructor for the PainterOptionsEditor object
      */
     public PainterOptionsPaneEditor(LatticePainterOptions opt, LatticePainterDrawParams drawParams, ParamInfo[] latticeDrawingOptions) {
         this.opt = opt;

@@ -12,7 +12,7 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
  * Time: 22:19:52
  */
 
-public class AllAttribsMultiLineLabelingStrategy extends MultiLineLabelingStrategyBase{
+public class AllAttribsMultiLineLabelingStrategy extends MultiLineLabelingStrategyBase {
     public AllAttribsMultiLineLabelingStrategy() {
         super();
     }

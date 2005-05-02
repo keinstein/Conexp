@@ -17,6 +17,7 @@ public abstract class AbstractNodeRadiusCalcStrategy extends DefaultDimensionCal
     /**
      * Insert the method's description here.
      * Creation date: (11.10.00 22:14:00)
+     *
      * @param opt conexp.frontend.LatticePainterOptions
      */
     public AbstractNodeRadiusCalcStrategy(DrawParameters opt) {

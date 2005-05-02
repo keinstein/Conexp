@@ -13,7 +13,7 @@ import javax.swing.event.TableModelListener;
  * Time: 1:34:37
  */
 abstract class SyncListener extends DefaultContextListener implements TableModelListener {
-    public SyncListener() {
+    protected SyncListener() {
     }
 
     abstract void doSync();
@@ -34,6 +34,6 @@ abstract class SyncListener extends DefaultContextListener implements TableModel
 
     protected static boolean reactOnInsertDeleteOrContextStructureChange(TableModelEvent evt) {
         return evt.getType() != TableModelEvent.UPDATE ||
-                                    evt.getFirstRow() == TableModelEvent.HEADER_ROW;
+                evt.getFirstRow() == TableModelEvent.HEADER_ROW;
     }
 }

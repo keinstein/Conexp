@@ -20,8 +20,8 @@ public class IntegralStabilityLabelingStrategy extends SubcontextStabilityLabeli
         return new BruteForceIntegralStabilityCalculator();
     }
 
-    IntegralStabilityCalculator getIntegralStabilityCalculator(){
-        return (IntegralStabilityCalculator)stabilityCalculator;
+    IntegralStabilityCalculator getIntegralStabilityCalculator() {
+        return (IntegralStabilityCalculator) stabilityCalculator;
     }
 
     protected double getStabilityValue(ConceptQuery conceptQuery) {

@@ -5,14 +5,13 @@
  **/
 
 
-
 package conexp.core.tests;
 
 import conexp.core.AttributeInformationSupplier;
 import conexp.core.ContextEntity;
 
 public class MockAttributeInformationSupplier implements AttributeInformationSupplier {
-    final int attrNo;
+    private final int attrNo;
 
     public MockAttributeInformationSupplier(int attrNo) {
         this.attrNo = attrNo;

@@ -38,9 +38,9 @@ public abstract class OperationCountHolder {
             long frequency = operationFrequencies[i];
             if (frequency != 0) {
                 result.append(opCodeToString(i));
-                result.append(":");
+                result.append(':');
                 result.append(frequency);
-                result.append("\n");
+                result.append('\n');
             }
         }
     }

@@ -13,7 +13,7 @@ import javax.swing.undo.CannotUndoException;
 
 
 public abstract class CommandBase extends AbstractUndoableEdit implements Command {
-    String name;
+    private String name;
 
     public CommandBase(String name) {
         this.name = name;

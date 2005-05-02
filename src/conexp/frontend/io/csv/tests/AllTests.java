@@ -16,7 +16,7 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
         suite.addTestSuite(CSVContextCreatorTest.class);
-		suite.addTestSuite(CSVContextLoaderTest.class);
+        suite.addTestSuite(CSVContextLoaderTest.class);
         return suite;
     }
 }

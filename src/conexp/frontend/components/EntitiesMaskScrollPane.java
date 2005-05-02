@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.components;
 
 import conexp.frontend.EntitiesMask;

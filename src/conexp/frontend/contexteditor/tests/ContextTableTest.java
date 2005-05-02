@@ -21,9 +21,7 @@ public class ContextTableTest extends TestCase {
     public void testPasteAllowed() {
         int[] selRows = {0, 1};
         int[] selCols = {0, 1};
-        String copied = table.buildStringRepresentation(
-                selRows.length, selCols.length, selRows, selCols
-        );
+        String copied = table.buildStringRepresentation(selRows.length, selCols.length, selRows, selCols);
         assertTrue(table.contentCanBePasted(copied, 0, 0));
         assertFalse(table.contentCanBePasted(copied, 1, 0));
         assertFalse(table.contentCanBePasted(copied, 0, 1));
@@ -31,9 +29,7 @@ public class ContextTableTest extends TestCase {
 
         selRows = new int[]{1, 2};
         selCols = new int[]{1, 2};
-        copied = table.buildStringRepresentation(
-                selRows.length, selCols.length, selRows, selCols
-        );
+        copied = table.buildStringRepresentation(selRows.length, selCols.length, selRows, selCols);
         assertFalse(table.contentCanBePasted(copied, 0, 0));
         assertTrue(table.contentCanBePasted(copied, 1, 0));
         assertTrue(table.contentCanBePasted(copied, 0, 1));

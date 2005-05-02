@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.figures;
 
 import conexp.core.LatticeElement;
@@ -18,7 +17,7 @@ public abstract class ConceptCorrespondingFigure extends AbstractConceptCorrespo
         return concept;
     }
 
-    public ConceptCorrespondingFigure(LatticeElement el) {
+    protected ConceptCorrespondingFigure(LatticeElement el) {
         super();
         this.concept = el;
     }

@@ -12,7 +12,8 @@ public class LatticeElementCompareInfoFactory implements CompareInfoFactory {
     /**
      * Insert the method's description here.
      * Creation date: (13.07.01 18:40:40)
-     * @param obj java.lang.Object
+     *
+     * @param obj  java.lang.Object
      * @param type int
      */
     public CompareInfo makeCompareInfo(Object key, Object obj, int type) {

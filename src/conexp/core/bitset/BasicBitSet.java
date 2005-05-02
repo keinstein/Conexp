@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.bitset;
 
 import conexp.core.ModifiableSet;
@@ -14,7 +13,7 @@ import conexp.core.Set;
 public abstract class BasicBitSet implements ModifiableSet, Cloneable {
     protected int size;
 
-    public BasicBitSet(int nbits) {
+    protected BasicBitSet(int nbits) {
         if (nbits < 0)
             throw new IndexOutOfBoundsException(Integer.toString(nbits));
         this.size = nbits;

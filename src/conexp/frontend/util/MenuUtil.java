@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.util;
 
 import javax.swing.*;

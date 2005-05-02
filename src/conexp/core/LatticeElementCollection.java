@@ -7,11 +7,15 @@ import java.util.Comparator;
  * All rights reserved.
  * Please read license.txt for licensing issues.
  */
-public interface LatticeElementCollection{
+public interface LatticeElementCollection {
     int getSize();
+
     boolean isEmpty();
+
     LatticeElement get(int index);
+
     ConceptIterator iterator();
+
     void sort(Comparator latticeElementComparator);
 
 }

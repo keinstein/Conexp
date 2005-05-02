@@ -17,6 +17,8 @@ import java.util.Iterator;
  */
 
 public class LatticeAlgorithms {
+    private LatticeAlgorithms() {
+    }
 
     public static LatticeElement findBottomUpMinimalElementThatIncludesSet(LatticeElement startNode, Set intent) {
         if (intent.equals(startNode.getAttribs())) {
@@ -46,4 +48,14 @@ public class LatticeAlgorithms {
             }
         }
     }
+
+    public static int latticeWidthLowerBound(Lattice lattice){
+        return -1;
+    }
+
+    public static int latticeWidthUpperBound(Lattice lattice){
+        return lattice.conceptsCount()-lattice.getHeight();
+    }
+
+
 }

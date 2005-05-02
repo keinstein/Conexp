@@ -22,11 +22,8 @@ public class DependencySetTest extends TestCase {
         assertEquals(false, one.equals(null));
         assertEquals(false, one.equals(new Object()));
 
-        one.addDependency(
-                ObjectMother.makeAssociationRule(
-                        new int[]{0, 0, 0}, 10,
-                        new int[]{1, 1, 1}, 8)
-        );
+        one.addDependency(ObjectMother.makeAssociationRule(new int[]{0, 0, 0}, 10,
+                new int[]{1, 1, 1}, 8));
         assertEquals(false, one.equals(two));
     }
 

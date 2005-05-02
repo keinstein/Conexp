@@ -24,6 +24,7 @@ public class AssociationRuleSupportRenderer extends AssociationRuleRenderer {
     /**
      * Insert the method's description here.
      * Creation date: (06.05.01 20:51:10)
+     *
      * @param dep conexp.core.Dependency
      */
     public void describeRule(StringBuffer buf, AttributeInformationSupplier attrInfo,

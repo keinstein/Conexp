@@ -26,7 +26,7 @@ public class ViewManagerTest extends TestCase {
     }
 
 
-    protected conexp.frontend.ui.ViewManager viewManager;
+    private conexp.frontend.ui.ViewManager viewManager;
 
     protected void setUp() throws Exception {
         viewManager = makeViewManager();
@@ -90,7 +90,7 @@ public class ViewManagerTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (14.05.01 21:05:12)
      */
-    protected void expectFailingActivation(String activatedView, String errMessage) {
+    private void expectFailingActivation(String activatedView, String errMessage) {
         try {
             viewManager.activateView(activatedView);
             fail(errMessage);
@@ -103,7 +103,7 @@ public class ViewManagerTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (14.05.01 21:10:46)
      */
-    protected void expectSuccessfulActivation(String viewName) {
+    private void expectSuccessfulActivation(String viewName) {
         try {
             viewManager.activateView(viewName);
             assertNotNull(viewManager.getView(viewName));
@@ -127,7 +127,7 @@ public class ViewManagerTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (14.05.01 21:13:36)
      */
-    protected void registerView(String viewName, String viewType) {
+    private void registerView(String viewName, String viewType) {
         try {
             viewManager.registerView(viewName, viewType, "Caption");
         } catch (ViewManagerException ex) {
@@ -135,13 +135,12 @@ public class ViewManagerTest extends TestCase {
         }
     }
 
-    
 
     /**
      * Insert the method's description here.
      * Creation date: (14.05.01 21:01:59)
      */
-    protected void setContextEditorFactory() {
+    private void setContextEditorFactory() {
         ViewFactory factory = new ViewFactory() {
             public View makeView(String type) {
                 if ("CONTEXT_EDITOR".equals(type)) {

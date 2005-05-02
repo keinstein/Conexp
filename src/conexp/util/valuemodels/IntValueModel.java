@@ -11,7 +11,7 @@ import java.beans.PropertyVetoException;
 
 
 public class IntValueModel extends conexp.util.valuemodels.VetoableValueModelBase implements IIntValueModel {
-    protected int value;
+    private int value;
 
     /**
      * Insert the method's description here.
@@ -50,7 +50,7 @@ public class IntValueModel extends conexp.util.valuemodels.VetoableValueModelBas
      * Creation date: (18.04.01 22:52:04)
      * @param newValue int
      */
-    protected void doSetValue(int newValue) throws PropertyVetoException {
+    private void doSetValue(int newValue) throws PropertyVetoException {
         getVetoPropertyChange().fireVetoableChange(propertyName, value, newValue);
         int oldValue = value;
         value = newValue;

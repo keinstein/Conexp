@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.layout;
 
 import conexp.core.LatticeElement;
@@ -54,6 +53,7 @@ public class ForceLayout extends SimpleForceLayout {
 
     /**
      * Comments for the makeConceptInfo method.
+     *
      * @return conexp.core.layout.GenericLayouter$LayoutConceptInfo
      */
     protected LayoutConceptInfo makeConceptInfo() {

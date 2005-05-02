@@ -9,7 +9,7 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.util.gui.strategymodel.AbstractNonGrowingStrategyModel;
 
-public class ObjectsLabelingStrategyModel extends AbstractNonGrowingStrategyModel{
+public class ObjectsLabelingStrategyModel extends AbstractNonGrowingStrategyModel {
 
     public ObjectsLabelingStrategyModel() {
     }
@@ -29,8 +29,8 @@ public class ObjectsLabelingStrategyModel extends AbstractNonGrowingStrategyMode
 */
 
 
-           // { "Point Stability", LabelingStrategiesKeys.POINT_STABILITY_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.PointStabilityLabelingStrategy"},
-           // { "Integral stability", LabelingStrategiesKeys.INTEGRAL_STABILITY_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.IntegralStabilityLabelingStrategy"}
+            // { "Point Stability", LabelingStrategiesKeys.POINT_STABILITY_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.PointStabilityLabelingStrategy"},
+            // { "Integral stability", LabelingStrategiesKeys.INTEGRAL_STABILITY_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.IntegralStabilityLabelingStrategy"}
         };
     }
 

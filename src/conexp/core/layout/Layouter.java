@@ -7,9 +7,9 @@
 
 package conexp.core.layout;
 
+import conexp.core.Lattice;
 import conexp.util.GenericStrategy;
 import conexp.util.gui.paramseditor.ParamsProvider;
-import conexp.core.Lattice;
 
 import java.beans.PropertyChangeListener;
 

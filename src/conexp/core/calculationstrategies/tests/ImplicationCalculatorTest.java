@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.*;

@@ -53,11 +53,12 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             return ComparatorUtil.compareDoubles(i1, i2);
         }
     }
+
     //------------------------------------------
     class PositionInRankComparator implements Comparator {
         public int compare(Object o1, Object o2) {
-            double i1 = getElementInfo((LatticeElement)o1).posInRank;
-            double i2 = getElementInfo((LatticeElement)o2).posInRank;
+            double i1 = getElementInfo((LatticeElement) o1).posInRank;
+            double i2 = getElementInfo((LatticeElement) o2).posInRank;
             return ComparatorUtil.compareDoubles(i1, i2);
         }
     }
@@ -199,9 +200,9 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
 
     private void assignRanksToLatticeElements() {
         getLayerAssignmentFunction().calculateLayersForLattice(lattice,
-                new ILayerAssignmentFunction.ILayerAssignmentFunctionCallback(){
+                new ILayerAssignmentFunction.ILayerAssignmentFunctionCallback() {
                     public void layerForLatticeElement(LatticeElement latticeElement, int layer) {
-                       getElementInfo(latticeElement).rank = layer;
+                        getElementInfo(latticeElement).rank = layer;
                     }
                 });
     }
@@ -279,11 +280,11 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     }
 //------------------------------------------
     /**
-     this methods calculates crossing between predessors edges
-     of two vertices with one rank
-     list of predessors should be ordered due
-     posInRank of edges end vertices
-     first pos should be less then second pos
+     * this methods calculates crossing between predessors edges
+     * of two vertices with one rank
+     * list of predessors should be ordered due
+     * posInRank of edges end vertices
+     * first pos should be less then second pos
      */
     int crossingPred(LatticeElement first, LatticeElement second) {
         Assert.isTrue(isPredessorsOrdered(first), "Predessors should be ordered ");
@@ -293,11 +294,11 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
 
 //------------------------------------------
     /**
-     this methods calculates crossing between successors edges
-     of two vertices with one rank
-     list of successors should be ordered due
-     posInRank of edges end vertices
-     first pos should be less then second pos
+     * this methods calculates crossing between successors edges
+     * of two vertices with one rank
+     * list of successors should be ordered due
+     * posInRank of edges end vertices
+     * first pos should be less then second pos
      */
     int crossingSucc(LatticeElement first, LatticeElement second) {
         Assert.isTrue(isSuccessorsOrdered(first), " Successors should be ordered ");
@@ -708,8 +709,9 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         virtMap.clear();
     }
 
-    interface ConnectedCollectionsSupplier{
+    interface ConnectedCollectionsSupplier {
         LatticeElementCollection getConnected(LatticeElement current);
+
         LatticeElementCollection getOtherConnected(LatticeElement current);
     }
 
@@ -748,6 +750,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             currInfo.y = drawParams.getGridSizeY() * (lattice.getHeight() - curr.getHeight());
         }
     }
+
     //---------------------------------------------------------------
     int calcLatticeWidth() {
         //        lattice.calcHeight();
@@ -776,7 +779,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     }
 
     /**
-     @deprecated
+     * @deprecated
      */
     //----------------------------------------------
     private boolean isPredessorsOrdered(LatticeElement el) {
@@ -784,7 +787,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
     }
 
     /**
-     @deprecated
+     * @deprecated
      */
     //----------------------------------------------
     private boolean isSuccessorsOrdered(LatticeElement el) {
@@ -817,7 +820,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         System.out.print("{ ");
         while (enum.hasNext()) {
             LatticeElement elm = enum.nextConcept();
-            System.out.print("[" + elm.getIndex() + ";" + getElementInfo(elm).rank + ";" + getElementInfo(elm).posInRank + "]");
+            System.out.print("[" + elm.getIndex() + ';' + getElementInfo(elm).rank + ';' + getElementInfo(elm).posInRank + ']');
         }
         System.out.println(" } ");
     }
@@ -840,7 +843,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             doStraytenLayoutForRank(rank);
         }
 
-        applyElementInfoProcessor(new ElementInfoProcessor(){
+        applyElementInfoProcessor(new ElementInfoProcessor() {
             public void process(ElementInfo elementInfo) {
                 elementInfo.xPosDirect = elementInfo.x;
             }
@@ -851,12 +854,12 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
             doAssignsCoordsForRank(rank, reverseSupplier);
             doStraytenLayoutForRank(rank);
         }
-        applyElementInfoProcessor( new ElementInfoProcessor(){
+        applyElementInfoProcessor(new ElementInfoProcessor() {
             public void process(ElementInfo elementInfo) {
                 elementInfo.xPosReverse = elementInfo.x;
             }
         });
-        applyElementInfoProcessor(new ElementInfoProcessor(){
+        applyElementInfoProcessor(new ElementInfoProcessor() {
             public void process(ElementInfo elementInfo) {
                 elementInfo.x = (elementInfo.xPosReverse + elementInfo.xPosDirect) / 2.;
             }
@@ -893,7 +896,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         }
     }
 
-    protected static final int edgeSlack(Edge currEdge) {
+    protected static int edgeSlack(Edge currEdge) {
         return currEdge.getLength() - 1;
     }
 

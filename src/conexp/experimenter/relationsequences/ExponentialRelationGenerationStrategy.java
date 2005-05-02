@@ -30,7 +30,7 @@ public class ExponentialRelationGenerationStrategy extends BaseRelationGeneratio
      * @return java.lang.String
      */
     public String describeStrategy() {
-        return "Exponential;MinSize;" + minSize + ";MaxSize;" + maxSize + ";";
+        return "Exponential;MinSize;" + minSize + ";MaxSize;" + maxSize + ';';
     }
 
 

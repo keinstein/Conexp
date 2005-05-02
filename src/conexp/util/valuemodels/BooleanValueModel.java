@@ -10,7 +10,7 @@ package conexp.util.valuemodels;
 
 public class BooleanValueModel extends ValueModelBase {
 
-    boolean value;
+    private boolean value;
 
     public BooleanValueModel(String propName, boolean value) {
         super(propName);

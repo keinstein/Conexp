@@ -31,6 +31,7 @@ public class AssociationRulesView extends GenericRuleView {
 
     /**
      * RuleView constructor comment.
+     *
      * @param doc conexp.frontend.ContextDocument
      */
     public AssociationRulesView(DependencySetSupplier doc, ActionMap parentActionChain) {

@@ -13,7 +13,7 @@ import java.util.Map;
  * Please read license.txt for licensing issues.
  */
 
-public class PointAndIntegralStabilityCalculator extends DefaultBinaryRelationProcessor implements PointStabilityCalculator, IntegralStabilityCalculator{
+public class PointAndIntegralStabilityCalculator extends DefaultBinaryRelationProcessor implements PointStabilityCalculator, IntegralStabilityCalculator {
     private int powerOfObjectCount;
 
     public void setRelation(BinaryRelation relation) {
@@ -21,10 +21,10 @@ public class PointAndIntegralStabilityCalculator extends DefaultBinaryRelationPr
         calcStability();
     }
 
-    Map setToOccurencesMap = CollectionFactory.createDefaultMap();
-    Map setToSumOfOccurencesMap = CollectionFactory.createDefaultMap();
+    private Map setToOccurencesMap = CollectionFactory.createDefaultMap();
+    private Map setToSumOfOccurencesMap = CollectionFactory.createDefaultMap();
 
-    ModifiableSet[] intersectionsByDepth;
+    private ModifiableSet[] intersectionsByDepth;
 
     private void calcStability() {
         setToOccurencesMap.clear();
@@ -49,8 +49,8 @@ public class PointAndIntegralStabilityCalculator extends DefaultBinaryRelationPr
             int count = 0;
             for (Iterator innerIter = setToOccurencesMap.keySet().iterator(); innerIter.hasNext();) {
                 Set inner = (Set) innerIter.next();
-                if(inner.isSubsetOf(outer)){
-                    count +=  getPointOccurencesForSet(inner);
+                if (inner.isSubsetOf(outer)) {
+                    count += getPointOccurencesForSet(inner);
                 }
             }
             setToSumOfOccurencesMap.put(outer, new Integer(count));
@@ -60,12 +60,12 @@ public class PointAndIntegralStabilityCalculator extends DefaultBinaryRelationPr
     private void doCalcStabilityOfSubsets(int currentDepth, Set currentIntersection) {
         if (currentDepth >= intersectionsByDepth.length) {
             Integer currentCount = (Integer) setToOccurencesMap.get(currentIntersection);
-             if (currentCount == null) {
-                 //here we creating permanent copy, it's first time generation of this set
-                 setToOccurencesMap.put(currentIntersection.makeModifiableSetCopy(), new Integer(1));
-             } else {
-                 setToOccurencesMap.put(currentIntersection, new Integer(currentCount.intValue() + 1));
-             }
+            if (currentCount == null) {
+                //here we creating permanent copy, it's first time generation of this set
+                setToOccurencesMap.put(currentIntersection.makeModifiableSetCopy(), new Integer(1));
+            } else {
+                setToOccurencesMap.put(currentIntersection, new Integer(currentCount.intValue() + 1));
+            }
             return;
         }
         int currentObjectIndex = currentDepth;
@@ -83,11 +83,11 @@ public class PointAndIntegralStabilityCalculator extends DefaultBinaryRelationPr
 
 
     public double getIntegralStabilityForSet(Set set) {
-        return  (double)safeGetIntFromMap(setToSumOfOccurencesMap, set)/ (double) powerOfObjectCount;
+        return (double) safeGetIntFromMap(setToSumOfOccurencesMap, set) / (double) powerOfObjectCount;
     }
 
-    public double getPointStabilityOfSet(Set set){
-        return (double)getPointOccurencesForSet(set)/(double)powerOfObjectCount;
+    public double getPointStabilityOfSet(Set set) {
+        return (double) getPointOccurencesForSet(set) / (double) powerOfObjectCount;
     }
 
     private int getPointOccurencesForSet(Set set) {

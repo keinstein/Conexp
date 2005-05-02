@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core;
 
 public class DefaultBinaryRelationProcessor implements BinaryRelationProcessor {

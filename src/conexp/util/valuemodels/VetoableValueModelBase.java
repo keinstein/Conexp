@@ -12,7 +12,7 @@ import java.beans.VetoableChangeSupport;
 
 
 public class VetoableValueModelBase extends ValueModelBase implements IVetoableValueModel {
-    protected transient VetoableChangeSupport vetoPropertyChange;
+    private transient VetoableChangeSupport vetoPropertyChange;
 
     /**
      * The addVetoableChangeListener method was generated to support the vetoPropertyChange field.
@@ -54,7 +54,7 @@ public class VetoableValueModelBase extends ValueModelBase implements IVetoableV
     /**
      * BoundedIntValue constructor comment.
      */
-    public VetoableValueModelBase(String propName) throws
+    protected VetoableValueModelBase(String propName) throws
             IllegalArgumentException {
         super(propName);
     }

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.queries;
 
 import conexp.core.ContextFunctions;

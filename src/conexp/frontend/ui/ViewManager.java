@@ -12,10 +12,10 @@ import conexp.frontend.ViewChangeListener;
 import conexp.frontend.ViewFactory;
 
 import javax.swing.*;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 
 
 public class ViewManager {
@@ -85,7 +85,7 @@ public class ViewManager {
         return (JComponent) getViewsMap().get(name);
     }
 
-    public Collection getViews(){
+    public Collection getViews() {
         return Collections.unmodifiableCollection(getViewsMap().values());
     }
 

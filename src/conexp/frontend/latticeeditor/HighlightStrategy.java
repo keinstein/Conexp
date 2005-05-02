@@ -9,8 +9,8 @@ package conexp.frontend.latticeeditor;
 
 import canvas.Figure;
 import canvas.IHighlightStrategy;
-import conexp.core.Set;
 import conexp.core.LatticeElement;
+import conexp.core.Set;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptRelatedTextFigure;
 import conexp.frontend.latticeeditor.figures.EdgeFigure;
@@ -72,7 +72,7 @@ public abstract class HighlightStrategy implements GenericStrategy, IHighlightSt
         return query != null;
     }
 
-    public HighlightStrategy() {
+    protected HighlightStrategy() {
         super();
     }
 
@@ -89,7 +89,7 @@ public abstract class HighlightStrategy implements GenericStrategy, IHighlightSt
         if (!(obj instanceof HighlightStrategy)) return false;
 
         final HighlightStrategy highlightStrategy = (HighlightStrategy) obj;
-        if(!getClass().equals(highlightStrategy.getClass())){
+        if (!getClass().equals(highlightStrategy.getClass())) {
             return false;
         }
 

@@ -12,8 +12,8 @@ import conexp.util.gui.paramseditor.ParamInfo;
 import util.Assert;
 
 import java.awt.geom.Point2D;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
     protected int currIter;
@@ -130,18 +130,17 @@ public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
     /**
      * Insert the method's description here.
      * Creation date: (29.05.01 6:20:08)
+     *
      * @return conexp.core.layout.ForceDistribution
      */
     public ForceDistribution getForceDistribution() {
         if (null == forceDistribution) {
             forceDistribution = new ForceDistribution();
-            forceDistribution.getPropertyChange().addPropertyChangeListener(
-                    new PropertyChangeListener() {
-                        public void propertyChange(PropertyChangeEvent evt) {
-                            fireLayoutPropertyChanged(LAYOUT_PARAMS_CHANGE);
-                        }
-                    }
-            );
+            forceDistribution.getPropertyChange().addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent evt) {
+                    fireLayoutPropertyChanged(LAYOUT_PARAMS_CHANGE);
+                }
+            });
         }
         return forceDistribution;
     }
@@ -150,6 +149,7 @@ public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
     /**
      * Insert the method's description here.
      * Creation date: (04.06.01 14:11:34)
+     *
      * @return boolean
      */
     public boolean isDone() {

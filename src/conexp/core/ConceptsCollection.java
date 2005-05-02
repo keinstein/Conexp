@@ -102,8 +102,8 @@ public class ConceptsCollection {
         return elements.toString();
     }
 
-    public boolean equalsAsSets(ConceptsCollection other){
-        if(this.conceptsCount()!=other.conceptsCount()){
+    public boolean equalsAsSets(ConceptsCollection other) {
+        if (this.conceptsCount() != other.conceptsCount()) {
             return false;
         }
         return toSet(this.elements).equals(toSet(other.elements));
@@ -114,20 +114,20 @@ public class ConceptsCollection {
     }
 
     public boolean equals(Object obj) {
-        if (this == obj){
+        if (this == obj) {
             return true;
         }
-        if (!(obj instanceof ConceptsCollection)){
+        if (!(obj instanceof ConceptsCollection)) {
             return false;
         }
 
         final ConceptsCollection conceptsCollection = (ConceptsCollection) obj;
 
-        if (context != null ? !context.equals(conceptsCollection.context) : conceptsCollection.context != null){
+        if (context != null ? !context.equals(conceptsCollection.context) : conceptsCollection.context != null) {
             return false;
         }
         //todo: think, maybe set comparison is more appropriate
-        if (!elements.equals(conceptsCollection.elements)){
+        if (!elements.equals(conceptsCollection.elements)) {
             return false;
         }
 

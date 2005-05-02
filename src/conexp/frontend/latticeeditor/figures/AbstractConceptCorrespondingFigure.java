@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.*;
@@ -24,9 +23,9 @@ import java.awt.geom.Rectangle2D;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDiagramFigure implements FigureWithDependentFigures{
+public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDiagramFigure implements FigureWithDependentFigures {
 
-    public AbstractConceptCorrespondingFigure() {
+    protected AbstractConceptCorrespondingFigure() {
         super();
     }
 
@@ -80,7 +79,7 @@ public abstract class AbstractConceptCorrespondingFigure extends AbstractLineDia
 
     protected Color getNodeBorderColor(CanvasScheme opt) {
         CanvasColorScheme colorScheme = opt.getColorScheme();
-        if(hasCollision()){
+        if (hasCollision()) {
             return colorScheme.getCollisionColor();
         }
         IHighlightStrategy highlightStrategy = opt.getHighlightStrategy();

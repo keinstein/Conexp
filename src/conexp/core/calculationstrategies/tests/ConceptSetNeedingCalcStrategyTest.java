@@ -7,10 +7,10 @@
 
 package conexp.core.calculationstrategies.tests;
 
+import com.mockobjects.ExpectationSet;
 import conexp.core.BinaryRelation;
 import conexp.core.ConceptSetNeedingCalcStrategy;
 import conexp.core.ConceptsCollection;
-import com.mockobjects.ExpectationSet;
 
 public abstract class ConceptSetNeedingCalcStrategyTest extends CalcStrategyTest {
 

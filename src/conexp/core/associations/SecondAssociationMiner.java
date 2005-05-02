@@ -12,10 +12,9 @@ import conexp.core.FCAEngineRegistry;
 import conexp.core.ImplicationSet;
 import conexp.core.Lattice;
 import conexp.core.calculationstrategies.LatticeImplicationCalculator;
-
-import java.util.ArrayList;
-
 import util.Assert;
+
+import java.util.List;
 
 
 public class SecondAssociationMiner extends BaseAssociationMiner {
@@ -30,7 +29,8 @@ public class SecondAssociationMiner extends BaseAssociationMiner {
         findFrequentItemsetsAndImplications(minSupport);
 //        long exactTime = System.currentTimeMillis();
 
-        ArrayList frequentEdges = findFrequentEdgesSortedByConfidence(frequentItemsetLattice, minConfidence, minSupport);
+
+        List frequentEdges = findFrequentEdgesSortedByConfidence(frequentItemsetLattice, minConfidence, minSupport);
 //        long sortTime = System.currentTimeMillis();
         findApproximateBaseByCruscal(depSet, frequentEdges, frequentItemsetLattice.conceptsCount());
 /*
@@ -64,7 +64,7 @@ public class SecondAssociationMiner extends BaseAssociationMiner {
         return frequentItemsetLattice;
     }
 
-    public Lattice findFrequentItemsetsLattice(int minSupport) {
+    private Lattice findFrequentItemsetsLattice(int minSupport) {
         frequentItemsetLattice = FCAEngineRegistry.buildIcebergLattice(cxt, minSupport);
         return frequentItemsetLattice;
     }

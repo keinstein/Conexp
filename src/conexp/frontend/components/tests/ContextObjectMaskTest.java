@@ -57,8 +57,8 @@ public class ContextObjectMaskTest extends ContextMaskBaseTest {
         cxt.increaseAttributes(increment);
     }
 
-    protected ContextObjectMask getMask(){
-        return (ContextObjectMask)mask;
+    private ContextObjectMask getMask() {
+        return (ContextObjectMask) mask;
     }
 
 

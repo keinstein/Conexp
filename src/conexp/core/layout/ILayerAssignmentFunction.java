@@ -9,7 +9,7 @@ import conexp.core.LatticeElement;
  * Please read license.txt for licensing issues.
  */
 public interface ILayerAssignmentFunction {
-    interface ILayerAssignmentFunctionCallback{
+    interface ILayerAssignmentFunctionCallback {
         void layerForLatticeElement(LatticeElement latticeElement, int layer);
     }
 

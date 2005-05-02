@@ -20,11 +20,11 @@ public class ConceptNumExperimentCallback extends ConceptNumCallback {
 //---------------------------------------
     public void addConcept(Set obj, Set attr) {
         conCnt++;
-        if(conCnt%100000==0){
-           System.err.print("+");
+        if (conCnt % 100000 == 0) {
+            System.err.print("+");
         }
-        if(conCnt%1000000==0){
-            System.err.println("\n|"+conCnt+" delay "+stopwatch.getDelayTime());
+        if (conCnt % 1000000 == 0) {
+            System.err.println("\n|" + conCnt + " delay " + stopwatch.getDelayTime());
         }
     }
 }

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.components.tests;
 
 import conexp.core.Context;
@@ -24,7 +23,7 @@ import util.testing.SimpleMockPropertyChangeListener;
 import java.util.Set;
 
 public class LatticeComponentTest extends TestCase {
-    LatticeComponent latticeComponent;
+    private LatticeComponent latticeComponent;
 
     protected void setUp() {
         latticeComponent = new LatticeComponent(SetBuilder.makeContext(new int[][]{{0, 1, 1},

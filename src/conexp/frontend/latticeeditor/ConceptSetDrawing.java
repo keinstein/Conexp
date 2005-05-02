@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor;
 
 import canvas.Figure;
@@ -18,21 +17,21 @@ import conexp.core.ConceptsCollection;
 import conexp.core.ContextEntity;
 import conexp.core.ItemSet;
 import conexp.core.Lattice;
+import conexp.frontend.latticeeditor.drawstrategies.DefaultLabelingStrategiesFactory;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.LineDiagramFigure;
-import conexp.frontend.latticeeditor.drawstrategies.DefaultLabelingStrategiesFactory;
 import conexp.util.gui.paramseditor.ParamInfo;
 
 import java.awt.*;
 import java.awt.geom.Dimension2D;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 
 public abstract class ConceptSetDrawing extends FigureDrawing {
     FigureDimensionCalcStrategyProvider figureDimensionProvider = new FigureDimensionCalcStretegyProviderImplementation();
     LatticeDrawingOptions latticeDrawingOptions;
 
-    public ConceptSetDrawing() {
+    protected ConceptSetDrawing() {
         super();
         setOptions(new LatticePainterOptions(getLatticeDrawingSchema().getDrawParams()));
     }
@@ -77,7 +76,7 @@ public abstract class ConceptSetDrawing extends FigureDrawing {
         return (LatticePainterOptions) getOptions();
     }
 
-    public void restorePreferences(){
+    public void restorePreferences() {
         getEditableDrawParameters().restorePreferences();
         getPainterOptions().restorePreferences();
         getLabelingStrategiesContextImpl().restorePreferences();
@@ -88,7 +87,7 @@ public abstract class ConceptSetDrawing extends FigureDrawing {
     }
 
 
-    public void storePreferences(){
+    public void storePreferences() {
         getEditableDrawParameters().doStorePreferences();
         getPainterOptions().doStorePreferences();
         getLabelingStrategiesContextImpl().doStorePreferences();
@@ -114,8 +113,8 @@ public abstract class ConceptSetDrawing extends FigureDrawing {
     }
 
     /**
-     *  TODO: Clean up
-     * */
+     * TODO: Clean up
+     */
     private synchronized void changeLabelingStrategy(ILabelingStrategy oldStrategy, ILabelingStrategy newStrategy) {
         oldStrategy.shutdown(this);
 

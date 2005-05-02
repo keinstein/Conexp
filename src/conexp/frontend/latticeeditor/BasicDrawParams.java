@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor;
 
 import conexp.core.layout.DefaultLayoutParameters;
@@ -19,11 +18,12 @@ public class BasicDrawParams extends DefaultLayoutParameters implements DrawPara
 
     protected static boolean DEFAULT_SHOW_COLLISIONS = true;
 
-    protected BasicDrawParams(){}
+    protected BasicDrawParams() {
+    }
 
     static final DrawParameters g_Instance = new BasicDrawParams();
 
-    public static final DrawParameters getInstance(){
+    public static DrawParameters getInstance() {
         return g_Instance;
     }
 

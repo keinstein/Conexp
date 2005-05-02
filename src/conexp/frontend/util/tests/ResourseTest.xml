@@ -10,10 +10,10 @@
         </Action>
     </Actions>
     <Menus>
-        <Menu key = "ContextTableEditor">
+        <Menu key="ContextTableEditor">
             <MenuItem action="ContextTableEditor.removeAttributes"/>
             <MenuItem action="ContextTableEditor.removeObjects"/>
-            <MenuItem type = "Separator"/>
+            <MenuItem type="Separator"/>
             <MenuItem action="ContextTableEditor.invertCells"/>
             <MenuItem action="ContextTableEditor.fillCells"/>
         </Menu>

@@ -16,7 +16,7 @@ import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 
 import java.awt.*;
 
-public class EdgeFigure extends LineFigure implements Collidable  {
+public class EdgeFigure extends LineFigure implements Collidable {
     public EdgeFigure(AbstractConceptCorrespondingFigure start, AbstractConceptCorrespondingFigure end) {
         super(start, end);
         setColorTransformer(ColorTransformerWithFadeOut.getInstance());
@@ -34,14 +34,14 @@ public class EdgeFigure extends LineFigure implements Collidable  {
     }
 
     protected Color getLineColor(CanvasScheme opt) {
-        if(hasCollision()){
+        if (hasCollision()) {
             return opt.getColorScheme().getCollisionColor();
         }
         return super.getLineColor(opt);
     }
 
     protected float getLineThickness(CanvasScheme opt) {
-        if(hasCollision()){
+        if (hasCollision()) {
             return 2.0f;
         }
         return doGetLineThickness(opt);

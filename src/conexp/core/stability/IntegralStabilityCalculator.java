@@ -9,6 +9,6 @@ import conexp.core.Set;
  * Please read license.txt for licensing issues.
  */
 
-public interface IntegralStabilityCalculator extends BinaryRelationProcessor{
+public interface IntegralStabilityCalculator extends BinaryRelationProcessor {
     double getIntegralStabilityForSet(Set set);
 }

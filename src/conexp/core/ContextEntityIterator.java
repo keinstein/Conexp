@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core;
 
 import java.util.Iterator;
@@ -17,7 +16,7 @@ public abstract class ContextEntityIterator implements Iterator {
     final Set entities;
     private int currEntity = Set.NOT_IN_SET;
 
-    ContextEntityIterator(ExtendedContextEditingInterface cxt, Set entities) {
+    protected ContextEntityIterator(ExtendedContextEditingInterface cxt, Set entities) {
         this.cxt = cxt;
         this.entities = entities;
         checkConsistency();

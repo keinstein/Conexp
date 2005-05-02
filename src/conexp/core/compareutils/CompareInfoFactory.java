@@ -12,7 +12,8 @@ public interface CompareInfoFactory {
     /**
      * Insert the method's description here.
      * Creation date: (13.07.01 16:43:33)
-     * @param obj java.lang.Object
+     *
+     * @param obj  java.lang.Object
      * @param type int
      */
     CompareInfo makeCompareInfo(Object key, Object obj, int type);

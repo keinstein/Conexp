@@ -58,7 +58,6 @@ public class ObjectListContextCreator implements ContextCreator, DocumentLoader,
         String OBJECT_SEPARATOR = ":";
 
 
-
         String input;
 
         while ((input = bufferedReader.readLine()) != null) {

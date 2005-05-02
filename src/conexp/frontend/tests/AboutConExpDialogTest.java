@@ -6,12 +6,12 @@ package conexp.frontend.tests;
  * Time: 0:26:50
  */
 
-import junit.framework.*;
 import conexp.frontend.AboutConExpDialog;
+import junit.framework.TestCase;
 
 public class AboutConExpDialogTest extends TestCase {
-    public static void testLicenseUrl(){
-        AboutConExpDialog aboutConExpDialog= new AboutConExpDialog(null, "title", true);
+    public static void testLicenseUrl() {
+        AboutConExpDialog aboutConExpDialog = new AboutConExpDialog(null, "title", true);
         assertNotNull(aboutConExpDialog.getLicenseUrl());
     }
 }

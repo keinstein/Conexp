@@ -9,7 +9,7 @@ package conexp.core.layout;
 
 
 public abstract class NonIncrementalLayouter extends GenericLayouter {
-    public NonIncrementalLayouter() {
+    protected NonIncrementalLayouter() {
         super();
     }
 

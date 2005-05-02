@@ -16,7 +16,7 @@ import canvas.FigureDrawingCanvas;
 
 
 public class ToolAction extends ActionWithKey {
-    Tool tool;
+    private Tool tool;
     private FigureDrawingCanvas drawing;
 
     public ToolAction(FigureDrawingCanvas drawing, String key, String name, Tool tool) {

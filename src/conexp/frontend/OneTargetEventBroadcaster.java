@@ -5,14 +5,13 @@
  **/
 
 
-
 package conexp.frontend;
 
 import java.beans.PropertyChangeEvent;
 import java.util.TooManyListenersException;
 
 public class OneTargetEventBroadcaster implements EventBroadcaster {
-    Object target;
+    private Object target;
 
     public void addTarget(Object newTarget) throws TooManyListenersException {
         if (null != target) {

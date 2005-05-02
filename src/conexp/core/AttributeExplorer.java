@@ -5,32 +5,31 @@
  **/
 
 
-
 package conexp.core;
 
 public interface AttributeExplorer {
-    public interface AttributeExplorerUserCallback {
+    interface AttributeExplorerUserCallback {
         int STOP = -1;
         int REJECT_IMPLICATION = 0;
         int ACCEPT_IMPLICATION = 1;
         /**
          * alias for readability
-         * */
+         */
         int HAS_CONTREXAMPLE = REJECT_IMPLICATION;
 
         void setAttributeInformationSupplier(AttributeInformationSupplier attrInfo);
 
         /**
-         *  returns STOP - to stop attribute exploration
-         *  returns REJECT_IMPLICATION - when implication is not true
-         *  returns ACCEPT_IMPLICATION - when implication is true
+         * returns STOP - to stop attribute exploration
+         * returns REJECT_IMPLICATION - when implication is not true
+         * returns ACCEPT_IMPLICATION - when implication is true
          */
         int isTrue(Set premise, Set conclusion);
 
         /**
-         *  returns STOP - when user wants to interrupt attribute exploration
-         *  returns HAS_CONTREXAMPLE - when user provides a contrexample
-         *  returns ACCEPT_IMPLICATION - when user doesn't can't provide a valid contrexample
+         * returns STOP - when user wants to interrupt attribute exploration
+         * returns HAS_CONTREXAMPLE - when user provides a contrexample
+         * returns ACCEPT_IMPLICATION - when user doesn't can't provide a valid contrexample
          */
 
         int queryContrExample(ContextEntity obj, ModifiableSet contrExample);
@@ -39,7 +38,7 @@ public interface AttributeExplorer {
     }
 
 
-    public interface ContextModificationCallback {
+    interface ContextModificationCallback {
         void addObjectToContext(String name, Set intent);
     }
 

@@ -12,11 +12,11 @@ import util.StringUtil;
 
 public class ValueModelBase implements IValueModel {
 
-    protected transient java.beans.PropertyChangeSupport propertyChange;
+    private transient java.beans.PropertyChangeSupport propertyChange;
 
     protected final String propertyName;
 
-    public ValueModelBase(String propName) throws IllegalArgumentException {
+    protected ValueModelBase(String propName) throws IllegalArgumentException {
         propName = StringUtil.safeTrim(propName);
         if ("".equals(propName)) {
             throw new IllegalArgumentException("Property name can't be null or empty");

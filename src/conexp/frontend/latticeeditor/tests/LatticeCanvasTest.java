@@ -7,9 +7,9 @@
 
 package conexp.frontend.latticeeditor.tests;
 
+import canvas.CanvasScheme;
 import canvas.IFigurePredicate;
 import canvas.IHighlightStrategy;
-import canvas.CanvasScheme;
 import canvas.figures.TrueFigurePredicate;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
@@ -65,8 +65,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
                 return 10 + 2 * (getDrawParameters()).getMaxNodeRadius();
             }
         };
-        double res = latCanvas.getUpMoveConstraintForConcept(new ConceptFigure(
-                ConceptNodeQueryFactory.makeEmpty()), TrueFigurePredicate.getInstance());
+        double res = latCanvas.getUpMoveConstraintForConcept(new ConceptFigure(ConceptNodeQueryFactory.makeEmpty()), TrueFigurePredicate.getInstance());
         assertEquals(10.0, res, 0.001);
     }
 
@@ -138,10 +137,8 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
         LatticeComponent component = new LatticeComponent(SetBuilder.makeContext(saturatedRelation));
         component.calculateLattice();
         Lattice lattice = component.getLattice();
-        ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(
-                lattice, saturatedRelation,
-                layout
-        );
+        ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(lattice, saturatedRelation,
+                layout);
         LatticeDrawing drawing = component.getDrawing();
         drawing.setCoordinatesFromMapper(mapper);
 

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.layoutengines;
 
 import conexp.core.Lattice;

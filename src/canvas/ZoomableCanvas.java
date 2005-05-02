@@ -45,7 +45,7 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         }
     }
 
-    public ZoomableCanvas() {
+    protected ZoomableCanvas() {
         setZoom(1.0D);
         addComponentListener(resizeListener);
     }

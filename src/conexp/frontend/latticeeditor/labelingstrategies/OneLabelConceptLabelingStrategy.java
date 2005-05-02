@@ -2,8 +2,8 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 
 import canvas.Figure;
 import canvas.figures.BorderCalculatingFigure;
-import conexp.core.LatticeElement;
 import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.LatticeElement;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
@@ -21,7 +21,7 @@ import java.util.Collection;
 public abstract class OneLabelConceptLabelingStrategy extends GenericLabelingStrategy {
     protected ExtendedContextEditingInterface cxt;
 
-    public OneLabelConceptLabelingStrategy() {
+    protected OneLabelConceptLabelingStrategy() {
         super();
     }
 

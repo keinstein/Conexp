@@ -19,6 +19,7 @@ public class ViewManagerException extends Exception {
 
     /**
      * ViewManagerException constructor comment.
+     *
      * @param s java.lang.String
      */
     public ViewManagerException(String s) {

@@ -7,8 +7,8 @@
 
 package conexp.frontend.latticeeditor;
 
-import conexp.core.layout.Layouter;
 import conexp.core.ConceptsCollection;
+import conexp.core.layout.Layouter;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.StrategyValueItemParamInfo;
 import conexp.util.gui.strategymodel.StrategyValueItem;
@@ -136,7 +136,7 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
                 ", nodeRadiusStrategy=" + nodeRadiusStrategy +
                 ", edgeSizeCalcStrategy=" + edgeSizeCalcStrategy +
                 ", highlightStrategy=" + highlightStrategy +
-                "}";
+                '}';
     }
 
     public DrawStrategiesContext makeCopy(PropertyChangeSupport propertyChange) {

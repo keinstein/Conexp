@@ -5,12 +5,11 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.drawstrategies;
 
 import conexp.frontend.latticeeditor.LabelingStrategyModelFactory;
-import conexp.frontend.latticeeditor.labelingstrategies.ObjectsLabelingStrategyModel;
 import conexp.frontend.latticeeditor.labelingstrategies.AttributesLabelingStrategyModel;
+import conexp.frontend.latticeeditor.labelingstrategies.ObjectsLabelingStrategyModel;
 import conexp.util.gui.strategymodel.StrategyModel;
 
 public class DefaultLabelingStrategiesFactory implements LabelingStrategyModelFactory {

@@ -22,6 +22,7 @@ public class AssociationRuleConfidenceRenderer extends AssociationRuleRenderer {
 
     /**
      * Creation date: (09.05.01 9:30:19)
+     *
      * @param dep conexp.core.Dependency
      */
     public void describeRule(StringBuffer buf, AttributeInformationSupplier attrInfo, conexp.core.Dependency dep) {

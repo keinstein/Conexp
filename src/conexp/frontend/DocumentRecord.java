@@ -5,15 +5,14 @@
  **/
 
 
-
 package conexp.frontend;
 
 import util.FileNameMangler;
 import util.StringUtil;
 
 public class DocumentRecord {
-    FileNameMangler pathFormer;
-    boolean hasCorrespondingFile = false;
+    private FileNameMangler pathFormer;
+    private boolean hasCorrespondingFile = false;
 
     public DocumentRecord(Document document, String url) {
         if (null == document) {
@@ -51,5 +50,5 @@ public class DocumentRecord {
         return pathFormer.getFileName();
     }
 
-    Document document;
+    private Document document;
 }

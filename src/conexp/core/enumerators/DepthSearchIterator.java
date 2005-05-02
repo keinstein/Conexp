@@ -10,6 +10,7 @@ package conexp.core.enumerators;
 import conexp.core.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public abstract class DepthSearchIterator implements ConceptIterator {
@@ -24,7 +25,7 @@ public abstract class DepthSearchIterator implements ConceptIterator {
         }
     }
 
-    protected ArrayList newStack;
+    protected List newStack;
     int setSize;
 
     protected int depth;
@@ -34,6 +35,7 @@ public abstract class DepthSearchIterator implements ConceptIterator {
     /**
      * Insert the method's description here.
      * Creation date: (06.03.01 1:36:31)
+     *
      * @return boolean
      */
     public boolean hasNext() {
@@ -79,6 +81,7 @@ public abstract class DepthSearchIterator implements ConceptIterator {
     /**
      * Insert the method's description here.
      * Creation date: (06.03.01 23:41:44)
+     *
      * @return conexp.core.LatticeElement
      */
     protected abstract LatticeElement findNextConcept();
@@ -87,6 +90,7 @@ public abstract class DepthSearchIterator implements ConceptIterator {
     /**
      * Insert the method's description here.
      * Creation date: (06.03.01 1:36:31)
+     *
      * @return conexp.core.LatticeElement
      */
     public LatticeElement nextConcept() {

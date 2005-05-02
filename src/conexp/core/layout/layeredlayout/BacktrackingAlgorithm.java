@@ -19,31 +19,31 @@ public class BacktrackingAlgorithm {
         this.step = step;
     }
 
-    public void firstPoint(double [] solutionVector) {
-         for(int i=0; i<solutionVector.length; i++){
-             solutionVector[i] = range.getStart();
-         }
+    public void firstPoint(double[] solutionVector) {
+        for (int i = 0; i < solutionVector.length; i++) {
+            solutionVector[i] = range.getStart();
+        }
     }
 
-    public boolean hasMorePoints(double [] solutionVector) {
-        for(int i=solutionVector.length; --i>=0; ){
+    public boolean hasMorePoints(double[] solutionVector) {
+        for (int i = solutionVector.length; --i >= 0;) {
             double currentComponent = solutionVector[i];
             double nextComponent = currentComponent + step;
-            if(range.includes(nextComponent)){
+            if (range.includes(nextComponent)) {
                 return true;
             }
         }
         return false;
     }
 
-    public void nextPoint(double [] solutionVector) {
-        for(int i=solutionVector.length; --i>=0; ){
+    public void nextPoint(double[] solutionVector) {
+        for (int i = solutionVector.length; --i >= 0;) {
             double currentComponent = solutionVector[i];
             double nextComponent = currentComponent + step;
-            if(range.includes(nextComponent)){
+            if (range.includes(nextComponent)) {
                 solutionVector[i] = nextComponent;
                 return;
-            }else{
+            } else {
                 solutionVector[i] = range.getStart();
             }
         }

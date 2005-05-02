@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.ruleview.tests;
 
 import conexp.core.DependencySet;

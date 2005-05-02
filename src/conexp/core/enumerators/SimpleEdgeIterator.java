@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.enumerators;
 
 import conexp.core.Edge;
@@ -29,6 +28,7 @@ public class SimpleEdgeIterator implements EdgeIterator {
 
     /**
      * Creation date: (04.05.01 22:16:10)
+     *
      * @return conexp.core.Edge
      */
     protected Edge findNextEdge() {
@@ -59,6 +59,7 @@ public class SimpleEdgeIterator implements EdgeIterator {
 
     /**
      * Creation date: (04.05.01 21:32:23)
+     *
      * @return boolean
      */
     public boolean hasNextEdge() {
@@ -67,6 +68,7 @@ public class SimpleEdgeIterator implements EdgeIterator {
 
     /**
      * Creation date: (04.05.01 21:33:22)
+     *
      * @return conexp.core.Edge
      */
     public Edge nextEdge() {

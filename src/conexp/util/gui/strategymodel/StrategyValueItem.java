@@ -21,7 +21,7 @@ public class StrategyValueItem implements ActionListener {
     private volatile int value;
     private final String propertyName;
     private final StrategyModel model;
-    protected transient PropertyChangeSupport propertyChange;
+    private transient PropertyChangeSupport propertyChange;
 
     public StrategyValueItem(String propertyName, StrategyModel strategymodel, PropertyChangeSupport propertychangesupport) {
         model = strategymodel;

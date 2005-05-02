@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.io;
 
 import canvas.figures.IFigureWithCoords;
@@ -52,7 +51,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         return version;
     }
 
-    private Element storeContexts(ContextDocument document) {
+    private static Element storeContexts(ContextDocument document) {
         Element contextCollection = new Element(ConExpXMLElements.CONTEXTS_COLLECTION);
         ExtendedContextEditingInterface cxt = document.getContext();
         contextCollection.addContent(storeContext(cxt));
@@ -71,7 +70,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         }
     }
 
-    private Element makeLatticeElement(LatticeComponent latticeComponent) {
+    private static Element makeLatticeElement(LatticeComponent latticeComponent) {
         Element latticeElement = new Element(ConExpXMLElements.LATTICE_ELEMENT);
         storeFeatureMask(latticeComponent, latticeElement);
         storeDrawings(latticeComponent, latticeElement);
@@ -89,11 +88,11 @@ public class ConExpXMLWriter implements DocumentWriter {
         return entityMaskElement;
     }
 
-    private void storeDrawings(LatticeComponent latticeComponent, Element latticeElement) {
+    private static void storeDrawings(LatticeComponent latticeComponent, Element latticeElement) {
         latticeElement.addContent(makeDrawingElement(latticeComponent.getDrawing()));
     }
 
-    private Element makeDrawingElement(LatticeDrawing drawing) {
+    private static Element makeDrawingElement(LatticeDrawing drawing) {
         Element latticeDrawingElement = new Element(ConExpXMLElements.LATTICE_DIAGRAM);
         latticeDrawingElement.addContent(storeConceptFigures(drawing));
         latticeDrawingElement.addContent(storeDrawingSettings(drawing));
@@ -116,11 +115,10 @@ public class ConExpXMLWriter implements DocumentWriter {
             public void visitNode(LatticeElement conceptNode) {
                 IFigureWithCoords conceptLabelFigure = drawing.getLabelForConcept(conceptNode);
                 if (null != conceptLabelFigure) {
-                    conceptLabelFigures.addContent(
-                            storeFigureForConcept(ConExpXMLElements.CONCEPT_LABEL_FIGURE_TYPE,
-                                    conceptLabelFigure,
-                                    conceptNode,
-                                    lat.getContext()));
+                    conceptLabelFigures.addContent(storeFigureForConcept(ConExpXMLElements.CONCEPT_LABEL_FIGURE_TYPE,
+                            conceptLabelFigure,
+                            conceptNode,
+                            lat.getContext()));
                 }
             }
         });
@@ -134,17 +132,13 @@ public class ConExpXMLWriter implements DocumentWriter {
         for (int i = 0; i < cxt.getObjectCount(); i++) {
             ContextEntity currObject = cxt.getObject(i);
             IFigureWithCoords objectLabel = drawing.getLabelForObject(currObject);
-            if(null==objectLabel){
+            if (null == objectLabel) {
                 continue;
             }
-            objectFigures.addContent(
-                    makeLabelFigureElement(
-                            ConExpXMLElements.OBJECT_LABEL_FIGURE_TYPE,
-                            objectLabel,
-                            ConExpXMLElements.OBJECT_REFERENCE,
-                            i
-                    )
-            );
+            objectFigures.addContent(makeLabelFigureElement(ConExpXMLElements.OBJECT_LABEL_FIGURE_TYPE,
+                    objectLabel,
+                    ConExpXMLElements.OBJECT_REFERENCE,
+                    i));
         }
         return objectFigures;
     }
@@ -158,12 +152,10 @@ public class ConExpXMLWriter implements DocumentWriter {
             if (null == attributeLabel) {
                 continue;
             }
-            attributesFigures.addContent(
-                    makeLabelFigureElement(
-                            ConExpXMLElements.ATTRIBUTE_LABEL_FIGURE_TYPE,
-                            attributeLabel,
-                            ConExpXMLElements.ATTRIBUTE_REFERENCE,
-                            i));
+            attributesFigures.addContent(makeLabelFigureElement(ConExpXMLElements.ATTRIBUTE_LABEL_FIGURE_TYPE,
+                    attributeLabel,
+                    ConExpXMLElements.ATTRIBUTE_REFERENCE,
+                    i));
         }
         return attributesFigures;
     }
@@ -246,7 +238,7 @@ public class ConExpXMLWriter implements DocumentWriter {
     }
 
 
-    private Element storeContext(ExtendedContextEditingInterface cxt) {
+    private static Element storeContext(ExtendedContextEditingInterface cxt) {
         Element contextElement = new Element(ConExpXMLElements.CONTEXT_ELEMENT);
         contextElement.setAttribute(ConExpXMLElements.ID_ATTRIBUTE, "0");
         contextElement.setAttribute(ConExpXMLElements.CONTEXT_ELEMENT_TYPE_ATTRIBUTE, ConExpXMLElements.CONTEXT_TYPE_BINARY);

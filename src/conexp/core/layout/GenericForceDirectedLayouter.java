@@ -13,10 +13,10 @@ import conexp.util.valuemodels.BoundedDoubleValue;
 import util.comparators.ComparatorUtil;
 
 import java.awt.geom.Point2D;
-import java.util.Comparator;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Comparator;
 
 
 public abstract class GenericForceDirectedLayouter extends GenericLayouter {
@@ -42,7 +42,7 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
             coords.project2d(angle);
             Point2D projection = coords.getProjection();
             projection.setLocation(projection.getX() + half,
-                                   projection.getY());
+                    projection.getY());
         }
     }
 
@@ -73,9 +73,9 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
         for (int i = lattice.conceptsCount(); --i >= 0;) {
             p = getConceptInfo(i).coords;
             p.setLocation(p.getX() - x0,
-                          p.getY() - y0);
+                    p.getY() - y0);
             double distSq = p.getX() * p.getX() + p.getY() * p.getY();
-            if (distSq > maxSq){
+            if (distSq > maxSq) {
                 maxSq = distSq;
             }
         }
@@ -99,6 +99,7 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 12:04:52)
+     *
      * @return int[]
      */
     private int[] calcDepthsForConcepts() {
@@ -140,8 +141,7 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
             for (int k = 0; k < j; k++) {
                 Point3D pt = getConceptInfo(topSorted[i + k]).coords;
                 pt.z = rank;
-                pt.setLocation(
-                        j * (float) Math.cos(k * angle + PI / primeGen.nextPrime()),
+                pt.setLocation(j * (float) Math.cos(k * angle + PI / primeGen.nextPrime()),
                         j * (float) Math.sin(k * angle + PI / primeGen.nextPrime()));
             }
             i += j;

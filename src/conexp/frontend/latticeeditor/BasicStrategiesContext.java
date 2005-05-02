@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor;
 
 import conexp.util.gui.paramseditor.ParamInfo;
@@ -14,10 +13,10 @@ import conexp.util.gui.strategymodel.StrategyModel;
 import conexp.util.gui.strategymodel.StrategyValueItem;
 import util.BasePropertyChangeSupplier;
 
+import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
-import java.beans.PropertyChangeSupport;
 
 public class BasicStrategiesContext extends BasePropertyChangeSupplier implements ParamsProvider {
 
@@ -59,7 +58,7 @@ public class BasicStrategiesContext extends BasePropertyChangeSupplier implement
         } catch (IOException e) {
             e.printStackTrace();
         } catch (BackingStoreException e) {
-            e.printStackTrace();  
+            e.printStackTrace();
         }
     }
 

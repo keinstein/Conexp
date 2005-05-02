@@ -81,7 +81,7 @@ public class ParamsTableModel extends AbstractTableModel implements util.gui.Tab
         return 2;
     }
 
-    protected ParamInfo getParamInfo(int row) {
+    private ParamInfo getParamInfo(int row) {
         return (ParamInfo) params.get(row);
     }
 

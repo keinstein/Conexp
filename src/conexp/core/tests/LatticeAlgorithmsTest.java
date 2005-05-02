@@ -43,5 +43,12 @@ public class LatticeAlgorithmsTest extends TestCase {
         Set notInSet = SetBuilder.makeSet(new int[]{1, 0, 0, 0});
         result = LatticeAlgorithms.findBottomUpMinimalElementThatIncludesSet(start, notInSet);
         assertEquals(SetBuilder.makeSet(new int[]{1, 1, 1, 1}), result.getAttribs());
-   }
+    }
+
+    public void testLatticeWidthUpperBound(){
+        Lattice oneElementLattice = SetBuilder.makeLattice(new int[][]{{1}});
+        assertEquals(1, LatticeAlgorithms.latticeWidthUpperBound(oneElementLattice));
+        Lattice twoElementLattice = SetBuilder.makeLattice(new int[][]{{0}});
+        assertEquals(1, LatticeAlgorithms.latticeWidthLowerBound(twoElementLattice));
+    }
 }

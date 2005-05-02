@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.searchconstraints;
 
 import conexp.core.SearchConstraint;

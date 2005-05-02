@@ -21,10 +21,10 @@ public class ConceptFrame extends JFrame {
         init();
     }
 
-    JSplitPane jSplitPaneMain = new JSplitPane();
-    JTabbedPane docTreeTabPane = new JTabbedPane();
-    JSplitPane jSplitPane1 = new JSplitPane();
-    JTree documentTree;
+    private JSplitPane jSplitPaneMain = new JSplitPane();
+    private JTabbedPane docTreeTabPane = new JTabbedPane();
+    private JSplitPane jSplitPane1 = new JSplitPane();
+    private JTree documentTree;
 
     private void createMainPane() {
         jSplitPane1.setPreferredSize(new Dimension(SizeOptions.getProjectPaneWidth(), 150));
@@ -50,12 +50,12 @@ public class ConceptFrame extends JFrame {
 
     }
 
-    JLabel statusBar = new JLabel();
+    private JLabel statusBar = new JLabel();
 
 
-    JPanel optionPane = new JPanel();
+    private JPanel optionPane = new JPanel();
 
-    ContextDocManager manager;
+    private ContextDocManager manager;
 
 
     //Component initialization
@@ -117,7 +117,7 @@ public class ConceptFrame extends JFrame {
         return contextDocManager;
     }
 
-    void updateDocumentTree(ContextDocManager manager) {
+    private void updateDocumentTree(ContextDocManager manager) {
         setDocumentTree(manager.getDocumentTree());
         manager.updateDocumentTree();
     }
@@ -131,13 +131,13 @@ public class ConceptFrame extends JFrame {
     }
 
 //-----------------------------------------------------------------------
-    public void onActiveDocChanged() {
+    private void onActiveDocChanged() {
         updateDocumentTree(manager);
         setToolBar(manager.getActiveDocToolBar());
         setDocComponent(manager.getActiveDocComponent());
     }
 
-    public void onActiveDocInfoChanged() {
+    private void onActiveDocInfoChanged() {
         updateDocumentTree(manager);
     }
 
@@ -154,7 +154,7 @@ public class ConceptFrame extends JFrame {
         docComponent = comp;
     }
 
-    private JToolBar toolBar=null;
+    private JToolBar toolBar = null;
 
     private void setToolBar(JToolBar tool) {
         if (null != toolBar) {

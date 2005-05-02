@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.utils;
 
 import conexp.core.AttributeInformationSupplier;
@@ -17,8 +16,10 @@ import java.util.Iterator;
 import java.util.List;
 
 public class DependencySetDumper {
+    private DependencySetDumper() {
+    }
 
-    public static String dumpDependencySet(DependencySet dependencies) {
+    private static String dumpDependencySet(DependencySet dependencies) {
         StringBuffer res = new StringBuffer();
         res.append("Start ================================");
         final AttributeInformationSupplier attributesInformation = dependencies.getAttributesInformation();
@@ -30,17 +31,15 @@ public class DependencySetDumper {
         return res.toString();
     }
 
-    public static void dumpRule(StringBuffer res, final AttributeInformationSupplier attributesInformation, Dependency dep) {
+    private static void dumpRule(StringBuffer res, final AttributeInformationSupplier attributesInformation, Dependency dep) {
         AttributeInformationSupplierUtil.describeSet(res,
-                attributesInformation, dep.getPremise(), " & ", "{}"
-        );
+                attributesInformation, dep.getPremise(), " & ", "{}");
         res.append(" -> ");
         AttributeInformationSupplierUtil.describeSet(res,
-                attributesInformation, dep.getConclusion(), " & ", "{}"
-        );
-        res.append("(");
+                attributesInformation, dep.getConclusion(), " & ", "{}");
+        res.append('(');
         res.append(dep.getRuleSupport());
-        res.append(";");
+        res.append(';');
         res.append(dep.getConfidence());
         res.append(")\n");
     }
@@ -56,7 +55,7 @@ public class DependencySetDumper {
         return dumpDependencySet(convertListToDependencySet(prototype, rules));
     }
 
-    public static DependencySet convertListToDependencySet(DependencySet prototype, List rules) {
+    private static DependencySet convertListToDependencySet(DependencySet prototype, List rules) {
         DependencySet ret = prototype.makeCompatibleDependencySet();
         for (Iterator rulesIter = rules.iterator(); rulesIter.hasNext();) {
             Dependency dependency = (Dependency) rulesIter.next();

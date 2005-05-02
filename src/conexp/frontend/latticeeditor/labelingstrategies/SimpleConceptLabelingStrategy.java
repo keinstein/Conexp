@@ -15,7 +15,7 @@ import conexp.frontend.latticeeditor.figures.SimpleTextFigure;
 
 public abstract class SimpleConceptLabelingStrategy extends OneLabelConceptLabelingStrategy {
 
-    public SimpleConceptLabelingStrategy() {
+    protected SimpleConceptLabelingStrategy() {
         super();
     }
 

@@ -31,7 +31,7 @@ public class ConceptFilterIterator extends DepthSearchIterator {
             LatticeElement curr = info.curr;
             for (; --info.pos >= 0;) {
                 LatticeElement child = curr.getSucc(info.pos);
-                if(!visited.contains(child)){
+                if (!visited.contains(child)) {
                     initStackVariables(depth + 1, child, child.getSuccCount(), info.mask);
                     visited.add(child);
                     depth++;

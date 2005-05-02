@@ -11,8 +11,8 @@ import com.visibleworkings.trace.Trace;
 import conexp.core.ItemSet;
 import conexp.core.Lattice;
 import conexp.util.gui.paramseditor.ParamInfo;
-import util.StringUtil;
 import util.Assert;
+import util.StringUtil;
 
 import java.awt.geom.Point2D;
 import java.beans.PropertyChangeEvent;
@@ -50,7 +50,7 @@ public abstract class GenericLayouter implements Layouter {
     protected PropertyChangeSupport layoutChange;
     private ParamInfo[] params;
 
-    public GenericLayouter() {
+    protected GenericLayouter() {
         super();
     }
 
@@ -153,6 +153,7 @@ public abstract class GenericLayouter implements Layouter {
      * Generic equals for layouters
      * the main value of equals is for the comparing whether layouters
      * are of the same class and parameters
+     *
      * @param obj
      * @return
      */
@@ -164,10 +165,10 @@ public abstract class GenericLayouter implements Layouter {
             return false;
         }
         GenericLayouter other = (GenericLayouter) obj;
-        if(!getClass().equals(other.getClass())){
+        if (!getClass().equals(other.getClass())) {
             return false;
         }
-        if(drawParams==null ? other.drawParams!=null :!drawParams.equals(other.drawParams)){
+        if (drawParams == null ? other.drawParams != null : !drawParams.equals(other.drawParams)) {
             return false;
         }
 
@@ -175,7 +176,7 @@ public abstract class GenericLayouter implements Layouter {
     }
 
     public int hashCode() {
-        return 29*getClass().hashCode()+(drawParams==null? 0 :drawParams.hashCode());
+        return 29 * getClass().hashCode() + (drawParams == null ? 0 : drawParams.hashCode());
     }
 
 

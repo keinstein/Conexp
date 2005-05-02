@@ -99,7 +99,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         }
     }
 
-    class AboutAppAction extends AbstractAction{
+    class AboutAppAction extends AbstractAction {
 
         public AboutAppAction() {
             super("aboutApp");
@@ -113,13 +113,13 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
     private static final String DOCUMENT_MANAGER_SECTION = "DocumentManager";
     private static final String MOST_RECENT_URLS_KEY = "MostRecentUrls";
-    MostRecentUrlListManager mruManager = new MostRecentUrlListManager();
+    private MostRecentUrlListManager mruManager = new MostRecentUrlListManager();
 
     public MostRecentUrlListManager getMruManager() {
         return mruManager;
     }
 
-    StorageFormatManager storageFormatManager;
+    private StorageFormatManager storageFormatManager;
 
     public void setStorageFormatManager(StorageFormatManager storageFormatManager) {
         this.storageFormatManager = storageFormatManager;
@@ -132,9 +132,9 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return storageFormatManager;
     }
 
-    ConfigurationManager configManager;
+    private ConfigurationManager configManager;
 
-    public ConfigurationManager getConfigManager() {
+    private ConfigurationManager getConfigManager() {
         if (null == configManager) {
             configManager = new ConfigurationManager("Empty Config");
         }
@@ -166,7 +166,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     }
 
 
-    MenuSite menuSite;
+    private MenuSite menuSite;
 
     public ContextDocManager(JFrame mainFrame, OptionPaneSupplier optionPaneSupplier) {
         super();
@@ -189,13 +189,13 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     }
 
 
-    OptionPaneSupplier optionPaneSupplier;
+    private OptionPaneSupplier optionPaneSupplier;
 
-    public JComponent getOptionsPane() {
+    private JComponent getOptionsPane() {
         return optionPaneSupplier.getOptionsPane();
     }
 
-    public void onNewDocument() {
+    private void onNewDocument() {
         //single eventSupplier interface
         if (null != docRecord) {
             /* if (docs.isModified()) {
@@ -222,7 +222,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         addDocument(new DocumentRecord(document, ""));
     }
 
-    protected OptionPaneViewChangeListener getOptionPaneViewChangeListener() {
+    private OptionPaneViewChangeListener getOptionPaneViewChangeListener() {
         if (null == optionPaneViewChangeListener) {
             optionPaneViewChangeListener = new OptionPaneViewChangeListener(getOptionsPane());
         }
@@ -231,7 +231,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
     private OptionPaneViewChangeListener optionPaneViewChangeListener;
 
-    DocumentRecord docRecord;
+    private DocumentRecord docRecord;
 
 
     public void addDocument(DocumentRecord docRec) {
@@ -272,11 +272,11 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         getPropertyChangeSupport().firePropertyChange(ACTIVE_DOC_INFO_CHANGED, null, null);
     }
 
-    DocumentLoader getLoader(String extension) {
+    private DocumentLoader getLoader(String extension) {
         return getStorageFormatManager().getLoader(extension);
     }
 
-    public void loadDocument(File f) throws IOException, DataFormatException {
+    private void loadDocument(File f) throws IOException, DataFormatException {
         if (f.isFile()) {
             doLoadDocumentFromFile(f);
         }
@@ -311,11 +311,11 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
 //-------------------------------------------
 
-    public boolean canExit() {
+    private boolean canExit() {
         return true;
     }
 
-    public void onExit() {
+    private void onExit() {
         if (canExit()) {
             closeDocument(); //will be changed later on
             saveConfiguration();
@@ -330,17 +330,17 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     }
     //------------------------------------------------------------
 
-    static ResourceBundle getResources() {
+    private static ResourceBundle getResources() {
         return resources;
     }
 
-    protected LocalizedMessageSupplier getLocalizedMessageSupplier() {
+    private LocalizedMessageSupplier getLocalizedMessageSupplier() {
         return messageSupplier;
     }
 
-    LocalizedMessageSupplier messageSupplier = new ContextDocManagerMessageSupplier();
+    private LocalizedMessageSupplier messageSupplier = new ContextDocManagerMessageSupplier();
 
-    protected String getLocalizedMessage(String key) {
+    private String getLocalizedMessage(String key) {
         String message = getLocalizedMessageSupplier().getMessage(key);
         Assert.notNull(message);
         return message;
@@ -348,7 +348,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
 
 //-----------------------------------------------------------
-    public void onOpen() {
+    private void onOpen() {
         FileSelectorService fileSelector =
                 ServiceRegistry.fileSelectorService();
         if (fileSelector.performOpenService(getMainAppWindow(),
@@ -387,19 +387,19 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return appMainWindow;
     }
 
-    String getDocDir() {
+    private String getDocDir() {
         return docRecord.getDocumentDirectory();
     }
 
-    String getDocPath() {
+    private String getDocPath() {
         return docRecord.getDocumentPath();
     }
 
-    String getFileName() {
+    private String getFileName() {
         return docRecord.getDocumentFileName();
     }
 
-    public void onSave() {
+    private void onSave() {
         if (getDocPath() == null) {
             onSaveAs();
             return;
@@ -425,7 +425,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     }
 
 
-    public void onSaveAs() {
+    private void onSaveAs() {
         FileSelectorService fileSelector = ServiceRegistry.fileSelectorService();
         if (fileSelector
                 .performSaveService(getMainAppWindow(),
@@ -483,13 +483,13 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         JOptionPane.showMessageDialog(getMainAppWindow(), msg);
     }
 
-    protected DocumentWriter getWriter(String extension) {
+    private DocumentWriter getWriter(String extension) {
         //todo:should return default writer, when extension is unknown
         return getStorageFormatManager().getWriter(extension);
     }
 
 
-    public void saveDocument(File f) throws IOException {
+    private void saveDocument(File f) throws IOException {
         final String extension = StringUtil.getExtension(f.getCanonicalPath());
         DocumentWriter documentWriter = getWriter(extension);
         if (documentWriter == null) {
@@ -522,7 +522,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return menu;
     }
 
-    private JMenu createHelpMenu(){
+    private JMenu createHelpMenu() {
         ToolBuilder toolBuilder = new ToolBuilder(getResourceManager(), getActionChain());
         return toolBuilder.createHelpMenu();
     }

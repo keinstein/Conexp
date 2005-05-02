@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.tests;
 
 import conexp.frontend.OptionPaneSupplier;

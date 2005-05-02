@@ -20,7 +20,7 @@ public class BitSet2Test extends TestCase {
     private ModifiableSet firstWord;
     private ModifiableSet temp;
 
-    public static void fillFromStart(ModifiableSet set, int till) {
+    private static void fillFromStart(ModifiableSet set, int till) {
         for (int i = 0; i < till; i++) {
             set.put(i);
         }
@@ -106,10 +106,11 @@ public class BitSet2Test extends TestCase {
     /**
      * Insert the method's description here.
      * Creation date: (21.10.00 8:05:10)
+     *
      * @param one conexp.core.Set
      * @param two conexp.core.Set
      */
-    static void testAppendTwoSets(Set one, Set two) {
+    private static void testAppendTwoSets(Set one, Set two) {
         ModifiableSet res = (ModifiableSet) one.clone();
         res.append(two);
         assertEquals(one.size() + two.size(), res.size());
@@ -499,14 +500,14 @@ public class BitSet2Test extends TestCase {
     }
 
 
-    protected void utilClearSet(ModifiableSet toTest) {
+    private void utilClearSet(ModifiableSet toTest) {
         toTest.clearSet();
         assertEquals(toTest, emptySet);
         assertTrue(toTest.isEmpty());
     }
 
 
-    protected void utilTestClone(ModifiableSet toTest) {
+    private void utilTestClone(ModifiableSet toTest) {
         temp = (BitSet2) toTest.clone();
         assertEquals(temp, toTest);
         assertEquals(temp.size(), toTest.size());
@@ -519,7 +520,7 @@ public class BitSet2Test extends TestCase {
     }
 
 
-    protected static void utilTestElemCount(ModifiableSet toTest) {
+    private static void utilTestElemCount(ModifiableSet toTest) {
         int elBefore = toTest.elementCount();
         if (!toTest.in(1)) {
             toTest.put(1);
@@ -539,7 +540,7 @@ public class BitSet2Test extends TestCase {
     }
 
 
-    protected static void utilTestIntersects(Set one, Set two, boolean expected) {
+    private static void utilTestIntersects(Set one, Set two, boolean expected) {
         assertEquals(expected, one.intersects(two));
         assertEquals(expected, two.intersects(one));
     }

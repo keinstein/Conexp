@@ -19,7 +19,7 @@ public abstract class ContextMaskBaseTest extends TestCase {
     protected Context cxt;
     protected SetProvidingEntitiesMask mask;
 
-    static int selectedItemsInMask(EntitiesMask mask) {
+    private static int selectedItemsInMask(EntitiesMask mask) {
         int ret = 0;
         for (int j = mask.getCount(); --j >= 0;) {
             if (mask.isSelected(j)) {
@@ -102,7 +102,7 @@ public abstract class ContextMaskBaseTest extends TestCase {
         assertEquals(true, mask.isSelected(2));
     }
 
-    public void testSetup(){
+    public void testSetup() {
         assertEquals(3, mask.getCount());
         assertEquals(1, getOtherEntitiesCount());
     }
@@ -156,10 +156,10 @@ public abstract class ContextMaskBaseTest extends TestCase {
 
     protected abstract void increaseOtherEntities(int increment);
 
-    public void testEqualsAndHashCode(){
+    public void testEqualsAndHashCode() {
         SetProvidingEntitiesMask first = makeInstance();
         SetProvidingEntitiesMask second = makeInstance();
-        TestUtil.testEqualsAndHashCode(first,second);
+        TestUtil.testEqualsAndHashCode(first, second);
 
     }
 

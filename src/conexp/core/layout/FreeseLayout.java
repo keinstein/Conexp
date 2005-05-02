@@ -36,8 +36,7 @@ public class FreeseLayout extends FreezeBaseLayout {
             Iterator list = (currIter % 2 == 0 ? getHighIncomparablesForConcept(x) : getLowIncomparablesForConcept(x)).iterator();
             while (list.hasNext()) {
                 Point3D otherCoords = getConceptInfo((LatticeElement) list.next()).coords;
-                repulsion(
-                        currCoords,
+                repulsion(currCoords,
                         otherCoords,
                         repulsion, forces);
                 currCoords.adjustForce(forces[0], forces[1]);

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.tests;
 
 import util.PropertyChangeSupplier;
@@ -15,9 +14,9 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
 public class MockPropertyChangeSupplier implements PropertyChangeSupplier {
-    PropertyChangeSupport support;
+    private PropertyChangeSupport support;
 
-    protected synchronized PropertyChangeSupport getSupport() {
+    private synchronized PropertyChangeSupport getSupport() {
         if (null == support) {
             support = new PropertyChangeSupport(this);
         }

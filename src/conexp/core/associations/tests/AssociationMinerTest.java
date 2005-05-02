@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.associations.tests;
 
 import conexp.core.Context;
@@ -34,15 +33,9 @@ public abstract class AssociationMinerTest extends TestCase {
             actualDependencies.add(dependencySet.getDependency(i));
         }
         Set expectedDependencies = new HashSet();
-        expectedDependencies.add(ObjectMother.makeAssociationRule(
-                new int[]{0, 0, 0}, 3, new int[]{1, 0, 0}, 2
-        ));
-        expectedDependencies.add(ObjectMother.makeAssociationRule(
-                new int[]{0, 0, 0}, 3, new int[]{0, 1, 0}, 2
-        ));
-        expectedDependencies.add(ObjectMother.makeAssociationRule(
-                new int[]{0, 0, 0}, 3, new int[]{0, 0, 1}, 2
-        ));
+        expectedDependencies.add(ObjectMother.makeAssociationRule(new int[]{0, 0, 0}, 3, new int[]{1, 0, 0}, 2));
+        expectedDependencies.add(ObjectMother.makeAssociationRule(new int[]{0, 0, 0}, 3, new int[]{0, 1, 0}, 2));
+        expectedDependencies.add(ObjectMother.makeAssociationRule(new int[]{0, 0, 0}, 3, new int[]{0, 0, 1}, 2));
         assertEquals(expectedDependencies, actualDependencies);
     }
 

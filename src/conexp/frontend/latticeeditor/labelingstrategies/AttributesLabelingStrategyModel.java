@@ -9,7 +9,7 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.util.gui.strategymodel.AbstractNonGrowingStrategyModel;
 
-public class AttributesLabelingStrategyModel extends AbstractNonGrowingStrategyModel{
+public class AttributesLabelingStrategyModel extends AbstractNonGrowingStrategyModel {
 
     public AttributesLabelingStrategyModel() {
         super();

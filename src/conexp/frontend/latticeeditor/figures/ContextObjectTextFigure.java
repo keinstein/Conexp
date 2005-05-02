@@ -8,8 +8,8 @@
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.CanvasScheme;
-import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.core.ContextEntity;
+import conexp.frontend.latticeeditor.ConceptQuery;
 
 import java.awt.*;
 

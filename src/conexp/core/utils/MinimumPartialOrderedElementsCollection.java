@@ -12,31 +12,31 @@ import java.util.Set;
  * Please read license.txt for licensing issues.
  */
 public class MinimumPartialOrderedElementsCollection {
-    Set elements = CollectionFactory.createDefaultSet();
+    private Set elements = CollectionFactory.createDefaultSet();
 
-    public void clear(){
+    public void clear() {
         elements.clear();
     }
 
-    public Iterator iterator(){
+    public Iterator iterator() {
         return elements.iterator();
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return elements.isEmpty();
     }
 
-    public boolean contains(IPartiallyOrdered ordered){
+    public boolean contains(IPartiallyOrdered ordered) {
         return elements.contains(ordered);
     }
 
     public void add(IPartiallyOrdered ordered) {
         for (Iterator iterator = elements.iterator(); iterator.hasNext();) {
             IPartiallyOrdered partiallyOrdered = (IPartiallyOrdered) iterator.next();
-            if(ordered.isLesserThan(partiallyOrdered)){
+            if (ordered.isLesserThan(partiallyOrdered)) {
                 iterator.remove();
             }
-            if(partiallyOrdered.isLesserThan(ordered)){
+            if (partiallyOrdered.isLesserThan(ordered)) {
                 return;
             }
         }
@@ -51,11 +51,11 @@ public class MinimumPartialOrderedElementsCollection {
         return elements.toString();
     }
 
-    public Object[] toArray(){
+    public Object[] toArray() {
         return elements.toArray();
     }
 
-    public Object[] toArray(Object[] array){
+    public Object[] toArray(Object[] array) {
         return elements.toArray(array);
     }
 }

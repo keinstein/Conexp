@@ -38,9 +38,6 @@ public class Implication extends GenericDependency implements Cloneable {
     }
 
 
-
-
-
     public int getObjectCount() {
         return getRuleSupport();
     }

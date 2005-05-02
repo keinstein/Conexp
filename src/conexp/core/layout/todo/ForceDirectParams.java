@@ -24,6 +24,7 @@ public class ForceDirectParams {
     /**
      * Insert the method's description here.
      * Creation date: (03.03.01 19:01:55)
+     *
      * @return double
      */
     public static double ac() {
@@ -33,6 +34,7 @@ public class ForceDirectParams {
     /**
      * Insert the method's description here.
      * Creation date: (03.03.01 19:17:25)
+     *
      * @return double
      */
     public static double ae() {
@@ -42,6 +44,7 @@ public class ForceDirectParams {
     /**
      * Insert the method's description here.
      * Creation date: (03.03.01 18:56:32)
+     *
      * @return double
      */
     public double k() {
@@ -51,6 +54,7 @@ public class ForceDirectParams {
     /**
      * Insert the method's description here.
      * Creation date: (03.03.01 19:59:48)
+     *
      * @return double
      */
     public static double minTemp() {
@@ -61,6 +65,7 @@ public class ForceDirectParams {
     /**
      * Insert the method's description here.
      * Creation date: (03.03.01 19:17:46)
+     *
      * @return double
      */
     public static double rc() {
@@ -70,6 +75,7 @@ public class ForceDirectParams {
     /**
      * Insert the method's description here.
      * Creation date: (03.03.01 19:18:45)
+     *
      * @return double
      */
     public static double re() {
@@ -79,6 +85,7 @@ public class ForceDirectParams {
     /**
      * Insert the method's description here.
      * Creation date: (11.03.01 2:43:42)
+     *
      * @param newLattice conexp.core.Lattice
      */
     public void setLattice(Lattice newLattice) {

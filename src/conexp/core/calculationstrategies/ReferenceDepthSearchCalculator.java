@@ -21,15 +21,15 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
     }
     //--------------------------------------------------------------------
     /**
-     *  calculate attributes, that exist in at least one object from _objects and
-     *  don't belong to _attribs
+     * calculate attributes, that exist in at least one object from _objects and
+     * don't belong to _attribs
      *
-     *@param  depth    Description of Parameter
-     *@param  objects  Description of Parameter
-     *@param  attribs  Description of Parameter
-     *@return           Description of the Returned Value
+     * @param depth   Description of Parameter
+     * @param objects Description of Parameter
+     * @param attribs Description of Parameter
+     * @return Description of the Returned Value
      */
-    protected Set calcDescAttr(int depth, Set objects, Set attribs) {
+    private Set calcDescAttr(int depth, Set objects, Set attribs) {
         ///*DBG*/ System.out.println("calcDescAttr "+depth+" attribs["+attribs+"]");
         ModifiableSet ret = descEntities[depth];
         ret.clearSet();
@@ -43,12 +43,12 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
     }
     //-------------------------------------------------------------------------------
     /**
-     *  Description of the Method
+     * Description of the Method
      *
-     *@param  _latEl              Description of Parameter
-     *@param  depth              Description of Parameter
+     * @param _latEl Description of Parameter
+     * @param depth  Description of Parameter
      */
-    protected void calcDescendantsAttr(LatticeElement _latEl, int depth) {
+    private void calcDescendantsAttr(LatticeElement _latEl, int depth) {
         Set _conceptDescAttr = calcDescAttr(depth, _latEl.getObjects(), _latEl.getAttribs());
         if (_conceptDescAttr.isEmpty()) {
             lattice.getZero().addSucc(_latEl);
@@ -109,13 +109,13 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
 
     //-----------------------------------------------------------------
     /**
-     *  method finds a closure by addition of attr j to intent, having extent
-     *  _concObjects
+     * method finds a closure by addition of attr j to intent, having extent
+     * _concObjects
      *
-     *@param  j             - attribute to add
-     *@param  _concObjects  - list of objects, in which closure is performed
-     *@output               newExtent - new conexp extent outerSet - outer
-     *      set newIntent - new conexp intent
+     * @param j            - attribute to add
+     * @param _concObjects - list of objects, in which closure is performed
+     * @output newExtent - new conexp extent outerSet - outer
+     * set newIntent - new conexp intent
      */
     protected void findAttrClosure(int j, Set _concObjects) {
         newExtent.clearSet();
@@ -135,11 +135,11 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
     }
     //----------------------------------------------------------------
     /**
-     *  this function is strongly connected with used order !!! precodndition :
-     *  _attribs not equal one attribs
+     * this function is strongly connected with used order !!! precodndition :
+     * _attribs not equal one attribs
      *
-     *@param  attribs  Description of Parameter
-     *@return           Description of the Returned Value
+     * @param attribs Description of Parameter
+     * @return Description of the Returned Value
      */
     protected LatticeElement findLatticeElementFromOne(Set attribs) {
         LatticeElement curr = lattice.getOne();
@@ -159,7 +159,7 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
                             //found = true;
                             return pred;
                         case Set.SUBSET:
-                            Assert.isTrue(false, " findLatticeElement attribs [" + attribs + "] pred[" + pred.getAttribs() + "]");
+                            Assert.isTrue(false, " findLatticeElement attribs [" + attribs + "] pred[" + pred.getAttribs() + ']');
                         default:
                             // continue cycle
                             break;

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.CanvasScheme;
@@ -13,7 +12,7 @@ import canvas.CanvasScheme;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-public class ConnectorEndFigure extends NodeFigure{
+public class ConnectorEndFigure extends NodeFigure {
     public ConnectorEndFigure() {
         setRadius(3);
     }

@@ -57,7 +57,7 @@ public class ConExpDependenciesTest extends TestCase {
     }
 
 
-    public static boolean packageAndChildrenDoesNotDependOnPackage(JDepend jDepend, String packageName, String name){
+    private static boolean packageAndChildrenDoesNotDependOnPackage(JDepend jDepend, String packageName, String name){
         List childPackages = collectPackagesStartingWithName(jDepend, packageName);
         for (Iterator iterator = childPackages.iterator(); iterator.hasNext();) {
             JavaPackage aPackage = (JavaPackage) iterator.next();
@@ -81,7 +81,7 @@ public class ConExpDependenciesTest extends TestCase {
         return childPackages;
     }
 
-    public static boolean containsPackageWithPrefix(Collection javaPackages, String name){
+    private static boolean containsPackageWithPrefix(Collection javaPackages, String name){
         for (Iterator iterator = javaPackages.iterator(); iterator.hasNext();) {
             JavaPackage javaPackage = (JavaPackage) iterator.next();
             if(javaPackage.getName().startsWith(name)){

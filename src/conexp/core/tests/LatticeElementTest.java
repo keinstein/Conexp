@@ -28,7 +28,7 @@ public class LatticeElementTest extends TestCase {
         assertEquals(0, child.getPredCount());
     }
 
-    public static void testAddRemovePredecessor(){
+    public static void testAddRemovePredecessor() {
         LatticeElement parent = SetBuilder.makeLatticeElement(new int[]{1, 1}, new int[]{0, 0});
         LatticeElement child = SetBuilder.makeLatticeElement(new int[]{0, 1}, new int[]{1, 0});
         child.addPred(parent);

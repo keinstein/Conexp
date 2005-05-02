@@ -23,6 +23,7 @@ public class AttributtesDecompositionStrategy implements ChainDecompositionStrat
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 19:10:47)
+     *
      * @return conexp.core.BinaryRelation
      */
     public BinaryRelation computeEntitiesOrder() {
@@ -32,10 +33,11 @@ public class AttributtesDecompositionStrategy implements ChainDecompositionStrat
     /**
      * Insert the method's description here.
      * Creation date: (10.03.01 1:33:55)
-     * @param el conexp.core.LatticeElement
+     *
+     * @param el       conexp.core.LatticeElement
      * @param vectorsX double[]
      * @param vectorsY double[]
-     * @param pt conexp.core.layout.Point2D
+     * @param pt       conexp.core.layout.Point2D
      */
     public Set conceptRepresentation(LatticeElement el) {
         return el.getAttribs();
@@ -44,6 +46,7 @@ public class AttributtesDecompositionStrategy implements ChainDecompositionStrat
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 19:10:47)
+     *
      * @return int
      */
     public int getEntitiesCount() {
@@ -53,6 +56,7 @@ public class AttributtesDecompositionStrategy implements ChainDecompositionStrat
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 19:10:47)
+     *
      * @return int
      */
     public int getYSign() {
@@ -62,8 +66,9 @@ public class AttributtesDecompositionStrategy implements ChainDecompositionStrat
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 20:26:38)
-     * @return boolean
+     *
      * @param v int
+     * @return boolean
      */
     public boolean isEntityIrreducible(int v) {
         for (int i = cxt.getObjectCount(); --i >= 0;) {

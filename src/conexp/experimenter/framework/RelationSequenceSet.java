@@ -1,6 +1,7 @@
 package conexp.experimenter.framework;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Insert the type's description here.
@@ -8,7 +9,7 @@ import java.util.ArrayList;
  * @author
  */
 public class RelationSequenceSet {
-    protected ArrayList relSequences;
+    protected List relSequences;
 
     /**
      * Insert the method's description here.

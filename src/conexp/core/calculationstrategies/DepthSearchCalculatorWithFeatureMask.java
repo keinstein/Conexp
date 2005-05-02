@@ -25,8 +25,8 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
     }
 
 
-    Set attributesMask;
-    Set objectsMask;
+    private Set attributesMask;
+    private Set objectsMask;
 
     protected ModifiableSet calcDescAttr(int depth, Set objects, Set attribs) {
         ModifiableSet ret = super.calcDescAttr(depth, objects, attribs);
@@ -34,7 +34,7 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
         return ret;
     }
 
-    protected ModifiableSet allObjSet;
+    private ModifiableSet allObjSet;
 
     protected void initObjectsAndAttribs() {
         super.initObjectsAndAttribs();
@@ -44,7 +44,7 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
             allAttrSet.and(attributesMask);
         }
 
-        if(objectsMask!=null){
+        if (objectsMask != null) {
             allObjSet.and(objectsMask);
         }
     }
@@ -79,13 +79,13 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
         setSearchConstrainter(new NullSearchConstraint());
     }
 
-    SearchConstraint searchConstrainer;
+    private SearchConstraint searchConstrainer;
 
     public void setSearchConstrainter(SearchConstraint searchConstrainer) {
         this.searchConstrainer = searchConstrainer;
     }
 
-    boolean hasZero = false;
+    private boolean hasZero = false;
 
     protected void performDepthSearchCalculationOfLattice() {
         calcOne();

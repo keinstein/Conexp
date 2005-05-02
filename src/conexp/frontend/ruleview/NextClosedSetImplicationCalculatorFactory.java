@@ -13,11 +13,12 @@ public class NextClosedSetImplicationCalculatorFactory implements ImplicationCal
         return new NextClosedSetImplicationCalculator();
     }
 
-    private NextClosedSetImplicationCalculatorFactory() {}
+    private NextClosedSetImplicationCalculatorFactory() {
+    }
 
     private static final ImplicationCalcStrategyFactory gInstance = new NextClosedSetImplicationCalculatorFactory();
 
-    public static ImplicationCalcStrategyFactory getInstance(){
-            return gInstance;
+    public static ImplicationCalcStrategyFactory getInstance() {
+        return gInstance;
     }
 }

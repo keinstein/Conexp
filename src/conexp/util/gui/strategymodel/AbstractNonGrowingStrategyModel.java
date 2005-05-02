@@ -36,5 +36,5 @@ public abstract class AbstractNonGrowingStrategyModel extends NonGrowingStrategy
 
     }
 
-    public abstract String[][] getCreateInfo();
+    protected abstract String[][] getCreateInfo();
 }

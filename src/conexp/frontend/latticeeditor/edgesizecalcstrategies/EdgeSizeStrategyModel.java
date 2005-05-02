@@ -7,13 +7,14 @@
 
 package conexp.frontend.latticeeditor.edgesizecalcstrategies;
 
-import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.AbstractDrawingStrategyModel;
+import conexp.frontend.latticeeditor.DrawParameters;
 
 
 public class EdgeSizeStrategyModel extends AbstractDrawingStrategyModel {
     /**
      * EdgeSizeStrategyModel constructor comment.
+     *
      * @param opt conexp.frontend.latticeeditor.LatticePainterOptions
      */
     public EdgeSizeStrategyModel(DrawParameters opt) {

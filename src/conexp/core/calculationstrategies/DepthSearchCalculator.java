@@ -30,20 +30,20 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
 
     //-----------------------------------------------------------------
     /**
-     *  Constructor for the DepthSearchCalculator object
+     * Constructor for the DepthSearchCalculator object
      */
     public DepthSearchCalculator() {
         super();
     }
     //--------------------------------------------------------------------
     /**
-     *  calculate attributes, that exist in at least one object from _objects and
-     *  don't belong to _attribs
+     * calculate attributes, that exist in at least one object from _objects and
+     * don't belong to _attribs
      *
-     *@param  depth    Description of Parameter
-     *@param  objects  Description of Parameter
-     *@param  attribs  Description of Parameter
-     *@return           Description of the Returned Value
+     * @param depth   Description of Parameter
+     * @param objects Description of Parameter
+     * @param attribs Description of Parameter
+     * @return Description of the Returned Value
      */
     protected ModifiableSet calcDescAttr(int depth, Set objects, Set attribs) {
         ///*DBG*/ System.out.println("calcDescAttr "+depth+" attribs["+attribs+"]");
@@ -57,7 +57,7 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
     }
     //-----------------------------------------------------------------
     /**
-     *  from here starts version for attributes
+     * from here starts version for attributes
      */
 
     protected void performDepthSearchCalculationOfLattice() {
@@ -78,8 +78,8 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
 
     //----------------------------------------------------------------
     /**
-     *  this function is strongly connected with used order !!! precondition :
-     *  _attribs not equal one attribs
+     * this function is strongly connected with used order !!! precondition :
+     * _attribs not equal one attribs
      */
     protected LatticeElement findLatticeElementFromOne(Set attribs) {
         DepthSearchLatticeElement curr = (DepthSearchLatticeElement) lattice.getOne();
@@ -104,10 +104,10 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
 
     //-------------------------------------------------------------------------------
     /**
-     *  Description of the Method
+     * Description of the Method
      *
-     *@param  parentElement              Description of Parameter
-     *@param  depth              Description of Parameter
+     * @param parentElement Description of Parameter
+     * @param depth         Description of Parameter
      */
     void calcDescendantsAttr(DepthSearchLatticeElement parentElement, int depth) {
         Set _conceptDescAttr = calcDescAttr(depth, parentElement.getObjects(), parentElement.getAttribs());
@@ -152,9 +152,10 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
     /**
      * Insert the method's description here.
      * Creation date: (05.08.01 19:28:46)
-     * @return conexp.core.LatticeElement
+     *
      * @param extent conexp.core.Set
      * @param intent conexp.core.Set
+     * @return conexp.core.LatticeElement
      */
     protected static DepthSearchLatticeElement makeDepthSearchLatticeElement(Set extent, Set intent) {
         return new DepthSearchLatticeElement(extent.makeModifiableSetCopy(), intent.makeModifiableSetCopy());

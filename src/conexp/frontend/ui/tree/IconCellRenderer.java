@@ -1,8 +1,8 @@
 package conexp.frontend.ui.tree;
 
-import javax.swing.tree.TreeCellRenderer;
-import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeCellRenderer;
 import java.awt.*;
 
 /**
@@ -60,7 +60,7 @@ public class IconCellRenderer extends JLabel implements TreeCellRenderer {
 
         g.setColor(bColor);
         int offset = 0;
-        if (icon != null && getText() != null)  {
+        if (icon != null && getText() != null) {
             offset = (icon.getIconWidth() + getIconTextGap());
         }
         g.fillRect(offset, 0, getWidth() - 1 - offset,

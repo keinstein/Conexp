@@ -27,7 +27,7 @@ public class ConImpContextWriter implements DocumentWriter, ContextWriter {
     }
 
     public void writeContext(ContextEditingInterface cxt, Writer writer) throws IOException {
-        writer.write("B" + newline);//$NON-NLS-1$
+        writer.write('B' + newline);//$NON-NLS-1$
         writer.write(newline); //here was name
         int numObj = cxt.getObjectCount();
         writer.write(numObj + newline);

@@ -5,14 +5,13 @@
  **/
 
 
-
 package conexp.core.compareutils;
 
 public class DefaultCompareInfoFactory implements CompareInfoFactory {
 
     private static CompareInfoFactory g_Instance = new DefaultCompareInfoFactory();
 
-    public static CompareInfoFactory getInstance(){
+    public static CompareInfoFactory getInstance() {
         return g_Instance;
     }
 

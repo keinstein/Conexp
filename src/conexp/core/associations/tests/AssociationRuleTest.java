@@ -22,8 +22,8 @@ public class AssociationRuleTest extends TestCase {
     }
 
 
-    AssociationRule ruleApproximate;
-    AssociationRule ruleExact;
+    private AssociationRule ruleApproximate;
+    private AssociationRule ruleExact;
 
     /**
      * Insert the method's description here.
@@ -38,7 +38,7 @@ public class AssociationRuleTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (07.05.01 2:40:20)
      */
-    protected static void doTestConfidence(AssociationRule rule, int expPremiseSupport, int expConclusionSupport, double expConfidence, boolean expIsExact) {
+    private static void doTestConfidence(AssociationRule rule, int expPremiseSupport, int expConclusionSupport, double expConfidence, boolean expIsExact) {
         assertEquals(expPremiseSupport, rule.getPremiseSupport());
         assertEquals(expConclusionSupport, rule.getRuleSupport());
         assertEquals(expConfidence, rule.getConfidence(), 0.1e-5);

@@ -14,13 +14,13 @@ import junit.framework.TestCase;
 
 
 public class BinaryRelationUtilsTest extends TestCase {
-    public static final double PRECISION = 0.0001;
+    private static final double PRECISION = 0.0001;
 
     /**
      * Insert the method's description here.
      * Creation date: (04.08.01 8:36:57)
      */
-    protected static void doTestLexSort(int[][] relToSort, int[][] sortedRel) {
+    private static void doTestLexSort(int[][] relToSort, int[][] sortedRel) {
         BinaryRelation toSort = SetBuilder.makeRelation(relToSort);
         BinaryRelation sorted = SetBuilder.makeRelation(sortedRel);
         assertEquals(sorted, BinaryRelationUtils.lexSort(toSort));
@@ -114,20 +114,20 @@ public class BinaryRelationUtilsTest extends TestCase {
         doTestTransitiveClosure(relationToCloseDescr, expClosedRelationDescr);
     }
 
-    public static void testAverageNumberOfAttributesPerRow(){
-        int [][] relationDescr={{}};
+    public static void testAverageNumberOfAttributesPerRow() {
+        int[][] relationDescr = {{}};
         BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
         double average = BinaryRelationUtils.averageNumberOfAttributesPerObject(relation);
         assertEquals(0, average, PRECISION);
 
-        relationDescr =new int[][] {
+        relationDescr = new int[][]{
             {1, 0},
             {0, 1}
         };
         relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(1, BinaryRelationUtils.averageNumberOfAttributesPerObject(relation), PRECISION);
 
-        relationDescr =new int[][] {
+        relationDescr = new int[][]{
             {1, 1},
             {0, 1}
         };
@@ -135,12 +135,12 @@ public class BinaryRelationUtilsTest extends TestCase {
         assertEquals(1.5, BinaryRelationUtils.averageNumberOfAttributesPerObject(relation), PRECISION);
     }
 
-    public static void testAverageNumberOfObjectsPerAttribute(){
-        int [][] relationDescr={{}};
+    public static void testAverageNumberOfObjectsPerAttribute() {
+        int[][] relationDescr = {{}};
         BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(0, BinaryRelationUtils.averageNumberOfObjectsPerAttribute(relation), PRECISION);
 
-        relationDescr =new int[][] {
+        relationDescr = new int[][]{
             {1, 0, 1},
             {0, 0, 1}
         };
@@ -148,11 +148,11 @@ public class BinaryRelationUtilsTest extends TestCase {
         assertEquals(1, BinaryRelationUtils.averageNumberOfObjectsPerAttribute(relation), PRECISION);
     }
 
-    public static void testVarianceOfObjectPerAttribute(){
-        int [][] relationDescr={{}};
+    public static void testVarianceOfObjectPerAttribute() {
+        int[][] relationDescr = {{}};
         BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(0, BinaryRelationUtils.varianceOfObjectPerAttribute(relation), PRECISION);
-        relationDescr =new int[][] {
+        relationDescr = new int[][]{
             {1, 0, 1},
             {0, 0, 1}
         };
@@ -160,11 +160,11 @@ public class BinaryRelationUtilsTest extends TestCase {
         assertEquals(0.6666, BinaryRelationUtils.varianceOfObjectPerAttribute(relation), PRECISION);
     }
 
-    public static void testVarianceOfAttributesPerObject(){
-        int [][] relationDescr={{}};
+    public static void testVarianceOfAttributesPerObject() {
+        int[][] relationDescr = {{}};
         BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(0, BinaryRelationUtils.varianceOfAttributesPerObjects(relation), PRECISION);
-        relationDescr =new int[][] {
+        relationDescr = new int[][]{
             {1, 0, 1},
             {0, 0, 1}
         };
@@ -172,7 +172,7 @@ public class BinaryRelationUtilsTest extends TestCase {
         assertEquals(0.25, BinaryRelationUtils.varianceOfAttributesPerObjects(relation), PRECISION);
     }
 
-    public static void testMax(){
+    public static void testMax() {
         assertEquals(3, BinaryRelationUtils.max(new int[]{1, 3, 2}));
         assertEquals(3, BinaryRelationUtils.max(new int[]{1, 2, 3}));
         assertEquals(3, BinaryRelationUtils.max(new int[]{3, 2, 1}));

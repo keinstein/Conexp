@@ -23,15 +23,13 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
         }
 
         void adjustForce(double dx, double dy, double dz) {
-            deltaMove.setLocation(
-                    deltaMove.getX() + dx,
+            deltaMove.setLocation(deltaMove.getX() + dx,
                     deltaMove.getY() + dy);
             deltaMove.z += dz;
         }
 
         void addDeltaToCurrPosWithFactor(double factor) {
-            coords.setLocation(
-                    coords.getProjectedX() + deltaMove.getProjectedX() * factor,
+            coords.setLocation(coords.getProjectedX() + deltaMove.getProjectedX() * factor,
                     coords.getProjectedY() + deltaMove.getProjectedY() * factor);
 
             coords.z += deltaMove.z * factor;
@@ -65,8 +63,7 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
 
             for (int k = 0; k < j; k++) {
                 Point3D pt = getConceptInfo(topSorted[i + k]).coords;
-                pt.setLocation(
-                        drawParams.getGridSizeX() * j
+                pt.setLocation(drawParams.getGridSizeX() * j
                         * Math.cos(k * angle),
                         drawParams.getGridSizeY() *
                         (getConceptInfo(lattice.getOne()).rank - rank));
@@ -161,8 +158,9 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
     /**
      * Insert the method's description here.
      * Creation date: (04.03.01 10:29:19)
-     * @return java.lang.Object
+     *
      * @param index int
+     * @return java.lang.Object
      */
     public ElementInfo getLocalConceptInfo(int index) {
         return (ElementInfo) elementMap[index];
@@ -193,6 +191,7 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
 
     /**
      * Comments for the makeConceptInfo method.
+     *
      * @return conexp.core.layout.GenericLayouter$LayoutConceptInfo
      */
     protected LayoutConceptInfo makeConceptInfo() {
@@ -245,6 +244,7 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
     /**
      * Insert the method's description here.
      * Creation date: (04.06.01 14:16:34)
+     *
      * @return boolean
      */
     public boolean isDone() {

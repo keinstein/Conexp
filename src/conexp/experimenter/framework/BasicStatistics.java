@@ -9,7 +9,7 @@ public class BasicStatistics {
     /**
      * BasicStatistics constructor comment.
      */
-    public BasicStatistics() {
+    private BasicStatistics() {
         super();
     }
 

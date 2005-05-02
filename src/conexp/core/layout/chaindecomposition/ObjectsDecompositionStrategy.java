@@ -16,6 +16,7 @@ public class ObjectsDecompositionStrategy implements ChainDecompositionStrategy 
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 19:08:06)
+     *
      * @return conexp.core.BinaryRelation
      */
     public BinaryRelation computeEntitiesOrder() {
@@ -36,10 +37,11 @@ public class ObjectsDecompositionStrategy implements ChainDecompositionStrategy 
     /**
      * Insert the method's description here.
      * Creation date: (10.03.01 1:34:34)
-     * @param el conexp.core.LatticeElement
+     *
+     * @param el       conexp.core.LatticeElement
      * @param vectorsX double[]
      * @param vectorsY double[]
-     * @param pt conexp.core.layout.Point2D
+     * @param pt       conexp.core.layout.Point2D
      */
     public Set conceptRepresentation(LatticeElement el) {
         return el.getObjects();
@@ -48,6 +50,7 @@ public class ObjectsDecompositionStrategy implements ChainDecompositionStrategy 
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 19:08:06)
+     *
      * @return int
      */
     public int getEntitiesCount() {
@@ -57,6 +60,7 @@ public class ObjectsDecompositionStrategy implements ChainDecompositionStrategy 
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 19:08:06)
+     *
      * @return int
      */
     public int getYSign() {
@@ -66,8 +70,9 @@ public class ObjectsDecompositionStrategy implements ChainDecompositionStrategy 
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 20:26:49)
-     * @return boolean
+     *
      * @param v int
+     * @return boolean
      */
     public boolean isEntityIrreducible(int v) {
         for (int i = cxt.getAttributeCount(); --i >= 0;) {
@@ -81,6 +86,7 @@ public class ObjectsDecompositionStrategy implements ChainDecompositionStrategy 
     /**
      * Insert the method's description here.
      * Creation date: (10.03.01 10:23:43)
+     *
      * @param newCxt conexp.core.Context
      */
     public void setContext(ExtendedContextEditingInterface newCxt) {

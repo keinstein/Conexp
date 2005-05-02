@@ -48,7 +48,7 @@ public class IntValueCellEditor extends javax.swing.DefaultCellEditor {
     }
 
 
-    conexp.util.gui.IntValueWholeNumberField getEditField() {
+    private conexp.util.gui.IntValueWholeNumberField getEditField() {
         return (conexp.util.gui.IntValueWholeNumberField) editorComponent;
     }
 }

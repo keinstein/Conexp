@@ -17,11 +17,11 @@ public class ConceptsCollectionTest extends TestCase {
         TestUtil.testEqualsAndHashCode(new ConceptsCollection(), new ConceptsCollection());
     }
 
-    public static void testEqualsAsSets(){
+    public static void testEqualsAsSets() {
         ConceptsCollection one = new ConceptsCollection();
         ConceptsCollection two = new ConceptsCollection();
         assertTrue(one.equalsAsSets(two));
-        two = SetBuilder.makeConceptSet(new int[][]{{0, 1},{1, 0}});
+        two = SetBuilder.makeConceptSet(new int[][]{{0, 1}, {1, 0}});
         assertFalse(one.equalsAsSets(two));
     }
 }

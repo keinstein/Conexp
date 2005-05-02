@@ -37,7 +37,6 @@ public class LatticeBuilderCallback extends DefaultConceptEnumCallback {
     }
 
     /**
-     *
      * @param extent <description>
      * @param intent <description>
      */
@@ -50,7 +49,6 @@ public class LatticeBuilderCallback extends DefaultConceptEnumCallback {
     }
 
     /**
-     *
      * @param extent <description>
      * @param intent <description>
      */

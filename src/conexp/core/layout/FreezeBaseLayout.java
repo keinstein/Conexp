@@ -6,6 +6,7 @@ import conexp.core.LatticeElement;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,7 +25,7 @@ public abstract class FreezeBaseLayout extends SimpleForceLayout {
         Arrays.sort(topSorted, new ConceptRankComparator());
         for (int i = 0; i < n; i++) {
             LatticeElement curr = topSorted[i];
-            LinkedList list = new LinkedList();
+            List list = new LinkedList();
             int j = i;
             FreezeLayoutConceptInfo currInf = getLocalConceptInfo(curr);
             while (j >= 0 && getConceptInfo(topSorted[j]).rank == currInf.rank) {
@@ -42,7 +43,7 @@ public abstract class FreezeBaseLayout extends SimpleForceLayout {
 
         for (int i = n; --i >= 0;) {
             LatticeElement curr = topSorted[i];
-            LinkedList list = new LinkedList();
+            List list = new LinkedList();
             int j = i;
             FreezeLayoutConceptInfo currInf = getLocalConceptInfo(curr);
             while (j < n && getConceptInfo(topSorted[j]).rank == currInf.rank) {
@@ -76,12 +77,12 @@ public abstract class FreezeBaseLayout extends SimpleForceLayout {
         float inv_d_cubed;
         if (dz == 0) {
             if (Math.abs(dx) < 0.2 && Math.abs(dy) < 0.2) {
-                inv_d_cubed =  37.0f;
+                inv_d_cubed = 37.0f;
             } else if (Math.abs(dx) < 1.0 && Math.abs(dy) < 1.0) {
-                inv_d_cubed =  1.0f / ((float) Math.pow(Math.abs(dx), 2) +
+                inv_d_cubed = 1.0f / ((float) Math.pow(Math.abs(dx), 2) +
                         (float) Math.pow(Math.abs(dy), 2));
             } else {
-                inv_d_cubed =  1.0f / ((float) Math.pow(Math.abs(dx), 3) +
+                inv_d_cubed = 1.0f / ((float) Math.pow(Math.abs(dx), 3) +
                         (float) Math.pow(Math.abs(dy), 3) +
                         (float) Math.pow(Math.abs(dz), 3));
             }
@@ -108,6 +109,7 @@ public abstract class FreezeBaseLayout extends SimpleForceLayout {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 3:00:32)
+     *
      * @return java.util.Collection[]
      * @test_public
      */
@@ -118,8 +120,9 @@ public abstract class FreezeBaseLayout extends SimpleForceLayout {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 10:57:52)
-     * @return java.lang.Object
+     *
      * @param el conexp.core.LatticeElement
+     * @return java.lang.Object
      * @test_public
      */
     public FreezeLayoutConceptInfo getLocalConceptInfo(ItemSet el) {
@@ -129,6 +132,7 @@ public abstract class FreezeBaseLayout extends SimpleForceLayout {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 3:00:32)
+     *
      * @return java.util.Collection[]
      * @test_public
      */
@@ -144,6 +148,7 @@ public abstract class FreezeBaseLayout extends SimpleForceLayout {
 
     /**
      * Comments for the makeConceptInfo method.
+     *
      * @return conexp.core.layout.GenericLayouter$LayoutConceptInfo
      */
     protected LayoutConceptInfo makeConceptInfo() {

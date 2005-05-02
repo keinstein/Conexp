@@ -16,8 +16,8 @@ import conexp.core.tests.SetBuilder;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 
 public class SimpleAssociationMinerTest extends AssociationMinerTest {
@@ -41,7 +41,7 @@ public class SimpleAssociationMinerTest extends AssociationMinerTest {
             {1, 0, 1, 0, 1},
             {1, 0, 1, 0, 1}});
 
-        ArrayList edges = BaseAssociationMiner.findFrequentEdgesSortedByConfidence(lat, 0.40, 3);
+        List edges = BaseAssociationMiner.findFrequentEdgesSortedByConfidence(lat, 0.40, 3);
 
         ExpectationList expRules = new ExpectationList("ExpectedRules");
         expRules.addExpected(SetBuilder.makeEdge(new int[][]{{0, 0, 1, 1, 1, 1, 1}, {1, 0, 1, 0, 0}},

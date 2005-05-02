@@ -9,10 +9,9 @@ package conexp.frontend.contexteditor;
 
 import conexp.core.ContextEditingInterface;
 import conexp.core.ContextEditingInterfaceWithArrowRelations;
+import util.Assert;
 
 import javax.swing.*;
-
-import util.Assert;
 
 public class ArrowRelDrawStrategy extends SimpleContextDrawStrategy {
     final static Class THIS = ArrowRelDrawStrategy.class;

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core;
 
 import conexp.core.registries.FCAEngineImplementation;
@@ -13,6 +12,9 @@ import conexp.core.registries.FCAEngineImplementation;
 public class FCAEngineRegistry {
 
     private static FCAEngine fcaEngine;
+
+    private FCAEngineRegistry() {
+    }
 
     public static FCAEngine getFcaEngine() {
         if (null == fcaEngine) {
@@ -42,7 +44,7 @@ public class FCAEngineRegistry {
         return getFcaEngine().buildIcebergLattice(cxt, minSupport);
     }
 
-    public static ConceptsCollection buildConceptSet(Context cxt){
+    public static ConceptsCollection buildConceptSet(Context cxt) {
         return getFcaEngine().buildConceptSet(cxt);
     }
 

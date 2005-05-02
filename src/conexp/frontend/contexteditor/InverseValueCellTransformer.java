@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.contexteditor;
 
 public class InverseValueCellTransformer implements CellTransformer {

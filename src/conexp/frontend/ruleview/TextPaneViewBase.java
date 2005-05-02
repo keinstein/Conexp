@@ -24,11 +24,9 @@ public class TextPaneViewBase extends JTextPane {
     }
 
     protected void appendString(String str, SimpleAttributeSet attrSet) throws BadLocationException {
-        getDocument().insertString(
-                getDocument().getLength(),
+        getDocument().insertString(getDocument().getLength(),
                 str,
-                attrSet
-        );
+                attrSet);
     }
 
     public void clear() {

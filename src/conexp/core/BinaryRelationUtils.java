@@ -10,15 +10,20 @@ package conexp.core;
 import util.Assert;
 import util.DoubleUtil;
 
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.io.PrintWriter;
+import java.util.List;
 
 
 public class BinaryRelationUtils {
+    private BinaryRelationUtils() {
+    }
+
     /**
      * Insert the method's description here.
      * Creation date: (08.07.01 2:31:15)
+     *
      * @return java.lang.String
      */
     public static String describeRelation(BinaryRelation rel) {
@@ -30,7 +35,7 @@ public class BinaryRelationUtils {
         int cnt = calculateFilledCells(rel);
         ret.append(";Filled cells;");
         ret.append(cnt);
-        ret.append(";");
+        ret.append(';');
         return ret.toString();
     }
 
@@ -61,8 +66,8 @@ public class BinaryRelationUtils {
         return frequencies;
     }
 
-    public static final boolean isSquare(BinaryRelation rel){
-        return rel.getRowCount()==rel.getColCount();
+    public static boolean isSquare(BinaryRelation rel) {
+        return rel.getRowCount() == rel.getColCount();
     }
 
 
@@ -94,16 +99,17 @@ public class BinaryRelationUtils {
         }
         return frequencies;
     }
-/**
- *  side effect - list became sorted
- */
-    public static double quantile(int[] elements, double phi){
+
+    /**
+     * side effect - list became sorted
+     */
+    public static double quantile(int[] elements, double phi) {
         Arrays.sort(elements);
         return quantileFromSorted(elements, phi);
     }
 
     public static double quantileFromSorted(int[] sortedElements, double phi) {
-        if(phi<0 || phi>1){
+        if (phi < 0 || phi > 1) {
             throw new IllegalArgumentException("Incorrect parameter value in quantile");
         }
         int n = sortedElements.length;
@@ -186,12 +192,13 @@ public class BinaryRelationUtils {
     /**
      * Insert the method's description here.
      * Creation date: (04.08.01 6:54:31)
-     * @return conexp.core.BinaryRelation
+     *
      * @param rel conexp.core.BinaryRelation
+     * @return conexp.core.BinaryRelation
      */
     public static BinaryRelation lexSort(BinaryRelation rel) {
-        LinkedList zeros = new LinkedList();
-        LinkedList ones = new LinkedList();
+        List zeros = new LinkedList();
+        List ones = new LinkedList();
 
         LinkedList work = new LinkedList();
         for (int i = rel.getRowCount(); --i >= 0;) {
@@ -224,8 +231,9 @@ public class BinaryRelationUtils {
     /**
      * Insert the method's description here.
      * Creation date: (14.07.01 7:42:59)
+     *
      * @param rel conexp.core.BinaryRelation
-     * @param pw java.io.PrintWriter
+     * @param pw  java.io.PrintWriter
      */
     public static void logRelation(BinaryRelation rel, PrintWriter pw) {
         pw.println("===============================================");
@@ -241,6 +249,7 @@ public class BinaryRelationUtils {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 23:31:56)
+     *
      * @param rel conexp.core.BinaryRelation
      */
     public static void makeSymmetric(ModifiableBinaryRelation rel) {
@@ -276,6 +285,7 @@ public class BinaryRelationUtils {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 23:32:28)
+     *
      * @param rel conexp.core.BinaryRelation
      */
     public static void transitiveClosure(ModifiableBinaryRelation rel) {
@@ -388,9 +398,9 @@ public class BinaryRelationUtils {
     }
 
     public static BinaryRelation createSlice(BinaryRelation baseRelation, int startIndex, int endIndex) {
-        Assert.isTrue(startIndex<=endIndex);
-        ModifiableBinaryRelation relation = ContextFactoryRegistry.createRelation(endIndex-startIndex+1, baseRelation.getColCount());
-        for(int i=startIndex; i<=endIndex; i++){
+        Assert.isTrue(startIndex <= endIndex);
+        ModifiableBinaryRelation relation = ContextFactoryRegistry.createRelation(endIndex - startIndex + 1, baseRelation.getColCount());
+        for (int i = startIndex; i <= endIndex; i++) {
             relation.getModifiableSet(i).copy(baseRelation.getSet(i));
         }
         return relation;

@@ -5,12 +5,11 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor;
 
+import canvas.Figure;
 import canvas.FigureDrawingCanvas;
 import canvas.IFigurePredicate;
-import canvas.Figure;
 import conexp.core.*;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.ConceptSetDrawingConsumer;
@@ -18,13 +17,13 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import util.Assert;
 
+import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
-import java.awt.*;
 
 public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDrawingConsumer {
 
-    public LatticeCanvas(LatticeCanvasScheme latticeCanvasScheme){
+    public LatticeCanvas(LatticeCanvasScheme latticeCanvasScheme) {
         super(latticeCanvasScheme);
     }
 
@@ -85,7 +84,7 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
         for (int i = 0; i < el.getSuccCount(); i++) {
             LatticeElement succEl = el.getSucc(i);
             AbstractConceptCorrespondingFigure succFigures = getFigureForConcept(succEl);
-            if(includeInComputation.accept(succFigures)){
+            if (includeInComputation.accept(succFigures)) {
                 ret = Math.min(ret, f.getCenterY() - succFigures.getCenterY());
             }
         }
@@ -136,7 +135,7 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
     }
 
     /**
-     *  @test_public
+     * @test_public
      */
 
     protected Set getCurrentQuery() {

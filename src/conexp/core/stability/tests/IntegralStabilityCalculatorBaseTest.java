@@ -12,7 +12,7 @@ import junit.framework.TestCase;
  */
 
 public abstract class IntegralStabilityCalculatorBaseTest extends TestCase {
-    private static final double PRECISION=0.01;
+    private static final double PRECISION = 0.01;
 
     public void testCalculateStabilityForLatticeCaseWithOneObject() {
 

@@ -14,17 +14,19 @@ public interface BinaryRelation {
     int getColCount();
 
     /**
-     gets value of cell with coordinates (x, y)
-     @param row - x  coordinate
-     @param col - y coordinate
-     @return value
+     * gets value of cell with coordinates (x, y)
+     *
+     * @param row - x  coordinate
+     * @param col - y coordinate
+     * @return value
      */
 
     boolean getRelationAt(int row, int col);
 
     /**
-     returns Set of values
-     @param row
+     * returns Set of values
+     *
+     * @param row
      */
     Set getSet(int row);
 

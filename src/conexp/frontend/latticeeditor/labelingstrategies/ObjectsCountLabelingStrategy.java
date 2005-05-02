@@ -15,6 +15,7 @@ public class ObjectsCountLabelingStrategy extends SimpleConceptLabelingStrategy 
 
     /**
      * ObjectsCountLabellingStrategy constructor comment.
+     *
      * @param opt conexp.frontend.latticeeditor.LatticePainterDrawParams
      */
     public ObjectsCountLabelingStrategy() {
@@ -31,8 +32,9 @@ public class ObjectsCountLabelingStrategy extends SimpleConceptLabelingStrategy 
     /**
      * Insert the method's description here.
      * Creation date: (26.12.00 0:57:50)
-     * @return java.lang.String
+     *
      * @param concept conexp.core.LatticeElement
+     * @return java.lang.String
      */
     protected String getDescriptionString(ConceptQuery conceptQuery) {
         return conceptQuery.getExtentSize() + " / " + StringUtil.formatPercents((double) conceptQuery.getExtentSize() / cxt.getObjectCount());

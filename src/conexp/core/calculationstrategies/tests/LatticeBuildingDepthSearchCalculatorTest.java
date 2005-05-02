@@ -16,33 +16,33 @@ import conexp.core.tests.SetBuilder;
 
 public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrategyTest {
     public static final int[][] LIVING_BEING_AND_WATER_RELATION = new int[][]{
-                {1, 1, 0, 0, 0, 0, 1, 0, 0},
-                {1, 1, 0, 0, 0, 0, 1, 1, 0},
-                {1, 1, 1, 0, 0, 0, 1, 1, 0},
-                {1, 0, 1, 0, 0, 0, 1, 1, 1},
-                {1, 1, 0, 1, 0, 1, 0, 0, 0},
-                {1, 1, 1, 1, 0, 1, 0, 0, 0},
-                {1, 0, 1, 1, 1, 0, 0, 0, 0},
-                {1, 0, 1, 1, 0, 1, 0, 0, 0},
-            };
+        {1, 1, 0, 0, 0, 0, 1, 0, 0},
+        {1, 1, 0, 0, 0, 0, 1, 1, 0},
+        {1, 1, 1, 0, 0, 0, 1, 1, 0},
+        {1, 0, 1, 0, 0, 0, 1, 1, 1},
+        {1, 1, 0, 1, 0, 1, 0, 0, 0},
+        {1, 1, 1, 1, 0, 1, 0, 0, 0},
+        {1, 0, 1, 1, 1, 0, 0, 0, 0},
+        {1, 0, 1, 1, 0, 1, 0, 0, 0},
+    };
     public static final int[][] TWO_NODE_ONE_ATTR_CONTEXT = new int[][]{
-                        {0}
-                    };
+        {0}
+    };
     public static final int[][] ONE_NODE_ONE_ATTR_CONTEXT = new int[][]{
-                        {1}
-                    };
+        {1}
+    };
     public static final int[][] LINEAR_3_NODE_4_ATTR = new int[][]{
-                {0, 0, 0, 1},
-                {0, 0, 1, 1},
-            };
+        {0, 0, 0, 1},
+        {0, 0, 1, 1},
+    };
     public static final int[][] NOMINAL_2_NODE_3_ATTR = new int[][]{
-                {0, 0, 1},
-                {0, 1, 0}
-            };
+        {0, 0, 1},
+        {0, 1, 0}
+    };
     public static final int[][] NOMINAL_2_NODE_4_ATTR = new int[][]{
-                        {1, 0, 0, 0},
-                        {0, 1, 0, 0},
-                    };
+        {1, 0, 0, 0},
+        {0, 1, 0, 0},
+    };
 
     protected Lattice getLattice() {
         return (Lattice) conceptSet;
@@ -76,7 +76,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
         getLatticeCalcStrategy().buildLattice();
     }
 
-    protected LatticeCalcStrategy getLatticeCalcStrategy() {
+    private LatticeCalcStrategy getLatticeCalcStrategy() {
         return (LatticeCalcStrategy) calcStrategy;
     }
 
@@ -89,7 +89,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
         return makeLattice();
     }
 
-    protected static Lattice makeLattice() {
+    private static Lattice makeLattice() {
         return new Lattice();
     }
 
@@ -97,13 +97,13 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
     /**
      * Insert the method's description here.
      * Creation date: (12.07.01 16:08:42)
+     *
      * @param lat conexp.core.Lattice
      */
     protected abstract void setupStrategy(ConceptsCollection lat);
 
     public void testTwoNodeCase() {
-        doTestCalcStrategyForExpectedIntentsAndExtents(
-                TWO_NODE_ONE_ATTR_CONTEXT,
+        doTestCalcStrategyForExpectedIntentsAndExtents(TWO_NODE_ONE_ATTR_CONTEXT,
 
                 new int[][]{
                     {0},
@@ -112,21 +112,18 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
                 new int[][]{
                     {1},
                     {0}
-                }, 1
-        );
+                }, 1);
     }
 
     public void testOneNodeCase() {
-        doTestCalcStrategyForExpectedIntentsAndExtents(
-                ONE_NODE_ONE_ATTR_CONTEXT,
+        doTestCalcStrategyForExpectedIntentsAndExtents(ONE_NODE_ONE_ATTR_CONTEXT,
 
                 new int[][]{
                     {1}
                 },
                 new int[][]{
                     {1}
-                }, 0
-        );
+                }, 0);
     }
 
     public void testLin3() {
@@ -157,8 +154,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
                     {0, 1},
                     {0, 0}
                 },
-                4
-        );
+                4);
     }
 
     public void testBadDepthSeachReduced() {
@@ -220,8 +216,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
                     {1, 0, 1, 0, 1, 1, 0, 0, 0},
                     {0, 1, 0, 1, 0, 0, 1, 0, 1},
                 },
-                43
-        );
+                43);
 
     }
 
@@ -259,13 +254,11 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
                     {1, 0, 0, 0, 0},
                     {0, 0, 0, 0, 0},
                 },
-                18
-        );
+                18);
     }
 
     public void testNominalTwoObjectCase() {
-        doTestCalcStrategyForExpectedIntentsAndExtents(
-                NOMINAL_2_NODE_4_ATTR,
+        doTestCalcStrategyForExpectedIntentsAndExtents(NOMINAL_2_NODE_4_ATTR,
                 new int[][]{
                     {0, 0, 0, 0},
                     {1, 0, 0, 0},
@@ -278,8 +271,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
                     {0, 1},
                     {1, 1}
                 },
-                4
-        );
+                4);
 
 
     }
@@ -329,9 +321,7 @@ public abstract class LatticeBuildingDepthSearchCalculatorTest extends CalcStrat
             {1, 1, 1, 0, 1, 1, 0, 0},
         };
 
-        doTestCalcStrategyForExpectedIntentsAndExtents(
-                LIVING_BEING_AND_WATER_RELATION, expIntents, expExtents, 32
-        );
+        doTestCalcStrategyForExpectedIntentsAndExtents(LIVING_BEING_AND_WATER_RELATION, expIntents, expExtents, 32);
 
     }
 }

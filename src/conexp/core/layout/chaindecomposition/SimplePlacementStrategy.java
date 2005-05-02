@@ -12,10 +12,11 @@ public abstract class SimplePlacementStrategy implements ConceptPlacementStrateg
     /**
      * Insert the method's description here.
      * Creation date: (10.03.01 10:32:19)
-     * @return double
-     * @param base double
+     *
+     * @param base      double
      * @param currChain int
-     * @param maxChain int
+     * @param maxChain  int
+     * @return double
      */
     public double calcXCoord(double base, int currChain, int maxChain) {
         return base * (2 * currChain - maxChain) / 2.0;
@@ -24,10 +25,11 @@ public abstract class SimplePlacementStrategy implements ConceptPlacementStrateg
     /**
      * Insert the method's description here.
      * Creation date: (10.03.01 10:32:18)
-     * @return double
-     * @param base double
+     *
+     * @param base      double
      * @param currChain int
-     * @param maxChain int
+     * @param maxChain  int
+     * @return double
      */
     public abstract double calcYCoord(double base, int currChain, int maxChain);
 }

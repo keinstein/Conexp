@@ -7,9 +7,9 @@
 
 package conexp.core.calculationstrategies.tests;
 
+import conexp.core.ConceptCalcStrategy;
 import conexp.core.ConceptsCollection;
 import conexp.core.Lattice;
-import conexp.core.ConceptCalcStrategy;
 import conexp.core.calculationstrategies.NextClosedSetCalculator;
 import conexp.core.enumcallbacks.NextClosedSetLatticeBuilderCallback;
 

@@ -7,16 +7,16 @@
 
 package conexp.frontend.latticeeditor;
 
-import canvas.CanvasScheme;
-import canvas.IHighlightStrategy;
 import canvas.CanvasColorScheme;
+import canvas.CanvasScheme;
 import canvas.DefaultColorScheme;
+import canvas.IHighlightStrategy;
 import conexp.core.layout.Layouter;
+import conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory;
 import conexp.util.gui.paramseditor.BoundedIntValueParamInfo;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
 import conexp.util.valuemodels.BoundedIntValue;
-import conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory;
 import util.BaseVetoablePropertyChangeSupplier;
 
 import java.awt.*;
@@ -185,7 +185,7 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
                 "smallGridSize=" + smallGridSize +
                 ", drawStrategiesContext=" + drawStrategiesContext +
                 ", labelsFontSize=" + labelsFontSize +
-                "}";
+                '}';
     }
 
     public boolean equals(Object obj) {
@@ -223,12 +223,13 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
     }
 
     public int hashCode() {
-        return 29*colorScheme.hashCode()+
-                (drawStrategiesContext!=null ? drawStrategiesContext.hashCode() : 0);
+        return 29 * colorScheme.hashCode() +
+                (drawStrategiesContext != null ? drawStrategiesContext.hashCode() : 0);
     }
 
     public CanvasScheme makeCopy() {
         LatticePainterOptions ret = new LatticePainterOptions(factory.makeCopy());
+        synchronized(ret){
         ret.colorScheme = colorScheme.makeCopy();
         if (labelsFontSize != null) {
             ret.labelsFontSize = ret.makeBoundedIntValue(getLabelsFontSizeValue());
@@ -240,7 +241,9 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
             ret.drawStrategiesContext = drawStrategiesContext.makeNativeCopy(ret.getPropertyChangeSupport());
         }
 
+        }
         return ret;
+
     }
 }
 

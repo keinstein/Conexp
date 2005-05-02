@@ -71,6 +71,6 @@ public class DefaultCanvasScheme implements CanvasScheme {
         return "DefaultCanvasScheme{" +
                 "colorScheme=" + colorScheme +
                 ", highlightStrategy=" + highlightStrategy +
-                "}";
+                '}';
     }
 }

@@ -28,14 +28,14 @@ public class FixedEdgeSizeCalcStrategy extends AbstractDimensionCalcStrategy imp
     }
 
     public boolean equals(Object obj) {
-        if (this == obj){
+        if (this == obj) {
             return true;
         }
         if (!(obj instanceof FixedEdgeSizeCalcStrategy)) {
             return false;
         }
         FixedEdgeSizeCalcStrategy fixedEdgeSizeCalcStrategy = (FixedEdgeSizeCalcStrategy) obj;
-        if (stroke != fixedEdgeSizeCalcStrategy.stroke){
+        if (stroke != fixedEdgeSizeCalcStrategy.stroke) {
             return false;
         }
         return true;

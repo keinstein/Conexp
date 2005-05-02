@@ -8,21 +8,22 @@
 package conexp.core.enumcallbacks;
 
 import conexp.core.*;
+import util.Assert;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-
-import util.Assert;
 
 
 public class NextClosedSetLatticeBuilderCallback extends ConceptSetCallback {
 
     protected BinaryRelation rel;
 
-    /*****************************************
+    /**
+     * **************************************
      * this function is called at the end of
      * calculation of conexp set
-     *****************************************/
+     * ***************************************
+     */
     public void finishCalc() {
         Lattice lat = (Lattice) conceptSet;
         lat.setOne(lat.elementAt(0));
@@ -70,8 +71,9 @@ public class NextClosedSetLatticeBuilderCallback extends ConceptSetCallback {
     /**
      * Insert the method's description here.
      * Creation date: (10.07.01 8:01:10)
-     * @return conexp.core.LatticeElement
+     *
      * @param intent conexp.core.Set
+     * @return conexp.core.LatticeElement
      */
     public LatticeElement findMinConceptWithIntentAndAttrib(Set intent, int endPos) {
 
@@ -101,6 +103,7 @@ public class NextClosedSetLatticeBuilderCallback extends ConceptSetCallback {
     /**
      * Insert the method's description here.
      * Creation date: (14.07.01 20:05:23)
+     *
      * @param rel conexp.core.BinaryRelation
      */
     public void setRelation(BinaryRelation rel) {

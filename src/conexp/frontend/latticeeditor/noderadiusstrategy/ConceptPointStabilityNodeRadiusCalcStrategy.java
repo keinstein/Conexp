@@ -12,8 +12,8 @@ import conexp.core.stability.PointAndIntegralStabilityCalculator;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.DrawParameters;
 
-public class ConceptPointStabilityNodeRadiusCalcStrategy extends ConceptDependentRadiusCalcStrategy{
-    PointAndIntegralStabilityCalculator  stabilityCalculator = new PointAndIntegralStabilityCalculator();
+public class ConceptPointStabilityNodeRadiusCalcStrategy extends ConceptDependentRadiusCalcStrategy {
+    PointAndIntegralStabilityCalculator stabilityCalculator = new PointAndIntegralStabilityCalculator();
 
     public ConceptPointStabilityNodeRadiusCalcStrategy(DrawParameters opt) {
         super(opt);

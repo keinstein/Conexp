@@ -9,12 +9,16 @@ package conexp.core.layout;
 import util.gui.GraphicObjectsFactory;
 
 import java.awt.geom.Point2D;
+
 public class PointUtilities {
-    public static double length(Point2D point2D){
-        return point2D.distance(0,0);
+    private PointUtilities() {
     }
 
-    public static double dotProduct(Point2D first, Point2D second){
+    public static double length(Point2D point2D) {
+        return point2D.distance(0, 0);
+    }
+
+    public static double dotProduct(Point2D first, Point2D second) {
         return first.getX() * second.getX() + first.getY() * second.getY();
     }
 
@@ -32,10 +36,8 @@ public class PointUtilities {
         double distance = nodeCoords.distance(childCoords);
         double dx = childCoords.getX() - nodeCoords.getX();
         double dy = childCoords.getY() - nodeCoords.getY();
-        Point2D vector = GraphicObjectsFactory.makePoint2D(
-                dx / distance,
-                dy / distance
-        );
+        Point2D vector = GraphicObjectsFactory.makePoint2D(dx / distance,
+                dy / distance);
         return vector;
     }
 }

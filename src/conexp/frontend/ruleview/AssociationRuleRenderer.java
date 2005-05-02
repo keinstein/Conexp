@@ -33,11 +33,11 @@ public abstract class AssociationRuleRenderer extends GenericRuleRenderer {
     /**
      * Insert the method's description here.
      * Creation date: (06.05.01 20:23:29)
-     * @return javax.swing.text.SimpleAttributeSet
+     *
      * @param dep conexp.core.Dependency
+     * @return javax.swing.text.SimpleAttributeSet
      */
-    public javax.swing.text.SimpleAttributeSet dependencyStyle(
-            conexp.core.Dependency dep) {
+    public javax.swing.text.SimpleAttributeSet dependencyStyle(conexp.core.Dependency dep) {
         if (dep.isExact()) {
             return dep.getRuleSupport() > 0 ? attrs[NON_ZERO_SUPPORT_EXACT_RULE] :
                     attrs[ZERO_SUPPORT_EXACT_RULE];
@@ -65,6 +65,7 @@ public abstract class AssociationRuleRenderer extends GenericRuleRenderer {
     /**
      * Insert the method's description here.
      * Creation date: (06.05.01 20:51:10)
+     *
      * @param dep conexp.core.Dependency
      */
     abstract public void describeRule(StringBuffer buf, AttributeInformationSupplier attrInfo,

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.attrexplorationimpl;
 
 import conexp.core.*;
@@ -16,7 +15,7 @@ public abstract class AbstractAttributeExplorationError implements AttributeExpl
     protected static final String separator = " , ";
     protected static final String emptySetDescriptor = "";
 
-    public AbstractAttributeExplorationError(AttributeInformationSupplier attrInfo, String objectName) {
+    protected AbstractAttributeExplorationError(AttributeInformationSupplier attrInfo, String objectName) {
         this.attrInfo = attrInfo;
         this.objectName = objectName;
     }

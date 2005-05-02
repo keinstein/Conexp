@@ -12,7 +12,7 @@ import conexp.util.gui.strategymodel.StrategyValueItem;
 import javax.swing.*;
 
 public class StrategyValueItemParamInfo extends AbstractParamInfo {
-    protected final StrategyValueItem valueModel;
+    private final StrategyValueItem valueModel;
 
     /**
      * StrategyValueItemParamInfo constructor comment.
@@ -50,7 +50,7 @@ public class StrategyValueItemParamInfo extends AbstractParamInfo {
         return new javax.swing.DefaultCellEditor(makeStrategyCombo(valueModel));
     }
 
-    static JComboBox makeStrategyCombo(StrategyValueItem strategy) {
+    private static JComboBox makeStrategyCombo(StrategyValueItem strategy) {
         JComboBox combo = new JComboBox(strategy.getDescription());
         combo.addActionListener(strategy);
         return combo;

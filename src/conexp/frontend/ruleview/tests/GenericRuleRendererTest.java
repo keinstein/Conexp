@@ -16,7 +16,7 @@ import junit.framework.TestCase;
 
 public abstract class GenericRuleRendererTest extends TestCase {
 
-    protected RuleRenderer renderer;
+    private RuleRenderer renderer;
 
     protected DependencySet depSet;
 

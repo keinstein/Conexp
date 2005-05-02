@@ -95,7 +95,7 @@ public abstract class GenericLayouterTest extends TestCase {
         assertEquals(false, Double.isNaN(point.getY()));
     }
 
-    public void testEquals(){
+    public void testEquals() {
         GenericLayouter first = makeLayouter();
         GenericLayouter second = makeLayouter();
         TestUtil.testEqualsAndHashCode(first, second);

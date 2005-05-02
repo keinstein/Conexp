@@ -19,7 +19,7 @@ public abstract class NextClosedSetClosureSystemGeneratorBase extends NextClosed
     protected abstract void onStartCalc();
 
     //-----------------------------------------------------
-    protected void nextClosedSetAttr() {
+    private void nextClosedSetAttr() {
         final int numAttr = getAttributeCount();
         ModifiableSet notJ = ContextFactoryRegistry.createSet(numAttr);
         zeroClosureAttr();

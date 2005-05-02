@@ -5,11 +5,10 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.figures;
 
-import canvas.Selectable;
 import canvas.CanvasScheme;
+import canvas.Selectable;
 import canvas.figures.FigureUtils;
 
 import java.awt.*;
@@ -37,8 +36,7 @@ public class NodeFigure extends AbstractLineDiagramFigure implements Selectable 
     public void borderAt(Point2D outPoint, Point2D result) {
         FigureUtils.calcEllipseBorder(getRadius(),
                 getCenterX(), getCenterY(),
-                outPoint, result
-        );
+                outPoint, result);
     }
 
     public void draw(Graphics g, CanvasScheme opt) {
@@ -72,7 +70,7 @@ public class NodeFigure extends AbstractLineDiagramFigure implements Selectable 
     }
 
     public String toString() {
-        return super.toString() + "[id=" + id + "]";
+        return super.toString() + "[id=" + id + ']';
     }
 
     boolean selected;

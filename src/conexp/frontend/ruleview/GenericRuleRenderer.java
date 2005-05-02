@@ -44,6 +44,7 @@ public abstract class GenericRuleRenderer implements RuleRenderer, GenericStrate
     /**
      * Insert the method's description here.
      * Creation date: (06.05.01 21:27:42)
+     *
      * @return javax.swing.text.SimpleAttributeSet
      */
     public javax.swing.text.SimpleAttributeSet getBaseStyle() {

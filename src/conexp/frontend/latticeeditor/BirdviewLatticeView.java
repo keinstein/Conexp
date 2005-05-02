@@ -10,7 +10,7 @@ import conexp.frontend.LatticeDrawingProvider;
  * Time: 9:54:43
  */
 
-public class BirdviewLatticeView extends BaseLatticePainterPane{
+public class BirdviewLatticeView extends BaseLatticePainterPane {
 
     public BirdviewLatticeView(LatticeDrawingProvider latticeDrawingProvider) {
         super(latticeDrawingProvider);

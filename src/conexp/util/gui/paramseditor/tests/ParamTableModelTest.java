@@ -22,7 +22,7 @@ public class ParamTableModelTest extends TestCase {
         return new TestSuite(THIS);
     }
 
-    ParamsTableModel tableModel;
+    private ParamsTableModel tableModel;
 
     public void testParamLabels() {
         assertEquals(2, tableModel.getColumnCount());

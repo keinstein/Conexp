@@ -12,7 +12,7 @@ import junit.framework.TestCase;
  * Please read license.txt for licensing issues.
  */
 public class MinimumPartialOrderedElementsCollectionTest extends TestCase {
-    public static void testAdditionOfMinimumPartialOrderedElements(){
+    public static void testAdditionOfMinimumPartialOrderedElements() {
         MinimumPartialOrderedElementsCollection collection = new MinimumPartialOrderedElementsCollection();
         assertTrue(collection.isEmpty());
         IPartiallyOrdered one = SetBuilder.makeSet(new int[]{0, 1, 1});
@@ -31,7 +31,7 @@ public class MinimumPartialOrderedElementsCollectionTest extends TestCase {
         assertEquals(2, collection.getSize());
 
         collection.add(SetBuilder.makeSet(new int[]{0, 0, 1}));
-        assertEquals("collection contain's only minimal elements",2, collection.getSize());
+        assertEquals("collection contain's only minimal elements", 2, collection.getSize());
         assertFalse(collection.contains(one));
 
         collection.add(SetBuilder.makeSet(new int[]{0, 1, 1}));

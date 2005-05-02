@@ -12,7 +12,7 @@ import conexp.core.LatticeElement;
 public class ConceptIdealIterator extends DepthSearchIterator {
     public ConceptIdealIterator(LatticeElement start) {
         super();
-       // Assert.isTrue(start.getHeight() >= 0);
+        // Assert.isTrue(start.getHeight() >= 0);
         initDepthIterator(start, start.getPredCount());
     }
 

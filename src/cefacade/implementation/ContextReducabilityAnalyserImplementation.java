@@ -75,7 +75,7 @@ public class ContextReducabilityAnalyserImplementation implements IContextReduca
         setAttributesToReducibilityInfo(attributeIdReducabilityInfo);
     }
 
-    private Map buildObjectReducabilityInfoMap(Context cxt) {
+    private static Map buildObjectReducabilityInfoMap(Context cxt) {
         BinaryRelation relation = cxt.getRelation();
         ListMultiMap classesOfEquivalence = findObjectClassesOfEquivalence(relation);
         BinaryRelation downArrow = cxt.getDownArrow();

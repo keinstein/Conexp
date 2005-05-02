@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend;
 
 import java.beans.PropertyChangeEvent;
@@ -30,7 +29,7 @@ public abstract class BaseDependencySetRecalcPolicy extends PropertyChangeBaseCo
         getEventBroadcaster().addTarget(consumer);
     }
 
-    protected DependencySetSupplier getDependencySetSupplier() {
+    private DependencySetSupplier getDependencySetSupplier() {
         return (DependencySetSupplier) getEventSupplier();
     }
 

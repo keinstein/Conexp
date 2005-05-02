@@ -46,7 +46,7 @@ public class LatticeCSCExporter {
         incDepthLevel();
         println(getDiagramId() + " =");
         incDepthLevel();
-        println(TITLE_STRING + " " + getDiagramTitle());
+        println(TITLE_STRING + ' ' + getDiagramTitle());
         println(UNITLENGTH_STRING);
         printOutPoints();
         printOutLines();
@@ -84,9 +84,7 @@ public class LatticeCSCExporter {
                     if (drawing.getAttributeLabelingStrategyKey().equals(LabelingStrategiesKeys.ALL_ATTRIBS_LABELING_STRATEGY_KEY)) {
                         FigureWithCoords labelForAttributeFigure = drawing.getLabelForAttribute(attribute);
                         Rectangle boundingBox = new Rectangle();
-                        labelForAttributeFigure.boundingBox(
-                                boundingBox
-                        );
+                        labelForAttributeFigure.boundingBox(boundingBox);
                         Point2D labelLocation = new Point2D.Double(boundingBox.getX(), boundingBox.getY());
                         // Point2D labelLocation=labelForAttributeFigure.getCenter();
                         AbstractConceptCorrespondingFigure figureForConcept = drawing.getFigureForConcept(attrConcept);
@@ -141,9 +139,7 @@ public class LatticeCSCExporter {
                     if (drawing.getObjectLabelingStrategyKey().equals(LabelingStrategiesKeys.ALL_OBJECTS_LABELING_STRATEGY)) {
                         FigureWithCoords labelForObjectFigure = drawing.getLabelForObject(object);
                         Rectangle boundingBox = new Rectangle();
-                        labelForObjectFigure.boundingBox(
-                                boundingBox
-                        );
+                        labelForObjectFigure.boundingBox(boundingBox);
                         Point2D labelLocation = new Point2D.Double(boundingBox.getX(), boundingBox.getY());
                         AbstractConceptCorrespondingFigure figureForConcept = drawing.getFigureForConcept(objectConcept);
                         Point2D conceptFigureCenter = figureForConcept.getCenter();
@@ -164,7 +160,7 @@ public class LatticeCSCExporter {
     }
 
     public static String encodeName(String name) {
-        name =  StringUtil.replaceStringWithNewString(name, "&", "\\\\&");
+        name = StringUtil.replaceStringWithNewString(name, "&", "\\\\&");
         return name;
     }
 
@@ -211,8 +207,7 @@ public class LatticeCSCExporter {
                     println(message);
                 }
             }
-        }
-        );
+        });
     }
 
     private Lattice getLattice() {

@@ -14,8 +14,8 @@ import java.util.Iterator;
 
 
 public class ImplicationSetTest extends TestCase {
-    ImplicationSet impSet;
-    Implication imp;
+    private ImplicationSet impSet;
+    private Implication imp;
 
     protected void setUp() {
         impSet = new ImplicationSet(new Context(4, 8));
@@ -30,7 +30,7 @@ public class ImplicationSetTest extends TestCase {
     public void testMakeDuquenneGuigues() {
         final MockAttributeInformationSupplier attrInfo = new MockAttributeInformationSupplier(4);
         impSet = SetBuilder.makeImplicationSet(attrInfo, new int[][][]{
-            {{1, 0, 0, 0},{0, 1, 0, 0}},
+            {{1, 0, 0, 0}, {0, 1, 0, 0}},
             {{0, 1, 0, 0}, {0, 0, 1, 0}}
         });
         impSet.makeDuquenneGuigues();
@@ -46,14 +46,14 @@ public class ImplicationSetTest extends TestCase {
         impSet.makeDuquenneGuigues();
         assertEquals(impSet, SetBuilder.makeImplicationSet(attrInfo,
                 new int[][][]{
-                    {{1, 0, 0, 0},{0, 1, 1, 1}},
+                    {{1, 0, 0, 0}, {0, 1, 1, 1}},
                     {{0, 1, 0, 0}, {0, 0, 1, 1}},
                 }));
     }
 
     public static void testMakeDuquenneGuigues2() {
         MockAttributeInformationSupplier supplier = new MockAttributeInformationSupplier(2);
-        ImplicationSet implications =SetBuilder.makeImplicationSet(supplier, new int[][][]{
+        ImplicationSet implications = SetBuilder.makeImplicationSet(supplier, new int[][][]{
             {{0, 0}, {0, 1}},
             {{0, 1}, {1, 0}}
         });
@@ -97,12 +97,12 @@ public class ImplicationSetTest extends TestCase {
         assertEquals(false, impSet.dependencies().contains(imp));
     }
 
-    protected static Implication makeImplication(int[] premise, int[] conclusion, int count) {
+    private static Implication makeImplication(int[] premise, int[] conclusion, int count) {
         //used instead of SetBuilder.makeImplication due to the reason, that we are testing this class, and class in Set builder can change
         return new Implication(SetBuilder.makeSet(premise), SetBuilder.makeSet(conclusion), count);
     }
 
-    protected static Implication makeImplication(int[] premise, int[] conclusion) {
+    private static Implication makeImplication(int[] premise, int[] conclusion) {
         return makeImplication(premise, conclusion, 0);
     }
 

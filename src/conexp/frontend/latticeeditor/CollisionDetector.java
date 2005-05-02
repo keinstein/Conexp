@@ -41,7 +41,7 @@ public class CollisionDetector {
         }
         List edgeFigures = conceptSetDrawing.getEdges();
         clearCollisions(edgeFigures);
-        if (conceptSetDrawing.isCollisionDetectionEnabled()){
+        if (conceptSetDrawing.isCollisionDetectionEnabled()) {
             detectNodeEdgeCollisions(edgeFigures, conceptFigures);
         }
     }

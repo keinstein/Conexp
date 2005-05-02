@@ -23,19 +23,16 @@ import util.testing.TestUtil;
 import java.beans.PropertyVetoException;
 
 public class ContextTableModelTest extends TestCase {
-    ContextTableModel tableModel;
+    private ContextTableModel tableModel;
 
     protected void setUp() {
-        tableModel = new ContextTableModel(
-                SetBuilder.makeContext(
-                        new int[][]{
-                            {1, 0, 1},
-                            {0, 1, 0},
-                        }
-                ));
+        tableModel = new ContextTableModel(SetBuilder.makeContext(new int[][]{
+            {1, 0, 1},
+            {0, 1, 0},
+        }));
     }
 
-    static void doTestValueModelThatShouldBeGreaterOrEqualZero(IIntValueModel intValueModel) {
+    private static void doTestValueModelThatShouldBeGreaterOrEqualZero(IIntValueModel intValueModel) {
         try {
             intValueModel.setValue(1);
             intValueModel.setValue(3);
@@ -250,11 +247,9 @@ public class ContextTableModelTest extends TestCase {
     public void testUndoOnCellTransformer() {
         doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
-                tableModel.applyCellTransformerToNonHeaderCells(
-                        new int[]{0, 1},
+                tableModel.applyCellTransformerToNonHeaderCells(new int[]{0, 1},
                         new int[]{0, 1, 2},
-                        new FillByValueCellTransformer(Boolean.TRUE)
-                );
+                        new FillByValueCellTransformer(Boolean.TRUE));
             }
         });
     }
@@ -316,14 +311,11 @@ public class ContextTableModelTest extends TestCase {
     }
 
     public void testUndoOnClarifyObjects() {
-        tableModel = new ContextTableModel(
-                SetBuilder.makeContext(
-                        new int[][]{
-                            {1, 0, 1},
-                            {0, 1, 0},
-                            {0, 1, 0}
-                        }
-                ));
+        tableModel = new ContextTableModel(SetBuilder.makeContext(new int[][]{
+            {1, 0, 1},
+            {0, 1, 0},
+            {0, 1, 0}
+        }));
 
         doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
@@ -349,14 +341,11 @@ public class ContextTableModelTest extends TestCase {
     }
 
     public void testUndoOnReduceObjects() {
-        tableModel = new ContextTableModel(
-                SetBuilder.makeContext(
-                        new int[][]{
-                            {1, 0, 1},
-                            {0, 1, 0},
-                            {0, 1, 0}
-                        }
-                ));
+        tableModel = new ContextTableModel(SetBuilder.makeContext(new int[][]{
+            {1, 0, 1},
+            {0, 1, 0},
+            {0, 1, 0}
+        }));
 
         doTestDoUndoCommand(new ContextTableModifier() {
             public void modifyTable(ContextTableModel tableModel) {
@@ -391,10 +380,9 @@ public class ContextTableModelTest extends TestCase {
     }
 
 
-
     public void testConvertToInternal() {
         expectSuccessfullConvesion("", "", 0, 0);
-        expectUnsuccessfullConvesion("1",  0, 0);
+        expectUnsuccessfullConvesion("1", 0, 0);
 
         expectSuccessfullConvesion("Obj 1", "Obj 1", 1, 0);
         expectUnsuccessfullConvesion(" ", 1, 0);
@@ -424,7 +412,7 @@ public class ContextTableModelTest extends TestCase {
             tableModel.convertToInternal(input, row, col);
             fail("should not get here");
         } catch (DataFormatException e) {
-            assertTrue("expect exception",true);
+            assertTrue("expect exception", true);
         }
     }
 

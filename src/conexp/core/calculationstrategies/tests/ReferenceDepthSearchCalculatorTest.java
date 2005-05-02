@@ -7,8 +7,8 @@
 
 package conexp.core.calculationstrategies.tests;
 
-import conexp.core.calculationstrategies.ReferenceDepthSearchCalculator;
 import conexp.core.ConceptCalcStrategy;
+import conexp.core.calculationstrategies.ReferenceDepthSearchCalculator;
 
 
 public class ReferenceDepthSearchCalculatorTest extends EnumerativeCalcStrategyTest {

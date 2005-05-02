@@ -7,9 +7,9 @@
 //*
 package conexp.core.calculationstrategies.tests;
 
+import conexp.core.ConceptCalcStrategy;
 import conexp.core.ContextFactoryRegistry;
 import conexp.core.ModifiableSet;
-import conexp.core.ConceptCalcStrategy;
 import conexp.core.calculationstrategies.DepthSearchCalculatorWithFeatureMask;
 import conexp.core.searchconstraints.MinSupportConstrainer;
 import conexp.core.tests.SetBuilder;
@@ -22,20 +22,19 @@ public class DepthSearchCalculatorWithFeatureMaskTest extends EnumerativeCalcStr
     }
 
 
-    protected DepthSearchCalculatorWithFeatureMask getRealStrategy() {
+    private DepthSearchCalculatorWithFeatureMask getRealStrategy() {
         return (DepthSearchCalculatorWithFeatureMask) calcStrategy;
     }
 
     private void doTestCalcStrategyWithFeatureMask(int[][] context, int[] featureMask, int[][] expOutputIntent, final int[][] expOutputExtents, final int expectedEdgeCount) {
         final ModifiableSet attributesMask = SetBuilder.makeSet(featureMask);
-    	final ModifiableSet objectsMask = ContextFactoryRegistry.createSet(context.length);
+        final ModifiableSet objectsMask = ContextFactoryRegistry.createSet(context.length);
         objectsMask.fill();
         getRealStrategy().setFeatureMasks(attributesMask, objectsMask);
         doTestCalcStrategyForExpectedIntentsAndExtents(context,
                 expOutputIntent,
                 expOutputExtents,
-                expectedEdgeCount
-        );
+                expectedEdgeCount);
         doTestCalcStrategyForExpectedSizeForFullLatticeCase(context, expOutputIntent.length);
     }
 
@@ -45,10 +44,10 @@ public class DepthSearchCalculatorWithFeatureMaskTest extends EnumerativeCalcStr
                                       {1, 0}};
 
         int[] attributeMask = new int[]{1, 0};
-    	int[] objectsMask = new int[] {1, 1};
+        int[] objectsMask = new int[]{1, 1};
 
 
-        getRealStrategy().setFeatureMasks(SetBuilder.makeSet(attributeMask),SetBuilder.makeSet(objectsMask));
+        getRealStrategy().setFeatureMasks(SetBuilder.makeSet(attributeMask), SetBuilder.makeSet(objectsMask));
 
         int[][] expOutputIntent = new int[][]{{0, 0},
                                               {1, 0}};

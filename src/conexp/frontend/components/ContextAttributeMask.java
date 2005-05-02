@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.components;
 
 import conexp.core.ContextChangeEvent;
@@ -84,25 +83,24 @@ public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplement
     }
 
     public boolean equals(Object other) {
-        if (this == other){
+        if (this == other) {
             return true;
         }
-        if (!(other instanceof ContextAttributeMask)){
+        if (!(other instanceof ContextAttributeMask)) {
             return false;
         }
-        if (!super.equals(other)){
+        if (!super.equals(other)) {
             return false;
         }
 
         final ContextAttributeMask contextAttributeMask = (ContextAttributeMask) other;
 
-        if (context != null ? !context.equals(contextAttributeMask.context) : contextAttributeMask.context != null){
+        if (context != null ? !context.equals(contextAttributeMask.context) : contextAttributeMask.context != null) {
             return false;
         }
 
         return true;
     }
-
 
 
 }

@@ -24,12 +24,10 @@ public class ImplicationRendererTest extends GenericRuleRendererTest {
      * Creation date: (07.05.01 1:18:24)
      */
     protected void addRepresentableDependencies() {
-        depSet.addDependency(new Implication(
-                SetBuilder.makeSet(new int[]{1, 0, 0}),
+        depSet.addDependency(new Implication(SetBuilder.makeSet(new int[]{1, 0, 0}),
                 SetBuilder.makeSet(new int[]{0, 1, 1}),
                 0));
-        depSet.addDependency(new Implication(
-                SetBuilder.makeSet(new int[]{0, 1, 0}),
+        depSet.addDependency(new Implication(SetBuilder.makeSet(new int[]{0, 1, 0}),
                 SetBuilder.makeSet(new int[]{0, 0, 1}),
                 1));
     }

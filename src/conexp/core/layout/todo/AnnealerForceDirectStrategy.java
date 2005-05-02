@@ -24,6 +24,7 @@ public class AnnealerForceDirectStrategy implements ForceDirectStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (16.11.00 21:49:29)
+     *
      * @param e graphlib.Edge
      */
     public void attractEdgeNodes(Edge e, double distance, double[] forceFactors) {
@@ -39,10 +40,11 @@ public class AnnealerForceDirectStrategy implements ForceDirectStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (16.11.00 21:28:43)
-     * @return double
-     * @param v graphlib.Node
+     *
+     * @param v     graphlib.Node
      * @param force double
-     * @param Temp double
+     * @param Temp  double
+     * @return double
      */
     public double deltaMove(LatticeElement v, double force, double temp) {
         return v.degree() / force * Math.min(force, temp);
@@ -60,8 +62,9 @@ public class AnnealerForceDirectStrategy implements ForceDirectStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (16.11.00 21:22:40)
-     * @return double
+     *
      * @param v graphlib.Node
+     * @return double
      */
     public double repulsiveForce(LatticeElement v, double distance) {
         return v.degree() / distance * fr(distance);

@@ -18,13 +18,12 @@ public class EdgeIntersectionEvaluationFunction extends LatticeBasedEvaluationFu
     }
 
 
-
     //the bigger value of evaluation function is better
     public double getEvaluationForLattice() {
-            //for each edge a
-            //for each edge b!=a
-                //if ( a intersects b)
-                    //add count
+        //for each edge a
+        //for each edge b!=a
+        //if ( a intersects b)
+        //add count
 
         return 0;
     }

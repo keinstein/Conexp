@@ -29,7 +29,7 @@ public class FreeseQuantativeLayout extends FreezeBaseLayout {
                 LatticeElement otherConcept = filter.nextConcept();
                 GenericForceDirectedLayouter.ForceDirectConceptInfo conceptInfo = getConceptInfo(otherConcept);
                 Point3D otherCoords = conceptInfo.coords;
-                double actualAttr = 1.0 / (x.getOwnObjCnt() + otherConcept.getOwnObjCnt())*att;
+                double actualAttr = 1.0 / (x.getOwnObjCnt() + otherConcept.getOwnObjCnt()) * att;
                 attraction(currCoords, otherCoords, actualAttr, forces);
 
                 currCoords.adjustForce(forces[0], forces[1]);
@@ -39,8 +39,7 @@ public class FreeseQuantativeLayout extends FreezeBaseLayout {
             Iterator list = (currIter % 2 == 0 ? getHighIncomparablesForConcept(x) : getLowIncomparablesForConcept(x)).iterator();
             while (list.hasNext()) {
                 Point3D otherCoords = getConceptInfo((LatticeElement) list.next()).coords;
-                repulsion(
-                        currCoords,
+                repulsion(currCoords,
                         otherCoords,
                         repulsion, forces);
                 currCoords.adjustForce(forces[0], forces[1]);

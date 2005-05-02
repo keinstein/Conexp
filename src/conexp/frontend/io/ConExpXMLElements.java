@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.io;
 
 public interface ConExpXMLElements {

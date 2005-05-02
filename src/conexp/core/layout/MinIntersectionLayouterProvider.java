@@ -5,9 +5,7 @@
  **/
 
 
-
 package conexp.core.layout;
-
 
 
 public class MinIntersectionLayouterProvider implements LayouterProvider {

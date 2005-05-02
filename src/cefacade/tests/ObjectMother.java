@@ -11,6 +11,9 @@ import util.Assert;
  */
 
 public class ObjectMother {
+    private ObjectMother() {
+    }
+
     public static ISimpleContext buildContext(int[][] relation) {
         if (relation.length == 0) {
             return CEFacadeFactory.makeContext(0, 0);

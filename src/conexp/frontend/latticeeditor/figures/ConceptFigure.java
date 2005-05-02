@@ -7,9 +7,9 @@
 
 package conexp.frontend.latticeeditor.figures;
 
+import canvas.CanvasColorScheme;
 import canvas.IHighlightStrategy;
 import canvas.Selectable;
-import canvas.CanvasColorScheme;
 import canvas.figures.FigureUtils;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.frontend.latticeeditor.ConceptQuery;

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.associations.tests;
 
 import conexp.core.Context;
@@ -61,7 +60,7 @@ public class AssociationCoverCalculatorTest extends TestCase {
         return expList;
     }
 
-    public static void assertListContentEqual(List expected, List actual) {
+    private static void assertListContentEqual(List expected, List actual) {
         Set first = CollectionFactory.createDefaultSet(expected);
         Set second = CollectionFactory.createDefaultSet(actual);
         assertEquals(first, second);
@@ -130,8 +129,7 @@ public class AssociationCoverCalculatorTest extends TestCase {
         assertEquals(false, AssociationCoverCalculator.thereAreNoRuleThatCoversCurrent(cover, premise, conclusion));
         assertEquals(false, AssociationCoverCalculator.thereAreNoRuleThatCoversCurrent(cover,
                 SetBuilder.findLatticeElementWithIntent(lat, BE),
-                conclusion
-        ));
+                conclusion));
 
         assertEquals(true, AssociationCoverCalculator.thereAreNoRuleThatCoversCurrent(cover,
                 SetBuilder.findLatticeElementWithIntent(lat, new int[]{0, 0, 0, 0, 0}),
@@ -154,9 +152,8 @@ public class AssociationCoverCalculatorTest extends TestCase {
         AssociationCoverCalculator coverCalculator = new AssociationCoverCalculator();
         coverCalculator.findAssociationsRuleCover(cover, lat, 0.4);
         assertEquals(1, cover.getSize());
-        assertEquals(
-                AssociationRule.makeFromItemsets(lat.getOne(),
-                        SetBuilder.findLatticeElementWithIntent(lat, ABCE)),
+        assertEquals(AssociationRule.makeFromItemsets(lat.getOne(),
+                SetBuilder.findLatticeElementWithIntent(lat, ABCE)),
                 cover.getDependency(0));
 
     }

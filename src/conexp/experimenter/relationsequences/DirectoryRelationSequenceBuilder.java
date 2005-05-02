@@ -18,6 +18,8 @@ import java.io.IOException;
  */
 
 public class DirectoryRelationSequenceBuilder{
+    private DirectoryRelationSequenceBuilder() {
+    }
 
     public static RelationSequenceSet buildRelationSequenceSet(String directoryPath, String extension, ContextReaderFactory contextReaderFactory) throws IOException, DataFormatException {
         RelationSequenceSet relationSequenceSet = new RelationSequenceSet();

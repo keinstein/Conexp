@@ -8,8 +8,8 @@
 package conexp.core.calculationstrategies.tests;
 
 import conexp.core.*;
-import conexp.core.enumcallbacks.ConceptSetCallback;
 import conexp.core.calculationstrategies.DepthSearchCalculatorWithFeatureMask;
+import conexp.core.enumcallbacks.ConceptSetCallback;
 import conexp.core.searchconstraints.MinSupportConstrainer;
 import conexp.core.tests.SetBuilder;
 
@@ -36,8 +36,7 @@ public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBu
         doTestCalcStrategyForExpectedIntentsAndExtents(context,
                 expOutputIntent,
                 expOutputExtents,
-                expectedEdgeCount
-        );
+                expectedEdgeCount);
         doTestCalcStrategyForExpectedSizeForFullLatticeCase(context, expOutputIntent.length);
         assertEquals(attributesMask, getLattice().getAttributesMask());
     }
@@ -49,7 +48,7 @@ public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBu
 
         int[] attributeMask = new int[]{1, 0};
         int[] objectMask = new int[]{1, 1};
-        getRealStrategy().setFeatureMasks(SetBuilder.makeSet(attributeMask),SetBuilder.makeSet(objectMask));
+        getRealStrategy().setFeatureMasks(SetBuilder.makeSet(attributeMask), SetBuilder.makeSet(objectMask));
 
         int[][] expOutputIntent = new int[][]{{0, 0},
                                               {1, 0}};

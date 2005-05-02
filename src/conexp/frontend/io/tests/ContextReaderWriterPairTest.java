@@ -65,7 +65,7 @@ public abstract class ContextReaderWriterPairTest extends TestCase {
         doTestWriteAndReadForContext(cxt);
     }
 
-    protected void doTestWriteAndReadForContext(Context cxt) {
+    private void doTestWriteAndReadForContext(Context cxt) {
         ContextDocument doc = new ContextDocument();
         doc.setContext(cxt);
 

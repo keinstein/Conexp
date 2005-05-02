@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core;
 
 import java.util.EventObject;
@@ -13,8 +12,8 @@ import java.util.EventObject;
 public class ContextChangeEvent extends EventObject {
     public final static int ATTRIBUTE_REMOVED = 1;
     public final static int ATTRIBUTE_ADDED = ATTRIBUTE_REMOVED + 1;
-	public final static int OBJECT_REMOVED = ATTRIBUTE_ADDED+1;
-	public final static int OBJECT_ADDED = OBJECT_REMOVED + 1;
+    public final static int OBJECT_REMOVED = ATTRIBUTE_ADDED + 1;
+    public final static int OBJECT_ADDED = OBJECT_REMOVED + 1;
 
     private ContextChangeEvent(Object source, int type, int column) {
         super(source);
@@ -30,11 +29,11 @@ public class ContextChangeEvent extends EventObject {
         return new ContextChangeEvent(cxt, ATTRIBUTE_REMOVED, index);
     }
 
-    public static ContextChangeEvent makeObjectInsertedEvent(ExtendedContextEditingInterface cxt, int objIndex){
+    public static ContextChangeEvent makeObjectInsertedEvent(ExtendedContextEditingInterface cxt, int objIndex) {
         return new ContextChangeEvent(cxt, OBJECT_ADDED, objIndex);
     }
 
-    public static ContextChangeEvent makeObjectRemovedEvent(ExtendedContextEditingInterface cxt, int objIndex){
+    public static ContextChangeEvent makeObjectRemovedEvent(ExtendedContextEditingInterface cxt, int objIndex) {
         return new ContextChangeEvent(cxt, OBJECT_REMOVED, objIndex);
     }
 

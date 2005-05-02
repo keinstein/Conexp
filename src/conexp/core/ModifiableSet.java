@@ -5,13 +5,12 @@
  **/
 
 
-
 package conexp.core;
 
-public interface ModifiableSet extends Set{
+public interface ModifiableSet extends Set {
 //-------------------------
     /**
-     *      puts element in set
+     * puts element in set
      */
 
     void put(int elId);
@@ -19,26 +18,22 @@ public interface ModifiableSet extends Set{
 //-------------------------
     /**
      * removes element from set
-     *
      */
     void remove(int elId);
 
     /**
-     *   removes all elements from set
-     *
+     * removes all elements from set
      */
     void clearSet();
 
     /**
-     *   puts in set elements with id less and equal to till
-     *
+     * puts in set elements with id less and equal to till
      */
 
     void fill();
 
     /**
-     *   performs inplace or operation
-     *
+     * performs inplace or operation
      */
 
     void or(Set set);
@@ -47,6 +42,7 @@ public interface ModifiableSet extends Set{
     /**
      * resizes set
      * Creation date: (22.07.01 0:05:07)
+     *
      * @param newSize int
      */
     void resize(int newSize);
@@ -60,6 +56,7 @@ public interface ModifiableSet extends Set{
     /**
      * Insert the method's description here.
      * Creation date: (16.10.00 23:51:20)
+     *
      * @param addition conexp.core.Set
      */
     void append(Set addition);
@@ -67,12 +64,12 @@ public interface ModifiableSet extends Set{
     void copy(Set set);
 
     /**
-     *   performs inplace and operation
+     * performs inplace and operation
      */
     void and(Set set);
 
     /**
-     *      performs inplace andNot operation
+     * performs inplace andNot operation
      */
     void andNot(Set set);
 }

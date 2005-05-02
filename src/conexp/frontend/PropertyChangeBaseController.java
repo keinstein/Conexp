@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend;
 
 import com.visibleworkings.trace.Trace;
@@ -24,9 +23,9 @@ public class PropertyChangeBaseController implements PropertyChangeListener {
         return eventSupplier;
     }
 
-    PropertyChangeSupplier eventSupplier;
+    private PropertyChangeSupplier eventSupplier;
 
-    public void setEventSupplier(PropertyChangeSupplier supplier) {
+    protected void setEventSupplier(PropertyChangeSupplier supplier) {
         if (this.eventSupplier != null) {
             unregisterSupplierListeners();
         }
@@ -45,9 +44,9 @@ public class PropertyChangeBaseController implements PropertyChangeListener {
     }
 
 
-    Map eventProcessorMap = null;
+    private Map eventProcessorMap = null;
 
-    protected synchronized Map getEventProcessorMap() {
+    private synchronized Map getEventProcessorMap() {
         if (null == eventProcessorMap) {
             eventProcessorMap = new HashMap();
         }
@@ -71,7 +70,9 @@ public class PropertyChangeBaseController implements PropertyChangeListener {
 
     }
 
-    /** @test_public*/
+    /**
+     * @test_public
+     */
     public EventProcessor getEventProcessorForEvent(PropertyChangeEvent evt) {
         util.Assert.isTrue(evt != null);
         if (null == eventProcessorMap) {
@@ -101,5 +102,5 @@ public class PropertyChangeBaseController implements PropertyChangeListener {
         return eventBroadcaster;
     }
 
-    EventBroadcaster eventBroadcaster;
+    private EventBroadcaster eventBroadcaster;
 }

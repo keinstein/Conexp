@@ -7,7 +7,7 @@ package conexp.core.layout;
  * Time: 23:02:08
  * To change this template use File | Settings | File Templates.
  */
-public abstract class BasicLayoutParameters implements LayoutParameters{
+public abstract class BasicLayoutParameters implements LayoutParameters {
     protected static final int DEFAULT_GRID_SIZE_X = 80;
     protected static final int MIN_GRID_SIZE_X = 10;
     protected static final int MAX_GRID_SIZE_X = 200;

@@ -51,9 +51,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * represent bits with indices in the range <code>0</code> through
      * <code>nbits-1</code>. All bits are initially <code>false</code>.
      *
-     * @param     nbits   the initial size of the bit set.
-     * @exception NegativeArraySizeException if the specified initial size
-     *               is negative.
+     * @param nbits the initial size of the bit set.
+     * @throws NegativeArraySizeException if the specified initial size
+     *                                    is negative.
      */
     public BitSet(int nbits) {
         /* nbits can't be negative; size 0 is OK */
@@ -63,7 +63,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         unit = new long[unitsNeeded(nbits)];
     }
 
-    public BitSet(BitSet other) {
+    private BitSet(BitSet other) {
         super(other.size);
         unit = new long[other.unit.length];
         System.arraycopy(other.unit, 0, unit, 0, other.unit.length);
@@ -80,7 +80,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * had the value <code>true</code> and the corresponding bit in the
      * bit set argument also had the value <code>true</code>.
      *
-     * @param   s   a bit set.
+     * @param s a bit set.
      */
     public void and(Set s) {
         if (this == s)
@@ -96,9 +96,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * Clears all of the bits in this <code>BitSet</code> whose corresponding
      * bit is set in the specified <code>BitSet</code>.
      *
-     * @param     s the <code>BitSet</code> with which to mask this
-     *            <code>BitSet</code>.
-     * @since     JDK1.2
+     * @param s the <code>BitSet</code> with which to mask this
+     *          <code>BitSet</code>.
+     * @since JDK1.2
      */
     public void andNot(Set s) {
         BitSet set = (BitSet) s;
@@ -113,6 +113,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     /**
      * Insert the method's description here.
      * Creation date: (17.10.00 0:17:36)
+     *
      * @param s conexp.core.Set
      */
     public void append(Set s) {
@@ -186,8 +187,8 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * Returns the number of bits set in val.
      * For a derivation of this algorithm, see
      * "Algorithms and data structures with applications to
-     *  graphics and geometry", by Jurg Nievergelt and Klaus Hinrichs,
-     *  Prentice Hall, 1993.
+     * graphics and geometry", by Jurg Nievergelt and Klaus Hinrichs,
+     * Prentice Hall, 1993.
      */
     private static int bitCount(long val) {
         val -= (val & 0xaaaaaaaaaaaaaaaaL) >>> 1;
@@ -260,7 +261,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
 
     private void resizeSetAndCopyOldValues(int unitsRequired) {
         Assert.isTrue(unitsRequired >= 0);
-        long[]  newBits= new long[unitsRequired];
+        long[] newBits = new long[unitsRequired];
         System.arraycopy(unit, 0, newBits, 0, Math.min(unit.length, unitsRequired));
         unit = newBits;
     }
@@ -269,8 +270,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     /**
      * Removes the bits specified from set .
      * Value of the specified bit becomes the value of right bit
-     * @param     bitIndex   the index of the bit to be cleared.
-     * @exception IndexOutOfBoundsException if the specified index is negative.
+     *
+     * @param bitIndex the index of the bit to be cleared.
+     * @throws IndexOutOfBoundsException if the specified index is negative.
      */
 
     public void exclude(int bitIndex) {
@@ -312,7 +314,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
 
     public void fill() {
         int num = size;
-        if(num<=0){
+        if (num <= 0) {
             return;
         }
         final int bitTill = num - 1;
@@ -331,6 +333,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 22:43:47)
+     *
      * @return int
      */
     public int firstIn() {
@@ -366,6 +369,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 22:43:47)
+     *
      * @return int
      */
     public int firstOut() {
@@ -402,7 +406,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * Note that the hash code values change if the set of bits is altered.
      * <p>Overrides the <code>hashCode</code> method of <code>Object</code>.
      *
-     * @return  a hash code value for this bit set.
+     * @return a hash code value for this bit set.
      */
     public int hashCode() {
         long h = 1234;
@@ -418,9 +422,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * is currently set in this <code>BitSet</code>; otherwise, the result
      * is <code>false</code>.
      *
-     * @param     bitIndex   the bit index.
-     * @return    the value of the bit with the specified index.
-     * @exception IndexOutOfBoundsException if the specified index is negative.
+     * @param bitIndex the bit index.
+     * @return the value of the bit with the specified index.
+     * @throws IndexOutOfBoundsException if the specified index is negative.
      */
     public boolean in(int bitIndex) {
         if (bitIndex < 0)
@@ -444,9 +448,11 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         return false;
     }
 //-------------------------------------------------------------------------
-    /*********************************************************
+    /**
+     * ******************************************************
      * very stupid implementation of isEmpty. Later will be changed
-     **********************************************************/
+     * ********************************************************
+     */
     public boolean isEmpty() {
         return length() == 0;
     }
@@ -455,8 +461,8 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * Returns the "logical size" of this <code>BitSet</code>: the index of
      * the highest set bit in the <code>BitSet</code> plus one.
      *
-     * @return  the logical size of this <code>BitSet</code>.
-     * @since   JDK1.2
+     * @return the logical size of this <code>BitSet</code>.
+     * @since JDK1.2
      */
     public int length() {
         int k = unit.length;
@@ -477,8 +483,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 22:43:47)
-     * @return int
+     *
      * @param prev int
+     * @return int
      */
     public int nextIn(int prev) {
         if (prev < 0) {
@@ -527,7 +534,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * value <code>true</code> or the corresponding bit in the bit set
      * argument has the value <code>true</code>.
      *
-     * @param   set  a bit set.
+     * @param set a bit set.
      */
     public void or(Set set) {
         if (this == set)
@@ -543,9 +550,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     /**
      * Sets the bit specified by the index to <code>true</code>.
      *
-     * @param     bitIndex   a bit index.
-     * @exception IndexOutOfBoundsException if the specified index is negative.
-     * @since     JDK1.0
+     * @param bitIndex a bit index.
+     * @throws IndexOutOfBoundsException if the specified index is negative.
+     * @since JDK1.0
      */
     public void put(int bitIndex) {
         if (bitIndex < 0)
@@ -557,9 +564,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     /**
      * Sets the bit specified by the index to <code>false</code>.
      *
-     * @param     bitIndex   the index of the bit to be cleared.
-     * @exception IndexOutOfBoundsException if the specified index is negative.
-     * @since     JDK1.0
+     * @param bitIndex the index of the bit to be cleared.
+     * @throws IndexOutOfBoundsException if the specified index is negative.
+     * @since JDK1.0
      */
     public void remove(int bitIndex) {
         if (bitIndex < 0)
@@ -576,12 +583,14 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     }
 
     //------------------------------------------------
-    /**************************************************
-     *  compares two sets in lexicographical order
-     *  1 - this set is greater then other
-     *  0 - sets are equal
-     *  -1 - this set is less than other
-     **************************************************/
+    /**
+     * ***********************************************
+     * compares two sets in lexicographical order
+     * 1 - this set is greater then other
+     * 0 - sets are equal
+     * -1 - this set is less than other
+     * ************************************************
+     */
     public int lexCompareGanter(Set _other) {
         if (!(_other instanceof BitSet)) {
             throw new IllegalArgumentException("Bad argument in lex compare");
@@ -616,6 +625,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     /**
      * Insert the method's description here.
      * Creation date: (22.07.01 0:05:18)
+     *
      * @param newSize int
      */
     public void resize(int newSize) {
@@ -647,8 +657,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     /**
      * Insert the method's description here.
      * Creation date: (26.07.01 8:25:13)
-     * @return boolean
+     *
      * @param other conexp.core.Set
+     * @return boolean
      */
     public boolean isSubsetOf(Set other) {
         if (other == null || !(other instanceof BitSet))
@@ -673,8 +684,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     /**
      * Insert the method's description here.
      * Creation date: (13.07.01 9:17:07)
-     * @return boolean
+     *
      * @param bitIndex int
+     * @return boolean
      */
     public boolean out(int bitIndex) {
         if (bitIndex < 0)
@@ -690,6 +702,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     /**
      * Insert the method's description here.
      * Creation date: (13.07.01 8:41:40)
+     *
      * @return int
      */
     public int outUpperBound() {
@@ -725,10 +738,10 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
 
 
     public boolean isLesserThan(IPartiallyOrdered other) {
-        if(!(other instanceof BitSet)){
+        if (!(other instanceof BitSet)) {
             return false;
         }
-        BitSet otherBitSet = (BitSet)other;
+        BitSet otherBitSet = (BitSet) other;
         return Set.SUBSET == this.compare(otherBitSet);
     }
 

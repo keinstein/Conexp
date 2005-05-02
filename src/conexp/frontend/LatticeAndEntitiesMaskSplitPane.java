@@ -11,8 +11,8 @@ import conexp.frontend.components.EntitiesMaskScrollPane;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.LatticePainterPanel;
 import conexp.frontend.util.IResourceManager;
-import util.gui.JSplitPaneWithFixedRightPane;
 import util.Assert;
+import util.gui.JSplitPaneWithFixedRightPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,20 +48,20 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
     }
 
     private JComponent makeAttributeSelectionPane(LatticeComponent latticeSupplier) {
- /*       JSplitPane outer = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
-        outer.setOneTouchExpandable(true);
-        outer.setResizeWeight(0.5);
+        /*       JSplitPane outer = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+               outer.setOneTouchExpandable(true);
+               outer.setResizeWeight(0.5);
 
-        final JPanel comp = new JPanel(new BorderLayout());
+               final JPanel comp = new JPanel(new BorderLayout());
 
-        BirdviewLatticeView panel = new BirdviewLatticeView(latticeSupplier);
-        panel.setFitToSize(true);
-        panel.initialUpdate();
-        comp.add(panel, BorderLayout.CENTER);
+               BirdviewLatticeView panel = new BirdviewLatticeView(latticeSupplier);
+               panel.setFitToSize(true);
+               panel.initialUpdate();
+               comp.add(panel, BorderLayout.CENTER);
 
-        outer.setTopComponent(comp);
+               outer.setTopComponent(comp);
 
-*/
+       */
         JSplitPane ret = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
         ret.setOneTouchExpandable(true);
         ret.setResizeWeight(0.5);
@@ -103,7 +103,7 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
         latticePanel.initialUpdate();
     }
 
-    public void restorePreferences(){
+    public void restorePreferences() {
         latticePanel.restorePreferences();
     }
 

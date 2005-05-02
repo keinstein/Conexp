@@ -17,7 +17,7 @@ public abstract class SubcontextStabilityLabelingStrategyBase extends SimpleConc
 
     protected abstract BinaryRelationProcessor makeStabilityCalculator();
 
-    public SubcontextStabilityLabelingStrategyBase() {
+    protected SubcontextStabilityLabelingStrategyBase() {
         super();
         stabilityCalculator = makeStabilityCalculator();
     }

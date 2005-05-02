@@ -16,7 +16,7 @@ public abstract class BaseConceptsExperiment extends BasicExperiment {
     protected Object coll;
     protected String strategyName;
 
-    public BaseConceptsExperiment(String strategyName) {
+    protected BaseConceptsExperiment(String strategyName) {
         this.strategyName = strategyName;
     }
 

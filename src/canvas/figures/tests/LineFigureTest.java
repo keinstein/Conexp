@@ -23,10 +23,6 @@ public class LineFigureTest extends FigureTest {
         return new LineFigure(start, end);
     }
 
-    public static Test suite() {
-        return new TestSuite(LineFigureTest.class);
-    }
-
     public void testNegativeSizes() {
         ConnectionFigure lf = (ConnectionFigure) f;
         lf.getStartFigure().setCoords(30, 30);

@@ -30,8 +30,8 @@ public class DepthSearchConceptCalcStrategy extends DepthSearchBinaryRelationAlg
     }
 
     /**
-     *  calculates One element of conexp lattice object set is in newExtent
-     *  attributes set is in outerSet
+     * calculates One element of conexp lattice object set is in newExtent
+     * attributes set is in outerSet
      */
     protected void calcOne() {
         int numObj = rel.getRowCount();
@@ -52,7 +52,7 @@ public class DepthSearchConceptCalcStrategy extends DepthSearchBinaryRelationAlg
     }
 
     //-----------------------------------------------------------------
-    void startCalc() {
+    private void startCalc() {
         int cols = rel.getColCount();
         int rows = rel.getRowCount();
         int maxDepth = Math.min(cols, rows) + 1;
@@ -73,14 +73,14 @@ public class DepthSearchConceptCalcStrategy extends DepthSearchBinaryRelationAlg
     }
 
     /**
-     *  method finds a closure by addition of attr j to intent, having extent
-     *  _concObjects
+     * method finds a closure by addition of attr j to intent, having extent
+     * _concObjects
      *
-     *@param  j             - attribute to add
-     *@param  _concObjects  - list of objects, in which closure is performed
-     * side_effect            newExtent - new conexp extent
-     *                        outerSet - outer set
-     *                        newIntent - new conexp intent
+     * @param j            - attribute to add
+     * @param _concObjects - list of objects, in which closure is performed
+     *                     side_effect            newExtent - new conexp extent
+     *                     outerSet - outer set
+     *                     newIntent - new conexp intent
      */
     protected void findAttrClosure(int j, Set _concObjects) {
         newExtent.clearSet();
@@ -135,7 +135,7 @@ public class DepthSearchConceptCalcStrategy extends DepthSearchBinaryRelationAlg
     }
 
     /**
-     *  this is an optimized version of conexp enumeration algorithm
+     * this is an optimized version of conexp enumeration algorithm
      */
     protected void depthSearchEnumerateConcepts() {
         //        Assert.isTrue(null!=lat,"Lattice should be set before calculation");

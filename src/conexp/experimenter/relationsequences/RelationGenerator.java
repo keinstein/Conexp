@@ -12,6 +12,9 @@ import java.util.Random;
  * @author
  */
 public class RelationGenerator {
+    private RelationGenerator() {
+    }
+
     /**
      * Insert the method's description here.
      * Creation date: (28.02.01 23:45:51)

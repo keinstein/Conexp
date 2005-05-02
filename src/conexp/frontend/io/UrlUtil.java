@@ -13,6 +13,9 @@ import java.net.URL;
  */
 
 public class UrlUtil {
+    private UrlUtil() {
+    }
+
     public static Reader getReaderForFileOrURL(boolean debug1, String inputNameOrURL) {
         Reader reader = null;
         try {

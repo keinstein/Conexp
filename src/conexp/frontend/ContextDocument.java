@@ -18,8 +18,8 @@ import conexp.frontend.latticeeditor.CEDiagramEditorPanel;
 import conexp.frontend.ruleview.*;
 import conexp.frontend.ui.ViewManager;
 import conexp.frontend.ui.ViewManagerException;
-import conexp.frontend.ui.tree.IconData;
 import conexp.frontend.ui.tree.IconCellRenderer;
+import conexp.frontend.ui.tree.IconData;
 import conexp.frontend.util.ActionChainUtil;
 import conexp.frontend.util.ResourceManager;
 import conexp.frontend.util.ToolBuilder;
@@ -28,15 +28,17 @@ import util.FormatUtil;
 import util.StringUtil;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.DefaultMutableTreeNode;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.*;
-import java.util.*;
+import java.util.Collection;
+import java.util.ResourceBundle;
+import java.util.TooManyListenersException;
 
 
 public class ContextDocument implements ActionChainBearer, Document {
@@ -71,33 +73,33 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
     //------------------------------------------------------------
 
-    static ResourceBundle getResources() {
+    private static ResourceBundle getResources() {
         return resContextDocument;
     }
 
-    LocalizedMessageSupplier messageSupplier = new LocalizedMessageSupplier() {
+    private LocalizedMessageSupplier messageSupplier = new LocalizedMessageSupplier() {
         public String getMessage(String key) {
             return resContextDocument.getString(key);
         }
     };
 
-    protected LocalizedMessageSupplier getLocalizedMessageSupplier() {
+    private LocalizedMessageSupplier getLocalizedMessageSupplier() {
         return messageSupplier;
     }
 
-    protected String getLocalizedMessage(String key) {
+    private String getLocalizedMessage(String key) {
         return getLocalizedMessageSupplier().getMessage(key);
     }
 
 
     //--------------------------------------------
-    DocManager docManager = null;
+    private DocManager docManager = null;
 
     public void setDocManager(DocManager docManager) {
         this.docManager = docManager;
     }
 
-    protected JFrame getMainFrame() {
+    private JFrame getMainFrame() {
         if (null != docManager) {
             return docManager.getMainAppWindow();
         } else {
@@ -106,13 +108,13 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
     //--------------------------------------------
-    boolean showMessages = true;
+    private boolean showMessages = true;
 
     public void setShowMessages(boolean newShowMessages) {
         showMessages = newShowMessages;
     }
 
-    public void showMsg(String msg) {
+    private void showMsg(String msg) {
         if (showMessages) {
             JOptionPane.showMessageDialog(getMainFrame(), msg);
         }
@@ -168,7 +170,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     }
 
-    ContextDocumentModel contextDocumentModel;
+    private ContextDocumentModel contextDocumentModel;
 
     //----------------------------------------
     public Context getContext() {
@@ -293,7 +295,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 */
 
 
-    public void doAttributeExploration() {
+    private void doAttributeExploration() {
         AttributeExplorer explorer = new AttributeExplorerImplementation();
         explorer.setContext(getContext());
         explorer.setImplicationSet(getImplicationBaseCalculator().getImplications());
@@ -322,7 +324,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         }
     }
 
-    ImplicationBaseCalculator implicationBaseCalculator;
+    private ImplicationBaseCalculator implicationBaseCalculator;
 
     public ImplicationBaseCalculator getImplicationBaseCalculator() {
         if (null == implicationBaseCalculator) {
@@ -334,9 +336,9 @@ public class ContextDocument implements ActionChainBearer, Document {
         return implicationBaseCalculator;
     }
 
-    ContextListener implicationBaseRecalcPolicy;
+    private ContextListener implicationBaseRecalcPolicy;
 
-    public ContextListener getImplicationBaseRecalcPolicy() {
+    private ContextListener getImplicationBaseRecalcPolicy() {
         if (null == implicationBaseRecalcPolicy) {
             implicationBaseRecalcPolicy = new DependencySetRecalcPolicy(getImplicationBaseCalculator());
         }
@@ -379,7 +381,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
     //CONTROLLER STUFF
-    protected AssociationRuleCalculator associationMiner;
+    private AssociationRuleCalculator associationMiner;
 
     //------------------------------------------------------------
     public AssociationRuleCalculator getAssociationMiner() {
@@ -390,7 +392,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         return associationMiner;
     }
 
-    protected ContextListener associationsContextListener;
+    private ContextListener associationsContextListener;
 
 
     private ContextListener getAssociationRulesRecalcPolicy() {
@@ -435,18 +437,18 @@ public class ContextDocument implements ActionChainBearer, Document {
 //VIEW MANAGEMENT
 
 
-    protected ViewFactory viewFactory;
-    protected ViewManager viewManager;
+    private ViewFactory viewFactory;
+    private ViewManager viewManager;
 
     public static final String VIEW_CONTEXT = "Context";//$NON-NLS-1$
     public static final String VIEW_IMPLICATIONS = "Implications";//$NON-NLS-1$
     public static final String VIEW_ASSOCIATIONS = "Associations";//$NON-NLS-1$
     public static final String VIEW_LATTICE = "Lattice";
 //    public static final String VIEW_NESTED = "NestedLineDiagram";
-    public static final String VIEW_DIAGRAM_CREATOR = "DiagramCreator";
+    private static final String VIEW_DIAGRAM_CREATOR = "DiagramCreator";
 
 
-    protected void registerViews() {
+    private void registerViews() {
         try {
             viewManager.registerView(VIEW_CONTEXT, CONTEXT_EDITOR_TYPE, resContextDocument.getString("ContextEditorCaption"));//$NON-NLS-1$
             viewManager.registerView(VIEW_LATTICE, LINE_DIAGRAM_EDITOR_TYPE, resContextDocument.getString("LatticeViewCaption"));//$NON-NLS-1$
@@ -462,7 +464,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         }
     }
 
-    public ViewFactory getViewFactory() {
+    private ViewFactory getViewFactory() {
         if (null == viewFactory) {
             viewFactory = new ViewFactory() {
                 public View makeView(String type) {
@@ -555,7 +557,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 */
 
-    protected void activateView(String viewName) {
+    private void activateView(String viewName) {
         try {
             getViewManager().activateView(viewName);
         } catch (ViewManagerException ex) {
@@ -610,21 +612,21 @@ public class ContextDocument implements ActionChainBearer, Document {
         ret.setShowsRootHandles(true);
         ret.setEditable(false);
         final JPopupMenu popup = new JPopupMenu();
-        ret.addMouseListener(new MouseAdapter(){
+        ret.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent e) {
-                if(e.isPopupTrigger()){
+                if (e.isPopupTrigger()) {
                     //todo: add popup filling
                     // with possible types of operations
 
                     popup.setVisible(true);
                     //do popup processing
-                }else{
+                } else {
                     //do navigation stuff
                     int x = e.getX();
                     int y = e.getY();
                     TreePath path = ret.getPathForLocation(x, y);
-                    if(path!=null){
-                        
+                    if (path != null) {
+
                     }
                 }
             }
@@ -632,16 +634,16 @@ public class ContextDocument implements ActionChainBearer, Document {
         return ret;
     }
 
-    TreePath treePath;
+    private TreePath treePath;
 
-    public TreePath getTreePath() {
+    private TreePath getTreePath() {
         return treePath;
     }
 
 
     private DefaultTreeModel documentTreeModel;
 
-    public TreeModel getTreeModel() {
+    private TreeModel getTreeModel() {
         if (null == documentTreeModel) {
             documentTreeModel = makeTreeModel();
         }
@@ -699,7 +701,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         return toolBar;
     }
 
-    protected final static int defaultCxtSize = 15;
+    private final static int defaultCxtSize = 15;
 
     private static Context makeDefaultContext() {
         return FCAEngineRegistry.makeContext(defaultCxtSize, defaultCxtSize);

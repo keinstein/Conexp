@@ -8,8 +8,8 @@
 package conexp.frontend.latticeeditor.drawstrategies.tests;
 
 import conexp.frontend.latticeeditor.DrawStrategiesModelsFactory;
-import conexp.frontend.latticeeditor.tests.DrawStrategiesModelsFactoryTest;
 import conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory;
+import conexp.frontend.latticeeditor.tests.DrawStrategiesModelsFactoryTest;
 
 
 public class DefaultDrawStrategiesModelsFactoryTest extends DrawStrategiesModelsFactoryTest {

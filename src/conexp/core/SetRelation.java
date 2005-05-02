@@ -15,8 +15,8 @@ import java.io.StringWriter;
 public class SetRelation implements ModifiableBinaryRelation {
 // implementation of conexp.core.BinaryRelation interface
     private ModifiableSet[] relation;
-    int sizeX;
-    int sizeY;
+    private int sizeX;
+    private int sizeY;
 
     public SetRelation(int _sizeX, int _sizeY) {
         super();
@@ -29,7 +29,7 @@ public class SetRelation implements ModifiableBinaryRelation {
         }
     }
 
-    public ModifiableBinaryRelation makeModifiableCopy() {
+    public synchronized ModifiableBinaryRelation makeModifiableCopy() {
         SetRelation ret = new SetRelation(sizeX, sizeY);
         for (int i = 0; i < sizeX; i++) {
             ret.getModifiableSet(i).copy(getSet(i));
@@ -45,12 +45,11 @@ public class SetRelation implements ModifiableBinaryRelation {
         return makeModifiableCopy();
     }
 
-    public int getColCount() {
+    public synchronized int getColCount() {
         return sizeY;
     }
 
     /**
-     *
      * @param x x-coordinate
      * @param y y-coordinate
      * @return value of cell with coordinates(x,y)
@@ -59,7 +58,7 @@ public class SetRelation implements ModifiableBinaryRelation {
         return relation[x].in(y);
     }
 
-    public int getRowCount() {
+    public synchronized int getRowCount() {
         return sizeX;
     }
 
@@ -69,7 +68,7 @@ public class SetRelation implements ModifiableBinaryRelation {
 
     public void addSet(Set set) {
         int oldRowCount = getRowCount();
-        setDimension(oldRowCount+1, getColCount());
+        setDimension(oldRowCount + 1, getColCount());
         getModifiableSet(oldRowCount).copy(set);
     }
 
@@ -78,7 +77,7 @@ public class SetRelation implements ModifiableBinaryRelation {
     }
 
 
-    public void removeCol(int col) {
+    public synchronized void removeCol(int col) {
         Assert.isTrue(0 <= col, "removeCol: col should be greater or equal to zero");
         Assert.isTrue(col < sizeY, "removeCol: col = " + col + "  should be less then relation column count");
         for (int j = sizeX; --j >= 0;) {
@@ -87,7 +86,7 @@ public class SetRelation implements ModifiableBinaryRelation {
         --sizeY;
     }
 
-    public void removeRow(int row) {
+    public synchronized void removeRow(int row) {
         Assert.isTrue(0 <= row, "removeRow: row should be greater or equal to zero");
         Assert.isTrue(row < sizeX, "removeRow: row should be less then relation row count");
         int lastElIndex = sizeX - 1;
@@ -130,19 +129,18 @@ public class SetRelation implements ModifiableBinaryRelation {
             }
         }
         sizeY = cols;
-
-
     }
 
     /**
-     *
-     * @param x x-coordinate
-     * @param y y-coordinate
+     * @param x     x-coordinate
+     * @param y     y-coordinate
      * @param value new value for cell with coordinates(x,y)
      */
     public void setRelationAt(int x, int y, boolean value) {
-        Assert.isTrue(x < sizeX, "Dimension X of relation " + x + " should be less then sizeX=" + sizeX);
-        // else indexOutOfBounds will be thrown from Java standart classes
+        synchronized (this) {
+            Assert.isTrue(x < sizeX, "Dimension X of relation " + x + " should be less then sizeX=" + sizeX);
+            // else indexOutOfBounds will be thrown from Java standart classes
+        }
         if (value) {
             relation[x].put(y);
         } else {
@@ -154,10 +152,11 @@ public class SetRelation implements ModifiableBinaryRelation {
     /**
      * Insert the method's description here.
      * Creation date: (04.08.01 7:12:40)
-     * @return boolean
+     *
      * @param obj java.lang.Object
+     * @return boolean
      */
-    public boolean equals(Object obj) {
+    public synchronized boolean equals(Object obj) {
         if (obj == null) {
             return false;
         }
@@ -185,7 +184,7 @@ public class SetRelation implements ModifiableBinaryRelation {
 
 
     public int hashCode() {
-        return 29*sizeY+sizeX;
+        return 29 * sizeY + sizeX;
     }
 
     /**

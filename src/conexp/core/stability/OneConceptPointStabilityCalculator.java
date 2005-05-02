@@ -64,7 +64,7 @@ public class OneConceptPointStabilityCalculator extends DefaultBinaryRelationPro
     }
 
     private int doCalculateGeneratorsBySubsets(int depth, Set extent, Set visitedObjects, Set attributeSet) {
-        if(depth>=maxDepth){
+        if (depth >= maxDepth) {
             return 1;
         }
         ModifiableSet currentExtent = currentExtents[depth];

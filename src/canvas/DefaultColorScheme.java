@@ -111,6 +111,6 @@ public class DefaultColorScheme implements CanvasColorScheme {
                 ", textColor=" + textColor +
                 ", highlightColor=" + highlightColor +
                 ", collisionColor=" + collisionColor +
-                "}";
+                '}';
     }
 }

@@ -11,6 +11,9 @@ import cefacade.ISimpleContext;
 
 
 public class ContextReducerImplementation {
+    private ContextReducerImplementation() {
+    }
+
     public static ISimpleContext getReducedContext(ISimpleContext context) {
         SimpleContextImplementation contextWrapper = (SimpleContextImplementation) context.makeCopy();
         contextWrapper.getContext().reduceObjects();

@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.figures;
 
 import canvas.BaseFigureVisitor;
@@ -102,8 +101,7 @@ public class NestedDiagramNodeFigure extends ConceptCorrespondingFigure {
     }
 
     private ConnectionFigure makeEdgeFigure(Edge e) {
-        return new EdgeFigure(
-                getFigureForConcept(e.getStart()),
+        return new EdgeFigure(getFigureForConcept(e.getStart()),
                 getFigureForConcept(e.getEnd()));
     }
 

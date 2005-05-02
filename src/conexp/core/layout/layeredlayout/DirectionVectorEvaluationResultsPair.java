@@ -11,9 +11,9 @@ import java.util.Arrays;
  * All rights reserved.
  * Please read license.txt for licensing issues.
  */
-public class DirectionVectorEvaluationResultsPair implements IPartiallyOrdered{
-    double [] directionVectors;
-    double [] evaluation;
+public class DirectionVectorEvaluationResultsPair implements IPartiallyOrdered {
+    double[] directionVectors;
+    double[] evaluation;
 
     public DirectionVectorEvaluationResultsPair() {
     }
@@ -42,20 +42,20 @@ public class DirectionVectorEvaluationResultsPair implements IPartiallyOrdered{
     }
 
     public boolean isLesserThan(IPartiallyOrdered other) {
-        if(!(other instanceof DirectionVectorEvaluationResultsPair)){
+        if (!(other instanceof DirectionVectorEvaluationResultsPair)) {
             return false;
         }
-        DirectionVectorEvaluationResultsPair otherPair = (DirectionVectorEvaluationResultsPair)other;
-        double [] otherEvaluation = otherPair.evaluation;
-        if(this.evaluation.length!=otherEvaluation.length){
+        DirectionVectorEvaluationResultsPair otherPair = (DirectionVectorEvaluationResultsPair) other;
+        double[] otherEvaluation = otherPair.evaluation;
+        if (this.evaluation.length != otherEvaluation.length) {
             return false;
         }
         boolean hasBigger = false;
-        for(int i=0; i<evaluation.length; i++){
-            if(evaluation[i]<otherEvaluation[i]){
+        for (int i = 0; i < evaluation.length; i++) {
+            if (evaluation[i] < otherEvaluation[i]) {
                 return false;
             }
-            if(evaluation[i]>otherEvaluation[i]){
+            if (evaluation[i] > otherEvaluation[i]) {
                 hasBigger = true;
             }
         }
@@ -63,27 +63,27 @@ public class DirectionVectorEvaluationResultsPair implements IPartiallyOrdered{
     }
 
     public boolean isEqual(IPartiallyOrdered other) {
-        if(!(other instanceof DirectionVectorEvaluationResultsPair)){
+        if (!(other instanceof DirectionVectorEvaluationResultsPair)) {
             return false;
         }
-        DirectionVectorEvaluationResultsPair otherPair = (DirectionVectorEvaluationResultsPair)other;
+        DirectionVectorEvaluationResultsPair otherPair = (DirectionVectorEvaluationResultsPair) other;
         return Arrays.equals(evaluation, otherPair.evaluation);
     }
 
     public boolean equals(Object obj) {
-        if (this == obj){
+        if (this == obj) {
             return true;
         }
-        if (!(obj instanceof DirectionVectorEvaluationResultsPair)){
+        if (!(obj instanceof DirectionVectorEvaluationResultsPair)) {
             return false;
         }
 
         DirectionVectorEvaluationResultsPair directionVectorEvaluationResultsPair = (DirectionVectorEvaluationResultsPair) obj;
 
-        if (!Arrays.equals(directionVectors, directionVectorEvaluationResultsPair.directionVectors)){
+        if (!Arrays.equals(directionVectors, directionVectorEvaluationResultsPair.directionVectors)) {
             return false;
         }
-        if (!Arrays.equals(evaluation, directionVectorEvaluationResultsPair.evaluation)){
+        if (!Arrays.equals(evaluation, directionVectorEvaluationResultsPair.evaluation)) {
             return false;
         }
 
@@ -91,9 +91,8 @@ public class DirectionVectorEvaluationResultsPair implements IPartiallyOrdered{
     }
 
 
-
     public int hashCode() {
-        if(evaluation==null){
+        if (evaluation == null) {
             return 0;
         }
         return ArraysUtil.arrayHashCode(evaluation);
@@ -101,7 +100,7 @@ public class DirectionVectorEvaluationResultsPair implements IPartiallyOrdered{
 
     public String toString() {
         String DELIMITER = ", ";
-        return " directions :"+StringUtil.joinArray(directionVectors, DELIMITER)+" evaluation "+StringUtil.joinArray(evaluation, DELIMITER);
+        return " directions :" + StringUtil.joinArray(directionVectors, DELIMITER) + " evaluation " + StringUtil.joinArray(evaluation, DELIMITER);
     }
 }
 

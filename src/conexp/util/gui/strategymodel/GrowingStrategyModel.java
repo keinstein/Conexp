@@ -27,9 +27,9 @@ public class GrowingStrategyModel extends BasicStrategyModel {
         }
     };
 
-    List strategies = new ArrayList();
+    private List strategies = new ArrayList();
 
-    protected StrategyInfo getStrategyInfo(int index) {
+    private StrategyInfo getStrategyInfo(int index) {
         return (StrategyInfo) strategies.get(index);
     }
 

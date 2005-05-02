@@ -9,9 +9,9 @@ import util.Assert;
  * All rights reserved.
  * Please read license.txt for licensing issues.
  */
-public class HeightInLatticeLayerAssignmentFunction implements ILayerAssignmentFunction{
+public class HeightInLatticeLayerAssignmentFunction implements ILayerAssignmentFunction {
     public void calculateLayersForLattice(Lattice lattice, final ILayerAssignmentFunction.ILayerAssignmentFunctionCallback callback) {
-        Assert.isTrue(lattice.getHeight()>=0);
+        Assert.isTrue(lattice.getHeight() >= 0);
         lattice.doTopSort(new Lattice.DefaultTopSortBlock() {
             public void assignTopSortNumberToElement(LatticeElement currentElement, int topSortNumber) {
                 callback.layerForLatticeElement(currentElement, currentElement.getHeight());
@@ -24,7 +24,7 @@ public class HeightInLatticeLayerAssignmentFunction implements ILayerAssignmentF
 
     static final ILayerAssignmentFunction g_Instance = new HeightInLatticeLayerAssignmentFunction();
 
-    public static ILayerAssignmentFunction getInstance(){
+    public static ILayerAssignmentFunction getInstance() {
         return g_Instance;
     }
 }

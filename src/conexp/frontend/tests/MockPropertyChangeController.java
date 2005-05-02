@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.tests;
 
 import com.mockobjects.ExpectationCounter;
@@ -32,7 +31,7 @@ public class MockPropertyChangeController extends PropertyChangeBaseController {
 
     ExpectationCounter counter = new ExpectationCounter("MockPropertyChangeController expected number of calls");
 
-    protected void doProcessEventForTarget() {
+    private void doProcessEventForTarget() {
         counter.inc();
     }
 

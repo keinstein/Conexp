@@ -14,8 +14,9 @@ public interface RuleRenderer {
     /**
      * Insert the method's description here.
      * Creation date: (05.05.01 1:58:17)
-     * @return javax.swing.text.SimpleAttributeSet
+     *
      * @param dep conexp.core.Dependency
+     * @return javax.swing.text.SimpleAttributeSet
      */
     javax.swing.text.SimpleAttributeSet dependencyStyle(Dependency dep);
 
@@ -23,8 +24,9 @@ public interface RuleRenderer {
     /**
      * Insert the method's description here.
      * Creation date: (05.05.01 1:55:11)
-     * @return java.lang.String
+     *
      * @param dep conexp.core.Dependency
+     * @return java.lang.String
      */
     void describeRule(StringBuffer buf, AttributeInformationSupplier attrInfo, Dependency dep);
 
@@ -32,6 +34,7 @@ public interface RuleRenderer {
     /**
      * Insert the method's description here.
      * Creation date: (06.05.01 21:21:57)
+     *
      * @return javax.swing.text.SimpleAttributeSet
      */
     javax.swing.text.SimpleAttributeSet getBaseStyle();

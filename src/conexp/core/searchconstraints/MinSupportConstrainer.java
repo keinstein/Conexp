@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.searchconstraints;
 
 import conexp.core.SearchConstraint;
@@ -13,7 +12,7 @@ import conexp.core.Set;
 
 public class MinSupportConstrainer implements SearchConstraint {
 
-    int minSupport;
+    private int minSupport;
 
     public MinSupportConstrainer(int minSupport) {
         this.minSupport = minSupport;

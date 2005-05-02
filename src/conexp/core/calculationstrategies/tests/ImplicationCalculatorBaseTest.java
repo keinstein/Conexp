@@ -16,7 +16,7 @@ import junit.framework.TestCase;
 
 
 public abstract class ImplicationCalculatorBaseTest extends TestCase {
-    protected static void doTestPreparedImplicationCalcStrategy(ImplicationCalcStrategy calc, Context cxt, int[][][] expImplicationsDescriptions) {
+    private static void doTestPreparedImplicationCalcStrategy(ImplicationCalcStrategy calc, Context cxt, int[][][] expImplicationsDescriptions) {
         ImplicationSet implications = new ImplicationSet(cxt);
         calc.setImplications(implications);
         calc.calcImplications();

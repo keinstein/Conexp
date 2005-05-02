@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.util;
 
 public class ResourceException extends Exception {

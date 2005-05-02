@@ -12,8 +12,8 @@ import conexp.core.Implication;
 
 public class ImplicationTest extends DependencyTest {
 
-    Implication impOverlap;
-    Implication impDisjoint;
+    private Implication impOverlap;
+    private Implication impDisjoint;
 
 
     protected void setUp() {

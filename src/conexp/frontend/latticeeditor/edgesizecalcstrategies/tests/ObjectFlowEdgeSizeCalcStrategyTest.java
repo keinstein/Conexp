@@ -14,7 +14,7 @@ import conexp.frontend.latticeeditor.LatticePainterDrawParams;
 import conexp.frontend.latticeeditor.edgesizecalcstrategies.ObjectFlowEdgeSizeCalcStrategy;
 import conexp.frontend.latticeeditor.tests.DefaultDimensionCalcStrategyTest;
 
-public class ObjectFlowEdgeSizeCalcStrategyTest extends DefaultDimensionCalcStrategyTest{
+public class ObjectFlowEdgeSizeCalcStrategyTest extends DefaultDimensionCalcStrategyTest {
 
     protected DefaultDimensionCalcStrategy makeNotEqualInstance() {
         return new ObjectFlowEdgeSizeCalcStrategy(new LatticePainterDrawParams());

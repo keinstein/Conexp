@@ -13,7 +13,7 @@ import java.awt.geom.Point2D;
  * All rights reserved.
  * Please read license.txt for licensing issues.
  */
-public class LengthOfEdgesEvaluationFunction extends LatticeBasedEvaluationFunctionBase{
+public class LengthOfEdgesEvaluationFunction extends LatticeBasedEvaluationFunctionBase {
     public LengthOfEdgesEvaluationFunction() {
     }
 
@@ -37,14 +37,15 @@ public class LengthOfEdgesEvaluationFunction extends LatticeBasedEvaluationFunct
 
         Point2D nodePoint = GraphicObjectsFactory.makePoint2D();
         Point2D childPoint = GraphicObjectsFactory.makePoint2D();
+
         public void visitNode(LatticeElement node) {
-           conceptCoordinateMapper.setCoordsForConcept(node, nodePoint);
-           LatticeElementCollection successors = node.getSuccessors();
-           for(int i=successors.getSize(); --i>=0;){
-               LatticeElement child = successors.get(i);
-               conceptCoordinateMapper.setCoordsForConcept(child,  childPoint);
-               sum += nodePoint.distance(childPoint);
-           }
+            conceptCoordinateMapper.setCoordsForConcept(node, nodePoint);
+            LatticeElementCollection successors = node.getSuccessors();
+            for (int i = successors.getSize(); --i >= 0;) {
+                LatticeElement child = successors.get(i);
+                conceptCoordinateMapper.setCoordsForConcept(child, childPoint);
+                sum += nodePoint.distance(childPoint);
+            }
         }
     }
 }

@@ -12,9 +12,9 @@ import junit.framework.TestSuite;
  * Time: 22:11:04
  */
 
-public class AllTests extends TestCase{
+public class AllTests extends TestCase {
 
-    public static Test suite(){
+    public static Test suite() {
         TestSuite ret = new TestSuite();
         ret.addTestSuite(OneFigureMoveStrategyTest.class);
         ret.addTestSuite(FigureIdealMoveStrategyTest.class);

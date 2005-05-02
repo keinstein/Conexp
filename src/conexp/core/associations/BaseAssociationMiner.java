@@ -5,19 +5,19 @@
  **/
 
 
-
 package conexp.core.associations;
 
 import conexp.core.*;
 import conexp.core.enumerators.EdgeMinSupportSelector;
 import util.Assert;
+import util.collection.CollectionFactory;
 import util.collection.disjointset.DisjointSetsSystem;
 import util.comparators.ComparatorUtil;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 
 public abstract class BaseAssociationMiner implements AssociationMiner {
     protected Context cxt;
@@ -33,7 +33,7 @@ public abstract class BaseAssociationMiner implements AssociationMiner {
      * Insert the method's description here.
      * Creation date: (20.06.01 2:03:38)
      */
-    protected static void findApproximateBaseByCruscal(DependencySet ret, ArrayList frequentEdges, int frequentSetCount) {
+    protected static void findApproximateBaseByCruscal(DependencySet ret, List frequentEdges, int frequentSetCount) {
         DisjointSetsSystem cycleDetector = new DisjointSetsSystem(frequentSetCount);
         Iterator frequentEdgeIter = frequentEdges.iterator();
         while (frequentEdgeIter.hasNext()) {
@@ -49,19 +49,21 @@ public abstract class BaseAssociationMiner implements AssociationMiner {
     /**
      * Insert the method's description here.
      * Creation date: (05.05.01 1:20:34)
+     *
      * @param minConfidence double
-     * @param minSupport int
+     * @param minSupport    int
      */
     public abstract void findAssociations(DependencySet depSet, int minSupport, double minConfidence);
 
     /**
      * Creation date: (19.06.01 23:51:04)
+     *
      * @param minConfidence double
-     * @param minSupport int
+     * @param minSupport    int
      * @test_public
      */
-    public static ArrayList findFrequentEdgesSortedByConfidence(Lattice lat, double minConfidence, int minSupport) {
-        ArrayList frequentEdges = new ArrayList();
+    public static List findFrequentEdgesSortedByConfidence(Lattice lat, double minConfidence, int minSupport) {
+        List frequentEdges = CollectionFactory.createDefaultList();
         EdgeIterator selector = new EdgeMinSupportSelector(lat, minSupport);
         while (selector.hasNextEdge()) {
             Edge e = selector.nextEdge();
@@ -83,8 +85,7 @@ public abstract class BaseAssociationMiner implements AssociationMiner {
         Assert.isTrue(frequentItemsetLattice != null, "Frequent itemset lattice should be calculated before search for cover");
         (new AssociationCoverCalculator()).findAssociationsRuleCover(cover,
                 frequentItemsetLattice,
-                minConfidence
-        );
+                minConfidence);
     }
 
     /**
@@ -96,6 +97,7 @@ public abstract class BaseAssociationMiner implements AssociationMiner {
     /**
      * Insert the method's description here.
      * Creation date: (02.05.01 14:21:12)
+     *
      * @param cxt conexp.core.Context
      */
     public void setContext(Context cxt) {

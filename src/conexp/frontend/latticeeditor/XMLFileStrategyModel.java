@@ -20,7 +20,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class XMLFileStrategyModel extends AbstractNonGrowingStrategyModel{
+public class XMLFileStrategyModel extends AbstractNonGrowingStrategyModel {
     static class ConfigInfo {
         final String label;
         final String className;
@@ -50,6 +50,7 @@ public class XMLFileStrategyModel extends AbstractNonGrowingStrategyModel{
     /**
      * Insert the method's description here.
      * Creation date: (14.06.01 21:46:49)
+     *
      * @return java.lang.String[][]
      */
     public java.lang.String[][] getCreateInfo() {
@@ -59,6 +60,7 @@ public class XMLFileStrategyModel extends AbstractNonGrowingStrategyModel{
     /**
      * Insert the method's description here.
      * Creation date: (14.06.01 21:52:01)
+     *
      * @param fileName java.lang.String
      */
     protected void parse(String fileName) {
@@ -87,10 +89,8 @@ public class XMLFileStrategyModel extends AbstractNonGrowingStrategyModel{
         Iterator iter = strategies.iterator();
         while (iter.hasNext()) {
             Element strategyRecord = (Element) iter.next();
-            configInfo.add(
-                    new ConfigInfo(
-                            strategyRecord.getAttributeValue(LABEL_ATTRIBUTE),
-                            strategyRecord.getAttributeValue(CLASS_ATTRIBUTE)));
+            configInfo.add(new ConfigInfo(strategyRecord.getAttributeValue(LABEL_ATTRIBUTE),
+                    strategyRecord.getAttributeValue(CLASS_ATTRIBUTE)));
         }
     }
 
@@ -124,6 +124,7 @@ public class XMLFileStrategyModel extends AbstractNonGrowingStrategyModel{
 
     /**
      * XMLFileStrategyModel constructor comment.
+     *
      * @test_public this constructor is for tests only
      */
     public XMLFileStrategyModel(String xmlFileUrl, boolean doCreateStrategies) {

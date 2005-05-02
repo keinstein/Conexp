@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.io;
 
 import conexp.frontend.ContextDocument;
@@ -24,6 +23,7 @@ public class ContextReaderDocumenLoaderAdapter implements DocumentLoader {
     public ContextReaderDocumenLoaderAdapter(ContextReader loader) {
         this.loader = loader;
     }
+
     public ContextDocument loadDocument(Reader r, DataFormatErrorHandler errorHandler) throws IOException, DataFormatException {
         return new ContextDocument(loader.parseContext(r));
     }

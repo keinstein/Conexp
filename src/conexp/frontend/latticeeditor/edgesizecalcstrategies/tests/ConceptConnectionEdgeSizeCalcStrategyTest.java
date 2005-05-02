@@ -8,13 +8,13 @@ package conexp.frontend.latticeeditor.edgesizecalcstrategies.tests;
  * To change this template use File | Settings | File Templates.
  */
 
-import conexp.frontend.latticeeditor.edgesizecalcstrategies.ConceptConnectionEdgeSizeCalcStrategy;
-import conexp.frontend.latticeeditor.tests.DefaultDimensionCalcStrategyTest;
+import conexp.frontend.latticeeditor.BasicDrawParams;
 import conexp.frontend.latticeeditor.DefaultDimensionCalcStrategy;
 import conexp.frontend.latticeeditor.LatticePainterDrawParams;
-import conexp.frontend.latticeeditor.BasicDrawParams;
+import conexp.frontend.latticeeditor.edgesizecalcstrategies.ConceptConnectionEdgeSizeCalcStrategy;
+import conexp.frontend.latticeeditor.tests.DefaultDimensionCalcStrategyTest;
 
-public class ConceptConnectionEdgeSizeCalcStrategyTest extends DefaultDimensionCalcStrategyTest{
+public class ConceptConnectionEdgeSizeCalcStrategyTest extends DefaultDimensionCalcStrategyTest {
 
     protected DefaultDimensionCalcStrategy makeNotEqualInstance() {
         return new ConceptConnectionEdgeSizeCalcStrategy(new LatticePainterDrawParams());

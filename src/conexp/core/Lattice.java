@@ -44,8 +44,8 @@ public class Lattice extends ConceptsCollection {
     }
 
 //------------------------------------------
-    protected LatticeElement one;
-    protected LatticeElement zero;
+    private LatticeElement one;
+    private LatticeElement zero;
 
     private Set attributesMask;
     private Set objectsMask;
@@ -97,9 +97,10 @@ public class Lattice extends ConceptsCollection {
     /**
      * Insert the method's description here.
      * Creation date: (07.03.01 0:28:07)
-     * @return conexp.core.Lattice
+     *
      * @param intent conexp.core.Set
-     * //todo: move fully to set builder
+     *               //todo: move fully to set builder
+     * @return conexp.core.Lattice
      */
     public LatticeElement findElementWithIntent(Set intent) {
         return (LatticeElement) findConceptWithIntent(intent);
@@ -129,10 +130,12 @@ public class Lattice extends ConceptsCollection {
 
 
 //-----------------------------------------------------------------
-    /****************************************************************
-     *  this function is strongly connected with used order, it should be used
-     *  after fully building lattice
-     ****************************************************************/
+    /**
+     * *************************************************************
+     * this function is strongly connected with used order, it should be used
+     * after fully building lattice
+     * **************************************************************
+     */
     public LatticeElement findLatticeElementFromOne(Set attribs) {
         //*DBG*/System.out.println("curr="+(BitSet)_curr.attribs);
         //*DBG*/System.out.println("compare="+_attribs+" "+_curr.attribs+"["+_attribs.compare(_curr.attribs)+"]");
@@ -159,7 +162,7 @@ public class Lattice extends ConceptsCollection {
                         case Set.EQUAL:
                             return pred;
                         case Set.SUBSET:
-                            Assert.isTrue(false, "Non closed set in findLatticeElement attribs [" + attribs + "] pred[" + pred.getAttribs() + "]");
+                            Assert.isTrue(false, "Non closed set in findLatticeElement attribs [" + attribs + "] pred[" + pred.getAttribs() + ']');
                             return pred;
                         case Set.NOT_COMPARABLE:
                             // continue cycle
@@ -178,8 +181,9 @@ public class Lattice extends ConceptsCollection {
 
 
 //------------------------------------------
-    /** This method returns height of lattice, if lattice is builded(one is set)
-     and -1 otherwise
+    /**
+     * This method returns height of lattice, if lattice is builded(one is set)
+     * and -1 otherwise
      */
     public int getHeight() {
         return null == one ? -1 : one.getHeight();
@@ -209,8 +213,9 @@ public class Lattice extends ConceptsCollection {
     /**
      * Insert the method's description here.
      * Creation date: (09.07.01 23:59:07)
-     * @return boolean
+     *
      * @param other conexp.core.Lattice
+     * @return boolean
      */
     public boolean isEqual(Lattice other) {
         if (other.conceptsCount() != conceptsCount()) {
@@ -248,9 +253,10 @@ public class Lattice extends ConceptsCollection {
     /**
      * Insert the method's description here.
      * Creation date: (02.07.01 18:55:41)
-     * @return conexp.core.Concept
+     *
      * @param extent conexp.core.Set
      * @param intent conexp.core.Set
+     * @return conexp.core.Concept
      */
     public Concept makeConcept(ModifiableSet extent, ModifiableSet intent) {
         return LatticeElement.makeLatticeElementFromSets(extent, intent);
@@ -258,8 +264,9 @@ public class Lattice extends ConceptsCollection {
 
 //------------------------------------------
 
-    /** this function adds find all predessors for element toSet
-     *   and adds it to their successors list
+    /**
+     * this function adds find all predessors for element toSet
+     * and adds it to their successors list
      */
     private static void setLinks(LatticeElement start, LatticeElement toSet) {
         boolean findNext = false;
@@ -312,6 +319,7 @@ public class Lattice extends ConceptsCollection {
     /**
      * Insert the method's description here.
      * Creation date: (06.03.01 0:21:11)
+     *
      * @return java.util.ArrayList
      */
     public LatticeElement[] topologicallySortedElements() {
@@ -361,6 +369,7 @@ public class Lattice extends ConceptsCollection {
     /**
      * Insert the method's description here.
      * Creation date: (12.07.01 12:49:04)
+     *
      * @return int
      */
     public int edgeCount() {
@@ -375,6 +384,7 @@ public class Lattice extends ConceptsCollection {
     /**
      * Insert the method's description here.
      * Creation date: (11.08.01 21:24:33)
+     *
      * @return boolean
      */
     public boolean isValid() {
@@ -405,8 +415,8 @@ public class Lattice extends ConceptsCollection {
     }
 
     /**
-     *  creates a deep copy of current lattice
-     *  for context the shallow copy is performed
+     * creates a deep copy of current lattice
+     * for context the shallow copy is performed
      */
     public Lattice makeCopy() {
         final Lattice ret = new Lattice();

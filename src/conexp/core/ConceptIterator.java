@@ -10,6 +10,7 @@ package conexp.core;
 import java.util.Iterator;
 
 //todo: rename into lattice element iterator
+
 public interface ConceptIterator extends Iterator {
     LatticeElement nextConcept();
 }

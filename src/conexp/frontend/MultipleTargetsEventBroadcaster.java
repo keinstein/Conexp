@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend;
 
 import java.beans.PropertyChangeEvent;
@@ -15,7 +14,7 @@ import java.util.List;
 public class MultipleTargetsEventBroadcaster implements EventBroadcaster {
     private ArrayList targets;
 
-    public synchronized List getTargets() {
+    private synchronized List getTargets() {
         if (null == targets) {
             targets = new ArrayList();
         }

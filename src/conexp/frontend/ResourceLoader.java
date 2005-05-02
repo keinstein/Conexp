@@ -21,7 +21,7 @@ public class ResourceLoader {
     /**
      * ResourceLoader constructor comment.
      */
-    public ResourceLoader() {
+    private ResourceLoader() {
         super();
     }
 
@@ -34,8 +34,9 @@ public class ResourceLoader {
     /**
      * Insert the method's description here.
      * Creation date: (14.06.01 23:42:24)
-     * @return java.util.ResourceBundle
+     *
      * @param name java.lang.String
+     * @return java.util.ResourceBundle
      */
     public static ResourceBundle getResourceBundle(String name) {
         try {
@@ -49,6 +50,7 @@ public class ResourceLoader {
     /**
      * Insert the method's description here.
      * Creation date: (15.06.01 23:26:18)
+     *
      * @return conexp.frontend.ResourceLoader
      */
     private static synchronized ResourceLoader getResourceLoader() {
@@ -62,8 +64,9 @@ public class ResourceLoader {
     /**
      * Insert the method's description here.
      * Creation date: (15.06.01 23:23:53)
-     * @return java.net.URL
+     *
      * @param path java.lang.String
+     * @return java.net.URL
      */
     public static java.net.URL getResourceUrl(String path) {
         try {

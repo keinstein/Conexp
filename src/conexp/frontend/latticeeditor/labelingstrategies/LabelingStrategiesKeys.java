@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 public interface LabelingStrategiesKeys {

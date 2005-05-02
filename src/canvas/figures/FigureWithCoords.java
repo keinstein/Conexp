@@ -15,11 +15,11 @@ import java.awt.geom.Point2D;
 public abstract class FigureWithCoords extends AbstractFigure implements ICenterPointLocatorProvidingFigure, BorderCalculatingFigure {
     protected CenterPointLocator centerPointLocator = new DefaultCenterPointLocator();
 
-    public FigureWithCoords(double x, double y) {
+    protected FigureWithCoords(double x, double y) {
         doSetCoords(x, y);
     }
 
-    public FigureWithCoords() {
+    protected FigureWithCoords() {
         this(0, 0);
     }
 

@@ -9,6 +9,6 @@ import conexp.core.Set;
  * Please read license.txt for licensing issues.
  */
 
-public interface PointStabilityCalculator extends BinaryRelationProcessor{
+public interface PointStabilityCalculator extends BinaryRelationProcessor {
     double getPointStabilityOfSet(Set attributeSet);
 }

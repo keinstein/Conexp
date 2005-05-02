@@ -7,13 +7,13 @@
 
 package conexp.frontend.latticeeditor.highlightstrategies.tests;
 
-import conexp.frontend.latticeeditor.DrawParameters;
-import conexp.frontend.latticeeditor.HighlightStrategy;
-import conexp.frontend.latticeeditor.tests.StrategyModelTest;
-import conexp.frontend.latticeeditor.highlightstrategies.HighlightStrategyModel;
-import conexp.util.gui.strategymodel.StrategyModel;
 import conexp.core.ConceptFactory;
 import conexp.core.LatticeElement;
+import conexp.frontend.latticeeditor.DrawParameters;
+import conexp.frontend.latticeeditor.HighlightStrategy;
+import conexp.frontend.latticeeditor.highlightstrategies.HighlightStrategyModel;
+import conexp.frontend.latticeeditor.tests.StrategyModelTest;
+import conexp.util.gui.strategymodel.StrategyModel;
 
 public class HighlightStrategyModelTest extends StrategyModelTest {
     /**

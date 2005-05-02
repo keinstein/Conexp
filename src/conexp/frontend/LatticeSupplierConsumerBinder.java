@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend;
 
 import conexp.frontend.latticeeditor.LatticeDrawing;
@@ -34,19 +33,19 @@ public class LatticeSupplierConsumerBinder extends PropertyChangeBaseController 
         return getEventBroadcaster().hasTargets();
     }
 
-    LatticeConsumerEventProcessorAdapter setLatticeFromDocumentToContainer = new LatticeConsumerEventProcessorAdapter() {
+    private LatticeConsumerEventProcessorAdapter setLatticeFromDocumentToContainer = new LatticeConsumerEventProcessorAdapter() {
         public void processEventForLatticeConsumer(PropertyChangeEvent event, ConceptSetDrawingConsumer container) {
             container.setConceptSetDrawing((LatticeDrawing) event.getNewValue());
         }
     };
 
-    LatticeConsumerEventProcessorAdapter clearLattice = new LatticeConsumerEventProcessorAdapter() {
+    private LatticeConsumerEventProcessorAdapter clearLattice = new LatticeConsumerEventProcessorAdapter() {
         public void processEventForLatticeConsumer(PropertyChangeEvent event, ConceptSetDrawingConsumer container) {
             container.clearConceptSetDrawing();
         }
     };
 
-    protected void registerEventProcessors() {
+    private void registerEventProcessors() {
         registerEventProcessor(LatticeCalculator.LATTICE_DRAWING_CHANGED, setLatticeFromDocumentToContainer);
         registerEventProcessor(LatticeCalculator.LATTICE_CLEARED, clearLattice);
     }

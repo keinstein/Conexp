@@ -8,8 +8,8 @@
 package conexp.core.associations.tests;
 
 import conexp.core.ExtendedContextEditingInterface;
-import conexp.core.associations.FrequentSetSupportSupplier;
 import conexp.core.associations.ContextFrequentSetSupportSupplier;
+import conexp.core.associations.FrequentSetSupportSupplier;
 import conexp.core.tests.SetBuilder;
 import junit.framework.Test;
 import junit.framework.TestCase;

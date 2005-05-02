@@ -12,13 +12,11 @@ import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsProvider;
 import conexp.util.gui.paramseditor.StrategyValueItemParamInfo;
 import conexp.util.gui.strategymodel.StrategyValueItem;
-
-import javax.swing.*;
-import javax.swing.table.TableModel;
-
 import util.Assert;
 import util.gui.celleditors.MyDefaultCellRenderer;
 
+import javax.swing.*;
+import javax.swing.table.TableModel;
 import java.beans.PropertyChangeListener;
 
 public class ContextTooltipTableCellRenderer extends MyDefaultCellRenderer implements ParamsProvider {
@@ -58,7 +56,7 @@ public class ContextTooltipTableCellRenderer extends MyDefaultCellRenderer imple
         String txt = "";
 
         if (model instanceof ContextTableModel) {
-            ContextEditingInterface cxt = ((ContextTableModel) model).context;
+            ContextEditingInterface cxt = ((ContextTableModel) model).getContext();
             processTooltip(cxt, row, col);
 //-----------------------------------------
 //value processing
@@ -82,6 +80,7 @@ public class ContextTooltipTableCellRenderer extends MyDefaultCellRenderer imple
     /**
      * Insert the method's description here.
      * Creation date: (22.04.01 21:56:23)
+     *
      * @param lst java.beans.PropertyChangeListener
      */
     public void addRenderingChangeListener(PropertyChangeListener lst) {
@@ -101,6 +100,7 @@ public class ContextTooltipTableCellRenderer extends MyDefaultCellRenderer imple
     /**
      * Insert the method's description here.
      * Creation date: (22.04.01 21:46:46)
+     *
      * @return conexp.util.gui.strategymodel.StrategyValueItem
      */
     public synchronized StrategyValueItem getDrawStrategy() {
@@ -114,6 +114,7 @@ public class ContextTooltipTableCellRenderer extends MyDefaultCellRenderer imple
     /**
      * Insert the method's description here.
      * Creation date: (29.03.01 22:40:44)
+     *
      * @return conexp.util.gui.paramseditor.ParamInfo[]
      */
     public ParamInfo[] getParams() {

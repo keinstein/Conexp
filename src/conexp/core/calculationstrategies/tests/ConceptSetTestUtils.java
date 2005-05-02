@@ -14,6 +14,8 @@ import conexp.core.LatticeElement;
 
 
 public class ConceptSetTestUtils {
+    private ConceptSetTestUtils() {
+    }
 
     /**
      * Insert the method's description here.

@@ -18,8 +18,9 @@ public class RelaxerLayouter extends GenericLayouter {
     /**
      * Insert the method's description here.
      * Creation date: (13.03.2001 15:58:34)
-     * @return java.lang.Object
+     *
      * @param index int
+     * @return java.lang.Object
      */
     public RelaxerLayoutConceptInfo getConceptInfo(int index) {
         return (RelaxerLayoutConceptInfo) elementMap[index];
@@ -200,6 +201,7 @@ public class RelaxerLayouter extends GenericLayouter {
     /**
      * Insert the method's description here.
      * Creation date: (04.06.01 14:13:25)
+     *
      * @return boolean
      */
     public boolean isDone() {
@@ -211,6 +213,7 @@ public class RelaxerLayouter extends GenericLayouter {
     /**
      * Insert the method's description here.
      * Creation date: (04.06.01 13:06:22)
+     *
      * @return boolean
      */
     public boolean isIncremental() {

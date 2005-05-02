@@ -10,7 +10,9 @@ package conexp.core;
 import util.Assert;
 import util.collection.IteratorWrapperBase;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class LatticeElement extends Concept {
     //--------------------------------------------
@@ -19,7 +21,7 @@ public class LatticeElement extends Concept {
 
 
     protected static abstract class EdgeIteratorWrapper extends IteratorWrapperBase implements ConceptIterator {
-        EdgeIteratorWrapper(Iterator edgeIterator) {
+        protected EdgeIteratorWrapper(Iterator edgeIterator) {
             super(edgeIterator);
         }
 
@@ -28,9 +30,9 @@ public class LatticeElement extends Concept {
         }
     }
 
-    protected LatticeElementCollection predecessorsNodes = new LatticeElementCollectionBase(predessors){
+    private LatticeElementCollection predecessorsNodes = new LatticeElementCollectionBase(predessors) {
         protected LatticeElement doGet(Object collElement) {
-            return ((Edge)collElement).getStart();
+            return ((Edge) collElement).getStart();
         }
 
         protected void removeFromOtherCollection(Object lastObject) {
@@ -38,9 +40,9 @@ public class LatticeElement extends Concept {
         }
     };
 
-    protected LatticeElementCollection successorsNodes = new LatticeElementCollectionBase(successors){
+    private LatticeElementCollection successorsNodes = new LatticeElementCollectionBase(successors) {
         protected LatticeElement doGet(Object collElement) {
-            return ((Edge)collElement).getEnd();
+            return ((Edge) collElement).getEnd();
         }
 
         protected void removeFromOtherCollection(Object lastObject) {
@@ -70,15 +72,15 @@ public class LatticeElement extends Concept {
         succ.height = Math.max(this.height + 1, succ.height);
     }
 
-    public void addParent(LatticeElement parent){
+    public void addParent(LatticeElement parent) {
         addSucc(parent);
     }
 
-    public void addChild(LatticeElement child){
+    public void addChild(LatticeElement child) {
         addPred(child);
     }
 
-    public void removeParent(LatticeElement parent){
+    public void removeParent(LatticeElement parent) {
         removeSucc(parent);
     }
 
@@ -88,12 +90,12 @@ public class LatticeElement extends Concept {
 
     private static void removeFromLatticeElementCollection(LatticeElementCollection latticeElementCollection, LatticeElement toRemove) {
         for (Iterator iterator = latticeElementCollection.iterator(); iterator.hasNext();) {
-           LatticeElement element = (LatticeElement) iterator.next();
-           if(element==toRemove){
-               iterator.remove();
-               break;
-           }
-       }
+            LatticeElement element = (LatticeElement) iterator.next();
+            if (element == toRemove) {
+                iterator.remove();
+                break;
+            }
+        }
     }
 
     public void removePred(LatticeElement parent) {
@@ -118,11 +120,11 @@ public class LatticeElement extends Concept {
         return predecessorsNodes;
     }
 
-    public LatticeElementCollection getChildren(){
+    public LatticeElementCollection getChildren() {
         return getPredecessors();
     }
 
-    public LatticeElementCollection getSuccessors(){
+    public LatticeElementCollection getSuccessors() {
         return successorsNodes;
     }
 
@@ -130,10 +132,9 @@ public class LatticeElement extends Concept {
         return predecessorsNodes.get(pos);
     }
 
-    public Edge getPredEdge(int pos){
-        return (Edge)predessors.get(pos);
+    public Edge getPredEdge(int pos) {
+        return (Edge) predessors.get(pos);
     }
-
 
 
     public int getPredCount() {
@@ -169,14 +170,15 @@ public class LatticeElement extends Concept {
     }
 
     /**
-     @deprecated
+     * @deprecated
      */
 //----------------------------------------------
     public void replacePred(Edge pred, Edge newPred) {
         predessors.set(predessors.indexOf(pred), newPred);
     }
+
     /**
-     @deprecated
+     * @deprecated
      */
 //----------------------------------------------
     public void replaceSucc(Edge succ, Edge newSucc) {

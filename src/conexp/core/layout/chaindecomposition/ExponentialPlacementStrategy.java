@@ -12,10 +12,11 @@ public class ExponentialPlacementStrategy implements ConceptPlacementStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 19:20:32)
-     * @return double
-     * @param base double
+     *
+     * @param base      double
      * @param currChain int
-     * @param maxChain int
+     * @param maxChain  int
+     * @return double
      */
     public double calcXCoord(double base, int currChain, int maxChain) {
         int med = maxChain / 2;
@@ -28,10 +29,11 @@ public class ExponentialPlacementStrategy implements ConceptPlacementStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (09.03.01 19:20:32)
-     * @return double
-     * @param base double
+     *
+     * @param base      double
      * @param currChain int
-     * @param maxChain int
+     * @param maxChain  int
+     * @return double
      */
     public double calcYCoord(double base, int currChain, int maxChain) {
         int med = maxChain / 2;
@@ -49,9 +51,10 @@ public class ExponentialPlacementStrategy implements ConceptPlacementStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (05.03.01 3:11:41)
-     * @return double
+     *
      * @param base double
-     * @param exp double
+     * @param exp  double
+     * @return double
      */
     private static double ldexp(double base, double exp) {
         return base * Math.pow(2.0, exp);

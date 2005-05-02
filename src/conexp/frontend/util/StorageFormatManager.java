@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.util;
 
 import conexp.frontend.DocumentLoader;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StorageFormatManager {
-    List formats = new ArrayList();
+    private List formats = new ArrayList();
 
     public int registeredFormatCount() {
         return formats.size();
@@ -40,7 +39,7 @@ public class StorageFormatManager {
         formats.set(index, formatRec);
     }
 
-    protected int findStorageFormatRecord(String ext) {
+    private int findStorageFormatRecord(String ext) {
         int size = registeredFormatCount();
         for (int i = 0; i < size; i++) {
             StorageFormatRecord record = getStorageFormatRecord(i);
@@ -60,7 +59,7 @@ public class StorageFormatManager {
         }
     }
 
-    protected int loaderCount() {
+    private int loaderCount() {
         int ret = 0;
         for (int i = registeredFormatCount(); --i >= 0;) {
             if (getStorageFormatRecord(i).hasLoader()) {
@@ -70,7 +69,7 @@ public class StorageFormatManager {
         return ret;
     }
 
-    protected int writerCount() {
+    private int writerCount() {
         int ret = 0;
         for (int i = registeredFormatCount(); --i >= 0;) {
             if (getStorageFormatRecord(i).hasWriter()) {
@@ -80,19 +79,19 @@ public class StorageFormatManager {
         return ret;
     }
 
-    boolean allowAllSupported = false;
+    private boolean allowAllSupported = false;
 
     public boolean isAllowAllSupported() {
         return allowAllSupported;
     }
 
-    public void setAllowAllSupported(boolean allowAllSupported) {
+    protected void setAllowAllSupported(boolean allowAllSupported) {
         this.allowAllSupported = allowAllSupported;
     }
 
     public GenericFileFilter[] getLoadFilters() {
         final GenericFileFilter[] rawLoadFilters = getRawLoadFilters();
-        if(allowAllSupported){
+        if (allowAllSupported) {
             return AllSupportedFormatsFilter.allowAllSupported(rawLoadFilters);
         }
         return rawLoadFilters;
@@ -157,7 +156,7 @@ public class StorageFormatManager {
         return null;
     }
 
-    StorageFormatRecord defaultFormat;
+    private StorageFormatRecord defaultFormat;
 
     public void registerDefaultStorageFormat(StorageFormatRecord format) {
         Assert.isTrue(format.getLoader() != null);

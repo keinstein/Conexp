@@ -15,9 +15,9 @@ import junit.framework.TestCase;
  */
 
 public class RescaleByYFigureVisitorTest extends TestCase {
-    public static void testRescaleByY(){
+    public static void testRescaleByY() {
 
-        Context cxt =SetBuilder.makeContext(new int[][]{
+        Context cxt = SetBuilder.makeContext(new int[][]{
             {1, 0, 0},
             {0, 1, 0},
             {0, 0, 1}
@@ -35,7 +35,6 @@ public class RescaleByYFigureVisitorTest extends TestCase {
         TestHelper.checkCoordsForIntent(200.0, 60.0, drawing, lattice, new int[]{0, 1, 0});
         TestHelper.checkCoordsForIntent(120.0, 60.0, drawing, lattice, new int[]{0, 0, 1});
         TestHelper.checkCoordsForIntent(120, 120.0, drawing, lattice, new int[]{1, 1, 1});
-
 
 
         RescaleByYFigureVisitor visitor = new RescaleByYFigureVisitor(0, 80, drawing.getNumberOfLevelsInDrawing());

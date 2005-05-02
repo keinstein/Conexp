@@ -12,10 +12,9 @@ import conexp.frontend.latticeeditor.tests.HighlightStrategyTest;
  */
 
 
-
-public class OneNodeHighlightStrategyTest extends HighlightStrategyTest{
+public class OneNodeHighlightStrategyTest extends HighlightStrategyTest {
     protected HighlightStrategy makeNotEqualInstance() {
-        return  new FilterIdealHighlightStrategy();
+        return new FilterIdealHighlightStrategy();
     }
 
     protected HighlightStrategy makeEqualInstance() {

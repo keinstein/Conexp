@@ -7,12 +7,12 @@
 
 package conexp.frontend.latticeeditor.labelingstrategies;
 
-import conexp.core.layout.LayoutParameters;
+import canvas.BaseFigureVisitor;
 import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.LabelingStrategy;
 import conexp.frontend.latticeeditor.figures.DefaultFigureVisitor;
-import canvas.BaseFigureVisitor;
 
 
 public class NullLabellingStrategy extends LabelingStrategy {
@@ -20,7 +20,7 @@ public class NullLabellingStrategy extends LabelingStrategy {
     private static NullLabellingStrategy singleton;
 
     /**
-     *  made public in order to allow to create via reflexion
+     * made public in order to allow to create via reflexion
      */
     public NullLabellingStrategy() {
         super();

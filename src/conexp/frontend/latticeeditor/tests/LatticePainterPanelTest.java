@@ -25,7 +25,7 @@ import java.beans.PropertyChangeSupport;
 
 
 public class LatticePainterPanelTest extends TestCase {
-    LatticePainterPanel pan;
+    private LatticePainterPanel pan;
 
     static class MockLatticeDrawingProvider implements LatticeDrawingProvider {
         public MockLatticeDrawingProvider() {
@@ -71,7 +71,7 @@ public class LatticePainterPanelTest extends TestCase {
         }
     }
 
-    MockLatticeDrawingProvider supplier;
+    private MockLatticeDrawingProvider supplier;
 
     protected void setUp() {
         supplier = new MockLatticeDrawingProvider();
@@ -79,9 +79,9 @@ public class LatticePainterPanelTest extends TestCase {
         pan = new LatticePainterPanel(supplier);
     }
 
-    public void testDefaultLatticeComponentPainterOptions(){
+    public void testDefaultLatticeComponentPainterOptions() {
         CanvasScheme options = pan.getDrawing().getOptions();
-        assertTrue("Expect LatticePainterOptions but was "+options.getClass().getName(),options instanceof LatticePainterOptions);
+        assertTrue("Expect LatticePainterOptions but was " + options.getClass().getName(), options instanceof LatticePainterOptions);
     }
 
     public void testPaint() {

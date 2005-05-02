@@ -16,14 +16,14 @@ import java.util.StringTokenizer;
 
 /**
  * @author Julien Tane
- *
- * Class to load automatically all the Storage Format into a list
+ *         <p/>
+ *         Class to load automatically all the Storage Format into a list
  */
 public class StorageFormatLoader {
 
-    public final static String STORAGE_FORMAT_LIST_KEY = "conexp.storage.formats";
+    private final static String STORAGE_FORMAT_LIST_KEY = "conexp.storage.formats";
 
-    ResourceBundle resources = null;
+    private ResourceBundle resources = null;
 
     public StorageFormatLoader(ResourceBundle resources) {
         super();
@@ -49,13 +49,13 @@ public class StorageFormatLoader {
     }
 
 
-    public static StorageFormatRecord createStorageFormatRecord(String description, String extension, String docloader, String docwriter) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
+    private static StorageFormatRecord createStorageFormatRecord(String description, String extension, String docloader, String docwriter) throws IllegalAccessException, InstantiationException, ClassNotFoundException {
         return new StorageFormatRecord(description, extension, (DocumentLoader) safeLoadClass(docloader), (DocumentWriter) safeLoadClass(docwriter));
     }
 
     private static Object safeLoadClass(String docloader) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
         docloader = StringUtil.safeTrim(docloader);
-        if(StringUtil.isEmpty(docloader)){
+        if (StringUtil.isEmpty(docloader)) {
             return null;
         }
 //todo: think about replacemant with    ReflectHelper.createClassByName()
@@ -69,7 +69,7 @@ public class StorageFormatLoader {
         for (int i = 0; i < storageformatlist.length; i++) {
             try {
                 String[] sd = getStringArray(resources.getString(storageformatlist[i]), ",");
-                StorageFormatRecord sr  = createStorageFormatRecord(sd[0], sd[1], sd[2], sd[3]);
+                StorageFormatRecord sr = createStorageFormatRecord(sd[0], sd[1], sd[2], sd[3]);
                 storageforamtmanager.registerStorageFormat(sr);
             } catch (Exception e) {
                 //may be here better replace it with some general log concole.

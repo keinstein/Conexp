@@ -29,7 +29,7 @@ import java.util.List;
 public class CEDiagramEditorPanel extends DiagramEditorPanel implements View {
 
     /**
-     *  DEBUG
+     * DEBUG
      */
     ContextDocument document;
 

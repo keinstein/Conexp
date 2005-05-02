@@ -11,7 +11,7 @@ import conexp.core.ConceptsCollection;
 public class ConceptCollectionComparator extends BaseComparator {
 
     public ConceptCollectionComparator(ConceptsCollection one, ConceptsCollection two) {
-        this(DefaultCompareInfoFactory.getInstance(),one,two);
+        this(DefaultCompareInfoFactory.getInstance(), one, two);
     }
 
     protected ConceptCollectionComparator(CompareInfoFactory compareInfoFactory, ConceptsCollection one, ConceptsCollection two) {

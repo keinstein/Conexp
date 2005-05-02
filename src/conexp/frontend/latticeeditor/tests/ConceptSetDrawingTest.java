@@ -15,7 +15,7 @@ public abstract class ConceptSetDrawingTest extends TestCase {
 
     protected abstract ConceptSetDrawing getDrawing();
 
-    public void testGetPainterOptionsType(){
+    public void testGetPainterOptionsType() {
         assertTrue(getDrawing().getPainterOptions() instanceof LatticePainterOptions);
     }
 }

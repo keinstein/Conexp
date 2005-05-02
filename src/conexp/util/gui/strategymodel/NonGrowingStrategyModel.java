@@ -12,11 +12,11 @@ import conexp.util.GenericStrategy;
 
 public class NonGrowingStrategyModel extends BasicStrategyModel {
 
-    protected String strategiesDescription[];
-    protected String strategiesName[];
-    protected GenericStrategy strategies[];
+    private String[] strategiesDescription;
+    private String[] strategiesName;
+    private GenericStrategy[] strategies;
 
-    public NonGrowingStrategyModel() {
+    protected NonGrowingStrategyModel() {
     }
 
     protected void allocateStrategies(int i) {

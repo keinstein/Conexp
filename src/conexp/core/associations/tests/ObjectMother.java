@@ -12,6 +12,9 @@ import conexp.core.tests.SetBuilder;
 
 
 public class ObjectMother {
+    private ObjectMother() {
+    }
+
     public static AssociationRule makeAssociationRule(int[] premise, int premiseSupport, int[] conclusion, int conclusionSupport) {
         return new AssociationRule(SetBuilder.makeSet(premise), premiseSupport,
                 SetBuilder.makeSet(conclusion), conclusionSupport);
@@ -21,11 +24,9 @@ public class ObjectMother {
                                                       int[] conclusion,
                                                       int support,
                                                       double confidence) {
-        return makeAssociationRule(
-                premise,
+        return makeAssociationRule(premise,
                 Math.round((float) (support / confidence)),
                 conclusion,
-                support
-        );
+                support);
     }
 }

@@ -7,8 +7,8 @@
 
 package conexp.core.layout.tests;
 
-import conexp.core.layout.RelaxerLayouter;
 import conexp.core.layout.GenericLayouter;
+import conexp.core.layout.RelaxerLayouter;
 
 
 public class RelaxerLayouterTest extends GenericLayouterTest {

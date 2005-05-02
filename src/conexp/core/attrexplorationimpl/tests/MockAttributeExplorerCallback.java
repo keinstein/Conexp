@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.core.attrexplorationimpl.tests;
 
 import conexp.core.*;
@@ -42,11 +41,11 @@ public class MockAttributeExplorerCallback extends Assert implements AttributeEx
         this.contrExampleCounter = 0;
     }
 
-    int acceptCounter;
-    AcceptImplicationInfo[] expSequence;
+    private int acceptCounter;
+    private AcceptImplicationInfo[] expSequence;
 
-    int contrExampleCounter;
-    ContrExampleInfo[] contrExamples;
+    private int contrExampleCounter;
+    private ContrExampleInfo[] contrExamples;
 
     public void setContrExamples(ContrExampleInfo[] contrExamples) {
         this.contrExamples = contrExamples;
@@ -101,16 +100,14 @@ public class MockAttributeExplorerCallback extends Assert implements AttributeEx
     public static ContrExampleInfo[] makeContrExampleSequence(int[][][] contrExamples) {
         ContrExampleInfo[] ret = new ContrExampleInfo[contrExamples.length];
         for (int i = 0; i < contrExamples.length; i++) {
-            ret[i] = new ContrExampleInfo(
-                    contrExamples[i][0][0],
+            ret[i] = new ContrExampleInfo(contrExamples[i][0][0],
                     contrExamples[i][0][0] == HAS_CONTREXAMPLE ?
-                    SetBuilder.makeSet(contrExamples[i][1]) : null
-            );
+                    SetBuilder.makeSet(contrExamples[i][1]) : null);
         }
         return ret;
     }
 
-    static AcceptImplicationInfo makeAcceptInformationInfo(int response, int[] premise, int[] conclusion) {
+    private static AcceptImplicationInfo makeAcceptInformationInfo(int response, int[] premise, int[] conclusion) {
         return new AcceptImplicationInfo(response, SetBuilder.makeSet(premise), SetBuilder.makeSet(conclusion));
     }
 

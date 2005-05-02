@@ -7,5 +7,6 @@ package conexp.core;
  */
 public interface IPartiallyOrdered {
     boolean isLesserThan(IPartiallyOrdered other);
+
     boolean isEqual(IPartiallyOrdered other);
 }

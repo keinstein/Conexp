@@ -13,8 +13,9 @@ public interface ViewFactory {
     /**
      * Insert the method's description here.
      * Creation date: (14.05.2001 14:06:53)
-     * @return javax.swing.JComponent
+     *
      * @param viewType java.lang.String
+     * @return javax.swing.JComponent
      */
     View makeView(String viewType);
 }

@@ -18,7 +18,7 @@ import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 public class LatticeDrawingTest extends ConceptSetDrawingTest {
     private LatticeDrawing drawing;
 
-    protected ConceptSetDrawing getDrawing(){
+    protected ConceptSetDrawing getDrawing() {
         return drawing;
     }
 
@@ -45,8 +45,8 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
 
     public void testNeedUpdateCollision() {
         assertFalse(drawing.hasNeedUpdateCollisions());
-        final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1,0},
-                                                                                 {0,1}});
+        final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0},
+                                                                              {0, 1}});
         drawing.setLattice(lattice);
         checkUpdateCycle(drawing);
 
@@ -60,15 +60,15 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
         checkUpdateCycle(drawing);
     }
 
-    public void testCollisionUpdateWhenCollisionDetectionIsDisabled(){
+    public void testCollisionUpdateWhenCollisionDetectionIsDisabled() {
         assertFalse(drawing.hasNeedUpdateCollisions());
         assertTrue(drawing.isEmpty());
         drawing.getEditableDrawParameters().setShowCollisions(false);
 
         assertFalse("Change in update collision option should not lead to update for empty drawing",
                 drawing.hasNeedUpdateCollisions());
-        final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1,0},
-                                                                                 {0,1}});
+        final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0},
+                                                                              {0, 1}});
         drawing.setLattice(lattice);
         assertFalse(drawing.hasNeedUpdateCollisions());
         drawing.setLayoutEngine(new SimpleLayoutEngine());
@@ -90,7 +90,7 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
     private static void checkUpdateCycle(LatticeDrawing drawing) {
         assertTrue(drawing.hasNeedUpdateCollisions());
         drawing.updateCollisions();
-        while(drawing.isUpdatingCollisions()){
+        while (drawing.isUpdatingCollisions()) {
             /*intentionally empty*/
         }
         assertFalse(drawing.hasNeedUpdateCollisions());
@@ -105,5 +105,4 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
     }
 
 
-    
 }

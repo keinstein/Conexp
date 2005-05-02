@@ -12,7 +12,7 @@ import javax.swing.*;
 import javax.swing.table.TableCellEditor;
 
 public abstract class AbstractParamInfo implements ParamInfo {
-    protected final java.lang.String label;
+    private final java.lang.String label;
 
     private TableCellEditor editor;
 
@@ -21,7 +21,7 @@ public abstract class AbstractParamInfo implements ParamInfo {
      * Creation date: (28.03.01 23:29:48)
      * @param label java.lang.String
      */
-    public AbstractParamInfo(String label) {
+    protected AbstractParamInfo(String label) {
         this.label = label;
     }
 

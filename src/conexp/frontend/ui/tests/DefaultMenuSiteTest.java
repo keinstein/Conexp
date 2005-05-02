@@ -15,12 +15,12 @@ import java.awt.*;
 
 public class DefaultMenuSiteTest extends TestCase {
 
-   static class TestFrame extends JFrame{
-       public TestFrame() throws HeadlessException {
-           super();
-           setVisible(false);
-       }
-   }
+    static class TestFrame extends JFrame {
+        public TestFrame() throws HeadlessException {
+            super();
+            setVisible(false);
+        }
+    }
 
     public static void testDefaultMenuSite() {
         JFrame frame = new TestFrame();
@@ -31,10 +31,10 @@ public class DefaultMenuSiteTest extends TestCase {
         assertEquals("Menu should be added to menu bar", 1, menuBar.getMenuCount());
         final JMenu helpMenu = new JMenu("Help");
         site.addHelpMenu(one, helpMenu);
-        assertEquals("Menu should be added to menu bar",2, menuBar.getMenuCount());
+        assertEquals("Menu should be added to menu bar", 2, menuBar.getMenuCount());
         assertSame("Help menu should be the last", helpMenu, menuBar.getMenu(1));
         site.addMenu(one, new JMenu("Edit"));
-        assertEquals("Menu should be added to menu bar",3, frame.getJMenuBar().getMenuCount());
+        assertEquals("Menu should be added to menu bar", 3, frame.getJMenuBar().getMenuCount());
         assertSame("Help menu should be the last", helpMenu, frame.getJMenuBar().getMenu(2));
 
 

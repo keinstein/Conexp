@@ -13,7 +13,7 @@ import java.util.SortedSet;
  * All rights reserved.
  * Please read license.txt for licensing issues.
  */
-public class AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunction implements IEvaluationFunction{
+public class AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunction implements IEvaluationFunction {
     private LatticeElement[][] elementsByLayers;
     ConceptCoordinateMapper conceptCoordinateMapper;
 
@@ -29,15 +29,15 @@ public class AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunction imp
     public double getEvaluationForLattice() {
         int violatedConstraints = 0;
         Point2D coords = GraphicObjectsFactory.makePoint2D();
-        for(int layer=0; layer<elementsByLayers.length; layer++){
+        for (int layer = 0; layer < elementsByLayers.length; layer++) {
             LatticeElement[] layerInfo = elementsByLayers[layer];
             SortedSet coordinatesOfElementsInLayer = CollectionFactory.createSortedSet();
-            for(int elementOfLayer=0;elementOfLayer<layerInfo.length; elementOfLayer++){
+            for (int elementOfLayer = 0; elementOfLayer < layerInfo.length; elementOfLayer++) {
                 conceptCoordinateMapper.setCoordsForConcept(layerInfo[elementOfLayer], coords);
                 Double xcoord = new Double(coords.getX());
                 coordinatesOfElementsInLayer.add(xcoord);
             }
-            violatedConstraints+=layerInfo.length - coordinatesOfElementsInLayer.size();
+            violatedConstraints += layerInfo.length - coordinatesOfElementsInLayer.size();
         }
         return -violatedConstraints;
     }

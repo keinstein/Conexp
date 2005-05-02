@@ -9,6 +9,9 @@ package conexp.core;
 
 
 public class ConceptFactory {
+    private ConceptFactory() {
+    }
+
     public static LatticeElement makeEmptyLatticeElement() {
         return LatticeElement.makeLatticeElementFromSets(ContextFactoryRegistry.createSet(0), ContextFactoryRegistry.createSet(0));
     }

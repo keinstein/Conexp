@@ -37,7 +37,7 @@ public class TabSeparatedContextWriter implements DocumentWriter, ContextWriter 
         }
         writer.write(headerLine.toString() + newline);
         writer.write(newline);
-        StringBuffer res = new StringBuffer(2*numAttr + 2);
+        StringBuffer res = new StringBuffer(2 * numAttr + 2);
         for (int i = 0; i < numObj; i++) {
             res.delete(0, res.length());
             for (int j = 0; j < numAttr; j++) {

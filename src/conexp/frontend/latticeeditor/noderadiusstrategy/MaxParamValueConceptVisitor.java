@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.noderadiusstrategy;
 
 import conexp.core.Concept;

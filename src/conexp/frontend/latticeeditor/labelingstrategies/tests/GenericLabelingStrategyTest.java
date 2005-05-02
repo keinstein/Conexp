@@ -7,6 +7,8 @@
 
 package conexp.frontend.latticeeditor.labelingstrategies.tests;
 
+import canvas.BaseFigureVisitor;
+import canvas.FigureDrawingListener;
 import com.mockobjects.ExpectationCounter;
 import conexp.core.Context;
 import conexp.core.Lattice;
@@ -21,12 +23,9 @@ import junit.framework.TestCase;
 
 import java.awt.*;
 
-import canvas.FigureDrawingListener;
-import canvas.BaseFigureVisitor;
-
 
 public abstract class GenericLabelingStrategyTest extends TestCase {
-    protected GenericLabelingStrategy labelStrategy;
+    private GenericLabelingStrategy labelStrategy;
     private Context cxt;
 
     protected abstract ConceptNodeQuery makeAcceptable();
@@ -34,6 +33,7 @@ public abstract class GenericLabelingStrategyTest extends TestCase {
     /**
      * Insert the method's description here.
      * Creation date: (25.12.00 0:49:41)
+     *
      * @return conexp.frontend.latticeeditor.labelingstrategies.GenericLabelingStrategy
      */
     protected abstract GenericLabelingStrategy makeStrategy();

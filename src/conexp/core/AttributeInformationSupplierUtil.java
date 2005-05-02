@@ -5,11 +5,12 @@
  **/
 
 
-
 package conexp.core;
 
 
 public class AttributeInformationSupplierUtil {
+    private AttributeInformationSupplierUtil() {
+    }
 
     public static void describeSet(StringBuffer buf, AttributeInformationSupplier attrInfo,
                                    Set set, String separator, String emptySetDescriptor) {

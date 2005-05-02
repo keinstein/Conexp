@@ -20,8 +20,8 @@ public class BitSetTest extends TestCase {
     private ModifiableSet firstWord;
     private ModifiableSet temp;
 
-    public static void fillFromStart(ModifiableSet set, int till){
-        for(int i=0; i<till; i++){
+    private static void fillFromStart(ModifiableSet set, int till) {
+        for (int i = 0; i < till; i++) {
             set.put(i);
         }
     }
@@ -32,11 +32,11 @@ public class BitSetTest extends TestCase {
         emptySet = new BitSet(96);
 
         firstWord = new BitSet(96);
-        for (int i = 0; i < 32; i++){
+        for (int i = 0; i < 32; i++) {
             firstWord.put(i);
         }
         secondWord = new BitSet(96);
-        for (int i = 64; i < 96; i++){
+        for (int i = 64; i < 96; i++) {
             secondWord.put(i);
         }
 
@@ -106,10 +106,11 @@ public class BitSetTest extends TestCase {
     /**
      * Insert the method's description here.
      * Creation date: (21.10.00 8:05:10)
+     *
      * @param one conexp.core.Set
      * @param two conexp.core.Set
      */
-    static void testAppendTwoSets(Set one, Set two) {
+    private static void testAppendTwoSets(Set one, Set two) {
         ModifiableSet res = (ModifiableSet) one.clone();
         res.append(two);
         assertEquals(one.size() + two.size(), res.size());
@@ -247,8 +248,8 @@ public class BitSetTest extends TestCase {
 
     public void testFillByOne() {
         temp.fill();
-        for(int i=0; i<temp.size(); i++){
-             assertTrue(temp.in(i));
+        for (int i = 0; i < temp.size(); i++) {
+            assertTrue(temp.in(i));
         }
     }
 
@@ -500,14 +501,14 @@ public class BitSetTest extends TestCase {
     }
 
 
-    protected void utilClearSet(ModifiableSet toTest) {
+    private void utilClearSet(ModifiableSet toTest) {
         toTest.clearSet();
         assertEquals(toTest, emptySet);
         assertTrue(toTest.isEmpty());
     }
 
 
-    protected void utilTestClone(ModifiableSet toTest) {
+    private void utilTestClone(ModifiableSet toTest) {
         temp = (BitSet) toTest.clone();
         assertEquals(temp, toTest);
         assertEquals(temp.size(), toTest.size());
@@ -520,7 +521,7 @@ public class BitSetTest extends TestCase {
     }
 
 
-    protected static void utilTestElemCount(ModifiableSet toTest) {
+    private static void utilTestElemCount(ModifiableSet toTest) {
         int elBefore = toTest.elementCount();
         if (!toTest.in(1)) {
             toTest.put(1);
@@ -540,7 +541,7 @@ public class BitSetTest extends TestCase {
     }
 
 
-    protected static void utilTestIntersects(Set one, Set two, boolean expected) {
+    private static void utilTestIntersects(Set one, Set two, boolean expected) {
         assertEquals(expected, one.intersects(two));
         assertEquals(expected, two.intersects(one));
     }

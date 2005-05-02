@@ -13,10 +13,10 @@ import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 import conexp.core.layout.ConceptCoordinateMapper;
 import conexp.core.layout.DefaultLayoutParameters;
+import conexp.core.layout.MinIntersectionLayouterProvider;
 import conexp.core.layoutengines.LayoutEngine;
 import conexp.core.layoutengines.LayoutListener;
 import conexp.core.layoutengines.SimpleLayoutEngine;
-import conexp.core.layout.MinIntersectionLayouterProvider;
 import junit.framework.TestCase;
 import util.collection.CollectionFactory;
 
@@ -42,13 +42,13 @@ public class SimpleLayoutEngineTest extends TestCase {
         final Set distinctCoors = CollectionFactory.createDefaultSet();
 
 
-        layoutEngine.addLayoutListener(new LayoutListener(){
+        layoutEngine.addLayoutListener(new LayoutListener() {
             Point2D.Double point = new Point2D.Double();
 
             public void layoutChange(final ConceptCoordinateMapper mapper) {
                 lattice.forEach(new Lattice.LatticeElementVisitor() {
                     public void visitNode(LatticeElement node) {
-                        mapper.setCoordsForConcept(node,point);
+                        mapper.setCoordsForConcept(node, point);
                         distinctCoors.add(point.clone());
                     }
                 });

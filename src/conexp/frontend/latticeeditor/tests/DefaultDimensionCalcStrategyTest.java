@@ -8,8 +8,8 @@ package conexp.frontend.latticeeditor.tests;
  * To change this template use File | Settings | File Templates.
  */
 
-import junit.framework.*;
 import conexp.frontend.latticeeditor.DefaultDimensionCalcStrategy;
+import junit.framework.TestCase;
 import util.testing.TestUtil;
 
 public abstract class DefaultDimensionCalcStrategyTest extends TestCase {
@@ -24,5 +24,5 @@ public abstract class DefaultDimensionCalcStrategyTest extends TestCase {
 
     protected abstract DefaultDimensionCalcStrategy makeNotEqualInstance();
 
-    protected abstract DefaultDimensionCalcStrategy  makeEqualInstance();
+    protected abstract DefaultDimensionCalcStrategy makeEqualInstance();
 }

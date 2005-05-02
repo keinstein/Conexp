@@ -5,12 +5,11 @@
  **/
 
 
-
 package conexp.frontend.components;
 
 
 public abstract class BasicSingleSelectionAttributeMaskImplementation extends BasicEntityMaskImplementation {
-    public BasicSingleSelectionAttributeMaskImplementation() {
+    protected BasicSingleSelectionAttributeMaskImplementation() {
         super();
     }
 

@@ -13,11 +13,11 @@ import java.awt.geom.Rectangle2D;
 
 
 public class BoundsBlock implements FigureBlock {
-    final Rectangle2D bounds;
+    private final Rectangle2D bounds;
 
-    Rectangle2D temp = GraphicObjectsFactory.makeRectangle2D();
+    private Rectangle2D temp = GraphicObjectsFactory.makeRectangle2D();
 
-    boolean first = true;
+    private boolean first = true;
 
     public BoundsBlock(Rectangle2D bounds) {
         this.bounds = bounds;

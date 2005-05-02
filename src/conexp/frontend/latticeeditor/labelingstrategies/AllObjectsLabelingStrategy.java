@@ -25,7 +25,7 @@ public class AllObjectsLabelingStrategy extends OneToManyConnectedFiguresLabelin
     }
 
     protected Object makeConnectedObject(ConceptSetDrawing drawing,
-                                                   AbstractConceptCorrespondingFigure conceptFigure, LayoutParameters opt) {
+                                         AbstractConceptCorrespondingFigure conceptFigure, LayoutParameters opt) {
 
         ConceptQuery conceptQuery = conceptFigure.getConceptQuery();
         int objCount = conceptQuery.getOwnObjectsCount();
@@ -41,8 +41,7 @@ public class AllObjectsLabelingStrategy extends OneToManyConnectedFiguresLabelin
         return new LowerHemisphereUniformPointDistributionStrategy(f.getCenterX(),
                 f.getCenterY(),
                 numPoints,
-                opt, new Ellipse2D.Double()
-        );
+                opt, new Ellipse2D.Double());
     }
 
     public void shutdown(ConceptSetDrawing drawing) {

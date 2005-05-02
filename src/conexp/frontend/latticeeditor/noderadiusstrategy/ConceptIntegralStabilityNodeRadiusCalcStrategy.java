@@ -13,8 +13,8 @@ import conexp.core.stability.IntegralStabilityCalculator;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.DrawParameters;
 
-public class ConceptIntegralStabilityNodeRadiusCalcStrategy extends ConceptDependentRadiusCalcStrategy  {
-    IntegralStabilityCalculator  stabilityCalculator = new BruteForceIntegralStabilityCalculator();
+public class ConceptIntegralStabilityNodeRadiusCalcStrategy extends ConceptDependentRadiusCalcStrategy {
+    IntegralStabilityCalculator stabilityCalculator = new BruteForceIntegralStabilityCalculator();
 
     public ConceptIntegralStabilityNodeRadiusCalcStrategy(DrawParameters opt) {
         super(opt);

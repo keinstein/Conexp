@@ -34,8 +34,8 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         return new ConExpXMLWriter();
     }
 
-    Context cxt;
-    ContextDocument doc;
+    private Context cxt;
+    private ContextDocument doc;
 
     private void setUpFullLatticeCase() {
         cxt = SetBuilder.makeContext(new int[][]{{0},
@@ -57,7 +57,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         latticeComponent.calculatePartialLattice();
     }
 
-    private void setUpPartialObjectLatticeCase(){
+    private void setUpPartialObjectLatticeCase() {
         cxt = SetBuilder.makeContext(new int[][]{{0, 1},
                                                  {1, 0},
                                                  {1, 1}});
@@ -108,8 +108,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         doTestWriteAndReadForDocWithLattice(doc, cxt);
     }
 
-    public void testLoadSaveLabelsSize()
-    {
+    public void testLoadSaveLabelsSize() {
         setUpFullLatticeCase();
         try {
             doc.getLatticeComponent().getDrawing().getPainterOptions().getLabelsFontSizeValue().setValue(16);
@@ -121,7 +120,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     }
 
 
-    public void testLoadSavePartialObjectLattice(){
+    public void testLoadSavePartialObjectLattice() {
         setUpPartialObjectLatticeCase();
         doTestWriteAndReadForDocWithLattice(doc, cxt);
     }
@@ -158,7 +157,6 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         assertEquals(drawing.getLabelForObject(cxt.getObject(0)).getCenter(),
                 loadedDrawing.getLabelForObject(loadedContext.getObject(0)).getCenter());
     }
-
 
 
     private void doTestWriteAndReadForDocumentWithConceptsLabels(ContextDocument doc, ExtendedContextEditingInterface cxt) {

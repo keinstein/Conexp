@@ -13,7 +13,7 @@ import junit.framework.TestCase;
 import java.beans.PropertyChangeEvent;
 
 public class ContextTest extends TestCase {
-    Context cxt;
+    private Context cxt;
 
 
     public void testAvailabilityOfArrowRelationInterfaceForDisplay() {
@@ -70,7 +70,7 @@ public class ContextTest extends TestCase {
         expectTransposedCall(cxt, expectedNumberOfCalls, modification);
     }
 
-    public void testTransposeChangingTypesOfObjectsAndAttributes(){
+    public void testTransposeChangingTypesOfObjectsAndAttributes() {
         cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
                                                  {0, 1, 0}});
         checkObjectAndAttributesIntegrity(cxt);
@@ -79,11 +79,11 @@ public class ContextTest extends TestCase {
     }
 
     private static void checkObjectAndAttributesIntegrity(Context cxt) {
-        for(int i=0;i<cxt.getObjectCount(); i++){
+        for (int i = 0; i < cxt.getObjectCount(); i++) {
             assertEquals(true, cxt.getObject(i).isObject());
         }
-        for(int i=0;i<cxt.getAttributeCount(); i++){
-            assertEquals(false,cxt.getAttribute(i).isObject());
+        for (int i = 0; i < cxt.getAttributeCount(); i++) {
+            assertEquals(false, cxt.getAttribute(i).isObject());
         }
     }
 
@@ -408,20 +408,20 @@ public class ContextTest extends TestCase {
         listener.verify();
     }
 
-    static MockContextListener makeAttributeInsertionListener() {
+    private static MockContextListener makeAttributeInsertionListener() {
         return new MockAttributeChangeContextListener(ContextChangeEvent.ATTRIBUTE_ADDED);
     }
 
 
-    static MockContextListener makeAttributeRemovalListener() {
+    private static MockContextListener makeAttributeRemovalListener() {
         return new MockAttributeChangeContextListener(ContextChangeEvent.ATTRIBUTE_REMOVED);
     }
 
-    static MockContextListener makeObjectInsertionListener() {
+    private static MockContextListener makeObjectInsertionListener() {
         return new MockObjectChangeContextListener(ContextChangeEvent.OBJECT_ADDED);
     }
 
-    static MockContextListener makeObjectRemovalListener() {
+    private static MockContextListener makeObjectRemovalListener() {
         return new MockObjectChangeContextListener(ContextChangeEvent.OBJECT_REMOVED);
     }
 
@@ -634,7 +634,7 @@ public class ContextTest extends TestCase {
 
     }
 
-    public  void testUpdateOfArrowCalculatorOnCopyFrom(){
+    public void testUpdateOfArrowCalculatorOnCopyFrom() {
         cxt = SetBuilder.makeContext(new int[][]{{0}});
         assertTrue(cxt.hasUpArrow(0, 0));
         Context otherCxt = SetBuilder.makeContext(new int[][]{{1}});
@@ -643,7 +643,7 @@ public class ContextTest extends TestCase {
         assertFalse(cxt.hasUpArrow(0, 0));
     }
 
-    public void testUpdateOfArrowCalculatorOnTranspose(){
+    public void testUpdateOfArrowCalculatorOnTranspose() {
         cxt = SetBuilder.makeContext(new int[][]{{1, 0},
                                                  {1, 0}});
         assertTrue(cxt.hasUpArrow(0, 1));

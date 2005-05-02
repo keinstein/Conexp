@@ -10,8 +10,8 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 import canvas.BaseFigureVisitor;
 import canvas.Figure;
 import canvas.figures.BorderCalculatingFigure;
-import conexp.core.layout.LayoutParameters;
 import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.LabelingStrategy;
@@ -21,10 +21,11 @@ import conexp.frontend.latticeeditor.figures.DefaultFigureVisitor;
 import conexp.frontend.latticeeditor.figures.NodeObjectConnectionFigure;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public abstract class GenericLabelingStrategy extends LabelingStrategy {
 
-    private HashMap conceptLabelsMap = new HashMap();
+    private Map conceptLabelsMap = new HashMap();
 
     public class InitStrategyVisitor extends DefaultFigureVisitor {
         ConceptSetDrawing drawing;
@@ -68,7 +69,7 @@ public abstract class GenericLabelingStrategy extends LabelingStrategy {
     /**
      * GenericLabelingStrategy constructor comment.
      */
-    public GenericLabelingStrategy() {
+    protected GenericLabelingStrategy() {
         super();
     }
 
@@ -77,8 +78,9 @@ public abstract class GenericLabelingStrategy extends LabelingStrategy {
     /**
      * Insert the method's description here.
      * Creation date: (25.12.00 0:01:27)
-     * @return java.lang.Object
+     *
      * @param f conexp.frontend.latticeeditor.Figures.ConceptFigure
+     * @return java.lang.Object
      */
     private Object getConnectedObject(AbstractConceptCorrespondingFigure f) {
         return conceptLabelsMap.get(f);

@@ -11,11 +11,11 @@ import java.util.Arrays;
  * Please read license.txt for licensing issues.
  */
 public class BacktrackingAlgorithmTest extends TestCase {
-    public static void testBactracking(){
+    public static void testBactracking() {
         BacktrackingAlgorithm algorithm = new BacktrackingAlgorithm();
         algorithm.setRange(-11, 11);
         algorithm.setStep(1);
-        double [] solutionVector = {0, 0};
+        double[] solutionVector = {0, 0};
         algorithm.firstPoint(solutionVector);
         assertTrue(Arrays.equals(new double[]{-11, -11}, solutionVector));
         algorithm.nextPoint(solutionVector);
@@ -25,12 +25,12 @@ public class BacktrackingAlgorithmTest extends TestCase {
         assertTrue(Arrays.equals(new double[]{-10, -11}, solutionVector));
     }
 
-    public static void testHasMorePoints(){
+    public static void testHasMorePoints() {
         BacktrackingAlgorithm algorithm = new BacktrackingAlgorithm();
         algorithm.setRange(-11, 11);
         algorithm.setStep(1);
 
-        double [] solutionVector = {-11, -11};
+        double[] solutionVector = {-11, -11};
 
         assertTrue(algorithm.hasMorePoints(solutionVector));
         solutionVector = new double[]{11, 11};

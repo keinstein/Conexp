@@ -8,8 +8,8 @@
 package conexp.frontend.latticeeditor.drawstrategies.tests;
 
 import junit.framework.Test;
-import junit.framework.TestSuite;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 //todo: rename to AllTests
 

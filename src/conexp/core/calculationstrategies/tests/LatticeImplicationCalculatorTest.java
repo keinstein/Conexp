@@ -52,17 +52,13 @@ public class LatticeImplicationCalculatorTest extends ImplicationCalculatorTest 
         });
 
 
-        assertTrue(calc.isUnionEqualsTo(
-                SetBuilder.findLatticeElementWithIntent(lat, new int[]{0, 0, 1}),
+        assertTrue(calc.isUnionEqualsTo(SetBuilder.findLatticeElementWithIntent(lat, new int[]{0, 0, 1}),
                 SetBuilder.findLatticeElementWithIntent(lat, new int[]{1, 0, 0}),
-                lat.getZero()
-        ));
+                lat.getZero()));
 
-        assertEquals(false, calc.isUnionEqualsTo(
-                SetBuilder.findLatticeElementWithIntent(lat, new int[]{0, 0, 1}),
+        assertEquals(false, calc.isUnionEqualsTo(SetBuilder.findLatticeElementWithIntent(lat, new int[]{0, 0, 1}),
                 SetBuilder.findLatticeElementWithIntent(lat, new int[]{0, 1, 0}),
-                lat.getZero()
-        ));
+                lat.getZero()));
 
     }
 
