@@ -9,6 +9,8 @@ package conexp.frontend.latticeeditor;
 
 import com.visibleworkings.trace.Trace;
 import conexp.core.Lattice;
+import conexp.core.LatticeAlgorithms;
+import conexp.core.LatticeStatistics;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.LatticeDrawingProvider;
 import conexp.frontend.ResourceLoader;
@@ -369,9 +371,7 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
     }
 
     private void showStatistics(){
-        Lattice lat = getLattice();
-        String msg = MessageFormat.format("Concept count {0} \n Lattice height {1} \n. Lattice width estimation [{2}, {3}]", new Object[]{new Integer(lat.conceptsCount()), new Integer(lat.getHeight())});
-        showMessage(msg);
+        showMessage(new LatticeStatistics(getLattice()).getDescriptionString());
     }
     //---------------------------------------------------------------
     public Dimension getMinimumSize() {

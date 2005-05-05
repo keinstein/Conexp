@@ -49,6 +49,13 @@ public class LatticeAlgorithmsTest extends TestCase {
         Lattice oneElementLattice = SetBuilder.makeLattice(new int[][]{{1}});
         assertEquals(1, LatticeAlgorithms.latticeWidthUpperBound(oneElementLattice));
         Lattice twoElementLattice = SetBuilder.makeLattice(new int[][]{{0}});
+        assertEquals(1, LatticeAlgorithms.latticeWidthUpperBound(twoElementLattice));
+    }
+
+    public void testLatticeWidthLowerBound(){
+        Lattice oneElementLattice = SetBuilder.makeLattice(new int[][]{{1}});
+        assertEquals(1, LatticeAlgorithms.latticeWidthLowerBound(oneElementLattice));
+        Lattice twoElementLattice = SetBuilder.makeLattice(new int[][]{{0}});
         assertEquals(1, LatticeAlgorithms.latticeWidthLowerBound(twoElementLattice));
     }
 }
