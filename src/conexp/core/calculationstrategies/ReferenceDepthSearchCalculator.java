@@ -145,10 +145,10 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
         LatticeElement curr = lattice.getOne();
         Assert.isTrue(null != curr, "One in findElement can't be null");
         while (true) {
-            ConceptIterator enum = curr.getPredecessors().iterator();
+            ConceptIterator iter = curr.getPredecessors().iterator();
             outer : {
-                while (enum.hasNext()) {
-                    LatticeElement pred = enum.nextConcept();
+                while (iter.hasNext()) {
+                    LatticeElement pred = iter.nextConcept();
                     //*DBG*/System.out.println("pred="+(BitSet)_pred.attribs);
                     //*DBG*/System.out.println("compare="+_attribs+" "+_pred.attribs+"["+_attribs.compare(_pred.attribs)+"]");
                     switch (attribs.compare(pred.getAttribs())) {
@@ -166,7 +166,7 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
                     }
                     //switch(_objects.compare(_succ.objects))
                 }
-                //while(enum.hasMoreElements())
+                //while(iter.hasMoreElements())
             }
             //outer
         }

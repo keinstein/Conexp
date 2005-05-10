@@ -113,15 +113,15 @@ public class Lattice extends ConceptsCollection {
         Assert.isTrue(null != curr, "Zero in findElement can't be null");
         boolean find = false;
         while (!find) {
-            ConceptIterator enum = curr.getSuccessors().iterator();
+            ConceptIterator iter = curr.getSuccessors().iterator();
             outer:{
-                while (enum.hasNext()) {
-                    LatticeElement succ = enum.nextConcept();
+                while (iter.hasNext()) {
+                    LatticeElement succ = iter.nextConcept();
                     if (succ.getAttribs().in(attr)) {
                         curr = succ;
                         break outer;
                     }
-                }//while(enum.hasMoreElements())
+                }//while(iter.hasMoreElements())
                 find = true;
             }//outer
         }
@@ -150,11 +150,11 @@ public class Lattice extends ConceptsCollection {
         boolean find = Set.EQUAL == attribs.compare(curr.getAttribs());
 
         while (!find) {
-            ConceptIterator enum = curr.getPredecessors().iterator();
+            ConceptIterator iter = curr.getPredecessors().iterator();
             Assert.isTrue(curr.getPredCount() > 0);
             outer:{
-                while (enum.hasNext()) {
-                    LatticeElement pred = enum.nextConcept();
+                while (iter.hasNext()) {
+                    LatticeElement pred = iter.nextConcept();
                     switch (attribs.compare(pred.getAttribs())) {
                         case Set.SUPERSET:
                             curr = pred;
@@ -171,7 +171,7 @@ public class Lattice extends ConceptsCollection {
                             Assert.isTrue(false, "Shouldn't get here in any case");
                             break;
                     }//switch(_objects.compare(_succ.objects))
-                }//while(enum.hasMoreElements())
+                }//while(iter.hasMoreElements())
                 return null;
                 //todo: set something here
             }//outer
@@ -271,9 +271,9 @@ public class Lattice extends ConceptsCollection {
     private static void setLinks(LatticeElement start, LatticeElement toSet) {
         boolean findNext = false;
         //*DBG*/System.out.println("start element index="+start.index);
-        Iterator enum = start.successorsEdges();
-        while (enum.hasNext()) {
-            LatticeElement curr = ((Edge) enum.next()).getEnd();
+        Iterator iter = start.successorsEdges();
+        while (iter.hasNext()) {
+            LatticeElement curr = ((Edge) iter.next()).getEnd();
             switch (toSet.compare(curr)) {
                 case LatticeElement.GREATER:
                     findNext = true;

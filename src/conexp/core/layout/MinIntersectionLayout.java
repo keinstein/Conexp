@@ -815,11 +815,11 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         return true;
     }
 
-    private void printElementsFromIteratorWithPositions(String name, ConceptIterator enum) {
+    private void printElementsFromIteratorWithPositions(String name, ConceptIterator iter) {
         System.out.print(name);
         System.out.print("{ ");
-        while (enum.hasNext()) {
-            LatticeElement elm = enum.nextConcept();
+        while (iter.hasNext()) {
+            LatticeElement elm = iter.nextConcept();
             System.out.print("[" + elm.getIndex() + ';' + getElementInfo(elm).rank + ';' + getElementInfo(elm).posInRank + ']');
         }
         System.out.println(" } ");

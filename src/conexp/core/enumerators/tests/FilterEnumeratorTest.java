@@ -71,12 +71,12 @@ public class FilterEnumeratorTest extends TestCase {
      * Insert the method's description here.
      * Creation date: (07.03.01 0:33:07)
      *
-     * @param enum   conexp.core.LatticeEnumerator
+     * @param iter   conexp.core.LatticeEnumerator
      * @param expSet com.xpdeveloper.testing.ExpectationSet
      */
-    private static void fillActualIntentsFromLatticeEnumerator(ConceptIterator enum, ExpectationSet expSet) {
-        while (enum.hasNext()) {
-            expSet.addActual(enum.nextConcept().getAttribs());
+    private static void fillActualIntentsFromLatticeEnumerator(ConceptIterator iter, ExpectationSet expSet) {
+        while (iter.hasNext()) {
+            expSet.addActual(iter.nextConcept().getAttribs());
         }
     }
 }
