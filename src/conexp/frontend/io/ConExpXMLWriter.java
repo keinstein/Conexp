@@ -32,7 +32,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         }
         ContextDocument contextDocument = (ContextDocument) document;
         Element root = new Element(ConExpXMLElements.DOC_XML_ROOT);
-        root.addContent(storeVersion());
+         root.addContent(storeVersion());
         root.addContent(storeContexts(contextDocument));
         root.addContent(storeLattices(contextDocument));
 

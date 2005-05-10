@@ -27,56 +27,9 @@ import java.beans.PropertyChangeSupport;
 public class LatticePainterPanelTest extends TestCase {
     private LatticePainterPanel pan;
 
-    static class MockLatticeDrawingProvider implements LatticeDrawingProvider {
-        public MockLatticeDrawingProvider() {
-
-        }
-
-        PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
-
-        public PropertyChangeSupport getPropertyChangeSupport() {
-            return propertyChangeSupport;
-        }
-
-        public void addPropertyChangeListener(PropertyChangeListener listener) {
-            getPropertyChangeSupport().addPropertyChangeListener(listener);
-        }
-
-        public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
-            getPropertyChangeSupport().addPropertyChangeListener(propertyName, listener);
-        }
-
-        public void removePropertyChangeListener(PropertyChangeListener listener) {
-            getPropertyChangeSupport().removePropertyChangeListener(listener);
-        }
-
-        public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
-            getPropertyChangeSupport().removePropertyChangeListener(propertyName, listener);
-        }
-
-        Lattice lattice;
-
-        public void setLattice(Lattice lattice) {
-            this.lattice = lattice;
-        }
-
-        public Lattice getLattice() {
-            return lattice;
-        }
-
-        LatticeDrawing drawing = new LatticeDrawing();
-
-        public LatticeDrawing getDrawing() {
-            return drawing;
-        }
-    }
-
-    private MockLatticeDrawingProvider supplier;
 
     protected void setUp() {
-        supplier = new MockLatticeDrawingProvider();
-        supplier.setLattice(SetBuilder.makeLattice(new int[][]{{0}}));
-        pan = new LatticePainterPanel(supplier);
+        pan = TestHelper.makeTestableLatticePainterPanel(SetBuilder.makeLattice(new int[][]{{0}}));
     }
 
     public void testDefaultLatticeComponentPainterOptions() {

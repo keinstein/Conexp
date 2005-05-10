@@ -6,10 +6,7 @@ import conexp.core.layout.MinIntersectionLayouterProvider;
 import conexp.core.layoutengines.SimpleLayoutEngine;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.components.LatticeComponent;
-import conexp.frontend.latticeeditor.DrawStrategiesContext;
-import conexp.frontend.latticeeditor.LatticeDrawing;
-import conexp.frontend.latticeeditor.LatticePainterDrawParams;
-import conexp.frontend.latticeeditor.LatticePainterOptions;
+import conexp.frontend.latticeeditor.*;
 import junit.framework.Assert;
 import util.gui.GraphicObjectsFactory;
 
@@ -23,6 +20,10 @@ import java.util.prefs.Preferences;
  */
 
 public class TestHelper {
+
+    private TestHelper() {
+    }
+
     public static LatticeComponent makeTestableLatticeComponent(Context cxt) {
         Preferences preferences = Preferences.userNodeForPackage(TestHelper.class);
         try {
@@ -43,9 +44,6 @@ public class TestHelper {
         component.setLayouterProvider(new MinIntersectionLayouterProvider());
         component.setLayoutEngine(new SimpleLayoutEngine());
         //setting default (not user dependent) preferences for drawing
-
-
-
 
         return component;
     }
@@ -72,4 +70,10 @@ public class TestHelper {
         }
     }
 
+    public static LatticePainterPanel makeTestableLatticePainterPanel(final Lattice lattice) {
+        MockLatticeDrawingProvider supplier = new MockLatticeDrawingProvider();
+        supplier.setLattice(lattice);
+        final LatticePainterPanel latticePainterPanel = new LatticePainterPanel(supplier);
+        return latticePainterPanel;
+    }
 }

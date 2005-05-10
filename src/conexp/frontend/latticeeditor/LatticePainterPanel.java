@@ -33,13 +33,9 @@ import java.text.MessageFormat;
 
 public class LatticePainterPanel extends BaseLatticePainterPane implements ViewChangeInterfaceWithConfig {
 
-    Preferences preferences = Preferences.userNodeForPackage(LatticePainterPanel.class);
     public static final String USE_IDEAL_MOVE_STRATEGY_PROPERTY = "USE_IDEAL_MOVE_STRATEGY_PROPERTY";
     public static final String FIT_TO_SIZE_PROPERTY = "FIT_TO_SIZE_PROPERTY";
 
-    public Preferences getPreferences() {
-        return preferences;
-    }
 
     class PanningTool extends canvas.DefaultTool {
         int xDiff = 0;
@@ -194,7 +190,11 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         }
     }
 
+    Preferences preferences = Preferences.userNodeForPackage(LatticePainterPanel.class);
 
+    public Preferences getPreferences() {
+        return preferences;
+    }
 
     private void storePreferences() {
         getConceptSetDrawing().storePreferences();

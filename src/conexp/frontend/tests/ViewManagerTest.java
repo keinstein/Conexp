@@ -11,20 +11,12 @@ import conexp.frontend.View;
 import conexp.frontend.ViewFactory;
 import conexp.frontend.ui.ViewManager;
 import conexp.frontend.ui.ViewManagerException;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import javax.swing.*;
 
 
 public class ViewManagerTest extends TestCase {
-    private static final Class THIS = ViewManagerTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
 
     private conexp.frontend.ui.ViewManager viewManager;
 

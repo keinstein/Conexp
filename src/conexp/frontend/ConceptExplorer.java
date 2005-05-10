@@ -10,6 +10,8 @@ package conexp.frontend;
 import com.visibleworkings.trace.Trace;
 import com.visibleworkings.trace.TraceController;
 import util.StringUtil;
+import util.gui.errorhandling.AppErrorHandler;
+import util.gui.errorhandling.ErrorDialogErrorHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,21 +25,28 @@ public class ConceptExplorer {
 
         setupTracer();
         setupLookAndFeel();
+        setupErrorHandler();
+        ConceptFrame frame=null;
         try {
-            makeMainFrame();
+            frame=makeMainFrame();
         } catch (Exception ex) {
             //System.out.println(StringUtil.stackTraceToString(ex));
             Trace.gui.errorm(StringUtil.stackTraceToString(ex));
+            AppErrorHandler.getInstance().notify(frame, ex);
             //application will be running further
         } catch (Error er) {
             Trace.gui.errorm(StringUtil.stackTraceToString(er));
-            throw er;
+            AppErrorHandler.getInstance().notify(frame, er);
         }
+    }
+
+    private static void setupErrorHandler() {
+        AppErrorHandler.getInstance().setErrorHandler(new ErrorDialogErrorHandler());
     }
 
     private boolean packFrame = false;
 
-    private void makeMainFrame() {
+    private ConceptFrame makeMainFrame() {
         ConceptFrame frame = new ConceptFrame();
 
         //Validate frames that have preset sizes
@@ -49,6 +58,7 @@ public class ConceptExplorer {
 
         centerFrameWindow(frame);
         frame.setVisible(true);
+        return frame;
     }
 
     private static void setupLookAndFeel() {

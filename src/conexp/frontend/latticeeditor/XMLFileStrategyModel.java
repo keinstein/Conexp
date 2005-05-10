@@ -18,6 +18,7 @@ import util.StringUtil;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.io.IOException;
 
 
 public class XMLFileStrategyModel extends AbstractNonGrowingStrategyModel {
@@ -70,8 +71,10 @@ public class XMLFileStrategyModel extends AbstractNonGrowingStrategyModel {
         Document doc;
         try {
             doc = builder.build(fileName);
-        } catch (JDOMException e) {
-            throw new ConfigFatalError("Error while parsing " + fileName + " info:" + StringUtil.stackTraceToString(e));
+        } catch (JDOMException e ) {
+            throw new ConfigFatalError("Error while parsing " + fileName, e);
+        } catch(IOException  e){
+            throw new ConfigFatalError("Error while parsing " + fileName, e);
         }
         Element root = doc.getRootElement();
         if (null == root ||

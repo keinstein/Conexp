@@ -20,8 +20,8 @@ public class AllTests extends TestCase {
         suite.addTest(ContextDocManagerTest.suite());
         suite.addTest(PropertyChangeSupplierBaseControllerTest.suite());
         suite.addTestSuite(ContextDocumentTest.class);
-        suite.addTest(JTabPaneViewManagerTest.suite());
-        suite.addTest(ViewManagerTest.suite());
+        suite.addTestSuite(JTabPaneViewManagerTest.class);
+        suite.addTestSuite(ViewManagerTest.class);
 
 
         suite.addTest(conexp.frontend.contexteditor.tests.AllTests.suite());

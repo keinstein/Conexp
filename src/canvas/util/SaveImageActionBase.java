@@ -3,6 +3,7 @@ package canvas.util;
 import util.gui.fileselector.GenericFileFilter;
 import util.gui.fileselector.ExtensionFileFilter;
 import util.gui.fileselector.FileSelectorService;
+import util.gui.errorhandling.AppErrorHandler;
 import util.collection.CollectionFactory;
 import util.IExporter;
 import util.ServiceRegistry;
@@ -12,6 +13,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.*;
 import java.io.IOException;
+
+import util.gui.errorhandling.AppErrorHandler;
 
 /**
  * Created by IntelliJ IDEA.
@@ -74,7 +77,7 @@ public abstract class SaveImageActionBase extends AbstractAction {
                 }
             }
         } catch (IOException e1) {
-            e1.printStackTrace();  //To change body of catch statement use Options | File Templates.
+            AppErrorHandler.getInstance().notify(getParentFrame(), e1);
         }
 
     }
