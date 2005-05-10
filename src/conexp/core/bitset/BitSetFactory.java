@@ -14,6 +14,7 @@ import conexp.core.SetRelation;
 
 
 public class BitSetFactory implements ContextFactory {
+    private BitSetFactory() {}
 
     public ModifiableBinaryRelation createRelation(int rowCount, int colCount) {
         return new SetRelation(rowCount, colCount);
@@ -21,5 +22,11 @@ public class BitSetFactory implements ContextFactory {
 
     public ModifiableSet createSet(int size) {
         return new BitSet(size);
+    }
+
+    static final ContextFactory ourInstance=new BitSetFactory();
+
+    public static ContextFactory getInstance() {
+        return ourInstance;
     }
 }

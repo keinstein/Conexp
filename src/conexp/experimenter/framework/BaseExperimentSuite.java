@@ -53,6 +53,6 @@ public class BaseExperimentSuite {
         ExperimentContextFactory factory = new ExperimentContextFactory();
         ContextFactoryRegistry.setContextFactory(factory);
         doRunExperiment(experimentSet, relationSequence, factory);
-        ContextFactoryRegistry.setContextFactory(new BitSetFactory());
+        ContextFactoryRegistry.setContextFactory(BitSetFactory.getInstance());
     }
 }

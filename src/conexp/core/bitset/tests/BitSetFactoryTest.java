@@ -20,7 +20,7 @@ public class BitSetFactoryTest extends TestCase {
     private BitSetFactory factory;
 
     protected void setUp() {
-        factory = new BitSetFactory();
+        factory = BitSetFactory.getInstance();
     }
 
     public static Test suite() {

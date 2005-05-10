@@ -52,7 +52,7 @@ public class ContextFactoryRegistry {
 
     private synchronized static ContextFactory getFactory() {
         if (null == factory) {
-            factory = new BitSetFactory();
+            factory = BitSetFactory.getInstance();
         }
         return factory;
     }

@@ -38,7 +38,7 @@ public class ExperimentRunnerTest extends TestCase {
         OperationStatistic measurementValue = (OperationStatistic)measurementSet.getMeasurementValue(ExperimentRunner.OPERATION_COUNT);
         assertNotNull(measurementValue);
         assertEquals(9, measurementValue.getOperationCount(OperationCodes.IN));
-        ContextFactoryRegistry.setContextFactory(new BitSetFactory());
+        ContextFactoryRegistry.setContextFactory(BitSetFactory.getInstance());
     }
 
     public static void testNoOperationCount() {
