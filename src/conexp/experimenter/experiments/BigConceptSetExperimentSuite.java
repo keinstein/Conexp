@@ -17,7 +17,7 @@ public class BigConceptSetExperimentSuite extends ExperimentSuite {
         try {
             //doRunExperimentWithCountingOfSetOperations(createExperimentSet(), createRelationSequence());
             //doRunTimeMeasurementExperiment(createExperimentSet(), createRelationSequence());
-            doRunTimeMeasurementExperiment(createExperimentSet(), ExperimentSuite.makeRelationSequenceSet());
+            doRunTimeMeasurementExperiment(createExperimentSet(), ExperimentSuite.createRelationSequenceSet());
             //doRunTimeMeasurementExperiment(createExperimentSet(), createRelationSequenceObjedkov());
         } catch (Exception e) {
             e.printStackTrace();  //To change body of catch statement use Options | File Templates.

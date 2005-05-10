@@ -23,7 +23,7 @@ public class ExperimentSuite extends BaseExperimentSuite {
      * Insert the method's description here.
      * Creation date: (21.07.01 17:47:57)
      */
-    public static RelationSequenceSet makeRelationSequenceSet() {
+    public static RelationSequenceSet createRelationSequenceSet() {
         RelationSequenceSet relSet = new RelationSequenceSet();
         //addExponentialSequence(relSet);
 
@@ -33,11 +33,11 @@ public class ExperimentSuite extends BaseExperimentSuite {
         return relSet;
     }
 
-    private static void addExponentialSequence(RelationSequenceSet relSet) {
+    protected static void addExponentialSequence(RelationSequenceSet relSet) {
         relSet.addRelationSequence(new ExponentialRelationGenerationStrategy(5, 19, 19-5+1));
     }
 
-    private static void addTypicalSequenceAndTransposed(RelationSequenceSet relSet) {
+    protected static void addTypicalSequenceAndTransposed(RelationSequenceSet relSet) {
 
         //while having problems with memory usage, limit k to 7, later lift to 9
         final int lowFillBound = 1;
@@ -56,7 +56,7 @@ public class ExperimentSuite extends BaseExperimentSuite {
         }
     }
 
-    private static void addSparseSequence(RelationSequenceSet relSet) {
+    protected static void addSparseSequence(RelationSequenceSet relSet) {
 //        RelationSequence sparse = new conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy(100, 500, 100, 100, 5, 4);
         //RelationSequence sparse = new conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy(100, 900, 100, 100, 9, 3);
         RelationSequence sparse = new FixedIntentSizeRelationGenerationStrategy(1000, 9000, 100, 100, 9, 3);
@@ -69,8 +69,12 @@ public class ExperimentSuite extends BaseExperimentSuite {
      * Creation date: (04.08.01 9:25:41)
      */
     protected static void doRunExperimentSet(ExperimentSet set) {
-        final RelationSequenceSet relSet = ExperimentSuite.makeRelationSequenceSet();
-        doRunTimeMeasurementExperiment(set, relSet);
+        doRunTimeMeasurementExperiment(set, ExperimentSuite.createRelationSequenceSet());
+    }
+
+
+    protected static void doRunExperimentSetWithOperationCount(ExperimentSet set){
+        doRunExperimentWithCountingOfSetOperations(set, ExperimentSuite.createRelationSequenceSet());
     }
 
 }

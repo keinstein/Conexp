@@ -40,7 +40,7 @@ public class ExperimentSuiteTest extends TestCase {
     }
 
     public static void testRelationSequence() {
-        RelationSequenceSet set = ExperimentSuite.makeRelationSequenceSet();
+        RelationSequenceSet set = ExperimentSuite.createRelationSequenceSet();
         assertNotNull(set);
         for (int i = 0; i < set.getRelationSequenceCount(); i++) {
             RelationSequence seq = set.getRelationSequence(i);

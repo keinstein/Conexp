@@ -10,6 +10,7 @@ package conexp.frontend;
 import com.visibleworkings.trace.Trace;
 import com.visibleworkings.trace.TraceController;
 import util.StringUtil;
+import util.gui.WindowUtil;
 import util.errorhandling.AppErrorHandler;
 import util.errorhandling.ErrorDialogErrorHandler;
 
@@ -56,7 +57,7 @@ public class ConceptExplorer {
         else
             frame.validate();
 
-        centerFrameWindow(frame);
+        WindowUtil.centerWindow(frame);
         frame.setVisible(true);
         return frame;
     }
@@ -75,17 +76,6 @@ public class ConceptExplorer {
         if ("on".equalsIgnoreCase(resConceptExplorer.getString("Trace"))) {
             TraceController.start();
         }
-    }
-
-    private static void centerFrameWindow(ConceptFrame frame) {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Dimension frameSize = frame.getSize();
-        if (frameSize.height > screenSize.height)
-            frameSize.height = screenSize.height;
-        if (frameSize.width > screenSize.width)
-            frameSize.width = screenSize.width;
-        frame.setLocation((screenSize.width - frameSize.width) / 2,
-                (screenSize.height - frameSize.height) / 2);
     }
 
     public static void main(String[] args) {
