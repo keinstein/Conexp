@@ -10,8 +10,8 @@ package conexp.frontend;
 import com.visibleworkings.trace.Trace;
 import com.visibleworkings.trace.TraceController;
 import util.StringUtil;
-import util.gui.errorhandling.AppErrorHandler;
-import util.gui.errorhandling.ErrorDialogErrorHandler;
+import util.errorhandling.AppErrorHandler;
+import util.errorhandling.ErrorDialogErrorHandler;
 
 import javax.swing.*;
 import java.awt.*;

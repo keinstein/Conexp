@@ -3,7 +3,7 @@ package canvas.util;
 import util.gui.fileselector.GenericFileFilter;
 import util.gui.fileselector.ExtensionFileFilter;
 import util.gui.fileselector.FileSelectorService;
-import util.gui.errorhandling.AppErrorHandler;
+import util.errorhandling.AppErrorHandler;
 import util.collection.CollectionFactory;
 import util.IExporter;
 import util.ServiceRegistry;
@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 import java.util.*;
 import java.io.IOException;
 
-import util.gui.errorhandling.AppErrorHandler;
+import util.errorhandling.AppErrorHandler;
 
 /**
  * Created by IntelliJ IDEA.
