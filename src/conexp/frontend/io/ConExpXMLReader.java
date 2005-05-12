@@ -70,7 +70,7 @@ public class ConExpXMLReader implements DocumentLoader {
             return;
         }
         try {
-            loadLatticeComponent(doc.getLatticeComponent(), latticeElement);
+            loadLatticeComponent(doc.getDefaultLatticeComponent(), latticeElement);
         } catch (DataFormatException e) {
             doc.resetLatticeComponent();
             throw e;

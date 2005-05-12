@@ -36,6 +36,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
 import java.util.Collection;
 import java.util.ResourceBundle;
 import java.util.TooManyListenersException;
@@ -114,7 +115,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         showMessages = newShowMessages;
     }
 
-    private void showMsg(String msg) {
+    private void showMessage(String msg) {
         if (showMessages) {
             JOptionPane.showMessageDialog(getMainFrame(), msg);
         }
@@ -164,11 +165,14 @@ public class ContextDocument implements ActionChainBearer, Document {
 
         public void actionPerformed(ActionEvent e) {
 
-            JOptionPane.showMessageDialog(getMainFrame(), FormatUtil.format(getLocalizedMessageSupplier().getMessage("ConceptNumMsg"),
-                    contextDocumentModel.getConceptCount())); //$NON-NLS-1$
+            final String message = FormatUtil.format(getLocalizedMessageSupplier().getMessage("ConceptNumMsg"), //$NON-NLS-1$
+                                contextDocumentModel.getConceptCount());
+            showMessage(message);
         }
 
+
     }
+
 
     private ContextDocumentModel contextDocumentModel;
 
@@ -206,7 +210,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
     public void calculateLattice() {
-        getLatticeComponent().calculateAndLayoutPartialLattice();
+        getDefaultLatticeComponent().calculateAndLayoutPartialLattice();
     }
 
     private void addViewToTree() {
@@ -214,7 +218,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
 
-    public LatticeComponent getLatticeComponent() {
+    public LatticeComponent getDefaultLatticeComponent() {
         return getLatticeComponent(0);
     }
 
@@ -225,7 +229,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     //------------------------------------------------------------
     private View makeLatticeView() {
-        LatticeComponent latticeSupplier = getLatticeComponent();
+        LatticeComponent latticeSupplier = getDefaultLatticeComponent();
         EntityMaskChangeController entityMaskChangeController = new EntityMaskChangeController(latticeSupplier);
         latticeSupplier.getAttributeMask().addPropertyChangeListener(entityMaskChangeController);
         latticeSupplier.getObjectMask().addPropertyChangeListener(entityMaskChangeController);
@@ -271,7 +275,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
         public void actionPerformed(ActionEvent e) {
             getImplicationBaseCalculator().findDependencies();
-//            showMsg(getLocalizedMessage("ImplBaseBuildedMsg")); //$NON-NLS-1$
+//            showMessage(getLocalizedMessage("ImplBaseBuildedMsg")); //$NON-NLS-1$
             activateView(VIEW_IMPLICATIONS);
         }
     }
@@ -304,7 +308,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         attrExplCallback.setAttributeInformationSupplier(getContext());
         explorer.setUserCallback(attrExplCallback);
         explorer.performAttributeExploration();
-        showMsg(getLocalizedMessage("AttributeExplorationFinished"));
+        showMessage(getLocalizedMessage("AttributeExplorationFinished"));
     }
 
 
@@ -611,15 +615,23 @@ public class ContextDocument implements ActionChainBearer, Document {
         ret.setSelectionPath(getTreePath());
         ret.setShowsRootHandles(true);
         ret.setEditable(false);
-        final JPopupMenu popup = new JPopupMenu();
         ret.addMouseListener(new MouseAdapter() {
             public void mouseReleased(MouseEvent e) {
                 if (e.isPopupTrigger()) {
-                    //todo: add popup filling
+                    System.out.println("In popupMenu trigger");
+                    //todo: add popupMenu filling
                     // with possible types of operations
 
-                    popup.setVisible(true);
-                    //do popup processing
+                    JPopupMenu popupMenu = new JPopupMenu();
+                    final JMenuItem menuItem = new JMenuItem("Delete");
+                    menuItem.addActionListener(new ActionListener(){
+                        public void actionPerformed(ActionEvent e) {
+                            JOptionPane.showMessageDialog(null,"Not implemented");
+                        }
+                    });
+                    popupMenu.add(menuItem);
+                    popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                    //do popupMenu processing
                 } else {
                     //do navigation stuff
                     int x = e.getX();
@@ -662,7 +674,8 @@ public class ContextDocument implements ActionChainBearer, Document {
         node[1] = contextTreeRoot;
         parent.add(node[1]);
         treePath = new TreePath(node);
-        if (!contextDocumentModel.getLatticeComponents().isEmpty()) {
+        System.out.println("makeTreeModel");
+        if (!getDefaultLatticeComponent().isEmpty()) {
             final int bound = contextDocumentModel.getLatticeComponents().size();
             for (int i = 0; i < bound; i++) {
                 contextTreeRoot.add(makeLatticeTreeNode(i));
@@ -709,7 +722,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     public void activateViews() {
         activateView(VIEW_CONTEXT);
-        if (!getLatticeComponent().isEmpty()) {
+        if (!getDefaultLatticeComponent().isEmpty()) {
             addView(VIEW_LATTICE);
         }
     }

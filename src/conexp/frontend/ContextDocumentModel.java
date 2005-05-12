@@ -93,8 +93,7 @@ public class ContextDocumentModel {
 
 
     public LatticeComponent getLatticeComponent(int index) {
-        int componentCount = latticeComponents.size();
-        if (index < componentCount) {
+        if (index < latticeComponents.size()) {
             return (LatticeComponent) latticeComponents.get(index);
         } else if (index == 0) { //first component is created by default
             LatticeComponent ret = makeLatticeComponentForDoc();

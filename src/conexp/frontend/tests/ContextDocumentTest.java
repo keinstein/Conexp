@@ -161,7 +161,7 @@ public class ContextDocumentTest extends TestCase {
         doc = new ContextDocument(cxt);
 
         doc.calculateLattice();
-        LatticeComponent latticeComponent = doc.getLatticeComponent();
+        LatticeComponent latticeComponent = doc.getDefaultLatticeComponent();
         assertEquals(latticeComponent.getLattice().conceptsCount(), 8);
         latticeComponent.getAttributeMask().addPropertyChangeListener(new EntityMaskChangeController(latticeComponent));
         latticeComponent.getAttributeMask().setSelected(2, false);
@@ -222,6 +222,20 @@ public class ContextDocumentTest extends TestCase {
 
 
 // assertEquals(first, second);
+    }
+
+    public void testTreeAddingLatticeNodeAfterLatticeBuilding(){
+        Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
+                                                         {1, 0, 1},
+                                                         {1, 1, 0}});
+        doc = new ContextDocument(cxt);
+
+        assertEquals(true, doc.getLatticeCollection().isEmpty());
+        JTree tree = doc.getTree();
+        assertEquals(2, tree.getComponentCount());
+
+//        doc.calculateLattice();
+
     }
 
 }

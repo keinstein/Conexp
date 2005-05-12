@@ -42,7 +42,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
                                                  {1}});
         doc = new ContextDocument();
         doc.setContext(cxt);
-        doc.getLatticeComponent().calculateLattice();
+        doc.getDefaultLatticeComponent().calculateLattice();
     }
 
     private void setUpPartialLatticeCase() {
@@ -50,7 +50,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
                                                  {1, 0}});
         doc = new ContextDocument();
         doc.setContext(cxt);
-        final LatticeComponent latticeComponent = doc.getLatticeComponent();
+        final LatticeComponent latticeComponent = doc.getDefaultLatticeComponent();
         final SetProvidingEntitiesMask attributeMask = latticeComponent.getAttributeMask();
         assertEquals(2, attributeMask.getCount());
         attributeMask.setSelected(1, false);
@@ -63,7 +63,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
                                                  {1, 1}});
         doc = new ContextDocument();
         doc.setContext(cxt);
-        final LatticeComponent latticeComponent = doc.getLatticeComponent();
+        final LatticeComponent latticeComponent = doc.getDefaultLatticeComponent();
         final SetProvidingEntitiesMask attributeMask = latticeComponent.getAttributeMask();
         assertEquals(2, attributeMask.getCount());
         attributeMask.setSelected(1, false);
@@ -111,12 +111,12 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     public void testLoadSaveLabelsSize() {
         setUpFullLatticeCase();
         try {
-            doc.getLatticeComponent().getDrawing().getPainterOptions().getLabelsFontSizeValue().setValue(16);
+            doc.getDefaultLatticeComponent().getDrawing().getPainterOptions().getLabelsFontSizeValue().setValue(16);
         } catch (PropertyVetoException e) {
             TestUtil.reportUnexpectedException(e);
         }
         ContextDocument loadedDoc = doTestWriteAndReadForDocWithLattice(doc, cxt);
-        assertEquals(16, loadedDoc.getLatticeComponent().getDrawing().getPainterOptions().getLabelsFontSizeValue().getValue());
+        assertEquals(16, loadedDoc.getDefaultLatticeComponent().getDrawing().getPainterOptions().getLabelsFontSizeValue().getValue());
     }
 
 
@@ -126,9 +126,9 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     }
 
     private void doTestWriteAndReadForContextDocWithLineDiagramWithObjectsAndAttributeLabels(ContextDocument doc, ExtendedContextEditingInterface cxt) {
-        Lattice lattice = doc.getLatticeComponent().getLattice();
+        Lattice lattice = doc.getDefaultLatticeComponent().getLattice();
 
-        LatticeDrawing drawing = doc.getLatticeComponent().getDrawing();
+        LatticeDrawing drawing = doc.getDefaultLatticeComponent().getDrawing();
         drawing.getFigureForConcept(lattice.getZero()).setCoords(10, 10);
         drawing.getFigureForConcept(lattice.getOne()).setCoords(10, 300);
         assertTrue(drawing.setAttributeLabelingStrategyKey(LabelingStrategiesKeys.ALL_ATTRIBS_LABELING_STRATEGY_KEY));
@@ -141,11 +141,11 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         ExtendedContextEditingInterface loadedContext = loadedDoc.getContext();
         assertEquals(cxt, loadedContext);
 
-        Lattice loadedLattice = loadedDoc.getLatticeComponent().getLattice();
+        Lattice loadedLattice = loadedDoc.getDefaultLatticeComponent().getLattice();
         assertTrue("Lattice should be restored", !loadedLattice.isEmpty());
         assertTrue("Lattice should be equal to saved", lattice.isEqual(loadedLattice));
 
-        final LatticeDrawing loadedDrawing = loadedDoc.getLatticeComponent().getDrawing();
+        final LatticeDrawing loadedDrawing = loadedDoc.getDefaultLatticeComponent().getDrawing();
         assertEquals(drawing.getAttributeLabelingStrategyKey(), loadedDrawing.getAttributeLabelingStrategyKey());
         assertEquals(drawing.getObjectLabelingStrategyKey(), loadedDrawing.getObjectLabelingStrategyKey());
 
@@ -160,9 +160,9 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
 
 
     private void doTestWriteAndReadForDocumentWithConceptsLabels(ContextDocument doc, ExtendedContextEditingInterface cxt) {
-        Lattice lattice = doc.getLatticeComponent().getLattice();
+        Lattice lattice = doc.getDefaultLatticeComponent().getLattice();
 
-        LatticeDrawing drawing = doc.getLatticeComponent().getDrawing();
+        LatticeDrawing drawing = doc.getDefaultLatticeComponent().getDrawing();
         drawing.getFigureForConcept(lattice.getZero()).setCoords(10, 10);
         drawing.getFigureForConcept(lattice.getOne()).setCoords(10, 300);
 
@@ -175,11 +175,11 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         ExtendedContextEditingInterface loadedContext = loadedDoc.getContext();
         assertEquals(cxt, loadedContext);
 
-        Lattice loadedLattice = loadedDoc.getLatticeComponent().getLattice();
+        Lattice loadedLattice = loadedDoc.getDefaultLatticeComponent().getLattice();
         assertTrue("Lattice should be restored", !loadedLattice.isEmpty());
         assertTrue("Lattice should be equal to saved", lattice.isEqual(loadedLattice));
 
-        final LatticeDrawing loadedDrawing = loadedDoc.getLatticeComponent().getDrawing();
+        final LatticeDrawing loadedDrawing = loadedDoc.getDefaultLatticeComponent().getDrawing();
         assertEquals(drawing.getAttributeLabelingStrategyKey(), loadedDrawing.getAttributeLabelingStrategyKey());
         assertEquals(drawing.getObjectLabelingStrategyKey(), loadedDrawing.getObjectLabelingStrategyKey());
 
@@ -191,13 +191,13 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     }
 
     private ContextDocument doTestWriteAndReadForDocWithLattice(ContextDocument doc, ExtendedContextEditingInterface cxt) {
-        Lattice lattice = doc.getLatticeComponent().getLattice();
+        Lattice lattice = doc.getDefaultLatticeComponent().getLattice();
 
         ContextDocument loadedDoc = writeAndReadContextDoc(doc);
         ExtendedContextEditingInterface loadedContext = loadedDoc.getContext();
         assertEquals(cxt, loadedContext);
 
-        Lattice loadedLattice = loadedDoc.getLatticeComponent().getLattice();
+        Lattice loadedLattice = loadedDoc.getDefaultLatticeComponent().getLattice();
         assertTrue("Lattice should be restored", !loadedLattice.isEmpty());
         assertTrue("Lattice should be equal to saved", lattice.isEqual(loadedLattice));
         return loadedDoc;

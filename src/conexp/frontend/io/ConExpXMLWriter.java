@@ -60,7 +60,7 @@ public class ConExpXMLWriter implements DocumentWriter {
 
     private Element storeLattices(ContextDocument document) {
         Element latticeCollection = new Element(ConExpXMLElements.LATTICE_COLLECTION);
-        storeLatticeComponent(latticeCollection, document.getLatticeComponent());
+        storeLatticeComponent(latticeCollection, document.getDefaultLatticeComponent());
         return latticeCollection;
     }
 
