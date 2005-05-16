@@ -18,11 +18,6 @@ import java.beans.PropertyChangeEvent;
 import java.util.TooManyListenersException;
 
 public class PropertyChangeSupplierBaseControllerTest extends TestCase {
-    private static final Class THIS = PropertyChangeSupplierBaseControllerTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
     public static void testCallOfPropertyChangeController() {
 

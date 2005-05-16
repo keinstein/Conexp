@@ -8,23 +8,19 @@
 package conexp.frontend;
 
 
-class OidNode {
+class TreeNodeBase {
 
+    private String name;
 
-    private String m_name;
-
-
-    public OidNode(String name) {
-        m_name = name;
+    public TreeNodeBase(String name) {
+        this.name = name;
     }
-
 
     public void setName(String name) {
-        m_name = name;
+        this.name = name;
     }
 
-
     public String toString() {
-        return m_name;
+        return name;
     }
 }

@@ -11,7 +11,7 @@ import canvas.CanvasScheme;
 import conexp.core.Context;
 import conexp.core.Lattice;
 import conexp.core.tests.SetBuilder;
-import conexp.frontend.LatticeDrawingProvider;
+import conexp.frontend.ContextDocument;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.LatticePainterOptions;
@@ -19,9 +19,6 @@ import conexp.frontend.latticeeditor.LatticePainterPanel;
 import conexp.frontend.tests.ResourcesToolbarDefinitionTest;
 import junit.framework.TestCase;
 import util.testing.TestUtil;
-
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 
 
 public class LatticePainterPanelTest extends TestCase {
@@ -62,7 +59,9 @@ public class LatticePainterPanelTest extends TestCase {
 
 
     public void testToolbarInResources() {
-        ResourcesToolbarDefinitionTest.testToolbarDefinitionInResources(pan.getResources(), pan.getActionChain());
+        ContextDocument doc = new ContextDocument();
+        pan.setParentActionMap(doc.getActionChain());    //here the lattice snapshot command is provided
+        ResourcesToolbarDefinitionTest.testToolbarDefinitionInResources(LatticePainterPanel.getResources(), pan.getActionChain());
     }
 
     public static void testCorrectWorkingOfOptionsChanges() {

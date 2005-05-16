@@ -24,11 +24,6 @@ import java.io.IOException;
 public class ContextDocManagerTest extends TestCase {
     private ContextDocManager docManager;
 
-    public static Test suite() {
-        return new TestSuite(ContextDocManagerTest.class);
-    }
-
-
     protected void setUp() {
         docManager = makeDocManager();
     }

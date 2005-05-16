@@ -12,7 +12,6 @@ import conexp.core.layout.ConceptCoordinateMapper;
 import conexp.core.layout.LayouterProvider;
 import conexp.core.layoutengines.LayoutEngine;
 import conexp.frontend.LatticeCalculator;
-import conexp.frontend.LatticeDrawingProvider;
 import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import util.BasePropertyChangeSupplier;
@@ -20,7 +19,7 @@ import util.BasePropertyChangeSupplier;
 import java.awt.geom.Point2D;
 
 
-public class LatticeComponent extends BasePropertyChangeSupplier implements LatticeDrawingProvider, LatticeCalculator {
+public class LatticeComponent extends BasePropertyChangeSupplier implements LatticeCalculator, LatticeSupplierAndCalculator {
     protected Context context;
     protected LatticeDrawing latticeDrawing;
     protected ContextAttributeMask attributeMask;
@@ -42,10 +41,10 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
 
     public void setContext(Context cxt) {
         setContextAndMasks(cxt, new ContextAttributeMask(cxt), new ContextObjectMask(cxt));
-        clearLattice();
     }
 
     private void setContextAndMasks(Context cxt, final ContextAttributeMask contextAttributeMask, final ContextObjectMask contextObjectMask) {
+        cleanUp();
         this.context = cxt;
         attributeMask = contextAttributeMask;
         objectMask = contextObjectMask;
@@ -61,6 +60,28 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
 
     protected Context getContext() {
         return context;
+    }
+
+    public void setUpLatticeRecalcOnMasksChange(){
+        EntityMaskChangeController entityMaskChangeController = new EntityMaskChangeController(this);
+        getAttributeMask().addPropertyChangeListener(entityMaskChangeController);
+        getObjectMask().addPropertyChangeListener(entityMaskChangeController);
+    }
+
+
+    /**
+     * correctly clean ups the lattice component
+     * prevents memory leaks when lattice component is being used with several contexts
+     */
+    public synchronized void cleanUp() {
+        context = null;
+        if (null != attributeMask) {
+            attributeMask.cleanUp();
+        }
+        if (null != objectMask) {
+            objectMask.cleanUp();
+        }
+        clearLattice();
     }
 
     public synchronized void clearLattice() {
@@ -98,6 +119,11 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         }
         return latticeDrawing;
     }
+
+    public void restorePreferences() {
+        getDrawing().restorePreferences();
+    }
+
 
     public void calculateLattice() {
         doSetLatticeAndFireRecalced(FCAEngineRegistry.buildLattice(getContext()));
@@ -149,7 +175,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         if (this == other) {
             return true;
         }
-        if (!(other instanceof LatticeComponent)) {
+        if (!(other instanceof LatticeSupplier)) {
             return false;
         }
 

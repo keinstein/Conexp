@@ -46,8 +46,8 @@ public class ExperimentSuite extends BaseExperimentSuite {
 
         RelationSequence[] toTranspose = new RelationSequence[upperFillBound];
         for (int k = lowFillBound; k <= upperFillBound; k++) {
-//            toTranspose[k - 1] = new PercentFilledRelationGenerationStrategy(1, 30, 5, 5, 30/*count*/, (double) k / 10);
-            toTranspose[k - 1] = new PercentFilledRelationGenerationStrategy(10, 100, 20, 20, 10/*count*/, (double) k / 10);
+           toTranspose[k - 1] = new PercentFilledRelationGenerationStrategy(1, 30, 5, 5, 30/*count*/, (double) k / 10);
+           // toTranspose[k - 1] = new PercentFilledRelationGenerationStrategy(10, 100, 20, 20, 10/*count*/, (double) k / 10);
             relSet.addRelationSequence(toTranspose[k - 1]);
         }
 

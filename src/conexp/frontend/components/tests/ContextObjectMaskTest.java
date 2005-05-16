@@ -12,6 +12,7 @@ import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.components.ContextObjectMask;
+import conexp.frontend.components.ContextAttributeMask;
 
 
 public class ContextObjectMaskTest extends ContextMaskBaseTest {
@@ -67,6 +68,13 @@ public class ContextObjectMaskTest extends ContextMaskBaseTest {
         assertEquals(mask, other);
         other.setSelected(0, false);
         assertFalse(mask.equals(other));
+    }
+
+
+    public void testCleanUp() {
+        int contextListenerCount = cxt.getContextListenersCount();
+        getMask().cleanUp();
+        assertEquals(contextListenerCount-1, cxt.getContextListenersCount());
     }
 
 }

@@ -16,6 +16,7 @@ import java.beans.PropertyChangeEvent;
 
 public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplementation {
     ExtendedContextEditingInterface context;
+    private AttributeMaskContextListener maskContextListener;
 
     public ContextAttributeMask makeCopy() {
         ContextAttributeMask ret = new ContextAttributeMask(context);
@@ -71,7 +72,8 @@ public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplement
     public ContextAttributeMask(ExtendedContextEditingInterface context) {
         this.context = context;
         initializeMask(getCount(), Boolean.TRUE);
-        this.context.addContextListener(new AttributeMaskContextListener());
+        maskContextListener = new AttributeMaskContextListener();
+        this.context.addContextListener(maskContextListener);
     }
 
     public int getCount() {
@@ -80,6 +82,12 @@ public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplement
 
     public String getName(int index) {
         return context.getAttribute(index).getName();
+    }
+
+    public void cleanUp(){
+        this.context.removeContextListener(maskContextListener);
+        maskContextListener=null;
+        context=null;
     }
 
     public boolean equals(Object other) {

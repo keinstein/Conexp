@@ -8,7 +8,7 @@
 package conexp.frontend;
 
 import conexp.frontend.components.EntitiesMaskScrollPane;
-import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.latticeeditor.LatticePainterPanel;
 import conexp.frontend.util.IResourceManager;
 import util.Assert;
@@ -25,7 +25,7 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
 
     private LatticePainterPanel latticePanel;
 
-    public LatticeAndEntitiesMaskSplitPane(LatticeComponent latticeSupplier, ActionMap parentActionChain) {
+    public LatticeAndEntitiesMaskSplitPane(LatticeSupplier latticeSupplier, ActionMap parentActionChain) {
         super();
         latticePanel = new LatticePainterPanel(latticeSupplier);
         latticePanel.setParentActionMap(parentActionChain);
@@ -47,7 +47,7 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
         }
     }
 
-    private JComponent makeAttributeSelectionPane(LatticeComponent latticeSupplier) {
+    private JComponent makeAttributeSelectionPane(LatticeSupplier latticeSupplier) {
         /*       JSplitPane outer = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
                outer.setOneTouchExpandable(true);
                outer.setResizeWeight(0.5);
@@ -75,16 +75,16 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
     }
 
     private JPanel buildMaskEditorPane(final SetProvidingEntitiesMask entitiesMask, String selectAllText) {
-        JPanel attributeSelectionPane = new JPanel(new BorderLayout());
-        attributeSelectionPane.add(new EntitiesMaskScrollPane(entitiesMask), BorderLayout.CENTER);
+        JPanel entitySelectionPane = new JPanel(new BorderLayout());
+        entitySelectionPane.add(new EntitiesMaskScrollPane(entitiesMask), BorderLayout.CENTER);
         final JButton button = new JButton(selectAllText);
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 entitiesMask.selectAll();
             }
         });
-        attributeSelectionPane.add(button, BorderLayout.SOUTH);
-        return attributeSelectionPane;
+        entitySelectionPane.add(button, BorderLayout.SOUTH);
+        return entitySelectionPane;
     }
 
     public Component getViewComponent() {

@@ -16,6 +16,7 @@ import java.beans.PropertyChangeEvent;
 
 public class ContextObjectMask extends BasicMultiSelectionEntityMaskImplementation implements SetProvidingEntitiesMask {
     ExtendedContextEditingInterface context;
+    private ObjectMaskContextListener maskContextListener;
 
     public ContextObjectMask makeCopy() {
         ContextObjectMask ret = new ContextObjectMask(context);
@@ -92,7 +93,14 @@ public class ContextObjectMask extends BasicMultiSelectionEntityMaskImplementati
     public ContextObjectMask(ExtendedContextEditingInterface context) {
         this.context = context;
         initializeMask(getCount(), Boolean.TRUE);
-        this.context.addContextListener(new ObjectMaskContextListener());
+        maskContextListener = new ObjectMaskContextListener();
+        this.context.addContextListener(maskContextListener);
+    }
+
+    public void cleanUp() {
+        this.context.removeContextListener(maskContextListener);
+        maskContextListener = null;
+        context = null;
     }
 
     public int getCount() {

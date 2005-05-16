@@ -3,6 +3,7 @@ package conexp.frontend.latticeeditor;
 import canvas.util.RasterImageExporter;
 import canvas.util.SaveImageActionBase;
 import util.IExporter;
+import util.errorhandling.IErrorHandler;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
@@ -14,8 +15,8 @@ import util.IExporter;
 
 public class ExportLatticeInfoAction extends SaveImageActionBase {
 
-    public ExportLatticeInfoAction(String name, String title, LatticePainterPanel latticePainterPanel) {
-        super(name, title);
+    public ExportLatticeInfoAction(String name, String title, LatticePainterPanel latticePainterPanel, IErrorHandler errorHandler) {
+        super(name, title, errorHandler);
         exporters = getExporters(latticePainterPanel);
     }
 

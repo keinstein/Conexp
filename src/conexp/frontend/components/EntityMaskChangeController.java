@@ -13,9 +13,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class EntityMaskChangeController implements PropertyChangeListener {
-    private LatticeComponent latticeComponent;
+    private LatticeSupplierAndCalculator latticeComponent;
 
-    public EntityMaskChangeController(LatticeComponent latticeComponent) {
+    public EntityMaskChangeController(LatticeSupplierAndCalculator latticeComponent) {
         this.latticeComponent = latticeComponent;
     }
 

@@ -443,6 +443,13 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         contextListenersSupport.removeContextListener(lst);
     }
 
+    public synchronized int getContextListenersCount(){
+        if(null==contextListenersSupport){
+            return 0;
+        }
+        return contextListenersSupport.getListeners().size();
+    }
+
 
     public synchronized boolean hasContextListener(ContextListener lst) {
         if (null == contextListenersSupport) {
@@ -450,6 +457,9 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         }
         return contextListenersSupport.hasListener(lst);
     }
+
+
+
 
     public synchronized void transpose() {
         ModifiableBinaryRelation newRel = BinaryRelationUtils.makeTransposedRelation(rel);

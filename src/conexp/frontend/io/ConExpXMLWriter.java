@@ -13,6 +13,7 @@ import conexp.frontend.ContextDocument;
 import conexp.frontend.DocumentWriter;
 import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import org.jdom.Document;
@@ -32,7 +33,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         }
         ContextDocument contextDocument = (ContextDocument) document;
         Element root = new Element(ConExpXMLElements.DOC_XML_ROOT);
-         root.addContent(storeVersion());
+        root.addContent(storeVersion());
         root.addContent(storeContexts(contextDocument));
         root.addContent(storeLattices(contextDocument));
 
@@ -58,26 +59,26 @@ public class ConExpXMLWriter implements DocumentWriter {
         return contextCollection;
     }
 
-    private Element storeLattices(ContextDocument document) {
+    private static Element storeLattices(ContextDocument document) {
         Element latticeCollection = new Element(ConExpXMLElements.LATTICE_COLLECTION);
-        storeLatticeComponent(latticeCollection, document.getDefaultLatticeComponent());
+        storeLatticeComponent(latticeCollection, document.getOrCreateDefaultLatticeComponent());
         return latticeCollection;
     }
 
-    private void storeLatticeComponent(Element latticeCollection, final LatticeComponent latticeComponent) {
+    private static void storeLatticeComponent(Element latticeCollection, final LatticeComponent latticeComponent) {
         if (!latticeComponent.isEmpty()) {
             latticeCollection.addContent(makeLatticeElement(latticeComponent));
         }
     }
 
-    private static Element makeLatticeElement(LatticeComponent latticeComponent) {
+    private static Element makeLatticeElement(LatticeSupplier latticeComponent) {
         Element latticeElement = new Element(ConExpXMLElements.LATTICE_ELEMENT);
         storeFeatureMask(latticeComponent, latticeElement);
         storeDrawings(latticeComponent, latticeElement);
         return latticeElement;
     }
 
-    private static void storeFeatureMask(LatticeComponent latticeComponent, Element latticeElement) {
+    private static void storeFeatureMask(LatticeSupplier latticeComponent, Element latticeElement) {
         latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT, latticeComponent.getAttributeMask()));
         latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.OBJECT_MASK_ELEMENT, latticeComponent.getObjectMask()));
     }
@@ -88,7 +89,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         return entityMaskElement;
     }
 
-    private static void storeDrawings(LatticeComponent latticeComponent, Element latticeElement) {
+    private static void storeDrawings(LatticeSupplier latticeComponent, Element latticeElement) {
         latticeElement.addContent(makeDrawingElement(latticeComponent.getDrawing()));
     }
 

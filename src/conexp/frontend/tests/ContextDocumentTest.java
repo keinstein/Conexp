@@ -15,11 +15,13 @@ import conexp.core.LatticeElement;
 import conexp.core.tests.ContextReductionTest;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.*;
-import conexp.frontend.components.EntityMaskChangeController;
 import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
+import conexp.frontend.ui.ViewManager;
 import junit.framework.TestCase;
+import util.testing.SwingTestUtil;
 
 import javax.swing.*;
 import java.util.Collection;
@@ -160,13 +162,13 @@ public class ContextDocumentTest extends TestCase {
                                                          {1, 1, 0}});
         doc = new ContextDocument(cxt);
 
-        doc.calculateLattice();
-        LatticeComponent latticeComponent = doc.getDefaultLatticeComponent();
+        doc.calculateAndLayoutLattice();
+        LatticeComponent latticeComponent = doc.getLatticeComponent(0);
         assertEquals(latticeComponent.getLattice().conceptsCount(), 8);
-        latticeComponent.getAttributeMask().addPropertyChangeListener(new EntityMaskChangeController(latticeComponent));
+        latticeComponent.setUpLatticeRecalcOnMasksChange();
         latticeComponent.getAttributeMask().setSelected(2, false);
         assertEquals(4, latticeComponent.getLattice().conceptsCount());
-        doc.calculateLattice();
+        doc.calculateAndLayoutLattice();
         assertEquals(4, latticeComponent.getLattice().conceptsCount());
     }
 
@@ -202,12 +204,12 @@ public class ContextDocumentTest extends TestCase {
         doc = new ContextDocument(cxt);
 
         assertEquals(true, doc.getLatticeCollection().isEmpty());
-        doc.calculateLattice();
+        doc.calculateAndLayoutLattice();
         assertEquals(1, doc.getLatticeCollection().size());
         doc.makeLatticeSnapshot();
         assertEquals(2, doc.getLatticeCollection().size());
         final LatticeComponent first = doc.getLatticeComponent(0);
-        final LatticeComponent second = doc.getLatticeComponent(1);
+        final LatticeSupplier second = doc.getLatticeComponent(1);
         assertNotSame(first, second);
         final LatticeDrawing firstDrawing = first.getDrawing();
         final LatticeDrawing secondDrawing = second.getDrawing();
@@ -219,12 +221,10 @@ public class ContextDocumentTest extends TestCase {
             }
         });
 
-
-
 // assertEquals(first, second);
     }
 
-    public void testTreeAddingLatticeNodeAfterLatticeBuilding(){
+    public void testTreeAddingLatticeNodeAfterLatticeBuilding() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
                                                          {1, 0, 1},
                                                          {1, 1, 0}});
@@ -232,10 +232,36 @@ public class ContextDocumentTest extends TestCase {
 
         assertEquals(true, doc.getLatticeCollection().isEmpty());
         JTree tree = doc.getTree();
-        assertEquals(2, tree.getComponentCount());
+        assertEquals(2, SwingTestUtil.sizeOfTheTree(tree));
+        assertEquals(0, doc.getLatticeCollection().size());
 
-//        doc.calculateLattice();
+        doc.calculateAndLayoutLattice();
+        assertEquals(1, doc.getLatticeCollection().size());
+        assertEquals(3, SwingTestUtil.sizeOfTheTree(tree));
+        doc.makeLatticeSnapshot();
+        assertEquals(4, SwingTestUtil.sizeOfTheTree(tree));
+    }
 
+    public void testTreeNavigation(){
+        Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
+                                                         {1, 0, 1},
+                                                         {1, 1, 0}});
+        doc = new ContextDocument(cxt);
+        doc.activateViews();
+
+        assertEquals(true, doc.getLatticeCollection().isEmpty());
+        JTree tree = doc.getTree();
+        assertEquals(2, SwingTestUtil.sizeOfTheTree(tree));
+        assertEquals(0, doc.getLatticeCollection().size());
+        final ViewManager viewManager = doc.getViewManager();
+        assertEquals(ContextDocument.VIEW_CONTEXT, viewManager.getActiveViewId());
+        performCommand("buildLatticeDS");
+        assertEquals(ContextDocument.VIEW_LATTICE, viewManager.getActiveViewId());
+        assertEquals(3, SwingTestUtil.sizeOfTheTree(tree));
+        assertEquals(0, doc.getActiveLatticeComponentID());
+        doc.makeLatticeSnapshot();
+        assertEquals(4, SwingTestUtil.sizeOfTheTree(tree));
+        assertEquals(1, doc.getActiveLatticeComponentID());
     }
 
 }

@@ -6,6 +6,7 @@ import conexp.core.*;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import conexp.core.enumcallbacks.ConceptNumCallback;
 import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.components.LatticeSupplier;
 import util.collection.CollectionFactory;
 
 import java.util.Collection;
@@ -20,13 +21,23 @@ import java.util.Iterator;
 public class ContextDocumentModel {
     private Context context;
 
-    ContextDocumentModel(Context cxt) {
+    public ContextDocumentModel(Context cxt) {
         setContext(cxt);
     }
 
     public void setContext(Context cxt) {
+        cleanUpListeners();
+        doResetLatticeComponents();
+
         this.context = cxt;
         cxt.setArrowCalculator(FCAEngineRegistry.makeArrowCalculator());
+        cxt.addContextListener(getLatticeRecalcPolicy());
+    }
+
+    private void cleanUpListeners() {
+        if (this.context != null) {
+            this.context.removeContextListener(getLatticeRecalcPolicy());
+        }
     }
 
     public Context getContext() {
@@ -62,8 +73,11 @@ public class ContextDocumentModel {
         return Collections.unmodifiableList(latticeComponents);
     }
 
-    private LatticeComponent makeLatticeComponentForDoc() {
-        return new LatticeComponent(getContext());
+    private LatticeSupplier makeLatticeComponentForDoc() {
+        final LatticeComponent result = new LatticeComponent(getContext());
+        result.setUpLatticeRecalcOnMasksChange();
+        result.restorePreferences();
+        return result;
     }
 
     private ContextListener latticeContextListener;
@@ -85,6 +99,7 @@ public class ContextDocumentModel {
     }
 
     private void clearLattices() {
+        System.out.println("ContextDocumentModel.clearLattices");
         for (Iterator iterator = latticeComponents.iterator(); iterator.hasNext();) {
             LatticeComponent latticeComponent = (LatticeComponent) iterator.next();
             latticeComponent.clearLattice();
@@ -92,29 +107,42 @@ public class ContextDocumentModel {
     }
 
 
+    public void addLatticeComponent() {
+        latticeComponents.add(makeLatticeComponentForDoc());
+    }
+
     public LatticeComponent getLatticeComponent(int index) {
-        if (index < latticeComponents.size()) {
-            return (LatticeComponent) latticeComponents.get(index);
-        } else if (index == 0) { //first component is created by default
-            LatticeComponent ret = makeLatticeComponentForDoc();
-            ret.getDrawing().restorePreferences();
-            getContext().addContextListener(getLatticeRecalcPolicy());
-            latticeComponents.add(ret);
-            return ret;
-        } else {
-            throw new IndexOutOfBoundsException("Bad request for lattice component");
-        }
+        return (LatticeComponent) latticeComponents.get(index);
     }
 
     public void resetLatticeComponent() {
-        latticeComponents.clear();
-        //todo: check for cleaning up listeners
+        doResetLatticeComponents();
+        //do we really need this ?
         latticeComponents.add(makeLatticeComponentForDoc());
+    }
+
+    private void doResetLatticeComponents() {
+        for (Iterator iterator = latticeComponents.iterator(); iterator.hasNext();) {
+            LatticeSupplier latticeSupplier = (LatticeSupplier) iterator.next();
+            latticeSupplier.cleanUp();
+        }
+        latticeComponents.clear();
     }
 
     public void makeLatticeSnapshot(int index) {
         LatticeComponent old = getLatticeComponent(index);
-        LatticeComponent newComponent = old.makeCopy();
+        LatticeSupplier newComponent = old.makeCopy();
         latticeComponents.add(newComponent);
     }
+
+    public int findLatticeComponent(LatticeSupplier latticeComponent) {
+        int i = getLatticeComponents().size();
+        while (--i >= 0) {
+            if (getLatticeComponent(i) == latticeComponent) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 }

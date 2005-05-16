@@ -66,17 +66,14 @@ public abstract class ContextReaderWriterPairTest extends TestCase {
     }
 
     private void doTestWriteAndReadForContext(Context cxt) {
-        ContextDocument doc = new ContextDocument();
-        doc.setContext(cxt);
-
+        ContextDocument doc = new ContextDocument(cxt);
         ContextDocument loadedDoc = writeAndReadContextDoc(doc);
-
         assertEquals(cxt, loadedDoc.getContext());
     }
 
     protected ContextDocument writeAndReadContextDoc(ContextDocument doc) {
         StringWriter writer = new StringWriter() {
-            public void close() throws IOException {
+            public void close(){
                 fail("It's responsibility of calling side to close writers");
             }
         };

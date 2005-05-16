@@ -9,7 +9,6 @@ package conexp.frontend.latticeeditor;
 
 import com.visibleworkings.trace.Trace;
 import conexp.core.Lattice;
-import conexp.core.LatticeAlgorithms;
 import conexp.core.LatticeStatistics;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.LatticeDrawingProvider;
@@ -19,6 +18,7 @@ import conexp.frontend.util.ActionChainUtil;
 import conexp.frontend.util.IResourceManager;
 import conexp.frontend.util.ResourceManager;
 import conexp.util.gui.ToggleAbstractAction;
+import util.errorhandling.AppErrorHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +28,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
-import java.text.MessageFormat;
 
 
 public class LatticePainterPanel extends BaseLatticePainterPane implements ViewChangeInterfaceWithConfig {
@@ -147,7 +146,7 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         }
     }
 
-    class ShowLatticeStatisticsAction extends AbstractAction{
+    class ShowLatticeStatisticsAction extends AbstractAction {
         public ShowLatticeStatisticsAction() {
             super("showLatticeStatistics");
         }
@@ -236,20 +235,6 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         public void actionPerformed(ActionEvent e) {
             setZoom(1.0);
         }
-    }
-
-
-    class CreateLatticeViewAction extends AbstractAction {
-        public CreateLatticeViewAction() {
-            super("createLatticeView");
-        }
-
-        public void actionPerformed(ActionEvent e) {
-            final String message = "Not yet implemented";
-            showMessage(message);
-        }
-
-
     }
 
     private void showMessage(final String message) {
@@ -356,23 +341,23 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         Action[] ret = {new AlignToGridAction(),
                         new AssignYCoordsAccordingToWeigthAction(),
                         new GrabAndDragAction(),
-                        new ExportLatticeInfoAction("saveImage", "Export diagram as", this),
+                        new ExportLatticeInfoAction("saveImage", "Export diagram as", this, AppErrorHandler.getInstance()),
                         new SelectMoveModeAction(),
                         new SelectScaleToFitModeAction(),
                         new AddZoomAction(),
                         new ReduceZoomAction(),
                         new NoZoomAction(),
                         new StorePreferencesAction(),
-                        new ShowLatticeStatisticsAction(),
-                        new CreateLatticeViewAction()
+                        new ShowLatticeStatisticsAction()
         };
         return ret;
 
     }
 
-    private void showStatistics(){
+    private void showStatistics() {
         showMessage(new LatticeStatistics(getLattice()).getDescriptionString());
     }
+
     //---------------------------------------------------------------
     public Dimension getMinimumSize() {
         return new Dimension(25, 25);

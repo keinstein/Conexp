@@ -12,10 +12,7 @@ import conexp.frontend.ViewChangeListener;
 import conexp.frontend.ViewFactory;
 
 import javax.swing.*;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
 
 
 public class ViewManager {
@@ -23,7 +20,7 @@ public class ViewManager {
     protected ViewMap viewMap = new ViewMap();
 
     protected ViewFactory viewFactory;
-    protected HashMap views;
+    protected HashMap<String, View> views;
     protected java.util.ArrayList viewChangeListeners;
 
 
@@ -100,7 +97,7 @@ public class ViewManager {
 
     protected java.util.Map getViewsMap() {
         if (null == views) {
-            views = new HashMap();
+            views = new HashMap<String, View>();
         }
         return views;
     }
@@ -135,6 +132,18 @@ public class ViewManager {
     public javax.swing.JComponent getActiveView() {
         return activeView;
     }
+
+    public String getActiveViewId(){
+        final javax.swing.JComponent activeView = getActiveView();
+        final Collection<Map.Entry<String, View>> set = getViewsMap().entrySet();
+        for (Map.Entry<String, View> entry : set) {
+            if(entry.getValue().equals(activeView)){
+               return entry.getKey();
+            }
+        }
+        return "";
+    }
+
 
     protected void setActiveView(JComponent view) {
         if (activeView != view) {

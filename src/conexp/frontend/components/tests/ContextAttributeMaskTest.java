@@ -66,4 +66,10 @@ public class ContextAttributeMaskTest extends ContextMaskBaseTest {
     protected SetProvidingEntitiesMask makeInstance() {
         return makeMask(cxt);
     }
+
+    public void testCleanUp() {
+        int contextListenerCount = cxt.getContextListenersCount();
+        getMask().cleanUp();
+        assertEquals(contextListenerCount-1, cxt.getContextListenersCount());
+    }
 }
