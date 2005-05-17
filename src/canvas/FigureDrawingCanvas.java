@@ -56,7 +56,8 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
 
 
     public FigureDrawingCanvas(CanvasScheme canvasScheme){
-         this.options = canvasScheme;
+        this.options = canvasScheme;
+
         translatingTransform = makeTranslatingTransform(viewPoint);
 
         setActiveTool(getDefaultTool());

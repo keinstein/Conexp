@@ -15,6 +15,7 @@ import java.util.*;
 import java.io.IOException;
 
 import util.errorhandling.AppErrorHandler;
+import util.errorhandling.IErrorHandler;
 
 /**
  * Created by IntelliJ IDEA.
@@ -28,11 +29,15 @@ public abstract class SaveImageActionBase extends AbstractAction {
     private Frame parentFrame = null;
     private GenericFileFilter[] formatFilters;
     protected IExporter[] exporters;
+    private IErrorHandler errorHandler;
 
-    protected SaveImageActionBase(String name, String title) {
+    protected SaveImageActionBase(String name, String title, IErrorHandler errorHandler) {
         super(name);
         this.title = title;
+        this.errorHandler = errorHandler;
     }
+
+
 
     private Frame getParentFrame() {
         return parentFrame;
@@ -77,7 +82,7 @@ public abstract class SaveImageActionBase extends AbstractAction {
                 }
             }
         } catch (IOException e1) {
-            AppErrorHandler.getInstance().notify(getParentFrame(), e1);
+            errorHandler.notify(getParentFrame(), e1);
         }
 
     }
