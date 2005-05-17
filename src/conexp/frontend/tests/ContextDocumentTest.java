@@ -264,4 +264,26 @@ public class ContextDocumentTest extends TestCase {
         assertEquals(1, doc.getActiveLatticeComponentID());
     }
 
+    public void testOneNodeInTreeForImplications(){
+        testOneNodeInTree("calcImplNCS", ContextDocument.IMPLICATIONS_NODE_NAME);
+    }
+
+    public void testOneNodeInTreeForAssociations(){
+        testOneNodeInTree("calcAssociationRules", ContextDocument.ASSOCIATIONS_NODE_NAME);
+    }
+
+    private void testOneNodeInTree(final String command, final String nodeName) {
+        Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
+                                                         {1, 0, 1},
+                                                         {1, 1, 0}});
+        doc = new ContextDocument(cxt);
+        doc.activateViews();
+        JTree tree = doc.getTree();
+        performCommand(command);
+        assertTrue(SwingTestUtil.treeContainsNode(tree, nodeName));
+        assertEquals(1, SwingTestUtil.nodeOccurenceInTree(tree, nodeName));
+        performCommand(command);
+        assertEquals(1, SwingTestUtil.nodeOccurenceInTree(tree, nodeName));
+    }
+
 }

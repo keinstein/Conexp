@@ -167,7 +167,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     }
 
     //------------------------------------------------------------
-    protected void fireLatticeRecalced() {
+    public void fireLatticeRecalced() {
         getPropertyChangeSupport().firePropertyChange(LatticeCalculator.LATTICE_DRAWING_CHANGED, null, getDrawing());
     }
 

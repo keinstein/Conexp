@@ -122,11 +122,12 @@ public class ConceptFrame extends JFrame {
         manager.updateDocumentTree();
     }
 
-    private void setDocumentTree(JTree documentTree) {
+    private void setDocumentTree(Component documentTree) {
+        JScrollPane wrapper = new JScrollPane(documentTree, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         if (docTreeTabPane.getComponentCount() == 0) {
-            docTreeTabPane.add(documentTree);
+            docTreeTabPane.add(wrapper);
         } else {
-            docTreeTabPane.setComponentAt(0, documentTree);
+            docTreeTabPane.setComponentAt(0, wrapper);
         }
     }
 

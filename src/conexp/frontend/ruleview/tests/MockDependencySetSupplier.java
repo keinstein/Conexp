@@ -19,6 +19,10 @@ class MockDependencySetSupplier implements DependencySetSupplier {
         return new DependencySet(new MockAttributeInformationSupplier(1));
     }
 
+    public boolean isComputed() {
+        return true;
+    }
+
     public void clearDependencySet() {
     }
 

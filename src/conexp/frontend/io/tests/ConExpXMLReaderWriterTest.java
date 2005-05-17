@@ -190,6 +190,8 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         assertEquals(new Point2D.Double(10, 10), loadedDrawing.getFigureForConcept(loadedLattice.getZero()).getCenter());
         assertEquals(new Point2D.Double(10, 300), loadedDrawing.getFigureForConcept(loadedLattice.getOne()).getCenter());
 
+        System.out.println(drawing.getLabelForConcept(lattice.getZero()).getCenter());
+        System.out.println(loadedDrawing.getLabelForConcept(loadedLattice.getZero()).getCenter());
         assertEquals(drawing.getLabelForConcept(lattice.getZero()).getCenter(),
                 loadedDrawing.getLabelForConcept(loadedLattice.getZero()).getCenter());
     }

@@ -7,7 +7,9 @@
 
 package conexp.frontend.ui;
 
-import java.util.HashMap;
+import util.collection.CollectionFactory;
+
+import java.util.Map;
 
 
 public class ViewMap {
@@ -21,11 +23,11 @@ public class ViewMap {
         final String caption;
     }
 
-    protected HashMap viewInfoMap;
+    protected Map viewInfoMap;
 
     protected java.util.Map getViewInfoMap() {
         if (null == viewInfoMap) {
-            viewInfoMap = new HashMap();
+            viewInfoMap = CollectionFactory.createDefaultMap();
         }
         return viewInfoMap;
     }
@@ -52,7 +54,7 @@ public class ViewMap {
         util.Assert.isTrue(null != id, "Name arg can't be null");
         util.Assert.isTrue(null != type, "Type arg can't be null");
         if (getViewInfoMap().containsKey(id)) {
-            throw new ViewManagerException("ViewManager already contain's view with id =" + id);
+            throw new ViewManagerException("ViewManager already contains view with id =" + id);
         }
         getViewInfoMap().put(id, new ViewInfo(caption, type));
     }

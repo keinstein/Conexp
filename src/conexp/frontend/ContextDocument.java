@@ -30,11 +30,12 @@ import conexp.frontend.util.ToolBuilder;
 import util.Assert;
 import util.FormatUtil;
 import util.StringUtil;
+import util.BasePropertyChangeSupplier;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeModel;
+import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -42,7 +43,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeListener;
-import java.util.*;
+import java.beans.PropertyChangeEvent;
+import java.util.Collection;
+import java.util.ResourceBundle;
+import java.util.TooManyListenersException;
+import java.util.Iterator;
 
 
 public class ContextDocument implements ActionChainBearer, Document {
@@ -69,12 +74,17 @@ public class ContextDocument implements ActionChainBearer, Document {
     private static final String CONTEXT_IMAGE = "resources/contextIcon.gif";
     private static final String DOMAIN_IMAGE = "resources/dataIcon.gif";
     private static final String LATTICE_IMAGE = "resources/latticeIcon.gif";
+    private static final String IMPLICATION_IMAGE = "resources/implicationIcon.gif";
+    private static final String ASSOCIATIONS_IMAGE = "resources/associationRuleIcon.gif";
     public static final ImageIcon LATTICE_ICON = ResourceLoader.getIcon(LATTICE_IMAGE);
     public static final ImageIcon CONTEXT_ICON = ResourceLoader.getIcon(CONTEXT_IMAGE);
+    public static final ImageIcon IMPLICATION_ICON = ResourceLoader.getIcon(IMPLICATION_IMAGE);
+    public static final ImageIcon ASSOCIATIONS_ICON = ResourceLoader.getIcon(ASSOCIATIONS_IMAGE);
     public static final ImageIcon DOMAIN_ICON = ResourceLoader.getIcon(DOMAIN_IMAGE);
 
 
-    private LatticeCollectionDecorator latticeCollectionDecorator = new LatticeCollectionDecorator();
+    private LatticeCollectionDecorator latticeCollectionDecorator;
+    public static final String ASSOCIATIONS_NODE_NAME = "Associations";
 
 
     static {
@@ -161,8 +171,8 @@ public class ContextDocument implements ActionChainBearer, Document {
         return latticeCollectionDecorator.getActiveLatticeComponentID();
     }
 
-    void setActiveLatticeComponent(LatticeComponent latticeComponent){
-        int id=contextDocumentModel.findLatticeComponent(latticeComponent);
+    void setActiveLatticeComponent(LatticeComponent latticeComponent) {
+        int id = contextDocumentModel.findLatticeComponent(latticeComponent);
         latticeCollectionDecorator.setActiveLatticeComponentID(id);
     }
 
@@ -174,10 +184,15 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
 
-
-
     public LatticeComponent getLatticeComponent(int index) {
         return contextDocumentModel.getLatticeComponent(index);
+    }
+
+    private DefaultMutableTreeNode getContextTreeRoot() {
+        if (null == contextTreeRoot) {
+            contextTreeRoot = makeContextTreeNode();
+        }
+        return contextTreeRoot;
     }
 
 
@@ -252,13 +267,53 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
 
-    class LatticeCollectionDecorator implements LatticeSupplierAndCalculator {
+    class LatticeCollectionDecorator extends BasePropertyChangeSupplier implements LatticeSupplierAndCalculator {
+        private PropertyChangeListener propertyChangeRetranslator= new PropertyChangeListener(){
+                                    public void propertyChange(PropertyChangeEvent evt) {
+                                       firePropertyChange(evt.getPropertyName(),
+                                               evt.getOldValue(), evt.getNewValue());
+                                    }
+                                };
+
+        public LatticeCollectionDecorator() {
+            contextDocumentModel.addLatticeComponentsListener(new NotificationListListener(){
+                public void listElementsAdded(NotificationListEvent event) {
+                    addPropertyChangeListener(event);
+                }
+
+                public void listElementsRemoved(NotificationListEvent event) {
+                    removePropertyChangeListener(event);
+                }
+
+                public void listElementsChanged(NotificationListEvent event) {
+                    removePropertyChangeListener(event);
+                    addPropertyChangeListener(event);
+                }
+            });
+        }
+
+        private void removePropertyChangeListener(NotificationListEvent event) {
+            java.util.List oldValues = event.getOldValues();
+            for (Iterator iterator = oldValues.iterator(); iterator.hasNext();) {
+                LatticeComponent latticeComponent = (LatticeComponent) iterator.next();
+                latticeComponent.removePropertyChangeListener(propertyChangeRetranslator);
+            }
+        }
+
+        private void addPropertyChangeListener(NotificationListEvent event) {
+            java.util.List newValues = event.getNewValues();
+            for (Iterator iterator = newValues.iterator(); iterator.hasNext();) {
+                LatticeComponent latticeComponent = (LatticeComponent) iterator.next();
+                latticeComponent.addPropertyChangeListener(propertyChangeRetranslator);
+            }
+        }
+
         private int activeLatticeComponentId;
 
         private void setActiveLatticeComponentID(int newId) {
             if (activeLatticeComponentId != newId) {
                 activeLatticeComponentId = newId;
-
+                getActiveLatticeComponent().fireLatticeRecalced();
             }
         }
 
@@ -267,6 +322,10 @@ public class ContextDocument implements ActionChainBearer, Document {
         }
 
         LatticeSupplierAndCalculator getActiveLatticeSupplierAndCalculator() {
+            return getActiveLatticeComponent();
+        }
+
+        private LatticeComponent getActiveLatticeComponent() {
             return getLatticeComponent(getActiveLatticeComponentID());
         }
 
@@ -284,33 +343,6 @@ public class ContextDocument implements ActionChainBearer, Document {
 
         public LatticeDrawing getDrawing() {
             return getActiveLatticeSupplierAndCalculator().getDrawing();
-        }
-
-        public void addPropertyChangeListener(PropertyChangeListener listener) {
-            //todo: think about correct implementation
-            //incorrect implementation just to see what happens
-
-            System.out.println("ContextDocument$LatticeCollectionDecorator.addPropertyChangeListener(listener)");
-            getActiveLatticeSupplierAndCalculator().addPropertyChangeListener(listener);
-
-        }
-
-        public void addPropertyChangeListener(String propertyName, PropertyChangeListener listener) {
-            //todo: think about correct implementation
-            //incorrect implementation just to see what happens
-            System.out.println("ContextDocument$LatticeCollectionDecorator.addPropertyChangeListener(propertyName, listener)");
-            getActiveLatticeSupplierAndCalculator().addPropertyChangeListener(propertyName, listener);
-
-        }
-
-        public void removePropertyChangeListener(PropertyChangeListener listener) {
-            //todo: think about correct implementation
-            Assert.notImplemented();
-        }
-
-        public void removePropertyChangeListener(String propertyName, PropertyChangeListener listener) {
-            //todo: think about correct implementation
-            Assert.notImplemented();
         }
 
         public void cleanUp() {
@@ -362,7 +394,8 @@ public class ContextDocument implements ActionChainBearer, Document {
 
         public void actionPerformed(ActionEvent e) {
             getImplicationBaseCalculator().findDependencies();
-//            showMessage(getLocalizedMessage("ImplBaseBuildedMsg")); //$NON-NLS-1$
+            if (implicationsTreeNode == null)
+                addImplicationsNodeToTree();
             activateView(VIEW_IMPLICATIONS);
         }
     }
@@ -465,6 +498,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
         public void actionPerformed(ActionEvent e) {
             findAssociations();
+            addAssociationsNodeToTree();
             activateView(VIEW_ASSOCIATIONS);
         }
     }
@@ -528,7 +562,8 @@ public class ContextDocument implements ActionChainBearer, Document {
     private ViewManager viewManager;
 
     public static final String VIEW_CONTEXT = "Context";//$NON-NLS-1$
-    public static final String VIEW_IMPLICATIONS = "Implications";//$NON-NLS-1$
+    public static final String IMPLICATIONS_NODE_NAME = "Implications";
+    public static final String VIEW_IMPLICATIONS = IMPLICATIONS_NODE_NAME;//$NON-NLS-1$
     public static final String VIEW_ASSOCIATIONS = "Associations";//$NON-NLS-1$
     public static final String VIEW_LATTICE = "Lattice";
 //    public static final String VIEW_NESTED = "NestedLineDiagram";
@@ -709,7 +744,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
     private JTree makeTree() {
-        final JTree ret = new JTree(getTreeModel());
+        final JTree ret = new JTree(getDocumentTreeModel());
         ret.setCellRenderer(new IconCellRenderer());
         ret.setSelectionPath(getTreePath());
         ret.setShowsRootHandles(true);
@@ -754,14 +789,14 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     private DefaultTreeModel documentTreeModel;
 
-    private TreeModel getTreeModel() {
+    private DefaultTreeModel getDocumentTreeModel() {
         if (null == documentTreeModel) {
             documentTreeModel = makeTreeModel();
             contextDocumentModel.addLatticeComponentsListener(new NotificationListListener() {
                 public void listElementsAdded(NotificationListEvent event) {
                     int size = contextDocumentModel.getLatticeComponents().size();
-                    contextTreeRoot.add(makeLatticeTreeNode(size-1));
-                    documentTreeModel.reload();
+                    getContextTreeRoot().add(makeLatticeTreeNode(size - 1));
+                    getDocumentTreeModel().reload();
                 }
 
                 public void listElementsRemoved(NotificationListEvent event) {
@@ -772,37 +807,59 @@ public class ContextDocument implements ActionChainBearer, Document {
                     Assert.notImplemented();
                 }
             });
-
         }
         return documentTreeModel;
     }
 
 
     private DefaultTreeModel makeTreeModel() {
-
         DefaultMutableTreeNode domain = new DefaultMutableTreeNode(new IconData(DOMAIN_ICON, contextName));
-        contextTreeRoot = makeContextTreeNode();
-        domain.add(contextTreeRoot);
+        domain.add(getContextTreeRoot());
 
         if (hasAtLeastOneLattice()) {
             final int bound = contextDocumentModel.getLatticeComponents().size();
             for (int i = 0; i < bound; i++) {
-                contextTreeRoot.add(makeLatticeTreeNode(i));
+                getContextTreeRoot().add(makeLatticeTreeNode(i));
             }
         }
-        //todo: add handling implication and association rules
-        //if()
+        if (implicationSetIsComputed()) {
+            addImplicationsNodeToTree();
+        }
+        if (associationSetIsComputed()) {
+            addAssociationsNodeToTree();
+        }
 
         DefaultMutableTreeNode[] node = new DefaultMutableTreeNode[2];
         node[0] = domain;
-        node[1] = contextTreeRoot;
+        node[1] = getContextTreeRoot();
         treePath = new TreePath(node);
-
 
         return new DefaultTreeModel(domain);
     }
 
-    class GenericComponentTreeObject implements ITreeObject{
+    private void addAssociationsNodeToTree() {
+        getContextTreeRoot().add(getAssociationsTreeNode());
+        if (null != documentTreeModel) {
+            documentTreeModel.reload();
+        }
+    }
+
+    private void addImplicationsNodeToTree() {
+        getContextTreeRoot().add(getImplicationsTreeNode());
+        if (null != documentTreeModel) {
+            documentTreeModel.reload();
+        }
+    }
+
+    private boolean implicationSetIsComputed() {
+        return getImplicationBaseCalculator().isComputed();
+    }
+
+    private boolean associationSetIsComputed() {
+        return getAssociationMiner().isComputed();
+    }
+
+    class GenericComponentTreeObject implements ITreeObject {
         String data;
         String viewName;
 
@@ -820,13 +877,39 @@ public class ContextDocument implements ActionChainBearer, Document {
         }
 
         public void navigate() {
-             activateView(viewName);
+            activateView(viewName);
         }
     }
 
 
     private DefaultMutableTreeNode makeContextTreeNode() {
         return new DefaultMutableTreeNode(new IconData(CONTEXT_ICON, new GenericComponentTreeObject("Context", VIEW_CONTEXT)));
+    }
+
+    private DefaultMutableTreeNode implicationsTreeNode;
+
+    MutableTreeNode getImplicationsTreeNode() {
+        if (null == implicationsTreeNode) {
+            implicationsTreeNode = makeImplicationTreeNode();
+        }
+        return implicationsTreeNode;
+    }
+
+    private DefaultMutableTreeNode makeImplicationTreeNode() {
+        return new DefaultMutableTreeNode(new IconData(IMPLICATION_ICON, new GenericComponentTreeObject(IMPLICATIONS_NODE_NAME, VIEW_IMPLICATIONS)));
+    }
+
+    private DefaultMutableTreeNode associationsTreeNode;
+
+    MutableTreeNode getAssociationsTreeNode() {
+        if (null == associationsTreeNode) {
+            associationsTreeNode = makeAssociationsTreeNode();
+        }
+        return associationsTreeNode;
+    }
+
+    private DefaultMutableTreeNode makeAssociationsTreeNode() {
+        return new DefaultMutableTreeNode(new IconData(ASSOCIATIONS_ICON, new GenericComponentTreeObject(ASSOCIATIONS_NODE_NAME, VIEW_ASSOCIATIONS)));
     }
 
     private DefaultMutableTreeNode makeLatticeTreeNode(int index) {
@@ -851,8 +934,8 @@ public class ContextDocument implements ActionChainBearer, Document {
             }
 
             public void navigate() {
-               setActiveLatticeComponent(latticeComponent);
-               activateView(VIEW_LATTICE);
+                setActiveLatticeComponent(latticeComponent);
+                activateView(VIEW_LATTICE);
             }
 
             public String toString() {
@@ -911,6 +994,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     public ContextDocument(Context cxt) {
         ActionChainUtil.putActions(actionChain, actions);
         contextDocumentModel = new ContextDocumentModel(cxt);
+        latticeCollectionDecorator =  new LatticeCollectionDecorator();       
     }
 
     public void setParentActionChain(ActionMap chain) {

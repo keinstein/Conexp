@@ -16,6 +16,8 @@ public interface DependencySetSupplier extends PropertyChangeSupplier, ParamsPro
     String RULE_SET_PROPERTY = "RULE_SET";
     String RULE_SET_CLEARED = "RULE_SET_CLEARED";
 
+    boolean isComputed();
+
     DependencySet getDependencySet();
 
     void clearDependencySet();
