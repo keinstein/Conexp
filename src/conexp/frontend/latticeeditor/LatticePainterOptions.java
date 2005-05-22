@@ -188,14 +188,15 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
                 '}';
     }
 
-    public boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
+
+    public boolean isEqual(CanvasScheme other) {
+        if (other instanceof LatticePainterOptions) {
+            return isEqualByContent((LatticePainterOptions) other);
         }
-        if (!(obj instanceof LatticePainterOptions)) {
-            return false;
-        }
-        LatticePainterOptions other = (LatticePainterOptions) obj;
+        return false;
+    }
+
+    public boolean isEqualByContent(LatticePainterOptions other) {
         if (!colorScheme.equals(other.colorScheme)) {
             return false;
         }

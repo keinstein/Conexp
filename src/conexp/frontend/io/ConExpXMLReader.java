@@ -66,15 +66,28 @@ public class ConExpXMLReader implements DocumentLoader {
 
     private static void addLattices(ContextDocument doc, Element latticeCollection) throws DataFormatException {
         Element latticeElement = latticeCollection.getChild(ConExpXMLElements.LATTICE_ELEMENT);
-        if (null == latticeElement) {
+        final List children = latticeCollection.getChildren(ConExpXMLElements.LATTICE_ELEMENT);
+        if(children.isEmpty()){
             return;
         }
+        try {
+            for (Iterator iterator = children.iterator(); iterator.hasNext();) {
+                Element element = (Element) iterator.next();
+                loadLatticeComponent(doc.addLatticeComponent(), latticeElement);
+            }
+        } catch (DataFormatException e) {
+            doc.resetLatticeComponent();
+            throw e;
+        }
+
+/*
         try {
             loadLatticeComponent(doc.getOrCreateDefaultLatticeComponent(), latticeElement);
         } catch (DataFormatException e) {
             doc.resetLatticeComponent();
             throw e;
         }
+*/
     }
 
     private static void loadLatticeComponent(final LatticeComponent latticeComponent, Element latticeElement) throws DataFormatException {

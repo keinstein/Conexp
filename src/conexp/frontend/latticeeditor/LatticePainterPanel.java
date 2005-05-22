@@ -22,6 +22,7 @@ import util.errorhandling.AppErrorHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
@@ -34,6 +35,18 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
 
     public static final String USE_IDEAL_MOVE_STRATEGY_PROPERTY = "USE_IDEAL_MOVE_STRATEGY_PROPERTY";
     public static final String FIT_TO_SIZE_PROPERTY = "FIT_TO_SIZE_PROPERTY";
+
+    public static LatticePainterPanel createLatticePainterPanel(LatticeDrawingProvider latticeDrawingProvider) {
+        System.out.println("LatticePainterPanel.createLatticePainterPanel");
+        LatticePainterPanel ret = new LatticePainterPanel();
+        ret.setLatticeSupplier(latticeDrawingProvider);
+        return ret;
+    }
+
+    public void initialUpdate() {
+        System.out.println("LatticePainterPanel.initialUpdate");
+        super.initialUpdate();
+    }
 
 
     class PanningTool extends canvas.DefaultTool {
@@ -308,8 +321,8 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         return actionChain;
     }
 
-    public LatticePainterPanel(LatticeDrawingProvider latticeDrawingProvider) {
-        super(latticeDrawingProvider);
+    public LatticePainterPanel() {
+        super();
         init();
         getPainterOptions().addPropertyChangeListener(layoutChangeHandler);
 
@@ -320,6 +333,7 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
 
         ActionChainUtil.putActions(getActionChain(), getActions());
     }
+
 
     public void setParentActionMap(ActionMap parentActionChain) {
         getActionChain().setParent(parentActionChain);
@@ -399,11 +413,13 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
         public void propertyChange(PropertyChangeEvent evt) {
             ConceptSetDrawing oldDrawing = (ConceptSetDrawing) evt.getOldValue();
             if (null != oldDrawing) {
-                oldDrawing.getLatticeDrawingOptions().removePropertyChangeListener(drawParamsEventHandler);
+                oldDrawing.getPainterOptions().removePropertyChangeListener(layoutChangeHandler);
+                getEditableDrawingParams(oldDrawing).removePropertyChangeListener(drawParamsEventHandler);
             }
             ConceptSetDrawing newDrawing = (ConceptSetDrawing) evt.getNewValue();
             if (null != newDrawing) {
-                newDrawing.getLatticeDrawingOptions().addPropertyChangeListener(drawParamsEventHandler);
+                newDrawing.getPainterOptions().addPropertyChangeListener(layoutChangeHandler);
+                getEditableDrawingParams(newDrawing).addPropertyChangeListener(drawParamsEventHandler);
             }
         }
     }

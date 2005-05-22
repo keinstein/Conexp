@@ -7,9 +7,7 @@
 
 package conexp.frontend.latticeeditor.tests;
 
-import canvas.CanvasScheme;
 import canvas.IFigurePredicate;
-import canvas.IHighlightStrategy;
 import canvas.figures.TrueFigurePredicate;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
@@ -18,8 +16,10 @@ import conexp.core.layout.layeredlayout.tests.MapBasedConceptCoordinateMapper;
 import conexp.core.layout.layeredlayout.tests.TestDataHolder;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.components.LatticeComponent;
-import conexp.frontend.latticeeditor.*;
-import conexp.frontend.latticeeditor.drawstrategies.DefaultDrawStrategiesModelsFactory;
+import conexp.frontend.components.tests.ComponentsObjectMother;
+import conexp.frontend.latticeeditor.ConceptSetDrawing;
+import conexp.frontend.latticeeditor.LatticeCanvas;
+import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
@@ -30,37 +30,7 @@ import java.awt.*;
 public class LatticeCanvasTest extends junit.framework.TestCase {
 
     public static void testGetUpMoveConstraintForConcept() {
-        final LatticeCanvasScheme options = new LatticeCanvasScheme() {
-            public canvas.CanvasColorScheme getColorScheme() {
-                return null;
-            }
-
-            public CanvasScheme makeCopy() {
-                return null;
-            }
-
-            DrawParameters drawParams = BasicDrawParams.getInstance();
-            DrawStrategiesContext drawStrategiesContext = new LatticeCanvasDrawStrategiesContext(new DefaultDrawStrategiesModelsFactory(drawParams), null);
-
-            public DrawStrategiesContext getDrawStrategiesContext() {
-                return drawStrategiesContext;
-            }
-
-            public IHighlightStrategy getHighlightStrategy() {
-                return drawStrategiesContext.getHighlightStrategy();
-            }
-
-            public Font getLabelsFont(Graphics g) {
-                return g.getFont();
-            }
-
-            public FontMetrics getLabelsFontMetrics(Graphics g) {
-                return g.getFontMetrics(getLabelsFont(g));
-            }
-
-        };
-
-        LatticeCanvas latCanvas = new LatticeCanvas(options) {
+        LatticeCanvas latCanvas = new LatticeCanvas() {
             protected double findMinimalYDistanceToPredecessorsFiguresCenters(AbstractConceptCorrespondingFigure f, IFigurePredicate includeInComputation) {
                 return 10 + 2 * (getDrawParameters()).getMaxNodeRadius();
             }
@@ -123,7 +93,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
     }
 
     private static LatticeCanvas makeCanvas() {
-        return new LatticeCanvas(new LatticePainterOptions());
+        return new LatticeCanvas();
     }
 
     private static LatticeDrawing makePreparedLatticeDrawing(final int[][] relation) {
@@ -134,7 +104,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
     }
 
     public static LatticeCanvas buildPreparedCanvas(final int[][] saturatedRelation, final double[][] layout) {
-        LatticeComponent component = new LatticeComponent(SetBuilder.makeContext(saturatedRelation));
+        LatticeComponent component = ComponentsObjectMother.makeLatticeComponent(saturatedRelation);
         component.calculateLattice();
         Lattice lattice = component.getLattice();
         ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(lattice, saturatedRelation,
@@ -143,18 +113,14 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
         drawing.setCoordinatesFromMapper(mapper);
 
         try {
-            drawing.getLatticeDrawingOptions().getEditableDrawingOptions().setNodeMaxRadius(10);
-            //todo: make drawing options scriptable in normal way
+            drawing.getEditableDrawParameters().setNodeMaxRadius(10);
         } catch (java.beans.PropertyVetoException e) {
             TestUtil.reportUnexpectedException(e);
         }
-
-        LatticePainterOptions latticeCanvasScheme = new LatticePainterOptions();
-        boolean strategySet = latticeCanvasScheme.setFigureDrawingStrategy("MaxNodeRadiusCalcStrategy");
-        assertTrue(strategySet);
-
-        LatticeCanvas canvas = new LatticeCanvas(latticeCanvasScheme);
+        LatticeCanvas canvas = new LatticeCanvas();
         canvas.setConceptSetDrawing(drawing);
+        boolean strategySet = canvas.getPainterOptions().setFigureDrawingStrategy("MaxNodeRadiusCalcStrategy");
+        assertTrue(strategySet);
         return canvas;
     }
 

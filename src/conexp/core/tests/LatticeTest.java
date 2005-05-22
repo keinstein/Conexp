@@ -78,6 +78,7 @@ public class LatticeTest extends TestCase {
     public static void testMakeCopy() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0}});
         Lattice lat = SetBuilder.makeLattice(cxt);
+        lat.setFeatureMasks(SetBuilder.makeSet(new int[]{1}), SetBuilder.makeSet(new int[]{1}));
         assertEquals(2, lat.conceptsCount());
         Lattice copy = lat.makeCopy();
         assertEquals(lat.conceptsCount(), copy.conceptsCount());

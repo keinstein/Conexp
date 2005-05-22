@@ -10,6 +10,8 @@ package conexp.frontend.tests;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import junit.extensions.TestSetup;
+import conexp.frontend.LatticeComponentFactory;
 
 public class AllTests extends TestCase {
 
@@ -19,11 +21,8 @@ public class AllTests extends TestCase {
         suite.addTestSuite(ConceptFrameTest.class);
         suite.addTestSuite(ContextDocManagerTest.class);
         suite.addTestSuite(ContextDocumentModelTest.class);
+        suite.addTest(ContextDocumentTest.suite());
         suite.addTestSuite(PropertyChangeSupplierBaseControllerTest.class);
-        suite.addTestSuite(ContextDocumentTest.class);
-        suite.addTestSuite(JTabPaneViewManagerTest.class);
-        suite.addTestSuite(ViewManagerTest.class);
-
 
         suite.addTest(conexp.frontend.contexteditor.tests.AllTests.suite());
         suite.addTest(conexp.frontend.latticeeditor.tests.AllTests.suite());
@@ -34,6 +33,12 @@ public class AllTests extends TestCase {
         suite.addTest(conexp.frontend.ui.tests.AllTests.suite());
         suite.addTest(conexp.frontend.attributeexploration.tests.AllTests.suite());
         suite.addTest(conexp.frontend.io.tests.AllTests.suite());
-        return suite;
+
+        TestSetup testSetup = new SimpleLayoutTestSetup(suite);
+
+        return testSetup;
+
+
     }
+
 }

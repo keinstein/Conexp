@@ -16,10 +16,6 @@ import util.testing.TestUtil;
 public class DefaultCanvasSchemeTest extends TestCase {
     DefaultCanvasScheme defaultCanvasScheme;
 
-    public static Test suite(){
-         return new TestSuite(DefaultCanvasSchemeTest.class);
-    }
-
     protected void setUp() throws Exception {
         defaultCanvasScheme = new DefaultCanvasScheme();
     }

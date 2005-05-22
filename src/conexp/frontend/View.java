@@ -10,7 +10,7 @@ package conexp.frontend;
 
 public interface View {
     /**
-     * Insert the method's description here.
+     * method is called when the view is shown the first time.
      * Creation date: (16.06.01 21:31:38)
      */
     void initialUpdate();

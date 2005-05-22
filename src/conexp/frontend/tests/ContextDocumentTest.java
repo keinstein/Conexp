@@ -19,8 +19,10 @@ import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
-import conexp.frontend.ui.ViewManager;
+import conexp.frontend.ui.ConExpViewManager;
 import junit.framework.TestCase;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 import util.testing.SwingTestUtil;
 
 import javax.swing.*;
@@ -32,6 +34,10 @@ public class ContextDocumentTest extends TestCase {
 
     protected void setUp() {
         doc = new ContextDocument();
+    }
+
+    public static Test suite(){
+        return new SimpleLayoutTestSetup(new TestSuite(ContextDocumentTest.class));
     }
 
     private void performCommand(String command) {
@@ -48,6 +54,7 @@ public class ContextDocumentTest extends TestCase {
         doc.getAssociationMiner().findDependencies();
         assertSame(cxt, doc.getAssociationMiner().getDependencySet().getAttributesInformation());
     }
+
 
 
     static interface DependencySetSupplier {
@@ -111,7 +118,7 @@ public class ContextDocumentTest extends TestCase {
 
     private void expectViewActivationAfterCommand(String command, String expectedView) {
         performCommand(command);
-        assertEquals("Unexpected view activated for command " + command, doc.getViewManager().getView(expectedView), doc.getViewManager().getActiveView());
+        assertEquals("Unexpected view activated for command " + command, doc.getViewForType(expectedView), doc.getViewManager().getActiveView());
     }
 
     public void testGetViewManager() {
@@ -175,8 +182,8 @@ public class ContextDocumentTest extends TestCase {
     public void testReduceContextCommand() throws Exception {
         Context cxt = SetBuilder.makeContext(ContextReductionTest.BURMEISTER__EXAMPLE);
         doc = new ContextDocument(cxt);
-        doc.getViewManager().addView(ContextDocument.VIEW_CONTEXT);
-        ToolbarComponentDecorator decorator = (ToolbarComponentDecorator) doc.getViewManager().getView(ContextDocument.VIEW_CONTEXT);
+        doc.activateView(ContextDocument.VIEW_CONTEXT);
+        ToolbarComponentDecorator decorator = (ToolbarComponentDecorator) doc.getViewForType(ContextDocument.VIEW_CONTEXT);
         ViewChangeInterfaceWithConfig contextView = decorator.getInner();
         Action reduceObjects = contextView.getActionChain().get("reduceObj");
         reduceObjects.actionPerformed(null);
@@ -198,6 +205,7 @@ public class ContextDocumentTest extends TestCase {
     }
 
     public void testSnapshotLattice() {
+        LatticeComponentFactory.configureTest();
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
                                                          {1, 0, 1},
                                                          {1, 1, 0}});
@@ -253,7 +261,7 @@ public class ContextDocumentTest extends TestCase {
         JTree tree = doc.getTree();
         assertEquals(2, SwingTestUtil.sizeOfTheTree(tree));
         assertEquals(0, doc.getLatticeCollection().size());
-        final ViewManager viewManager = doc.getViewManager();
+        final ConExpViewManager viewManager = doc.getViewManager();
         assertEquals(ContextDocument.VIEW_CONTEXT, viewManager.getActiveViewId());
         performCommand("buildLatticeDS");
         assertEquals(ContextDocument.VIEW_LATTICE, viewManager.getActiveViewId());
@@ -272,6 +280,26 @@ public class ContextDocumentTest extends TestCase {
         testOneNodeInTree("calcAssociationRules", ContextDocument.ASSOCIATIONS_NODE_NAME);
     }
 
+    public void testRemoveLatticeComponent() {
+        Context cxt = SetBuilder.makeContext(new int[][]{{1, 1, 1},
+                                                         {0, 1, 1}});
+        doc = new ContextDocument(cxt);
+        doc.activateViews();
+        JTree tree = doc.getTree();
+        assertEquals(2, SwingTestUtil.sizeOfTheTree(tree));
+        performCommand("buildLatticeDS");
+        checkDocView(ContextDocument.VIEW_LATTICE);
+        assertEquals(3, SwingTestUtil.sizeOfTheTree(tree));
+        doc.removeLatticeComponent(doc.getLatticeComponent(0));
+        assertEquals(2, SwingTestUtil.sizeOfTheTree(tree));
+        checkDocView(ContextDocument.VIEW_CONTEXT);
+    }
+
+    private void checkDocView(final String expectedView) {
+        assertEquals(doc.getViewForType(expectedView), doc.getViewManager().getActiveView());
+    }
+
+
     private void testOneNodeInTree(final String command, final String nodeName) {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
                                                          {1, 0, 1},
@@ -285,5 +313,6 @@ public class ContextDocumentTest extends TestCase {
         performCommand(command);
         assertEquals(1, SwingTestUtil.nodeOccurenceInTree(tree, nodeName));
     }
+
 
 }

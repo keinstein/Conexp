@@ -11,8 +11,10 @@ import conexp.core.ContextChangeEvent;
 import conexp.core.DefaultContextListener;
 import conexp.core.ExtendedContextEditingInterface;
 import util.Assert;
+import util.StringUtil;
 
 import java.beans.PropertyChangeEvent;
+
 
 public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplementation {
     ExtendedContextEditingInterface context;
@@ -22,6 +24,10 @@ public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplement
         ContextAttributeMask ret = new ContextAttributeMask(context);
         uncheckedCopyTo(ret);
         return ret;
+    }
+
+    public String toString() {
+        return StringUtil.extractClassName(getClass().getName())+toSet().toString();
     }
 
     class AttributeMaskContextListener extends DefaultContextListener {

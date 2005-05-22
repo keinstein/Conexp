@@ -60,6 +60,15 @@ public abstract class FigureWithCoords extends AbstractFigure implements ICenter
     }
 
     public String toString() {
-        return StringUtil.extractClassName(getClass().toString()) + "[x=" + getCenterX() + "; y=" + getCenterY() + "];";
+        StringBuffer sb = new StringBuffer(40);
+        sb.append(StringUtil.extractClassName(getClass().toString()));
+        sb.append("[");
+        sb.append(getContentDescription());
+        sb.append("];");
+        return sb.toString();
+    }
+
+    protected String getContentDescription() {
+        return "x=" + getCenterX() + "; y=" + getCenterY();
     }
 }

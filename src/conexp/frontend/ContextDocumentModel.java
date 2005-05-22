@@ -65,7 +65,7 @@ public class ContextDocumentModel {
         latticeComponents.addNotificationListListener(listener);
     }
 
-    public void removeLatticeComponentsLisneter(NotificationListListener listener) {
+    public void removeLatticeComponentsListener(NotificationListListener listener) {
         latticeComponents.removeNotificationListListener(listener);
     }
 
@@ -74,7 +74,7 @@ public class ContextDocumentModel {
     }
 
     private LatticeSupplier makeLatticeComponentForDoc() {
-        final LatticeComponent result = new LatticeComponent(getContext());
+        final LatticeComponent result = LatticeComponentFactory.makeLatticeComponent(getContext());
         result.setUpLatticeRecalcOnMasksChange();
         result.restorePreferences();
         return result;
@@ -99,7 +99,6 @@ public class ContextDocumentModel {
     }
 
     private void clearLattices() {
-        System.out.println("ContextDocumentModel.clearLattices");
         for (Iterator iterator = latticeComponents.iterator(); iterator.hasNext();) {
             LatticeComponent latticeComponent = (LatticeComponent) iterator.next();
             latticeComponent.clearLattice();
@@ -115,7 +114,7 @@ public class ContextDocumentModel {
         return (LatticeComponent) latticeComponents.get(index);
     }
 
-    public void resetLatticeComponent() {
+    public void resetLatticeComponents() {
         doResetLatticeComponents();
         //do we really need this ?
         latticeComponents.add(makeLatticeComponentForDoc());
@@ -129,10 +128,13 @@ public class ContextDocumentModel {
         latticeComponents.clear();
     }
 
-    public void makeLatticeSnapshot(int index) {
+    public int makeLatticeSnapshot(int index) {
         LatticeComponent old = getLatticeComponent(index);
-        LatticeSupplier newComponent = old.makeCopy();
+        LatticeComponent newComponent = old.makeCopy();
         latticeComponents.add(newComponent);
+        //fast quick fix
+        newComponent.calculateAndLayoutPartialLattice();
+        return latticeComponents.size()-1;
     }
 
     public int findLatticeComponent(LatticeSupplier latticeComponent) {
@@ -144,5 +146,10 @@ public class ContextDocumentModel {
         }
         return -1;
     }
+
+    public void removeLatticeComponent(LatticeSupplier component){
+        latticeComponents.remove(component);
+    }
+
 
 }

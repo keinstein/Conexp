@@ -7,10 +7,9 @@ package conexp.frontend.latticeeditor.tests;
  */
 
 import canvas.util.RasterImageExporter;
-import conexp.core.tests.SetBuilder;
-import conexp.core.layoutengines.SimpleLayoutEngine;
-import conexp.frontend.latticeeditor.LatticePainterPanel;
 import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.components.tests.ComponentsObjectMother;
+import conexp.frontend.latticeeditor.LatticePainterPanel;
 import junit.framework.TestCase;
 
 import java.io.File;
@@ -18,10 +17,8 @@ import java.io.File;
 public class RasterImageExporterTest extends TestCase {
     public void testSavingToGif() throws Exception{
 
-        LatticeComponent component =     new LatticeComponent(SetBuilder.makeContext(new int[][]{{0}}));
-        component.setLayoutEngine(new SimpleLayoutEngine());
-
-        LatticePainterPanel panel = new LatticePainterPanel(component);
+        LatticeComponent component =     ComponentsObjectMother.makeLatticeComponentWithSimpleLayoutEngine(new int[][]{{0}});
+        LatticePainterPanel panel = LatticePainterPanel.createLatticePainterPanel(component);
 
         panel.setAntiAlias(true);
         panel.initialUpdate();

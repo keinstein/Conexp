@@ -39,4 +39,13 @@ public class ToolbarComponentDecorator extends JPanel implements OptionPaneProvi
     public ViewChangeInterfaceWithConfig getInner() {
         return inner;
     }
+
+    public String toString() {
+        StringBuffer ret = new StringBuffer(100);
+        ret.append(getClass().getName());
+        ret.append("[inner ");
+        ret.append(inner.toString());
+        ret.append("]");
+        return ret.toString();
+    }
 }

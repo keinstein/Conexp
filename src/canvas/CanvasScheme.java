@@ -21,4 +21,6 @@ public interface CanvasScheme {
     IHighlightStrategy getHighlightStrategy();
 
     CanvasScheme makeCopy();
+
+    boolean isEqual(CanvasScheme other);
 }

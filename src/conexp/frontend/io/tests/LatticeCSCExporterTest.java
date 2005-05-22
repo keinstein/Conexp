@@ -1,7 +1,7 @@
 package conexp.frontend.io.tests;
 
-import conexp.core.tests.SetBuilder;
 import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.components.tests.ComponentsObjectMother;
 import conexp.frontend.io.LatticeCSCExporter;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
@@ -42,9 +42,9 @@ public class LatticeCSCExporterTest extends TestCase {
     }
 
     protected void setUp() {
-        latticeComponent = new LatticeComponent(SetBuilder.makeContext(new int[][]{{0, 0, 1},
+        latticeComponent = ComponentsObjectMother.makeLatticeComponent(new int[][]{{0, 0, 1},
                                                                                    {1, 0, 0},
-                                                                                   {0, 1, 1}}));
+                                                                                   {0, 1, 1}});
 
 
         latticeComponent.calculateAndLayoutLattice();

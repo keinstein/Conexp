@@ -16,6 +16,8 @@ import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 
 import java.awt.*;
 
+import util.StringUtil;
+
 public class EdgeFigure extends LineFigure implements Collidable {
     public EdgeFigure(AbstractConceptCorrespondingFigure start, AbstractConceptCorrespondingFigure end) {
         super(start, end);
@@ -70,5 +72,9 @@ public class EdgeFigure extends LineFigure implements Collidable {
             return canvasSchema.getDrawStrategiesContext().getEdgeSizeCalcStrategy().edgeThickness(getStartConcept(), getEndConcept());
         }
         return super.getLineThickness(opt);
+    }
+
+    public String toString() {
+        return StringUtil.extractClassName(getClass().getName())+"[ startConcept:"+getStartConcept()+", endConcept:"+getEndConcept()+"]";
     }
 }

@@ -18,10 +18,6 @@ import junit.framework.TestSuite;
 
 public class DefaultToolTest extends TestCase {
 
-    public static Test suite() {
-        return new TestSuite(DefaultToolTest.class);
-    }
-
     static class MockToolListener extends DefaultToolListener {
         ExpectationList expList;
 

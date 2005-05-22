@@ -97,11 +97,11 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
     }
 
 
-    public void testMakeCopy() {
+    public void testMakeSetupCopy() {
         LatticeDrawing other = drawing.makeSetupCopy();
         assertNotNull(other);
         assertNotSame(drawing, other);
-        assertEquals(drawing.getOptions(), other.getOptions());
+        assertTrue(drawing.getOptions().isEqual(other.getOptions()));
     }
 
 

@@ -233,6 +233,12 @@ public class Lattice extends ConceptsCollection {
         if (!other.zero.equals(zero)) {
             return false;
         }
+        if (attributesMask != null ? !attributesMask.equals(other.attributesMask) : other.attributesMask != null) {
+            return false;
+        }
+        if (objectsMask != null ? !objectsMask.equals(other.objectsMask) : other.objectsMask != null) {
+            return false;
+        }
         for (int i = conceptsCount(); --i >= 0;) {
             LatticeElement el = elementAt(i);
             LatticeElement otherEl = other.findElementWithIntent(el.getAttribs());
@@ -421,7 +427,8 @@ public class Lattice extends ConceptsCollection {
     public Lattice makeCopy() {
         final Lattice ret = new Lattice();
         //usage of loop insead of forEach is important here
-        for (int i = 0; i < conceptsCount(); i++) {
+        int conceptCount = conceptsCount();
+        for (int i = 0; i < conceptCount; i++) {
             ret.addElement(makeConceptCopy(elementAt(i)));
         }
         ret.setZero(ret.elementAt(this.zero.getIndex()));
@@ -438,6 +445,12 @@ public class Lattice extends ConceptsCollection {
         });
 
         ret.setContext(getContext());
+        if (attributesMask != null) {
+            ret.attributesMask = attributesMask.makeModifiableSetCopy();
+        }
+        if (objectsMask != null) {
+            ret.objectsMask = objectsMask.makeModifiableSetCopy();
+        }
         return ret;
     }
 

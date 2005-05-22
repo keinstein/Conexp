@@ -23,6 +23,8 @@ import util.XMLGeneralTypesUtil;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.util.Collection;
+import java.util.Iterator;
 
 
 public class ConExpXMLWriter implements DocumentWriter {
@@ -61,7 +63,11 @@ public class ConExpXMLWriter implements DocumentWriter {
 
     private static Element storeLattices(ContextDocument document) {
         Element latticeCollection = new Element(ConExpXMLElements.LATTICE_COLLECTION);
-        storeLatticeComponent(latticeCollection, document.getOrCreateDefaultLatticeComponent());
+        final Collection latticeComponents = document.getLatticeCollection();
+        for (Iterator iterator = latticeComponents.iterator(); iterator.hasNext();) {
+            LatticeComponent component = (LatticeComponent) iterator.next();
+            storeLatticeComponent(latticeCollection, component);
+        }
         return latticeCollection;
     }
 

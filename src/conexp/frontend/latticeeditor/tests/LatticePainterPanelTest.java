@@ -8,11 +8,11 @@
 package conexp.frontend.latticeeditor.tests;
 
 import canvas.CanvasScheme;
-import conexp.core.Context;
 import conexp.core.Lattice;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.ContextDocument;
 import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.components.tests.ComponentsObjectMother;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.LatticePainterOptions;
 import conexp.frontend.latticeeditor.LatticePainterPanel;
@@ -65,12 +65,11 @@ public class LatticePainterPanelTest extends TestCase {
     }
 
     public static void testCorrectWorkingOfOptionsChanges() {
-        Context cxt = SetBuilder.makeContext(new int[][]{
+        LatticeComponent component = ComponentsObjectMother.makeLatticeComponentWithSimpleLayoutEngine(new int[][]{
             {1, 0, 0},
             {0, 1, 0},
             {0, 0, 1}
         });
-        LatticeComponent component = TestHelper.makeTestableLatticeComponent(cxt);
         component.calculateAndLayoutLattice();
 
 
@@ -85,7 +84,7 @@ public class LatticePainterPanelTest extends TestCase {
         TestHelper.checkCoordsForIntent(120.0, 60.0, drawing, lattice, new int[]{0, 0, 1});
         TestHelper.checkCoordsForIntent(120, 120.0, drawing, lattice, new int[]{1, 1, 1});
 
-        LatticePainterPanel panel = new LatticePainterPanel(component);
+        LatticePainterPanel panel = LatticePainterPanel.createLatticePainterPanel(component);
         panel.initialUpdate();
         try {
             panel.getEditableDrawingParams().setGridSizeY(80);

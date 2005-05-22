@@ -4,6 +4,7 @@ import conexp.core.Context;
 import conexp.core.Lattice;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.components.tests.ComponentsObjectMother;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.RescaleByYFigureVisitor;
 import junit.framework.TestCase;
@@ -17,13 +18,11 @@ import junit.framework.TestCase;
 public class RescaleByYFigureVisitorTest extends TestCase {
     public static void testRescaleByY() {
 
-        Context cxt = SetBuilder.makeContext(new int[][]{
+        LatticeComponent component = ComponentsObjectMother.makeLatticeComponentWithSimpleLayoutEngine(new int[][]{
             {1, 0, 0},
             {0, 1, 0},
             {0, 0, 1}
         });
-
-        LatticeComponent component = TestHelper.makeTestableLatticeComponent(cxt);
         component.calculateAndLayoutLattice();
         final LatticeDrawing drawing = component.getDrawing();
         assertEquals(60, drawing.getDrawParams().getGridSizeY());

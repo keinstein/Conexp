@@ -11,13 +11,10 @@ import canvas.Figure;
 import canvas.FigureDrawing;
 import canvas.figures.FigureWithCoords;
 import com.mockobjects.beans.MockPropertyChangeListener;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import util.testing.TestUtil;
 
 import java.awt.*;
-
-import util.testing.TestUtil;
 
 
 public class FigureDrawingTest extends TestCase {
@@ -31,15 +28,6 @@ public class FigureDrawingTest extends TestCase {
         figureDrawing.addFigure(f1);
         f2 = new MockFigure(15, 15);
         figureDrawing.addFigure(f2);
-    }
-
-    /**
-     * Insert the method's description here.
-     * Creation date: (13.01.01 2:07:56)
-     * @return junit.framework.Test
-     */
-    public static Test suite() {
-        return new TestSuite(FigureDrawingTest.class);
     }
 
     /**

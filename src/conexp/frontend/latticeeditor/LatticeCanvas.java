@@ -23,13 +23,12 @@ import java.awt.geom.Point2D;
 
 public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDrawingConsumer {
 
-    public LatticeCanvas(LatticeCanvasScheme latticeCanvasScheme) {
-        super(latticeCanvasScheme);
+    public LatticeCanvas() {
+        super();
     }
 
-
     protected AffineTransform makeTranslatingTransform(Point2D viewPoint) {
-        DrawParameters drawParams = getConceptSetDrawing().getLatticeDrawingSchema().getDrawParams();
+        DrawParameters drawParams = getDrawParameters();
         return AffineTransform.getTranslateInstance(-viewPoint.getX() + drawParams.getMinGapX(), -viewPoint.getY() + drawParams.getMinGapY());
     }
 

@@ -12,6 +12,7 @@ import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.latticeeditor.LatticePainterPanel;
 import conexp.frontend.util.IResourceManager;
 import util.Assert;
+import util.StringUtil;
 import util.gui.JSplitPaneWithFixedRightPane;
 
 import javax.swing.*;
@@ -27,11 +28,11 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
 
     public LatticeAndEntitiesMaskSplitPane(LatticeSupplier latticeSupplier, ActionMap parentActionChain) {
         super();
-        latticePanel = new LatticePainterPanel(latticeSupplier);
+        latticePanel = LatticePainterPanel.createLatticePainterPanel(latticeSupplier);
         latticePanel.setParentActionMap(parentActionChain);
         setLeftComponent(new JScrollPane(latticePanel));
 
-        JComponent rightPanel = makeAttributeSelectionPane(latticeSupplier);
+        JComponent rightPanel = makeEntitiesSelectionPane(latticeSupplier);
 
         final Dimension preferredSize = new Dimension(SizeOptions.getProjectPaneWidth(), SizeOptions.getMainFrameHeight());
         rightPanel.setPreferredSize(preferredSize);
@@ -47,7 +48,11 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
         }
     }
 
-    private JComponent makeAttributeSelectionPane(LatticeSupplier latticeSupplier) {
+    public String toString() {
+        return StringUtil.extractClassName(getClass().getName())+"[latticePanel.Id="+System.identityHashCode(latticePanel)+"]";
+    }
+
+    private JComponent makeEntitiesSelectionPane(LatticeSupplier latticeSupplier) {
         /*       JSplitPane outer = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
                outer.setOneTouchExpandable(true);
                outer.setResizeWeight(0.5);

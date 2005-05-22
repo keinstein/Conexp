@@ -15,7 +15,13 @@ import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import canvas.FigureDrawing;
+import canvas.CanvasScheme;
+
 public class BaseConceptSetCanvas extends LatticeCanvas {
+    protected CanvasScheme makeDefaultCanvasScheme() {
+        return new LatticePainterOptions();
+    }
 
     class LatticePainterGenericEventHandler implements PropertyChangeListener {
         public void propertyChange(PropertyChangeEvent evt) {
@@ -39,14 +45,34 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
     }
 
 
-    public BaseConceptSetCanvas(LatticeCanvasScheme latticeCanvasScheme) {
-        super(latticeCanvasScheme);
+    public BaseConceptSetCanvas() {
+        super();
     }
+
+
 
     protected void init() {
         setFigureMoveStrategyAccordingToOptions();
-        getPainterOptions().addPropertyChangeListener(eventHandler);
+        addOptionsListener();
     }
+
+    private void addOptionsListener() {
+        getPainterOptions().addPropertyChangeListener(eventHandler);
+        addPropertyChangeListener(CANVAS_SCHEME_PROPERTY, new PropertyChangeListener(){
+            public void propertyChange(PropertyChangeEvent evt) {
+                //assert CANVAS_SCHEME_PROPERTY.equals(evt.getPropertyName());
+                LatticePainterOptions oldOptions = (LatticePainterOptions)evt.getOldValue();
+                if(oldOptions!=null){
+                    oldOptions.removePropertyChangeListener(eventHandler);
+                }
+                LatticePainterOptions newOptions = (LatticePainterOptions)evt.getNewValue();
+                if(null!=newOptions){
+                    newOptions.addPropertyChangeListener(eventHandler);
+                }
+            }
+        });
+    }
+
 
 
     public void refresh() {
@@ -86,6 +112,11 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
     }
 
     public LatticePainterDrawParams getEditableDrawingParams() {
-        return getConceptSetDrawing().getLatticeDrawingOptions().getEditableDrawingOptions();
+        final ConceptSetDrawing conceptSetDrawing = getConceptSetDrawing();
+        return getEditableDrawingParams(conceptSetDrawing);
+    }
+
+    protected static LatticePainterDrawParams getEditableDrawingParams(final ConceptSetDrawing conceptSetDrawing) {
+        return conceptSetDrawing.getEditableDrawParameters();
     }
 }

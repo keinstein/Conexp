@@ -33,6 +33,6 @@ public class LatticePainterOptionsTest extends TestCase {
 
     public void testMakeCopy() {
         CanvasScheme other = latticePainterOptions.makeCopy();
-        assertEquals(latticePainterOptions, other);
+        assertTrue(latticePainterOptions.isEqualByContent((LatticePainterOptions)other));
     }
 }

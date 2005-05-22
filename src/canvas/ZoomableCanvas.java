@@ -143,7 +143,6 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
             if (fitToSize) {
                 switchViewportToNoScrollerMode();
                 Dimension size = getViewportSize();
-                //updateSizeOfCanvas(size);
                 adjustZoom(size);
             } else {
                 setZoom(1.0);
@@ -211,20 +210,35 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         }
     }
 
-    protected abstract void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform);
+    protected abstract void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform) throws sun.dc.pr.PRException;
 
     protected void drawOnGraphicsWithDimension(Graphics g, Dimension dimension, AffineTransform scalingTransform) {
-        if (g instanceof Graphics2D) {
-            Graphics2D g2D = (Graphics2D) g;
-            Object oldAntiAlias = g2D.getRenderingHint(RenderingHints.KEY_ANTIALIASING);
-            try {
-                g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, AntiAlias);
+        try {
+
+
+            if (g instanceof Graphics2D) {
+                Graphics2D g2D = (Graphics2D) g;
+                Object oldAntiAlias = g2D.getRenderingHint(RenderingHints.KEY_ANTIALIASING);
+                try {
+                    g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, AntiAlias);
+                    doDrawOnGraphicsWithDimension(g, dimension, scalingTransform);
+                } finally {
+                    g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, oldAntiAlias);
+                }
+            } else {
                 doDrawOnGraphicsWithDimension(g, dimension, scalingTransform);
-            } finally {
-                g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, oldAntiAlias);
             }
-        } else {
-            doDrawOnGraphicsWithDimension(g, dimension, scalingTransform);
+
+        } catch (sun.dc.pr.PRError er) {
+            //do nothing
+            /**
+             * this code is here to handle bug in JDK
+             */
+        } catch (sun.dc.pr.PRException ex) {
+            //do nothing
+            /**
+             * this code is here to handle bug in JDK
+             */
         }
     }
 

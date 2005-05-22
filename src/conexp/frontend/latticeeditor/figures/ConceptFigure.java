@@ -64,6 +64,7 @@ public class ConceptFigure extends ConceptCorrespondingFigure implements Selecta
     protected void drawInterior(Graphics2D g2D, LatticeCanvasScheme opt) {
         double nodeRadius = opt.getDrawStrategiesContext().getFigureDimensionCalcStrategy().calcNodeRadius(getConceptQuery());
         CanvasColorScheme colorScheme = opt.getColorScheme();
+        ///*DBG*/ System.out.println("colorScheme in concept figure:"+colorScheme);
         IHighlightStrategy highlightStrategy = opt.getHighlightStrategy();
         g2D.setColor(transformColor(highlightStrategy, colorScheme.getNodeFillColor()));
         Arc2D arc = new Arc2D.Double(getCenterX() - nodeRadius, getCenterY() - nodeRadius, nodeRadius * 2, nodeRadius * 2, 0, 180, Arc2D.CHORD);
@@ -97,6 +98,10 @@ public class ConceptFigure extends ConceptCorrespondingFigure implements Selecta
         return "<i>" + cnt + " objects (" + StringUtil.formatPercents(totalCnt != 0 ? (double) cnt / totalCnt : 0.) + ")</i>";
     }
 
+    protected String getContentDescription() {
+        return super.getContentDescription()+" Concept:"+getConcept();
+    }
+
     boolean selected;
 
     public boolean isSelected() {
@@ -106,4 +111,6 @@ public class ConceptFigure extends ConceptCorrespondingFigure implements Selecta
     public void setSelected(boolean selected) {
         this.selected = selected;
     }
+
+
 }

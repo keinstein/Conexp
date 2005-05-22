@@ -9,9 +9,7 @@ package canvas.tests;
 
 import canvas.DefaultTool;
 import canvas.FigureDrawingCanvas;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import util.collection.CollectionFactory;
 import util.testing.SimpleMockPropertyChangeListener;
 
@@ -20,10 +18,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FigureDrawingCanvasTest extends TestCase {
-
-    public static Test suite() {
-        return new TestSuite(FigureDrawingCanvasTest.class);
-    }
 
     static class MockTool extends DefaultTool {
         List callsList = CollectionFactory.createDefaultList();

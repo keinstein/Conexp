@@ -41,23 +41,24 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     Point2D viewPoint = GraphicObjectsFactory.makePoint2D(0, 0);
 
     private CanvasScheme options;
+    public static final String CANVAS_SCHEME_PROPERTY = "CanvasScheme";
 
     public void setOptions(CanvasScheme options) {
         //*DBG*/ System.out.println("FigureDrawingCanvas.setOptions: newOptions "+options);
         CanvasScheme oldValue = this.options;
         this.options = options;
-        firePropertyChange("CanvasScheme", oldValue, this.options);
+        firePropertyChange(CANVAS_SCHEME_PROPERTY, oldValue, this.options);
     }
 
     public CanvasScheme getOptions() {
+        if(null==options){
+            options = makeDefaultCanvasScheme();
+        }
         return options;
     }
 
 
-
-    public FigureDrawingCanvas(CanvasScheme canvasScheme){
-        this.options = canvasScheme;
-
+    public FigureDrawingCanvas() {
         translatingTransform = makeTranslatingTransform(viewPoint);
 
         setActiveTool(getDefaultTool());
@@ -67,8 +68,9 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
         addMouseMotionListener(mouseHandler);
     }
 
-    public FigureDrawingCanvas() {
-        this(new DefaultCanvasScheme());
+
+    protected CanvasScheme makeDefaultCanvasScheme() {
+        return new DefaultCanvasScheme();
     }
 
     private PaintBlock paintBlock;
@@ -132,21 +134,29 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
 
 
     protected void setDrawing(FigureDrawing newDrawing) {
+        System.out.println("FigureDrawingCanvas.setDrawing");
+        shutdownBeforeSetDrawing();
+        FigureDrawing oldDrawing = this.drawing;
+        this.drawing = newDrawing;
+        setOptions(newDrawing.getOptions()); //after that the update of option changing
+        //should be handled in the subclasses and listeners to options should be updated
+
+        setupAfterNewDrawingIsSet(newDrawing);
+        updateTranslatingTransform(newDrawing.getUserBoundsRect());
+        drawingDimensionChanged(getDrawingDimension());
+        firePropertyChange(DRAWING, oldDrawing, this.drawing);
+    }
+
+    protected void setupAfterNewDrawingIsSet(FigureDrawing newDrawing) {
+        newDrawing.addDrawingChangedListener(figureDrawingChangeListener);
+        newDrawing.addPropertyChangeListener(FigureDrawing.BOUNDS_BOX_PROPERTY, drawingBoundsChangeListener);
+    }
+
+    protected void shutdownBeforeSetDrawing() {
         if (null != this.drawing) {
             this.drawing.removeDrawingChangedListener(figureDrawingChangeListener);
             this.drawing.removePropertyChangeListener(FigureDrawing.BOUNDS_BOX_PROPERTY, drawingBoundsChangeListener);
         }
-        FigureDrawing oldDrawing = this.drawing;
-        this.drawing = newDrawing;
-        //todo: something is wrong with options setting sequence
-        //fix this
-        newDrawing.setOptions(getOptions());
-
-        newDrawing.addDrawingChangedListener(figureDrawingChangeListener);
-        newDrawing.addPropertyChangeListener(FigureDrawing.BOUNDS_BOX_PROPERTY, drawingBoundsChangeListener);
-        updateTranslatingTransform(newDrawing.getUserBoundsRect());
-        drawingDimensionChanged(getDrawingDimension());
-        firePropertyChange(DRAWING, oldDrawing, this.drawing);
     }
 
     public FigureDrawing getDrawing() {
@@ -200,7 +210,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     protected void initPaint() {
     }
 
-    protected void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform) {
+    protected void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform) throws sun.dc.pr.PRException{
         initPaint();
         drawBlankImage(g, d);
         drawLineDiagram(g, scalingTransform);

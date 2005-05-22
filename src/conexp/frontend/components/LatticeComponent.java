@@ -62,7 +62,14 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         return context;
     }
 
+    boolean recalcLatticeOnMaskChange = false;
+
+    public boolean isRecalcLatticeOnMaskChange() {
+        return recalcLatticeOnMaskChange;
+    }
+
     public void setUpLatticeRecalcOnMasksChange(){
+        recalcLatticeOnMaskChange = true;
         EntityMaskChangeController entityMaskChangeController = new EntityMaskChangeController(this);
         getAttributeMask().addPropertyChangeListener(entityMaskChangeController);
         getObjectMask().addPropertyChangeListener(entityMaskChangeController);
@@ -130,12 +137,16 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     }
 
     protected void doSetLatticeAndFireRecalced(final Lattice otherLattice) {
+        doSetLattice(otherLattice);
+        fireLatticeRecalced();
+
+    }
+
+    protected void doSetLattice(final Lattice otherLattice) {
         synchronized (this) {
             lattice = otherLattice;
             getDrawing().setLattice(otherLattice);
         }
-        fireLatticeRecalced();
-
     }
 
     public void calculatePartialLattice() {
@@ -171,17 +182,8 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         getPropertyChangeSupport().firePropertyChange(LatticeCalculator.LATTICE_DRAWING_CHANGED, null, getDrawing());
     }
 
-    public boolean equals(Object other) {
-        if (this == other) {
-            return true;
-        }
-        if (!(other instanceof LatticeSupplier)) {
-            return false;
-        }
-
-        final LatticeComponent latticeComponent = (LatticeComponent) other;
-
-        if (attributeMask != null ? !attributeMask.equals(latticeComponent.attributeMask) : latticeComponent.attributeMask != null) {
+    public boolean isEqualByContent(final LatticeComponent latticeComponent) {
+        if(null==latticeComponent){
             return false;
         }
         if (context != null ? !context.equals(latticeComponent.context) : latticeComponent.context != null) {
@@ -191,6 +193,12 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
             return false;
         }
         if (objectMask != null ? !objectMask.equals(latticeComponent.objectMask) : latticeComponent.objectMask != null) {
+            return false;
+        }
+        if (attributeMask != null ? !attributeMask.equals(latticeComponent.attributeMask) : latticeComponent.attributeMask != null) {
+            return false;
+        }
+        if(recalcLatticeOnMaskChange!=latticeComponent.recalcLatticeOnMaskChange){
             return false;
         }
 
@@ -215,14 +223,11 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         return true;
     }
 
-    public int hashCode() {
-        int result = attributeMask != null ? attributeMask.hashCode() : 0;
-        result = 29 * result + (objectMask != null ? objectMask.hashCode() : 0);
-        return result;
-    }
-
     public synchronized LatticeComponent makeCopy() {
         final LatticeComponent other = new LatticeComponent(this.context, attributeMask.makeCopy(), objectMask.makeCopy());
+        if(isRecalcLatticeOnMaskChange()){
+            other.setUpLatticeRecalcOnMasksChange();
+        }
         if (null != latticeDrawing) {
             other.latticeDrawing = latticeDrawing.makeSetupCopy();
         }
@@ -230,7 +235,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
             other.setLayoutEngine(layoutEngine.newInstance());
         }
         if (lattice != null) {
-            other.doSetLatticeAndFireRecalced(getLattice().makeCopy());
+            other.doSetLattice(getLattice().makeCopy());
             if (null != latticeDrawing) {
                 other.getDrawing().setCoordinatesFromMapper(new ConceptCoordinateMapper() {
                     public void setCoordsForConcept(ItemSet c, Point2D coords) {
@@ -238,6 +243,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
                     }
                 });
             }
+            //what's about foreground figures in the  drawing ?
         }
 
         return other;

@@ -12,8 +12,8 @@ import conexp.frontend.LatticeDrawingProvider;
 
 public class BirdviewLatticeView extends BaseLatticePainterPane {
 
-    public BirdviewLatticeView(LatticeDrawingProvider latticeDrawingProvider) {
-        super(latticeDrawingProvider);
+    public BirdviewLatticeView() {
+        super();
     }
 
 }

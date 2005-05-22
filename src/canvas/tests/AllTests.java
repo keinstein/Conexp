@@ -16,10 +16,10 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
 
-        suite.addTest(DefaultCanvasSchemeTest.suite());
-        suite.addTest(DefaultToolTest.suite());
-        suite.addTest(FigureDrawingCanvasTest.suite());
-        suite.addTest(FigureDrawingTest.suite());
+        suite.addTestSuite(DefaultCanvasSchemeTest.class);
+        suite.addTestSuite(DefaultToolTest.class);
+        suite.addTestSuite(FigureDrawingCanvasTest.class);
+        suite.addTestSuite(FigureDrawingTest.class);
 
         suite.addTest(canvas.figures.tests.AllTests.suite());
         suite.addTest(AllUtilsTests.suite());

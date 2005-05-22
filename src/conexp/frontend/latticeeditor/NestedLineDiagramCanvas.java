@@ -10,8 +10,7 @@ package conexp.frontend.latticeeditor;
 
 public class NestedLineDiagramCanvas extends BaseConceptSetCanvas {
     public NestedLineDiagramCanvas(NestedLineDiagramDrawing drawing) {
-        //todo: fix it correctly, when NestedLineDiagramDrawing will be used
-        super(new LatticePainterOptions());
+        super();
         setConceptSetDrawing(drawing);
         init();
     }

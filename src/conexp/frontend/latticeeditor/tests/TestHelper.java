@@ -24,30 +24,6 @@ public class TestHelper {
     private TestHelper() {
     }
 
-    public static LatticeComponent makeTestableLatticeComponent(Context cxt) {
-        Preferences preferences = Preferences.userNodeForPackage(TestHelper.class);
-        try {
-            preferences.clear();
-        } catch (BackingStoreException e) {
-            e.printStackTrace();  //To change body of catch statement use Options | File Templates.
-        }
-        LatticeComponent component = new LatticeComponent(cxt);
-        LatticePainterOptions painterOptions = component.getDrawing().getPainterOptions();
-        painterOptions.setPreferences(preferences);
-        painterOptions.doStorePreferences();
-        DrawStrategiesContext drawStrategiesContext = painterOptions.getDrawStrategiesContext();
-        drawStrategiesContext.setPreferences(preferences);
-        drawStrategiesContext.doStorePreferences();
-        LatticePainterDrawParams editableDrawingOptions = component.getDrawing().getLatticeDrawingOptions().getEditableDrawingOptions();
-        editableDrawingOptions.setPreferences(preferences);
-        editableDrawingOptions.doStorePreferences();
-        component.setLayouterProvider(new MinIntersectionLayouterProvider());
-        component.setLayoutEngine(new SimpleLayoutEngine());
-        //setting default (not user dependent) preferences for drawing
-
-        return component;
-    }
-
     public static void checkCoordsForIntent(double x, double y, LatticeDrawing drawing, Lattice lattice, int[] intent) {
         Assert.assertEquals(GraphicObjectsFactory.makePoint2D(x, y), drawing.getFigureForConcept(lattice.findConceptWithIntent(SetBuilder.makeSet(intent))).getCenter());
     }
@@ -73,7 +49,7 @@ public class TestHelper {
     public static LatticePainterPanel makeTestableLatticePainterPanel(final Lattice lattice) {
         MockLatticeDrawingProvider supplier = new MockLatticeDrawingProvider();
         supplier.setLattice(lattice);
-        final LatticePainterPanel latticePainterPanel = new LatticePainterPanel(supplier);
+        final LatticePainterPanel latticePainterPanel = LatticePainterPanel.createLatticePainterPanel(supplier);
         return latticePainterPanel;
     }
 }
