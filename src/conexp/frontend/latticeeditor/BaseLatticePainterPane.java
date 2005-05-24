@@ -38,7 +38,8 @@ public class BaseLatticePainterPane extends BaseConceptSetCanvas {
     }
 
     public void initialUpdate() {
-        setDrawingFromSupplier();
+
+
     }
 
     private void setDrawingFromSupplier() {

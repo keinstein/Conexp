@@ -26,4 +26,16 @@ public interface DrawStrategiesContext extends FigureDimensionCalcStrategyProvid
 
     void doStorePreferences();
 
+    String getFigureDimensionStrategyKey();
+
+    String getEdgeSizeStrategyKey();
+
+    boolean setFigureDimensionStrategyKey(String key);
+
+    boolean setEdgeSizeStrategyKey(String key);
+
+    String getHighlightStrategyKey();
+
+    boolean setHighlightStrategyKey(String key);
+
 }

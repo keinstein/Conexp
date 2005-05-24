@@ -26,10 +26,6 @@ public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplement
         return ret;
     }
 
-    public String toString() {
-        return StringUtil.extractClassName(getClass().getName())+toSet().toString();
-    }
-
     class AttributeMaskContextListener extends DefaultContextListener {
         public void attributeChanged(ContextChangeEvent changeEvent) {
             switch (changeEvent.getType()) {

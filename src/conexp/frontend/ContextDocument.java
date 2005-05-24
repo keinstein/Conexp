@@ -179,7 +179,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         }
 
         private View makeLatticeView(LatticeSupplier latticeSupplier) {
-            System.out.println("LatticeViewInfo.makeLatticeView");
+//            System.out.println("LatticeViewInfo.makeLatticeView");
             LatticeAndEntitiesMaskSplitPane latticeSplitPane = new LatticeAndEntitiesMaskSplitPane(latticeSupplier, getActionChain());
             latticeSplitPane.restorePreferences();
             return new ToolbarComponentDecorator(latticeSplitPane, false);
@@ -402,12 +402,8 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
 
-    public void calculateFullLattice() {
-        getOrCreateDefaultLatticeComponent().calculateLattice();
-    }
-
     public void calculateAndLayoutLattice() {
-        getOrCreateDefaultLatticeComponent().calculateAndLayoutPartialLattice();
+        getOrCreateDefaultLatticeComponent().calculateAndLayoutLattice();
     }
 
     public synchronized LatticeComponent getOrCreateDefaultLatticeComponent() {

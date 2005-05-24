@@ -24,4 +24,11 @@ public class DefaultCenterPointLocator implements CenterPointLocator {
         this.x = x;
         this.y = y;
     }
+
+    public String toString() {
+        return "DefaultCenterPointLocator{" +
+                "x=" + x +
+                ", y=" + y +
+                "}";
+    }
 }

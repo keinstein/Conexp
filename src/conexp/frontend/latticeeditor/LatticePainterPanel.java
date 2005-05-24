@@ -37,14 +37,14 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
     public static final String FIT_TO_SIZE_PROPERTY = "FIT_TO_SIZE_PROPERTY";
 
     public static LatticePainterPanel createLatticePainterPanel(LatticeDrawingProvider latticeDrawingProvider) {
-        System.out.println("LatticePainterPanel.createLatticePainterPanel");
+//        System.out.println("LatticePainterPanel.createLatticePainterPanel");
         LatticePainterPanel ret = new LatticePainterPanel();
         ret.setLatticeSupplier(latticeDrawingProvider);
         return ret;
     }
 
     public void initialUpdate() {
-        System.out.println("LatticePainterPanel.initialUpdate");
+//        System.out.println("LatticePainterPanel.initialUpdate");
         super.initialUpdate();
     }
 
@@ -220,8 +220,6 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
 
 
     public void restorePreferences() {
-        //todo: check, whether here the restoration of preferences of Concept set drawing is required
-        getConceptSetDrawing().restorePreferences();
         doRestorePreferences();
     }
 
@@ -324,9 +322,11 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
     public LatticePainterPanel() {
         super();
         init();
+/*
         getPainterOptions().addPropertyChangeListener(layoutChangeHandler);
 
         getEditableDrawingParams().addPropertyChangeListener(drawParamsEventHandler);
+*/
         addPropertyChangeListener(DRAWING, new DrawingPropertyChangeListener());
 
         ToolTipManager.sharedInstance().registerComponent(this);

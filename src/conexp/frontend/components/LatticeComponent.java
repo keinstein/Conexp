@@ -68,7 +68,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         return recalcLatticeOnMaskChange;
     }
 
-    public void setUpLatticeRecalcOnMasksChange(){
+    public void setUpLatticeRecalcOnMasksChange() {
         recalcLatticeOnMaskChange = true;
         EntityMaskChangeController entityMaskChangeController = new EntityMaskChangeController(this);
         getAttributeMask().addPropertyChangeListener(entityMaskChangeController);
@@ -103,6 +103,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     public synchronized Lattice getLattice() {
         if (null == lattice) {
             lattice = new Lattice();
+//            lattice.setFeatureMasks(attributeMask.toSet(), objectMask.makeCopy());
         }
         return lattice;
     }
@@ -133,7 +134,13 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
 
 
     public void calculateLattice() {
-        doSetLatticeAndFireRecalced(FCAEngineRegistry.buildLattice(getContext()));
+        Lattice lattice;
+        if (getAttributeMask().hasUnselected() || getObjectMask().hasUnselected()) {
+            lattice = FCAEngineRegistry.buildPartialLattice(getContext(), getSelectedAttributes(), getSelectedObjects());
+        } else {
+            lattice = FCAEngineRegistry.buildLattice(getContext());
+        }
+        doSetLatticeAndFireRecalced(lattice);
     }
 
     protected void doSetLatticeAndFireRecalced(final Lattice otherLattice) {
@@ -147,15 +154,6 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
             lattice = otherLattice;
             getDrawing().setLattice(otherLattice);
         }
-    }
-
-    public void calculatePartialLattice() {
-        doSetLatticeAndFireRecalced(FCAEngineRegistry.buildPartialLattice(getContext(), getSelectedAttributes(), getSelectedObjects()));
-    }
-
-    public void calculateAndLayoutPartialLattice() {
-        calculatePartialLattice();
-        getDrawing().layoutLattice();
     }
 
     private Set getSelectedAttributes() {
@@ -183,7 +181,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
     }
 
     public boolean isEqualByContent(final LatticeComponent latticeComponent) {
-        if(null==latticeComponent){
+        if (null == latticeComponent) {
             return false;
         }
         if (context != null ? !context.equals(latticeComponent.context) : latticeComponent.context != null) {
@@ -198,7 +196,7 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         if (attributeMask != null ? !attributeMask.equals(latticeComponent.attributeMask) : latticeComponent.attributeMask != null) {
             return false;
         }
-        if(recalcLatticeOnMaskChange!=latticeComponent.recalcLatticeOnMaskChange){
+        if (recalcLatticeOnMaskChange != latticeComponent.recalcLatticeOnMaskChange) {
             return false;
         }
 
@@ -225,27 +223,37 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
 
     public synchronized LatticeComponent makeCopy() {
         final LatticeComponent other = new LatticeComponent(this.context, attributeMask.makeCopy(), objectMask.makeCopy());
-        if(isRecalcLatticeOnMaskChange()){
+        if (isRecalcLatticeOnMaskChange()) {
             other.setUpLatticeRecalcOnMasksChange();
         }
+        //this code is written is such a way due to need to skip the lazy initialization
+        //mechanizom of the
         if (null != latticeDrawing) {
             other.latticeDrawing = latticeDrawing.makeSetupCopy();
         }
         if (null != layoutEngine) {
             other.setLayoutEngine(layoutEngine.newInstance());
         }
+        LatticeComponentDuplicatorService.getInstance().duplicateContent(this, other);
+/*
         if (lattice != null) {
             other.doSetLattice(getLattice().makeCopy());
             if (null != latticeDrawing) {
-                other.getDrawing().setCoordinatesFromMapper(new ConceptCoordinateMapper() {
-                    public void setCoordsForConcept(ItemSet c, Point2D coords) {
-                        coords.setLocation(latticeDrawing.getFigureForConcept(c).getCenter());
-                    }
-                });
+                final LatticeDrawing drawing = other.getDrawing();
+                copyConceptFigureCoordinatesToDrawing(drawing);
             }
             //what's about foreground figures in the  drawing ?
         }
+*/
 
         return other;
+    }
+
+    public void copyConceptFigureCoordinatesToDrawing(final LatticeDrawing drawing) {
+        drawing.setCoordinatesFromMapper(new ConceptCoordinateMapper() {
+            public void setCoordsForConcept(ItemSet c, Point2D coords) {
+                coords.setLocation(latticeDrawing.getFigureForConcept(c).getCenter());
+            }
+        });
     }
 }

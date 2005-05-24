@@ -25,6 +25,12 @@ public interface ConExpXMLElements {
     String ATTRIBUTE_LABEL_DISPLAY_MODE = "AttributeLabelsDisplayMode";
     String OBJECT_LABEL_STRATEGY_DISPLAY_MODE = "ObjectLabelsDisplayMode";
     String LABEL_FONT_SIZE = "LabelFontSize";
+    String SHOW_COLLISIONS="ShowCollisions";
+    String MAX_NODE_RADIUS="MaxNodeRadius";
+    String NODE_RADIUS_MODE="NodeRadiusMode";
+    String EDGE_DISPLAY_MODE="EdgeDisplayMode";
+    String HIGHLIGHT_MODE="HighlightMode";
+
 
     String VALUE_ATTRIBUTE = "Value";
     String CONCEPT_FIGURES_ELEMENT = "ConceptFigures";

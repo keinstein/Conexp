@@ -6,5 +6,5 @@ package conexp.frontend.components;
  * Time: 16:15:52
  */
 public interface LatticeSupplierAndCalculator extends LatticeSupplier {
-    void calculateAndLayoutPartialLattice();
+    void calculateAndLayoutLattice();
 }

@@ -9,10 +9,11 @@ package conexp.frontend.components.tests;
 
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
-import conexp.core.layoutengines.SimpleLayoutEngine;
 import conexp.frontend.LatticeCalculator;
 import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.latticeeditor.LatticeDrawing;
+import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import junit.framework.TestCase;
 import util.collection.CollectionFactory;
 import util.testing.SimpleMockPropertyChangeListener;
@@ -69,7 +70,7 @@ public class LatticeComponentTest extends TestCase {
         assertTrue(latticeComponent.getLattice().isValid());
         assertTrue(!latticeComponent.getDrawing().isEmpty());
         latticeComponent.getAttributeMask().setSelected(0, false);
-        latticeComponent.calculatePartialLattice();
+        latticeComponent.calculateLattice();
         assertTrue(latticeComponent.getLattice().isValid());
         assertTrue(!latticeComponent.getDrawing().isEmpty());
 
@@ -110,6 +111,27 @@ public class LatticeComponentTest extends TestCase {
         other.getAttributeMask().setSelected(0, false);
         assertEquals(false, latticeComponent.isEqualByContent(other));
         assertEquals(false, latticeComponent.getAttributeMask().equals(other.getAttributeMask()));
+
+    }
+
+    public void testMakeCopy2() {
+        latticeComponent = ComponentsObjectMother.makeLatticeComponentWithSimpleLayoutEngine(new int[][]{{0, 1, 1},
+                                                                                   {1, 0, 1},
+                                                                                   {1, 1, 0}});
+        latticeComponent.calculateAndLayoutLattice();
+        final LatticeSupplier other = latticeComponent.makeCopy();
+        assertNotSame(latticeComponent, other);
+        final LatticeDrawing firstDrawing = latticeComponent.getDrawing();
+        final LatticeDrawing secondDrawing = other.getDrawing();
+        latticeComponent.getLattice().forEach(new Lattice.LatticeElementVisitor() {
+            public void visitNode(LatticeElement node) {
+                final AbstractConceptCorrespondingFigure firstFigure = firstDrawing.getFigureForConcept(node);
+                LatticeElement otherNode = secondDrawing.getLattice().findLatticeElementFromOne(node.getAttribs());
+                final AbstractConceptCorrespondingFigure secondFigure = secondDrawing.getFigureForConcept(otherNode);
+                assertEquals(firstFigure.getCenter(), secondFigure.getCenter());
+            }
+        });
+
 
     }
 }

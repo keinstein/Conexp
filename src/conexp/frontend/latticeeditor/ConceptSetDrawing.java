@@ -190,8 +190,12 @@ public abstract class ConceptSetDrawing extends FigureDrawing {
     }
 
     protected void initStrategies() {
-        getLatticeCanvasScheme().getDrawStrategiesContext().setupStrategiesParams(getConceptSet());
+        getDrawStrategiesContext().setupStrategiesParams(getConceptSet());
         getLabelingStrategiesContext().initStrategies(getConceptSet().getContext(), this);
+    }
+
+    protected DrawStrategiesContext getDrawStrategiesContext() {
+        return getLatticeCanvasScheme().getDrawStrategiesContext();
     }
 
     public synchronized LatticeDrawingOptions getLatticeDrawingOptions() {
@@ -209,7 +213,7 @@ public abstract class ConceptSetDrawing extends FigureDrawing {
 
     class FigureDimensionCalcStretegyProviderImplementation implements FigureDimensionCalcStrategyProvider {
         public FigureDimensionCalcStrategy getFigureDimensionCalcStrategy() {
-            return getLatticeCanvasScheme().getDrawStrategiesContext().getFigureDimensionCalcStrategy();
+            return getDrawStrategiesContext().getFigureDimensionCalcStrategy();
         }
     }
 

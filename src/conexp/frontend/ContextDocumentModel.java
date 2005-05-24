@@ -132,8 +132,6 @@ public class ContextDocumentModel {
         LatticeComponent old = getLatticeComponent(index);
         LatticeComponent newComponent = old.makeCopy();
         latticeComponents.add(newComponent);
-        //fast quick fix
-        newComponent.calculateAndLayoutPartialLattice();
         return latticeComponents.size()-1;
     }
 

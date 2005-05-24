@@ -10,12 +10,12 @@ package conexp.frontend.components;
 import conexp.frontend.EntitiesMask;
 import util.BasePropertyChangeSupplier;
 import util.BooleanUtil;
+import util.collection.CollectionFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BasicEntityMaskImplementation extends BasePropertyChangeSupplier implements EntitiesMask {
-    protected List selectedEntities = new ArrayList();
+    protected List selectedEntities = CollectionFactory.createFastIndexAccessList();
 
     protected void initializeMask(final int count, final Boolean defaultValue) {
         for (int i = 0; i < count; i++) {

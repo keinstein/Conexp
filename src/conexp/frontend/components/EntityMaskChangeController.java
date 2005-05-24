@@ -20,9 +20,9 @@ public class EntityMaskChangeController implements PropertyChangeListener {
     }
 
     public void propertyChange(PropertyChangeEvent evt) {
-        System.out.println("EntityMaskChangeController.propertyChange");
+        //System.out.println("EntityMaskChangeController.propertyChange");
         if (EntitiesMask.ENTITIES_SELECTION_CHANGED.equals(evt.getPropertyName())) {
-            latticeComponent.calculateAndLayoutPartialLattice();
+            latticeComponent.calculateAndLayoutLattice();
         }
     }
 }

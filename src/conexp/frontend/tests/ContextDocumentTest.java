@@ -213,18 +213,27 @@ public class ContextDocumentTest extends TestCase {
 
         assertEquals(true, doc.getLatticeCollection().isEmpty());
         doc.calculateAndLayoutLattice();
+
         assertEquals(1, doc.getLatticeCollection().size());
+        final LatticeComponent first = doc.getLatticeComponent(0);
+
+        final LatticeDrawing oldDrawing = first.getDrawing();
+        LatticeDrawing oldDrawingCopy = oldDrawing.makeSetupCopy();
+        oldDrawingCopy.setLattice(first.getLattice().makeCopy());
+        first.copyConceptFigureCoordinatesToDrawing(oldDrawingCopy);
+
         doc.makeLatticeSnapshot();
         assertEquals(2, doc.getLatticeCollection().size());
-        final LatticeComponent first = doc.getLatticeComponent(0);
         final LatticeSupplier second = doc.getLatticeComponent(1);
         assertNotSame(first, second);
         final LatticeDrawing firstDrawing = first.getDrawing();
         final LatticeDrawing secondDrawing = second.getDrawing();
+        final Lattice secondLattice = secondDrawing.getLattice();
         first.getLattice().forEach(new Lattice.LatticeElementVisitor() {
             public void visitNode(LatticeElement node) {
                 final AbstractConceptCorrespondingFigure firstFigure = firstDrawing.getFigureForConcept(node);
-                final AbstractConceptCorrespondingFigure secondFigure = secondDrawing.getFigureForConcept(node);
+                LatticeElement otherNode = secondLattice.findLatticeElementFromOne(node.getAttribs());
+                final AbstractConceptCorrespondingFigure secondFigure = secondDrawing.getFigureForConcept(otherNode);
                 assertEquals(firstFigure.getCenter(), secondFigure.getCenter());
             }
         });

@@ -27,7 +27,6 @@ public class LatticeCSCExporterTest extends TestCase {
         exporter.setDrawing(drawing);
         StringWriter writer = new StringWriter();
         exporter.exportDiagram(new BufferedWriter(writer));
-        System.out.println(writer.toString());
     }
 
     public void testCaseWhenThereAreLabels() {
@@ -38,7 +37,6 @@ public class LatticeCSCExporterTest extends TestCase {
         exporter.setDrawing(drawing);
         StringWriter writer = new StringWriter();
         exporter.exportDiagram(new BufferedWriter(writer));
-        System.out.println(writer.toString());
     }
 
     protected void setUp() {

@@ -105,6 +105,30 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
         doStorePreferences(getPreferences());
     }
 
+    public String getFigureDimensionStrategyKey() {
+        return getNodeRadiusStrategyItem().getStrategyKey();
+    }
+
+    public boolean setFigureDimensionStrategyKey(String key){
+        return getNodeRadiusStrategyItem().setValueByKey(key);
+    }
+
+    public String getEdgeSizeStrategyKey(){
+        return getEdgeSizeCalcStrategyItem().getStrategyKey();
+    }
+
+    public boolean setEdgeSizeStrategyKey(String key){
+        return getEdgeSizeCalcStrategyItem().setValueByKey(key);
+    }
+
+    public String getHighlightStrategyKey(){
+        return getHighlightStrategyItem().getStrategyKey();
+    }
+
+    public boolean setHighlightStrategyKey(String key){
+        return getHighlightStrategyItem().setValueByKey(key);
+    }
+
     public void doStorePreferences(Preferences preferences) {
         getLayoutStrategyItem().storeToPreferences(preferences);
         getNodeRadiusStrategyItem().storeToPreferences(preferences);

@@ -59,8 +59,6 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
 
 
     public FigureDrawingCanvas() {
-        translatingTransform = makeTranslatingTransform(viewPoint);
-
         setActiveTool(getDefaultTool());
 
         MouseHandler mouseHandler = new MouseHandler();
@@ -109,7 +107,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
 
 
     protected void setTranslatingTransform(AffineTransform newTransform) {
-        if (null == translatingTransform || !translatingTransform.equals(newTransform)) {
+        if (null == getTranslatingTransform() || !getTranslatingTransform().equals(newTransform)) {
             translatingTransform = newTransform;
             repaint();
         }
@@ -118,7 +116,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     public Point2D getUntranslatedCoords(Point2D clientCoords) {
         Point2D ptDest = GraphicObjectsFactory.makePoint2D();
         try {
-            translatingTransform.inverseTransform(clientCoords, ptDest);
+            getTranslatingTransform().inverseTransform(clientCoords, ptDest);
         } catch (NoninvertibleTransformException ex) {
             Trace.gui.errorm(StringUtil.stackTraceToString(ex));
             ptDest = clientCoords;
@@ -128,13 +126,13 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
 
     protected AffineTransform getPaintTransform(AffineTransform scaleTransform) {
         AffineTransform toApply = (AffineTransform) scaleTransform.clone();
-        toApply.concatenate(translatingTransform);
+        toApply.concatenate(getTranslatingTransform());
         return toApply;
     }
 
 
     protected void setDrawing(FigureDrawing newDrawing) {
-        System.out.println("FigureDrawingCanvas.setDrawing");
+//        System.out.println("FigureDrawingCanvas.setDrawing");
         shutdownBeforeSetDrawing();
         FigureDrawing oldDrawing = this.drawing;
         this.drawing = newDrawing;
@@ -163,13 +161,16 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
         if (null == drawing) {
             makeDrawing();
             Assert.isTrue(null != drawing);
-            setDrawing(drawing);
         }
         return drawing;
     }
 
     protected void makeDrawing() {
-        setDrawing(new FigureDrawing());
+        setDrawing(createDrawing());
+    }
+
+    protected FigureDrawing createDrawing() {
+        return new FigureDrawing();
     }
 
     protected void clearDrawing() {
@@ -340,6 +341,13 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
 
     public void setFigurePopupMenuProvider(IFigurePopupMenuProvider figurePopupMenuProvider) {
         this.figurePopupMenuProvider = figurePopupMenuProvider;
+    }
+
+    protected AffineTransform getTranslatingTransform() {
+        if(null==translatingTransform){
+            translatingTransform=makeTranslatingTransform(viewPoint);
+        }
+        return translatingTransform;
     }
 
     protected class MouseHandler extends MouseAdapter implements MouseMotionListener {

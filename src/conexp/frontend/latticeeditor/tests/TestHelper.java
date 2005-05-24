@@ -1,12 +1,9 @@
 package conexp.frontend.latticeeditor.tests;
 
-import conexp.core.Context;
 import conexp.core.Lattice;
-import conexp.core.layout.MinIntersectionLayouterProvider;
-import conexp.core.layoutengines.SimpleLayoutEngine;
 import conexp.core.tests.SetBuilder;
-import conexp.frontend.components.LatticeComponent;
-import conexp.frontend.latticeeditor.*;
+import conexp.frontend.latticeeditor.LatticeDrawing;
+import conexp.frontend.latticeeditor.LatticePainterPanel;
 import junit.framework.Assert;
 import util.gui.GraphicObjectsFactory;
 
@@ -47,9 +44,14 @@ public class TestHelper {
     }
 
     public static LatticePainterPanel makeTestableLatticePainterPanel(final Lattice lattice) {
-        MockLatticeDrawingProvider supplier = new MockLatticeDrawingProvider();
-        supplier.setLattice(lattice);
+        MockLatticeDrawingProvider supplier = makeTestableLatticeProvider(lattice);
         final LatticePainterPanel latticePainterPanel = LatticePainterPanel.createLatticePainterPanel(supplier);
         return latticePainterPanel;
+    }
+
+    public static MockLatticeDrawingProvider makeTestableLatticeProvider(final Lattice lattice) {
+        MockLatticeDrawingProvider supplier = new MockLatticeDrawingProvider();
+        supplier.setLattice(lattice);
+        return supplier;
     }
 }

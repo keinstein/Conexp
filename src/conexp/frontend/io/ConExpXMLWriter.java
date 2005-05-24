@@ -77,7 +77,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         }
     }
 
-    private static Element makeLatticeElement(LatticeSupplier latticeComponent) {
+    public static Element makeLatticeElement(LatticeSupplier latticeComponent) {
         Element latticeElement = new Element(ConExpXMLElements.LATTICE_ELEMENT);
         storeFeatureMask(latticeComponent, latticeElement);
         storeDrawings(latticeComponent, latticeElement);
@@ -85,8 +85,15 @@ public class ConExpXMLWriter implements DocumentWriter {
     }
 
     private static void storeFeatureMask(LatticeSupplier latticeComponent, Element latticeElement) {
-        latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT, latticeComponent.getAttributeMask()));
-        latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.OBJECT_MASK_ELEMENT, latticeComponent.getObjectMask()));
+        final SetProvidingEntitiesMask attributeMask = latticeComponent.getAttributeMask();
+        if (attributeMask.hasUnselected()) {
+            latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT, attributeMask));
+        }
+
+        final SetProvidingEntitiesMask objectMask = latticeComponent.getObjectMask();
+        if (objectMask.hasUnselected()) {
+            latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.OBJECT_MASK_ELEMENT, objectMask));
+        }
     }
 
     private static Element makeEntityMaskElement(final String elementName, SetProvidingEntitiesMask mask) {
@@ -172,7 +179,32 @@ public class ConExpXMLWriter implements DocumentWriter {
         settingElement.addContent(storeAttributeDisplayMode(drawing));
         settingElement.addContent(storeObjectDisplayMode(drawing));
         settingElement.addContent(storeLabelsSize(drawing));
+        settingElement.addContent(storeShowCollision(drawing));
+        settingElement.addContent(storeMaxNodeRadius(drawing));
+        settingElement.addContent(storeNodeRadiusMode(drawing));
+        settingElement.addContent(storeEdgeSizeMode(drawing));
+        settingElement.addContent(storeHighlightMode(drawing));
         return settingElement;
+    }
+
+    private static Element storeHighlightMode(LatticeDrawing drawing) {
+        return makeSettingElement(ConExpXMLElements.HIGHLIGHT_MODE, drawing.getHighlightModeKey());
+    }
+
+    private static Element storeEdgeSizeMode(LatticeDrawing drawing) {
+        return makeSettingElement(ConExpXMLElements.EDGE_DISPLAY_MODE, drawing.getEdgeDisplayModeKey());
+    }
+
+    private static Element storeNodeRadiusMode(LatticeDrawing drawing) {
+        return makeSettingElement(ConExpXMLElements.NODE_RADIUS_MODE, drawing.getNodeRadiusModeKey());
+    }
+
+    private static Element storeMaxNodeRadius(LatticeDrawing drawing) {
+        return makeSettingElement(ConExpXMLElements.MAX_NODE_RADIUS, String.valueOf(drawing.getDrawParams().getMaxNodeRadius()));
+    }
+
+    private static Element storeShowCollision(LatticeDrawing drawing) {
+        return makeSettingElement(ConExpXMLElements.SHOW_COLLISIONS, String.valueOf(drawing.getDrawParams().isShowCollisions()));
     }
 
 

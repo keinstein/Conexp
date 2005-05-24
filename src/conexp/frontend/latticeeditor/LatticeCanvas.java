@@ -10,6 +10,7 @@ package conexp.frontend.latticeeditor;
 import canvas.Figure;
 import canvas.FigureDrawingCanvas;
 import canvas.IFigurePredicate;
+import canvas.FigureDrawing;
 import conexp.core.*;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.ConceptSetDrawingConsumer;
@@ -48,15 +49,15 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
         return getConceptSetDrawing().hasConceptSet();
     }
 
-    protected void makeDrawing() {
-        setDrawing(makeConceptSetDrawing());
-    }
-
     public ConceptSetDrawing getConceptSetDrawing() {
         return (ConceptSetDrawing) getDrawing();
     }
 
-    protected static ConceptSetDrawing makeConceptSetDrawing() {
+    protected FigureDrawing createDrawing() {
+        return makeConceptSetDrawing();
+    }
+
+    protected ConceptSetDrawing makeConceptSetDrawing() {
         return new LatticeDrawing();
     }
 

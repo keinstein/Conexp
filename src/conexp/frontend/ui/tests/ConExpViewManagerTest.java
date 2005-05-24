@@ -1,0 +1,131 @@
+package conexp.frontend.ui.tests;
+
+/**
+ * User: sergey
+ * Date: 19/5/2005
+ * Time: 10:45:45
+ */
+
+import com.mockobjects.ExpectationCounter;
+import conexp.frontend.LatticeAndEntitiesMaskSplitPane;
+import conexp.frontend.ToolbarComponentDecorator;
+import conexp.frontend.View;
+import conexp.frontend.ViewChangeListener;
+import conexp.frontend.components.LatticeComponent;
+import conexp.frontend.components.LatticeSupplier;
+import conexp.frontend.components.tests.ComponentsObjectMother;
+import conexp.frontend.ui.ConExpViewManager;
+import conexp.frontend.ui.ViewInfo;
+import junit.framework.TestCase;
+
+import javax.swing.*;
+
+
+public class ConExpViewManagerTest extends TestCase {
+
+    class LatticeViewInfo extends ViewInfo {
+        LatticeSupplier supplier;
+        ActionMap actionMap=new ActionMap();
+
+        public LatticeViewInfo(LatticeSupplier latticeSupplier) {
+            super("VIEW_LATTICE", "Lattice");
+            this.supplier = latticeSupplier;
+        }
+
+        public View createView() {
+            LatticeAndEntitiesMaskSplitPane latticeSplitPane = new LatticeAndEntitiesMaskSplitPane(supplier, actionMap);
+            latticeSplitPane.restorePreferences();
+            return new ToolbarComponentDecorator(latticeSplitPane, false);
+        }
+    }
+
+    public void testViewManager() {
+        ConExpViewManager viewManager = new ConExpViewManager();
+        LatticeComponent component = ComponentsObjectMother.makeLatticeComponent();
+        LatticeViewInfo docModel = new LatticeViewInfo(component);
+        viewManager.activateView(docModel);
+        View activeView = viewManager.getActiveView();
+        assertNotNull(activeView);
+        LatticeComponent other = ComponentsObjectMother.makeLatticeComponent(new int[][]{
+            {0, 1}
+        });
+        LatticeViewInfo otherDocModel = new LatticeViewInfo(other);
+        viewManager.activateView(otherDocModel);
+        View otherActiveView = viewManager.getActiveView();
+        assertNotNull(otherActiveView);
+        assertNotSame("Different views should be created for two lattice components",activeView, otherActiveView);
+        viewManager.activateView(docModel);
+        assertSame(activeView, viewManager.getActiveView());
+    }
+
+    public void testRemoveView(){
+        ConExpViewManager viewManager = new ConExpViewManager();
+        LatticeComponent component = ComponentsObjectMother.makeLatticeComponent();
+        LatticeViewInfo docModel = new LatticeViewInfo(component);
+        viewManager.activateView(docModel);
+        assertNotNull(viewManager.getActiveView());
+        assertTrue(viewManager.hasViewForModel(docModel));
+        assertEquals(1, viewManager.getPlacesCount());
+        viewManager.removeView(docModel);
+        assertFalse(viewManager.hasViewForModel(docModel));
+        assertNull(viewManager.getActiveView());
+        assertEquals(0, viewManager.getPlacesCount());
+    }
+
+    public void testFiringViewChangeListener(){
+        ConExpViewManager viewManager = new ConExpViewManager();
+        final ExpectationCounter counter = new ExpectationCounter("Expected view changes");
+        viewManager.addViewChangeListener(new ViewChangeListener(){
+            public void viewChanged(JComponent oldView, JComponent newView) {
+                counter.inc();
+            }
+
+            public void cleanUp() {
+            }
+        });
+        LatticeComponent component = ComponentsObjectMother.makeLatticeComponent();
+        LatticeViewInfo docModel = new LatticeViewInfo(component);
+        counter.setExpected(1);
+        viewManager.activateView(docModel);
+        counter.verify();
+    }
+
+
+    static class TestViewInfo extends ViewInfo{
+        ExpectationCounter counter = new ExpectationCounter("Expected initialUpdate");
+
+        public TestViewInfo() {
+            super("TEST_PLACE", "TestCaption");
+        }
+
+        public void setExpected(int i){
+            counter.setExpected(i);
+        }
+
+        public void verify(){
+            counter.verify();
+        }
+
+       public View createView() {
+           class TestView extends JPanel implements View{
+               public void initialUpdate() {
+                   counter.inc();
+               }
+           }
+           return new TestView();
+       }
+   }
+
+    public void testInitialUpdate(){
+        TestViewInfo viewInfo = new TestViewInfo();
+        viewInfo.setExpected(1);
+        ConExpViewManager viewManager = new ConExpViewManager();
+        viewManager.activateView(viewInfo);
+        viewInfo.verify();
+    }
+
+    public void testGetActiveViewId(){
+
+    }
+
+}

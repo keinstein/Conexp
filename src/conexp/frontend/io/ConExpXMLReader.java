@@ -15,6 +15,7 @@ import conexp.frontend.DocumentLoader;
 import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.LatticeDrawing;
+import conexp.util.valuemodels.BoundedIntValue;
 import org.jdom.DataConversionException;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -65,15 +66,13 @@ public class ConExpXMLReader implements DocumentLoader {
     }
 
     private static void addLattices(ContextDocument doc, Element latticeCollection) throws DataFormatException {
-        Element latticeElement = latticeCollection.getChild(ConExpXMLElements.LATTICE_ELEMENT);
         final List children = latticeCollection.getChildren(ConExpXMLElements.LATTICE_ELEMENT);
-        if(children.isEmpty()){
+        if (children.isEmpty()) {
             return;
         }
         try {
             for (Iterator iterator = children.iterator(); iterator.hasNext();) {
-                Element element = (Element) iterator.next();
-                loadLatticeComponent(doc.addLatticeComponent(), latticeElement);
+                loadLatticeComponent(doc.addLatticeComponent(), (Element) iterator.next());
             }
         } catch (DataFormatException e) {
             doc.resetLatticeComponent();
@@ -90,25 +89,11 @@ public class ConExpXMLReader implements DocumentLoader {
 */
     }
 
-    private static void loadLatticeComponent(final LatticeComponent latticeComponent, Element latticeElement) throws DataFormatException {
+    public static void loadLatticeComponent(final LatticeComponent latticeComponent, Element latticeElement) throws DataFormatException {
 
-        Element attributeMaskElement = latticeElement.getChild(ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT);
-        boolean partialLattice = false;
-        if (null == attributeMaskElement) {
-            latticeComponent.calculateLattice();
-        } else {
-            partialLattice = true;
-            doReadEntitiesMask(latticeComponent.getAttributeMask(), attributeMaskElement);
-        }
-        Element objectMaskElement = latticeElement.getChild(ConExpXMLElements.OBJECT_MASK_ELEMENT);
-        if (objectMaskElement != null) {
-            doReadEntitiesMask(latticeComponent.getObjectMask(), objectMaskElement);
-            partialLattice = true;
-        }
-
-        if (partialLattice) {
-            latticeComponent.calculatePartialLattice();
-        }
+        readEntitiesMask(latticeElement.getChild(ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT), latticeComponent.getAttributeMask());
+        readEntitiesMask(latticeElement.getChild(ConExpXMLElements.OBJECT_MASK_ELEMENT), latticeComponent.getObjectMask());
+        latticeComponent.calculateLattice();
         LatticeDrawing drawing = latticeComponent.getDrawing();
         Element lineDiagramElement = XMLHelper.safeGetElement(latticeElement, ConExpXMLElements.LATTICE_DIAGRAM, "Lattice always should have diagram");
         loadDrawingSettings(drawing, lineDiagramElement);
@@ -116,6 +101,14 @@ public class ConExpXMLReader implements DocumentLoader {
         loadAttributeLabels(drawing, lineDiagramElement);
         loadObjectLabels(drawing, lineDiagramElement);
         loadConceptLabels(drawing, lineDiagramElement);
+    }
+
+    private static void readEntitiesMask(Element attributeMaskElement, SetProvidingEntitiesMask entitiesMask) throws DataFormatException {
+        if (null == attributeMaskElement) {
+            entitiesMask.selectAll();
+        } else {
+            doReadEntitiesMask(entitiesMask, attributeMaskElement);
+        }
     }
 
     private static void doReadEntitiesMask(final SetProvidingEntitiesMask entityMask, Element entitiesMaskElement) throws DataFormatException {
@@ -252,21 +245,66 @@ public class ConExpXMLReader implements DocumentLoader {
         if (!drawing.setObjectLabelingStrategyKey(objectLabelsDisplayMode.getAttributeValue(ConExpXMLElements.VALUE_ATTRIBUTE))) {
             XMLHelper.throwDataFormatError("Unspecified object display mode");
         }
-        Element labelsFontSizeElement = lineDiagramSetting.getChild(ConExpXMLElements.LABEL_FONT_SIZE);
-        if (null == labelsFontSizeElement) {
+
+        readBoundedIntValue(lineDiagramSetting.getChild(ConExpXMLElements.LABEL_FONT_SIZE),
+                drawing.getPainterOptions().getLabelsFontSizeValue(),
+                "Wrong value of labels font size:");
+        drawing.getEditableDrawParameters().setShowCollisions(
+            readBooleanValue(lineDiagramSetting.getChild(ConExpXMLElements.SHOW_COLLISIONS), true)
+        );
+        readBoundedIntValue(lineDiagramSetting.getChild(ConExpXMLElements.MAX_NODE_RADIUS),
+                         drawing.getEditableDrawParameters().getMaxNodeRadiusValue(),
+                        "Wrong value of maximal node radius is provided:");
+        Element nodeRadiusMode = lineDiagramSetting.getChild(ConExpXMLElements.NODE_RADIUS_MODE);
+        if(nodeRadiusMode!=null){
+            String attributeValue = nodeRadiusMode.getAttributeValue(ConExpXMLElements.VALUE_ATTRIBUTE);
+            if(!drawing.setNodeRadiusModeKey(attributeValue)){
+                XMLHelper.throwDataFormatError("Unspecified node radius mode:"+attributeValue);
+            }
+        }
+        Element edgeSizeMode = lineDiagramSetting.getChild(ConExpXMLElements.EDGE_DISPLAY_MODE);
+        if(edgeSizeMode!=null){
+            String attributeValue = edgeSizeMode.getAttributeValue(ConExpXMLElements.VALUE_ATTRIBUTE);
+            if(!drawing.setEdgeDisplayModeKey(attributeValue)){
+                XMLHelper.throwDataFormatError("Unspecified edge display mode:"+attributeValue);
+            }
+        }
+        Element highlightMode = lineDiagramSetting.getChild(ConExpXMLElements.HIGHLIGHT_MODE);
+        if(edgeSizeMode!=null){
+            String attributeValue = highlightMode.getAttributeValue(ConExpXMLElements.VALUE_ATTRIBUTE);
+            if(!drawing.setHighlightModeKey(attributeValue)){
+                XMLHelper.throwDataFormatError("Unspecified highlight mode:"+attributeValue);
+            }
+        }
+    }
+
+    private static void readBoundedIntValue(Element element, BoundedIntValue valueModel, String errorMessage) throws DataFormatException {
+        if (null == element) {
             return;
         }
-        String value = labelsFontSizeElement.getAttributeValue(ConExpXMLElements.VALUE_ATTRIBUTE);
+        String value = element.getAttributeValue(ConExpXMLElements.VALUE_ATTRIBUTE);
         if (StringUtil.isEmpty(value)) {
             return;
         }
         try {
-            drawing.getPainterOptions().getLabelsFontSizeValue().setValue(Integer.valueOf(value).intValue());
+            valueModel.setValue(Integer.valueOf(value).intValue());
         } catch (PropertyVetoException e) {
-            XMLHelper.throwDataFormatError("Wrong value of labels font size:" + e);
+            XMLHelper.throwDataFormatError(errorMessage + e);
         } catch (NumberFormatException e) {
-            XMLHelper.throwDataFormatError("Wrong value of labels font size:" + e);
+            XMLHelper.throwDataFormatError(errorMessage + e);
         }
+    }
+
+
+    private static boolean readBooleanValue(Element element, boolean defaultValue){
+        if (null == element) {
+            return defaultValue;
+        }
+        String value = element.getAttributeValue(ConExpXMLElements.VALUE_ATTRIBUTE);
+        if (StringUtil.isEmpty(value)) {
+            return defaultValue;
+        }
+        return Boolean.valueOf(value).booleanValue();
     }
 
     interface FigureConceptMapper {

@@ -26,6 +26,10 @@ import java.awt.geom.Point2D;
 import java.beans.PropertyVetoException;
 
 public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
+    private static final int[][] TEST_RELATION_2x3 = new int[][]{{0, 1},
+                                                                 {1, 0},
+                                                                 {1, 1}};
+
     protected DocumentLoader makeDocumentLoader() {
         return new ConExpXMLReader();
     }
@@ -42,7 +46,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
                                                  {1}});
         doc = new ContextDocument();
         doc.setContext(cxt);
-        doc.calculateFullLattice();
+        doc.addLatticeComponent().calculateLattice();
     }
 
     private void setUpPartialLatticeCase() {
@@ -50,33 +54,59 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
                                                  {1, 0}});
         doc = new ContextDocument();
         doc.setContext(cxt);
-        final LatticeComponent latticeComponent = doc.getOrCreateDefaultLatticeComponent();
+        final LatticeComponent latticeComponent = doc.addLatticeComponent();
         final SetProvidingEntitiesMask attributeMask = latticeComponent.getAttributeMask();
         assertEquals(2, attributeMask.getCount());
         attributeMask.setSelected(1, false);
-        latticeComponent.calculatePartialLattice();
+        latticeComponent.calculateLattice();
     }
 
     private void setUpPartialObjectLatticeCase() {
-        cxt = SetBuilder.makeContext(new int[][]{{0, 1},
-                                                 {1, 0},
-                                                 {1, 1}});
+        cxt = SetBuilder.makeContext(TEST_RELATION_2x3);
         doc = new ContextDocument();
         doc.setContext(cxt);
-        final LatticeComponent latticeComponent = doc.getOrCreateDefaultLatticeComponent();
+        final LatticeComponent latticeComponent = doc.addLatticeComponent();
         final SetProvidingEntitiesMask attributeMask = latticeComponent.getAttributeMask();
         assertEquals(2, attributeMask.getCount());
         attributeMask.setSelected(1, false);
-
-
         SetProvidingEntitiesMask objectMask = latticeComponent.getObjectMask();
         assertEquals(3, objectMask.getCount());
         objectMask.setSelected(1, false);
 
         latticeComponent.getDrawing().setObjectLabelingStrategyKey(LabelingStrategiesKeys.ALL_OBJECTS_LABELING_STRATEGY);
 
-        latticeComponent.calculatePartialLattice();
+        latticeComponent.calculateLattice();
     }
+
+
+    private void setUpTwoLatticeCase() {
+        cxt = SetBuilder.makeContext(TEST_RELATION_2x3);
+        doc = new ContextDocument();
+        doc.setContext(cxt);
+        LatticeComponent latticeComponent = doc.addLatticeComponent();
+        latticeComponent.getDrawing().setAttributeLabelingStrategyKey(LabelingStrategiesKeys.ALL_ATTRIBS_LABELING_STRATEGY_KEY);
+
+
+        latticeComponent.calculateAndLayoutLattice();
+
+        latticeComponent = doc.addLatticeComponent();
+        final SetProvidingEntitiesMask attributeMask = latticeComponent.getAttributeMask();
+        assertEquals(2, attributeMask.getCount());
+        attributeMask.setSelected(1, false);
+        SetProvidingEntitiesMask objectMask = latticeComponent.getObjectMask();
+        assertEquals(3, objectMask.getCount());
+        objectMask.setSelected(1, false);
+
+        latticeComponent.getDrawing().setObjectLabelingStrategyKey(LabelingStrategiesKeys.ALL_OBJECTS_LABELING_STRATEGY);
+
+        latticeComponent.calculateLattice();
+    }
+
+    public void testCaseWithTwoLattices() {
+        setUpTwoLatticeCase();
+        doTestWriteAndReadForDocWithLattice(doc, cxt);
+    }
+
 
     public void testContextAndLineDiagramWithObjectAndAttributesLabelsFullLattice() {
         setUpFullLatticeCase();
@@ -190,22 +220,23 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         assertEquals(new Point2D.Double(10, 10), loadedDrawing.getFigureForConcept(loadedLattice.getZero()).getCenter());
         assertEquals(new Point2D.Double(10, 300), loadedDrawing.getFigureForConcept(loadedLattice.getOne()).getCenter());
 
-        System.out.println(drawing.getLabelForConcept(lattice.getZero()).getCenter());
-        System.out.println(loadedDrawing.getLabelForConcept(loadedLattice.getZero()).getCenter());
         assertEquals(drawing.getLabelForConcept(lattice.getZero()).getCenter(),
                 loadedDrawing.getLabelForConcept(loadedLattice.getZero()).getCenter());
     }
 
     private ContextDocument doTestWriteAndReadForDocWithLattice(ContextDocument doc, ExtendedContextEditingInterface cxt) {
-        Lattice lattice = doc.getOrCreateDefaultLatticeComponent().getLattice();
-
         ContextDocument loadedDoc = writeAndReadContextDoc(doc);
         ExtendedContextEditingInterface loadedContext = loadedDoc.getContext();
         assertEquals(cxt, loadedContext);
 
-        Lattice loadedLattice = loadedDoc.getOrCreateDefaultLatticeComponent().getLattice();
-        assertTrue("Lattice should be restored", !loadedLattice.isEmpty());
-        assertTrue("Lattice should be equal to saved", lattice.isEqual(loadedLattice));
+        for (int i = 0; i < doc.getLatticeCollection().size(); i++) {
+            Lattice lattice = doc.getLatticeComponent(i).getLattice();
+
+
+            Lattice loadedLattice = loadedDoc.getLatticeComponent(i).getLattice();
+            assertTrue("Lattice should be restored", !loadedLattice.isEmpty());
+            assertTrue("Lattice should be equal to saved", lattice.isEqual(loadedLattice));
+        }
         return loadedDoc;
     }
 

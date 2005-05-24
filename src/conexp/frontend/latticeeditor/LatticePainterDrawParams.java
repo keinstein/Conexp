@@ -123,7 +123,7 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         return getMaxNodeRadiusValue().getValue();
     }
 
-    synchronized BoundedIntValue getMaxNodeRadiusValue() {
+    public synchronized BoundedIntValue getMaxNodeRadiusValue() {
         if (null == maxNodeRadius) {
             maxNodeRadius = makeBoundedIntValue(MAX_NODE_RADIUS_PROPERTY, DEFAULT_MAX_NODE_RADIUS, MIN_MAX_NODE_RADIUS, MAX_MAX_NODE_RADIUS);
         }

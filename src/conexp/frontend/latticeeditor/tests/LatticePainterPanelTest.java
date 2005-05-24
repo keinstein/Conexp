@@ -8,6 +8,7 @@
 package conexp.frontend.latticeeditor.tests;
 
 import canvas.CanvasScheme;
+import canvas.FigureDrawing;
 import conexp.core.Lattice;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.ContextDocument;
@@ -19,26 +20,30 @@ import conexp.frontend.latticeeditor.LatticePainterPanel;
 import conexp.frontend.tests.ResourcesToolbarDefinitionTest;
 import junit.framework.TestCase;
 import util.testing.TestUtil;
+import com.mockobjects.ExpectationCounter;
 
 
 public class LatticePainterPanelTest extends TestCase {
     private LatticePainterPanel pan;
 
+    private void usualSetUp() {
 
-    protected void setUp() {
         pan = TestHelper.makeTestableLatticePainterPanel(SetBuilder.makeLattice(new int[][]{{0}}));
     }
 
     public void testDefaultLatticeComponentPainterOptions() {
+        usualSetUp();
         CanvasScheme options = pan.getDrawing().getOptions();
         assertTrue("Expect LatticePainterOptions but was " + options.getClass().getName(), options instanceof LatticePainterOptions);
     }
 
     public void testPaint() {
+        usualSetUp();
         pan.getScreenImage();
     }
 
     public void testInitPaint() {
+        usualSetUp();
         try {
             pan.initPaint();
         } catch (Throwable t) {
@@ -47,7 +52,24 @@ public class LatticePainterPanelTest extends TestCase {
 
     }
 
+    public void testThatLatticeIsSetOnlyOnce() {
+        final ExpectationCounter counter = new ExpectationCounter("Number the drawing is set");
+        counter.setExpected(1);
+
+        pan = new LatticePainterPanel() {
+            protected void setDrawing(FigureDrawing newDrawing) {
+                counter.inc();
+                super.setDrawing(newDrawing);
+            }
+        };
+
+        pan.setLatticeSupplier(TestHelper.makeTestableLatticeProvider(SetBuilder.makeLattice(new int[][]{{0}})));
+        pan.initialUpdate();
+        counter.verify();
+    }
+
     public void testSetLatticeDrawing() {
+        usualSetUp();
         try {
             LatticeDrawing drawing = new LatticeDrawing();
             drawing.setLattice(SetBuilder.makeLatticeWithContext(new int[][]{{0}}));
@@ -59,6 +81,7 @@ public class LatticePainterPanelTest extends TestCase {
 
 
     public void testToolbarInResources() {
+        usualSetUp();
         ContextDocument doc = new ContextDocument();
         pan.setParentActionMap(doc.getActionChain());    //here the lattice snapshot command is provided
         ResourcesToolbarDefinitionTest.testToolbarDefinitionInResources(LatticePainterPanel.getResources(), pan.getActionChain());

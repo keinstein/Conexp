@@ -13,6 +13,7 @@ import conexp.core.Set;
 import conexp.frontend.MultiSelectionEntitiesMask;
 import conexp.frontend.SetProvidingEntitiesMask;
 import util.Assert;
+import util.StringUtil;
 
 
 public abstract class BasicMultiSelectionEntityMaskImplementation extends BasicEntityMaskImplementation implements MultiSelectionEntitiesMask, SetProvidingEntitiesMask {
@@ -62,5 +63,9 @@ public abstract class BasicMultiSelectionEntityMaskImplementation extends BasicE
         for (int i = getCount(); --i >= 0;) {
             ret.setSelected(i, isSelected(i));
         }
+    }
+
+    public String toString() {
+        return StringUtil.extractClassName(getClass().getName())+toSet().toString();
     }
 }

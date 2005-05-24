@@ -12,7 +12,6 @@ import canvas.Figure;
 import com.visibleworkings.trace.Trace;
 import conexp.core.*;
 import conexp.core.layout.ConceptCoordinateMapper;
-import conexp.core.layout.LayoutParameters;
 import conexp.core.layout.Layouter;
 import conexp.core.layout.LayouterProvider;
 import conexp.core.layoutengines.LayoutEngine;
@@ -171,7 +170,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
         needUpdateCollisions = true;
     }
 
-    public LayoutParameters getDrawParams() {
+    public DrawParameters getDrawParams() {
         return getLatticeDrawingSchema().getDrawParams();
     }
 
@@ -232,6 +231,33 @@ public class LatticeDrawing extends ConceptSetDrawing {
         return getLabelingStrategiesContext().setObjectLabelingStrategyKey(key);
     }
 
+    public String getNodeRadiusModeKey() {
+        return getDrawStrategiesContext().getFigureDimensionStrategyKey();
+    }
+
+    public boolean setNodeRadiusModeKey(String key) {
+        return getDrawStrategiesContext().setFigureDimensionStrategyKey(key);
+    }
+
+
+    public String getEdgeDisplayModeKey() {
+        return getDrawStrategiesContext().getEdgeSizeStrategyKey();
+    }
+
+    public boolean setEdgeDisplayModeKey(String key) {
+        return getDrawStrategiesContext().setEdgeSizeStrategyKey(key);
+    }
+
+
+    public String getHighlightModeKey() {
+        return getDrawStrategiesContext().getHighlightStrategyKey();
+    }
+
+    public boolean setHighlightModeKey(String key) {
+        return getDrawStrategiesContext().setHighlightStrategyKey(key);
+    }
+
+
     protected void makeLatticeDiagramFigures() {
         makeConceptsFigures();
         makeEdgeFigures();
@@ -283,6 +309,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
     public List getEdges() {
         return Collections.unmodifiableList(edges);
     }
+
 
     private class CollisionUpdateThread extends Thread {
         public void run() {
