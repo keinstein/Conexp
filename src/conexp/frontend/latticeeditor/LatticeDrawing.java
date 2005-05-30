@@ -314,7 +314,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
     private class CollisionUpdateThread extends Thread {
         public void run() {
             markCollisionDetectionStarted();
-            collisionDetector.detectCollisions(LatticeDrawing.this);
+            CollisionDetector.detectCollisions(LatticeDrawing.this);
             onCollisionThreadEnd();
         }
     }

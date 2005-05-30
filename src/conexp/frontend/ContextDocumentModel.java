@@ -136,13 +136,17 @@ public class ContextDocumentModel {
     }
 
     public int findLatticeComponent(LatticeSupplier latticeComponent) {
-        int i = getLatticeComponents().size();
+        int i = getLatticeComponentsCount();
         while (--i >= 0) {
             if (getLatticeComponent(i) == latticeComponent) {
                 return i;
             }
         }
         return -1;
+    }
+
+    public int getLatticeComponentsCount() {
+        return getLatticeComponents().size();
     }
 
     public void removeLatticeComponent(LatticeSupplier component){

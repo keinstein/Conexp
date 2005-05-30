@@ -11,12 +11,12 @@ import conexp.frontend.DocumentLoader;
 import conexp.frontend.DocumentWriter;
 import conexp.frontend.io.ConImpContextLoader;
 import conexp.frontend.io.ConImpContextWriter;
-import conexp.frontend.io.ContextReaderDocumenLoaderAdapter;
+import conexp.frontend.io.ContextReaderAdapter;
 
 public class ConImpContextReaderWriterTest extends ContextReaderWriterPairTest {
 
     protected DocumentLoader makeDocumentLoader() {
-        return new ContextReaderDocumenLoaderAdapter(new ConImpContextLoader());
+        return new ContextReaderAdapter(new ConImpContextLoader());
     }
 
     protected DocumentWriter makeDocumentWriter() {

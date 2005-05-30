@@ -19,6 +19,8 @@ public class ObjectsLabelingStrategyModel extends AbstractNonGrowingStrategyMode
         return new String[][]{
             {"Don't show", LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.NullLabellingStrategy"},
             {"Show labels", LabelingStrategiesKeys.ALL_OBJECTS_LABELING_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.AllObjectsLabelingStrategy"},
+            {"Show multi-labels", LabelingStrategiesKeys.OBJECTS_MULTI_LABELING_STRATEGY_KEY, "conexp.frontend.latticeeditor.labelingstrategies.AllObjectsMultiLineLabelingStrategy"},
+
             {"Show own objects count", LabelingStrategiesKeys.OWN_OBJECTS_COUNT_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.OwnObjectsCountLabelingStrategy"},
             {"Show object count", LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.ObjectsCountLabelingStrategy"},
             {"Stability", LabelingStrategiesKeys.STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.StabilityToDesctructionLabelingStrategy"},

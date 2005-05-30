@@ -13,15 +13,9 @@ import conexp.core.ImplicationSet;
 import conexp.core.attrexplorationimpl.AttributeExplorerImplementation;
 import conexp.core.compareutils.ImplicationSetComparator;
 import conexp.core.tests.SetBuilder;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class AttributeExplorerTest extends TestCase {
-
-    public static Test suite() {
-        return new TestSuite(AttributeExplorerTest.class);
-    }
 
     private static void doTestAttributeExploration(int[][] context, int[][][] expQuerySequence, int[][][] contrExamples, int[][] expContext, int[][][] expImplicationTheory) {
         AttributeExplorer explorer = new AttributeExplorerImplementation();
@@ -53,7 +47,7 @@ public class AttributeExplorerTest extends TestCase {
         int[][] context = new int[][]{{1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{{{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 0}, {1, 1, 1}}};
         int[][][] contrExamples = new int[0][0][0];
-        int[][][] expImplicationTheory = new int[][][]{{{0, 0, 0}, {1, 1, 1}}};
+        int[][][] expImplicationTheory = new int[][][]{{{0, 0, 0}, {1, 1, 1}, {1}}};
         int[][] expContext = context;
 
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
@@ -68,7 +62,7 @@ public class AttributeExplorerTest extends TestCase {
             {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 0}, {0, 1, 1}}
         };
         int[][][] contrExamples = new int[][][]{{{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 1}}};
-        int[][][] expImplicationTheory = new int[][][]{{{0, 0, 0}, {0, 1, 1}}};
+        int[][][] expImplicationTheory = new int[][][]{{{0, 0, 0}, {0, 1, 1}, {2}}};
         int[][] expContext = new int[][]{{1, 1, 1},
                                          {0, 1, 1}};
 
@@ -87,8 +81,8 @@ public class AttributeExplorerTest extends TestCase {
         int[][][] contrExamples = new int[][][]{{{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 1}},
                                                 {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {1, 0, 0}}};
 
-        int[][][] expImplicationTheory = new int[][][]{{{0, 0, 1}, {0, 1, 0}},
-                                                       {{0, 1, 0}, {0, 0, 1}}};
+        int[][][] expImplicationTheory = new int[][][]{{{0, 0, 1}, {0, 1, 0}, {2}},
+                                                       {{0, 1, 0}, {0, 0, 1}, {2}}};
         int[][] expContext = new int[][]{{1, 1, 1},
                                          {0, 1, 1},
                                          {1, 0, 0}};
@@ -111,8 +105,8 @@ public class AttributeExplorerTest extends TestCase {
             {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 0}}
         };
 
-        int[][][] expImplicationTheory = new int[][][]{{{0, 0, 1}, {0, 1, 0}},
-                                                       {{1, 1, 0}, {0, 0, 1}}};
+        int[][][] expImplicationTheory = new int[][][]{{{0, 0, 1}, {0, 1, 0}, {2}},
+                                                       {{1, 1, 0}, {0, 0, 1}, {1}}};
         int[][] expContext = new int[][]{{1, 1, 1},
                                          {0, 1, 1},
                                          {1, 0, 0},
@@ -133,9 +127,9 @@ public class AttributeExplorerTest extends TestCase {
         int[][][] contrExamples = new int[][][]{{{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 1}}};
 
         int[][][] expImplicationTheory = new int[][][]{
-            {{0, 0, 1}, {0, 1, 0}},
-            {{0, 1, 0}, {0, 0, 1}},
-            {{1, 0, 0}, {0, 1, 1}}
+            {{0, 0, 1}, {0, 1, 0}, {2}},
+            {{0, 1, 0}, {0, 0, 1}, {2}},
+            {{1, 0, 0}, {0, 1, 1}, {1}}
         };
         int[][] expContext = new int[][]{{0, 0, 0},
                                          {1, 1, 1},
@@ -159,9 +153,9 @@ public class AttributeExplorerTest extends TestCase {
         };
 
         int[][][] expImplicationTheory = new int[][][]{
-            {{0, 0, 1}, {0, 1, 0}},
-            {{0, 1, 0}, {0, 0, 1}},
-            {{1, 0, 0}, {0, 1, 1}}
+            {{0, 0, 1}, {0, 1, 0}, {2}},
+            {{0, 1, 0}, {0, 0, 1}, {2}},
+            {{1, 0, 0}, {0, 1, 1}, {1}}
         };
         int[][] expContext = new int[][]{{0, 0, 0},
                                          {1, 1, 1},
@@ -184,9 +178,9 @@ public class AttributeExplorerTest extends TestCase {
         };
 
         int[][][] expImplicationTheory = new int[][][]{
-            {{0, 0, 1}, {1, 1, 0}},
-            {{0, 1, 0}, {1, 0, 1}},
-            {{1, 0, 0}, {0, 1, 1}}
+            {{0, 0, 1}, {1, 1, 0}, {1}},
+            {{0, 1, 0}, {1, 0, 1}, {1}},
+            {{1, 0, 0}, {0, 1, 1}, {1}}
         };
 
         int[][] expContext = new int[][]{{0, 0, 0},
@@ -214,10 +208,10 @@ public class AttributeExplorerTest extends TestCase {
         };
 
         int[][][] expImplicationTheory = new int[][][]{
-            {{0, 0, 0, 1}, {0, 0, 1, 0}},
-            {{0, 0, 1, 0}, {0, 0, 0, 1}},
-            {{0, 1, 0, 0}, {1, 0, 0, 0}},
-            {{1, 0, 0, 0}, {0, 1, 0, 0}}
+            {{0, 0, 0, 1}, {0, 0, 1, 0}, {1}},
+            {{0, 0, 1, 0}, {0, 0, 0, 1}, {1}},
+            {{0, 1, 0, 0}, {1, 0, 0, 0}, {1}},
+            {{1, 0, 0, 0}, {0, 1, 0, 0}, {1}}
         };
         int[][] expContext = new int[][]{{0, 0, 1, 1},
                                          {1, 1, 0, 0}};

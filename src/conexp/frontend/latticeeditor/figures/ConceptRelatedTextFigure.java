@@ -12,7 +12,7 @@ import canvas.figures.TextFigure;
 import conexp.core.Set;
 import conexp.frontend.latticeeditor.ConceptQuery;
 
-public abstract class ConceptRelatedTextFigure extends TextFigure {
+public abstract class ConceptRelatedTextFigure extends TextFigure implements IConceptRelatedTextFigure {
 
     protected ConceptQuery concept;
 

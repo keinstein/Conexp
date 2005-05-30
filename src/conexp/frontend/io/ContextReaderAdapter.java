@@ -17,10 +17,10 @@ import java.io.Reader;
 
 //todo: rename to ContextReaderAdapter, when have access to CSV.
 
-public class ContextReaderDocumenLoaderAdapter implements DocumentLoader {
+public class ContextReaderAdapter implements DocumentLoader {
     private ContextReader loader;
 
-    public ContextReaderDocumenLoaderAdapter(ContextReader loader) {
+    public ContextReaderAdapter(ContextReader loader) {
         this.loader = loader;
     }
 

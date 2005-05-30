@@ -12,13 +12,15 @@ import conexp.frontend.ViewChangeListener;
 import util.collection.CollectionFactory;
 
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 import java.util.*;
 import java.util.List;
 import java.awt.*;
 
 public class ConExpViewManager {
 
-    static class NullView extends JComponent implements View{
+    static class NullView extends JComponent implements View {
         public NullView() {
         }
 
@@ -27,7 +29,8 @@ public class ConExpViewManager {
         }
     }
 
-    private NullView nullComponent = new NullView(){};
+    private NullView nullComponent = new NullView() {
+    };
 
     private Map viewMap = CollectionFactory.createDefaultMap();
 
@@ -37,9 +40,9 @@ public class ConExpViewManager {
 
 
     private View getView(IViewInfo viewInfo) {
-        if(hasViewForModel(viewInfo)){
+        if (hasViewForModel(viewInfo)) {
             return doGetView(viewInfo);
-        }else{
+        } else {
             View view = viewInfo.createView();
             view.initialUpdate();
             viewMap.put(viewInfo, view);
@@ -48,24 +51,23 @@ public class ConExpViewManager {
     }
 
 
-
     public void removeView(IViewInfo viewInfo) {
-        if(!hasViewForModel(viewInfo)){
+        if (!hasViewForModel(viewInfo)) {
             return;
         }
         View view = getView(viewInfo);
-        if(viewIsShown(view)){
+        if (viewIsShown(view)) {
             removeViewFromPlace(view);
         }
         viewMap.remove(viewInfo);
         //here order is important
-        if(hasNoViewsWithSameCaption(viewInfo)){
+        if (hasNoViewsWithSameCaption(viewInfo)) {
             int index = getTabPane().indexOfTab(viewInfo.getViewCaption());
             getTabPane().removeTabAt(index);
         }
     }
 
-    public int getPlacesCount(){
+    public int getPlacesCount() {
         return getTabPane().getTabCount();
     }
 
@@ -73,7 +75,7 @@ public class ConExpViewManager {
         Set set = viewMap.keySet();
         for (Iterator iterator = set.iterator(); iterator.hasNext();) {
             IViewInfo other = (IViewInfo) iterator.next();
-            if(viewInfo.getViewCaption().equals(other.getViewCaption())){
+            if (viewInfo.getViewCaption().equals(other.getViewCaption())) {
                 return false;
             }
         }
@@ -84,17 +86,17 @@ public class ConExpViewManager {
         int viewPosition = findViewPosition(view);
         //assert viewPosition!=-1;
         getTabPane().setComponentAt(viewPosition, nullComponent);
-        if(view==getActiveView()){
+        if (view == getActiveView()) {
             setActiveView(null);
         }
     }
 
     private boolean viewIsShown(View view) {
-        return findViewPosition(view)!=-1;
+        return findViewPosition(view) != -1;
     }
 
     private int findViewPosition(View view) {
-        return getTabPane().indexOfComponent((JComponent)view);
+        return getTabPane().indexOfComponent((JComponent) view);
     }
 
     public void activateView(IViewInfo viewInfo) {
@@ -105,9 +107,17 @@ public class ConExpViewManager {
 
     private JTabbedPane tabPane;
 
-    private JTabbedPane getTabPane() {
-        if(null==tabPane){
-            tabPane= new JTabbedPane(JTabbedPane.BOTTOM);
+    protected JTabbedPane getTabPane() {
+        if (null == tabPane) {
+            tabPane = new JTabbedPane(JTabbedPane.BOTTOM);
+            tabPane.addChangeListener(new ChangeListener() {
+                public void stateChanged(ChangeEvent e) {
+                    JComponent newView = (JComponent) getTabPane().getSelectedComponent();
+                    if (newView != null) {
+                        setActiveView((View) newView);
+                    }
+                }
+            });
         }
         return tabPane;
     }
@@ -124,11 +134,11 @@ public class ConExpViewManager {
 
     private void setActiveViewForPlace(IViewInfo viewInfo, View view) {
         int index = getViewPlaceIndex(viewInfo);
-        if(-1==index){
-            getTabPane().addTab(viewInfo.getViewCaption(), (JComponent)view);
-            index = getTabPane().getComponentCount()-1;
-        }else{
-            getTabPane().setComponentAt(index, (JComponent)view);
+        if (-1 == index) {
+            getTabPane().addTab(viewInfo.getViewCaption(), (JComponent) view);
+            index = getTabPane().getComponentCount() - 1;
+        } else {
+            getTabPane().setComponentAt(index, (JComponent) view);
         }
         getTabPane().setSelectedIndex(index);
 
@@ -140,13 +150,13 @@ public class ConExpViewManager {
     private View activeView;
 
     private void setActiveView(View view) {
-        if(activeView!=view){
-            View oldView= activeView;
+        if (activeView != view) {
+            View oldView = activeView;
             activeView = view;
-            if(null!=activeView){
-                ((JComponent)activeView).repaint();
+            if (null != activeView) {
+                ((JComponent) activeView).repaint();
             }
-            fireViewChanged((JComponent)oldView, (JComponent)activeView);
+            fireViewChanged((JComponent) oldView, (JComponent) activeView);
         }
     }
 
@@ -154,7 +164,7 @@ public class ConExpViewManager {
         return activeView;
     }
 
-    public Container getViewContainer(){
+    public Container getViewContainer() {
         return getTabPane();
     }
 
@@ -183,24 +193,24 @@ public class ConExpViewManager {
     }
 
     //TEST INTERFACE
-    public Collection getViews(){
+    public Collection getViews() {
         return Collections.unmodifiableCollection(viewMap.values());
     }
 
-    public String getActiveViewId(){
-       //actually return active view place
-        for (Iterator iterator  = viewMap.entrySet().iterator();
+    public String getActiveViewId() {
+        //actually return active view place
+        for (Iterator iterator = viewMap.entrySet().iterator();
              iterator.hasNext();) {
             Map.Entry entry = (Map.Entry) iterator.next();
-            if(entry.getValue()==activeView){
-                return ((IViewInfo)entry.getKey()).getViewPlace();
+            if (entry.getValue() == activeView) {
+                return ((IViewInfo) entry.getKey()).getViewPlace();
             }
         }
         return "";
     }
 
     public View doGetView(IViewInfo viewInfo) {
-        return (View)viewMap.get(viewInfo);
+        return (View) viewMap.get(viewInfo);
     }
 
 

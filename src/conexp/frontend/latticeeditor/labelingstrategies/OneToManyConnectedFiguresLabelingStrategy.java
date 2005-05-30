@@ -13,7 +13,7 @@ import conexp.core.ContextEntity;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
-import conexp.frontend.latticeeditor.figures.ContextObjectTextFigure;
+import conexp.frontend.latticeeditor.figures.ContextEntityTextFigure;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericL
         while (iter.hasNext()) {
             distributor.setNextCoords(coords);
             ContextEntity object = (ContextEntity) iter.next();
-            TextFigure tf = new ContextObjectTextFigure(f.getConceptQuery(), object);
+            TextFigure tf = new ContextEntityTextFigure(f.getConceptQuery(), object);
             tf.setCoords(coords);
             drawing.setFigureForContextObject(object, tf);
 

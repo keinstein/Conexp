@@ -7,6 +7,7 @@
 
 package conexp.frontend.latticeeditor;
 
+import canvas.CanvasScheme;
 import com.visibleworkings.trace.Trace;
 import conexp.frontend.latticeeditor.movestrategies.FigureIdealMoveStrategy;
 import conexp.frontend.latticeeditor.movestrategies.OneFigureMoveStrategy;
@@ -14,9 +15,6 @@ import conexp.frontend.latticeeditor.movestrategies.OneFigureMoveStrategy;
 import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-
-import canvas.FigureDrawing;
-import canvas.CanvasScheme;
 
 public class BaseConceptSetCanvas extends LatticeCanvas {
     protected CanvasScheme makeDefaultCanvasScheme() {

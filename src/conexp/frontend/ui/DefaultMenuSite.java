@@ -127,7 +127,8 @@ public class DefaultMenuSite
         menuBar = new JMenuBar();
         Iterator i = menuBarContents.iterator();
         while (i.hasNext()) {
-            menuBar.add(((Item) (i.next())).lineItem);
+            final Item item = ((Item) (i.next()));
+            item.addToNewContainer(menuBar);
         }
 
         // Replace the old menu bar with the new one.
@@ -165,12 +166,9 @@ public class DefaultMenuSite
 
         public Item(JMenuItem lineItem, JComponent container,
                     boolean isHelpMenu) {
-            Assert.isTrue(container instanceof JMenu ||
-                    container instanceof JMenuBar);
-
             this.lineItem = lineItem;
-            this.container = container;
             this.isHelpMenu = isHelpMenu;
+            setContainer(container);
         }
 
         /**
@@ -184,17 +182,17 @@ public class DefaultMenuSite
 
         public final void attachMenuToContainer() {
             if (container instanceof JMenu) {
-                container.add(lineItem);
+                doAddLineItemToContainer();
             } else {
                 Assert.isTrue(container instanceof JMenuBar);
                 if (menuBarContents.isEmpty()) {
                     menuBarContents.add(this);
-                    container.add(lineItem);
+                    doAddLineItemToContainer();
                 } else {
                     Item last = (Item) (menuBarContents.getLast());
                     if (!last.isHelpMenu) {
                         menuBarContents.add(this);
-                        container.add(lineItem);
+                        doAddLineItemToContainer();
                     } else {
                         // remove the help menu, add the new
                         // item, then put the help menu back
@@ -207,6 +205,27 @@ public class DefaultMenuSite
                     }
                 }
             }
+        }
+
+        private void doAddLineItemToContainer() {
+            if(container instanceof JMenuBar &&
+                    isHelpMenu){
+                container.add(Box.createHorizontalGlue());
+            }
+            container.add(lineItem);
+        }
+
+        private void addToNewContainer(JComponent container){
+            setContainer(container);
+            doAddLineItemToContainer();
+        }
+
+        private void setContainer(JComponent container) {
+            Assert.isTrue(container instanceof JMenu ||
+                    container instanceof JMenuBar);
+                Assert.isTrue(!isHelpMenu || container instanceof JMenuBar, "For help menu container should be a JMenuBar");
+            this.container=container;
+
         }
 
         /**

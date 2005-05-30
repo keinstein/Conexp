@@ -13,10 +13,10 @@ import conexp.frontend.latticeeditor.ConceptQuery;
 
 import java.awt.*;
 
-public class ContextObjectTextFigure extends ConceptRelatedTextFigure {
+public class ContextEntityTextFigure extends ConceptRelatedTextFigure {
     protected ContextEntity obj;
 
-    public ContextObjectTextFigure(ConceptQuery conceptQuery, ContextEntity obj) {
+    public ContextEntityTextFigure(ConceptQuery conceptQuery, ContextEntity obj) {
         super(conceptQuery);
         this.obj = obj;
     }

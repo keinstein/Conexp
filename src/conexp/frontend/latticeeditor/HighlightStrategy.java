@@ -11,10 +11,7 @@ import canvas.Figure;
 import canvas.IHighlightStrategy;
 import conexp.core.LatticeElement;
 import conexp.core.Set;
-import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
-import conexp.frontend.latticeeditor.figures.ConceptRelatedTextFigure;
-import conexp.frontend.latticeeditor.figures.EdgeFigure;
-import conexp.frontend.latticeeditor.figures.NodeObjectConnectionFigure;
+import conexp.frontend.latticeeditor.figures.*;
 import conexp.util.GenericStrategy;
 
 
@@ -28,8 +25,8 @@ public abstract class HighlightStrategy implements GenericStrategy, IHighlightSt
             return highlightNodeWithQuery(conceptFigure.getIntentQuery());
 
         }
-        if (figure instanceof ConceptRelatedTextFigure) {
-            ConceptRelatedTextFigure textFigure = (ConceptRelatedTextFigure) figure;
+        if (figure instanceof IConceptRelatedTextFigure) {
+            IConceptRelatedTextFigure textFigure = (IConceptRelatedTextFigure) figure;
             return highlightNodeWithQuery(textFigure.getIntentQuery());
         }
         if (figure instanceof NodeObjectConnectionFigure) {

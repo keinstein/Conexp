@@ -8,21 +8,21 @@ package conexp.frontend.latticeeditor.tests;
  * To change this template use File | Settings | File Templates.
  */
 
-import conexp.frontend.latticeeditor.HighlightStrategy;
 import junit.framework.TestCase;
 import util.testing.TestUtil;
+import canvas.IHighlightStrategy;
 
 public abstract class HighlightStrategyTest extends TestCase {
     public void testEqualsAndHashCode() {
-        HighlightStrategy first = makeEqualInstance();
-        HighlightStrategy second = makeEqualInstance();
-        HighlightStrategy third = makeNotEqualInstance();
+        IHighlightStrategy first = makeEqualInstance();
+        IHighlightStrategy second = makeEqualInstance();
+        IHighlightStrategy third = makeNotEqualInstance();
 
         TestUtil.testEqualsAndHashCode(first, second);
         TestUtil.testNotEquals(first, third);
     }
 
-    protected abstract HighlightStrategy makeNotEqualInstance();
+    protected abstract IHighlightStrategy makeNotEqualInstance();
 
-    protected abstract HighlightStrategy makeEqualInstance();
+    protected abstract IHighlightStrategy makeEqualInstance();
 }

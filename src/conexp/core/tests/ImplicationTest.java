@@ -18,7 +18,7 @@ public class ImplicationTest extends DependencyTest {
 
     protected void setUp() {
         impDisjoint = SetBuilder.makeImplication(new int[]{1, 0, 0, 0}, new int[]{0, 1, 0, 0}, 10);
-        impOverlap = SetBuilder.makeImplication(new int[]{1, 0, 0, 0}, new int[]{1, 1, 0, 0}, 0);
+        impOverlap = SetBuilder.makeImplication(new int[]{1, 0, 0, 0}, new int[]{1, 1, 0, 0}, 10);
     }
 
     public void testEquals() {

@@ -23,11 +23,12 @@ public abstract class ImplicationCalculatorBaseTest extends TestCase {
         ImplicationSet expImplication =
                 SetBuilder.makeImplicationSet(cxt,
                         expImplicationsDescriptions);
-        if (!expImplication.equals(implications)) {
+        if (!expImplication.equalsToIsomorphism(implications)) {
             ImplicationSetComparator comparator = new ImplicationSetComparator(expImplication, implications);
             comparator.dumpDifferencesToSout();
             assertEquals(expImplication, implications);
         }
+
 
     }
 

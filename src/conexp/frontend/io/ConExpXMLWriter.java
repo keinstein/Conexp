@@ -79,20 +79,19 @@ public class ConExpXMLWriter implements DocumentWriter {
 
     public static Element makeLatticeElement(LatticeSupplier latticeComponent) {
         Element latticeElement = new Element(ConExpXMLElements.LATTICE_ELEMENT);
-        storeFeatureMask(latticeComponent, latticeElement);
+        storeFeatureMasks(latticeComponent, latticeElement);
         storeDrawings(latticeComponent, latticeElement);
         return latticeElement;
     }
 
-    private static void storeFeatureMask(LatticeSupplier latticeComponent, Element latticeElement) {
-        final SetProvidingEntitiesMask attributeMask = latticeComponent.getAttributeMask();
-        if (attributeMask.hasUnselected()) {
-            latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT, attributeMask));
-        }
+    private static void storeFeatureMasks(LatticeSupplier latticeComponent, Element latticeElement) {
+       doStoreFeatureMask(latticeElement, latticeComponent.getAttributeMask(), ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT);
+       doStoreFeatureMask(latticeElement, latticeComponent.getObjectMask(), ConExpXMLElements.OBJECT_MASK_ELEMENT);
+    }
 
-        final SetProvidingEntitiesMask objectMask = latticeComponent.getObjectMask();
-        if (objectMask.hasUnselected()) {
-            latticeElement.addContent(makeEntityMaskElement(ConExpXMLElements.OBJECT_MASK_ELEMENT, objectMask));
+    private static void doStoreFeatureMask(Element latticeElement, final SetProvidingEntitiesMask entityMask, final String maskElementID) {
+        if (entityMask.hasUnselected()) {
+            latticeElement.addContent(makeEntityMaskElement(maskElementID, entityMask));
         }
     }
 
@@ -119,6 +118,7 @@ public class ConExpXMLWriter implements DocumentWriter {
         if (drawing.hasLabelsForConcepts()) {
             latticeDrawingElement.addContent(storeConceptLabels(drawing));
         }
+        //if(drawing.)
         return latticeDrawingElement;
     }
 
@@ -184,7 +184,16 @@ public class ConExpXMLWriter implements DocumentWriter {
         settingElement.addContent(storeNodeRadiusMode(drawing));
         settingElement.addContent(storeEdgeSizeMode(drawing));
         settingElement.addContent(storeHighlightMode(drawing));
+        settingElement.addContent(storeGridSizeX(drawing));
         return settingElement;
+    }
+
+    private static Element storeGridSizeX(LatticeDrawing drawing){
+        return makeSettingElement(ConExpXMLElements.GRID_SIZE_X, String.valueOf(drawing.getDrawParams().getGridSizeX());
+    }
+
+    private static Element storeGridSizeY(LatticeDrawing drawing){
+        return makeSettingElement(ConExpXMLElements.GRID_SIZE_Y, String.valueOf(drawing.getDrawParams().getGridSizeY());
     }
 
     private static Element storeHighlightMode(LatticeDrawing drawing) {

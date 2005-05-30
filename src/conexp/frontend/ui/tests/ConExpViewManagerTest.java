@@ -124,8 +124,45 @@ public class ConExpViewManagerTest extends TestCase {
         viewInfo.verify();
     }
 
-    public void testGetActiveViewId(){
+    static class TestConExpViewManager extends ConExpViewManager{
+        public JTabbedPane getTabPane() {
+            return super.getTabPane();
+        }
+    };
+
+    public void testOptionChangeOnActiveTabChange(){
+        TestViewInfo testViewInfo = new TestViewInfo();
+        testViewInfo.setExpected(1);
+        LatticeComponent component = ComponentsObjectMother.makeLatticeComponent();
+        LatticeViewInfo latticeViewInfo = new LatticeViewInfo(component);
+
+
+        final ExpectationCounter counter = new ExpectationCounter("Expected view changes");
+
+        TestConExpViewManager viewManager = new TestConExpViewManager();
+        viewManager.addViewChangeListener(new ViewChangeListener(){
+            public void viewChanged(JComponent oldView, JComponent newView) {
+                counter.inc();
+            }
+
+            public void cleanUp() {
+            }
+        });
+
+        counter.setExpected(1);
+        viewManager.activateView(testViewInfo);
+        testViewInfo.verify();
+        counter.verify();
+
+        counter.setExpected(1);
+        viewManager.activateView(latticeViewInfo);
+        counter.verify();
+        assertEquals(1, viewManager.getTabPane().getSelectedIndex());
+
+        counter.setExpected(1);
+        viewManager.getTabPane().setSelectedIndex(0);
+
+        counter.verify();
 
     }
-
 }

@@ -21,8 +21,6 @@ import java.util.StringTokenizer;
 
 
 public class TabSeparatedContextReader implements ContextReader {
-    private LineNumberReader reader;
-
     protected LocalizedMessageSupplier getLocalizedMessageSupplier() {
         if (null == localizedMessageSupplier) {
             localizedMessageSupplier = new LocalizedMessageSupplier() {
@@ -42,6 +40,9 @@ public class TabSeparatedContextReader implements ContextReader {
     }
 
     LocalizedMessageSupplier localizedMessageSupplier;
+
+
+    private LineNumberReader reader;
 
     public Context parseContext(Reader r) throws IOException, DataFormatException {
         reader = new LineNumberReader(new BufferedReader(r));
@@ -89,7 +90,7 @@ public class TabSeparatedContextReader implements ContextReader {
     }
 
     private String safeGetLine() throws IOException, DataFormatException {
-        String str = reader.readLine();
+        String str = getNextLine();
         if (null == str) {
             throw makeFileFormatException();
         }

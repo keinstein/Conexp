@@ -229,7 +229,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         ExtendedContextEditingInterface loadedContext = loadedDoc.getContext();
         assertEquals(cxt, loadedContext);
 
-        for (int i = 0; i < doc.getLatticeCollection().size(); i++) {
+        for (int i = 0; i < doc.getLatticeComponentCount(); i++) {
             Lattice lattice = doc.getLatticeComponent(i).getLattice();
 
 

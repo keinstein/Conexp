@@ -11,7 +11,9 @@ import conexp.frontend.EntitiesMask;
 
 import javax.swing.*;
 
-public class EntityMaskTable extends JTable {
+import util.gui.JTableX;
+
+public class EntityMaskTable extends JTableX {
     public EntityMaskTable(EntitiesMask attributeMask) {
         super(new EntityMaskTableModel(attributeMask));
         setRowSelectionAllowed(false);

@@ -1,9 +1,9 @@
 package conexp.frontend.latticeeditor.highlightstrategies.tests;
 
-import conexp.frontend.latticeeditor.HighlightStrategy;
 import conexp.frontend.latticeeditor.highlightstrategies.FilterIdealHighlightStrategy;
 import conexp.frontend.latticeeditor.highlightstrategies.IdealHighlightStrategy;
 import conexp.frontend.latticeeditor.tests.HighlightStrategyTest;
+import canvas.IHighlightStrategy;
 
 /**
  * User: sergey
@@ -13,11 +13,11 @@ import conexp.frontend.latticeeditor.tests.HighlightStrategyTest;
 
 
 public class FilterIdealHighlightStrategyTest extends HighlightStrategyTest {
-    protected HighlightStrategy makeNotEqualInstance() {
+    protected IHighlightStrategy makeNotEqualInstance() {
         return new IdealHighlightStrategy();
     }
 
-    protected HighlightStrategy makeEqualInstance() {
+    protected IHighlightStrategy makeEqualInstance() {
         return new FilterIdealHighlightStrategy();
     }
 }

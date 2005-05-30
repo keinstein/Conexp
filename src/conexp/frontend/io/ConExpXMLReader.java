@@ -276,6 +276,13 @@ public class ConExpXMLReader implements DocumentLoader {
                 XMLHelper.throwDataFormatError("Unspecified highlight mode:"+attributeValue);
             }
         }
+        readBoundedIntValue(lineDiagramSetting.getChild(ConExpXMLElements.GRID_SIZE_X),
+                         drawing.getEditableDrawParameters().getGridSizeXValue(),
+                        "Wrong value of grid size x is provided:");
+        readBoundedIntValue(lineDiagramSetting.getChild(ConExpXMLElements.GRID_SIZE_Y),
+                         drawing.getEditableDrawParameters().getGridSizeYValue(),
+                        "Wrong value of grid size x is provided:");
+
     }
 
     private static void readBoundedIntValue(Element element, BoundedIntValue valueModel, String errorMessage) throws DataFormatException {

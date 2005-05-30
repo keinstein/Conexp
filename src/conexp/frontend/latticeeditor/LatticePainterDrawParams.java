@@ -96,7 +96,7 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
     }
 
 
-    synchronized BoundedIntValue getGridSizeXValue() {
+    public synchronized BoundedIntValue getGridSizeXValue() {
         if (null == gridSizeX) {
             gridSizeX = makeBoundedIntValue(GRID_SIZE_X_PROPERTY, DEFAULT_GRID_SIZE_X, MIN_GRID_SIZE_X, MAX_GRID_SIZE_X);
         }
@@ -107,7 +107,7 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
         return getGridSizeYValue().getValue();
     }
 
-    synchronized BoundedIntValue getGridSizeYValue() {
+    public synchronized BoundedIntValue getGridSizeYValue() {
         if (null == gridSizeY) {
             gridSizeY = makeBoundedIntValue(GRID_SIZE_Y_PROPERTY, DEFAULT_GRID_SIZE_Y, MIN_GRID_SIZE_Y, MAX_GRID_SIZE_Y);
         }

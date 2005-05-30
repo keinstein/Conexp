@@ -31,12 +31,15 @@ public class DefaultMenuSiteTest extends TestCase {
         assertEquals("Menu should be added to menu bar", 1, menuBar.getMenuCount());
         final JMenu helpMenu = new JMenu("Help");
         site.addHelpMenu(one, helpMenu);
-        assertEquals("Menu should be added to menu bar", 2, menuBar.getMenuCount());
-        assertSame("Help menu should be the last", helpMenu, menuBar.getMenu(1));
-        site.addMenu(one, new JMenu("Edit"));
-        assertEquals("Menu should be added to menu bar", 3, frame.getJMenuBar().getMenuCount());
-        assertSame("Help menu should be the last", helpMenu, frame.getJMenuBar().getMenu(2));
+        //when adding help menu, actually two components are added
+        assertEquals("Help Menu should be added to menu bar", 3, menuBar.getMenuCount());
 
+        assertSame("Help menu should be the last", helpMenu, menuBar.getMenu(2));
+        site.addMenu(one, new JMenu("Edit"));
+        assertEquals("Menu should be added to menu bar", 4, frame.getJMenuBar().getMenuCount());
+        assertSame("Help menu should be the last", helpMenu, frame.getJMenuBar().getMenu(3));
+        site.removeMyMenus(one);
+        assertEquals(0, frame.getJMenuBar().getMenuCount());
 
     }
 

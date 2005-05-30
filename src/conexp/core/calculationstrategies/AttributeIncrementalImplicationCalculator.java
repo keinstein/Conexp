@@ -259,7 +259,7 @@ public class AttributeIncrementalImplicationCalculator
 	{
 		ImplicationEx(final Set sExtent, final Set sPremise, final Set sConclusion)
 		{
-			super(sPremise, sConclusion);
+			super(sPremise, sConclusion, sExtent.elementCount());
 			m_sExtent = sExtent;
 			m_fIsConcept = sConclusion.isEmpty();
 		}

@@ -1,21 +1,17 @@
 package canvas.util;
 
-import util.gui.fileselector.GenericFileFilter;
-import util.gui.fileselector.ExtensionFileFilter;
-import util.gui.fileselector.FileSelectorService;
-import util.errorhandling.AppErrorHandler;
-import util.collection.CollectionFactory;
 import util.IExporter;
 import util.ServiceRegistry;
+import util.collection.CollectionFactory;
+import util.errorhandling.IErrorHandler;
+import util.gui.fileselector.ExtensionFileFilter;
+import util.gui.fileselector.FileSelectorService;
+import util.gui.fileselector.GenericFileFilter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.*;
 import java.io.IOException;
-
-import util.errorhandling.AppErrorHandler;
-import util.errorhandling.IErrorHandler;
 
 /**
  * Created by IntelliJ IDEA.

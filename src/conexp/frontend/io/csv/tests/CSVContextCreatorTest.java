@@ -15,9 +15,11 @@ import conexp.frontend.io.DefaultDataFormatErrorHandler;
 import conexp.frontend.io.csv.CSVContextLoader;
 import junit.framework.TestCase;
 import util.StringUtil;
+import util.DataFormatException;
 import util.testing.TestUtil;
 
 import java.io.StringReader;
+import java.io.IOException;
 
 public class CSVContextCreatorTest extends TestCase {
 
@@ -67,6 +69,33 @@ public class CSVContextCreatorTest extends TestCase {
          {0, 1}});
 
         doTestReading(data, expectedContext);
+    }
+
+
+    public static void testReadingWithComma() {
+        String[] data = {",A1,A2",
+                         "O1,1,0",
+                         "%aaaaa,klklöklkök,äkkklölk",
+                         "O2,0,1"};
+        ExtendedContextEditingInterface expectedContext = SetBuilder.makeContext(new String[]{"O1", "O2"}, new String[]{"A1", "A2"}, new int[][]
+        {{1, 0},
+         {0, 1}});
+
+        doTestReading(data, expectedContext);
+    }
+
+    public static void testReadingOfEmptyString(){
+        String[] data = {""};
+        StringReader reader = new StringReader(buildString(data));
+        try {
+            getLoader().loadDocument(reader,
+                    DefaultDataFormatErrorHandler.getInstance()
+            ).getContext();
+        } catch (IOException e) {
+            TestUtil.reportUnexpectedException(e);
+        } catch (DataFormatException e) {
+            //it's ok
+        }
     }
 
 

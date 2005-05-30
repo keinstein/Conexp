@@ -35,46 +35,4 @@ public class ParamEditorTable extends JTableX {
     }
 
 
-    public static boolean canGetGoodTip(Object tipProvider) {
-        if (null == tipProvider) {
-            return false;
-        }
-        String tip = tipProvider.toString();
-        if (null == tip) {
-            return false;
-        }
-        if ("".equals(tip.trim())) {
-            return false;
-        }
-        return true;
-    }
-
-    public java.awt.Point getToolTipLocation(java.awt.event.MouseEvent event) {
-        int row = rowAtPoint(event.getPoint());
-        int col = columnAtPoint(event.getPoint());
-
-        Object o = getValueAt(row, col);
-        if (!canGetGoodTip(o)) {
-            return null;
-        }
-
-        java.awt.Point pt = getCellRect(row, col, true).getLocation();
-        pt.translate(-1, -2);
-        return pt;
-    }
-
-    public String getToolTipText(MouseEvent event) {
-        Point p = event.getPoint();
-
-        // Locate the renderer under the event location
-        int col = columnAtPoint(p);
-        int row = rowAtPoint(p);
-
-        Object o = getValueAt(row, col);
-        if (!canGetGoodTip(o)) {
-            return null;
-        }
-
-        return o.toString().trim();
-    }
 }

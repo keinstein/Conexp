@@ -91,7 +91,16 @@ public class SetBuilder {
     public static ImplicationSet makeImplicationSet(AttributeInformationSupplier attrInfo, int[][][] implicationDescriptions) {
         ImplicationSet ret = new ImplicationSet(attrInfo);
         for (int i = 0; i < implicationDescriptions.length; i++) {
-            ret.addImplication(SetBuilder.makeImplication(implicationDescriptions[i][0], implicationDescriptions[i][1]));
+            Implication dep;
+
+            int[][] implicationDescription = implicationDescriptions[i];
+            if(implicationDescription.length==2){
+                dep = SetBuilder.makeImplication(implicationDescription[0], implicationDescription[1]);
+            }else{
+                Assert.isTrue(implicationDescription.length==3);
+                dep = SetBuilder.makeImplication(implicationDescription[0], implicationDescription[1], implicationDescription[2][0]);
+            }
+                ret.addImplication(dep);
         }
         return ret;
     }

@@ -32,9 +32,9 @@ public class AllTests extends TestCase {
         suite.addTestSuite(ImplicationTest.class);
         suite.addTestSuite(DependencySetTest.class);
 
+        suite.addTestSuite(conexp.core.attrexplorationimpl.tests.AttributeExplorerTest.class);
 
         suite.addTest(conexp.core.associations.tests.AllTests.suite());
-        suite.addTest(conexp.core.attrexplorationimpl.tests.AttributeExplorerTest.suite());
         suite.addTest(conexp.core.bitset.tests.AllTests.suite());
         suite.addTest(conexp.core.calculationstrategies.tests.AllTests.suite());
         suite.addTest(conexp.core.enumerators.tests.AllTests.suite());

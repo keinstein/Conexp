@@ -9,7 +9,7 @@ package conexp.frontend.io.tests;
 
 import conexp.frontend.DocumentLoader;
 import conexp.frontend.DocumentWriter;
-import conexp.frontend.io.ContextReaderDocumenLoaderAdapter;
+import conexp.frontend.io.ContextReaderAdapter;
 import conexp.frontend.io.TabSeparatedContextReader;
 import conexp.frontend.io.TabSeparatedContextWriter;
 
@@ -20,7 +20,7 @@ public class TabSeparatedReaderWriterTest extends ContextReaderWriterPairTest {
     }
 
     protected DocumentLoader makeDocumentLoader() {
-        return new ContextReaderDocumenLoaderAdapter(new TabSeparatedContextReader());
+        return new ContextReaderAdapter(new TabSeparatedContextReader());
     }
 
     protected DocumentWriter makeDocumentWriter() {

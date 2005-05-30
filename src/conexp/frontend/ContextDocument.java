@@ -390,9 +390,20 @@ public class ContextDocument implements ActionChainBearer, Document {
         }
 
         public void actionPerformed(ActionEvent e) {
-            calculateAndLayoutLattice();
-            IViewInfo viewInfo = getViewInfoForLatticeComponent(getOrCreateDefaultLatticeComponent());
-            activateView(viewInfo);
+            if(ContextDocument.VIEW_LATTICE.equals(getViewManager().getActiveViewId())){
+                getLatticeComponent(getActiveLatticeComponentID()).calculateAndLayoutLattice();
+            }else{
+                if(hasAtLeastOneLattice()){
+                    int latticeComponentsCount = contextDocumentModel.getLatticeComponentsCount();
+                    for(int i=0; i<latticeComponentsCount; i++){
+                        getLatticeComponent(i).calculateAndLayoutLattice();
+                    }
+                }else{
+                    addLatticeComponent().calculateAndLayoutLattice();
+                }
+                IViewInfo viewInfo = getViewInfoForLatticeComponent(getLatticeComponent(0));
+                activateView(viewInfo);
+            }
         }
 
     }
@@ -408,14 +419,18 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     public synchronized LatticeComponent getOrCreateDefaultLatticeComponent() {
         final int index = 0;
-        if (index == getLatticeCollection().size()) {
+        if (index == getLatticeComponentCount()) {
             return addLatticeComponent();
         }
         return getLatticeComponent(index);
     }
 
+    public int getLatticeComponentCount() {
+        return contextDocumentModel.getLatticeComponentsCount();
+    }
+
     public synchronized LatticeComponent addLatticeComponent(){
-        final int newIndex = getLatticeCollection().size();
+        final int newIndex = getLatticeComponentCount();
         if(newIndex==0){
             activeLatticeComponentId = 0;
         }
@@ -523,11 +538,16 @@ public class ContextDocument implements ActionChainBearer, Document {
     public ImplicationBaseCalculator getImplicationBaseCalculator() {
         if (null == implicationBaseCalculator) {
             implicationBaseCalculator = new ImplicationBaseCalculator(getContext(),
-                    NextClosedSetImplicationCalculatorFactory.getInstance());
+                    getAvailableImplicationStrategiesFactory());
             getContext().addContextListener(getImplicationBaseRecalcPolicy());
 
         }
         return implicationBaseCalculator;
+    }
+
+    private static ImplicationCalcStrategyFactory[] getAvailableImplicationStrategiesFactory() {
+        return new ImplicationCalcStrategyFactory[]{AttributeIncrementalImplicationCalculatorFactory.getInstance(),
+                                                                 NextClosedSetImplicationCalculatorFactory.getInstance()};
     }
 
     private ContextListener implicationBaseRecalcPolicy;
@@ -699,7 +719,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
 
     private boolean hasAtLeastOneLattice() {
-        return !getLatticeCollection().isEmpty();
+        return getLatticeComponentCount()>0;
     }
 
 

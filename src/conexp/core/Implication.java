@@ -33,10 +33,10 @@ public class Implication extends GenericDependency implements Cloneable {
             return true;
         }
         Implication that = (Implication) obj;
-        return premise.equals(that.premise) && conclusion.equals(that.conclusion);
+        return premise.equals(that.premise) && conclusion.equals(that.conclusion) &&
+                getCharacteristics().equals(that.getCharacteristics());
 
     }
-
 
     public int getObjectCount() {
         return getRuleSupport();

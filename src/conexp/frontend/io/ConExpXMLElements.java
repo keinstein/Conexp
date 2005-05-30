@@ -30,7 +30,8 @@ public interface ConExpXMLElements {
     String NODE_RADIUS_MODE="NodeRadiusMode";
     String EDGE_DISPLAY_MODE="EdgeDisplayMode";
     String HIGHLIGHT_MODE="HighlightMode";
-
+    String GRID_SIZE_X="GridSizeX";
+    String GRID_SIZE_Y="GridSizeY";
 
     String VALUE_ATTRIBUTE = "Value";
     String CONCEPT_FIGURES_ELEMENT = "ConceptFigures";

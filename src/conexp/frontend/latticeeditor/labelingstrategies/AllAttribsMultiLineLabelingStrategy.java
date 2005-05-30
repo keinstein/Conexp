@@ -17,8 +17,12 @@ public class AllAttribsMultiLineLabelingStrategy extends MultiLineLabelingStrate
         super();
     }
 
-    protected BorderCalculatingFigure makeLabelForConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {
-        return buildMultiLineFigureFromEntityIterator(f.getConcept().ownAttribsIterator());
+    boolean isUpper() {
+        return true;
+    }
+
+    protected MultiLineConceptEntityFigure makeLabelForConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {
+        return buildMultiLineFigureFromEntityIterator(f.getConcept().ownAttribsIterator(), f.getConceptQuery(), false);
     }
 
     public boolean accept(ConceptQuery query) {

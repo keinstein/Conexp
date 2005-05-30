@@ -9,6 +9,10 @@ import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 
 import java.util.Collection;
+import java.awt.geom.Rectangle2D;
+
+import util.gui.GuiFactory;
+import util.gui.GraphicObjectsFactory;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
@@ -38,6 +42,8 @@ public abstract class OneLabelConceptLabelingStrategy extends GenericLabelingStr
 
         LatticeElement concept = f.getConcept();
         BorderCalculatingFigure labelFigure = makeLabelForConceptCorrespondingFigure(f);
+        Rectangle2D rect = GraphicObjectsFactory.makeRectangle2D();
+        labelFigure.boundingBox(rect);
         labelFigure.setCoords(newX, newY);
         drawing.setLabelForConcept(concept, labelFigure);
 

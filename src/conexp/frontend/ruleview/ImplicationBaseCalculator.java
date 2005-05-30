@@ -11,20 +11,28 @@ import conexp.core.Context;
 import conexp.core.DependencySet;
 import conexp.core.ImplicationCalcStrategy;
 import conexp.core.ImplicationSet;
+import util.Assert;
 
 
 public class ImplicationBaseCalculator extends AbstractDependencySetCalculator {
     private ImplicationCalcStrategy lastCalc;
 
-    public ImplicationBaseCalculator(Context cxt, ImplicationCalcStrategyFactory implicationsCalculatorFactory) {
+    public ImplicationBaseCalculator(Context cxt, ImplicationCalcStrategyFactory[] implicationsCalculatorFactory) {
         super(cxt);
         setImplicationCalcStrategyFactory(implicationsCalculatorFactory);
     }
 
-    ImplicationCalcStrategyFactory factory;
+    public ImplicationBaseCalculator(Context cxt, ImplicationCalcStrategyFactory implicationsCalculatorFactory) {
+        this(cxt, new ImplicationCalcStrategyFactory[]{implicationsCalculatorFactory});
+    }
 
-    public void setImplicationCalcStrategyFactory(ImplicationCalcStrategyFactory factory) {
+
+    ImplicationCalcStrategyFactory[] factory;
+
+    public void setImplicationCalcStrategyFactory(ImplicationCalcStrategyFactory[] factory) {
+        Assert.isTrue(factory.length >= 1);
         this.factory = factory;
+
     }
 
     protected DependencySet makeDependencySet() {
@@ -37,16 +45,27 @@ public class ImplicationBaseCalculator extends AbstractDependencySetCalculator {
 
 
     protected void doFindDependencies() {
-        lastCalc = makeImplicationCalcStrategy();
-        doCalculateImplications(lastCalc);
+        int currentFactory = 0;
+        boolean success = false;
+        while (!success) {
+            try {
+                lastCalc = factory[currentFactory].makeImplicationCalcStrategy();
+                doCalculateImplications(lastCalc);
+                success = true;
+            } catch (OutOfMemoryError error) {
+                currentFactory++;
+                if(currentFactory>=factory.length){
+                    throw new OutOfMemoryError("Not enough memory "+error.getMessage());
+                }
+                getImplications().clear();
+                lastCalc = null;
+                System.gc();
+            }
+        }
     }
 
     public ImplicationCalcStrategy getLastCalc() {
         return lastCalc;
-    }
-
-    private ImplicationCalcStrategy makeImplicationCalcStrategy() {
-        return factory.makeImplicationCalcStrategy();
     }
 
     protected void doCalculateImplications(ImplicationCalcStrategy calc) {
