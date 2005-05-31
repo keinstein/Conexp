@@ -1,5 +1,7 @@
 package conexp.frontend.components;
 
+import conexp.frontend.ContextDocument;
+
 /**
  * User: sergey
  * Date: 23/5/2005

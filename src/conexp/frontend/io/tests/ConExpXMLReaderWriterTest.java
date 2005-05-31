@@ -10,6 +10,7 @@ package conexp.frontend.io.tests;
 import conexp.core.Context;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.Lattice;
+import conexp.core.LatticeElement;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.ContextDocument;
 import conexp.frontend.DocumentLoader;
@@ -18,7 +19,9 @@ import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.io.ConExpXMLReader;
 import conexp.frontend.io.ConExpXMLWriter;
+import conexp.frontend.latticeeditor.LatticeCanvas;
 import conexp.frontend.latticeeditor.LatticeDrawing;
+import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 import util.testing.TestUtil;
 
@@ -191,6 +194,20 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     }
 
 
+    public void testStoringSelection(){
+        setUpFullLatticeCase();
+        LatticeComponent latticeComponent = doc.getLatticeComponent(0);
+        LatticeCanvas view = doc.getViewForLatticeComponent(latticeComponent);
+        LatticeElement zero = latticeComponent.getLattice().getZero();
+        AbstractConceptCorrespondingFigure figureForConcept = view.getFigureForConcept(zero);
+        view.selectFigure(figureForConcept);
+        assertTrue(view.hasSelection());
+        ContextDocument loadedDoc = writeAndReadContextDoc(doc);
+        LatticeComponent loadedLatticeComponent = loadedDoc.getLatticeComponent(0);
+        LatticeCanvas loadedView = loadedDoc.getViewForLatticeComponent(loadedLatticeComponent);
+        assertTrue(loadedView.hasSelection());
+    }
+
     private void doTestWriteAndReadForDocumentWithConceptsLabels(ContextDocument doc, ExtendedContextEditingInterface cxt) {
         final LatticeComponent defaultLatticeComponent = doc.getOrCreateDefaultLatticeComponent();
         Lattice lattice = defaultLatticeComponent.getLattice();
@@ -242,3 +259,5 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
 
 
 }
+
+

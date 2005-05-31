@@ -26,6 +26,10 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
 
     private LatticePainterPanel latticePanel;
 
+    public LatticePainterPanel getInnerComponent(){
+        return latticePanel;
+    }
+
     public LatticeAndEntitiesMaskSplitPane(LatticeSupplier latticeSupplier, ActionMap parentActionChain) {
         super();
         latticePanel = LatticePainterPanel.createLatticePainterPanel(latticeSupplier);

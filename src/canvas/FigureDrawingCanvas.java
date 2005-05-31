@@ -234,7 +234,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     }
 
 
-    IndexedSet selection = CollectionFactory.createIndexedSet();
+    protected IndexedSet selection = CollectionFactory.createIndexedSet();
 
 
     public Figure getFirstSelectedFigure() {

@@ -10,6 +10,7 @@ package conexp.frontend.latticeeditor;
 
 import conexp.util.gui.paramseditor.ParamEditorTable;
 import conexp.util.gui.paramseditor.ParamInfo;
+import conexp.util.gui.paramseditor.ParamsTableModel;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -51,19 +52,25 @@ public class PainterOptionsPaneEditor extends javax.swing.JPanel {
     private JComponent makeDrawingOptionsPage() {
         JScrollPane paneDrawing = new JScrollPane();
         paneDrawing.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
-        ParamEditorTable table = new ParamEditorTable();
-        if (null != latticeDrawingOptions) {
-            table.getParamsModel().addParams(latticeDrawingOptions);
-        }
-        table.getParamsModel().addParams(opt.getLatticePainterDrawStrategyContext().getParams());
-        //todo: write check on update, when params changing and correct listener setup
-        table.getParamsModel().addParams(opt.getParams());
 
-        table.getParamsModel().addParams(latticeDrawParams.getParams());
+        ParamEditorTable table = new ParamEditorTable();
+        fillParamsModel(table.getParamsModel());
+
         paneDrawing.add(table);
 
         paneDrawing.setViewportView(table);
         return paneDrawing;
+    }
+
+    private void fillParamsModel(final ParamsTableModel paramsModel) {
+        if (null != latticeDrawingOptions) {
+            paramsModel.addParams(latticeDrawingOptions);
+        }
+        paramsModel.addParams(opt.getLatticePainterDrawStrategyContext().getParams());
+        //todo: write check on update, when params changing and correct listener setup
+        paramsModel.addParams(opt.getParams());
+
+        paramsModel.addParams(latticeDrawParams.getParams());
     }
 
     /**

@@ -7,6 +7,9 @@
 
 package conexp.frontend;
 
+import canvas.Figure;
+import canvas.FigureDrawingCanvas;
+import canvas.figures.IFigureWithCoords;
 import com.gargoylesoftware.base.collections.NotificationListEvent;
 import com.gargoylesoftware.base.collections.NotificationListListener;
 import conexp.core.*;
@@ -16,6 +19,8 @@ import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.contexteditor.ContextViewPanel;
 import conexp.frontend.latticeeditor.CEDiagramEditorPanel;
+import conexp.frontend.latticeeditor.LatticeCanvas;
+import conexp.frontend.latticeeditor.LatticePainterPanel;
 import conexp.frontend.ruleview.*;
 import conexp.frontend.ui.ConExpViewManager;
 import conexp.frontend.ui.IViewInfo;
@@ -40,10 +45,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Collection;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.TooManyListenersException;
+import java.util.*;
 
 
 public class ContextDocument implements ActionChainBearer, Document {
@@ -311,11 +313,43 @@ public class ContextDocument implements ActionChainBearer, Document {
         }
     }
 
-
     public void makeLatticeSnapshot() {
-        setActiveLatticeComponentID(
-                contextDocumentModel.makeLatticeSnapshot(
-                        getActiveLatticeComponentID()));
+        final int oldId = getActiveLatticeComponentID();
+        final int newId = contextDocumentModel.makeLatticeSnapshot(oldId);
+        FigureDrawingCanvas canvas = getViewForLatticeComponent(oldId);
+        final Collection selection = canvas.getSelection();
+        FigureDrawingCanvas newCanvas = getViewForLatticeComponent(newId);
+        copySelection(selection, newCanvas);
+        setActiveLatticeComponentID(newId);
+    }
+
+    private static void copySelection(final Collection selection, FigureDrawingCanvas newCanvas) {
+        Collection newSelection = CollectionFactory.createDefaultList();
+        for(Iterator iterator = selection.iterator(); iterator.hasNext();) {
+            Figure figure = (Figure) iterator.next();
+            if (figure instanceof IFigureWithCoords) {
+                IFigureWithCoords figureWithCoords = (IFigureWithCoords) figure;
+                final Figure newFigure = newCanvas.findFigureInReverseOrderToDrawing(
+                                        figureWithCoords.getCenterX(),
+                                        figureWithCoords.getCenterY());
+                if(newFigure!=null){
+                    newSelection.add(newFigure);
+                }
+            }
+        }
+        newCanvas.setSelection(newSelection);
+    }
+
+    private FigureDrawingCanvas getViewForLatticeComponent(final int oldId) {
+        final LatticeComponent latticeComponent = getLatticeComponent(oldId);
+        return getViewForLatticeComponent(latticeComponent);
+    }
+
+    public LatticePainterPanel getViewForLatticeComponent(final LatticeSupplier latticeComponent) {
+        final View view = getViewManager().getView(getViewInfoForLatticeComponent(latticeComponent));
+        ToolbarComponentDecorator decorator = (ToolbarComponentDecorator)view;
+        LatticeAndEntitiesMaskSplitPane latticeView = (LatticeAndEntitiesMaskSplitPane)decorator.getInner();
+        return latticeView.getInnerComponent();
     }
 
     private void setActiveLatticeComponentID(int newId) {

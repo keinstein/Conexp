@@ -39,7 +39,7 @@ public class ConExpViewManager {
     }
 
 
-    private View getView(IViewInfo viewInfo) {
+    public View getView(IViewInfo viewInfo) {
         if (hasViewForModel(viewInfo)) {
             return doGetView(viewInfo);
         } else {

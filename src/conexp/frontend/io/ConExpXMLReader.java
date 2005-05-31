@@ -8,6 +8,8 @@
 package conexp.frontend.io;
 
 import canvas.figures.IFigureWithCoords;
+import canvas.FigureDrawingCanvas;
+import canvas.Figure;
 import conexp.core.*;
 import conexp.frontend.ContextDocument;
 import conexp.frontend.DataFormatErrorHandler;
@@ -22,6 +24,7 @@ import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import util.*;
+import util.collection.CollectionFactory;
 
 import java.awt.geom.Point2D;
 import java.beans.PropertyVetoException;
@@ -29,6 +32,7 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Collection;
 
 public class ConExpXMLReader implements DocumentLoader {
     public ContextDocument loadDocument(Reader reader, DataFormatErrorHandler errorHandler) throws IOException, DataFormatException {
@@ -72,7 +76,10 @@ public class ConExpXMLReader implements DocumentLoader {
         }
         try {
             for (Iterator iterator = children.iterator(); iterator.hasNext();) {
-                loadLatticeComponent(doc.addLatticeComponent(), (Element) iterator.next());
+                final LatticeComponent latticeComponent = doc.addLatticeComponent();
+                final Element latticeElement = (Element) iterator.next();
+                loadLatticeComponent(latticeComponent, latticeElement);
+                loadSelection(doc.getViewForLatticeComponent(latticeComponent), latticeElement);
             }
         } catch (DataFormatException e) {
             doc.resetLatticeComponent();
@@ -87,6 +94,26 @@ public class ConExpXMLReader implements DocumentLoader {
             throw e;
         }
 */
+    }
+
+    private static void loadSelection(FigureDrawingCanvas viewForLatticeComponent, Element latticeElement) throws DataFormatException {
+        Element selection = latticeElement.getChild(ConExpXMLElements.LATTICE_DIAGRAM).getChild(ConExpXMLElements.SELECTION);
+        if(null==selection){
+            return;
+        }
+        final List children = selection.getChildren();
+        Collection newSelection = CollectionFactory.createDefaultList();
+        for (Iterator iterator = children.iterator(); iterator.hasNext();) {
+            Element figureElement = (Element) iterator.next();
+            Point2D point = readPoint2DFromCoords(figureElement);
+            final Figure figure = viewForLatticeComponent.findFigureInReverseOrderToDrawing(point.getX(), point.getY());
+            if(null!=figure){
+                newSelection.add(figure);
+            }
+        }
+        if(!newSelection.isEmpty()){
+            viewForLatticeComponent.setSelection(newSelection);
+        }
     }
 
     public static void loadLatticeComponent(final LatticeComponent latticeComponent, Element latticeElement) throws DataFormatException {
@@ -336,6 +363,11 @@ public class ConExpXMLReader implements DocumentLoader {
 
     private static Point2D readFigureCoords(Element figureElement) throws DataFormatException {
         Element coords = XMLHelper.safeGetElement(figureElement, ConExpXMLElements.FIGURE_COORDS, "No coordinates are provided for figure");
+        return readPoint2DFromCoords(coords);
+
+    }
+
+    private static Point2D readPoint2DFromCoords(Element coords) throws DataFormatException {
         Element pointElement = XMLHelper.safeGetElement(coords, XMLGeneralTypesUtil.POINT2D, "Point element is absent in coordinates");
 
         Point2D point = XMLGeneralTypesUtil.readPoint2D(pointElement);

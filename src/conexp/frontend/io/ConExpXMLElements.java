@@ -32,6 +32,7 @@ public interface ConExpXMLElements {
     String HIGHLIGHT_MODE="HighlightMode";
     String GRID_SIZE_X="GridSizeX";
     String GRID_SIZE_Y="GridSizeY";
+    String SELECTION="Selection";
 
     String VALUE_ATTRIBUTE = "Value";
     String CONCEPT_FIGURES_ELEMENT = "ConceptFigures";

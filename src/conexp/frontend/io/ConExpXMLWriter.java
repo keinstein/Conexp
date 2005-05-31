@@ -7,6 +7,8 @@
 
 package conexp.frontend.io;
 
+import canvas.Figure;
+import canvas.FigureDrawingCanvas;
 import canvas.figures.IFigureWithCoords;
 import conexp.core.*;
 import conexp.frontend.ContextDocument;
@@ -66,22 +68,36 @@ public class ConExpXMLWriter implements DocumentWriter {
         final Collection latticeComponents = document.getLatticeCollection();
         for (Iterator iterator = latticeComponents.iterator(); iterator.hasNext();) {
             LatticeComponent component = (LatticeComponent) iterator.next();
-            storeLatticeComponent(latticeCollection, component);
+            storeLatticeComponent(latticeCollection, component, document);
         }
         return latticeCollection;
     }
 
-    private static void storeLatticeComponent(Element latticeCollection, final LatticeComponent latticeComponent) {
+    private static void storeLatticeComponent(Element latticeCollection, final LatticeComponent latticeComponent, ContextDocument document) {
         if (!latticeComponent.isEmpty()) {
-            latticeCollection.addContent(makeLatticeElement(latticeComponent));
+            final Element latticeElement = makeLatticeElement(latticeComponent);
+            Element latticeDrawingElement = latticeElement.getChild(ConExpXMLElements.LATTICE_DIAGRAM);
+            storeSelection(document, latticeComponent, latticeDrawingElement);
+            latticeCollection.addContent(latticeElement);
         }
     }
 
     public static Element makeLatticeElement(LatticeSupplier latticeComponent) {
         Element latticeElement = new Element(ConExpXMLElements.LATTICE_ELEMENT);
         storeFeatureMasks(latticeComponent, latticeElement);
-        storeDrawings(latticeComponent, latticeElement);
+        storeDrawing(latticeComponent, latticeElement);
         return latticeElement;
+    }
+
+    private static void storeSelection(ContextDocument document, LatticeSupplier latticeComponent, Element latticeDrawingElement) {
+        final FigureDrawingCanvas viewForLatticeComponent = document.getViewForLatticeComponent(latticeComponent);
+        if(viewForLatticeComponent.hasSelection()){
+            latticeDrawingElement.addContent(storeSelection(viewForLatticeComponent));
+        }
+    }
+
+    private static void storeDrawing(LatticeSupplier latticeComponent, Element latticeElement) {
+        latticeElement.addContent(makeDrawingElement(latticeComponent));
     }
 
     private static void storeFeatureMasks(LatticeSupplier latticeComponent, Element latticeElement) {
@@ -101,11 +117,8 @@ public class ConExpXMLWriter implements DocumentWriter {
         return entityMaskElement;
     }
 
-    private static void storeDrawings(LatticeSupplier latticeComponent, Element latticeElement) {
-        latticeElement.addContent(makeDrawingElement(latticeComponent.getDrawing()));
-    }
-
-    private static Element makeDrawingElement(LatticeDrawing drawing) {
+    private static Element makeDrawingElement(LatticeSupplier latticeComponent) {
+        LatticeDrawing drawing = latticeComponent.getDrawing();
         Element latticeDrawingElement = new Element(ConExpXMLElements.LATTICE_DIAGRAM);
         latticeDrawingElement.addContent(storeConceptFigures(drawing));
         latticeDrawingElement.addContent(storeDrawingSettings(drawing));
@@ -118,8 +131,21 @@ public class ConExpXMLWriter implements DocumentWriter {
         if (drawing.hasLabelsForConcepts()) {
             latticeDrawingElement.addContent(storeConceptLabels(drawing));
         }
-        //if(drawing.)
         return latticeDrawingElement;
+    }
+
+    private static Element storeSelection(FigureDrawingCanvas viewForLatticeComponent) {
+        Element selection = new Element(ConExpXMLElements.SELECTION);
+        final Collection selectionCollection = viewForLatticeComponent.getSelection();
+        for (Iterator iterator = selectionCollection.iterator(); iterator.hasNext();) {
+            Figure figure = (Figure) iterator.next();
+            if (figure instanceof IFigureWithCoords) {
+                IFigureWithCoords figureWithCoords = (IFigureWithCoords) figure;
+                final Element child = storeFigureLocation(figureWithCoords);
+                selection.addContent(child);
+            }
+        }
+        return selection;
     }
 
     private static Element storeConceptLabels(final LatticeDrawing drawing) {
@@ -185,15 +211,16 @@ public class ConExpXMLWriter implements DocumentWriter {
         settingElement.addContent(storeEdgeSizeMode(drawing));
         settingElement.addContent(storeHighlightMode(drawing));
         settingElement.addContent(storeGridSizeX(drawing));
+        settingElement.addContent(storeGridSizeY(drawing));
         return settingElement;
     }
 
     private static Element storeGridSizeX(LatticeDrawing drawing){
-        return makeSettingElement(ConExpXMLElements.GRID_SIZE_X, String.valueOf(drawing.getDrawParams().getGridSizeX());
+        return makeSettingElement(ConExpXMLElements.GRID_SIZE_X, String.valueOf(drawing.getDrawParams().getGridSizeX()));
     }
 
     private static Element storeGridSizeY(LatticeDrawing drawing){
-        return makeSettingElement(ConExpXMLElements.GRID_SIZE_Y, String.valueOf(drawing.getDrawParams().getGridSizeY());
+        return makeSettingElement(ConExpXMLElements.GRID_SIZE_Y, String.valueOf(drawing.getDrawParams().getGridSizeY()));
     }
 
     private static Element storeHighlightMode(LatticeDrawing drawing) {
