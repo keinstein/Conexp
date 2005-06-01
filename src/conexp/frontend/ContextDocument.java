@@ -516,7 +516,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         public void actionPerformed(ActionEvent e) {
             getImplicationBaseCalculator().findDependencies();
             if (implicationsTreeNode == null)
-                addImplicationsNodeToTree();
+                addImplicationsNodeToTree(false);
             activateView(VIEW_IMPLICATIONS);
         }
     }
@@ -624,7 +624,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
         public void actionPerformed(ActionEvent e) {
             findAssociations();
-            addAssociationsNodeToTree();
+            addAssociationsNodeToTree(true);
             activateView(VIEW_ASSOCIATIONS);
         }
     }
@@ -878,10 +878,10 @@ public class ContextDocument implements ActionChainBearer, Document {
             }
         }
         if (implicationSetIsComputed()) {
-            addImplicationsNodeToTree();
+            addImplicationsNodeToTree(false);
         }
         if (associationSetIsComputed()) {
-            addAssociationsNodeToTree();
+            addAssociationsNodeToTree(false);
         }
 
         DefaultMutableTreeNode[] node = new DefaultMutableTreeNode[2];
@@ -892,18 +892,25 @@ public class ContextDocument implements ActionChainBearer, Document {
         return new DefaultTreeModel(domain);
     }
 
-    private void addAssociationsNodeToTree() {
-        getContextTreeRoot().add(getAssociationsTreeNode());
+    private void addAssociationsNodeToTree(boolean navigateToNode) {
+        final MutableTreeNode associationsTreeNode = getAssociationsTreeNode();
+        doAddDirectChildToTree(associationsTreeNode, navigateToNode);
+    }
+
+    private void doAddDirectChildToTree(final MutableTreeNode associationsTreeNode, boolean navigateToNode) {
+        final DefaultMutableTreeNode contextTreeRoot = getContextTreeRoot();
+        contextTreeRoot.add(associationsTreeNode);
+        if(navigateToNode){
+            Object[] path=new Object[]{contextTreeRoot, associationsTreeNode};
+            getTree().setSelectionPath(new TreePath(path));
+        }
         if (null != documentTreeModel) {
             documentTreeModel.reload();
         }
     }
 
-    private void addImplicationsNodeToTree() {
-        getContextTreeRoot().add(getImplicationsTreeNode());
-        if (null != documentTreeModel) {
-            documentTreeModel.reload();
-        }
+    private void addImplicationsNodeToTree(boolean activate) {
+        doAddDirectChildToTree(getImplicationsTreeNode(), activate);
     }
 
     private boolean implicationSetIsComputed() {
