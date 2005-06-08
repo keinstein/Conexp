@@ -12,6 +12,7 @@ import util.collection.CollectionFactory;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * User: sergey
@@ -69,7 +70,7 @@ public class ContextDocumentModel {
         latticeComponents.removeNotificationListListener(listener);
     }
 
-    public Collection getLatticeComponents() {
+    public List getLatticeComponents() {
         return Collections.unmodifiableList(latticeComponents);
     }
 

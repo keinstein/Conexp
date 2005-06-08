@@ -26,6 +26,8 @@ import junit.framework.TestSuite;
 import util.testing.SwingTestUtil;
 
 import javax.swing.*;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -127,9 +129,9 @@ public class ContextDocumentTest extends TestCase {
 
     public void testViewActivation() {
         doc.setShowMessages(false);
-        expectViewActivationAfterCommand("calcAssociationRules", ContextDocument.VIEW_ASSOCIATIONS);
-        expectViewActivationAfterCommand("calcImplNCS", ContextDocument.VIEW_IMPLICATIONS);
-        expectViewActivationAfterCommand("buildLatticeDS", ContextDocument.VIEW_LATTICE);
+        expectViewActivationAfterCommand(ContextDocument.CALCULATE_ASSOCIATIONS_COMMAND, ContextDocument.VIEW_ASSOCIATIONS);
+        expectViewActivationAfterCommand(ContextDocument.CALCULATE_IMPLICATIONS_COMMAND, ContextDocument.VIEW_IMPLICATIONS);
+        expectViewActivationAfterCommand(ContextDocument.BUILD_LATTICE_COMMAND, ContextDocument.VIEW_LATTICE);
     }
 
 
@@ -142,9 +144,9 @@ public class ContextDocumentTest extends TestCase {
         //createAllViews
 
         doc.setShowMessages(false);
-        performCommand("buildLatticeDS");
-        performCommand("calcAssociationRules");
-        performCommand("calcImplNCS");
+        performCommand(ContextDocument.BUILD_LATTICE_COMMAND);
+        performCommand(ContextDocument.CALCULATE_ASSOCIATIONS_COMMAND);
+        performCommand(ContextDocument.CALCULATE_IMPLICATIONS_COMMAND);
         final Collection views = doc.getViewManager().getViews();
 
         for (Iterator iterator = views.iterator(); iterator.hasNext();) {
@@ -272,7 +274,7 @@ public class ContextDocumentTest extends TestCase {
         assertEquals(0, doc.getLatticeCollection().size());
         final ConExpViewManager viewManager = doc.getViewManager();
         assertEquals(ContextDocument.VIEW_CONTEXT, viewManager.getActiveViewId());
-        performCommand("buildLatticeDS");
+        performCommand(ContextDocument.BUILD_LATTICE_COMMAND);
         assertEquals(ContextDocument.VIEW_LATTICE, viewManager.getActiveViewId());
         assertEquals(3, SwingTestUtil.sizeOfTheTree(tree));
         assertEquals(0, doc.getActiveLatticeComponentID());
@@ -282,11 +284,11 @@ public class ContextDocumentTest extends TestCase {
     }
 
     public void testOneNodeInTreeForImplications(){
-        testOneNodeInTree("calcImplNCS", ContextDocument.IMPLICATIONS_NODE_NAME);
+        testOneNodeInTree(ContextDocument.CALCULATE_IMPLICATIONS_COMMAND, ContextDocument.IMPLICATIONS_NODE_NAME);
     }
 
     public void testOneNodeInTreeForAssociations(){
-        testOneNodeInTree("calcAssociationRules", ContextDocument.ASSOCIATIONS_NODE_NAME);
+        testOneNodeInTree(ContextDocument.CALCULATE_ASSOCIATIONS_COMMAND, ContextDocument.AssociationViewInfo.ASSOCIATIONS_NODE_NAME);
     }
 
     public void testRemoveLatticeComponent() {
@@ -296,7 +298,7 @@ public class ContextDocumentTest extends TestCase {
         doc.activateViews();
         JTree tree = doc.getTree();
         assertEquals(2, SwingTestUtil.sizeOfTheTree(tree));
-        performCommand("buildLatticeDS");
+        performCommand(ContextDocument.BUILD_LATTICE_COMMAND);
         checkDocView(ContextDocument.VIEW_LATTICE);
         assertEquals(3, SwingTestUtil.sizeOfTheTree(tree));
         doc.removeLatticeComponent(doc.getLatticeComponent(0));
@@ -323,5 +325,40 @@ public class ContextDocumentTest extends TestCase {
         assertEquals(1, SwingTestUtil.nodeOccurenceInTree(tree, nodeName));
     }
 
+    public void testSelectionAndExpansionOfTree(){
+        Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
+                                                         {1, 0, 1},
+                                                         {1, 1, 0}});
+        doc = new ContextDocument(cxt);
+
+
+        final JTree tree = doc.getTree();
+        TreePath selectionPath = tree.getSelectionPath();
+        assertEquals(2, selectionPath.getPathCount());
+        assertSame(doc.getContextTreeRoot(), selectionPath.getPathComponent(1));
+        performCommand(ContextDocument.BUILD_LATTICE_COMMAND);
+        selectionPath = tree.getSelectionPath();
+        assertEquals(3, selectionPath.getPathCount());
+        final DefaultMutableTreeNode treeNodeForLatticeComponent = doc.getViewInfoForLatticeComponent(doc.getLatticeComponent(0)).getViewTreeNode();
+        assertTrue(SwingTestUtil.isSelectedAndExpanded(doc.getTree(),
+                treeNodeForLatticeComponent));
+        performCommand(ContextDocument.CALCULATE_IMPLICATIONS_COMMAND);
+        assertTrue(SwingTestUtil.isSelectedAndExpanded(tree, doc.getImplicationsTreeNode()));
+        performCommand(ContextDocument.CALCULATE_ASSOCIATIONS_COMMAND);
+        assertTrue(SwingTestUtil.isSelectedAndExpanded(tree, doc.getAssociationsTreeNode()));
+        performCommand(ContextDocument.CALCULATE_IMPLICATIONS_COMMAND);
+        assertTrue(SwingTestUtil.isSelectedAndExpanded(tree, doc.getImplicationsTreeNode()));
+
+
+        doc.activateView(ContextDocument.VIEW_ASSOCIATIONS);
+        assertTrue(SwingTestUtil.isSelectedAndExpanded(tree, doc.getAssociationsTreeNode()));
+        doc.activateView(ContextDocument.VIEW_IMPLICATIONS);
+        assertTrue(SwingTestUtil.isSelectedAndExpanded(tree, doc.getImplicationsTreeNode()));
+
+
+        doc.activateView(ContextDocument.VIEW_CONTEXT);
+        assertTrue(SwingTestUtil.isSelectedAndExpanded(tree, doc.getContextTreeRoot()));
+
+    }
 
 }
