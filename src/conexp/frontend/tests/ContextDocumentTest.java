@@ -42,7 +42,7 @@ public class ContextDocumentTest extends TestCase {
         return new SimpleLayoutTestSetup(new TestSuite(ContextDocumentTest.class));
     }
 
-    private void performCommand(String command) {
+    public static void performCommand(ContextDocument doc, String command) {
         doc.getActionChain().get(command).actionPerformed(null);
     }
 
@@ -51,10 +51,10 @@ public class ContextDocumentTest extends TestCase {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 1, 1},
                                                          {0, 1, 1}});
         doc = new ContextDocument(cxt);
-        doc.getAssociationMiner().getDependencySet(); //initialization
+        doc.getAssociationRules(); //initialization
         doc.getContext().removeAttribute(0);
-        doc.getAssociationMiner().findDependencies();
-        assertSame(cxt, doc.getAssociationMiner().getDependencySet().getAttributesInformation());
+        doc.findAssociations();
+        assertSame(cxt, doc.getAssociationRules().getAttributesInformation());
     }
 
 
@@ -69,11 +69,11 @@ public class ContextDocumentTest extends TestCase {
     public void testChangeOfImplicationAfterContextModification() {
         DependencySetSupplier supplier = new DependencySetSupplier() {
             public void calcDependencySet(ContextDocument doc) {
-                doc.getImplicationBaseCalculator().findDependencies();
+                doc.calculateImplications();
             }
 
             public DependencySet getDependencySet(ContextDocument doc) {
-                return doc.getImplicationBaseCalculator().getDependencySet();
+                return doc.getImplications();
             }
         };
 
@@ -119,7 +119,7 @@ public class ContextDocumentTest extends TestCase {
 
 
     private void expectViewActivationAfterCommand(String command, String expectedView) {
-        performCommand(command);
+        performCommand(doc, command);
         assertEquals("Unexpected view activated for command " + command, doc.getViewForType(expectedView), doc.getViewManager().getActiveView());
     }
 
@@ -144,9 +144,9 @@ public class ContextDocumentTest extends TestCase {
         //createAllViews
 
         doc.setShowMessages(false);
-        performCommand(ContextDocument.BUILD_LATTICE_COMMAND);
-        performCommand(ContextDocument.CALCULATE_ASSOCIATIONS_COMMAND);
-        performCommand(ContextDocument.CALCULATE_IMPLICATIONS_COMMAND);
+        performCommand(doc, ContextDocument.BUILD_LATTICE_COMMAND);
+        performCommand(doc, ContextDocument.CALCULATE_ASSOCIATIONS_COMMAND);
+        performCommand(doc, ContextDocument.CALCULATE_IMPLICATIONS_COMMAND);
         final Collection views = doc.getViewManager().getViews();
 
         for (Iterator iterator = views.iterator(); iterator.hasNext();) {
@@ -274,7 +274,7 @@ public class ContextDocumentTest extends TestCase {
         assertEquals(0, doc.getLatticeCollection().size());
         final ConExpViewManager viewManager = doc.getViewManager();
         assertEquals(ContextDocument.VIEW_CONTEXT, viewManager.getActiveViewId());
-        performCommand(ContextDocument.BUILD_LATTICE_COMMAND);
+        performCommand(doc, ContextDocument.BUILD_LATTICE_COMMAND);
         assertEquals(ContextDocument.VIEW_LATTICE, viewManager.getActiveViewId());
         assertEquals(3, SwingTestUtil.sizeOfTheTree(tree));
         assertEquals(0, doc.getActiveLatticeComponentID());
@@ -298,7 +298,7 @@ public class ContextDocumentTest extends TestCase {
         doc.activateViews();
         JTree tree = doc.getTree();
         assertEquals(2, SwingTestUtil.sizeOfTheTree(tree));
-        performCommand(ContextDocument.BUILD_LATTICE_COMMAND);
+        performCommand(doc, ContextDocument.BUILD_LATTICE_COMMAND);
         checkDocView(ContextDocument.VIEW_LATTICE);
         assertEquals(3, SwingTestUtil.sizeOfTheTree(tree));
         doc.removeLatticeComponent(doc.getLatticeComponent(0));
@@ -318,10 +318,10 @@ public class ContextDocumentTest extends TestCase {
         doc = new ContextDocument(cxt);
         doc.activateViews();
         JTree tree = doc.getTree();
-        performCommand(command);
+        performCommand(doc, command);
         assertTrue(SwingTestUtil.treeContainsNode(tree, nodeName));
         assertEquals(1, SwingTestUtil.nodeOccurenceInTree(tree, nodeName));
-        performCommand(command);
+        performCommand(doc, command);
         assertEquals(1, SwingTestUtil.nodeOccurenceInTree(tree, nodeName));
     }
 
@@ -336,17 +336,17 @@ public class ContextDocumentTest extends TestCase {
         TreePath selectionPath = tree.getSelectionPath();
         assertEquals(2, selectionPath.getPathCount());
         assertSame(doc.getContextTreeRoot(), selectionPath.getPathComponent(1));
-        performCommand(ContextDocument.BUILD_LATTICE_COMMAND);
+        performCommand(doc, ContextDocument.BUILD_LATTICE_COMMAND);
         selectionPath = tree.getSelectionPath();
         assertEquals(3, selectionPath.getPathCount());
         final DefaultMutableTreeNode treeNodeForLatticeComponent = doc.getViewInfoForLatticeComponent(doc.getLatticeComponent(0)).getViewTreeNode();
         assertTrue(SwingTestUtil.isSelectedAndExpanded(doc.getTree(),
                 treeNodeForLatticeComponent));
-        performCommand(ContextDocument.CALCULATE_IMPLICATIONS_COMMAND);
+        performCommand(doc, ContextDocument.CALCULATE_IMPLICATIONS_COMMAND);
         assertTrue(SwingTestUtil.isSelectedAndExpanded(tree, doc.getImplicationsTreeNode()));
-        performCommand(ContextDocument.CALCULATE_ASSOCIATIONS_COMMAND);
+        performCommand(doc, ContextDocument.CALCULATE_ASSOCIATIONS_COMMAND);
         assertTrue(SwingTestUtil.isSelectedAndExpanded(tree, doc.getAssociationsTreeNode()));
-        performCommand(ContextDocument.CALCULATE_IMPLICATIONS_COMMAND);
+        performCommand(doc, ContextDocument.CALCULATE_IMPLICATIONS_COMMAND);
         assertTrue(SwingTestUtil.isSelectedAndExpanded(tree, doc.getImplicationsTreeNode()));
 
 
@@ -359,6 +359,75 @@ public class ContextDocumentTest extends TestCase {
         doc.activateView(ContextDocument.VIEW_CONTEXT);
         assertTrue(SwingTestUtil.isSelectedAndExpanded(tree, doc.getContextTreeRoot()));
 
+    }
+    interface DocModifier{
+        void modifyDoc(ContextDocument doc);
+    };
+
+    public void testContextDocModification(){
+        doTestDocModifiedAfterModification(new DocModifier(){
+            public void modifyDoc(ContextDocument doc) {
+                doc.getContext().setRelationAt(0, 0, true);
+            }
+        });
+        doTestDocModifiedAfterModification(new DocModifier(){
+            public void modifyDoc(ContextDocument doc) {
+                doc.getContext().getAttribute(0).setName("New attribute name");
+            }
+        });
+        doTestDocModifiedAfterModification(new DocModifier(){
+            public void modifyDoc(ContextDocument doc) {
+                doc.getContext().getObject(0).setName("New object name");
+            }
+        });
+        doTestDocModifiedAfterModification(new DocModifier(){
+            public void modifyDoc(ContextDocument doc) {
+                doc.getContext().removeAttribute(0);
+            }
+        });
+        doTestDocModifiedAfterModification(new DocModifier(){
+            public void modifyDoc(ContextDocument doc) {
+                doc.getContext().removeObject(0);
+            }
+        });
+        doTestDocModifiedAfterModification(new DocModifier(){
+            public void modifyDoc(ContextDocument doc) {
+                doc.getContext().transpose();
+            }
+        });
+
+        doTestDocModifiedAfterModification(new DocModifier(){
+            public void modifyDoc(ContextDocument doc) {
+                performCommand(doc, ContextDocument.BUILD_LATTICE_COMMAND);
+            }
+        });
+        doTestDocModifiedAfterModification(new DocModifier(){
+            public void modifyDoc(ContextDocument doc) {
+                performCommand(doc, ContextDocument.BUILD_LATTICE_COMMAND);
+                doc.markClean();
+                performCommand(doc, ContextDocument.MAKE_LATTICE_SNAPSHOT_COMMAND);
+            }
+        });
+        doTestDocModifiedAfterModification(new DocModifier(){
+            public void modifyDoc(ContextDocument doc) {
+                performCommand(doc, ContextDocument.CALCULATE_ASSOCIATIONS_COMMAND);
+            }
+        });
+        doTestDocModifiedAfterModification(new DocModifier(){
+            public void modifyDoc(ContextDocument doc) {
+                performCommand(doc, ContextDocument.CALCULATE_IMPLICATIONS_COMMAND);
+            }
+        });
+    }
+
+    private void doTestDocModifiedAfterModification(DocModifier modifier) {
+        Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
+                                                         {1, 0, 1},
+                                                         {1, 1, 0}});
+        doc = new ContextDocument(cxt);
+        assertFalse(doc.isModified());
+        modifier.modifyDoc(doc);
+        assertTrue(doc.isModified());
     }
 
 }

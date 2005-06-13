@@ -30,7 +30,7 @@ public class DocumentRecord {
         }
     }
 
-    public boolean hasCorrespondingFile() {
+    public boolean isPersistent() {
         return hasCorrespondingFile;
     }
 

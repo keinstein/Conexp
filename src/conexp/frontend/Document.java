@@ -26,4 +26,10 @@ public interface Document {
     void setFileName(String fileName);
 
     JTree getTree();
+
+    boolean isModified();
+
+    void markDirty();
+
+    void markClean();
 }

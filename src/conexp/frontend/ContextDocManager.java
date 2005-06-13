@@ -252,7 +252,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     public void removeDocument(DocumentRecord docRecord) {
         if (docRecord != null) {
             docRecord.getDocument().removeViewChangeListener(getOptionPaneViewChangeListener());
-            if (docRecord.hasCorrespondingFile()) {
+            if (docRecord.isPersistent()) {
                 mruManager.addToMRUList(docRecord.getDocumentPath());
             }
         }
@@ -305,6 +305,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
                 fileReader.close();
             }
         }
+        d.markClean();
         addDocument(new DocumentRecord(d, f.getCanonicalPath()));
     }
 
@@ -360,7 +361,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         }
     }
 
-    private void openUrl(final String url) {
+    public void openUrl(final String url) {
         try {
             File f = new File(url);
             if (f.exists()) {
@@ -399,14 +400,13 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return docRecord.getDocumentFileName();
     }
 
-    private void onSave() {
+    public void onSave() {
         if (getDocPath() == null) {
             onSaveAs();
             return;
         }
         try {
-            File file = new File(getDocPath());
-            saveDocument(file);
+            saveDocument(new File(getDocPath()));
         } catch (IOException ex) {
             String msg = makeLocalizedMessageWithOneParam("FileSaveErrorMsg", ex.getMessage());
             showMessage(msg);
@@ -489,7 +489,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     }
 
 
-    private void saveDocument(File f) throws IOException {
+    protected void saveDocument(File f) throws IOException {
         final String extension = StringUtil.getExtension(f.getCanonicalPath());
         DocumentWriter documentWriter = getWriter(extension);
         if (documentWriter == null) {
@@ -500,6 +500,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         try {
             fileWriter = new FileWriter(f);
             documentWriter.storeDocument(getActiveDoc(), fileWriter);
+            getActiveDoc().markClean();
         } finally {
             if (null != fileWriter) {
                 fileWriter.close();
@@ -507,8 +508,12 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         }
     }
 
-    private Document getActiveDoc() {
+    public Document getActiveDoc() {
         return docRecord.getDocument();
+    }
+
+    public DocumentRecord getDocRecord(){
+        return docRecord;
     }
 
     private JMenu createMenu() {
