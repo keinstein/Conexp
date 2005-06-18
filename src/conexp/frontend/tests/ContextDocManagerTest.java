@@ -12,12 +12,15 @@ import junit.framework.TestCase;
 import util.DataFormatException;
 import util.StringUtil;
 import util.gui.MostRecentUrlListManager;
+import util.gui.fileselector.MockFileSelectorService;
 import util.testing.SimpleMockPropertyChangeListener;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+
+import com.mockobjects.ExpectationCounter;
 
 public class ContextDocManagerTest extends TestCase {
     private ContextDocManager docManager;
@@ -164,5 +167,144 @@ public class ContextDocManagerTest extends TestCase {
         docManager.onSave();
         assertFalse(docManager.getActiveDoc().isModified());
         //todo: test scenario with exception during save
+    }
+
+
+    public void testDocProposedToSaveWhenModifiedAndCreatedNewCancelOption(){
+        commonDocCreatedAndNotSavedSetup();
+        final Document activeDoc = docManager.getActiveDoc();
+        MockDocModifiedHandler handler = createMockDocModifiedHandler(
+                JOptionPane.CANCEL_OPTION
+        );
+        docManager.setDocModifiedHandler(handler);
+        docManager.onNewDocument();
+        handler.verify();
+        assertSame(activeDoc, docManager.getActiveDoc());
+    }
+
+    public void testDocProposedToSaveWhenModifiedAndCreatedNewNoOption(){
+        commonDocCreatedAndNotSavedSetup();
+        final Document activeDoc = docManager.getActiveDoc();
+
+        MockDocModifiedHandler handler = createMockDocModifiedHandler(
+                JOptionPane.NO_OPTION);
+
+        docManager.setDocModifiedHandler(handler);
+        final MockFileSelectorService fileSelectorService =
+                MockFileSelectorService.createNotExpectingToBeCalled();
+        docManager.setFileSelectorService(fileSelectorService);
+
+        docManager.onNewDocument();
+
+        handler.verify();
+        fileSelectorService.verify();
+        assertNotSame(activeDoc, docManager.getActiveDoc());
+    }
+
+    public void testDocProposedToSaveWhenModifiedAndCreatedNewYesOption(){
+        commonDocCreatedAndNotSavedSetup();
+        final Document activeDoc = docManager.getActiveDoc();
+
+        MockDocModifiedHandler handler = createMockDocModifiedHandler(
+                JOptionPane.YES_OPTION);
+
+        docManager.setDocModifiedHandler(handler);
+        final MockFileSelectorService fileSelectorService =
+                MockFileSelectorService.createSaveService(
+                       "conexp/frontend/resources/tests/docSaveTest.cex",
+                        true,
+                        true);
+
+        docManager.setFileSelectorService(fileSelectorService);
+        docManager.onNewDocument();
+        handler.verify();
+        fileSelectorService.verify();
+        assertNotSame(activeDoc, docManager.getActiveDoc());
+    }
+
+    public void testDocProposedToSaveWhenModifiedAndCreatedNewYesOptionNoPathProvided(){
+        commonDocCreatedAndNotSavedSetup();
+        final Document activeDoc = docManager.getActiveDoc();
+
+        MockDocModifiedHandler handler = createMockDocModifiedHandler(
+                JOptionPane.YES_OPTION);
+
+        docManager.setDocModifiedHandler(handler);
+        final MockFileSelectorService fileSelectorService =
+                MockFileSelectorService.createSaveService(
+                       null,
+                       false,
+                        false);
+        docManager.setFileSelectorService(fileSelectorService);
+        docManager.onNewDocument();
+        handler.verify();
+        fileSelectorService.verify();
+        assertSame(activeDoc, docManager.getActiveDoc());
+    }
+
+
+    public void testDocProposedToSaveWhenModifiedAndExitYesOptionNoPathProvided(){
+        commonDocCreatedAndNotSavedSetup();
+        final Document activeDoc = docManager.getActiveDoc();
+
+        MockDocModifiedHandler handler = createMockDocModifiedHandler(
+                JOptionPane.YES_OPTION);
+
+        docManager.setDocModifiedHandler(handler);
+        final MockFileSelectorService fileSelectorService =
+                MockFileSelectorService.createSaveService(
+                       null,
+                       false,
+                        false);
+        docManager.setFileSelectorService(fileSelectorService);
+        docManager.onExit();
+        handler.verify();
+        fileSelectorService.verify();
+        assertSame(activeDoc, docManager.getActiveDoc());
+    }
+
+
+    private void commonDocCreatedAndNotSavedSetup() {
+        docManager.setStorageFormatManager(new ConExpStorageFormatManager());
+        docManager.createNewDocument();
+        assertFalse(docManager.getActiveDoc().isModified());
+        docManager.getActiveDoc().markDirty();
+    }
+
+
+    private static MockDocModifiedHandler createMockDocModifiedHandler(
+            int option) {
+        MockDocModifiedHandler handler = new MockDocModifiedHandler();
+        handler.setResponse(option);
+        handler.setExpected(1);
+        return handler;
+    }
+
+
+    private static class MockDocModifiedHandler implements DocModifiedHandler {
+        private final ExpectationCounter counter;
+
+        public MockDocModifiedHandler() {
+            this.counter = new ExpectationCounter("Calls to handler");
+        }
+
+        int response;
+
+        public void setResponse(int response) {
+            this.response = response;
+        }
+
+        public int getSaveIfModifiedResponse(){
+            counter.inc();
+            return response;
+        }
+
+        public void setExpected(int i) {
+            counter.setExpected(i);
+        }
+
+        public void verify() {
+            counter.verify();
+        }
     }
 }

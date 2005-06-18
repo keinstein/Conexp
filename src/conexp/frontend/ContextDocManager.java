@@ -30,7 +30,8 @@ import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 
-public class ContextDocManager extends BasePropertyChangeSupplier implements ActionChainBearer, DocManagerMessages, DocManager {
+public class ContextDocManager extends BasePropertyChangeSupplier
+        implements ActionChainBearer, DocManagerMessages, DocManager {
     //-----------------------------------------------------------
     private ActionMap actionChain = new ActionMap();
 
@@ -47,6 +48,23 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     public JTree getDocumentTree() {
         return getActiveDoc().getTree();
 
+    }
+
+    class DefaultDocModifiedHandler implements DocModifiedHandler {
+        public int getSaveIfModifiedResponse() {
+            return JOptionPane.showConfirmDialog(getMainAppWindow(),
+                    "Do you want to save the changes you made to the document?",
+                    "Document was modified",
+                    JOptionPane.YES_NO_CANCEL_OPTION);
+        }
+    }
+
+
+    private DocModifiedHandler docModifiedHandler = new DefaultDocModifiedHandler();
+
+    public void setDocModifiedHandler(DocModifiedHandler handler) {
+        assert null != handler;
+        this.docModifiedHandler = handler;
     }
 
     class ExitAppAction extends AbstractAction {
@@ -121,7 +139,8 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
     private StorageFormatManager storageFormatManager;
 
-    public void setStorageFormatManager(StorageFormatManager storageFormatManager) {
+    public void setStorageFormatManager(
+            StorageFormatManager storageFormatManager) {
         this.storageFormatManager = storageFormatManager;
     }
 
@@ -152,23 +171,29 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         } catch (IOException e) {
             System.out.println("No configuration for loading");
         }
-        mruManager.setMostRecentUrlList(getConfigManager().fetchStringList(DOCUMENT_MANAGER_SECTION, MOST_RECENT_URLS_KEY, MostRecentUrlListManager.getMaximalNumberOfFilesInMRUList()));
+        mruManager.setMostRecentUrlList(
+                getConfigManager().fetchStringList(DOCUMENT_MANAGER_SECTION,
+                        MOST_RECENT_URLS_KEY,
+                        MostRecentUrlListManager.getMaximalNumberOfFilesInMRUList()));
 
     }
 
     private void saveConfiguration() {
-        getConfigManager().storeStringList(DOCUMENT_MANAGER_SECTION, MOST_RECENT_URLS_KEY, mruManager.getMostRecentUrlList());
+        getConfigManager().storeStringList(DOCUMENT_MANAGER_SECTION,
+                MOST_RECENT_URLS_KEY, mruManager.getMostRecentUrlList());
         try {
             getConfigManager().saveConfiguration();
         } catch (IOException e) {
-            showMessage("Failed to write configuration " + StringUtil.stackTraceToString(e));
+            showMessage("Failed to write configuration " +
+                    StringUtil.stackTraceToString(e));
         }
     }
 
 
     private MenuSite menuSite;
 
-    public ContextDocManager(JFrame mainFrame, OptionPaneSupplier optionPaneSupplier) {
+    public ContextDocManager(JFrame mainFrame,
+                             OptionPaneSupplier optionPaneSupplier) {
         super();
         this.appMainWindow = mainFrame;
         appMainWindow.addWindowListener(new WindowAdapter() {
@@ -195,26 +220,14 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return optionPaneSupplier.getOptionsPane();
     }
 
-    private void onNewDocument() {
+    public void onNewDocument() {
         //single eventSupplier interface
         if (null != docRecord) {
-            /* if (docs.isModified()) {
-                 switch (JOptionPane.showConfirmDialog(null, getSaveFileBeforeClosingMsg())) {
-                     case JOptionPane.CANCEL_OPTION:
-                         return;
-                     case JOptionPane.YES_OPTION:
-                         saveDoc(docs);
-                         break;
-                     case JOptionPane.NO_OPTION:
-                         // nothing to do
-                         break;
-                     default:
-                         Assert.isTrue(false);
-                         break;
-                 } // end of switch ()
-             }*/
-            createNewDocument();
+            if(!canCloseDoc()){
+               return;
+            }
         } // end of if ()
+        createNewDocument();
     }
 
     public void createNewDocument() {
@@ -224,7 +237,8 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
     private OptionPaneViewChangeListener getOptionPaneViewChangeListener() {
         if (null == optionPaneViewChangeListener) {
-            optionPaneViewChangeListener = new OptionPaneViewChangeListener(getOptionsPane());
+            optionPaneViewChangeListener =
+                    new OptionPaneViewChangeListener(getOptionsPane());
         }
         return optionPaneViewChangeListener;
     }
@@ -251,7 +265,8 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
     public void removeDocument(DocumentRecord docRecord) {
         if (docRecord != null) {
-            docRecord.getDocument().removeViewChangeListener(getOptionPaneViewChangeListener());
+            docRecord.getDocument().removeViewChangeListener(
+                    getOptionPaneViewChangeListener());
             if (docRecord.isPersistent()) {
                 mruManager.addToMRUList(docRecord.getDocumentPath());
             }
@@ -265,11 +280,13 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     }
 
     private void fireActiveDocChanged() {
-        getPropertyChangeSupport().firePropertyChange(ACTIVE_DOC_CHANGED, null, null);
+        getPropertyChangeSupport().firePropertyChange(ACTIVE_DOC_CHANGED, null,
+                null);
     }
 
     private void fireActiveDocInfoChanged() {
-        getPropertyChangeSupport().firePropertyChange(ACTIVE_DOC_INFO_CHANGED, null, null);
+        getPropertyChangeSupport().firePropertyChange(ACTIVE_DOC_INFO_CHANGED,
+                null, null);
     }
 
     private DocumentLoader getLoader(String extension) {
@@ -284,12 +301,14 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
     /*@test_public*/
 
-    public void doLoadDocumentFromFile(File f) throws IOException, DataFormatException {
+    public void doLoadDocumentFromFile(File f) throws IOException,
+            DataFormatException {
 
         String extension = StringUtil.getExtension(f.getCanonicalPath());
         DocumentLoader loader = getLoader(extension);
         if (null == loader) {
-            String msg = makeLocalizedMessageWithOneParam("NoLoaderForFileWithExtension", extension);
+            String msg = makeLocalizedMessageWithOneParam(
+                    "NoLoaderForFileWithExtension", extension);
             throw new DataFormatException(msg);
         }
         //loader.setLocalizedMessageSupplier(); TODO
@@ -298,7 +317,9 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         try {
             fileReader = new FileReader(f);
             //todo: set proper data format error handler
-            d = loader.loadDocument(fileReader, new UIDataFormatErrorHandler(getMainAppWindow()));
+            d =
+                    loader.loadDocument(fileReader,
+                            new UIDataFormatErrorHandler(getMainAppWindow()));
 
         } finally {
             if (null != fileReader) {
@@ -313,10 +334,36 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 //-------------------------------------------
 
     private boolean canExit() {
+        return canCloseDoc();
+    }
+
+    private boolean canCloseDoc() {
+        if(getActiveDoc().isModified()){
+                 final int saveIfModifiedResponce = docModifiedHandler.getSaveIfModifiedResponse();
+                 switch (saveIfModifiedResponce) {
+                     case JOptionPane.CANCEL_OPTION:
+                         return false;
+                     case JOptionPane.YES_OPTION:
+                         if(!onSave()){
+                            return false;
+                         }
+                         break;
+                     case JOptionPane.NO_OPTION:
+                         // nothing to do
+                         return true;
+                     default:
+                         assert false:
+                                 "getSaveIfModifiedResponce returned illegal " +
+                                 "code:" + saveIfModifiedResponce;
+                         break;
+
+                 }
+
+        }
         return true;
     }
 
-    private void onExit() {
+    public void onExit() {
         if (canExit()) {
             closeDocument(); //will be changed later on
             saveConfiguration();
@@ -327,7 +374,9 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     private static ResourceBundle resources;
 
     static {
-        resources = ResourceLoader.getResourceBundle("conexp/frontend/resources/ContextDocManager");  //$NON-NLS-1$
+        resources =
+                ResourceLoader.getResourceBundle(
+                        "conexp/frontend/resources/ContextDocManager");  //$NON-NLS-1$
     }
     //------------------------------------------------------------
 
@@ -351,7 +400,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 //-----------------------------------------------------------
     private void onOpen() {
         FileSelectorService fileSelector =
-                ServiceRegistry.fileSelectorService();
+                getFileSelectorService();
         if (fileSelector.performOpenService(getMainAppWindow(),
                 getLocalizedMessageSupplier().getMessage("OpenFileMsg"),
                 null, //default start dir
@@ -400,20 +449,23 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return docRecord.getDocumentFileName();
     }
 
-    public void onSave() {
+    public boolean onSave() {
         if (getDocPath() == null) {
-            onSaveAs();
-            return;
+            return onSaveAs();
         }
         try {
             saveDocument(new File(getDocPath()));
+            return true;
         } catch (IOException ex) {
-            String msg = makeLocalizedMessageWithOneParam("FileSaveErrorMsg", ex.getMessage());
+            String msg = makeLocalizedMessageWithOneParam("FileSaveErrorMsg",
+                    ex.getMessage());
             showMessage(msg);
+            return false;
         }
     }
 
-    private String makeLocalizedMessageWithOneParam(String messageKey, String msgParam) {
+    private String makeLocalizedMessageWithOneParam(String messageKey,
+                                                    String msgParam) {
         String msg = MessageFormat.format(getLocalizedMessage(messageKey),
                 new Object[]{msgParam});
         return msg;
@@ -421,46 +473,62 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
 
 
     private void onAboutApp() {
-        (new AboutConExpDialog(getMainAppWindow(), getLocalizedMessage("AboutAppMsg"), true)).show();
+        (new AboutConExpDialog(getMainAppWindow(),
+                getLocalizedMessage("AboutAppMsg"), true)).show();
     }
 
 
-    private void onSaveAs() {
-        FileSelectorService fileSelector = ServiceRegistry.fileSelectorService();
-        if (fileSelector
+    private boolean onSaveAs() {
+        FileSelectorService fileSelector = getFileSelectorService();
+        if (!fileSelector
                 .performSaveService(getMainAppWindow(),
                         getLocalizedMessage("SaveFileAsMsg"),
                         getDocDir(),
                         getFileName(),
                         getSaveFilters())) {
-            try {
-                File f = new File(fileSelector.getSelectedPath());
-                if (StringUtil.isEmpty(StringUtil.getExtension(f.getCanonicalPath()))) {
-                    f = new File(f.getAbsolutePath() + getStorageFormatManager().getDefaultExtension());
-                }
-                final String extension = StringUtil.getExtension(f.getCanonicalPath());
-                if (!isFormatSupported(extension)) {
-                    throw new IOException("Do not support format with extension:" + extension);
-                }
-                if (f.exists()) {
-                    String msg = makeLocalizedMessageWithOneParam("FileExistsConfirmOverwriteMsg", f.getName());
-
-                    if (JOptionPane.YES_OPTION
-                            != JOptionPane.showConfirmDialog(getMainAppWindow(),
-                                    msg,
-                                    getLocalizedMessage("ConfirmMsg"),
-                                    JOptionPane.YES_NO_OPTION)) {
-                        return;
-                    }
-                }
-
-                saveDocumentAndUpdateDocumentInfo(f);
-
-            } catch (Exception ex) {
-                String msg = makeLocalizedMessageWithOneParam("FileSaveErrorMsg", ex.getMessage());
-                showMessage(msg);
-            }
+            return false;
         }
+        try {
+            File f = new File(fileSelector.getSelectedPath());
+            if (StringUtil.isEmpty(
+                    StringUtil.getExtension(f.getCanonicalPath()))) {
+                f = new File(f.getAbsolutePath() +
+                        getStorageFormatManager().getDefaultExtension());
+            }
+            final String extension = StringUtil.getExtension(
+                    f.getCanonicalPath());
+            if (!isFormatSupported(extension)) {
+                throw new IOException("Do not support format with extension:" +
+                        extension);
+            }
+            if (f.exists()) {
+                if (!fileSelector.confirmOverwrite(getMainAppWindow(),
+                        makeLocalizedMessageWithOneParam(
+                                "FileExistsConfirmOverwriteMsg", f.getName()),
+                        getLocalizedMessage("ConfirmMsg"))) {
+                    return false;
+                }
+            }
+
+            saveDocumentAndUpdateDocumentInfo(f);
+            return true;
+        } catch (Exception ex) {
+            String msg = makeLocalizedMessageWithOneParam("FileSaveErrorMsg",
+                    ex.getMessage());
+            showMessage(msg);
+            return false;
+        }
+
+    }
+
+    FileSelectorService selectorService = ServiceRegistry.fileSelectorService();
+
+    public void setFileSelectorService(FileSelectorService selectorService) {
+        this.selectorService = selectorService;
+    }
+
+    private FileSelectorService getFileSelectorService() {
+        return selectorService;
     }
 
     private boolean isFormatSupported(String extension) {
@@ -512,14 +580,16 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
         return docRecord.getDocument();
     }
 
-    public DocumentRecord getDocRecord(){
+    public DocumentRecord getDocRecord() {
         return docRecord;
     }
 
     private JMenu createMenu() {
-        ToolBuilder toolBuilder = new ToolBuilder(getResourceManager(), getActionChain());
+        ToolBuilder toolBuilder = new ToolBuilder(getResourceManager(),
+                getActionChain());
         JMenu menu = toolBuilder.createMenu();
-        int reopenIndex = MenuUtil.findIndexOfMenuComponentWithName(menu, "reopen");
+        int reopenIndex = MenuUtil.findIndexOfMenuComponentWithName(menu,
+                "reopen");
         if (reopenIndex >= 0) {
             JMenu mruMenu = (JMenu) menu.getMenuComponent(reopenIndex);
             mruManager.setMruMenu(mruMenu);
@@ -528,7 +598,8 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     }
 
     private JMenu createHelpMenu() {
-        ToolBuilder toolBuilder = new ToolBuilder(getResourceManager(), getActionChain());
+        ToolBuilder toolBuilder = new ToolBuilder(getResourceManager(),
+                getActionChain());
         return toolBuilder.createHelpMenu();
     }
 
@@ -554,7 +625,8 @@ public class ContextDocManager extends BasePropertyChangeSupplier implements Act
     }
 
 
-    private static class ContextDocManagerMessageSupplier implements LocalizedMessageSupplier {
+    private static class ContextDocManagerMessageSupplier
+            implements LocalizedMessageSupplier {
         public String getMessage(String key) {
             return resources.getString(key);
         }
