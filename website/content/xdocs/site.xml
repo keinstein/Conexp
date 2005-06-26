@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+
+<!--
+Forrest site.xml
+
+This file contains an outline of the site's information content.  It is used to:
+- Generate the website menus (though these can be overridden - see docs)
+- Provide semantic, location-independent aliases for internal 'site:' URIs, eg
+<link href="site:changes"> links to changes.html (or ../changes.html if in
+  subdir).
+- Provide aliases for external URLs in the external-refs section.  Eg, <link
+  href="ext:cocoon"> links to http://xml.apache.org/cocoon/ 
+
+See http://xml.apache.org/forrest/linking.html for more info
+-->
+
+<site label="ConExp" href="" xmlns="http://apache.org/forrest/linkmap/1.0" tab="">
+
+  <general label="General">
+    <index label="Main" href="index.html" description="Main Page"/>
+    <projects label="Projects" href="projects.html" description="Projects using ConExp" />
+    <articles label="Articles" href="articles.html" description="Articles about ConExp" />
+    <download label="Download" href="download.html" description="Download ConExp" />
+    <contact label="Contact" href="contact.html"  description="Contact the ConExp developers" />
+  </general>
+
+  <users label="Users" href="users/">
+    <index label="Overview" href="index.html" description="Overview of available documents" />
+    <documentation label="Documentation" href="documentation/index.html" description="ConExp Program documentation" />
+    <tutorials label="Tutorials" href="tutorials.html" description="Tutorials for specific tasks with ConExp" />
+  </users>
+  <developers label="Developers" href="developers/">
+  	<index label="Overview" href="index.html" description="Overview of available information" />
+	<team label="Team" href="team.html" description="Members of the ConExp team" />
+	<roadmap label="Roadmap" href="roadmap.html" description="Roadmap of features coming in the next releases of ConExp" />
+	<participate label="Participate!" href="participate.html" description="How to join ConExp development" />
+  </developers>
+
+
+    
+  <external-refs>
+    <sourceforge href="http://sourceforge.net/" />
+    <project-page href="http://sourceforge.net/projects/conexp/" />
+    <download-page href="http://prdownloads.sourceforge.net/conexp/conexp-1.2.zip?download" />
+    <toscanaj href="http://toscanaj.sourceforge.net" />
+    <tockit href="http://tockit.sourceforge.net" />
+  </external-refs>
+
+</site>
