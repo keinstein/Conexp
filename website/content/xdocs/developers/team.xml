@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="iso-8859-15"?>
 <!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
-<document> 
-  <header> 
-    <title>ConExp Template Page</title> 
-  </header> 
-  <body> 
-    <section>
-      <title>ConExp Template</title>
-      <p>We are currently working on creating a website for ConExp. For
-      now, please check the <link href="ext:project-page">Project Page</link> or go directly
-      to the <link href="ext:download-page">Download Page</link>.</p>
-    </section>
-  </body>
+<document>
+    <header>
+        <title>ConExp Team</title>
+    </header>
+    <body>
+        <section>
+            <title>Chief developer</title>
+            <p>Dr. rer. nat. Serhiy Yevtushenko</p>
+        </section>
+        <section>
+            <title>Contributors</title>
+<!--            <dl>
+                <dd>Julian Tane</dd>
+                <dt>Contributed initial code for the reading
+                    and writing into comma-separated values (.CSV) and
+                    object-attribute list(.OAL) formats.</dt>
+                <dd>Tim B. Kaiser</dd>
+                <dt>Asked for the object selection mask in
+                    line diagram view and implemented this functionality.</dt>
+                <dd>Dr. Sergei Objedkov</dd>
+                <dt>One of authors and the developer of ConExp version of
+                    the incremental attribute addition algorithm
+                    for computing the Duquenne-Guiguies implication base.</dt>
+            </dl>  -->
+        </section>
+
+    </body>
 </document>

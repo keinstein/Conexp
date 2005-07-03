@@ -2,14 +2,40 @@
 <!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
 <document> 
   <header> 
-    <title>ConExp Template Page</title> 
+    <title>Articles and presentations related with Concept Explorer</title>
   </header> 
   <body> 
     <section>
-      <title>ConExp Template</title>
-      <p>We are currently working on creating a website for ConExp. For
-      now, please check the <link href="ext:project-page">Project Page</link> or go directly
-      to the <link href="ext:download-page">Download Page</link>.</p>
+      <title>Articles about Concept Explorer</title>
+      <p>Serhiy A. Yevtushenko. System of data analysis "Concept Explorer".
+         (In Russian). Proceedings of the 7th national conference on Artificial
+Intelligence KII-2000, p. 127-134, Russia, 2000. <link href="./ConExp-2000.pdf">ConExp-2000.pdf(317 K)</link>
+            This is a first article about Concept Explorer.
+      </p>
+
+      <p>Serhiy A. Yevtushenko. Algorithms for drawing line diagrams. (In Russian).
+          Proceedings of the Russian National Congress on Artificial Intelligence ICAI-2001.
+          <link href="DrawingLineDiagrams-ICAI2001.pdf">DrawingLineDiagrams-ICAI2001.pdf(453 K)</link></p>
+          <p>Abstract of the article: Formal Concept Analysis is a powerful method of data analysis.
+        Visualization of dependencies in FCA is performed by means of
+        linear diagrams of concept lattices.
+        Different approaches for drawing linear diagrams are reviewed.
+        Results of comparisons of several algorithms are presented.
+      </p>
+    </section>
+    <section>
+        <title>Presentations</title>
+
+        <dl>
+            <dt>Algoritms for drawing line diagrams (In Russian). ICAI-2001 presentation </dt>
+            <dd> <link href="./DrawingLineDiagrams-presentation.pdf">DrawingLineDiagrams-presentation.pdf (846 K    )</link>
+ </dd>
+            <dt>Darmstadt presentation for Intellectics group(August 2001)</dt>
+                <dd><link href="./AlgConSet.pdf">AlgConSet.pdf(306 K)</link>
+                    This presentation contains among other things pseudo-code
+                    for the GRAIL algorithm for computing concept lattices used in ConExp.
+                </dd>
+        </dl>
     </section>
   </body>
 </document>
