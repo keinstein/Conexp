@@ -8,8 +8,8 @@
 package conexp.core.bitset.tests;
 
 import conexp.core.BinaryRelation;
-import conexp.core.Set;
 import conexp.core.ContextFactory;
+import conexp.core.Set;
 import conexp.core.bitset.BitSetFactory;
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -12,6 +12,7 @@ import conexp.core.Context;
 import conexp.core.ImplicationSet;
 import conexp.core.attrexplorationimpl.AttributeExplorerImplementation;
 import conexp.core.compareutils.ImplicationSetComparator;
+import conexp.core.tests.ImplicationsBuilder;
 import conexp.core.tests.SetBuilder;
 import junit.framework.TestCase;
 
@@ -34,7 +35,7 @@ public class AttributeExplorerTest extends TestCase {
         explorer.setUserCallback(attrExpCallback);
         explorer.performAttributeExploration();
 
-        ImplicationSet expImplicationSet = SetBuilder.makeImplicationSet(cxt, expImplicationTheory);
+        ImplicationSet expImplicationSet = ImplicationsBuilder.makeImplicationSet(cxt, expImplicationTheory);
         if (!implicationSet.equalsToIsomorphism(expImplicationSet)) {
             ImplicationSetComparator comparator = new ImplicationSetComparator(expImplicationSet, implicationSet);
             comparator.dumpDifferencesToSout();

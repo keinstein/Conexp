@@ -1,8 +1,6 @@
 package conexp.frontend.latticeeditor.tests;
 
-import conexp.core.Context;
 import conexp.core.Lattice;
-import conexp.core.tests.SetBuilder;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.components.tests.ComponentsObjectMother;
 import conexp.frontend.latticeeditor.LatticeDrawing;

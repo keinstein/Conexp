@@ -16,10 +16,11 @@ public class AllTests extends TestCase {
 
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTest(AssociationRulesViewTest.suite());
-        suite.addTest(AssociationRendererTest.suite());
-        suite.addTest(ImplicationsViewTest.suite());
-        suite.addTest(ImplicationRendererTest.suite());
+        suite.addTestSuite(AssociationRulesViewTest.class);
+        suite.addTestSuite(AssociationRendererTest.class);
+        suite.addTestSuite(ImplicationsViewTest.class);
+        suite.addTestSuite(ImplicationRendererTest.class);
+        suite.addTestSuite(RulePaneTest.class);
         return suite;
     }
 }

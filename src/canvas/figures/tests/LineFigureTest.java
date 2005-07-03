@@ -7,13 +7,11 @@
 
 package canvas.figures.tests;
 
+import canvas.Figure;
 import canvas.figures.ConnectionFigure;
 import canvas.figures.LineFigure;
 import canvas.tests.FigureTest;
 import canvas.tests.MockFigure;
-import canvas.Figure;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 public class LineFigureTest extends FigureTest {
 

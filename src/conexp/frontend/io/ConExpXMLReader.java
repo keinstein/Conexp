@@ -7,9 +7,9 @@
 
 package conexp.frontend.io;
 
-import canvas.figures.IFigureWithCoords;
-import canvas.FigureDrawingCanvas;
 import canvas.Figure;
+import canvas.FigureDrawingCanvas;
+import canvas.figures.IFigureWithCoords;
 import conexp.core.*;
 import conexp.frontend.ContextDocument;
 import conexp.frontend.DataFormatErrorHandler;
@@ -30,9 +30,9 @@ import java.awt.geom.Point2D;
 import java.beans.PropertyVetoException;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Collection;
 
 public class ConExpXMLReader implements DocumentLoader {
     public ContextDocument loadDocument(Reader reader, DataFormatErrorHandler errorHandler) throws IOException, DataFormatException {
@@ -46,16 +46,14 @@ public class ConExpXMLReader implements DocumentLoader {
             errorHandler.handleCriticalError(XMLHelper.makeDataFormatError(StringUtil.stackTraceToString(e)));
         }
 
-        if (null == root ||
-                !root.getName().equals(ConExpXMLElements.DOC_XML_ROOT)) {
+        if (isBadRootElement(root)) {
             errorHandler.handleCriticalError(XMLHelper.makeDataFormatError("Error in xml format: bad root element"));
         }
 
         ContextDocument ret = null;
         try {
-            ret = new ContextDocument();
             Element contextCollection = XMLHelper.safeGetElement(root, ConExpXMLElements.CONTEXTS_COLLECTION, "No contexts in data file");
-            addContexts(ret, contextCollection);
+            ret = addContexts(contextCollection);
         } catch (DataFormatException e) {
             errorHandler.handleCriticalError(e);
         }
@@ -67,6 +65,11 @@ public class ConExpXMLReader implements DocumentLoader {
         }
 
         return ret;
+    }
+
+    private static boolean isBadRootElement(Element root) {
+        return null == root ||
+                        !ConExpXMLElements.DOC_XML_ROOT.equals(root.getName());
     }
 
     private static void addLattices(ContextDocument doc, Element latticeCollection) throws DataFormatException {
@@ -374,10 +377,9 @@ public class ConExpXMLReader implements DocumentLoader {
         return point;
     }
 
-    private static void addContexts(ContextDocument ret, Element contextCollection) throws DataFormatException {
+    private static ContextDocument addContexts(Element contextCollection) throws DataFormatException {
         Element context = XMLHelper.safeGetElement(contextCollection, ConExpXMLElements.CONTEXT_ELEMENT, "No context in context collection");
-        Context cxt = loadContext(context);
-        ret.setContext(cxt);
+        return new ContextDocument(loadContext(context));
     }
 
 

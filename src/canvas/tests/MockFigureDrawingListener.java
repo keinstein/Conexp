@@ -7,14 +7,12 @@
 
 package canvas.tests;
 
+import canvas.FigureDrawingListener;
 import com.mockobjects.ExpectationCounter;
 import com.mockobjects.ExpectationList;
 import com.mockobjects.Verifiable;
 
-import java.awt.geom.Dimension2D;
 import java.awt.*;
-
-import canvas.FigureDrawingListener;
 
 
 public class MockFigureDrawingListener implements Verifiable, FigureDrawingListener {

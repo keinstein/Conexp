@@ -8,9 +8,9 @@
 
 package canvas.figures;
 
+import canvas.CanvasColorScheme;
 import canvas.CanvasScheme;
 import canvas.IHighlightStrategy;
-import canvas.CanvasColorScheme;
 
 import java.awt.*;
 

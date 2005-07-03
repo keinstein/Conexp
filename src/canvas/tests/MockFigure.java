@@ -7,8 +7,8 @@
 
 package canvas.tests;
 
-import canvas.figures.RectangularFigure;
 import canvas.CanvasScheme;
+import canvas.figures.RectangularFigure;
 
 import java.awt.*;
 

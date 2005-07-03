@@ -1,8 +1,8 @@
 package conexp.frontend.components.tests;
 
-import conexp.frontend.components.LatticeComponent;
-import conexp.core.tests.SetBuilder;
 import conexp.core.layoutengines.SimpleLayoutEngine;
+import conexp.core.tests.SetBuilder;
+import conexp.frontend.components.LatticeComponent;
 
 /**
  * Created by IntelliJ IDEA.

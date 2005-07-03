@@ -1,9 +1,9 @@
 package conexp.frontend.latticeeditor.highlightstrategies.tests;
 
+import canvas.IHighlightStrategy;
 import conexp.frontend.latticeeditor.highlightstrategies.FilterIdealHighlightStrategy;
 import conexp.frontend.latticeeditor.highlightstrategies.NeigboursHighlightStrategy;
 import conexp.frontend.latticeeditor.tests.HighlightStrategyTest;
-import canvas.IHighlightStrategy;
 
 /**
  * User: sergey

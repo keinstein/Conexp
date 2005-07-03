@@ -8,9 +8,9 @@ package conexp.util.valuemodels.tests;
  * To change this template use File | Settings | File Templates.
  */
 
-import junit.framework.*;
-import conexp.util.valuemodels.VetoableValueModelDecorator;
 import conexp.util.valuemodels.IntValueModel;
+import conexp.util.valuemodels.VetoableValueModelDecorator;
+import junit.framework.TestCase;
 import util.testing.TestUtil;
 
 public class VetoableValueModelDecoratorTest extends TestCase {

@@ -21,32 +21,29 @@ public class ConceptFrame extends JFrame {
         init();
     }
 
-    private JSplitPane jSplitPaneMain = new JSplitPane();
+    private JSplitPane mainSplitPane = new JSplitPane();
     private JTabbedPane docTreeTabPane = new JTabbedPane();
-    private JSplitPane jSplitPane1 = new JSplitPane();
     private JTree documentTree;
 
     private void createMainPane() {
-        jSplitPane1.setPreferredSize(new Dimension(SizeOptions.getProjectPaneWidth(), 150));
-        jSplitPane1.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        jSplitPane1.setOneTouchExpandable(true);
+        JSplitPane docTreeAndOptionsSplitPane = new JSplitPane();
+        docTreeAndOptionsSplitPane.setPreferredSize(new Dimension(SizeOptions.getProjectPaneWidth(), 150));
+        docTreeAndOptionsSplitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        docTreeAndOptionsSplitPane.setOneTouchExpandable(true);
 
+        getContentPane().add(mainSplitPane, BorderLayout.CENTER);
+        mainSplitPane.setOneTouchExpandable(true);
+        mainSplitPane.add(docTreeAndOptionsSplitPane, JSplitPane.LEFT);
 
         int sizeTab = 100;
-
-
-        getContentPane().add(jSplitPaneMain, BorderLayout.CENTER);
-        jSplitPaneMain.setOneTouchExpandable(true);
-        jSplitPaneMain.add(jSplitPane1, JSplitPane.LEFT);
-
         docTreeTabPane.setPreferredSize(new Dimension(SizeOptions.getProjectPaneWidth(), sizeTab));
         docTreeTabPane.setMinimumSize(new Dimension(SizeOptions.getProjectPaneWidth(), sizeTab));
 
-        jSplitPane1.add(docTreeTabPane, JSplitPane.TOP);
-        jSplitPane1.add(optionPane, JSplitPane.BOTTOM);
-        jSplitPane1.setDividerLocation(sizeTab);
+        docTreeAndOptionsSplitPane.add(docTreeTabPane, JSplitPane.TOP);
+        docTreeAndOptionsSplitPane.add(optionPane, JSplitPane.BOTTOM);
+        docTreeAndOptionsSplitPane.setDividerLocation(sizeTab);
 
-        jSplitPaneMain.setDividerLocation(SizeOptions.getProjectPaneWidth());
+        mainSplitPane.setDividerLocation(SizeOptions.getProjectPaneWidth());
 
     }
 
@@ -69,7 +66,7 @@ public class ConceptFrame extends JFrame {
         createMainPane();
 
 
-        jSplitPaneMain.add(manager.getActiveDocComponent(), JSplitPane.RIGHT);
+        mainSplitPane.add(manager.getActiveDocComponent(), JSplitPane.RIGHT);
         // docTreeTabPane.add(scrollBrowserPane, "Diagram Browser");
         setToolBar(manager.getActiveDocToolBar());
 
@@ -146,11 +143,11 @@ public class ConceptFrame extends JFrame {
 
     private void setDocComponent(Component comp) {
         if (null != docComponent) {
-            jSplitPaneMain.remove(docComponent);
+            mainSplitPane.remove(docComponent);
         } // end of if ()
 
         if (null != comp) {
-            jSplitPaneMain.add(comp, JSplitPane.RIGHT);
+            mainSplitPane.add(comp, JSplitPane.RIGHT);
         } // end of if ()
         docComponent = comp;
     }

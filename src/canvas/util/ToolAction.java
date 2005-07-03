@@ -7,12 +7,11 @@
 
 package canvas.util;
 
+import canvas.FigureDrawingCanvas;
+import canvas.Tool;
 import util.gui.ActionWithKey;
 
 import java.awt.event.ActionEvent;
-
-import canvas.Tool;
-import canvas.FigureDrawingCanvas;
 
 
 public class ToolAction extends ActionWithKey {

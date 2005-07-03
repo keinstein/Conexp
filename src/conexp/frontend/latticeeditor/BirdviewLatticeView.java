@@ -1,6 +1,6 @@
 package conexp.frontend.latticeeditor;
 
-import conexp.frontend.LatticeDrawingProvider;
+
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

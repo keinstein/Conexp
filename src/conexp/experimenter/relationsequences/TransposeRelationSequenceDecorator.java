@@ -1,8 +1,8 @@
 package conexp.experimenter.relationsequences;
 
-import conexp.experimenter.framework.RelationSequence;
 import conexp.core.BinaryRelation;
 import conexp.core.BinaryRelationUtils;
+import conexp.experimenter.framework.RelationSequence;
 
 /**
  * Insert the type's description here.

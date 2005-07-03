@@ -1,6 +1,5 @@
 package conexp.frontend.latticeeditor.labelingstrategies;
 
-import canvas.figures.BorderCalculatingFigure;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 

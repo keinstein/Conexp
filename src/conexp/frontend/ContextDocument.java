@@ -20,7 +20,9 @@ import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.contexteditor.ContextViewPanel;
 import conexp.frontend.latticeeditor.CEDiagramEditorPanel;
 import conexp.frontend.latticeeditor.LatticePainterPanel;
-import conexp.frontend.ruleview.*;
+import conexp.frontend.ruleview.AssociationRulesView;
+import conexp.frontend.ruleview.ImplicationBaseCalculator;
+import conexp.frontend.ruleview.ImplicationsView;
 import conexp.frontend.ui.ConExpViewManager;
 import conexp.frontend.ui.IViewInfo;
 import conexp.frontend.ui.ViewInfo;
@@ -30,15 +32,13 @@ import conexp.frontend.ui.tree.IconData;
 import conexp.frontend.util.ActionChainUtil;
 import conexp.frontend.util.ResourceManager;
 import conexp.frontend.util.ToolBuilder;
+import conexp.util.gui.strategymodel.StrategyValueItem;
 import util.Assert;
 import util.FormatUtil;
 import util.collection.CollectionFactory;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.MutableTreeNode;
-import javax.swing.tree.TreePath;
+import javax.swing.tree.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,6 +56,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     // problems with setting context (if lattice component was created and context was set after it, than lattice component
     // will not know about context
     private static ResourceBundle resContextDocument;
+    private JComboBox recalculatePolicyCombo;
 
     static {
         resContextDocument =
@@ -174,6 +175,21 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     public void markClean() {
         contextDocumentModel.markClean();
+    }
+
+    private JComboBox getRecalculatePolicyCombo() {
+        if(null==recalculatePolicyCombo){
+            recalculatePolicyCombo = makeRecalculationPolicyCombo();
+
+        }
+        return recalculatePolicyCombo;
+    }
+
+    private JComboBox makeRecalculationPolicyCombo() {
+        StrategyValueItem recalculationPolicy = contextDocumentModel.getRecalculationPolicy();
+        JComboBox combo = new JComboBox(recalculationPolicy.getDescription());
+        combo.addActionListener(recalculationPolicy);
+        return combo;
     }
 
     public static abstract class ExtendedViewInfo extends ViewInfo {
@@ -516,7 +532,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
 
-    protected ContextDocumentModel contextDocumentModel;
+    protected final ContextDocumentModel contextDocumentModel;
 
     //----------------------------------------
     public Context getContext() {
@@ -903,6 +919,8 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     private JTree makeTree() {
         final JTree ret = new JTree(getDocumentTreeModel());
+        ret.getSelectionModel().setSelectionMode(
+                TreeSelectionModel.SINGLE_TREE_SELECTION);
         ret.setCellRenderer(new IconCellRenderer());
         ret.setSelectionPath(getTreePath());
         ret.setShowsRootHandles(true);
@@ -917,8 +935,8 @@ public class ContextDocument implements ActionChainBearer, Document {
                     return;
                 }
                 final int pathCount = path.getPathCount();
-                DefaultMutableTreeNode activeItem = (DefaultMutableTreeNode) path.getPathComponent(
-                        pathCount - 1);
+                DefaultMutableTreeNode activeItem = (DefaultMutableTreeNode)
+                        path.getPathComponent(pathCount - 1);
                 Object actualData = getActualDataFromTreeNode(activeItem);
                 if (actualData instanceof ITreeObject) {
                     ITreeObject treeObject = (ITreeObject) actualData;
@@ -1120,7 +1138,13 @@ public class ContextDocument implements ActionChainBearer, Document {
     private JToolBar createToolBar() {
         ToolBuilder toolBuilder = new ToolBuilder(getResourceManager(),
                 getActionChain());
-        return toolBuilder.createToolBar(JToolBar.HORIZONTAL);
+        JToolBar toolBar = toolBuilder.createToolBar(JToolBar.HORIZONTAL);
+        toolBar.add(new JLabel(" Update:"));
+
+        toolBar.add(getRecalculatePolicyCombo());
+        toolBar.add(Box.createHorizontalGlue());
+        toolBar.add(Box.createHorizontalGlue());
+        return toolBar;
     }
 
     private static ResourceManager getResourceManager() {

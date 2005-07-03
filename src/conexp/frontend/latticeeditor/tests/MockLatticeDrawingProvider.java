@@ -1,11 +1,11 @@
 package conexp.frontend.latticeeditor.tests;
 
+import conexp.core.Lattice;
 import conexp.frontend.LatticeDrawingProvider;
 import conexp.frontend.latticeeditor.LatticeDrawing;
-import conexp.core.Lattice;
 
-import java.beans.PropertyChangeSupport;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  * User: sergey

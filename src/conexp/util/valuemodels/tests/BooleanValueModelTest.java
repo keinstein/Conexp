@@ -6,8 +6,8 @@ package conexp.util.valuemodels.tests;
  * Time: 14:17:39
  */
 
-import junit.framework.*;
 import conexp.util.valuemodels.BooleanValueModel;
+import junit.framework.TestCase;
 import util.testing.TestUtil;
 
 public class BooleanValueModelTest extends TestCase {

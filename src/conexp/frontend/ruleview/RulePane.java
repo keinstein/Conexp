@@ -9,6 +9,7 @@ package conexp.frontend.ruleview;
 
 import conexp.core.Dependency;
 import conexp.core.DependencySet;
+import conexp.frontend.DependencySetSupplier;
 
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
@@ -17,37 +18,41 @@ import java.util.Iterator;
 
 public class RulePane extends TextPaneViewBase {
     protected RuleRenderer renderer;
-    protected DependencySet ruleSet;
-    protected final java.lang.String emptySetMessage;
+    private DependencySetSupplier ruleSetSupplier;
+    private RulePaneMessages messages;
 
-    public RulePane(DependencySet ruleSet, RuleRenderer renderer,
-                    String emptyMsg) {
+    public RulePane(DependencySetSupplier ruleSetSupplier, RuleRenderer renderer,
+                    RulePaneMessages messages) {
         super(new DefaultStyledDocument());
-        emptySetMessage = emptyMsg;
+        this.messages=messages;
         this.renderer = renderer;
-        this.ruleSet = ruleSet;
-        generateContent();
+        setDependencySetSupplier(ruleSetSupplier);
     }
 
 
     public void generateContent() {
         clear();
         try {
-            if (ruleSet.getSize() > 0) {
+            if(!ruleSetSupplier.isComputed()){
+                appendString(messages.getRuleSetShouldBeRecalculated()+NEW_LINE,
+                            renderer.getBaseStyle());
+                return;
+            }
+            if (getRuleSet().getSize() > 0) {
                 int cnt = 0;
-                Iterator iter = ruleSet.iterator();
+                Iterator iter = getRuleSet().iterator();
                 StringBuffer tmp = new StringBuffer();
                 while (iter.hasNext()) {
                     tmp.setLength(0);
                     Dependency dep = (Dependency) iter.next();
                     tmp.append((++cnt));
                     tmp.append(" ");
-                    renderer.describeRule(tmp, ruleSet.getAttributesInformation(), dep);
+                    renderer.describeRule(tmp, getRuleSet().getAttributesInformation(), dep);
                     tmp.append(NEW_LINE);
                     appendString(tmp.toString(), renderer.dependencyStyle(dep));
                 }
             } else {
-                appendString(emptySetMessage + NEW_LINE,
+                appendString(messages.getEmptyRulesetMessage() + NEW_LINE,
                         renderer.getBaseStyle());
             }
         } catch (BadLocationException ble) {
@@ -59,8 +64,13 @@ public class RulePane extends TextPaneViewBase {
     }
 
 
-    public void setRuleSet(conexp.core.DependencySet newRuleSet) {
-        ruleSet = newRuleSet;
+    public void setDependencySetSupplier(
+            DependencySetSupplier dependencySetSupplier) {
+        ruleSetSupplier = dependencySetSupplier;
         generateContent();
+    }
+
+    private DependencySet getRuleSet() {
+        return ruleSetSupplier.getDependencySet();
     }
 }

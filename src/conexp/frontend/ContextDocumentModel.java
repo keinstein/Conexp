@@ -9,6 +9,10 @@ import conexp.core.enumcallbacks.ConceptNumCallback;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.ruleview.*;
+import conexp.util.GenericStrategy;
+import conexp.util.gui.strategymodel.GrowingStrategyModel;
+import conexp.util.gui.strategymodel.StrategyValueItem;
+import util.BasePropertyChangeSupplier;
 import util.collection.CollectionFactory;
 
 import java.beans.PropertyChangeEvent;
@@ -22,18 +26,75 @@ import java.util.List;
  * Date: 18/4/2005
  * Time: 21:10:14
  */
-public class ContextDocumentModel {
+public class ContextDocumentModel extends BasePropertyChangeSupplier{
+    public static final String CLEAR_DEPENDENT_POLICY_KEY = "Clear";
+    public static final String RECOMPUTE_DEPENDENT_POLICY_KEY = "Recompute";
+    public static final String RECALCULATION_POLICY_PROPERTY = "RecalculationPolicy";
+
     private Context context;
     private ContextModifiedListener contextModifiedListener;
-    private PropertyChangeListener latticeComponentListener = new PropertyChangeListener() {
-        public void propertyChange(PropertyChangeEvent evt) {
-            final String propertyName = evt.getPropertyName();
-            if (LatticeCalculator.LATTICE_DRAWING_CHANGED.equals(propertyName) ||
-                    LatticeCalculator.LATTICE_CLEARED.equals(propertyName)) {
-                markDirty();
-            }
+
+
+    private ContextListener getContextModifiedListener() {
+        if (null == contextModifiedListener) {
+            contextModifiedListener = new ContextModifiedListener();
         }
-    };
+        return contextModifiedListener;
+    }
+
+    public void setRecomputeDependentRecalcPolicy() {
+        getRecalculationPolicy().setValueByKey(RECOMPUTE_DEPENDENT_POLICY_KEY);
+    }
+
+    private class ContextModifiedListener extends DefaultContextListener {
+        public void contextStructureChanged() {
+            markDirty();
+        }
+
+        public void relationChanged() {
+            markDirty();
+        }
+
+        public void objectNameChanged(PropertyChangeEvent evt) {
+            markDirty();
+        }
+
+        public void attributeNameChanged(PropertyChangeEvent evt) {
+            markDirty();
+        }
+
+        public void attributeChanged(ContextChangeEvent changeEvent) {
+            markDirty();
+        }
+
+        public void objectChanged(ContextChangeEvent changeEvent) {
+            markDirty();
+        }
+
+        public void contextTransposed() {
+            markDirty();
+        }
+    }
+
+
+
+    private boolean modified;
+
+    public boolean isModified() {
+        return modified;
+    }
+
+    public void setModified(boolean newValue) {
+        modified = newValue;
+    }
+
+    public void markClean() {
+        setModified(false);
+    }
+
+    public void markDirty() {
+        setModified(true);
+    }
 
     public ContextDocumentModel(Context cxt) {
         addLatticeComponentsListener(new NotificationListListener() {
@@ -52,6 +113,17 @@ public class ContextDocumentModel {
         setContext(cxt);
     }
 
+    private PropertyChangeListener latticeComponentListener = new PropertyChangeListener() {
+        public void propertyChange(PropertyChangeEvent evt) {
+            final String propertyName = evt.getPropertyName();
+            if (LatticeCalculator.LATTICE_DRAWING_CHANGED.equals(propertyName) ||
+                    LatticeCalculator.LATTICE_CLEARED.equals(propertyName)) {
+                markDirty();
+            }
+        }
+    };
+
+
     public void setContext(Context cxt) {
         cleanUpListeners();
         doResetLatticeComponents();
@@ -59,14 +131,14 @@ public class ContextDocumentModel {
         this.context = cxt;
         cxt.setArrowCalculator(FCAEngineRegistry.makeArrowCalculator());
         cxt.addContextListener(getContextModifiedListener());
-        cxt.addContextListener(getLatticeRecalcPolicy());
+        cxt.addContextListener(getRecalcPolicy());
     }
 
 
     private void cleanUpListeners() {
         if (this.context != null) {
             this.context.removeContextListener(getContextModifiedListener());
-            this.context.removeContextListener(getLatticeRecalcPolicy());
+            this.context.removeContextListener(getRecalcPolicy());
         }
     }
 
@@ -111,43 +183,8 @@ public class ContextDocumentModel {
         return result;
     }
 
-    private ContextListener latticeContextListener;
-
-    private ContextListener getLatticeRecalcPolicy() {
-        if (null == latticeContextListener) {
-            latticeContextListener = new DefaultContextListener() {
-                public void contextStructureChanged() {
-                    clearLattices();
-                }
-
-                public void relationChanged() {
-                    clearLattices();
-                }
-
-            };
-        }
-        return latticeContextListener;
-    }
-
-    private ContextListener getContextModifiedListener() {
-        if (null == contextModifiedListener) {
-            contextModifiedListener = new ContextModifiedListener();
-        }
-        return contextModifiedListener;
-    }
-
-
-    private void clearLattices() {
-        for (Iterator iterator = latticeComponents.iterator(); iterator.hasNext();) {
-            LatticeComponent latticeComponent = (LatticeComponent) iterator.next();
-            latticeComponent.clearLattice();
-        }
-    }
-
-
     public void addLatticeComponent() {
         latticeComponents.add(makeLatticeComponentForDoc());
-
     }
 
     public LatticeComponent getLatticeComponent(int index) {
@@ -194,52 +231,46 @@ public class ContextDocumentModel {
         latticeComponents.remove(component);
     }
 
-    boolean modified;
+    private StrategyValueItem recalculationPolicy;
 
-    public boolean isModified() {
-        return modified;
+    public StrategyValueItem getRecalculationPolicy(){
+        if(null==recalculationPolicy){
+            StrategyValueItem strategyValueItem = new StrategyValueItem(
+                    RECALCULATION_POLICY_PROPERTY,
+                        createRecalcStrategyModel(), getPropertyChangeSupport());
+            addPropertyChangeListener(RECALCULATION_POLICY_PROPERTY, new PropertyChangeListener(){
+                public void propertyChange(PropertyChangeEvent evt) {
+                    context.removeContextListener((RecalcPolicy)evt.getOldValue());
+                    context.addContextListener((RecalcPolicy)evt.getNewValue());
+                }
+            });
+            recalculationPolicy = strategyValueItem;
+
+        }
+        return recalculationPolicy;
     }
 
-    public void setModified(boolean newValue) {
-        modified = newValue;
+    private GrowingStrategyModel createRecalcStrategyModel() {
+        GrowingStrategyModel strategyModel = new GrowingStrategyModel();
+        strategyModel.addStrategy(CLEAR_DEPENDENT_POLICY_KEY, "Clear dependent", makeClearDependentRecalcPolicy());
+        strategyModel.addStrategy(RECOMPUTE_DEPENDENT_POLICY_KEY, "Recalculate dependent", makeRecomputeDependentRecalcPolicy());
+        return strategyModel;
     }
 
-    public void markClean() {
-        setModified(false);
+    private RecalcPolicy getRecalcPolicy() {
+        return (RecalcPolicy)getRecalculationPolicy().getStrategy();
     }
 
-    public void markDirty() {
-        setModified(true);
+    public void setClearDependentRecalcPolicy(){
+        getRecalculationPolicy().setValueByKey(CLEAR_DEPENDENT_POLICY_KEY);
     }
 
-    private class ContextModifiedListener extends DefaultContextListener {
-        public void contextStructureChanged() {
-            markDirty();
-        }
+    private RecalcPolicy makeClearDependentRecalcPolicy() {
+        return new ClearDependentRecalcPolicy();
+    }
 
-        public void relationChanged() {
-            markDirty();
-        }
-
-        public void objectNameChanged(PropertyChangeEvent evt) {
-            markDirty();
-        }
-
-        public void attributeNameChanged(PropertyChangeEvent evt) {
-            markDirty();
-        }
-
-        public void attributeChanged(ContextChangeEvent changeEvent) {
-            markDirty();
-        }
-
-        public void objectChanged(ContextChangeEvent changeEvent) {
-            markDirty();
-        }
-
-        public void contextTransposed() {
-            markDirty();
-        }
+    private RecalcPolicy makeRecomputeDependentRecalcPolicy() {
+        return new RecomputeDependentRecalcPolicy();
     }
 
     private AssociationRuleCalculator associationMiner;
@@ -247,20 +278,11 @@ public class ContextDocumentModel {
     public AssociationRuleCalculator getAssociationMiner() {
         if (null == associationMiner) {
             associationMiner = new AssociationRuleCalculator(getContext());
-            getContext().addContextListener(getAssociationRulesRecalcPolicy());
+            //getContext().addContextListener(getAssociationRulesRecalcPolicy());
         }
         return associationMiner;
     }
 
-    private ContextListener associationsContextListener;
-
-
-    private ContextListener getAssociationRulesRecalcPolicy() {
-        if (null == associationsContextListener) {
-            associationsContextListener = new DependencySetRecalcPolicy(getAssociationMiner());
-        }
-        return associationsContextListener;
-    }
 
     public void findAssociations() {
         getAssociationMiner().findDependencies();
@@ -271,40 +293,21 @@ public class ContextDocumentModel {
         return getAssociationMiner().getDependencySet();
     }
 
-    static class DependencySetRecalcPolicy extends DefaultContextListener {
-        final DependencySetCalculator supplier;
 
-        public DependencySetRecalcPolicy(DependencySetCalculator supplier) {
-            this.supplier = supplier;
-        }
-
-        public void contextStructureChanged() {
-            supplier.clearDependencySet();
-        }
-
-        public void relationChanged() {
-            supplier.clearDependencySet();
-        }
-    }
-
-    public void findImplications(){
-        getImplicationBaseCalculator().findDependencies();
-        markDirty();
-    }
+    private ImplicationBaseCalculator implicationBaseCalculator;
 
     public ImplicationBaseCalculator getImplicationBaseCalculator() {
         if (null == implicationBaseCalculator) {
             implicationBaseCalculator = new ImplicationBaseCalculator(
                     getContext(),
                     getAvailableImplicationStrategiesFactory());
-            getContext().addContextListener(getImplicationBaseRecalcPolicy());
-
         }
         return implicationBaseCalculator;
     }
 
-    private ImplicationBaseCalculator implicationBaseCalculator;
-
+    public ImplicationSet getImplications() {
+        return getImplicationBaseCalculator().getImplications();
+    }
 
     private static ImplicationCalcStrategyFactory[] getAvailableImplicationStrategiesFactory() {
         return new ImplicationCalcStrategyFactory[]{
@@ -312,15 +315,91 @@ public class ContextDocumentModel {
             NextClosedSetImplicationCalculatorFactory.getInstance()};
     }
 
-    private ContextListener implicationBaseRecalcPolicy;
-
-    private ContextListener getImplicationBaseRecalcPolicy() {
-        if (null == implicationBaseRecalcPolicy) {
-            implicationBaseRecalcPolicy =
-                    new ContextDocumentModel.DependencySetRecalcPolicy(
-                            getImplicationBaseCalculator());
-        }
-        return implicationBaseRecalcPolicy;
+    public void findImplications(){
+        getImplicationBaseCalculator().findDependencies();
+        markDirty();
     }
 
+
+    interface RecalcPolicy extends GenericStrategy, ContextListener{};
+
+    public abstract class AbstractRecalcPolicy extends DefaultContextListener
+    implements RecalcPolicy
+ {
+        public void contextStructureChanged() {
+            updateDependent();
+        }
+
+        public void contextTransposed() {
+            //is left intentionally empty as after
+            //contextTransposed always
+            //contextStructureChanges is called
+        }
+
+        public void relationChanged() {
+            updateDependent();
+        }
+
+        private void updateDependent() {
+            updateLatticeCollection();
+            updateDependencySetCalculatorIfRequired(associationMiner);
+            updateDependencySetCalculatorIfRequired(implicationBaseCalculator);
+        }
+
+        private void updateLatticeCollection() {
+            for (Iterator iterator = latticeComponents.iterator(); iterator.hasNext();) {
+                LatticeComponent latticeComponent = (LatticeComponent) iterator.next();
+                updateLatticeComponent(latticeComponent);
+            }
+        }
+
+        private void updateDependencySetCalculatorIfRequired(
+                AbstractDependencySetCalculator dependencySetCalculator) {
+            if(null!=dependencySetCalculator &&
+                    dependencySetCalculator.isComputed()){
+                updateDependencySetCalculator(dependencySetCalculator);
+            }
+        }
+
+        protected abstract void updateDependencySetCalculator(
+                AbstractDependencySetCalculator dependencySetCalculator);
+
+        protected abstract void updateLatticeComponent(LatticeComponent latticeComponent);
+
+        public abstract String getName();
+    }
+
+
+
+
+    private class ClearDependentRecalcPolicy extends AbstractRecalcPolicy {
+
+        protected void updateDependencySetCalculator(
+                AbstractDependencySetCalculator dependencySetCalculator) {
+            dependencySetCalculator.clearDependencySet();
+        }
+
+        protected void updateLatticeComponent(LatticeComponent latticeComponent) {
+            latticeComponent.clearLattice();
+        }
+
+        public String getName() {
+            return "Clear dependent";
+        }
+    }
+
+    private class RecomputeDependentRecalcPolicy extends AbstractRecalcPolicy{
+        protected void updateDependencySetCalculator(
+                AbstractDependencySetCalculator dependencySetCalculator) {
+                dependencySetCalculator.findDependencies();
+        }
+
+        protected void updateLatticeComponent(LatticeComponent latticeComponent) {
+                latticeComponent.calculateAndLayoutLattice();
+        }
+
+        public String getName() {
+            return "Recompute dependent";
+        }
+    }
 }

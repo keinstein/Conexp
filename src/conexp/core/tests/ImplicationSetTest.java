@@ -29,7 +29,7 @@ public class ImplicationSetTest extends TestCase {
 
     public void testMakeDuquenneGuigues() {
         final MockAttributeInformationSupplier attrInfo = new MockAttributeInformationSupplier(4);
-        impSet = SetBuilder.makeImplicationSet(attrInfo, new int[][][]{
+        impSet = ImplicationsBuilder.makeImplicationSet(attrInfo, new int[][][]{
             {{1, 0, 0, 0}, {0, 1, 0, 0}},
             {{0, 1, 0, 0}, {0, 0, 1, 0}}
         });
@@ -44,7 +44,7 @@ public class ImplicationSetTest extends TestCase {
         imp = makeImplication(new int[]{0, 1, 0, 0}, new int[]{0, 0, 0, 1});
         impSet.addDependency(imp);
         impSet.makeDuquenneGuigues();
-        assertEquals(impSet, SetBuilder.makeImplicationSet(attrInfo,
+        assertEquals(impSet, ImplicationsBuilder.makeImplicationSet(attrInfo,
                 new int[][][]{
                     {{1, 0, 0, 0}, {0, 1, 1, 1}},
                     {{0, 1, 0, 0}, {0, 0, 1, 1}},
@@ -53,12 +53,12 @@ public class ImplicationSetTest extends TestCase {
 
     public static void testMakeDuquenneGuigues2() {
         MockAttributeInformationSupplier supplier = new MockAttributeInformationSupplier(2);
-        ImplicationSet implications = SetBuilder.makeImplicationSet(supplier, new int[][][]{
+        ImplicationSet implications = ImplicationsBuilder.makeImplicationSet(supplier, new int[][][]{
             {{0, 0}, {0, 1}},
             {{0, 1}, {1, 0}}
         });
         implications.makeDuquenneGuigues();
-        ImplicationSet expected = SetBuilder.makeImplicationSet(supplier, new int[][][]{
+        ImplicationSet expected = ImplicationsBuilder.makeImplicationSet(supplier, new int[][][]{
             {{0, 0}, {1, 1}}
         });
         assertEquals(expected, implications);
@@ -142,27 +142,27 @@ public class ImplicationSetTest extends TestCase {
         ImplicationSet implicationSet2 = new ImplicationSet(supplier);
         assertEquals(true, implicationSet1.equalsToIsomorphism(implicationSet2));
 
-        implicationSet1 = SetBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 0, 0}}});
-        implicationSet2 = SetBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 0, 0}}});
+        implicationSet1 = ImplicationsBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 0, 0}}});
+        implicationSet2 = ImplicationsBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 0, 0}}});
         assertEquals(true, implicationSet1.equalsToIsomorphism(implicationSet2));
 
         //unequal instances
-        implicationSet1 = SetBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 0, 0}}});
-        implicationSet2 = SetBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 1, 0}}});
+        implicationSet1 = ImplicationsBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 0, 0}}});
+        implicationSet2 = ImplicationsBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 1, 0}}});
         assertEquals(false, implicationSet1.equalsToIsomorphism(implicationSet2));
 
 
-        implicationSet1 = SetBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 0, 0}},
+        implicationSet1 = ImplicationsBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 0, 0}},
                                                                                 {{0, 1, 0, 0}, {0, 0, 1, 1}}});
-        implicationSet2 = SetBuilder.makeImplicationSet(supplier, new int[][][]{{{0, 1, 0, 0}, {0, 0, 1, 1}},
+        implicationSet2 = ImplicationsBuilder.makeImplicationSet(supplier, new int[][][]{{{0, 1, 0, 0}, {0, 0, 1, 1}},
                                                                                 {{1, 0, 0, 0}, {0, 1, 0, 0}}});
         assertEquals(true, implicationSet1.equalsToIsomorphism(implicationSet2));
 
-        implicationSet1 = SetBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 0, 0}},
+        implicationSet1 = ImplicationsBuilder.makeImplicationSet(supplier, new int[][][]{{{1, 0, 0, 0}, {0, 1, 0, 0}},
                                                                                 {{0, 1, 0, 0}, {0, 0, 1, 1}},
                                                                                 {{0, 1, 0, 0}, {0, 0, 1, 1}}});
 
-        implicationSet2 = SetBuilder.makeImplicationSet(supplier, new int[][][]{{{0, 1, 0, 0}, {0, 0, 1, 1}},
+        implicationSet2 = ImplicationsBuilder.makeImplicationSet(supplier, new int[][][]{{{0, 1, 0, 0}, {0, 0, 1, 1}},
                                                                                 {{1, 0, 0, 0}, {0, 1, 0, 0}},
                                                                                 {{0, 0, 1, 0}, {0, 0, 0, 1}}});
         assertEquals(false, implicationSet1.equalsToIsomorphism(implicationSet2));

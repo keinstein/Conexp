@@ -57,7 +57,7 @@ public class AssociationRulesView extends GenericRuleView {
         JScrollPane paneDrawing = new JScrollPane();
         paneDrawing.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
         ParamEditorTable table = new ParamEditorTable();
-        table.getParamsModel().addParams(getSupplier().getParams());
+        table.getParamsModel().addParams(getDependencySetSupplier().getParams());
         paneDrawing.add(table);
         paneDrawing.setViewportView(table);
         return paneDrawing;

@@ -8,9 +8,9 @@ package conexp.frontend.latticeeditor.tests;
  * To change this template use File | Settings | File Templates.
  */
 
+import canvas.IHighlightStrategy;
 import junit.framework.TestCase;
 import util.testing.TestUtil;
-import canvas.IHighlightStrategy;
 
 public abstract class HighlightStrategyTest extends TestCase {
     public void testEqualsAndHashCode() {

@@ -9,17 +9,9 @@ package conexp.frontend.ruleview.tests;
 
 import conexp.frontend.ruleview.AssociationRulesView;
 import conexp.frontend.tests.ResourcesToolbarDefinitionTest;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class AssociationRulesViewTest extends TestCase {
-    private static final Class THIS = AssociationRulesViewTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     public static void testResources() {
         AssociationRulesView ruleView = new AssociationRulesView(new MockDependencySetSupplier(), null);
         ResourcesToolbarDefinitionTest.testToolbarDefinitionInResources(ruleView.getResources(), ruleView.getActionChain());

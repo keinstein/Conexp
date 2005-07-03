@@ -8,9 +8,9 @@
  */
 package conexp.experimenter.framework;
 
-import java.util.Iterator;
-import java.util.Collection;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class MeasurementProtocol implements IMeasurementProtocol {
     protected Collection measurementsDescriptors = new ArrayList();

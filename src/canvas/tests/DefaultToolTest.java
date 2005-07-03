@@ -8,13 +8,11 @@
 package canvas.tests;
 
 import canvas.DefaultTool;
+import canvas.DefaultToolListener;
 import canvas.Tool;
 import canvas.ToolEvent;
-import canvas.DefaultToolListener;
 import com.mockobjects.ExpectationList;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class DefaultToolTest extends TestCase {
 

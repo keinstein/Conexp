@@ -11,7 +11,10 @@ import canvas.Figure;
 import canvas.IHighlightStrategy;
 import conexp.core.LatticeElement;
 import conexp.core.Set;
-import conexp.frontend.latticeeditor.figures.*;
+import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
+import conexp.frontend.latticeeditor.figures.EdgeFigure;
+import conexp.frontend.latticeeditor.figures.IConceptRelatedTextFigure;
+import conexp.frontend.latticeeditor.figures.NodeObjectConnectionFigure;
 import conexp.util.GenericStrategy;
 
 

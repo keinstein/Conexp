@@ -15,10 +15,10 @@ import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import util.StringUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.io.IOException;
 
 
 public class XMLFileStrategyModel extends AbstractNonGrowingStrategyModel {

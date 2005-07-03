@@ -15,6 +15,8 @@ import conexp.frontend.ViewChangePanel;
 import javax.swing.*;
 import java.awt.*;
 
+import util.Assert;
+
 
 public abstract class GenericRuleView extends ViewChangePanel implements DependencySetConsumer {
     protected class SortBySupportAction extends AbstractAction {
@@ -35,22 +37,22 @@ public abstract class GenericRuleView extends ViewChangePanel implements Depende
     protected abstract JComponent makeViewOptions();
 
 
-    protected DependencySetSupplier getSupplier() {
-        return supplier;
+    protected DependencySetSupplier getDependencySetSupplier() {
+        return dependencySetSupplier;
     }
 
-    DependencySetSupplier supplier;
+    DependencySetSupplier dependencySetSupplier;
 
     public GenericRuleView(DependencySetSupplier doc, ActionMap parentActionChain) {
         super(parentActionChain);
-        this.supplier = doc;
+        this.dependencySetSupplier = doc;
         rulePane = makeRulePane();
         setLayout(new BorderLayout());
         add(new JScrollPane(rulePane), BorderLayout.CENTER);
     }
 
     public DependencySet getDependencySet() {
-        return supplier.getDependencySet();
+        return dependencySetSupplier.getDependencySet();
     }
 
 
@@ -67,7 +69,17 @@ public abstract class GenericRuleView extends ViewChangePanel implements Depende
      * Creation date: (07.05.01 21:45:04)
      */
     protected RulePane makeRulePane() {
-        return new RulePane(getDependencySet(), makeRenderer(), getResources().getString("NoRulesInBaseMsg"));
+        RulePaneMessages messages = new RulePaneMessages(){
+                            public String getEmptyRulesetMessage() {
+                                return getLocalizedString("NoRulesInBaseMsg");
+                            }
+
+                            public String getRuleSetShouldBeRecalculated() {
+                                return getLocalizedString("RuleSetShouldBeRecomputed");
+                            }
+                        };
+        return new RulePane(dependencySetSupplier, makeRenderer(),
+                messages);
     }
 
     // this two belongs to controller
@@ -77,12 +89,12 @@ public abstract class GenericRuleView extends ViewChangePanel implements Depende
 
 
     protected void updateRules() {
-        DependencySet dependencySet = getDependencySet();
-        setDependencySet(dependencySet);
+        setDependencySetSupplier(dependencySetSupplier);
     }
 
-    public void setDependencySet(DependencySet dependencySet) {
-        rulePane.setRuleSet(dependencySet);
+    public void setDependencySetSupplier(
+            DependencySetSupplier dependencySetSupplier) {
+        rulePane.setDependencySetSupplier(dependencySetSupplier);
     }
 
     protected abstract GenericRuleRenderer makeRenderer();

@@ -1,13 +1,13 @@
 package conexp.experimenter.experiments.tests;
 
+import conexp.core.BinaryRelation;
+import conexp.core.tests.SetBuilder;
 import conexp.experimenter.experiments.ConceptSetExperimentSuite;
 import conexp.experimenter.experiments.ExperimentSuite;
 import conexp.experimenter.framework.ExperimentSet;
 import conexp.experimenter.framework.IExperiment;
 import conexp.experimenter.framework.RelationSequence;
 import conexp.experimenter.framework.RelationSequenceSet;
-import conexp.core.BinaryRelation;
-import conexp.core.tests.SetBuilder;
 import junit.framework.TestCase;
 
 /**

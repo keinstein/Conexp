@@ -10,12 +10,11 @@ package conexp.frontend;
 import com.visibleworkings.trace.Trace;
 import com.visibleworkings.trace.TraceController;
 import util.StringUtil;
-import util.gui.WindowUtil;
 import util.errorhandling.AppErrorHandler;
 import util.errorhandling.ErrorDialogErrorHandler;
+import util.gui.WindowUtil;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ResourceBundle;
 
 public class ConceptExplorer {

@@ -7,12 +7,10 @@ import conexp.core.LatticeElement;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
-
-import java.util.Collection;
-import java.awt.geom.Rectangle2D;
-
-import util.gui.GuiFactory;
 import util.gui.GraphicObjectsFactory;
+
+import java.awt.geom.Rectangle2D;
+import java.util.Collection;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

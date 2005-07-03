@@ -30,8 +30,8 @@ public class AssociationRuleTest extends TestCase {
      * Creation date: (07.05.01 2:30:44)
      */
     protected void setUp() {
-        ruleApproximate = ObjectMother.makeAssociationRule(new int[]{0, 0, 1}, 2, new int[]{0, 1, 0}, 1);
-        ruleExact = ObjectMother.makeAssociationRule(new int[]{0, 1, 0}, 1, new int[]{0, 0, 1}, 1);
+        ruleApproximate = AssociationsBuilder.makeAssociationRule(new int[]{0, 0, 1}, 2, new int[]{0, 1, 0}, 1);
+        ruleExact = AssociationsBuilder.makeAssociationRule(new int[]{0, 1, 0}, 1, new int[]{0, 0, 1}, 1);
     }
 
     /**

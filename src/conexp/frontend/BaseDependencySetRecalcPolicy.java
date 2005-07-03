@@ -36,7 +36,7 @@ public abstract class BaseDependencySetRecalcPolicy extends PropertyChangeBaseCo
 
     protected DependencySetEventProcessorAdapter updateDependencySetAction = new DependencySetEventProcessorAdapter() {
         public void processEventForDependencySetConsumer(PropertyChangeEvent event, DependencySetConsumer consumer) {
-            consumer.setDependencySet(getDependencySetSupplier().getDependencySet());
+            consumer.setDependencySetSupplier(getDependencySetSupplier());
         }
     };
 

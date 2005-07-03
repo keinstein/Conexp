@@ -15,6 +15,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ResourceBundle;
 
+import util.Assert;
+
 
 public abstract class ViewChangePanel extends javax.swing.JPanel implements ViewChangeInterfaceWithConfig {
     private ActionMap actionChain = new ActionMap();
@@ -43,4 +45,10 @@ public abstract class ViewChangePanel extends javax.swing.JPanel implements View
     }
 
     protected abstract ResourceBundle getResources();
+
+    protected String getLocalizedString(String key) {
+        String string = getResources().getString(key);
+        Assert.isTrue(string!=null);
+        return string;
+    }
 }

@@ -1,7 +1,7 @@
 package conexp.frontend;
 
-import conexp.frontend.components.LatticeComponent;
 import conexp.core.Context;
+import conexp.frontend.components.LatticeComponent;
 
 /**
  * Created by IntelliJ IDEA.

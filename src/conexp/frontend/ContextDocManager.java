@@ -45,11 +45,6 @@ public class ContextDocManager extends BasePropertyChangeSupplier
         return actionChain;
     }
 
-    public JTree getDocumentTree() {
-        return getActiveDoc().getTree();
-
-    }
-
     class DefaultDocModifiedHandler implements DocModifiedHandler {
         public int getSaveIfModifiedResponse() {
             return JOptionPane.showConfirmDialog(getMainAppWindow(),
@@ -58,7 +53,6 @@ public class ContextDocManager extends BasePropertyChangeSupplier
                     JOptionPane.YES_NO_CANCEL_OPTION);
         }
     }
-
 
     private DocModifiedHandler docModifiedHandler = new DefaultDocModifiedHandler();
 
@@ -171,10 +165,11 @@ public class ContextDocManager extends BasePropertyChangeSupplier
         } catch (IOException e) {
             System.out.println("No configuration for loading");
         }
-        mruManager.setMostRecentUrlList(
-                getConfigManager().fetchStringList(DOCUMENT_MANAGER_SECTION,
-                        MOST_RECENT_URLS_KEY,
-                        MostRecentUrlListManager.getMaximalNumberOfFilesInMRUList()));
+        mruManager.setMostRecentUrlList(getConfigManager().fetchStringList(
+                DOCUMENT_MANAGER_SECTION,
+                MOST_RECENT_URLS_KEY,
+                MostRecentUrlListManager.
+                getMaximalNumberOfFilesInMRUList()));
 
     }
 
@@ -223,27 +218,16 @@ public class ContextDocManager extends BasePropertyChangeSupplier
     public void onNewDocument() {
         //single eventSupplier interface
         if (null != docRecord) {
-            if(!canCloseDoc()){
-               return;
+            if (!canCloseDoc()) {
+                return;
             }
         } // end of if ()
         createNewDocument();
     }
 
     public void createNewDocument() {
-        ContextDocument document = new ContextDocument();
-        addDocument(new DocumentRecord(document, ""));
+        addDocument(new DocumentRecord(new ContextDocument(), ""));
     }
-
-    private OptionPaneViewChangeListener getOptionPaneViewChangeListener() {
-        if (null == optionPaneViewChangeListener) {
-            optionPaneViewChangeListener =
-                    new OptionPaneViewChangeListener(getOptionsPane());
-        }
-        return optionPaneViewChangeListener;
-    }
-
-    private OptionPaneViewChangeListener optionPaneViewChangeListener;
 
     private DocumentRecord docRecord;
 
@@ -251,22 +235,26 @@ public class ContextDocManager extends BasePropertyChangeSupplier
     public void addDocument(DocumentRecord docRec) {
         closeDocument();
 
-        getOptionPaneViewChangeListener().cleanUp();
         Document document = docRec.getDocument();
         document.addViewChangeListener(getOptionPaneViewChangeListener());
         document.setParentActionChain(getActionChain());
-        document.activateViews();
-
         docRecord = docRec;
-        mruManager.removeFromMRUList(docRec.getDocumentPath());
-
+        if (docRec.isPersistent()) {
+            mruManager.removeFromMRUList(docRec.getDocumentPath());
+        }
+        document.activateViews();
         fireActiveDocChanged();
     }
 
     public void removeDocument(DocumentRecord docRecord) {
         if (docRecord != null) {
-            docRecord.getDocument().removeViewChangeListener(
-                    getOptionPaneViewChangeListener());
+            OptionPaneViewChangeListener optionPaneViewChangeListener =
+                    getOptionPaneViewChangeListener();
+            Document document = docRecord.getDocument();
+            document.setParentActionChain(null);
+            document.removeViewChangeListener(
+                    optionPaneViewChangeListener);
+            optionPaneViewChangeListener.cleanUp();
             if (docRecord.isPersistent()) {
                 mruManager.addToMRUList(docRecord.getDocumentPath());
             }
@@ -307,9 +295,8 @@ public class ContextDocManager extends BasePropertyChangeSupplier
         String extension = StringUtil.getExtension(f.getCanonicalPath());
         DocumentLoader loader = getLoader(extension);
         if (null == loader) {
-            String msg = makeLocalizedMessageWithOneParam(
-                    "NoLoaderForFileWithExtension", extension);
-            throw new DataFormatException(msg);
+            throw new DataFormatException(makeLocalizedMessageWithOneParam(
+                    "NoLoaderForFileWithExtension", extension));
         }
         //loader.setLocalizedMessageSupplier(); TODO
         FileReader fileReader = null;
@@ -330,79 +317,12 @@ public class ContextDocManager extends BasePropertyChangeSupplier
         addDocument(new DocumentRecord(d, f.getCanonicalPath()));
     }
 
-
-//-------------------------------------------
-
-    private boolean canExit() {
-        return canCloseDoc();
-    }
-
-    private boolean canCloseDoc() {
-        if(getActiveDoc().isModified()){
-                 final int saveIfModifiedResponce = docModifiedHandler.getSaveIfModifiedResponse();
-                 switch (saveIfModifiedResponce) {
-                     case JOptionPane.CANCEL_OPTION:
-                         return false;
-                     case JOptionPane.YES_OPTION:
-                         if(!onSave()){
-                            return false;
-                         }
-                         break;
-                     case JOptionPane.NO_OPTION:
-                         // nothing to do
-                         return true;
-                     default:
-                         assert false:
-                                 "getSaveIfModifiedResponce returned illegal " +
-                                 "code:" + saveIfModifiedResponce;
-                         break;
-
-                 }
-
-        }
-        return true;
-    }
-
-    public void onExit() {
-        if (canExit()) {
-            closeDocument(); //will be changed later on
-            saveConfiguration();
-            System.exit(0);
-        }
-    }
-
-    private static ResourceBundle resources;
-
-    static {
-        resources =
-                ResourceLoader.getResourceBundle(
-                        "conexp/frontend/resources/ContextDocManager");  //$NON-NLS-1$
-    }
-    //------------------------------------------------------------
-
-    private static ResourceBundle getResources() {
-        return resources;
-    }
-
-    private LocalizedMessageSupplier getLocalizedMessageSupplier() {
-        return messageSupplier;
-    }
-
-    private LocalizedMessageSupplier messageSupplier = new ContextDocManagerMessageSupplier();
-
-    private String getLocalizedMessage(String key) {
-        String message = getLocalizedMessageSupplier().getMessage(key);
-        Assert.notNull(message);
-        return message;
-    }
-
-
 //-----------------------------------------------------------
     private void onOpen() {
         FileSelectorService fileSelector =
                 getFileSelectorService();
         if (fileSelector.performOpenService(getMainAppWindow(),
-                getLocalizedMessageSupplier().getMessage("OpenFileMsg"),
+                getLocalizedMessage("OpenFileMsg"),
                 null, //default start dir
                 getLoadFilters())) {
 
@@ -421,60 +341,6 @@ public class ContextDocManager extends BasePropertyChangeSupplier
         } catch (DataFormatException e) {
             handleReadWriteException(e);
         }
-    }
-
-    private void handleReadWriteException(Throwable e) {
-        showMessage(e.getMessage());
-    }
-
-    private GenericFileFilter[] getLoadFilters() {
-        return getStorageFormatManager().getLoadFilters();
-    }
-
-    private JFrame appMainWindow;
-
-    public JFrame getMainAppWindow() {
-        return appMainWindow;
-    }
-
-    private String getDocDir() {
-        return docRecord.getDocumentDirectory();
-    }
-
-    private String getDocPath() {
-        return docRecord.getDocumentPath();
-    }
-
-    private String getFileName() {
-        return docRecord.getDocumentFileName();
-    }
-
-    public boolean onSave() {
-        if (getDocPath() == null) {
-            return onSaveAs();
-        }
-        try {
-            saveDocument(new File(getDocPath()));
-            return true;
-        } catch (IOException ex) {
-            String msg = makeLocalizedMessageWithOneParam("FileSaveErrorMsg",
-                    ex.getMessage());
-            showMessage(msg);
-            return false;
-        }
-    }
-
-    private String makeLocalizedMessageWithOneParam(String messageKey,
-                                                    String msgParam) {
-        String msg = MessageFormat.format(getLocalizedMessage(messageKey),
-                new Object[]{msgParam});
-        return msg;
-    }
-
-
-    private void onAboutApp() {
-        (new AboutConExpDialog(getMainAppWindow(),
-                getLocalizedMessage("AboutAppMsg"), true)).show();
     }
 
 
@@ -513,13 +379,140 @@ public class ContextDocManager extends BasePropertyChangeSupplier
             saveDocumentAndUpdateDocumentInfo(f);
             return true;
         } catch (Exception ex) {
-            String msg = makeLocalizedMessageWithOneParam("FileSaveErrorMsg",
-                    ex.getMessage());
-            showMessage(msg);
+            showMessage(makeLocalizedMessageWithOneParam("FileSaveErrorMsg",
+                    ex.getMessage()));
             return false;
         }
 
     }
+
+    public boolean onSave() {
+        if (getDocPath() == null) {
+            return onSaveAs();
+        }
+        try {
+            saveDocument(new File(getDocPath()));
+            return true;
+        } catch (IOException ex) {
+            showMessage(makeLocalizedMessageWithOneParam("FileSaveErrorMsg",
+                    ex.getMessage()));
+            return false;
+        }
+    }
+
+
+    protected void saveDocument(File f) throws IOException {
+        final String extension = StringUtil.getExtension(f.getCanonicalPath());
+        DocumentWriter documentWriter = getWriter(extension);
+        if (documentWriter == null) {
+            throw new IOException("Not supported extension " + extension);
+        }
+
+        FileWriter fileWriter = null;
+        try {
+            fileWriter = new FileWriter(f);
+            documentWriter.storeDocument(getActiveDoc(), fileWriter);
+            getActiveDoc().markClean();
+        } finally {
+            if (null != fileWriter) {
+                fileWriter.close();
+            }
+        }
+    }
+
+    private void handleReadWriteException(Throwable e) {
+        showMessage(e.getMessage());
+    }
+
+//-------------------------------------------
+
+    private boolean canExit() {
+        return canCloseDoc();
+    }
+
+    private boolean canCloseDoc() {
+        if (getActiveDoc().isModified()) {
+            int saveIfModifiedResponse = docModifiedHandler.
+                    getSaveIfModifiedResponse();
+            switch (saveIfModifiedResponse) {
+                case JOptionPane.CANCEL_OPTION:
+                    return false;
+                case JOptionPane.YES_OPTION:
+                    if (!onSave()) {
+                        return false;
+                    }
+                    break;
+                case JOptionPane.NO_OPTION:
+                    // nothing to do
+                    return true;
+                default:
+                    assert false:
+                            "getSaveIfModifiedResponce returned illegal " +
+                            "code:" + saveIfModifiedResponse;
+                    break;
+
+            }
+
+        }
+        return true;
+    }
+
+    public void onExit() {
+        if (canExit()) {
+            closeDocument(); //will be changed later on
+            saveConfiguration();
+            System.exit(0);
+        }
+    }
+
+    private void onAboutApp() {
+        (new AboutConExpDialog(getMainAppWindow(),
+                getLocalizedMessage("AboutAppMsg"), true)).show();
+    }
+
+    private static ResourceBundle resources;
+
+    static {
+        resources =
+                ResourceLoader.getResourceBundle(
+                        "conexp/frontend/resources/ContextDocManager");  //$NON-NLS-1$
+    }
+    //------------------------------------------------------------
+
+    private static ResourceBundle getResources() {
+        return resources;
+    }
+
+    private LocalizedMessageSupplier messageSupplier = new ContextDocManagerMessageSupplier();
+
+    private String getLocalizedMessage(String key) {
+        String message = messageSupplier.getMessage(key);
+        Assert.notNull(message);
+        return message;
+    }
+
+    private GenericFileFilter[] getLoadFilters() {
+        return getStorageFormatManager().getLoadFilters();
+    }
+
+    private String getDocDir() {
+        return docRecord.getDocumentDirectory();
+    }
+
+    private String getDocPath() {
+        return docRecord.getDocumentPath();
+    }
+
+    private String getFileName() {
+        return docRecord.getDocumentFileName();
+    }
+
+    private String makeLocalizedMessageWithOneParam(String messageKey,
+                                                    String msgParam) {
+        return MessageFormat.format(getLocalizedMessage(messageKey),
+                new Object[]{msgParam});
+    }
+
 
     FileSelectorService selectorService = ServiceRegistry.fileSelectorService();
 
@@ -556,26 +549,6 @@ public class ContextDocManager extends BasePropertyChangeSupplier
         return getStorageFormatManager().getWriter(extension);
     }
 
-
-    protected void saveDocument(File f) throws IOException {
-        final String extension = StringUtil.getExtension(f.getCanonicalPath());
-        DocumentWriter documentWriter = getWriter(extension);
-        if (documentWriter == null) {
-            throw new IOException("Not supported extension " + extension);
-        }
-
-        FileWriter fileWriter = null;
-        try {
-            fileWriter = new FileWriter(f);
-            documentWriter.storeDocument(getActiveDoc(), fileWriter);
-            getActiveDoc().markClean();
-        } finally {
-            if (null != fileWriter) {
-                fileWriter.close();
-            }
-        }
-    }
-
     public Document getActiveDoc() {
         return docRecord.getDocument();
     }
@@ -608,8 +581,23 @@ public class ContextDocManager extends BasePropertyChangeSupplier
     }
 
 
+    private OptionPaneViewChangeListener getOptionPaneViewChangeListener() {
+        if (null == optionPaneViewChangeListener) {
+            optionPaneViewChangeListener =
+                    new OptionPaneViewChangeListener(getOptionsPane());
+        }
+        return optionPaneViewChangeListener;
+    }
+
     // INTERFACE TO FRAME
     // SHOULD BE REVIEWED
+    private OptionPaneViewChangeListener optionPaneViewChangeListener;
+
+    private JFrame appMainWindow;
+
+    public JFrame getMainAppWindow() {
+        return appMainWindow;
+    }
 
     public Component getActiveDocComponent() {
         return getActiveDoc().getDocComponent();
@@ -619,11 +607,14 @@ public class ContextDocManager extends BasePropertyChangeSupplier
         return getActiveDoc().getToolBar();
     }
 
+    public JTree getDocumentTree() {
+        return getActiveDoc().getTree();
+
+    }
 
     public void updateDocumentTree() {
         getActiveDoc().setFileName(getFileName());
     }
-
 
     private static class ContextDocManagerMessageSupplier
             implements LocalizedMessageSupplier {
@@ -631,6 +622,5 @@ public class ContextDocManager extends BasePropertyChangeSupplier
             return resources.getString(key);
         }
     }
-
 
 }

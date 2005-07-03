@@ -2,7 +2,6 @@ package conexp.experimenter.experiments;
 
 import conexp.experimenter.framework.ExperimentSet;
 import conexp.experimenter.framework.RelationSequenceSet;
-import conexp.experimenter.relationsequences.ContextLoadingRelationGenerationStrategy;
 import util.DataFormatException;
 
 import java.io.IOException;

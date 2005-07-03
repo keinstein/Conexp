@@ -1,9 +1,7 @@
 package conexp.frontend.components;
 
-import conexp.frontend.io.ConExpXMLWriter;
 import conexp.frontend.io.ConExpXMLReader;
-import conexp.frontend.io.ConExpXMLElements;
-import org.jdom.Element;
+import conexp.frontend.io.ConExpXMLWriter;
 import util.DataFormatException;
 
 /**

@@ -10,9 +10,7 @@ package conexp.frontend.tests;
 import conexp.frontend.EventProcessor;
 import conexp.frontend.LatticeCalculator;
 import conexp.frontend.PropertyChangeBaseController;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import java.beans.PropertyChangeEvent;
 import java.util.TooManyListenersException;

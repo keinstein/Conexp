@@ -7,9 +7,9 @@
 
 package canvas.util;
 
-import canvas.ToolEvent;
 import canvas.DefaultToolListener;
 import canvas.Tool;
+import canvas.ToolEvent;
 
 import javax.swing.*;
 

@@ -1,9 +1,9 @@
 package conexp.frontend.tests;
 
+import conexp.frontend.ILatticeComponentFactory;
+import conexp.frontend.LatticeComponentFactory;
 import junit.extensions.TestSetup;
 import junit.framework.TestSuite;
-import conexp.frontend.LatticeComponentFactory;
-import conexp.frontend.ILatticeComponentFactory;
 
 /**
  * Created by IntelliJ IDEA.

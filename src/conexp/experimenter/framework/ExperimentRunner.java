@@ -2,13 +2,13 @@ package conexp.experimenter.framework;
 
 import conexp.core.BinaryRelation;
 import conexp.core.BinaryRelationUtils;
-import util.MemoryUtil;
 import util.Assert;
+import util.MemoryUtil;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.*;
 import java.text.DecimalFormat;
+import java.util.*;
 
 /**
  * Creation date: (06.07.01 12:00:23)

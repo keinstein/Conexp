@@ -4,10 +4,10 @@ import conexp.experimenter.framework.BaseExperimentSuite;
 import conexp.experimenter.framework.ExperimentSet;
 import conexp.experimenter.framework.RelationSequence;
 import conexp.experimenter.framework.RelationSequenceSet;
-import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
-import conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy;
-import conexp.experimenter.relationsequences.TransposeRelationSequenceDecorator;
 import conexp.experimenter.relationsequences.ExponentialRelationGenerationStrategy;
+import conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationStrategy;
+import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
+import conexp.experimenter.relationsequences.TransposeRelationSequenceDecorator;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

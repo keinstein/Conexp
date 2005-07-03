@@ -93,4 +93,8 @@ public class AssociationRuleCalculator extends AbstractDependencySetCalculator i
         }
         return params;
     }
+
+    public void setConfidence(double newValue) {
+        getConfidenceValueModel().setValue(newValue);
+    }
 }

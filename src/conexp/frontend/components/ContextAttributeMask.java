@@ -11,7 +11,6 @@ import conexp.core.ContextChangeEvent;
 import conexp.core.DefaultContextListener;
 import conexp.core.ExtendedContextEditingInterface;
 import util.Assert;
-import util.StringUtil;
 
 import java.beans.PropertyChangeEvent;
 

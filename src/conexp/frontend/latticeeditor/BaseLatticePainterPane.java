@@ -2,8 +2,6 @@ package conexp.frontend.latticeeditor;
 
 import conexp.core.Lattice;
 import conexp.frontend.LatticeDrawingProvider;
-import canvas.DefaultCanvasScheme;
-import canvas.CanvasScheme;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

@@ -7,7 +7,6 @@
 
 package canvas;
 
-import java.awt.geom.Dimension2D;
 import java.awt.*;
 import java.util.EventListener;
 

@@ -12,7 +12,6 @@ import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.components.ContextObjectMask;
-import conexp.frontend.components.ContextAttributeMask;
 
 
 public class ContextObjectMaskTest extends ContextMaskBaseTest {

@@ -12,11 +12,11 @@ import conexp.frontend.ViewChangeListener;
 import util.collection.CollectionFactory;
 
 import javax.swing.*;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.util.*;
 import java.util.List;
-import java.awt.*;
 
 public class ConExpViewManager {
 

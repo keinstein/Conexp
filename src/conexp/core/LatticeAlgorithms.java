@@ -1,7 +1,6 @@
 package conexp.core;
 
 import java.util.Iterator;
-import java.util.Arrays;
 
 /*
  * This program is a part of the Darmstadt JSM Implementation.

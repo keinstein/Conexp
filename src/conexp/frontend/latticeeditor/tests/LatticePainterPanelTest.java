@@ -9,6 +9,7 @@ package conexp.frontend.latticeeditor.tests;
 
 import canvas.CanvasScheme;
 import canvas.FigureDrawing;
+import com.mockobjects.ExpectationCounter;
 import conexp.core.Lattice;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.ContextDocument;
@@ -20,7 +21,6 @@ import conexp.frontend.latticeeditor.LatticePainterPanel;
 import conexp.frontend.tests.ResourcesToolbarDefinitionTest;
 import junit.framework.TestCase;
 import util.testing.TestUtil;
-import com.mockobjects.ExpectationCounter;
 
 
 public class LatticePainterPanelTest extends TestCase {

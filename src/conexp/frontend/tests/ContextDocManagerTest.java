@@ -7,6 +7,7 @@
 
 package conexp.frontend.tests;
 
+import com.mockobjects.ExpectationCounter;
 import conexp.frontend.*;
 import junit.framework.TestCase;
 import util.DataFormatException;
@@ -19,8 +20,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-
-import com.mockobjects.ExpectationCounter;
 
 public class ContextDocManagerTest extends TestCase {
     private ContextDocManager docManager;

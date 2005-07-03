@@ -1,7 +1,7 @@
 package conexp.experimenter.experiments;
 
-import conexp.core.BinaryRelationProcessor;
 import conexp.core.BinaryRelation;
+import conexp.core.BinaryRelationProcessor;
 import conexp.experimenter.framework.MeasurementProtocol;
 import conexp.experimenter.framework.MeasurementSet;
 import util.StringUtil;

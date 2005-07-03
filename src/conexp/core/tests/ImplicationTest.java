@@ -17,8 +17,8 @@ public class ImplicationTest extends DependencyTest {
 
 
     protected void setUp() {
-        impDisjoint = SetBuilder.makeImplication(new int[]{1, 0, 0, 0}, new int[]{0, 1, 0, 0}, 10);
-        impOverlap = SetBuilder.makeImplication(new int[]{1, 0, 0, 0}, new int[]{1, 1, 0, 0}, 10);
+        impDisjoint = ImplicationsBuilder.makeImplication(new int[]{1, 0, 0, 0}, new int[]{0, 1, 0, 0}, 10);
+        impOverlap = ImplicationsBuilder.makeImplication(new int[]{1, 0, 0, 0}, new int[]{1, 1, 0, 0}, 10);
     }
 
     public void testEquals() {
@@ -61,7 +61,7 @@ public class ImplicationTest extends DependencyTest {
 
         //test of implication for all objects
 
-        Implication common = SetBuilder.makeImplication(new int[]{0, 0, 0, 0}, new int[]{1, 1, 0, 0}, 10);
+        Implication common = ImplicationsBuilder.makeImplication(new int[]{0, 0, 0, 0}, new int[]{1, 1, 0, 0}, 10);
 
         assertEquals(false, common.isRespectedBySet(SetBuilder.makeSet(new int[]{0, 0, 0, 0})));
         assertEquals(true, common.isRespectedBySet(SetBuilder.makeSet(new int[]{1, 1, 0, 1})));

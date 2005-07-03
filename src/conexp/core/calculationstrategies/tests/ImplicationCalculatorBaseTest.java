@@ -11,6 +11,7 @@ import conexp.core.Context;
 import conexp.core.ImplicationCalcStrategy;
 import conexp.core.ImplicationSet;
 import conexp.core.compareutils.ImplicationSetComparator;
+import conexp.core.tests.ImplicationsBuilder;
 import conexp.core.tests.SetBuilder;
 import junit.framework.TestCase;
 
@@ -21,7 +22,7 @@ public abstract class ImplicationCalculatorBaseTest extends TestCase {
         calc.setImplications(implications);
         calc.calcImplications();
         ImplicationSet expImplication =
-                SetBuilder.makeImplicationSet(cxt,
+                ImplicationsBuilder.makeImplicationSet(cxt,
                         expImplicationsDescriptions);
         if (!expImplication.equalsToIsomorphism(implications)) {
             ImplicationSetComparator comparator = new ImplicationSetComparator(expImplication, implications);

@@ -7,10 +7,10 @@
 
 package canvas.tests;
 
+import canvas.util.tests.AllUtilsTests;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import canvas.util.tests.AllUtilsTests;
 
 public class AllTests extends TestCase {
     public static Test suite() {

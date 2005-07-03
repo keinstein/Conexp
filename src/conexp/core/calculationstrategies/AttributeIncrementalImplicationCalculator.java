@@ -4,17 +4,9 @@
  */
 package conexp.core.calculationstrategies;
 
-import java.util.Comparator;
+import conexp.core.*;
 
-//import util.Assert;
-import conexp.core.AttributeInformationSupplier;
-import conexp.core.ContextFactoryRegistry;
-import conexp.core.DefaultBinaryRelationProcessor;
-import conexp.core.Implication;
-import conexp.core.ImplicationCalcStrategy;
-import conexp.core.ImplicationSet;
-import conexp.core.ModifiableSet;
-import conexp.core.Set;
+import java.util.Comparator;
 
 /**
  * @author object

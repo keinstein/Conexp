@@ -28,8 +28,7 @@ public class ImplicationsView extends GenericRuleView {
     }
 
     public Action[] getActions() {
-        Action[] ret = {new SortBySupportAction()};
-        return ret;
+        return new Action[]{new SortBySupportAction()};
     }
 
     public ResourceBundle getResources() {

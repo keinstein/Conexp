@@ -8,9 +8,9 @@
 package conexp.frontend.latticeeditor;
 
 import canvas.Figure;
+import canvas.FigureDrawing;
 import canvas.FigureDrawingCanvas;
 import canvas.IFigurePredicate;
-import canvas.FigureDrawing;
 import conexp.core.*;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.ConceptSetDrawingConsumer;

@@ -47,16 +47,14 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     private void setUpFullLatticeCase() {
         cxt = SetBuilder.makeContext(new int[][]{{0},
                                                  {1}});
-        doc = new ContextDocument();
-        doc.setContext(cxt);
+        doc = new ContextDocument(cxt);
         doc.addLatticeComponent().calculateLattice();
     }
 
     private void setUpPartialLatticeCase() {
         cxt = SetBuilder.makeContext(new int[][]{{0, 1},
                                                  {1, 0}});
-        doc = new ContextDocument();
-        doc.setContext(cxt);
+        doc = new ContextDocument(cxt);
         final LatticeComponent latticeComponent = doc.addLatticeComponent();
         final SetProvidingEntitiesMask attributeMask = latticeComponent.getAttributeMask();
         assertEquals(2, attributeMask.getCount());
@@ -66,8 +64,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
 
     private void setUpPartialObjectLatticeCase() {
         cxt = SetBuilder.makeContext(TEST_RELATION_2x3);
-        doc = new ContextDocument();
-        doc.setContext(cxt);
+        doc = new ContextDocument(cxt);
         final LatticeComponent latticeComponent = doc.addLatticeComponent();
         final SetProvidingEntitiesMask attributeMask = latticeComponent.getAttributeMask();
         assertEquals(2, attributeMask.getCount());
@@ -84,8 +81,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
 
     private void setUpTwoLatticeCase() {
         cxt = SetBuilder.makeContext(TEST_RELATION_2x3);
-        doc = new ContextDocument();
-        doc.setContext(cxt);
+        doc = new ContextDocument(cxt);
         LatticeComponent latticeComponent = doc.addLatticeComponent();
         latticeComponent.getDrawing().setAttributeLabelingStrategyKey(LabelingStrategiesKeys.ALL_ATTRIBS_LABELING_STRATEGY_KEY);
 

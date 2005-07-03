@@ -9,9 +9,7 @@ package canvas.figures.tests;
 
 import canvas.figures.CompositeFigure;
 import canvas.tests.MockFigure;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class CompositeFigureTest extends TestCase {
 

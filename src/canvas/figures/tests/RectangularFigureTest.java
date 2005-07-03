@@ -7,13 +7,11 @@
 
 package canvas.figures.tests;
 
+import canvas.CanvasScheme;
+import canvas.Figure;
 import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.RectangularFigure;
 import canvas.tests.FigureTest;
-import canvas.CanvasScheme;
-import canvas.Figure;
-import junit.framework.Test;
-import junit.framework.TestSuite;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

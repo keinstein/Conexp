@@ -14,12 +14,12 @@ import conexp.frontend.DocumentLoader;
 import conexp.frontend.io.DefaultDataFormatErrorHandler;
 import conexp.frontend.io.csv.CSVContextLoader;
 import junit.framework.TestCase;
-import util.StringUtil;
 import util.DataFormatException;
+import util.StringUtil;
 import util.testing.TestUtil;
 
-import java.io.StringReader;
 import java.io.IOException;
+import java.io.StringReader;
 
 public class CSVContextCreatorTest extends TestCase {
 
