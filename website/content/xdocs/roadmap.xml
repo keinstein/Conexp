@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-15"?>
+<!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
+<document>
+    <header>
+        <title>Concept Explorer development roadmap</title>
+    </header>
+    <body>
+        <section>
+            <title>Version 1.4 </title>
+            <p>Currently the following features are planned for the 1.4 release:</p>
+            <ul>
+                <li>Implication and association rule navigator with support for rule
+        selection and filtering</li>
+                <li>Background implication set specification and editing for context</li>
+                <li>Integrated java help </li>
+            </ul>
+        </section>
+        <section>
+            <title>Next versions</title>
+            <p> The features are listed in a no particular order. The ordering of the features will be defined on the base of
+ user requests and how fast the feature can be implemented. It can be that some features will be not implemented at all.</p>
+            <ul>
+                <li>Internationalization</li>
+                <li>Integrated Help</li>
+                <li>Preferences dialogs</li>
+                <li>Attribute exploration with incomplete information</li>
+                <li>Visualization of part of rule sets with help of line diagrams</li>
+                <li>Nested line diagrams</li>
+                <li>Line diagram editor</li>
+                <li>Ability to select sublattices for the exploration</li>
+                <li>Birdview for line diagrams</li>
+                <li>Reordering of elements of contexts in order to cluster objects/attributes
+        on base of similarity between them and to visually see the grouping of elements</li>
+                <li>The bipartite graph view for context(If there will be requests)</li>
+                <li>Ability to switch between context/lattice/implication set forms
+            of representations (data can be specified in any initial form and
+            then transformed into other forms)</li>
+            </ul>
+        </section>
+    </body>
+</document>
