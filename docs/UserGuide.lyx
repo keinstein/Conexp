@@ -1,0 +1,1671 @@
+#LyX 1.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 221
+\textclass article
+\language english
+\inputencoding auto
+\fontscheme default
+\graphics default
+\paperfontsize default
+\papersize Default
+\paperpackage a4
+\use_geometry 0
+\use_amsmath 0
+\use_natbib 0
+\use_numerical_citations 0
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\quotes_times 2
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+
+\layout Title
+
+Concept Explorer.
+ The User Guide
+\layout Section*
+
+Introduction
+\layout Subsection*
+
+What is it?
+\layout Standard
+
+This is a version 1.3 of "Concept Explorer"(ConExp) tool, that implements
+ basic functionality needed for study and research of Formal Concept Analysis(FC
+A).
+\layout Standard
+
+Formal Concept Analysis is a branch of lattice theory, that was developed
+ starting from early 1980-ies by members of Rudolf Wille's group in Darmstadt.
+\layout Standard
+
+It can be used for analysis of simple attribute object tables (called context
+ in FCA) and exploration of different dependencies, that exists between
+ attributes.
+\layout Standard
+
+For more information about Formal Concept Analysis, see http://www.math.tu-dresden.
+de/~ganter/fba.html and http://www.fcahome.org.uk/
+\layout Standard
+
+ConExp is released under BSD-style license.
+ Please read file license.txt in the distribution.
+ You can read license files of libraries, that are used in ConExp, reading
+ file, containing "license" in its name and first name of which corresponds
+ to the name of the library jar file.
+\layout Standard
+
+If you use ConExp in scientific research, please cite the following article
+ 
+\begin_inset LatexCommand \cite{ConExp-article}
+
+\end_inset 
+
+.
+\layout Subsection*
+
+What can I do with it?
+\layout Standard
+
+ConExp provides the following functionality:
+\layout Itemize
+
+context editing
+\layout Itemize
+
+building concept lattices from context
+\layout Itemize
+
+finding bases of implications that are true in context
+\layout Itemize
+
+finding bases of association rules that are true in context
+\layout Itemize
+
+performing attribute exploration
+\layout Subsection*
+
+A little bit of history
+\layout Standard
+
+ConExp was first developed as a part of master's thesis under the supervision
+ of Prof.
+ Dr.
+ Tatyana Taran at the National Technical University of Ukraine "KPI" in
+ 2000.
+ During the following years, it was extended and now is an open source project
+ on Sourceforge 
+\begin_inset LatexCommand \cite{Sourceforge}
+
+\end_inset 
+
+.
+\layout Section*
+
+ConExp installation
+\layout Subsection*
+
+Required software
+\layout Standard
+
+In order to run ConExp, the Java Runtime Environment version 1.4 or higher
+ is required.
+ It is usually recommended to use latest version of JRE (1.5.0 on the moment
+ of writing).
+ If you don't have it, you can get them from the following URL: http://java.sun.co
+m/j2se/downloads.html
+\layout Subsection*
+
+Installation process
+\layout Standard
+
+Just unpack the content of zip or tar.gz file into preferred location.
+ Make sure, that java can be called from this location (Just open the console
+ in selected directory and type java\SpecialChar ~
+\SpecialChar ~
+ -version in order to check availability
+ of java on your system.
+ If java is installed, then information about environment and version of
+ java software should be displayed) 
+\layout Section*
+
+Working with Concept Explorer
+\layout Subsection*
+
+Starting the work
+\layout Standard
+
+Run the appropriate start script("conexp.bat" on Windows, "conexp.sh" on Unix).
+ On Unix: before that set the executable attribute for "conexp.sh".
+ If you run it from the command line, make sure, that you are in the installatio
+n directory.
+ 
+\layout Standard
+
+Alternatively, on all platforms you can run "java -jar conexp.jar" from the
+ command line.
+ On Windows use "javaw -jar conexp.jar" if you don't want to see the java
+ console.
+\layout Subsection*
+
+Concept Explorer user interface overview
+\layout Standard
+
+ConExp user interface consists of the following parts:
+\layout Description
+
+Menu
+\layout Description
+
+Main\SpecialChar ~
+toolbar - Contains buttons for global application operations - 
+\begin_inset Quotes eld
+\end_inset 
+
+Create new document
+\begin_inset Quotes erd
+\end_inset 
+
+, 
+\begin_inset Quotes eld
+\end_inset 
+
+Open
+\begin_inset Quotes erd
+\end_inset 
+
+, 
+\begin_inset Quotes eld
+\end_inset 
+
+Save
+\begin_inset Quotes erd
+\end_inset 
+
+, 
+\begin_inset Quotes eld
+\end_inset 
+
+Compute the number of concepts
+\begin_inset Quotes erd
+\end_inset 
+
+, 
+\begin_inset Quotes eld
+\end_inset 
+
+Compute concept lattiice
+\begin_inset Quotes erd
+\end_inset 
+
+, 
+\begin_inset Quotes eld
+\end_inset 
+
+Perform attribute exploration
+\begin_inset Quotes erd
+\end_inset 
+
+, 
+\begin_inset Quotes eld
+\end_inset 
+
+Calculate the Duquenne-Guigues set of implications
+\begin_inset Quotes erd
+\end_inset 
+
+, 
+\begin_inset Quotes eld
+\end_inset 
+
+Calculate association rules
+\begin_inset Quotes erd
+\end_inset 
+
+ and aslo a combo box, that allows to select the update mode for document
+ components that are computed from context - lattices, implication and associati
+on rule sets.
+ Currently, the two update mode are supported - clearing of affected component
+ or recomputation of affected components.
+ The first mode is recommended, when user is going to make a lot of changes
+ in context, or the size of context is big.
+ In this mode affected components are cleared and can be recomputed by calling
+ compute operation for the corresponding view type.
+ In the second mode, the affected components are recomputed after each change
+ of context.
+ This may lead to big computational expenses if context is big or dense.
+\layout Description
+
+Main\SpecialChar ~
+pane.
+ Main pane includes document tree, option pane, and view pane.
+ 
+\begin_deeper 
+\layout Description
+
+Document\SpecialChar ~
+tree displays the structure of the current document and allows to
+ navigate between different views (i.e.
+ context view, lattice visualization view(s), implications view and associtiatio
+n rules view).
+ 
+\layout Description
+
+Option\SpecialChar ~
+pane allows to edit different options connected with view.
+ 
+\layout Description
+
+View\SpecialChar ~
+pane contains the display for current view.
+ For each view there is a corresponding toolbar with view-specific operations
+ .
+\end_deeper 
+\layout Description
+
+Status\SpecialChar ~
+bar
+\layout Subsection*
+
+Creating the new document
+\layout Standard
+
+Usually, the new document is created on the start of work with ConExp.
+ Alternatively, one can create a new document by pressing 
+\begin_inset Quotes eld
+\end_inset 
+
+New context
+\begin_inset Quotes erd
+\end_inset 
+
+ button on main toolbar or selecting 
+\begin_inset Quotes eld
+\end_inset 
+
+New
+\begin_inset Quotes erd
+\end_inset 
+
+ menu item in 
+\begin_inset Quotes eld
+\end_inset 
+
+Files
+\begin_inset Quotes erd
+\end_inset 
+
+ menu.
+\layout Standard
+
+If there was a previously opened and modified document, user will be prompted
+ to save it (or cancel creating new document) before the creation of a new
+ document.
+\layout Subsubsection*
+
+Opening existing documents
+\layout Standard
+
+ConExp allows to work with several different data formats.
+ It is possible to work with contexts, that were created using ConImp 
+\begin_inset LatexCommand \cite{ConImp}
+
+\end_inset 
+
+ .
+\layout Standard
+
+Currently the following formats are supported:
+\layout Description
+
+cex - ConExp native format.
+ This is XML-based format.
+ Stores information about context and lattice line diagram, and also, whether
+ implications and/or associative rules were calculated.
+ It is recommended to use this format for work.
+\layout Description
+
+cxt - ConImp context data.
+ Only context can be stored in such format.
+\layout Description
+
+csv - Comma - Separated values - For now, only import of context is supported
+ for this format.
+ Actual separator is semicolon(;).
+ It is assumed, that the first line of file contains attributes names, and
+ first cell is empty (I.e, if one has a context with attributes attr1 and
+ attr2, then first line will be the following:
+\begin_inset Quotes erd
+\end_inset 
+
+;attr1;attr2
+\begin_inset Quotes erd
+\end_inset 
+
+.
+ Each next line should start from object name and then sequence of 0 and
+ 1.
+ In cells, in which 1 is set, cross will be put in imported context.
+ 
+\layout Description
+
+oal - Object Attribute list - For now, only import of context is supported
+ for this format.
+ Each line presents information about object and then which attributes this
+ object possess.
+ If object obj1 has attributes attr2 and attr3, then line for obj1 will
+ look as follows: 
+\begin_inset Quotes eld
+\end_inset 
+
+obj1:attr2;attr3
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Standard
+
+Also it is possible to reopen document, on which you were working before,
+ by selecting one of the items in 
+\begin_inset Quotes eld
+\end_inset 
+
+Reopen
+\begin_inset Quotes erd
+\end_inset 
+
+ submenu in 
+\begin_inset Quotes eld
+\end_inset 
+
+Files
+\begin_inset Quotes erd
+\end_inset 
+
+ menu.
+\layout Subsection*
+
+Saving your work
+\layout Standard
+
+In order to save your work, use menu items 
+\begin_inset Quotes eld
+\end_inset 
+
+Save
+\begin_inset Quotes erd
+\end_inset 
+
+ and 
+\begin_inset Quotes eld
+\end_inset 
+
+Save as
+\begin_inset Quotes erd
+\end_inset 
+
+ in 
+\begin_inset Quotes eld
+\end_inset 
+
+Files
+\begin_inset Quotes erd
+\end_inset 
+
+ menu, or 
+\begin_inset Quotes eld
+\end_inset 
+
+Save file
+\begin_inset Quotes erd
+\end_inset 
+
+ button on main toolbar.
+ The recommended storage format is native ConExp format 
+\layout Subsection*
+
+Working with context
+\layout Subsubsection*
+
+Undo/redo support
+\layout Standard
+
+For all operations, that are performed on context, undo/redo support is
+ provided.
+ One can undo the performed operations by pressing 
+\begin_inset Quotes eld
+\end_inset 
+
+Undo last action
+\begin_inset Quotes erd
+\end_inset 
+
+ button and redo by pressing 
+\begin_inset Quotes eld
+\end_inset 
+
+Redo last action
+\begin_inset Quotes erd
+\end_inset 
+
+ button on context editor's toolbar.
+ 
+\layout Subsubsection*
+
+Changing size of context
+\layout Standard
+
+In order to change the size of context, one should use the properties window
+ on the left side of window, and enter new number of objects/attributes
+ in 
+\begin_inset Quotes eld
+\end_inset 
+
+object count
+\begin_inset Quotes erd
+\end_inset 
+
+/
+\begin_inset Quotes erd
+\end_inset 
+
+attribute count
+\begin_inset Quotes erd
+\end_inset 
+
+ properties.
+\layout Standard
+
+Also it is possible to add new object(attribute) into context by pressing
+ 
+\begin_inset Quotes eld
+\end_inset 
+
+Add object
+\begin_inset Quotes erd
+\end_inset 
+
+/
+\begin_inset Quotes erd
+\end_inset 
+
+Add attribute
+\begin_inset Quotes erd
+\end_inset 
+
+ button on context editor's toolbar.
+ 
+\layout Standard
+
+In order to remove some set of object/attributes, select them in context
+ editor and then perform 
+\begin_inset Quotes eld
+\end_inset 
+
+Remove object(s)
+\begin_inset Quotes erd
+\end_inset 
+
+/
+\begin_inset Quotes erd
+\end_inset 
+
+Remove attribute(s)
+\begin_inset Quotes erd
+\end_inset 
+
+ action from context editor's context menu.
+ 
+\layout Subsubsection*
+
+Compressed view of context
+\layout Standard
+
+If one want to get a better overview over the context, one can select 
+\begin_inset Quotes eld
+\end_inset 
+
+Compressed
+\begin_inset Quotes erd
+\end_inset 
+
+ option on context editor's property pane.
+ Then the width of context's columns will be set just to fit value of cross,
+ and one can have a better look on structure of context.
+ 
+\layout Subsubsection*
+
+Arrow relation visualization
+\layout Standard
+
+In order to visualize arrow relation, select 
+\begin_inset Quotes eld
+\end_inset 
+
+show arrow
+\begin_inset Quotes erd
+\end_inset 
+
+ in property 
+\begin_inset Quotes eld
+\end_inset 
+
+Show arrow relations
+\begin_inset Quotes erd
+\end_inset 
+
+.
+ (If you don't know, what it is, probably, you don't need it.
+ To learn more about arrow relations, have a look at book 
+\begin_inset LatexCommand \cite{FCA-Book}
+
+\end_inset 
+
+) 
+\layout Subsubsection*
+
+Entering data into the context
+\layout Paragraph*
+
+Fast editing of contexts
+\layout Standard
+
+If one need to input a context of moderate size, one can use the so-called
+ fast context editing.
+ 
+\layout Standard
+
+Just use keys 
+\begin_inset Quotes eld
+\end_inset 
+
+x
+\begin_inset Quotes erd
+\end_inset 
+
+ and 
+\begin_inset Quotes eld
+\end_inset 
+
+.
+\begin_inset Quotes erd
+\end_inset 
+
+ , when staying in cell in relation area, than the cross or blanc value
+ will be entered in current cell and cursor will move to the next cell in
+ relation area.
+\layout Paragraph*
+
+Transformations on selected areas
+\layout Standard
+
+After selecting the area of cell, one can perform transformations of content
+ of incidence relation between objects and attributes.
+\layout Standard
+
+The following transformation are supported:
+\layout Description
+
+Fill\SpecialChar ~
+selection - fill the selected area of incidence relation with crosses.
+\layout Description
+
+Clear\SpecialChar ~
+selection - clears the content of selected area of incidence relation
+\layout Description
+
+Inverse\SpecialChar ~
+selection - replaces in selected area of incidence relation crosses
+ with one and vice-versa.
+\layout Standard
+
+All these transformations can be performed by using appropriate command
+ from context menu.
+\layout Subsubsection*
+
+Operations on contexts
+\layout Standard
+
+Following operations can be performed on contexts:
+\layout Description
+
+object\SpecialChar ~
+
+\series bold 
+clarification 
+\series default 
+- replacing in context objects, that have equal sets of attributes, with
+ one (first from beginning of context) object.
+ This operation is invoked by pressing 
+\begin_inset Quotes eld
+\end_inset 
+
+Clarify objects
+\begin_inset Quotes erd
+\end_inset 
+
+ button on context editor's toolbar.
+\layout Description
+
+attribute\SpecialChar ~
+clarification - analogous operation, but only on attribute set.
+ Is invoked by pressing 
+\begin_inset Quotes eld
+\end_inset 
+
+Clarify attributes
+\begin_inset Quotes erd
+\end_inset 
+
+ button on context editor toolbar.
+\layout Description
+
+object\SpecialChar ~
+set\SpecialChar ~
+reduction - removing from object set all objects, that can be obtained
+ as a result of intersection of some other objects.
+ In process of performing reduction clarification is also performed.
+ This operation doesn't change the structure of the concept lattice - concept
+ lattice of reduced context is isomorphic to the concept lattice of the
+ original context.
+ Operation is performed by pressing 
+\begin_inset Quotes eld
+\end_inset 
+
+Reduce objects
+\begin_inset Quotes erd
+\end_inset 
+
+ button on context editor's toolbar.
+\layout Description
+
+attribute\SpecialChar ~
+set\SpecialChar ~
+reduction - analogous operation on attribute set.
+ Operation is performed by pressing 
+\begin_inset Quotes eld
+\end_inset 
+
+Reduce attributes
+\begin_inset Quotes erd
+\end_inset 
+
+ button on context editor's toolbar.
+\layout Description
+
+context\SpecialChar ~
+reduction - simultaneous application of object and attribute set
+ reduction.
+ Performed by pressing 
+\begin_inset Quotes eld
+\end_inset 
+
+Reduce context
+\begin_inset Quotes erd
+\end_inset 
+
+ button on context editor's toolbar.
+\layout Description
+
+transposition - exchange of objects and attribute set and corresponding
+ change of relation between them.
+ Performed by pressing 
+\begin_inset Quotes eld
+\end_inset 
+
+Transpose context
+\begin_inset Quotes erd
+\end_inset 
+
+ button on context editor's toolbar.
+ 
+\layout Subsection*
+
+Exploring the line diagram
+\layout Subsubsection*
+
+Building the concept lattice 
+\layout Standard
+
+In order to build concept lattice, use button 
+\begin_inset Quotes eld
+\end_inset 
+
+Build Lattice
+\begin_inset Quotes erd
+\end_inset 
+
+ on the main toolbar.
+ After some time, that depends from complexity of lattice, the drawing of
+ lattice (also named 
+\series bold 
+line diagram
+\series default 
+) will appear.
+ (Remark - layout of lattice is time consuming operation, that's why first
+ only drawing, consisting from one node can appear, and then again, after
+ some time, the layouted lattice will appear).
+\layout Subsubsection*
+
+Interpreting the drawing
+\layout Standard
+
+Concept lattice represents the univocal transformation of the context.
+ 
+\layout Standard
+
+Top element of the lattice corresponds to the unit element of concept lattice.
+ Bottom element of concept lattice represents the zero element of concept
+ lattice.
+ Each node of lattice corresponds to so called 
+\series bold 
+(formal) concept
+\series default 
+ in Formal Concept Analysis - a pair (O, A), where O - set of objects and
+ A - set of attributes, such, that A contains all attributes, that all objects
+ from O have in common and only this attributes, and O contains all objects
+ from context, that has set attributes A among their attributes.
+ Set of objects O is called 
+\series bold 
+extent 
+\series default 
+of concept (O, A) and set of attributes A is called 
+\series bold 
+intent
+\series default 
+ of set of attributes A.
+
+\series bold 
+ 
+\layout Standard
+
+So called reduced labeling is used in order to succinctly represent information
+ about intents and extents of formal context.
+ If label of attribute A is attached to some concept, that means, that this
+ attribute occurs in intents of all concepts, reachable by descending paths
+ from this concept to zero concept (bottom element) of lattice.
+ If label of object O is attached to some concept, this means, that object
+ O lays in extents of all concepts, reachable by ascending paths in lattice
+ graph from this concept to unit concept (top element) of lattice.
+\layout Standard
+
+If drawing of node contains blue filled upper semicircle, that means, that
+ there is an attribute, attached to this concept.
+ If drawing of node contains black filled lower semicircle, that means,
+ that there is a object, attached to this concept.
+ 
+\layout Standard
+
+Sometimes node or edge in line diagrams is displayed in red color.
+ This means, that this edge or node are located very near or overlap with
+ some other node.
+ In order to improve layout, try manual adjustment of layout or some other
+ layout.
+\layout Subsubsection*
+
+Visualization modes
+\layout Standard
+
+Basically, there is two visualization modes, that behave differently, when
+ drawing of lattice doesn't fit into the existing screen estate.
+\layout Standard
+
+They are:
+\layout Description
+
+scrolling\SpecialChar ~
+mode - when drawing of lattice doesn't fit into the screen estate,
+ that virtual window is enlarged and user can see only some part of lattice
+ drawing.
+ This mode is activated by default.
+\layout Description
+
+fit\SpecialChar ~
+to\SpecialChar ~
+screen\SpecialChar ~
+mode - drawing of lattice is rescaled in order to fit into the
+ available screen estate.
+\layout Standard
+
+
+\series medium 
+Switching
+\series default 
+ between scrolling and fit to screen mode is performed with the help of
+ 
+\begin_inset Quotes eld
+\end_inset 
+
+Scale picture to fit into the image
+\begin_inset Quotes erd
+\end_inset 
+
+ button on lattice visualization pane toolbar.
+ Pressing this button toggles between first mode and second and vice versa.
+
+\series medium 
+ 
+\layout Standard
+
+The following commands make sense only in scrolling mode:
+\layout Description
+
+Grab\SpecialChar ~
+and\SpecialChar ~
+drag - this command performs panning of the visible area.
+ After pressing this button, the cursor changes to cross and user can pan
+ the drawing.
+ To switch off this mode, press 
+\begin_inset Quotes eld
+\end_inset 
+
+Grab and Drag
+\begin_inset Quotes erd
+\end_inset 
+
+ button one more time.
+\layout Description
+
+Zoom\SpecialChar ~
+in,\SpecialChar ~
+Zoom\SpecialChar ~
+out,\SpecialChar ~
+No\SpecialChar ~
+zoom - these commands perform actions, corresponding to
+ their names.
+\layout Subsubsection*
+
+Changing visualization options
+\layout Standard
+
+The following visualization options can be adjusted via in 
+\begin_inset Quotes eld
+\end_inset 
+
+drawing options
+\begin_inset Quotes erd
+\end_inset 
+
+ properties pane on left part of the screen:
+\layout Description
+
+Attribs - upper label visualization mode.
+ Possible values are 
+\begin_inset Quotes eld
+\end_inset 
+
+Show labels
+\begin_inset Quotes erd
+\end_inset 
+
+ - show attribute's label at corresponding concept (See also remark before
+ about reduced labeling).
+\layout Description
+
+Objects - lower label visualization mode.
+ Possible values are
+\begin_deeper 
+\layout Description
+
+Don't\SpecialChar ~
+show - no labels are shown
+\layout Description
+
+Show\SpecialChar ~
+labels - show object labels below the corresponding concepts
+\layout Description
+
+Show\SpecialChar ~
+own\SpecialChar ~
+objects - for concepts, that has some objects attached (has non empty
+ object 
+\series bold 
+contingen
+\series default 
+t) show number and percentage of objects, that belong exactly (i.e., their
+ attribute set is equal to intent) to this concept
+\layout Description
+
+Show\SpecialChar ~
+object\SpecialChar ~
+count - for every node show, exactly what number (percentage)
+ of object lay in extent of this node's concept.
+\layout Description
+
+Stability - for every node show, what minimal number of objects should be
+ removed from context, that node with such intent disappeared from concept
+ lattice.
+\end_deeper 
+\layout Description
+
+Draw\SpecialChar ~
+node - this option specify, how the radius of node is calculated.
+ The possible values are:
+\begin_deeper 
+\layout Description
+
+~to\SpecialChar ~
+own\SpecialChar ~
+objects - node radius is calculated proportionally to size of contingent
+ (amount of objects, that match intent of this node exactly)
+\layout Description
+
+fixed\SpecialChar ~
+radius - all nodes has equal node radius.
+ Actual node radius is determined by option 
+\begin_inset Quotes eld
+\end_inset 
+
+Node radius
+\begin_inset Quotes erd
+\end_inset 
+
+
+\layout Description
+
+~of\SpecialChar ~
+object\SpecialChar ~
+extent - node radius is calculated proportionally to size of its
+ extent.
+\layout Description
+
+stability - node radius is calculated proportionally to its stability to
+ destruction (see description of Stability above).
+\end_deeper 
+\layout Description
+
+Draw\SpecialChar ~
+edge - specifies, how exactly edge is drawn.
+ The possible values are:
+\begin_deeper 
+\layout Description
+
+one\SpecialChar ~
+pixel - edge width is fixed
+\layout Description
+
+no - edge is not drawn
+\layout Description
+
+~object - proportionally to the number of objects, that 
+\begin_inset Quotes eld
+\end_inset 
+
+pass
+\begin_inset Quotes erd
+\end_inset 
+
+ through this edge.
+ Equivalent of 
+\begin_inset Quotes eld
+\end_inset 
+
+~of\SpecialChar ~
+object\SpecialChar ~
+extent
+\begin_inset Quotes erd
+\end_inset 
+
+ option for drawing node
+\layout Description
+
+~connection - edge size is proportional to ratio between extent size of
+ lower and upper concept, that are connected by edge.
+ This value is equal to confidence of approximate association rule, that
+ corresponds to edge.
+\end_deeper 
+\layout Description
+
+Highlight - specifies, which nodes are highlighted, except for selected
+ edges.
+ These options were created in order to make exploration of lattice easier.
+ Possible values of this option are:
+\begin_deeper 
+\layout Description
+
+Filter\SpecialChar ~
+and\SpecialChar ~
+ideal - nodes of filter (all nodes, that are reachable by ascending
+ paths from selected node to top of lattice) and ideal ( all nodes, that
+ are reachable by descending paths from selected node to bottom of lattices)
+ are highlighted
+\layout Description
+
+Selected - only selected node is highlighted
+\layout Description
+
+Neighbors - selected node and it's upper and lower neighbors are highlighted
+\layout Description
+
+Ideal - nodes of ideal are highlighted
+\layout Description
+
+Filter - nodes of filter are highlighted
+\layout Description
+
+No - no nodes are highlighted.
+ This option may be useful for storing images of lattice.
+ 
+\end_deeper 
+\layout Description
+
+Label\SpecialChar ~
+font\SpecialChar ~
+size - specifies the size of font, that is used for upper and lower
+ labels.
+\layout Description
+
+Grid\SpecialChar ~
+size\SpecialChar ~
+x - specifies the preferred distance by x coordinate between different
+ nodes on one level of drawing.
+ It is used as parameter for layout and after layout change of this value
+ leads to rescaling of coordinates of nodes by x scale
+\layout Description
+
+Grid\SpecialChar ~
+size\SpecialChar ~
+y -specifies the preferred distance by y coordinate between nodes
+ on adjacent levels of drawing.
+ It is used as parameter for layout and after layout change of this value
+ leads to rescaling of coordinates of nodes by y scale.
+\layout Description
+
+Node\SpecialChar ~
+radius - this parameter specifies the maximal possible radius of concept
+ node and is used when drawing nodes.
+\layout Subsubsection*
+
+Changing layout of lattice
+\layout Standard
+
+If the initial drawing of lattice is not very satisfactory, than it is recommend
+ed to try to perform several different layouts in order to find the best
+ first approximation before starting to perform manual adjustment of drawing.
+\layout Standard
+
+
+\series bold 
+Warning: 
+\series default 
+performing layout of lattice is irreversible operation (for now).
+ Don't do it, if you have done adjustments, that you would not like to loose.
+\layout Standard
+
+Several algorithms have different options, that can be access through 
+\begin_inset Quotes eld
+\end_inset 
+
+Layout options
+\begin_inset Quotes erd
+\end_inset 
+
+ tab in properties panel.
+ 
+\layout Standard
+
+The following layout algorithms are provided:
+\layout Description
+
+Minimal\SpecialChar ~
+intersections - this is adapted to lattices version of algorithm
+ for laying out hierarchical graphs.
+ It tries to minimize number of intersections between edges.
+ It has no parameters.
+ Usually this algorithm provides best results, but it is pretty slow for
+ the big lattices.
+\layout Description
+
+Chain\SpecialChar ~
+decomposition - adapted version of algorithms of chain decomposition
+ by M.
+ Skorsky.
+ This algorithms builds so called 
+\series bold 
+additive lines diagrams.
+ 
+\series default 
+It's recommended to use ideal node movement strategy, when working with
+ such line diagrams.
+ This algorithm produces very good results for distributive lattices.
+ Chain decomposition algorithms has following options:
+\begin_deeper 
+\layout Description
+
+Representation - what kind of representation is used for concept, when his
+ coordinates are calculated.
+ Can be either attribute-based or object-based.
+\layout Description
+
+Placement - determines assignment of values to set of vectors.
+ Can take one of three possible values - 
+\emph on 
+exponential
+\emph default 
+, 
+\emph on 
+straight
+\emph default 
+ or
+\emph on 
+ angular
+\emph default 
+.
+\layout Description
+
+Rotate\SpecialChar ~
+left,\SpecialChar ~
+Rotate\SpecialChar ~
+right - performs rotation of set of attribute vectors -
+ is used to select the best one from several possible.
+\end_deeper 
+\layout Standard
+
+The next algorithms belongs to family of so-called 
+\begin_inset Quotes eld
+\end_inset 
+
+force-directed
+\begin_inset Quotes erd
+\end_inset 
+
+ layout algorithms.
+ They are:
+\layout Description
+
+Freese\SpecialChar ~
+layout - adaptation of Ralph Freese 
+\begin_inset LatexCommand \cite{FreeseLatDraw}
+
+\end_inset 
+
+ algorithm for drawing lattices.
+ Algorithms has following parameters:
+\begin_deeper 
+\layout Description
+
+Attraction - regulates the attraction force between nodes
+\layout Description
+
+Repulsion - regulates the repulsion force between nodes.
+\layout Description
+
+Angle - this is not actually a parameter of the algorithms.
+ Freese algorithms performs layout in 3D space, and angle parameter controls
+ the angle, which is used for projecting results of layout in 3D space of
+ 2D surface of screen
+\end_deeper 
+\layout Description
+
+Force\SpecialChar ~
+layout - other force directed algorithm, that differs from previous
+ one by the way, how the forces are calculated.
+ Parameters of this algorithm are analogous to the parameters of the previous
+ one.
+\layout Subsubsection*
+
+Manually adjustment of the drawing
+\layout Standard
+
+Unfortunately, for now no one layout algorithms, that produce good results
+ for all types of lattice is known.
+ So, the last way to produce good drawing is to perform the manual adjustment
+ of the lattice.
+ 
+\layout Standard
+
+Movement of lattice nodes is constrained in ConExp in order to maintain
+ a correct parent-child (successor-predecessor) relations between nodes.
+\layout Standard
+
+Following tools exists in ConExp in order to help manually adjust a lattice:
+\layout Description
+
+Ideal\SpecialChar ~
+node\SpecialChar ~
+movement\SpecialChar ~
+mode - when moving a node, the whole ideal of the node
+ is moved.
+ The switch between this mode and one node movement strategy is performed
+ by pressing 
+\begin_inset Quotes eld
+\end_inset 
+
+Toggle node move mode
+\begin_inset Quotes erd
+\end_inset 
+
+ button.
+ 
+\layout Description
+
+Align\SpecialChar ~
+nodes\SpecialChar ~
+to\SpecialChar ~
+grid - performs alignment of node coordinates to the invisible
+ grid of size 8 on 8 pixels.
+\layout Subsubsection*
+
+Storing default lattice drawing settings
+\layout Standard
+
+As there are a lot of options for performing layout of line diagram, it
+ is possible for user to store some set of settings as default.
+ In order to do so, press 
+\begin_inset Quotes eld
+\end_inset 
+
+Store preferences as default
+\begin_inset Quotes erd
+\end_inset 
+
+ button on lattice visualization pane toolbar.
+ After that, these preferences will be used as default for all newly computed
+ concept lattices.
+\layout Paragraph*
+
+Storing images of drawing
+\layout Standard
+
+One of the most frequent uses of ConExp is to produce images of lattice
+ drawings for some future usage.
+ This task can be achieved by creating a good drawing of lattice and then
+ pressing the 
+\begin_inset Quotes eld
+\end_inset 
+
+Save lattice image
+\begin_inset Quotes erd
+\end_inset 
+
+ button on lattice visualization pane toolbar.
+ Currently saving image to png and jpeg is supported.
+ 
+\layout Subsubsection*
+
+Building lattices of subcontexts
+\layout Standard
+
+ConExp also provides the ability to build lattices, that corresponds to
+ subcontext of the original context.
+ This task can be achieved by using attribute selection and object selection
+ pane on the right side of lattice drawing pane.
+ After selecting or deselecting name of object or attribute, the new lattice,
+ that corresponds to new selected subcontext is build.
+ In order to include into selection all objects(attributes) use 
+\begin_inset Quotes eld
+\end_inset 
+
+Select all objects
+\begin_inset Quotes erd
+\end_inset 
+
+ (
+\begin_inset Quotes eld
+\end_inset 
+
+Select all attributes
+\begin_inset Quotes erd
+\end_inset 
+
+) buttons at the bottom of corresponding panes.
+ 
+\layout Standard
+
+
+\series bold 
+Warning: 
+\series default 
+building lattice of subcontexts leads to destruction of information about
+ previous drawing.
+ Please store the image or create a lattice snapshot, if you obtained the
+ useful result after some work.
+\layout Subsubsection*
+
+Creating a lattice snapshot
+\layout Standard
+
+If you have spent some time adjusting the layout of the lattice, it may
+ be well worth to create a copy of the drawing before exploring other alternativ
+e ways to layout lattice.
+ Also, one may want to be able to consider several drawings of different
+ subcontexts or to be able to consider several alternative drawings of lattice.
+\layout Standard
+
+In order to create a 
+\begin_inset Quotes eld
+\end_inset 
+
+snapshot
+\begin_inset Quotes erd
+\end_inset 
+
+ of the current drawing of lattice (i.e.
+ the exact copy of current drawing of lattice), press 
+\begin_inset Quotes eld
+\end_inset 
+
+Store current lattice as a view
+\begin_inset Quotes erd
+\end_inset 
+
+ button on lattice visualization pane toolbar.
+ After that the copy of the drawing will be created and will be shown in
+ the document tree.
+\layout Subsubsection*
+
+Displaying the lattice statistics
+\layout Standard
+
+For the currently computed lattices, it is possible to display statistics
+ about its different characteristics:
+\layout Description
+
+Concept\SpecialChar ~
+count the number of concepts in the current lattice.
+\layout Description
+
+Edge\SpecialChar ~
+count the number of edges in the current lattice.
+\layout Description
+
+Lattice\SpecialChar ~
+height the length of the maximal descendending path from lattice
+ unit element to the lattice zero element.
+\layout Description
+
+Lattice\SpecialChar ~
+width\SpecialChar ~
+estimation the lower and upper bounds of the lattice width.
+ The lower bound estimation is computed as a maximal count of elements in
+ one layer of the lattice (this value is always less or equals to the lattice
+ width).
+ The estimate of the upper bound is 
+\begin_inset Quotes eld
+\end_inset 
+
+worse
+\begin_inset Quotes erd
+\end_inset 
+
+ in sense of precision, and equals to 
+\emph on 
+concept count - lattice height
+\emph default 
+ .
+ 
+\layout Subsection*
+
+Working with implication bases
+\layout Subsubsection*
+
+Calculating Duquenne-Guigues base
+\layout Standard
+
+In order to find so called Duquenne-Guigues base of implications, that holds
+ in context, one should press button 
+\begin_inset Quotes eld
+\end_inset 
+
+Calculate Duquenne-Guigues base of implications 
+\begin_inset Quotes erd
+\end_inset 
+
+ on the main toolbar.
+ The main feature of Duquenne-Guigues base of implications is that this
+ base has a minimal possible number of implications among all possible bases
+ of implications, that holds in context.
+\layout Standard
+
+Implications, that appears in 
+\begin_inset Quotes eld
+\end_inset 
+
+Implication sets
+\begin_inset Quotes erd
+\end_inset 
+
+ pane, has the following format:
+\layout Standard
+
+
+\emph on 
+No <Number of objects> Premise ==> Conclusion.
+\layout Standard
+
+
+\emph on 
+No
+\emph default 
+ simply means number of implication in list.
+\layout Standard
+
+
+\emph on 
+Number of objects
+\emph default 
+ shows, for how much objects implication holds.
+\layout Standard
+
+
+\emph on 
+Premise
+\emph default 
+ and 
+\emph on 
+conclusion
+\emph default 
+ are usually list of attribute names, that occur in premise (conclusion).
+ Also, premise can be 
+\begin_inset Quotes eld
+\end_inset 
+
+{}
+\begin_inset Quotes erd
+\end_inset 
+
+, that means, that this implication has empty premise and holds for all
+ objects from context.
+\layout Standard
+
+Implication can be displayed in one of two colors: blue or red.
+\layout Standard
+
+Blue colors means, that there are objects in context, that supports this
+ rule.
+\layout Standard
+
+Red color means, that there are no objects, that support implication, and
+ usually such implication mean, that set of objects, that contained in premise,
+ doesn't occur together in context.
+ Also such implication includes all attributes from context among its attributes.
+\layout Subsubsection*
+
+Searching for associations
+\layout Standard
+
+Among association rules, in difference from implication, also non-strict
+ rules are allowed, i.e.
+ rules, for which if premise hold, conclusion doesn't necessarily hold -
+ it is true only for some percent of all objects, that are covered by premise
+ of rule.
+ The base of association rules consist of two parts - that base of strict
+ rules (Duquenne-Guigues base) and base of approximate rules (so called
+ Luxenburger base).
+\layout Standard
+
+ConExp allows to calculate base of association rules.
+ In order to do this, one should press 
+\begin_inset Quotes eld
+\end_inset 
+
+Calculate association rules
+\begin_inset Quotes erd
+\end_inset 
+
+ button on main toolbar.
+\layout Standard
+
+The display format of association rule is a small modification of the format
+ for implications.
+ It is:
+\layout Standard
+
+
+\emph on 
+No <Number of objects, for which premise holds> Premise =[Rule confidence]=><Num
+ber of objects, for which premise and conclusion holds> Conclusion.
+\layout Standard
+
+Also, in addition to red and blue colors, that are used in display of implicatio
+ns, green color is used for approximate, not strict rules.
+\layout Subsubsection*
+
+Performing attribute exploration
+\layout Standard
+
+The problem of implications, that are calculated for some context, is that
+ they holds only for objects from context, and don't generally hold for
+ all object from domain of interest.
+ In order to overcome this deficiency, 
+\emph on 
+attribute exploration
+\emph default 
+ procedure should be used.
+ 
+\layout Standard
+
+Attribute exploration is a interactive procedure, in which program asks
+ question about dependencies between different attribute from some fixed
+ set of attributes.
+ If expert confirms, that such dependency generally holds, it should answer
+ 
+\begin_inset Quotes eld
+\end_inset 
+
+yes
+\begin_inset Quotes erd
+\end_inset 
+
+, if he rejects dependency, that expert should provide counterexample.
+ If expert answered correctly on all questions, than after the end of attribute
+ exploration procedure he will get the set of all implications, that describes
+ dependencies between different attributes in domain of interest.
+ 
+\layout Standard
+
+Attribute exploration procedure can start from empty context, where only
+ attributes are specified, or from context, where some objects already described.
+\layout Standard
+
+In order to start attribute exploration procedure, one should press button
+ 
+\begin_inset Quotes eld
+\end_inset 
+
+Start attribute exploration
+\begin_inset Quotes erd
+\end_inset 
+
+ on main toolbar.
+\layout Standard
+
+Then the first question is asked, and user should either confirm it, either
+ reject it, either stop attribute exploration procedure.
+ If user rejects question, than other dialog would appear, that would ask
+ to provide a counterexample.
+\layout Section*
+
+Users mailing list
+\layout Standard
+
+We always glad to hear your feedback about program.
+\layout Standard
+
+The best place to give feedback and ask questions about ConExp is the ConExp
+ user's mailing list:
+\series bold 
+ conexp-user@lists.sourceforge.net
+\layout Section*
+
+ConExp's team
+\layout Standard
+
+Currently, team of developers consists of :
+\layout Itemize
+
+Dr.
+ Serhiy Yevtushenko - initial and chief developer
+\layout Itemize
+
+Tim Kaiser
+\layout Itemize
+
+Julian Tane
+\layout Itemize
+
+Dr.
+ Sergei Objedkov
+\layout Standard
+
+The documentation team also includes:
+\layout Itemize
+
+Joachim Hereth-Correia
+\layout Itemize
+
+Heiko Reppe
+\layout Standard
+
+If you would like to join development, you are welcome.
+\layout Bibliography
+\bibitem {ConExp-article}
+
+Serhiy A.
+ Yevtushenko.
+ 
+\emph on 
+System of data analysis "Concept Explorer"
+\emph default 
+.
+ (In Russian).
+ Proceedings of the 7th national conference on Artificial Intelligence KII-2000,
+ p.
+ 127-134, Russia, 2000.
+\layout Bibliography
+\bibitem {FCA-Book}
+
+B.
+ Ganter and R.
+ Wille.
+ 
+\begin_inset Quotes eld
+\end_inset 
+
+
+\emph on 
+Formal Concept Analysis:Mathematical Foundations
+\emph default 
+
+\begin_inset Quotes erd
+\end_inset 
+
+, Springer-Verlag, 1999
+\layout Bibliography
+\bibitem {ConImp}
+
+ComImp - http://www.mathematik.tu-darmstadt.de/~burmeister/
+\layout Bibliography
+\bibitem {FreeseLatDraw}
+
+http://www.math.hawaii.edu/~ralph/LatDraw/
+\layout Bibliography
+\bibitem {Sourceforge}
+
+http://www.sourceforge.net
+\the_end
