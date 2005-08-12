@@ -8,6 +8,7 @@
 package conexp.frontend.latticeeditor;
 
 import conexp.core.ConceptsCollection;
+import conexp.util.gui.strategymodel.StrategyValueItem;
 
 import java.beans.PropertyChangeSupport;
 import java.util.prefs.Preferences;
@@ -26,16 +27,11 @@ public interface DrawStrategiesContext extends FigureDimensionCalcStrategyProvid
 
     void doStorePreferences();
 
-    String getFigureDimensionStrategyKey();
+    StrategyValueItem getLayoutStrategyItem();
 
-    String getEdgeSizeStrategyKey();
+    StrategyValueItem getEdgeSizeCalcStrategyItem();
 
-    boolean setFigureDimensionStrategyKey(String key);
+    StrategyValueItem getHighlightStrategyItem();
 
-    boolean setEdgeSizeStrategyKey(String key);
-
-    String getHighlightStrategyKey();
-
-    boolean setHighlightStrategyKey(String key);
-
+    StrategyValueItem getNodeRadiusStrategyItem();
 }

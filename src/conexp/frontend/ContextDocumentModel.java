@@ -26,7 +26,7 @@ import java.util.List;
  * Date: 18/4/2005
  * Time: 21:10:14
  */
-public class ContextDocumentModel extends BasePropertyChangeSupplier{
+public class ContextDocumentModel extends BasePropertyChangeSupplier {
     public static final String CLEAR_DEPENDENT_POLICY_KEY = "Clear";
     public static final String RECOMPUTE_DEPENDENT_POLICY_KEY = "Recompute";
     public static final String RECALCULATION_POLICY_PROPERTY = "RecalculationPolicy";
@@ -75,7 +75,6 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier{
             markDirty();
         }
     }
-
 
 
     private boolean modified;
@@ -161,13 +160,15 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier{
         return cnt.getConceptCount();
     }
 
-    private NotificationList latticeComponents = new NotificationList(CollectionFactory.createDefaultList());
+    private NotificationList latticeComponents = new NotificationList(
+            CollectionFactory.createDefaultList());
 
     public void addLatticeComponentsListener(NotificationListListener listener) {
         latticeComponents.addNotificationListListener(listener);
     }
 
-    public void removeLatticeComponentsListener(NotificationListListener listener) {
+    public void removeLatticeComponentsListener(
+            NotificationListListener listener) {
         latticeComponents.removeNotificationListListener(listener);
     }
 
@@ -176,7 +177,8 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier{
     }
 
     private LatticeSupplier makeLatticeComponentForDoc() {
-        final LatticeComponent result = LatticeComponentFactory.makeLatticeComponent(getContext());
+        final LatticeComponent result = LatticeComponentFactory.makeLatticeComponent(
+                getContext());
         result.addPropertyChangeListener(latticeComponentListener);
         result.setUpLatticeRecalcOnMasksChange();
         result.restorePreferences();
@@ -198,7 +200,8 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier{
     }
 
     private void doResetLatticeComponents() {
-        for (Iterator iterator = latticeComponents.iterator(); iterator.hasNext();) {
+        for (Iterator iterator = latticeComponents.iterator();
+             iterator.hasNext();) {
             LatticeSupplier latticeSupplier = (LatticeSupplier) iterator.next();
             latticeSupplier.cleanUp();
         }
@@ -233,17 +236,21 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier{
 
     private StrategyValueItem recalculationPolicy;
 
-    public StrategyValueItem getRecalculationPolicy(){
-        if(null==recalculationPolicy){
+    public StrategyValueItem getRecalculationPolicy() {
+        if (null == recalculationPolicy) {
             StrategyValueItem strategyValueItem = new StrategyValueItem(
                     RECALCULATION_POLICY_PROPERTY,
-                        createRecalcStrategyModel(), getPropertyChangeSupport());
-            addPropertyChangeListener(RECALCULATION_POLICY_PROPERTY, new PropertyChangeListener(){
-                public void propertyChange(PropertyChangeEvent evt) {
-                    context.removeContextListener((RecalcPolicy)evt.getOldValue());
-                    context.addContextListener((RecalcPolicy)evt.getNewValue());
-                }
-            });
+                    createRecalcStrategyModel(), getPropertyChangeSupport());
+            strategyValueItem.getPropertyChange().addPropertyChangeListener(
+                    RECALCULATION_POLICY_PROPERTY,
+                    new PropertyChangeListener() {
+                        public void propertyChange(PropertyChangeEvent evt) {
+                            context.removeContextListener(
+                                    (RecalcPolicy) evt.getOldValue());
+                            context.addContextListener(
+                                    (RecalcPolicy) evt.getNewValue());
+                        }
+                    });
             recalculationPolicy = strategyValueItem;
 
         }
@@ -252,16 +259,18 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier{
 
     private GrowingStrategyModel createRecalcStrategyModel() {
         GrowingStrategyModel strategyModel = new GrowingStrategyModel();
-        strategyModel.addStrategy(CLEAR_DEPENDENT_POLICY_KEY, "Clear dependent", makeClearDependentRecalcPolicy());
-        strategyModel.addStrategy(RECOMPUTE_DEPENDENT_POLICY_KEY, "Recalculate dependent", makeRecomputeDependentRecalcPolicy());
+        strategyModel.addStrategy(CLEAR_DEPENDENT_POLICY_KEY,
+                "Clear dependent", makeClearDependentRecalcPolicy());
+        strategyModel.addStrategy(RECOMPUTE_DEPENDENT_POLICY_KEY,
+                "Recalculate dependent", makeRecomputeDependentRecalcPolicy());
         return strategyModel;
     }
 
     private RecalcPolicy getRecalcPolicy() {
-        return (RecalcPolicy)getRecalculationPolicy().getStrategy();
+        return (RecalcPolicy) getRecalculationPolicy().getStrategy();
     }
 
-    public void setClearDependentRecalcPolicy(){
+    public void setClearDependentRecalcPolicy() {
         getRecalculationPolicy().setValueByKey(CLEAR_DEPENDENT_POLICY_KEY);
     }
 
@@ -315,17 +324,17 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier{
             NextClosedSetImplicationCalculatorFactory.getInstance()};
     }
 
-    public void findImplications(){
+    public void findImplications() {
         getImplicationBaseCalculator().findDependencies();
         markDirty();
     }
 
 
-    interface RecalcPolicy extends GenericStrategy, ContextListener{};
+    interface RecalcPolicy extends GenericStrategy, ContextListener {
+    };
 
     public abstract class AbstractRecalcPolicy extends DefaultContextListener
-    implements RecalcPolicy
- {
+            implements RecalcPolicy {
         public void contextStructureChanged() {
             updateDependent();
         }
@@ -347,7 +356,8 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier{
         }
 
         private void updateLatticeCollection() {
-            for (Iterator iterator = latticeComponents.iterator(); iterator.hasNext();) {
+            for (Iterator iterator = latticeComponents.iterator();
+                 iterator.hasNext();) {
                 LatticeComponent latticeComponent = (LatticeComponent) iterator.next();
                 updateLatticeComponent(latticeComponent);
             }
@@ -355,8 +365,8 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier{
 
         private void updateDependencySetCalculatorIfRequired(
                 AbstractDependencySetCalculator dependencySetCalculator) {
-            if(null!=dependencySetCalculator &&
-                    dependencySetCalculator.isComputed()){
+            if (null != dependencySetCalculator &&
+                    dependencySetCalculator.isComputed()) {
                 updateDependencySetCalculator(dependencySetCalculator);
             }
         }
@@ -364,38 +374,54 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier{
         protected abstract void updateDependencySetCalculator(
                 AbstractDependencySetCalculator dependencySetCalculator);
 
-        protected abstract void updateLatticeComponent(LatticeComponent latticeComponent);
+        protected abstract void updateLatticeComponent(
+                LatticeComponent latticeComponent);
 
         public abstract String getName();
+
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof AbstractRecalcPolicy)) {
+                return false;
+            }
+            return getClass().equals(obj.getClass());
+        }
+
+        public int hashCode() {
+            return getClass().hashCode();
+        }
     }
 
 
-
-
-    private class ClearDependentRecalcPolicy extends AbstractRecalcPolicy {
+    public class ClearDependentRecalcPolicy extends AbstractRecalcPolicy {
 
         protected void updateDependencySetCalculator(
                 AbstractDependencySetCalculator dependencySetCalculator) {
             dependencySetCalculator.clearDependencySet();
         }
 
-        protected void updateLatticeComponent(LatticeComponent latticeComponent) {
+        protected void updateLatticeComponent(
+                LatticeComponent latticeComponent) {
             latticeComponent.clearLattice();
         }
+
 
         public String getName() {
             return "Clear dependent";
         }
     }
 
-    private class RecomputeDependentRecalcPolicy extends AbstractRecalcPolicy{
+    public class RecomputeDependentRecalcPolicy extends AbstractRecalcPolicy {
         protected void updateDependencySetCalculator(
                 AbstractDependencySetCalculator dependencySetCalculator) {
-                dependencySetCalculator.findDependencies();
+            dependencySetCalculator.findDependencies();
         }
 
-        protected void updateLatticeComponent(LatticeComponent latticeComponent) {
-                latticeComponent.calculateAndLayoutLattice();
+        protected void updateLatticeComponent(
+                LatticeComponent latticeComponent) {
+            latticeComponent.calculateAndLayoutLattice();
         }
 
         public String getName() {

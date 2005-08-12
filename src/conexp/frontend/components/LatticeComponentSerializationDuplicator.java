@@ -3,6 +3,8 @@ package conexp.frontend.components;
 import conexp.frontend.io.ConExpXMLReader;
 import conexp.frontend.io.ConExpXMLWriter;
 import util.DataFormatException;
+import util.XMLHelper;
+import org.jdom.Element;
 
 /**
  * User: sergey
@@ -24,7 +26,9 @@ public class LatticeComponentSerializationDuplicator implements ILatticeComponen
 
     public LatticeComponent duplicateContent(LatticeComponent toCopy, LatticeComponent copy) {
         try {
-            ConExpXMLReader.loadLatticeComponent(copy, ConExpXMLWriter.makeLatticeElement(toCopy));
+            Element latticeElement = ConExpXMLWriter.makeLatticeElement(toCopy);
+            System.out.println(XMLHelper.xmlElementDump(latticeElement));
+            ConExpXMLReader.loadLatticeComponent(copy, latticeElement);
         } catch (DataFormatException e) {
 
         }

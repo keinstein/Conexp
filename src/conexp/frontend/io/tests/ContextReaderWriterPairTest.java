@@ -85,9 +85,11 @@ public abstract class ContextReaderWriterPairTest extends TestCase {
         }
         DocumentLoader reader = makeDocumentLoader();
 
+        String storedDoc = writer.getBuffer().toString();
+
         ContextDocument loadedDoc = null;
         try {
-            loadedDoc = reader.loadDocument(new StringReader(writer.getBuffer().toString()), DefaultDataFormatErrorHandler.getInstance());
+            loadedDoc = reader.loadDocument(new StringReader(storedDoc), DefaultDataFormatErrorHandler.getInstance());
         } catch (IOException ex) {
             reportUnexpectedException(ex);
         } catch (DataFormatException ex) {

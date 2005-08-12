@@ -18,6 +18,7 @@ import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
+import conexp.util.gui.strategymodel.StrategyValueItem;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.output.XMLOutputter;
@@ -39,11 +40,17 @@ public class ConExpXMLWriter implements DocumentWriter {
         Element root = new Element(ConExpXMLElements.DOC_XML_ROOT);
         root.addContent(storeVersion());
         root.addContent(storeContexts(contextDocument));
+        root.addContent(storeRecalculationPolicy(contextDocument));
         root.addContent(storeLattices(contextDocument));
 
         Document xmlDoc = new Document(root);
         XMLOutputter outputter = new XMLOutputter();
         outputter.output(xmlDoc, writer);
+    }
+
+    private static Element storeRecalculationPolicy(ContextDocument contextDocument) {
+        return makeSettingElementForStrategyValueItem(ConExpXMLElements.RECALCULATION_POLICY, contextDocument.getContextDocumentModel().
+                getRecalculationPolicy());
     }
 
     static final int MAJOR_VERSION = 1;
@@ -212,7 +219,14 @@ public class ConExpXMLWriter implements DocumentWriter {
         settingElement.addContent(storeHighlightMode(drawing));
         settingElement.addContent(storeGridSizeX(drawing));
         settingElement.addContent(storeGridSizeY(drawing));
+        settingElement.addContent(storeLayout(drawing));
         return settingElement;
+    }
+
+    private static Element storeLayout(LatticeDrawing drawing) {
+        return makeSettingElementForStrategyValueItem(
+                ConExpXMLElements.LATTICE_LAYOUT,
+                drawing.getLayoutStrategyItem());
     }
 
     private static Element storeGridSizeX(LatticeDrawing drawing){
@@ -224,23 +238,36 @@ public class ConExpXMLWriter implements DocumentWriter {
     }
 
     private static Element storeHighlightMode(LatticeDrawing drawing) {
-        return makeSettingElement(ConExpXMLElements.HIGHLIGHT_MODE, drawing.getHighlightModeKey());
+        return makeSettingElementForStrategyValueItem(
+                ConExpXMLElements.HIGHLIGHT_MODE,
+                drawing.getHighlightStrategyItem());
+    }
+
+    private static Element makeSettingElementForStrategyValueItem(
+            String highlightMode, StrategyValueItem highlightStrategyItem) {
+        return makeSettingElement(highlightMode, highlightStrategyItem.getStrategyKey());
     }
 
     private static Element storeEdgeSizeMode(LatticeDrawing drawing) {
-        return makeSettingElement(ConExpXMLElements.EDGE_DISPLAY_MODE, drawing.getEdgeDisplayModeKey());
+        return makeSettingElementForStrategyValueItem(
+                ConExpXMLElements.EDGE_DISPLAY_MODE,
+                drawing.getEdgeSizeCalcStrategyItem());
     }
 
     private static Element storeNodeRadiusMode(LatticeDrawing drawing) {
-        return makeSettingElement(ConExpXMLElements.NODE_RADIUS_MODE, drawing.getNodeRadiusModeKey());
+        return makeSettingElementForStrategyValueItem(
+                ConExpXMLElements.NODE_RADIUS_MODE,
+                drawing.getNodeRadiusStrategyItem());
     }
 
     private static Element storeMaxNodeRadius(LatticeDrawing drawing) {
-        return makeSettingElement(ConExpXMLElements.MAX_NODE_RADIUS, String.valueOf(drawing.getDrawParams().getMaxNodeRadius()));
+        return makeSettingElement(ConExpXMLElements.MAX_NODE_RADIUS,
+                String.valueOf(drawing.getDrawParams().getMaxNodeRadius()));
     }
 
     private static Element storeShowCollision(LatticeDrawing drawing) {
-        return makeSettingElement(ConExpXMLElements.SHOW_COLLISIONS, String.valueOf(drawing.getDrawParams().isShowCollisions()));
+        return makeSettingElement(ConExpXMLElements.SHOW_COLLISIONS,
+                String.valueOf(drawing.getDrawParams().isShowCollisions()));
     }
 
 

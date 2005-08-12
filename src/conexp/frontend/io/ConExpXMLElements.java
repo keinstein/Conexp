@@ -33,6 +33,7 @@ public interface ConExpXMLElements {
     String GRID_SIZE_X="GridSizeX";
     String GRID_SIZE_Y="GridSizeY";
     String SELECTION="Selection";
+    String LATTICE_LAYOUT = "Layout";
 
     String VALUE_ATTRIBUTE = "Value";
     String CONCEPT_FIGURES_ELEMENT = "ConceptFigures";
@@ -70,4 +71,6 @@ public interface ConExpXMLElements {
     String VERSION_ELEMENT = "Version";
     String VERSION_MAJOR_NUMBER_ATTRIBUTE = "MajorNumber";
     String VERSION_MINOR_NUMBER_ATTRIBUTE = "MinorNumber";
+
+    String RECALCULATION_POLICY = "RecalculationPolicy";
 }

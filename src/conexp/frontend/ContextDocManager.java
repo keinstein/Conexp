@@ -57,7 +57,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier
     private DocModifiedHandler docModifiedHandler = new DefaultDocModifiedHandler();
 
     public void setDocModifiedHandler(DocModifiedHandler handler) {
-        assert null != handler;
+        assert null != handler:"handler is expected to be not null";
         this.docModifiedHandler = handler;
     }
 

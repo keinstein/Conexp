@@ -21,6 +21,7 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.figures.EdgeFigure;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
+import conexp.util.gui.strategymodel.StrategyValueItem;
 import util.collection.CollectionFactory;
 
 import java.beans.PropertyChangeEvent;
@@ -49,6 +50,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
         ret.setOptions(getOptions().makeCopy());
         return ret;
     }
+
 
     private class DefaultLayouterProvider implements LayouterProvider {
         public Layouter getLayouter() {
@@ -231,30 +233,24 @@ public class LatticeDrawing extends ConceptSetDrawing {
         return getLabelingStrategiesContext().setObjectLabelingStrategyKey(key);
     }
 
-    public String getNodeRadiusModeKey() {
-        return getDrawStrategiesContext().getFigureDimensionStrategyKey();
-    }
-
-    public boolean setNodeRadiusModeKey(String key) {
-        return getDrawStrategiesContext().setFigureDimensionStrategyKey(key);
+    public StrategyValueItem getNodeRadiusStrategyItem() {
+        return getDrawStrategiesContext().getNodeRadiusStrategyItem();
     }
 
 
-    public String getEdgeDisplayModeKey() {
-        return getDrawStrategiesContext().getEdgeSizeStrategyKey();
-    }
-
-    public boolean setEdgeDisplayModeKey(String key) {
-        return getDrawStrategiesContext().setEdgeSizeStrategyKey(key);
+    public StrategyValueItem getEdgeSizeCalcStrategyItem() {
+        return getDrawStrategiesContext().getEdgeSizeCalcStrategyItem();
     }
 
 
-    public String getHighlightModeKey() {
-        return getDrawStrategiesContext().getHighlightStrategyKey();
+    public StrategyValueItem getHighlightStrategyItem() {
+        return getDrawStrategiesContext().getHighlightStrategyItem();
     }
 
-    public boolean setHighlightModeKey(String key) {
-        return getDrawStrategiesContext().setHighlightStrategyKey(key);
+    public StrategyValueItem getLayoutStrategyItem() {
+        return getPainterOptions().
+                        getLatticePainterDrawStrategyContext().
+                        getLayoutStrategyItem();
     }
 
 

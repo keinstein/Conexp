@@ -58,7 +58,7 @@
     </target>
 
     <target name="compile" depends="init, makebuilddir" description="compile the source">
-        <javac destdir="${build}" debug="on" target="1.4">
+        <javac destdir="${build}" debug="on" source="1.4" verbose="true"> 
             <src>
                 <path location="${src}/${rootPackage}"/>
                 <path location="${src}/${canvasPackage}"/>

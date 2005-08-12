@@ -12,10 +12,7 @@ import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 import conexp.core.tests.SetBuilder;
-import conexp.frontend.ContextDocument;
-import conexp.frontend.DocumentLoader;
-import conexp.frontend.DocumentWriter;
-import conexp.frontend.SetProvidingEntitiesMask;
+import conexp.frontend.*;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.io.ConExpXMLReader;
 import conexp.frontend.io.ConExpXMLWriter;
@@ -23,6 +20,7 @@ import conexp.frontend.latticeeditor.LatticeCanvas;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
+import conexp.util.gui.strategymodel.StrategyValueItem;
 import util.testing.TestUtil;
 
 import java.awt.geom.Point2D;
@@ -254,6 +252,76 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     }
 
 
+    public void testStoringRecalcPolicy(){
+        cxt = SetBuilder.makeContext(new int[][]{{0},
+                                                 {1}});
+        doc = new ContextDocument(cxt);
+        ContextDocumentModel contextDocumentModel = doc.getContextDocumentModel();
+        contextDocumentModel.setRecomputeDependentRecalcPolicy();
+        ContextDocument loadedDoc = writeAndReadContextDoc(doc);
+        assertEquals("Recalculation policy value differs",
+                doc.getContextDocumentModel().getRecalculationPolicy(),
+                loadedDoc.getContextDocumentModel().getRecalculationPolicy());
+    }
+
+    public void testStoringLayoutMode(){
+        cxt = SetBuilder.makeContext(new int[][]{{0},
+                                                 {1}});
+        doc = new ContextDocument(cxt);
+        ContextDocumentModel documentModel = doc.getContextDocumentModel();
+        documentModel.addLatticeComponent();
+        LatticeComponent latticeComponent = documentModel.getLatticeComponent(0);
+        latticeComponent.calculateAndLayoutLattice();
+        LatticeDrawing drawing = latticeComponent.getDrawing();
+        StrategyValueItem layoutStrategyItem = drawing.getPainterOptions().getLatticePainterDrawStrategyContext().getLayoutStrategyItem();
+        assertTrue("Layout was not set",layoutStrategyItem.setValueByKey("FreeseLayout"));
+        ContextDocument loadedDoc = writeAndReadContextDoc(doc);
+        StrategyValueItem loadedLayoutStrategyItem = loadedDoc.getContextDocumentModel().
+                        getLatticeComponent(0).
+                        getDrawing().
+                        getPainterOptions().
+                        getLatticePainterDrawStrategyContext().
+                        getLayoutStrategyItem();
+        assertEquals(layoutStrategyItem.getStrategyKey(),
+                loadedLayoutStrategyItem.getStrategyKey());
+
+    }
+
+
+    public void testStoringEdgeSizeMode(){
+        cxt = SetBuilder.makeContext(new int[][]{{0},
+                                                 {1}});
+        doc = new ContextDocument(cxt);
+        ContextDocumentModel documentModel = doc.getContextDocumentModel();
+        documentModel.addLatticeComponent();
+        LatticeComponent latticeComponent = documentModel.getLatticeComponent(0);
+        latticeComponent.calculateAndLayoutLattice();
+        LatticeDrawing drawing = latticeComponent.getDrawing();
+        assertTrue(drawing.getEdgeSizeCalcStrategyItem().setValueByKey("ObjectFlowEdgeSizeCalcStrategy"));;
+        ContextDocument loadedDoc = writeAndReadContextDoc(doc);
+        LatticeDrawing loadedDrawing = loadedDoc.getContextDocumentModel().
+                getLatticeComponent(0).getDrawing();
+        assertEquals(drawing.getEdgeSizeCalcStrategyItem().getStrategyKey(),
+                loadedDrawing.getEdgeSizeCalcStrategyItem().getStrategyKey());
+
+    }
+
+    public void testStoringWithMultiLabels(){
+        Context cxt = SetBuilder.makeContext(new int[][]{{0,0},
+                                                         {0,0}});
+        doc = new ContextDocument(cxt);
+        doc.calculateAndLayoutLattice();
+        LatticeDrawing drawing = doc.getLatticeComponent(0).getDrawing();
+        drawing.
+                setAttributeLabelingStrategyKey(LabelingStrategiesKeys.
+                ATTRIBS_MULTI_LABELING_STRATEGY_KEY);
+        drawing.setObjectLabelingStrategyKey(
+                LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY);
+
+        ContextDocument loadedDoc = writeAndReadContextDoc(doc);
+
+
+    }
 }
 
 

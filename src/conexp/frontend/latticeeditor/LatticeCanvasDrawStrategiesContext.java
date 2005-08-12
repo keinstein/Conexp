@@ -61,7 +61,7 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
         return (EdgeSizeCalcStrategy) getEdgeSizeCalcStrategyItem().getStrategy();
     }
 
-    synchronized StrategyValueItem getEdgeSizeCalcStrategyItem() {
+    public synchronized StrategyValueItem getEdgeSizeCalcStrategyItem() {
         if (null == edgeSizeCalcStrategy) {
             edgeSizeCalcStrategy = makeStrategyValueItem(EDGE_DRAW_STRATEGY_PROPERTY, factory.makeEdgeSizeStrategiesModel());
         }
@@ -72,7 +72,7 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
         return (HighlightStrategy) getHighlightStrategyItem().getStrategy();
     }
 
-    synchronized StrategyValueItem getHighlightStrategyItem() {
+    public synchronized StrategyValueItem getHighlightStrategyItem() {
         if (null == highlightStrategy) {
             highlightStrategy = makeStrategyValueItem(HIGHLIGHT_STRATEGY_PROPERTY, factory.makeHighlightStrategiesModel());
         }

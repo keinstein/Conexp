@@ -67,7 +67,7 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
         return getLatticePainterDrawStrategyContext();
     }
 
-    protected LatticeCanvasDrawStrategiesContext getLatticePainterDrawStrategyContext() {
+    public LatticeCanvasDrawStrategiesContext getLatticePainterDrawStrategyContext() {
         if (null == drawStrategiesContext) {
             drawStrategiesContext = new LatticeCanvasDrawStrategiesContext(factory, getPropertyChangeSupport());
         }

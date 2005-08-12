@@ -192,6 +192,10 @@ public class ContextDocument implements ActionChainBearer, Document {
         return combo;
     }
 
+    public ContextDocumentModel getContextDocumentModel() {
+        return contextDocumentModel;
+    }
+
     public static abstract class ExtendedViewInfo extends ViewInfo {
         public ExtendedViewInfo(String viewPlace, String viewCaption) {
             super(viewPlace, viewCaption);

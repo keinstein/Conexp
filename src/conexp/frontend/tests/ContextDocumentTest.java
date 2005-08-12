@@ -18,6 +18,7 @@ import conexp.frontend.*;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.latticeeditor.LatticeDrawing;
+import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.ui.ConExpViewManager;
 import junit.framework.Test;
@@ -428,6 +429,33 @@ public class ContextDocumentTest extends TestCase {
         assertFalse(doc.isModified());
         modifier.modifyDoc(doc);
         assertTrue(doc.isModified());
+    }
+
+
+    public void testSnapshotForMultiLabelsObject(){
+        Context cxt = SetBuilder.makeContext(new int[][]{{0,0},
+                                                         {0,0}});
+        doc = new ContextDocument(cxt);
+        doc.calculateAndLayoutLattice();
+        doc.getLatticeComponent(0).getDrawing().
+                setObjectLabelingStrategyKey(LabelingStrategiesKeys.
+                OBJECTS_MULTI_LABELING_STRATEGY_KEY);
+        doc.makeLatticeSnapshot();
+        fail("TODO: reproduce error with labels size");
+    }
+
+    public void testSnapshotForMultiLabelsObjectAttr(){
+        Context cxt = SetBuilder.makeContext(new int[][]{{0,0},
+                                                         {0,0}});
+        doc = new ContextDocument(cxt);
+        doc.calculateAndLayoutLattice();
+        LatticeDrawing drawing = doc.getLatticeComponent(0).getDrawing();
+        drawing.
+                setAttributeLabelingStrategyKey(LabelingStrategiesKeys.
+                ATTRIBS_MULTI_LABELING_STRATEGY_KEY);
+        drawing.setObjectLabelingStrategyKey(
+                LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY);
+        doc.makeLatticeSnapshot();
     }
 
 }

@@ -133,6 +133,7 @@ public class MultiLineTextFigure extends BaseTextFigure {
     protected void calcDimensions() {
         setWidth(Math.max(textWidth + xTextOffset, minimalWidth));
         setHeight(Math.max(textHeight + yTextOffset, minimalHeight));
+        System.out.println(getClass()+"["+getWidth()+"],["+getHeight()+"]");
     }
 
     private TextLine getTextLine(int j) {
@@ -142,10 +143,8 @@ public class MultiLineTextFigure extends BaseTextFigure {
     public void newSize(FontRenderContext fontrendercontext) {
         if (text.length() == 0) {
             setSizeOnEmptyText();
-            return;
         } else {
             changeLayout(fontrendercontext);
-            return;
         }
     }
 

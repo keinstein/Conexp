@@ -8,8 +8,10 @@ package conexp.frontend.tests;
 
 import conexp.core.Context;
 import conexp.core.DependencySet;
+import conexp.core.ContextListener;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.ContextDocumentModel;
+import conexp.util.gui.strategymodel.StrategyValueItem;
 import junit.framework.TestCase;
 
 public class ContextDocumentModelTest extends TestCase {
@@ -89,6 +91,47 @@ public class ContextDocumentModelTest extends TestCase {
         assertTrue(model.getLatticeComponent(0).isEmpty());
         assertFalse(model.getAssociationMiner().isComputed());
         assertFalse(model.getImplicationBaseCalculator().isComputed());
+    }
+
+    public void testSetRecomputeDependentRecalcPolicy(){
+        Context cxt = SetBuilder.makeContext(new int[][]{{1, 0},
+                                                         {0, 1}});
+        ContextDocumentModel model = new ContextDocumentModel(cxt);
+        model.setRecomputeDependentRecalcPolicy();
+        StrategyValueItem recalculationPolicy = model.getRecalculationPolicy();
+        checkRecalcPolicyWasProperlySet(cxt, recalculationPolicy,
+                ContextDocumentModel.RECOMPUTE_DEPENDENT_POLICY_KEY);
+        model.setClearDependentRecalcPolicy();
+        checkRecalcPolicyWasProperlySet(cxt, recalculationPolicy,
+                ContextDocumentModel.CLEAR_DEPENDENT_POLICY_KEY);
+
+    }
+
+    private static void checkRecalcPolicyWasProperlySet(Context cxt,
+                                                        StrategyValueItem recalculationPolicy,
+                                                        String recalcPolicyKey) {
+        assertEquals("Expect policy to change",
+                recalcPolicyKey,
+                recalculationPolicy.getStrategyKey());
+        assertEquals(recalculationPolicy.getValue(),
+                recalculationPolicy.findStrategyByKey(
+                        recalcPolicyKey));
+        assertTrue("The correspondent listener was not set",
+                cxt.hasContextListener(
+                        (ContextListener)recalculationPolicy.getStrategy()));
+    }
+
+    public void testEqualsOnRecalcPolicy(){
+        Context cxt = SetBuilder.makeContext(new int[][]{{1, 0},
+                                                         {0, 1}});
+
+        ContextDocumentModel model = new ContextDocumentModel(cxt);
+
+        ContextDocumentModel.RecomputeDependentRecalcPolicy recomputeDependentRecalcPolicy = model.new RecomputeDependentRecalcPolicy();
+        assertEquals(recomputeDependentRecalcPolicy,
+                 recomputeDependentRecalcPolicy);
+        assertEquals(recomputeDependentRecalcPolicy, model.new RecomputeDependentRecalcPolicy());
+        assertFalse(recomputeDependentRecalcPolicy.equals(model.new ClearDependentRecalcPolicy()));
     }
 
     public void testDependentComponentRecalculationWhenChangingContext(){
