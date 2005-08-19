@@ -24,7 +24,7 @@
           <li>Calculate association rules;</li>
           </ul>
 additionally we have to mention the combo box which allows to select the update mode for the document components that are computed from the formal context (concept lattice, set of implications and association rules). Currently two update modes are supported. Those are \textit{re-computation} of the affected components or \textit{clear} them. The latter mode is recommended when changing the context reasonably. After realisation of those changes the appropriate operations can be reoptained for the new context.
-In the case of many changes the other option would cause a re-computation for every single alteration of the context and may lead to computational expenses if the context is big or dense.<li>
+In the case of many changes the other option would cause a re-computation for every single alteration of the context and may lead to computational expenses if the context is big or dense.</li>
       <li>The \emph{main pane} consists of the following items: </li>
           <ul>
           <li>Document-tree: It displays the structure of the current document and allows to navigate between different views (i.e. context, concept lattice, implications and association rules).</li>
