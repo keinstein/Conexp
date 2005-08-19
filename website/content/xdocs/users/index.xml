@@ -20,7 +20,7 @@
     </section>
     <section>
       <title>What does ConExp do?</title>
-      <p>ConExp provides the following tools:
+      <p>ConExp provides the following tools:</p>
          <itemize>
          <item>context editing,</item>
          <item> building concept lattices from a formal context,</item>
@@ -28,7 +28,7 @@
          <item> finding a base of association rules that are true in formal context and</item>
          <item> performing attribute exploration.</item>
          </itemize>
-         </p>
+         
     </section>
   </body>
 </document>
