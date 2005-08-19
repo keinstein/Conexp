@@ -13,12 +13,6 @@
 
     </section>
     <section>
-      <title>A short history</title>
-      <p>ConExp was first developed as a part of a master thesis under the supervision of Prof. Dr. Tatyana Taran at the National Technical University of Ukraine ``KPI'' in 2000. During the following years, it has been extended several times and now it is an open source project on Sourceforge
-         </p>
-
-    </section>
-    <section>
       <title>What does ConExp do?</title>
       <p>ConExp provides the following tools:</p>
          <ul>
@@ -29,6 +23,12 @@
          <li> performing attribute exploration.</li>
          </ul>
          
+    </section>
+    <section>
+      <title>A short history</title>
+      <p>ConExp was first developed as a part of a master thesis under the supervision of Prof. Dr. Tatyana Taran at the National Technical University of Ukraine ``KPI'' in 2000. During the following years, it has been extended several times and now it is an open source project on Sourceforge
+         </p>
+
     </section>
   </body>
 </document>
