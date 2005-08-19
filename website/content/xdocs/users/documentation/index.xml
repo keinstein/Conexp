@@ -54,16 +54,25 @@ In the case of many changes the other option would cause a re-computation for ev
     <section>
       <title>Working on a context</title>
       <strong>Undo/redo support</strong>
-      <p>
-         </p>
+      <p>ConExp provides undo/redo support for all doings that were performed on the context. One can undo the performed actions by selecting the <em>Undo last action</em> button on context editor's toolbar and redo by pressing the <em>Redo last action</em>  button.</p>
       <strong>Changing size of a context</strong>
-      <p> </p> 
+      <p>For changing the size of context one should use the properties window on the left hand side of the main frame and enter new numbers for objects/attributes as properties in <em>object count/ attribute count</em>. Moreover, it is possible to add new objects (attributes) into the context by pressing the corresponding button <em>Add object</em> or <em>Add attribute</em>  on context editor's toolbar.</p>
+      <p>In order to remove some set of objects/attributes, select them in context editor and then perform <em>Remove object(s)/Remove attribute(s)</em>  action from context editor's context menu.</p> 
       <strong>Compressed view of a context</strong>
-      <p> </p> 
+      <p>Selecting the <em>Compressed</em> option on the context editor's property pane, gives a better overview on the context, especially when it is large. Then the width of context's columns will be set just to fit the size of the cross and one can have a better look at the structure of context.</p> 
       <strong>Visualization of the arrow relations</strong>
-      <p> </p> 
+      <p>To visualise arrow relations change the property  <em>show arrow relation</em>  from <em>don't show</em> to <em>show arrow relation</em>. As we do not want to introduce any theory here, we refer to the book of Ganter and Wille \cite{FCA-Book} for the definition and usage of the arrow relations.</p> 
       <strong>Entering data into the context</strong>
-      <p> </p>  
+      <p><em>Fast editing of contexts</em>: If one needs to input a context of moderate size, one can use the so-called fast context editing.</p>
+ 
+      <p>For this, just use the keys <em>x</em>  and <em>.</em>. A cross or blanc value will be entered accordingly, when staying in an appropriate cell and the cursor will move to the next cell in relation area.</p>
+      <p><em>Transformations on selected areas</em>: After marking an area of cells one can transform the content of the incidence relation between objects and attributes. The following transformations are supported:
+         <ul>
+         <li><em>Fill selection</em>: This fills the selected area of the incidence relation with crosses.</li>
+         <li><em>Clear selection</em>: This option clears the content of the selected area.</li>
+         <li><em>Inverse selection</em>: Here a cross is replaced by a blanc value and vice-versa.</li>
+         </ul>
+All these transformations can be performed by using the appropriate command from context menu.</p>  
     </section>
     
     <section>
