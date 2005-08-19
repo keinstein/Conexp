@@ -45,7 +45,7 @@ In the case of many changes the other option would cause a re-computation for ev
       <li>Object Attribute List *.oal: So far ConExp supports only the import of contexts in this format. Each line contains information on one object starting with the name and followed-up by the possessed attributes. If object obj1 has the attributes attr2 and attr3, the line representing obj1 should look as follows: <em>obj1:attr2;attr3</em>.</li>
       </ul>
       In addition ConExp allows to reopen documents on which you were working before by selecting one of the items in the sub-menu <em>Files - Reopen</em>.
-      </p>
+      </p><p></p>
 
       <strong>Saving a document</strong>
       <p>To save your work, use the menu items <em>Save</em>  and <em>Save as</em>  in the menu <em>Files</em> or select the button <em>Save file</em> on the main toolbar. The recommended storage format is native ConExp format <em>*.cex</em>.</p>
