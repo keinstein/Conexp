@@ -35,6 +35,15 @@ In the case of many changes the other option would cause a re-computation for ev
       </ul>
       <strong>Creating a new document</strong>
       <p>When starting ConExp a new document is created. Alternatively, one can create a new document by pressing the button <em>New context</em> on main toolbar or selecting the menu item <em>New</em> in <em>Files</em> menu. If a user chooses to open a new document, while working with another that contains unsaved changes, he is asked to save it (or to cancel creating the new document) before creating the new document.</p>
+      <strong>Opening existing documents</strong>
+      <p>ConExp allows to work with several different data formats. Currently the following formats are supported:
+      <ul>
+      <li>ConExp native format *.cex: This is an XML-based format. It stores information about the context and the lattice line diagram. In addition to the others it stores the information whether implications and/or association rules were calculated. We recommend to use this format.</li>
+      <li>ConImp context data *.cxt: It is possible to work with contexts, that were created using ConImp \cite{ConImp}. The disadvantage is, only the context can be encoded in this format.</li>
+      <li>Comma Separated Values *.csv: So far ConExp supports only the import of contexts in this format. Actual separator is semicolon (;). It is assumed, that the first line of the file contains attributes names and the first cell is empty. (I.e, if one has a context with attributes attr1 and attr2, then first line will be the following: <em>;attr1;attr2</em>.) Each of the succeeding lines should start with an object name followed by a sequence of 0s and 1s. A cross will appearer in all cells of the imported context, where a 1 has been set.</li>
+      <li>Object Attribute List *.oal: So far ConExp supports only the import of contexts in this format. Each line contains information on one object starting with the name and followed-up by the possessed attributes. If object obj1 has the attributes attr2 and attr3, the line representing obj1 should look as follows: <em>obj1:attr2;attr3</em>.</li>
+      </ul>
+      In addition ConExp allows to reopen documents on which you were working before by selecting one of the items in the sub-menu <em>Files - Reopen</em>.</p>
     </section>
     <section>
       <title>Concept Lattices and handling the line diagram</title>
