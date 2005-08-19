@@ -49,19 +49,51 @@ In the case of many changes the other option would cause a re-computation for ev
 
       <strong>Saving a document</strong>
       <p>To save your work, use the menu items <em>Save</em>  and <em>Save as</em>  in the menu <em>Files</em> or select the button <em>Save file</em> on the main toolbar. The recommended storage format is native ConExp format <em>*.cex</em>.</p>
-
-     <strong>Working on context</strong>
-     <p> </p>
-    </section>
-    <section>
+      <section>
+      <title>Working on a context</title>
+      <strong>Undo/redo support</strong>
+      <p>
+         </p>
+      <strong>Changing size of a context</strong>
+      <p> </p> 
+      <strong>Compressed view of a context</strong>
+      <p> </p> 
+      <strong>Visualization of the arrow relations</strong>
+      <p> </p> 
+      <strong>Entering data into the context</strong>
+      <p> </p>  
+      </section>
+    
+      <section>
       <title>Concept Lattices and handling the line diagram</title>
       <p>
          </p>
-    </section>
-    <section>
+      <strong>Building the concept lattice</strong>
+      <p> </p> 
+      <strong>Interpreting a drawing</strong>
+      <p> </p> 
+      <strong>Visualization modes</strong>
+      <p> </p>
+      <strong>Changing visualization options </strong>
+      <p> </p>
+      <strong>Changing layout of a lattice</strong>
+      <p> </p>
+      <strong>Manually adjustment of a drawing</strong>
+      <p> </p>
+      <strong>Building lattices of subcontexts</strong>
+      <p> </p>
+      </section>
+
+      <section>
       <title>Working with implication bases</title>
       <p>
          </p>
+      <strong>Calculating the Duquenne-Guigues-Basis</strong>
+      <p> </p>
+      <strong>Searching for associations</strong>
+      <p> </p>
+      <strong>Performing an attribute exploration}</strong>
+      <p> </p>
     </section>
   </body>
 </document>
