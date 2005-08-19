@@ -21,13 +21,13 @@
     <section>
       <title>What does ConExp do?</title>
       <p>ConExp provides the following tools:</p>
-         <itemize>
-         <item>context editing,</item>
-         <item> building concept lattices from a formal context,</item>
-         <item> finding a base for implications that are true in formal context,</item>
-         <item> finding a base of association rules that are true in formal context and</item>
-         <item> performing attribute exploration.</item>
-         </itemize>
+         <ul>
+         <li>context editing,</li>
+         <li> building concept lattices from a formal context,</li>
+         <li> finding a base for implications that are true in formal context,</li>
+         <li> finding a base of association rules that are true in formal context and</li>
+         <li> performing attribute exploration.</li>
+         </ul>
          
     </section>
   </body>
