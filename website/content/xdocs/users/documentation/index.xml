@@ -49,7 +49,9 @@ In the case of many changes the other option would cause a re-computation for ev
 
       <strong>Saving a document</strong>
       <p>To save your work, use the menu items <em>Save</em>  and <em>Save as</em>  in the menu <em>Files</em> or select the button <em>Save file</em> on the main toolbar. The recommended storage format is native ConExp format <em>*.cex</em>.</p>
-      <section>
+    </section>
+
+    <section>
       <title>Working on a context</title>
       <strong>Undo/redo support</strong>
       <p>
@@ -62,9 +64,9 @@ In the case of many changes the other option would cause a re-computation for ev
       <p> </p> 
       <strong>Entering data into the context</strong>
       <p> </p>  
-      </section>
+    </section>
     
-      <section>
+    <section>
       <title>Concept Lattices and handling the line diagram</title>
       <p>
          </p>
@@ -82,9 +84,9 @@ In the case of many changes the other option would cause a re-computation for ev
       <p> </p>
       <strong>Building lattices of subcontexts</strong>
       <p> </p>
-      </section>
+    </section>
 
-      <section>
+    <section>
       <title>Working with implication bases</title>
       <p>
          </p>
