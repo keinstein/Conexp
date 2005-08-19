@@ -7,11 +7,9 @@
   <body> 
     <section>
       <title>The theory behind</title>
-      <p>ConExp implements basic ideas needed for the study and research of Formal Concept Analysis (FCA).
-
-Formal Concept Analysis provides the mathematical theory and belonging to algebra it is a branch of lattice theory. Starting point for this development were the early 1980-ies in Darmstadt by members of a group around Rudolf Wille.
-
-ConExp can be used for analysing simple attribute-object-tables (called formal context in FCA), drawing the corresponding concept lattice and to explore different dependencies, that exists between attributes.</p>
+      <p>ConExp implements basic ideas needed for the study and research of Formal Concept Analysis (FCA).</p>
+      <p>Formal Concept Analysis provides the mathematical theory and belonging to algebra it is a branch of lattice theory. Starting point for this development were the early 1980-ies in Darmstadt by members of a group around Rudolf Wille.</p>
+       <p>ConExp can be used for analysing simple attribute-object-tables (called formal context in FCA), drawing the corresponding concept lattice and to explore different dependencies, that exists between attributes.</p>
 
     </section>
     <section>
