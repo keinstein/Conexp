@@ -76,8 +76,8 @@ All these transformations can be performed by using the appropriate command from
       <strong>Operations on contexts</strong>
       <p>Following operations can be performed on contexts:</p> 
       <ul>
+         <li><em>Object clarification</em>: This option brings together all objects in the context having equal sets of attributes. The resulting context shows the first occurrence of those rows only. This operation is executed by the help of the button <em>Clarify objects</em> on the context editor's toolbar.</li>
          
-         <li><em>Attribute clarification<\em>: This is the analogous operation on the attribute set. It is performed after selecting the <em>Clarify attributes</em> button on context editor toolbar.</li>
          <li><em>Object set reduction</em>: Removing all objects from the set of object set that can be obtained as a result of intersection of some other objects is called reduction. In process of performing reduction clarification is also performed. This operation does not change the structure of the concept lattice. Speaking mathematically, the concept lattice of the reduced context is isomorphic to the concept lattice of the original context. This operation is performed by pressing the button <em>Reduce objects</em>  on the context editor's toolbar.</li>
          <li><em>Attribute set reduction</em>: This is the analogous operation on the set of attribute. It is performed after selecting the <em>Reduce attributes</em> button on context editor's toolbar.</li>
          <li><em>Context reduction</em>: Both operations (reduction of the object and attribute set) can be done simultaneously by executing <em>Reduce context</em>  button on context editor's toolbar.</li>
