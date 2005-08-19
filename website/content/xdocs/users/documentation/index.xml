@@ -115,7 +115,7 @@ All these transformations can be performed by using the appropriate command from
       <p>From the Duquenne-Guigues-Basis for implications one can derive all implications valid in a formal context using the Armstrong rules. For calculating this base, one should press the button <em>Calculate Duquenne-Guigues set of implications</em> on the main toolbar. The main advantage of Duquenne-Guigues set of implications is that it has minimal size among all possible sets of implications generating all implications that hold in this context.</p>
 
       <p>Implications appearing in the <em>Implication sets</em>  pane have the following format:</p>
-      <p>No <Number of objects> Premise --> Conclusion,</p>
+      <p>No -Number of objects- Premise -- Conclusion,</p>
 where <em>No</em> simply means the number of implication in list. <em>Number of objects</em> shows, for how many objects this implication holds. <em>Premise</em> and <em>conclusion</em> are usually lists of attribute names occurring in the premise (conclusion). Even the empty set can be a premise. That means, this implication has the empty premise and therefore the conclusion holds for all objects from context.</p>
 
       <p>Implications are displayed by ConExp  in one of the two colours: blue or red. The blue colours indicates that there are objects in context which support this rule. Contrarily, the red colour indicates that there are no objects supporting this implication. Usually such implications show that within the set of objects no element appears having all attributes of the premise. And indeed, such implications include all attributes from context among premise and conclusion. </p>
@@ -125,7 +125,7 @@ where <em>No</em> simply means the number of implication in list. <em>Number of 
       <p>ConExp allows to calculate this base of association rules. To do so, select the button <em>Calculate association rules</em>  on the main toolbar.</p>
 
       <p>The display format of association rules modifies slightly the format for implications. It is:</p>
-      <p>No <Number of objects, for which premise holds> Premise =[Rule confidence] --> <Number of objects, for which premise and conclusion holds> Conclusion </p>
+      <p>No -Number of objects, for which premise holds- Premise =[Rule confidence] -- -Number of objects, for which premise and conclusion holds- Conclusion </p>
 
       <p>In addition to red and blue, as they are used for implications, green indicates the approximate rules. </p>
       <strong>Performing an attribute exploration}</strong>
