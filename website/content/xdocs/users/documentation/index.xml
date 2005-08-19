@@ -110,11 +110,34 @@ All these transformations can be performed by using the appropriate command from
       <p>
          </p>
       <strong>Calculating the Duquenne-Guigues-Basis</strong>
-      <p> </p>
+      <p>The ideas of the following section can be seen as a third approach to the data. Beside the formal context and the lattice diagram one can examine the implications between attributes valid in a context. Again, we ask the user to look up the theory in the recommended literature.</p>
+
+      <p>From the Duquenne-Guigues-Basis for implications one can derive all implications valid in a formal context using the Armstrong rules. For calculating this base, one should press the button <em>Calculate Duquenne-Guigues set of implications</em> on the main toolbar. The main advantage of Duquenne-Guigues set of implications is that it has minimal size among all possible sets of implications generating all implications that hold in this context.</p>
+
+      <p>Implications appearing in the <em>Implication sets</em>  pane have the following format:</p>
+      <p>No <Number of objects> Premise --> Conclusion,</p>
+where <em>No</em> simply means the number of implication in list. <em>Number of objects</em> shows, for how many objects this implication holds. <em>Premise</em> and <em>conclusion</em> are usually lists of attribute names occurring in the premise (conclusion). Even the empty set can be a premise. That means, this implication has the empty premise and therefore the conclusion holds for all objects from context.</p>
+
+      <p>Implications are displayed by ConExp  in one of the two colours: blue or red. The blue colours indicates that there are objects in context which support this rule. Contrarily, the red colour indicates that there are no objects supporting this implication. Usually such implications show that within the set of objects no element appears having all attributes of the premise. And indeed, such implications include all attributes from context among premise and conclusion. </p>
       <strong>Searching for associations</strong>
-      <p> </p>
+      <p>In contrast to implications, we allow non-strict rules for association rules. If the premise of an association rule holds, the conclusion does not necessarily hold for all objects. However, it is true for some stated percentage of all objects covering the premise of rule. The base of association rules consists of two parts. Of course it includes the base of strict rules (Duquenne-Guigues-Basis) and additionally the base of approximate rules (so called Luxenburger base).</p>
+
+      <p>ConExp allows to calculate this base of association rules. To do so, select the button <em>Calculate association rules</em>  on the main toolbar.</p>
+
+      <p>The display format of association rules modifies slightly the format for implications. It is:</p>
+      <p>No <Number of objects, for which premise holds> Premise =[Rule confidence] --> <Number of objects, for which premise and conclusion holds> Conclusion </p>
+
+      <p>In addition to red and blue, as they are used for implications, green indicates the approximate rules. </p>
       <strong>Performing an attribute exploration}</strong>
-      <p> </p>
+      <p>When calculating the implications for some context, it might turn out that those hold for objects from this context only but not in general for all object from a certain domain of interest. In order to overcome this insufficiency, we suggest to start an \emph{attribute exploration} procedure.</p>
+ 
+      <p>Attribute exploration is an interactive procedure. The program provides implications, that are valid in the given context. These can be seen as question about dependencies between different attributes from some fixed set of attributes. The expert confirms, that such a dependency generally holds by answering <em>yes</em>. He rejects this dependency providing a counterexample. If an expert answers correctly on all questions, than at the end of this procedure he receives the set of all implications describing dependencies between different attributes in the domain of interest.</p>
+ 
+      <p>The attribute exploration procedure can either start from an empty context, where only attributes are specified or from a context, where some objects already are described.</p>
+
+      <p>To start this procedure, select the button <em>Start attribute exploration</em> on the main toolbar.</p>
+
+      <p>Then the first implication appears and the user either confirms or rejects it. A third possibility is to stop the attribute exploration procedure. If a user has to reject an implication, a dialogue pane appears and he is asked to provide a counterexample.</p>
     </section>
   </body>
 </document>
