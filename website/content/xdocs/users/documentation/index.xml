@@ -86,10 +86,10 @@ All these transformations can be performed by using the appropriate command from
     
     <section>
       <title>Concept Lattices and handling the line diagram</title>
-      <p>In order to derive the concept lattice from the formal context, use the button <em>Build Lattice</em> on the main toolbar. This might be a time consuming process depending on the complexity of the data. The drawing of the lattice appears as a straight line diagram.</p>
-      <p>Remark: Lattice-layout tools are time consuming. That is why drawings consisting of only one node can appear. After some time the whole structure will follow.</p>
+      <p> </p>
       <strong>Building the concept lattice</strong>
-      <p> </p> 
+      <p>In order to derive the concept lattice from the formal context, use the button <em>Build Lattice</em> on the main toolbar. This might be a time consuming process depending on the complexity of the data. The drawing of the lattice appears as a straight line diagram.</p>
+      <p>Remark: Lattice-layout tools are time consuming. That is why drawings consisting of only one node can appear. After some time the whole structure will follow.</p> 
       <strong>Interpreting a drawing</strong>
       <p> </p> 
       <strong>Visualization modes</strong>
