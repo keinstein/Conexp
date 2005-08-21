@@ -87,17 +87,25 @@ All these transformations can be performed by using the appropriate command from
     
     <section>
       <title>Concept Lattices and handling the line diagram</title>
-      <p>
-         </p>
+      <p>In order to derive the concept lattice from the formal context, use the button <em>Build Lattice</em> on the main toolbar. This might be a time consuming process depending on the complexity of the data. The drawing of the lattice appears as a straight line diagram.</p>
+      <p>Remark: Lattice-layout tools are time consuming. That is why drawings consisting of only one node can appear. After some time the whole structure will follow.</p>
       <strong>Building the concept lattice</strong>
       <p> </p> 
       <strong>Interpreting a drawing</strong>
       <p> </p> 
       <strong>Visualization modes</strong>
-      <p> </p>
+      <p>Basically, there are two visualization modes, that behave differently, when the drawn lattice does not fit into the existing screen estate. Those are:
+      <ul>
+          <li><em>Scrolling mode</em>: If the drawn lattice does not fit into the screen estate, the virtual window is enlarged. The user then can see only some part of the lattice drawing. This mode is activated by default.\\
+          <li><em>Fit to screen mode</em>: Here, the drawn lattice is rescaled in order to fit into the available screen estate. </p>
+      <p>Switching between the two modes can be done by the help of the ``Scale picture to fit into the image''  button on the lattice visualization pane toolbar. Selecting this button toggles between first mode and second and vice versa. </p>
+      <p>The following commands make sense only in scrolling mode:
+      <ul>
+          <li><em>Grab and drag</em>: This command performs panning of the visible area. After pressing this button, the cursor changes to a cross and user can pan the drawing. To switch off this mode, press <em>Grab and Drag</em>  button once more.
+          <li><em>Zoom in, Zoom out, No zoom</em>: These commands perform actions, corresponding to their names.</ul> </p>
       <strong>Changing visualization options </strong>
       <p> </p>
-      <strong>Changing layout of a lattice</strong>
+      <strong>Changing the layout of a lattice</strong>
       <p> </p>
       <strong>Manually adjustment of a drawing</strong>
       <p> </p>

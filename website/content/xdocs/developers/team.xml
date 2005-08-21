@@ -11,7 +11,7 @@
         </section>
         <section>
             <title>Contributors</title>
-<!--            <dl>
+               <dl>
                 <dd>Julian Tane</dd>
                 <dt>Contributed initial code for the reading
                     and writing into comma-separated values (.CSV) and
@@ -25,7 +25,7 @@
                     for computing the Duquenne-Guiguies implication base.</dt>
 		<dd>Heiko Reppe</dd>
 		<dt>Works on documentation and web pages.</dt>
-            </dl>  -->
+            </dl> 
         </section>
 
     </body>
