@@ -61,10 +61,9 @@ In the case of many changes the other option would cause a re-computation for ev
       <strong>Compressed view of a context</strong>
       <p>Selecting the <em>Compressed</em> option on the context editor's property pane, gives a better overview on the context, especially when it is large. Then the width of context's columns will be set just to fit the size of the cross and one can have a better look at the structure of context.</p> 
       <strong>Visualization of the arrow relations</strong>
-      <p>To visualise arrow relations change the property  <em>show arrow relation</em>  from <em>don't show</em> to <em>show arrow relation</em>. As we do not want to introduce any theory here, we refer to the book of Ganter and Wille cite{FCA-Book} for the definition and usage of the arrow relations.</p> 
+      <p>To visualise arrow relations change the property  <em>show arrow relation</em>  from <em>don't show</em> to <em>show arrow relation</em>. As we do not want to introduce any theory here, we refer to the book of Ganter and Wille \cite{FCA-Book} for the definition and usage of the arrow relations.</p> 
       <strong>Entering data into the context</strong>
       <p><em>Fast editing of contexts</em>: If one needs to input a context of moderate size, one can use the so-called fast context editing.</p>
- 
       <p>For this, just use the keys <em>x</em>  and <em>.</em> . A cross or blanc value will be entered accordingly, when staying in an appropriate cell and the cursor will move to the next cell in relation area.</p>
       <p><em>Transformations on selected areas</em>: After marking an area of cells one can transform the content of the incidence relation between objects and attributes. The following transformations are supported:
       <ul>
@@ -149,14 +148,13 @@ All these transformations can be performed by using the appropriate command from
       <p> </p>
       <strong>Manually adjustment of a drawing</strong>
       <p>Unfortunately for now there is no layout algorithm producing good results for all lattices. Therefore, the best way to produce good drawing is to perform the manual adjustment of the lattice, when all algorithms failed.</p>
- 
-      <p>Movements of lattice nodes are constrained in ConExp as far as they maintain a correct parent-child (successor-predecessor) relations between nodes.</p>
-
+       <p>Movements of lattice nodes are constrained in ConExp as far as they maintain a correct parent-child (successor-predecessor) relations between nodes.</p>
       <p>The following tools exists in ConExp in order to support manual adjustment of a lattice:
       <ul>
-      <li><em>Ideal node movement mode</em> - when moving a node, the whole ideal of the node is moved as well. The switch between this mode and one node movement strategy is performed by pressing the <em>Toggle node move mode</em> button.
-      <li><em>Align nodes to grid</em> - performs an alignment of the node coordinates to the invisible grid of size 8 on 8 pixels. 
-      <li><em>Storing images of drawing</em> One of the most frequent uses of ConExp is to produce images of lattice drawings for some future usage. This task can be achieved by creating a good drawing of the lattice and pressing the <em>Save lattice image</em> button on lattice visualization pane toolbar afterwards. Currently the formats <em>gif</em> and<em>jpeg</em> are supported for saving images.</p>
+      <li><em>Ideal node movement mode</em> - when moving a node, the whole ideal of the node is moved as well. The switch between this mode and one node movement strategy is performed by pressing the <em>Toggle node move mode</em> button.</li>
+      <li><em>Align nodes to grid</em> - performs an alignment of the node coordinates to the invisible grid of size 8 on 8 pixels.</li> 
+      <li><em>Storing images of drawing</em> One of the most frequent uses of ConExp is to produce images of lattice drawings for some future usage. This task can be achieved by creating a good drawing of the lattice and pressing the <em>Save lattice image</em> button on lattice visualization pane toolbar afterwards. Currently the formats <em>gif</em> and<em>jpeg</em> are supported for saving images.</li>
+      </ul></p>
       <strong>Building lattices of subcontexts</strong>
       <p> </p>
     </section>
