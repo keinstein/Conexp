@@ -115,7 +115,7 @@ All these transformations can be performed by using the appropriate command from
               <li><em>Show labels</em> - shows object labels below the corresponding concepts;</li>
               <li><em>Show own objects</em> - for concepts, that have some objects attached (has non empty object <em>contingent</em>) show number and percentage of objects, that belong exactly (i.e., their attribute set is equal to intent) to this concept;</li>
               <li><em>Show object count</em> - this shows for every node the exact number (percentage) of objects belonging to the extent of the node's concept;</li>
-              <li><em>Stability} - this shows for every node the minimal number of objects that should be removed from context to wipe out the node from concept lattice.</li>
+              <li><em>Stability</em> - this shows for every node the minimal number of objects that should be removed from context to wipe out the node from concept lattice.</li>
           </ul></li>
           <li><em>Draw node</em> - this option specifies how the radius of a node is calculated. The possiblities are:
           <ul>
@@ -176,8 +176,8 @@ All these transformations can be performed by using the appropriate command from
       <p><em>No -Number of objects, for which premise holds- Premise =[Rule confidence] -- -Number of objects, for which premise and conclusion holds- Conclusion </em></p>
 
       <p>In addition to red and blue, as they are used for implications, green indicates the approximate rules. </p>
-      <strong>Performing an attribute exploration}</strong>
-      <p>When calculating the implications for some context, it might turn out that those hold for objects from this context only but not in general for all object from a certain domain of interest. In order to overcome this insufficiency, we suggest to start an \emph{attribute exploration} procedure.</p>
+      <strong>Performing an attribute exploration</strong>
+      <p>When calculating the implications for some context, it might turn out that those hold for objects from this context only but not in general for all object from a certain domain of interest. In order to overcome this insufficiency, we suggest to start an <em>attribute exploration</em> procedure.</p>
  
       <p>Attribute exploration is an interactive procedure. The program provides implications, that are valid in the given context. These can be seen as question about dependencies between different attributes from some fixed set of attributes. The expert confirms, that such a dependency generally holds by answering <em>yes</em>. He rejects this dependency providing a counterexample. If an expert answers correctly on all questions, than at the end of this procedure he receives the set of all implications describing dependencies between different attributes in the domain of interest.</p>
  
