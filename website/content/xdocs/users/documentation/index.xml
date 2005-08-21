@@ -153,10 +153,12 @@ All these transformations can be performed by using the appropriate command from
       <ul>
       <li><em>Ideal node movement mode</em> - when moving a node, the whole ideal of the node is moved as well. The switch between this mode and one node movement strategy is performed by pressing the <em>Toggle node move mode</em> button.</li>
       <li><em>Align nodes to grid</em> - performs an alignment of the node coordinates to the invisible grid of size 8 on 8 pixels.</li> 
-      <li><em>Storing images of drawing</em> One of the most frequent uses of ConExp is to produce images of lattice drawings for some future usage. This task can be achieved by creating a good drawing of the lattice and pressing the <em>Save lattice image</em> button on lattice visualization pane toolbar afterwards. Currently the formats <em>gif</em> and<em>jpeg</em> are supported for saving images.</li>
+      <li><em>Storing images of drawing</em> One of the most frequent uses of ConExp is to produce images of lattice drawings for some future usage. This task can be achieved by creating a good drawing of the lattice and pressing the <em>Save lattice image</em> button on lattice visualization pane toolbar afterwards. Currently the formats <em>gif</em> and <em>jpeg</em> are supported for saving images.</li>
       </ul></p>
       <strong>Building lattices of subcontexts</strong>
-      <p> </p>
+      <p>ConExp also provides the ability to build lattices corresponding to a subcontext of the original context. This task can be achieved by using the attribute selection and object selection pane on the right hand side of lattice drawing pane. </p>
+      <p>After selecting or deselecting names of objects or attributes the new lattice corresponding to the selected subcontext is build. To include all objects (attributes) into this selection use the <em>Select all objects</em> (<em>Select all attributes</em>) buttons at the bottom of corresponding panes.</p>
+      <p><em>Warning</em>: Building lattice of subcontexts leads to a destruction of all information about previous drawing. Please store the image that you obtained if the outcome is useful or you had some work with it. </p>
     </section>
 
     <section>
