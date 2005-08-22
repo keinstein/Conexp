@@ -91,21 +91,14 @@ All these transformations can be performed by using the appropriate command from
       <p>In order to derive the concept lattice from the formal context, use the button <em>Build Lattice</em> on the main toolbar. This might be a time consuming process depending on the complexity of the data. The drawing of the lattice appears as a straight line diagram.</p>
       <p>Remark: Lattice-layout tools are time consuming. That is why drawings consisting of only one node can appear. After some time the whole structure will follow.</p> 
       <strong>Interpreting a drawing</strong>
-      <p>\CE\ can represent the structure of a finite formal context in form of a concept lattice. This is not only a graph with nodes and edges connecting them, but an ordered structur with a bottom and a top element. </p>
-
+      <p>ConExp can represent the structure of a finite formal context in form of a concept lattice. This is not only a graph with nodes and edges connecting them, but an ordered structur with a bottom and a top element. </p>
       <p>Each node of lattice corresponds to a so called \textbf{formal concept}. This is a pair <em>(O, A)</em>, where <em>O</em> is a subset of the object set, <em>A</em> is a subset of the attribute set and some additional properties are satisfied. </p>
-
       <p>The context contains more information on how objects and attributes should be related. From this we can derive the set containing all attributes common to all objects from the set <em>O</em> and only these attributes. For a formal concept this equal to <em>A</em>. Vice versa <em>O</em> contains all objects from context having all attributes of <em>A</em> among their attributes. The set of objects <em>O</em> is called \textbf{extent} of the formal concept <em>(O, A)</em> and set of attributes <em>A</em> is called \textbf{intent}. For exact definitions we refer again to the book by Ganter and Wille \cite{FCA-Book}.</p>
-
       <p>Hence, the intent of the bottom element contains all attributes of the context and its extent is the set of objects having all attributes. This set can be empty, if no such object has been spezified. Vice versa contains the extent of the top element of the lattice all objects. The intent of this contains of all attributes common to all objects. If no such attibute has been defined, then this set is empty.</p>
-
       <p>For the drawing of the lattice, we use the so called reduced labelling in order to present information about intents and extents of formal context in a concise way. Each node <em>x</em> of the structure represents a formal concept <em>(O,A)</em>. The extent <em>O</em> of this concept can be received collecting all objects attached to nodes reachable by descending paths from this node <em>x</em> to the bottom element of this lattice. </p>
-
       <p>In the opposite direction works the reading of the intent. The intent <em>A</em> of this concept can be received collecting all attributes attached to nodes reachable by ascending paths from this node <em>x</em> to the top element of this lattice.</p>
-
       <p>If a node is marked by a blue filled upper semicircle, then there is an attribute attached to this concept. If a node is marked by a black filled lower semicircle then there is a object attached to this concept. The label of an attributes is always above the node that it is attached to and  within a mouse-coloured box. The label of an object is always underneath the node it is attached to within a white box.</p>
-
-      <p>Sometimes a node or an edge in a line diagrams is displayed by \CE\ in red colour. This means, that the node or edge is placed very close to or even overlapping with some other node. In order to improve the layout, please try manually an adjustment of this layout or use some other layout-tool. </p> 
+      <p>Sometimes a node or an edge in a line diagrams is displayed by ConExp in red colour. This means, that the node or edge is placed very close to or even overlapping with some other node. In order to improve the layout, please try manually an adjustment of this layout or use some other layout-tool. </p> 
       <strong>Visualization modes</strong>
       <p>Basically, there are two visualization modes, that behave differently, when the drawn lattice does not fit into the existing screen estate. Those are:
       <ul>
@@ -159,29 +152,10 @@ All these transformations can be performed by using the appropriate command from
           <li><em>Node radius</em> - this parameter specifies the largest radius used for drawing a concept node.</li>
           </ul> </p>
       <strong>Changing the layout of a lattice</strong>
-      <p>If the initial drawing of the lattice is not very satisfactorily, then it is recommended to use several different layout algorithms in order to get a first impression and an approximation before starting the manual adjustment of the drawing.</p>
-      <p><em>Warning</em>: Performing another layout algorithm destroys the previous drawing. If you do not want to loose work already done, make sure you saved the drawing befor you select another algorithm.</p>
-      <p>The algorithms implemented in \CE\ have various options, that can be access through the </em>Layout options</em> tab in the properties panel. The following layout algorithms are provided:</p>
-      <ul>
-      <li><em>Minimal intersections</em> - this is adapted to lattices version of algorithm for laying out hierarchical graphs. It tries to minimize number of intersections between edges. It has no parameters. Usually this algorithm provides best results, but it is pretty slow for the big lattices.</li>
-      <li><em>Chain decomposition</em> - it is an adapted version of the algorithm of by M.~Skorsky. The outcome are so called \textbf{additive lines diagrams}. It is recommended to use ideal node movement strategy when working with such line diagrams. This algorithm produces very good results for distributive lattices. Here the user can adjust the following options:</li>
-          <ul>
-          <li><em>Representation</em> - changes the kind of representation used for formal concepts when calculating its coordinates. The possibilities are attribute-based or object-based calculation.</li>
-          <li><em>Placement</em> - determines the assignment of values to the set of vectors. One can choose from three values - <em>exponential, straight}</em> or <em>angular</em>.</li>
-          <li><em>Rotate left, Rotate right</em> - performs a permutation on the set of vectors - it is used to select the best, if there are several possibilities.</li>
-          </ul>
-      <p>The following two algorithms belong to a family of so-called <em>force-directed</em>  layout algorithms. They are:</p>
-      <li><em>Freese layout</em> - It is an adaptation of the algorithm of Ralph Freese \cite{FreeseLatDraw} for drawing lattices. This algorithm has the following parameters:</li>
-          <ul>
-          <li><em>Attraction</em> - regulates the attraction force between nodes;</li>
-          <li><em>Repulsion</em> - regulates the repulsion force between nodes;</li>
-          <li><em>Angle</em> - this is not a parameter of the algorithm, but it has a vast influences on the outcome. Freese algorithm performs the layout in 3D space. The angle controls the projection from 3D space into the 2D surface of screen.</li>
-          </ul>
-      <li><em>Force layout</em> - This force directed algorithm differs in the way the forces are calculated from previous one. The parameters of this algorithm are analogous to the parameters of the previous one.</li> 
-      </ul></p>
+      <p></p>
       <strong>Manually adjustment of a drawing</strong>
       <p>Unfortunately for now there is no layout algorithm producing good results for all lattices. Therefore, the best way to produce good drawing is to perform the manual adjustment of the lattice, when all algorithms failed.</p>
-       <p>Movements of lattice nodes are constrained in ConExp as far as they maintain a correct parent-child (successor-predecessor) relations between nodes.</p>
+      <p>Movements of lattice nodes are constrained in ConExp as far as they maintain a correct parent-child (successor-predecessor) relations between nodes.</p>
       <p>The following tools exists in ConExp in order to support manual adjustment of a lattice:</p>
       <ul>
       <li><em>Ideal node movement mode</em> - when moving a node, the whole ideal of the node is moved as well. The switch between this mode and one node movement strategy is performed by pressing the <em>Toggle node move mode</em> button.</li>
