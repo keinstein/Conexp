@@ -153,6 +153,7 @@ All these transformations can be performed by using the appropriate command from
           </ul> </p>
       <strong>Changing the layout of a lattice</strong>
       <p>If the initial drawing of the lattice is not very satisfactorily, then it is recommended to use several different layout algorithms in order to get a first impression and an approximation before starting the manual adjustment of the drawing.</p>
+      <p><em>Warning</em>: Performing another layout algorithm destroys the previous drawing. If you do not want to loose work already done, make sure you saved the drawing before you select another algorithm.</p>
       
       <strong>Manually adjustment of a drawing</strong>
       <p>Unfortunately for now there is no layout algorithm producing good results for all lattices. Therefore, the best way to produce good drawing is to perform the manual adjustment of the lattice, when all algorithms failed.</p>
