@@ -163,7 +163,7 @@ All these transformations can be performed by using the appropriate command from
           <li><em>Placement</em> - determines the assignment of values to the set of vectors. One can choose from three values - <em>exponential, straight}</em> or <em>angular</em>.</li>
           <li><em>Rotate left, Rotate right</em> - performs a permutation on the set of vectors - it is used to select the best, if there are several possibilities.</li>
           </ul>
-      <p>The following two algorithms belong to a family of so-called <em>force-directed</em>  layout algorithms. They are:
+      The following two algorithms belong to a family of so-called <em>force-directed</em>  layout algorithms. They are:
       <li><em>Freese layout</em> - It is an adaptation of the algorithm of Ralph Freese \cite{FreeseLatDraw} for drawing lattices. This algorithm has the following parameters:</li>
           <ul>
           <li><em>Attraction</em> - regulates the attraction force between nodes;</li>
