@@ -21,7 +21,6 @@ See http://xml.apache.org/forrest/linking.html for more info
     <projects label="Projects" href="projects.html" description="Projects using ConExp"/>
     <articles label="Articles and presentations" href="articles.html" description="Articles and presentations about ConExp"/>
     <download label="Download" href="download.html" description="Download ConExp"/>
-    <roadmap label="Roadmap" href="roadmap.html" description="Roadmap of features coming in the next releases of ConExp"/>
      <license label="License" href="license.html" description="Concept Explorer License"/>
       <contact label="Contact" href="contact.html"  description="Contact the ConExp developers" />
     <relatedprojects label="References and related projects" href="relatedprojects.html" description="Other pages and projects, connected with Formal Concept Analysis"/>
@@ -35,6 +34,7 @@ See http://xml.apache.org/forrest/linking.html for more info
   </users>
   <developers label="Developers" href="developers/">
   	<index label="Overview" href="index.html" description="Overview of available information" />
+    <roadmap label="Roadmap" href="roadmap.html" description="Roadmap of features coming in the next releasesof ConExp"/>
 	<team label="Team" href="team.html" description="Members of the ConExp team" />
 	<participate label="Participate!" href="participate.html" description="How to join ConExp development" />
   </developers>
