@@ -178,7 +178,7 @@ All these transformations can be performed by using the appropriate command from
           <li><em>Angle</em> - this is not a parameter of the algorithm, but it has a vast influences on the outcome. Freese algorithm performs the layout in 3D space. The angle controls the projection from 3D space into the 2D surface of screen.</li>
           </ul>
       <li><em>Force layout</em> - This force directed algorithm differs in the way the forces are calculated from previous one. The parameters of this algorithm are analogous to the parameters of the previous one.</li> 
-      </ul>
+      </ul></p>
       <strong>Manually adjustment of a drawing</strong>
       <p>Unfortunately for now there is no layout algorithm producing good results for all lattices. Therefore, the best way to produce good drawing is to perform the manual adjustment of the lattice, when all algorithms failed.</p>
        <p>Movements of lattice nodes are constrained in ConExp as far as they maintain a correct parent-child (successor-predecessor) relations between nodes.</p>
