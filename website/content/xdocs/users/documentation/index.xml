@@ -154,7 +154,24 @@ All these transformations can be performed by using the appropriate command from
       <strong>Changing the layout of a lattice</strong>
       <p>If the initial drawing of the lattice is not very satisfactorily, then it is recommended to use several different layout algorithms in order to get a first impression and an approximation before starting the manual adjustment of the drawing.</p>
       <p><em>Warning</em>: Performing another layout algorithm destroys the previous drawing. If you do not want to loose work already done, make sure you saved the drawing before you select another algorithm.</p>
-      
+      <p>The algorithms implemented in ConExp have various options, that can be access through the <em>Layout options</em> tab in the properties panel. The following layout algorithms are provided:</p>
+      <ul>
+      <li><em>Minimal intersections</em> - this is adapted to lattices version of algorithm for laying out hierarchical graphs. It tries to minimize number of intersections between edges. It has no parameters. Usually this algorithm provides best results, but it is pretty slow for the big lattices.</li>
+      <li><em>Chain decomposition</em> - it is an adapted version of the algorithm of by M.~Skorsky. The outcome are so called \textbf{additive lines diagrams}. It is recommended to use ideal node movement strategy when working with such line diagrams. This algorithm produces very good results for distributive lattices. Here the user can adjust the following options:</li>
+          <ul>
+          <li><em>Representation</em> - changes the kind of representation used for formal concepts when calculating its coordinates. The possibilities are attribute-based or object-based calculation.</li>
+          <li><em>Placement</em> - determines the assignment of values to the set of vectors. One can choose from three values - <em>exponential, straight}</em> or <em>angular</em>.</li>
+          <li><em>Rotate left, Rotate right</em> - performs a permutation on the set of vectors - it is used to select the best, if there are several possibilities.</li>
+          </ul>
+      The following two algorithms belong to a family of so-called <em>force-directed</em>  layout algorithms. They are:
+      <li><em>Freese layout</em> - It is an adaptation of the algorithm of Ralph Freese \cite{FreeseLatDraw} for drawing lattices. This algorithm has the following parameters:</li>
+          <ul>
+          <li><em>Attraction</em> - regulates the attraction force between nodes;</li>
+          <li><em>Repulsion</em> - regulates the repulsion force between nodes;</li>
+          <li><em>Angle</em> - this is not a parameter of the algorithm, but it has a vast influences on the outcome. Freese algorithm performs the layout in 3D space. The angle controls the projection from 3D space into the 2D surface of screen.</li>
+          </ul>
+      <li><em>Force layout</em> - This force directed algorithm differs in the way the forces are calculated from previous one. The parameters of this algorithm are analogous to the parameters of the previous one.</li> 
+      </ul>
       <strong>Manually adjustment of a drawing</strong>
       <p>Unfortunately for now there is no layout algorithm producing good results for all lattices. Therefore, the best way to produce good drawing is to perform the manual adjustment of the lattice, when all algorithms failed.</p>
       <p>Movements of lattice nodes are constrained in ConExp as far as they maintain a correct parent-child (successor-predecessor) relations between nodes.</p>
