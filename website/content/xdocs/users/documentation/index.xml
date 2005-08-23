@@ -9,7 +9,7 @@
          </p>
     <section>
       <title>Working with Concept Explorer</title>
-      <p>The ConExp user interface consists of the following parts:
+      <p>The ConExp user interface consists of the following parts:</p>
       <ul>
       <li>The <em>Menu</em> which is self-explanatory.</li>
       <li>The <em>Main toolbar</em> which contains buttons for global application operation as there are:
@@ -25,19 +25,19 @@
           </ul>
 additionally we have to mention the combo box which allows to select the update mode for the document components that are computed from the formal context (concept lattice, set of implications and association rules). Currently two update modes are supported. Those are <em>re-computation</em> of the affected components or <em>clear</em> them. The latter mode is recommended when changing the context reasonably. After realisation of those changes the appropriate operations can be reoptained for the new context.
 In the case of many changes the other option would cause a re-computation for every single alteration of the context and may lead to computational expenses if the context is big or dense.</li>
-      <li>The <em>main pane</em> consists of the following items: </li>
+      <li>The <em>main pane</em> consists of the following items: 
           <ul>
           <li><em>Document-tree</em>: It displays the structure of the current document and allows to navigate between different views (i.e. context, concept lattice, implications and association rules).</li>
           <li><em>Option-pane</em>: It allows to edit different options corresponding to the actual view.</li>
           <li><em>View-pane</em>: It contains the display for the current view. There is a toolbar with specific operations for each view.</li>
           </ul>
+      </li>
       <li>Statusbar</li>
       </ul>
-      </p>
       <strong>Creating a new document</strong>
       <p>When starting ConExp a new document is created. Alternatively, one can create a new document by pressing the button <em>New context</em> on main toolbar or selecting the menu item <em>New</em> in <em>Files</em> menu. If a user chooses to open a new document, while working with another that contains unsaved changes, he is asked to save it (or to cancel creating the new document) before creating the new document.</p>
       <strong>Opening existing documents</strong>
-      <p>ConExp allows to work with several different data formats. Currently the following formats are supported:
+      <p>ConExp allows to work with several different data formats. Currently the following formats are supported:</p>
       <ul>
       <li>ConExp native format *.cex: This is an XML-based format. It stores information about the context and the lattice line diagram. In addition to the others it stores the information whether implications and/or association rules were calculated. We recommend to use this format.</li>
       <li>ConImp context data *.cxt: It is possible to work with contexts, that were created using <em>ConImp</em>. The disadvantage is, only the context can be encoded in this format.</li>
@@ -45,7 +45,6 @@ In the case of many changes the other option would cause a re-computation for ev
       <li>Object Attribute List *.oal: So far ConExp supports only the import of contexts in this format. Each line contains information on one object starting with the name and followed-up by the possessed attributes. If object obj1 has the attributes attr2 and attr3, the line representing obj1 should look as follows: <em>obj1:attr2;attr3</em>.</li>
       </ul>
       In addition ConExp allows to reopen documents on which you were working before by selecting one of the items in the sub-menu <em>Files - Reopen</em>.
-      </p><p></p>
 
       <strong>Saving a document</strong>
       <p>To save your work, use the menu items <em>Save</em>  and <em>Save as</em>  in the menu <em>Files</em> or select the button <em>Save file</em> on the main toolbar. The recommended storage format is native ConExp format <em>*.cex</em>.</p>
