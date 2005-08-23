@@ -2,14 +2,16 @@
 <!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
 <document> 
   <header> 
-    <title>ConExp Template Page</title> 
+    <title>Participate</title> 
   </header> 
   <body> 
     <section>
-      <title>ConExp Template</title>
-      <p>We are currently working on creating a website for ConExp. For
-      now, please check the <link href="ext:project-page">Project Page</link> or go directly
-      to the <link href="ext:download-page">Download Page</link>.</p>
+      <title>Questions or remarks?</title>
+      <p>We are looking forward to your feedback on this software. The best way to do so and for asking questions about ConExp  is the Conexp user's mailing list: </p>
+    </section>
+    <section>
+      <title>Spring into action!</title>
+      <p>If you would like to join our team do not hesitate to tell us, you are welcome.</p>
     </section>
   </body>
 </document>
