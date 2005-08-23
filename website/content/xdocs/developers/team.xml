@@ -11,21 +11,18 @@
         </section>
         <section>
             <title>Contributors</title>
-               <dl>
-                <dd>Julian Tane</dd>
-                <dt>Contributed initial code for the reading
-                    and writing into comma-separated values (.CSV) and
-                    object-attribute list(.OAL) formats.</dt>
-                <dd>Tim B. Kaiser</dd>
-                <dt>Asked for the object selection mask in
-                    line diagram view and implemented this functionality.</dt>
-                <dd>Dr. Sergei Objedkov</dd>
-                <dt>One of authors and the developer of ConExp version of
-                    the incremental attribute addition algorithm
-                    for computing the Duquenne-Guiguies implication base.</dt>
-		<dd>Heiko Reppe</dd>
-		<dt>Works on documentation and web pages.</dt>
-            </dl> 
+               <ul>
+                <li>Julian Tane
+                <p>Contributed initial code for the reading and writing into comma-separated values (.CSV) and object-attribute list(.OAL) formats.</p></li>
+                <li>Tim B. Kaiser
+                <p>Asked for the object selection mask in line diagram view and implemented this functionality.</p></li>
+                <li>Dr. Sergei Objedkov
+                <p>One of authors and the developer of ConExp version of the incremental attribute addition algorithm for computing the Duquenne-Guiguies implication base.</p></li>
+                <li>Joachim Hereth Correia</dd>
+		<p>Designed and built the ConExp web pages.</p></li>
+		<li>Heiko Reppe</dd>
+		<p>Works on documentation and web pages.</p></li>
+            </ul> 
         </section>
 
     </body>
