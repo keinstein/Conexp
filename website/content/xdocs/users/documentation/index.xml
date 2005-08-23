@@ -25,18 +25,18 @@
           </ul>
 additionally we have to mention the combo box which allows to select the update mode for the document components that are computed from the formal context (concept lattice, set of implications and association rules). Currently two update modes are supported. Those are <em>re-computation</em> of the affected components or <em>clear</em> them. The latter mode is recommended when changing the context reasonably. After realisation of those changes the appropriate operations can be reoptained for the new context.
 In the case of many changes the other option would cause a re-computation for every single alteration of the context and may lead to computational expenses if the context is big or dense.</li>
-      <li>The <em>main pane</em> consists of the following items: 
+      <li>The <em>main pane</em> consists of the following items: </li>
           <ul>
           <li><em>Document-tree</em>: It displays the structure of the current document and allows to navigate between different views (i.e. context, concept lattice, implications and association rules).</li>
           <li><em>Option-pane</em>: It allows to edit different options corresponding to the actual view.</li>
           <li><em>View-pane</em>: It contains the display for the current view. There is a toolbar with specific operations for each view.</li>
           </ul>
-      </li>
       <li>Statusbar</li>
       </ul>
-      <strong>Creating a new document</strong>
+      <section>
+      <title>Creating a new document</title>
       <p>When starting ConExp a new document is created. Alternatively, one can create a new document by pressing the button <em>New context</em> on main toolbar or selecting the menu item <em>New</em> in <em>Files</em> menu. If a user chooses to open a new document, while working with another that contains unsaved changes, he is asked to save it (or to cancel creating the new document) before creating the new document.</p>
-      <strong>Opening existing documents</strong>
+      </section><section><title>Opening existing documents</title>
       <p>ConExp allows to work with several different data formats. Currently the following formats are supported:</p>
       <ul>
       <li>ConExp native format *.cex: This is an XML-based format. It stores information about the context and the lattice line diagram. In addition to the others it stores the information whether implications and/or association rules were calculated. We recommend to use this format.</li>
@@ -44,34 +44,35 @@ In the case of many changes the other option would cause a re-computation for ev
       <li>Comma Separated Values *.csv: So far ConExp supports only the import of contexts in this format. Actual separator is semicolon (;). It is assumed, that the first line of the file contains attributes names and the first cell is empty. (I.e, if one has a context with attributes attr1 and attr2, then first line will be the following: <em>;attr1;attr2</em>.) Each of the succeeding lines should start with an object name followed by a sequence of 0s and 1s. A cross will appearer in all cells of the imported context, where a 1 has been set.</li>
       <li>Object Attribute List *.oal: So far ConExp supports only the import of contexts in this format. Each line contains information on one object starting with the name and followed-up by the possessed attributes. If object obj1 has the attributes attr2 and attr3, the line representing obj1 should look as follows: <em>obj1:attr2;attr3</em>.</li>
       </ul>
-      In addition ConExp allows to reopen documents on which you were working before by selecting one of the items in the sub-menu <em>Files - Reopen</em>.
+      <p>In addition ConExp allows to reopen documents on which you were working before by selecting one of the items in the sub-menu <em>Files - Reopen</em>.</p>
+      </section>
 
-      <strong>Saving a document</strong>
+      <section><title>Saving a document</title>
       <p>To save your work, use the menu items <em>Save</em>  and <em>Save as</em>  in the menu <em>Files</em> or select the button <em>Save file</em> on the main toolbar. The recommended storage format is native ConExp format <em>*.cex</em>.</p>
     </section>
-
+    </section>
     <section>
       <title>Working on a context</title>
-      <strong>Undo/redo support</strong>
+      <section><title>Undo/redo support</title>
       <p>ConExp provides undo/redo support for all doings that were performed on the context. One can undo the performed actions by selecting the <em>Undo last action</em> button on context editor's toolbar and redo by pressing the <em>Redo last action</em>  button.</p>
-      <strong>Changing size of a context</strong>
+      </section><section><title>Changing size of a context</title>
       <p>For changing the size of context one should use the properties window on the left hand side of the main frame and enter new numbers for objects/attributes as properties in <em>object count/ attribute count</em>. Moreover, it is possible to add new objects (attributes) into the context by pressing the corresponding button <em>Add object</em> or <em>Add attribute</em>  on context editor's toolbar.</p>
       <p>In order to remove some set of objects/attributes, select them in context editor and then perform <em>Remove object(s)/Remove attribute(s)</em>  action from context editor's context menu.</p> 
-      <strong>Compressed view of a context</strong>
+      </section><section><title>Compressed view of a context</title>
       <p>Selecting the <em>Compressed</em> option on the context editor's property pane, gives a better overview on the context, especially when it is large. Then the width of context's columns will be set just to fit the size of the cross and one can have a better look at the structure of context.</p> 
-      <strong>Visualization of the arrow relations</strong>
+      </section><section><title>Visualization of the arrow relations</title>
       <p>To visualise arrow relations change the property  <em>show arrow relation</em>  from <em>don't show</em> to <em>show arrow relation</em>. As we do not want to introduce any theory here, we refer to the book of Ganter and Wille \cite{FCA-Book} for the definition and usage of the arrow relations.</p> 
-      <strong>Entering data into the context</strong>
+      </section><section><title>Entering data into the context</title>
       <p><em>Fast editing of contexts</em>: If one needs to input a context of moderate size, one can use the so-called fast context editing.</p>
       <p>For this, just use the keys <em>x</em>  and <em>.</em> . A cross or blanc value will be entered accordingly, when staying in an appropriate cell and the cursor will move to the next cell in relation area.</p>
-      <p><em>Transformations on selected areas</em>: After marking an area of cells one can transform the content of the incidence relation between objects and attributes. The following transformations are supported:
+      <p><em>Transformations on selected areas</em>: After marking an area of cells one can transform the content of the incidence relation between objects and attributes. The following transformations are supported:</p> 
       <ul>
          <li><em>Fill selection</em>: This fills the selected area of the incidence relation with crosses.</li>
          <li><em>Clear selection</em>: This option clears the content of the selected area.</li>
          <li><em>Inverse selection</em>: Here a cross is replaced by a blanc value and vice-versa.</li>
       </ul>
-All these transformations can be performed by using the appropriate command from context menu.</p> <p></p>
-      <strong>Operations on contexts</strong>
+<p>All these transformations can be performed by using the appropriate command from context menu.</p>
+      </section><section><title>Operations on contexts</title>
       <p>Following operations can be performed on contexts:</p> 
       <ul>
          <li><em>Object clarification</em>: This option brings together all objects in the context having equal sets of attributes. The resulting context shows the first occurrence of those rows only. This operation is executed by the help of the button <em>Clarify objects</em> on the context editor's toolbar.</li>
@@ -82,14 +83,15 @@ All these transformations can be performed by using the appropriate command from
          <li><em>Transposition</em>: Exchanging the role of objects and attribute set together with the corresponding changes of the relation between them, can be performed by selecting the <em>Transpose context</em>  button on context editor's toolbar. </li>
        </ul>
     </section>
-    
+    </section>
+
     <section>
       <title>Concept Lattices and handling the line diagram</title>
       <p> </p>
-      <strong>Building the concept lattice</strong>
+      <section><title>Building the concept lattice</title>
       <p>In order to derive the concept lattice from the formal context, use the button <em>Build Lattice</em> on the main toolbar. This might be a time consuming process depending on the complexity of the data. The drawing of the lattice appears as a straight line diagram.</p>
       <p>Remark: Lattice-layout tools are time consuming. That is why drawings consisting of only one node can appear. After some time the whole structure will follow.</p> 
-      <strong>Interpreting a drawing</strong>
+      </section><section><title>Interpreting a drawing</title>
       <p>ConExp can represent the structure of a finite formal context in form of a concept lattice. This is not only a graph with nodes and edges connecting them, but an ordered structur with a bottom and a top element. </p>
       <p>Each node of lattice corresponds to a so called \textbf{formal concept}. This is a pair <em>(O, A)</em>, where <em>O</em> is a subset of the object set, <em>A</em> is a subset of the attribute set and some additional properties are satisfied. </p>
       <p>The context contains more information on how objects and attributes should be related. From this we can derive the set containing all attributes common to all objects from the set <em>O</em> and only these attributes. For a formal concept this equal to <em>A</em>. Vice versa <em>O</em> contains all objects from context having all attributes of <em>A</em> among their attributes. The set of objects <em>O</em> is called \textbf{extent} of the formal concept <em>(O, A)</em> and set of attributes <em>A</em> is called \textbf{intent}. For exact definitions we refer again to the book by Ganter and Wille \cite{FCA-Book}.</p>
@@ -98,20 +100,20 @@ All these transformations can be performed by using the appropriate command from
       <p>In the opposite direction works the reading of the intent. The intent <em>A</em> of this concept can be received collecting all attributes attached to nodes reachable by ascending paths from this node <em>x</em> to the top element of this lattice.</p>
       <p>If a node is marked by a blue filled upper semicircle, then there is an attribute attached to this concept. If a node is marked by a black filled lower semicircle then there is a object attached to this concept. The label of an attributes is always above the node that it is attached to and  within a mouse-coloured box. The label of an object is always underneath the node it is attached to within a white box.</p>
       <p>Sometimes a node or an edge in a line diagrams is displayed by ConExp in red colour. This means, that the node or edge is placed very close to or even overlapping with some other node. In order to improve the layout, please try manually an adjustment of this layout or use some other layout-tool. </p> 
-      <strong>Visualization modes</strong>
-      <p>Basically, there are two visualization modes, that behave differently, when the drawn lattice does not fit into the existing screen estate. Those are:
+      </section><section><title>Visualization modes</title>
+      <p>Basically, there are two visualization modes, that behave differently, when the drawn lattice does not fit into the existing screen estate. Those are:</p>
       <ul>
           <li><em>Scrolling mode</em>: If the drawn lattice does not fit into the screen estate, the virtual window is enlarged. The user then can see only some part of the lattice drawing. This mode is activated by default.</li>
           <li><em>Fit to screen mode</em>: Here, the drawn lattice is rescaled in order to fit into the available screen estate.</li>
-      </ul></p>
+      </ul>
       <p>Switching between the two modes can be done by the help of the ``Scale picture to fit into the image''  button on the lattice visualization pane toolbar. Selecting this button toggles between first mode and second and vice versa. </p>
-      <p>The following commands make sense only in scrolling mode:
+      <p>The following commands make sense only in scrolling mode:</p>
       <ul>
           <li><em>Grab and drag</em>: This command performs panning of the visible area. After pressing this button, the cursor changes to a cross and user can pan the drawing. To switch off this mode, press <em>Grab and Drag</em>  button once more.</li>
           <li><em>Zoom in, Zoom out, No zoom</em>: These commands perform actions, corresponding to their names.</li>
-      </ul></p>
-      <strong>Changing visualization options </strong>
-      <p>The following visualization options can be adjusted via <em>drawing options</em> properties pane on left part of the screen:
+      </ul>
+      </section><section><title>Changing visualization options </title>
+      <p>The following visualization options can be adjusted via <em>drawing options</em> properties pane on left part of the screen:</p>
       <ul>
           <li><em>Attribs</em>: Here the user can change to <em>Show labels</em>, hence the diagram shows attribute's label at corresponding concept. (See also the preceding remark about reduced labelling.)</li>
           <li><em>Objects</em>: This is the lower label visualization mode. Here the user is given more possibilities to choose from:
@@ -149,11 +151,11 @@ All these transformations can be performed by using the appropriate command from
           <li><em>Grid size x</em> - specifies the preferred distance between different nodes on one level of drawing by means of the x coordinate. It is used as a parameter for the lattice layout and changing this value leads to a rescaling of the coordinates of all nodes.</li>
           <li><em>Grid size y</em> - specifies the preferred distance between nodes on adjacent levels of drawing by means of the y coordinate. Again, it is used as a parameter for the lattice layout and changing this value leads to a rescaling of the coordinates of all nodes.</li>
           <li><em>Node radius</em> - this parameter specifies the largest radius used for drawing a concept node.</li>
-          </ul> </p>
-      <strong>Changing the layout of a lattice</strong>
+          </ul>
+      </section><section><title>Changing the layout of a lattice</title>
       <p>If the initial drawing of the lattice is not very satisfactorily, then it is recommended to use several different layout algorithms in order to get a first impression and an approximation before starting the manual adjustment of the drawing.</p>
       <p><em>Warning</em>: Performing another layout algorithm destroys the previous drawing. If you do not want to loose work already done, make sure you saved the drawing before you select another algorithm.</p>
-      <p>The algorithms implemented in ConExp have various options, that can be access through the <em>Layout options</em> tab in the properties panel. The following layout algorithms are provided:
+      <p>The algorithms implemented in ConExp have various options, that can be access through the <em>Layout options</em> tab in the properties panel. The following layout algorithms are provided:</p>
       <ul>
       <li><em>Minimal intersections</em> - this is adapted to lattices version of algorithm for laying out hierarchical graphs. It tries to minimize number of intersections between edges. It has no parameters. Usually this algorithm provides best results, but it is pretty slow for the big lattices.</li>
       <li><em>Chain decomposition</em> - it is an adapted version of the algorithm of by M.~Skorsky. The outcome are so called \textbf{additive lines diagrams}. It is recommended to use ideal node movement strategy when working with such line diagrams. This algorithm produces very good results for distributive lattices. Here the user can adjust the following options:</li>
@@ -162,8 +164,8 @@ All these transformations can be performed by using the appropriate command from
           <li><em>Placement</em> - determines the assignment of values to the set of vectors. One can choose from three values - <em>exponential, straight}</em> or <em>angular</em>.</li>
           <li><em>Rotate left, Rotate right</em> - performs a permutation on the set of vectors - it is used to select the best, if there are several possibilities.</li>
           </ul>
-      </ul></p>
-      <p>The following two algorithms belong to a family of so-called <em>force-directed</em>  layout algorithms. They are:
+      </ul>
+      <p>The following two algorithms belong to a family of so-called <em>force-directed</em>  layout algorithms. They are:</p>
       <ul>
       <li><em>Freese layout</em> - It is an adaptation of the algorithm of Ralph Freese \cite{FreeseLatDraw} for drawing lattices. This algorithm has the following parameters:</li>
           <ul>
@@ -172,8 +174,8 @@ All these transformations can be performed by using the appropriate command from
           <li><em>Angle</em> - this is not a parameter of the algorithm, but it has a vast influences on the outcome. Freese algorithm performs the layout in 3D space. The angle controls the projection from 3D space into the 2D surface of screen.</li>
           </ul>
       <li><em>Force layout</em> - This force directed algorithm differs in the way the forces are calculated from previous one. The parameters of this algorithm are analogous to the parameters of the previous one.</li> 
-      </ul></p>
-      <strong>Manually adjustment of a drawing</strong>
+      </ul>
+      </section><section><title>Manually adjustment of a drawing</title>
       <p>Unfortunately for now there is no layout algorithm producing good results for all lattices. Therefore, the best way to produce good drawing is to perform the manual adjustment of the lattice, when all algorithms failed.</p>
       <p>Movements of lattice nodes are constrained in ConExp as far as they maintain a correct parent-child (successor-predecessor) relations between nodes.</p>
       <p>The following tools exists in ConExp in order to support manual adjustment of a lattice:</p>
@@ -182,17 +184,17 @@ All these transformations can be performed by using the appropriate command from
       <li><em>Align nodes to grid</em> - performs an alignment of the node coordinates to the invisible grid of size 8 on 8 pixels.</li> 
       <li><em>Storing images of drawing</em> One of the most frequent uses of ConExp is to produce images of lattice drawings for some future usage. This task can be achieved by creating a good drawing of the lattice and pressing the <em>Save lattice image</em> button on lattice visualization pane toolbar afterwards. Currently the formats <em>gif</em> and <em>jpeg</em> are supported for saving images.</li>
       </ul>
-      <strong>Building lattices of subcontexts</strong>
+      </section><section><title>Building lattices of subcontexts</title>
       <p>ConExp also provides the ability to build lattices corresponding to a subcontext of the original context. This task can be achieved by using the attribute selection and object selection pane on the right hand side of lattice drawing pane. </p>
       <p>After selecting or deselecting names of objects or attributes the new lattice corresponding to the selected subcontext is build. To include all objects (attributes) into this selection use the <em>Select all objects</em> (<em>Select all attributes</em>) buttons at the bottom of corresponding panes.</p>
       <p><em>Warning</em>: Building lattice of subcontexts leads to a destruction of all information about previous drawing. Please store the image that you obtained if the outcome is useful or you had some work with it. </p>
     </section>
-
+    </section>
     <section>
       <title>Working with implication bases</title>
       <p>
          </p>
-      <strong>Calculating the Duquenne-Guigues-Basis</strong>
+      <section><title>Calculating the Duquenne-Guigues-Basis</title>
       <p>The ideas of the following section can be seen as a third approach to the data. Beside the formal context and the lattice diagram one can examine the implications between attributes valid in a context. Again, we ask the user to look up the theory in the recommended literature.</p>
 
       <p>From the Duquenne-Guigues-Basis for implications one can derive all implications valid in a formal context using the Armstrong rules. For calculating this base, one should press the button <em>Calculate Duquenne-Guigues set of implications</em> on the main toolbar. The main advantage of Duquenne-Guigues set of implications is that it has minimal size among all possible sets of implications generating all implications that hold in this context.</p>
@@ -202,7 +204,7 @@ All these transformations can be performed by using the appropriate command from
       <p>where <em>No</em> simply means the number of implication in list. <em>Number of objects</em> shows, for how many objects this implication holds. <em>Premise</em> and <em>conclusion</em> are usually lists of attribute names occurring in the premise (conclusion). Even the empty set can be a premise. That means, this implication has the empty premise and therefore the conclusion holds for all objects from context.</p>
 
       <p>Implications are displayed by ConExp  in one of the two colours: blue or red. The blue colours indicates that there are objects in context which support this rule. Contrarily, the red colour indicates that there are no objects supporting this implication. Usually such implications show that within the set of objects no element appears having all attributes of the premise. And indeed, such implications include all attributes from context among premise and conclusion. </p>
-      <strong>Searching for associations</strong>
+      </section><section><title>Searching for associations</title>
       <p>In contrast to implications, we allow non-strict rules for association rules. If the premise of an association rule holds, the conclusion does not necessarily hold for all objects. However, it is true for some stated percentage of all objects covering the premise of rule. The base of association rules consists of two parts. Of course it includes the base of strict rules (Duquenne-Guigues-Basis) and additionally the base of approximate rules (so called Luxenburger base).</p>
 
       <p>ConExp allows to calculate this base of association rules. To do so, select the button <em>Calculate association rules</em>  on the main toolbar.</p>
@@ -211,7 +213,7 @@ All these transformations can be performed by using the appropriate command from
       <p><em>No -Number of objects, for which premise holds- Premise =[Rule confidence] -- -Number of objects, for which premise and conclusion holds- Conclusion </em></p>
 
       <p>In addition to red and blue, as they are used for implications, green indicates the approximate rules. </p>
-      <strong>Performing an attribute exploration</strong>
+      </section><section><title>Performing an attribute exploration</title>
       <p>When calculating the implications for some context, it might turn out that those hold for objects from this context only but not in general for all object from a certain domain of interest. In order to overcome this insufficiency, we suggest to start an <em>attribute exploration</em> procedure.</p>
  
       <p>Attribute exploration is an interactive procedure. The program provides implications, that are valid in the given context. These can be seen as question about dependencies between different attributes from some fixed set of attributes. The expert confirms, that such a dependency generally holds by answering <em>yes</em>. He rejects this dependency providing a counterexample. If an expert answers correctly on all questions, than at the end of this procedure he receives the set of all implications describing dependencies between different attributes in the domain of interest.</p>
@@ -222,5 +224,6 @@ All these transformations can be performed by using the appropriate command from
 
       <p>Then the first implication appears and the user either confirms or rejects it. A third possibility is to stop the attribute exploration procedure. If a user has to reject an implication, a dialogue pane appears and he is asked to provide a counterexample.</p>
     </section>
+   </section>
   </body>
 </document>
