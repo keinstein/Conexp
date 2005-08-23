@@ -55,10 +55,12 @@ In the case of many changes the other option would cause a re-computation for ev
       <title>Working on a context</title>
       <section><title>Undo/redo support</title>
       <p>ConExp provides undo/redo support for all doings that were performed on the context. One can undo the performed actions by selecting the <em>Undo last action</em> button on context editor's toolbar and redo by pressing the <em>Redo last action</em>  button.</p>
-      </section><section><title>Changing size of a context</title>
+      </section>
+      <section><title>Changing size of a context</title>
       <p>For changing the size of context one should use the properties window on the left hand side of the main frame and enter new numbers for objects/attributes as properties in <em>object count/ attribute count</em>. Moreover, it is possible to add new objects (attributes) into the context by pressing the corresponding button <em>Add object</em> or <em>Add attribute</em>  on context editor's toolbar.</p>
       <p>In order to remove some set of objects/attributes, select them in context editor and then perform <em>Remove object(s)/Remove attribute(s)</em>  action from context editor's context menu.</p> 
-      </section><section><title>Compressed view of a context</title>
+      </section>
+      <section><title>Compressed view of a context</title>
       <p>Selecting the <em>Compressed</em> option on the context editor's property pane, gives a better overview on the context, especially when it is large. Then the width of context's columns will be set just to fit the size of the cross and one can have a better look at the structure of context.</p> 
       </section><section><title>Visualization of the arrow relations</title>
       <p>To visualise arrow relations change the property  <em>show arrow relation</em>  from <em>don't show</em> to <em>show arrow relation</em>. As we do not want to introduce any theory here, we refer to the book of Ganter and Wille \cite{FCA-Book} for the definition and usage of the arrow relations.</p> 
@@ -72,7 +74,8 @@ In the case of many changes the other option would cause a re-computation for ev
          <li><em>Inverse selection</em>: Here a cross is replaced by a blanc value and vice-versa.</li>
       </ul>
 <p>All these transformations can be performed by using the appropriate command from context menu.</p>
-      </section><section><title>Operations on contexts</title>
+      </section>
+      <section><title>Operations on contexts</title>
       <p>Following operations can be performed on contexts:</p> 
       <ul>
          <li><em>Object clarification</em>: This option brings together all objects in the context having equal sets of attributes. The resulting context shows the first occurrence of those rows only. This operation is executed by the help of the button <em>Clarify objects</em> on the context editor's toolbar.</li>
@@ -91,7 +94,8 @@ In the case of many changes the other option would cause a re-computation for ev
       <section><title>Building the concept lattice</title>
       <p>In order to derive the concept lattice from the formal context, use the button <em>Build Lattice</em> on the main toolbar. This might be a time consuming process depending on the complexity of the data. The drawing of the lattice appears as a straight line diagram.</p>
       <p>Remark: Lattice-layout tools are time consuming. That is why drawings consisting of only one node can appear. After some time the whole structure will follow.</p> 
-      </section><section><title>Interpreting a drawing</title>
+      </section>
+      <section><title>Interpreting a drawing</title>
       <p>ConExp can represent the structure of a finite formal context in form of a concept lattice. This is not only a graph with nodes and edges connecting them, but an ordered structur with a bottom and a top element. </p>
       <p>Each node of lattice corresponds to a so called \textbf{formal concept}. This is a pair <em>(O, A)</em>, where <em>O</em> is a subset of the object set, <em>A</em> is a subset of the attribute set and some additional properties are satisfied. </p>
       <p>The context contains more information on how objects and attributes should be related. From this we can derive the set containing all attributes common to all objects from the set <em>O</em> and only these attributes. For a formal concept this equal to <em>A</em>. Vice versa <em>O</em> contains all objects from context having all attributes of <em>A</em> among their attributes. The set of objects <em>O</em> is called \textbf{extent} of the formal concept <em>(O, A)</em> and set of attributes <em>A</em> is called \textbf{intent}. For exact definitions we refer again to the book by Ganter and Wille \cite{FCA-Book}.</p>
@@ -152,7 +156,8 @@ In the case of many changes the other option would cause a re-computation for ev
           <li><em>Grid size y</em> - specifies the preferred distance between nodes on adjacent levels of drawing by means of the y coordinate. Again, it is used as a parameter for the lattice layout and changing this value leads to a rescaling of the coordinates of all nodes.</li>
           <li><em>Node radius</em> - this parameter specifies the largest radius used for drawing a concept node.</li>
           </ul>
-      </section><section><title>Changing the layout of a lattice</title>
+      </section>
+      <section><title>Changing the layout of a lattice</title>
       <p>If the initial drawing of the lattice is not very satisfactorily, then it is recommended to use several different layout algorithms in order to get a first impression and an approximation before starting the manual adjustment of the drawing.</p>
       <p><em>Warning</em>: Performing another layout algorithm destroys the previous drawing. If you do not want to loose work already done, make sure you saved the drawing before you select another algorithm.</p>
       <p>The algorithms implemented in ConExp have various options, that can be access through the <em>Layout options</em> tab in the properties panel. The following layout algorithms are provided:</p>
@@ -184,7 +189,8 @@ In the case of many changes the other option would cause a re-computation for ev
       <li><em>Align nodes to grid</em> - performs an alignment of the node coordinates to the invisible grid of size 8 on 8 pixels.</li> 
       <li><em>Storing images of drawing</em> One of the most frequent uses of ConExp is to produce images of lattice drawings for some future usage. This task can be achieved by creating a good drawing of the lattice and pressing the <em>Save lattice image</em> button on lattice visualization pane toolbar afterwards. Currently the formats <em>gif</em> and <em>jpeg</em> are supported for saving images.</li>
       </ul>
-      </section><section><title>Building lattices of subcontexts</title>
+      </section>
+      <section><title>Building lattices of subcontexts</title>
       <p>ConExp also provides the ability to build lattices corresponding to a subcontext of the original context. This task can be achieved by using the attribute selection and object selection pane on the right hand side of lattice drawing pane. </p>
       <p>After selecting or deselecting names of objects or attributes the new lattice corresponding to the selected subcontext is build. To include all objects (attributes) into this selection use the <em>Select all objects</em> (<em>Select all attributes</em>) buttons at the bottom of corresponding panes.</p>
       <p><em>Warning</em>: Building lattice of subcontexts leads to a destruction of all information about previous drawing. Please store the image that you obtained if the outcome is useful or you had some work with it. </p>
@@ -204,7 +210,8 @@ In the case of many changes the other option would cause a re-computation for ev
       <p>where <em>No</em> simply means the number of implication in list. <em>Number of objects</em> shows, for how many objects this implication holds. <em>Premise</em> and <em>conclusion</em> are usually lists of attribute names occurring in the premise (conclusion). Even the empty set can be a premise. That means, this implication has the empty premise and therefore the conclusion holds for all objects from context.</p>
 
       <p>Implications are displayed by ConExp  in one of the two colours: blue or red. The blue colours indicates that there are objects in context which support this rule. Contrarily, the red colour indicates that there are no objects supporting this implication. Usually such implications show that within the set of objects no element appears having all attributes of the premise. And indeed, such implications include all attributes from context among premise and conclusion. </p>
-      </section><section><title>Searching for associations</title>
+      </section>
+      <section><title>Searching for associations</title>
       <p>In contrast to implications, we allow non-strict rules for association rules. If the premise of an association rule holds, the conclusion does not necessarily hold for all objects. However, it is true for some stated percentage of all objects covering the premise of rule. The base of association rules consists of two parts. Of course it includes the base of strict rules (Duquenne-Guigues-Basis) and additionally the base of approximate rules (so called Luxenburger base).</p>
 
       <p>ConExp allows to calculate this base of association rules. To do so, select the button <em>Calculate association rules</em>  on the main toolbar.</p>
@@ -213,7 +220,8 @@ In the case of many changes the other option would cause a re-computation for ev
       <p><em>No -Number of objects, for which premise holds- Premise =[Rule confidence] -- -Number of objects, for which premise and conclusion holds- Conclusion </em></p>
 
       <p>In addition to red and blue, as they are used for implications, green indicates the approximate rules. </p>
-      </section><section><title>Performing an attribute exploration</title>
+      </section>
+      <section><title>Performing an attribute exploration</title>
       <p>When calculating the implications for some context, it might turn out that those hold for objects from this context only but not in general for all object from a certain domain of interest. In order to overcome this insufficiency, we suggest to start an <em>attribute exploration</em> procedure.</p>
  
       <p>Attribute exploration is an interactive procedure. The program provides implications, that are valid in the given context. These can be seen as question about dependencies between different attributes from some fixed set of attributes. The expert confirms, that such a dependency generally holds by answering <em>yes</em>. He rejects this dependency providing a counterexample. If an expert answers correctly on all questions, than at the end of this procedure he receives the set of all implications describing dependencies between different attributes in the domain of interest.</p>
