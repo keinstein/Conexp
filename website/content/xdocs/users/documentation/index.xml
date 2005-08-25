@@ -140,7 +140,7 @@ In the case of many changes the other option would cause a re-computation for ev
               <li><strong>one pixel</strong> - the edge width is fixed,</li>
               <li><strong>no</strong> - edges are not drawn at all,</li>
               <li><strong>object</strong> - proportionally to the number of objects, that <em>pass</em>  through this edge. Equivalent to the option for drawing nodes <em>of object extent</em>,</li>
-              <li><strong>connection</em> - the size of an edge is proportional to the ratio between extent size of the lower and upper concept that are connected by this edge. This value is equal to confidence of the approximate association rule corresponding to this edge.</li>
+              <li><strong>connection</strong> - the size of an edge is proportional to the ratio between extent size of the lower and upper concept that are connected by this edge. This value is equal to confidence of the approximate association rule corresponding to this edge.</li>
           </ul></li>
           <li><strong>Highlight</strong> - specifies, which nodes are highlighted, except for selected edges. These options were created in order to make the exploration of the lattice easier. Possible values of this option are:
           <ul>
