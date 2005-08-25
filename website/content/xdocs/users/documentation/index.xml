@@ -63,7 +63,7 @@ In the case of many changes the other option would cause a re-computation for ev
       <section><title>Compressed view of a context</title>
       <p>Selecting the <em>Compressed</em> option on the context editor's property pane, gives a better overview on the context, especially when it is large. Then the width of context's columns will be set just to fit the size of the cross and one can have a better look at the structure of context.</p> 
       </section><section><title>Visualization of the arrow relations</title>
-      <p>To visualise arrow relations change the property  <em>show arrow relation</em>  from <em>don't show</em> to <em>show arrow relation</em>. As we do not want to introduce any theory here, we refer to the book of Ganter and Wille \cite{FCA-Book} for the definition and usage of the arrow relations.</p> 
+      <p>To visualise arrow relations change the property  <em>show arrow relation</em>  from <em>don't show</em> to <em>show arrow relation</em>. As we do not want to introduce any theory here, we refer to the <link href="site:relatedprojects">book by Ganter and Wille</link> for the definition and usage of the arrow relations.</p> 
       </section><section><title>Entering data into the context</title>
       <p><em>Fast editing of contexts</em>: If one needs to input a context of moderate size, one can use the so-called fast context editing.</p>
       <p>For this, just use the keys <em>x</em>  and <em>.</em> . A cross or blanc value will be entered accordingly, when staying in an appropriate cell and the cursor will move to the next cell in relation area.</p>
