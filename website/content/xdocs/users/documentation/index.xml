@@ -25,13 +25,13 @@
           </ul>
 additionally we have to mention the combo box which allows to select the update mode for the document components that are computed from the formal context (concept lattice, set of implications and association rules). Currently two update modes are supported. Those are <em>re-computation</em> of the affected components or <em>clear</em> them. The latter mode is recommended when changing the context reasonably. After realisation of those changes the appropriate operations can be reoptained for the new context.
 In the case of many changes the other option would cause a re-computation for every single alteration of the context and may lead to computational expenses if the context is big or dense.</li>
-      <li>The <em>main pane</em> consists of the following items: </li>
+      <li>The <strong>main pane</strong> consists of the following items: </li>
           <ul>
-          <li><em>Document-tree</em>: It displays the structure of the current document and allows to navigate between different views (i.e. context, concept lattice, implications and association rules).</li>
-          <li><em>Option-pane</em>: It allows to edit different options corresponding to the actual view.</li>
-          <li><em>View-pane</em>: It contains the display for the current view. There is a toolbar with specific operations for each view.</li>
+          <li><strong>Document-tree</strong>: It displays the structure of the current document and allows to navigate between different views (i.e. context, concept lattice, implications and association rules).</li>
+          <li><strong>Option-pane</strong>: It allows to edit different options corresponding to the actual view.</li>
+          <li><strong>View-pane</strong>: It contains the display for the current view. There is a toolbar with specific operations for each view.</li>
           </ul>
-      <li>Statusbar</li>
+      <li><strong>Statusbar</strong></li>
       </ul>
       <section>
       <title>Creating a new document</title>
@@ -69,21 +69,21 @@ In the case of many changes the other option would cause a re-computation for ev
       <p>For this, just use the keys <em>x</em>  and <em>.</em> . A cross or blanc value will be entered accordingly, when staying in an appropriate cell and the cursor will move to the next cell in relation area.</p>
       <p><em>Transformations on selected areas</em>: After marking an area of cells one can transform the content of the incidence relation between objects and attributes. The following transformations are supported:</p> 
       <ul>
-         <li><em>Fill selection</em>: This fills the selected area of the incidence relation with crosses.</li>
-         <li><em>Clear selection</em>: This option clears the content of the selected area.</li>
-         <li><em>Inverse selection</em>: Here a cross is replaced by a blanc value and vice-versa.</li>
+         <li><strong>Fill selection</strong>: This fills the selected area of the incidence relation with crosses.</li>
+         <li><strong>Clear selection</strong>: This option clears the content of the selected area.</li>
+         <li><strong>Inverse selection</strong>: Here a cross is replaced by a blanc value and vice-versa.</li>
       </ul>
 <p>All these transformations can be performed by using the appropriate command from context menu.</p>
       </section>
       <section><title>Operations on contexts</title>
       <p>Following operations can be performed on contexts:</p> 
       <ul>
-         <li><em>Object clarification</em>: This option brings together all objects in the context having equal sets of attributes. The resulting context shows the first occurrence of those rows only. This operation is executed by the help of the button <em>Clarify objects</em> on the context editor's toolbar.</li>
-         <li><em>Attribute clarification</em>: This is the analogous operation on the attribute set. It is performed after selecting the <em>Clarify attributes</em> button on context editor toolbar.</li>
-         <li><em>Object set reduction</em>: Removing all objects from the set of object set that can be obtained as a result of intersection of some other objects is called reduction. In process of performing reduction clarification is also performed. This operation does not change the structure of the concept lattice. Speaking mathematically, the concept lattice of the reduced context is isomorphic to the concept lattice of the original context. This operation is performed by pressing the button <em>Reduce objects</em>  on the context editor's toolbar.</li>
-         <li><em>Attribute set reduction</em>: This is the analogous operation on the set of attribute. It is performed after selecting the <em>Reduce attributes</em> button on context editor's toolbar.</li>
-         <li><em>Context reduction</em>: Both operations (reduction of the object and attribute set) can be done simultaneously by executing <em>Reduce context</em>  button on context editor's toolbar.</li>
-         <li><em>Transposition</em>: Exchanging the role of objects and attribute set together with the corresponding changes of the relation between them, can be performed by selecting the <em>Transpose context</em>  button on context editor's toolbar. </li>
+         <li><strong>Object clarification</strong>: This option brings together all objects in the context having equal sets of attributes. The resulting context shows the first occurrence of those rows only. This operation is executed by the help of the button <em>Clarify objects</em> on the context editor's toolbar.</li>
+         <li><strong>Attribute clarification</strong>: This is the analogous operation on the attribute set. It is performed after selecting the <em>Clarify attributes</em> button on context editor toolbar.</li>
+         <li><strong>Object set reduction</strong>: Removing all objects from the set of object set that can be obtained as a result of intersection of some other objects is called reduction. In process of performing reduction clarification is also performed. This operation does not change the structure of the concept lattice. Speaking mathematically, the concept lattice of the reduced context is isomorphic to the concept lattice of the original context. This operation is performed by pressing the button <em>Reduce objects</em>  on the context editor's toolbar.</li>
+         <li><strong>Attribute set reduction</strong>: This is the analogous operation on the set of attribute. It is performed after selecting the <em>Reduce attributes</em> button on context editor's toolbar.</li>
+         <li><strong>Context reduction</strong>: Both operations (reduction of the object and attribute set) can be done simultaneously by executing <em>Reduce context</em>  button on context editor's toolbar.</li>
+         <li><strong>Transposition</strong>: Exchanging the role of objects and attribute set together with the corresponding changes of the relation between them, can be performed by selecting the <em>Transpose context</em>  button on context editor's toolbar. </li>
        </ul>
     </section>
     </section>
@@ -97,7 +97,7 @@ In the case of many changes the other option would cause a re-computation for ev
       </section>
       <section><title>Interpreting a drawing</title>
       <p>ConExp can represent the structure of a finite formal context in form of a concept lattice. This is not only a graph with nodes and edges connecting them, but an ordered structur with a bottom and a top element. </p>
-      <p>Each node of lattice corresponds to a so called <em>formal concept<em>. This is a pair <em>(O, A)</em>, where <em>O</em> is a subset of the object set, <em>A</em> is a subset of the attribute set and some additional properties are satisfied. </p>
+      <p>Each node of lattice corresponds to a so called <em>formal concept</em>. This is a pair <em>(O, A)</em>, where <em>O</em> is a subset of the object set, <em>A</em> is a subset of the attribute set and some additional properties are satisfied. </p>
       <p>The context contains more information on how objects and attributes should be related. From this we can derive the set containing all attributes common to all objects from the set <em>O</em> and only these attributes. For a formal concept this equal to <em>A</em>. Vice versa <em>O</em> contains all objects from context having all attributes of <em>A</em> among their attributes. The set of objects <em>O</em> is called <em>extent</em> of the formal concept <em>(O, A)</em> and set of attributes <em>A</em> is called <em>intent</em>. For exact definitions we refer again to the <link href="site:relatedprojects">book by Ganter and Wille</link>.</p>
       <p>Hence, the intent of the bottom element contains all attributes of the context and its extent is the set of objects having all attributes. This set can be empty, if no such object has been spezified. Vice versa contains the extent of the top element of the lattice all objects. The intent of this contains of all attributes common to all objects. If no such attibute has been defined, then this set is empty.</p>
       <p>For the drawing of the lattice, we use the so called reduced labelling in order to present information about intents and extents of formal context in a concise way. Each node <em>x</em> of the structure represents a formal concept <em>(O,A)</em>. The extent <em>O</em> of this concept can be received collecting all objects attached to nodes reachable by descending paths from this node <em>x</em> to the bottom element of this lattice. </p>
@@ -107,54 +107,54 @@ In the case of many changes the other option would cause a re-computation for ev
       </section><section><title>Visualization modes</title>
       <p>Basically, there are two visualization modes, that behave differently, when the drawn lattice does not fit into the existing screen estate. Those are:</p>
       <ul>
-          <li><em>Scrolling mode</em>: If the drawn lattice does not fit into the screen estate, the virtual window is enlarged. The user then can see only some part of the lattice drawing. This mode is activated by default.</li>
-          <li><em>Fit to screen mode</em>: Here, the drawn lattice is rescaled in order to fit into the available screen estate.</li>
+          <li><strong>Scrolling mode</strong>: If the drawn lattice does not fit into the screen estate, the virtual window is enlarged. The user then can see only some part of the lattice drawing. This mode is activated by default.</li>
+          <li><strong>Fit to screen mode</strong>: Here, the drawn lattice is rescaled in order to fit into the available screen estate.</li>
       </ul>
       <p>Switching between the two modes can be done by the help of the ``Scale picture to fit into the image''  button on the lattice visualization pane toolbar. Selecting this button toggles between first mode and second and vice versa. </p>
       <p>The following commands make sense only in scrolling mode:</p>
       <ul>
-          <li><em>Grab and drag</em>: This command performs panning of the visible area. After pressing this button, the cursor changes to a cross and user can pan the drawing. To switch off this mode, press <em>Grab and Drag</em>  button once more.</li>
-          <li><em>Zoom in, Zoom out, No zoom</em>: These commands perform actions, corresponding to their names.</li>
+          <li><strong>Grab and drag</strong>: This command performs panning of the visible area. After pressing this button, the cursor changes to a cross and user can pan the drawing. To switch off this mode, press <em>Grab and Drag</em>  button once more.</li>
+          <li><strong>Zoom in, Zoom out, No zoom</strong>: These commands perform actions, corresponding to their names.</li>
       </ul>
       </section><section><title>Changing visualization options </title>
       <p>The following visualization options can be adjusted via <em>drawing options</em> properties pane on left part of the screen:</p>
       <ul>
-          <li><em>Attribs</em>: Here the user can change to <em>Show labels</em>, hence the diagram shows attribute's label at corresponding concept. (See also the preceding remark about reduced labelling.)</li>
-          <li><em>Objects</em>: This is the lower label visualization mode. Here the user is given more possibilities to choose from:
+          <li><strong>Attribs</strong>: Here the user can change to <em>Show labels</em>, hence the diagram shows attribute's label at corresponding concept. (See also the preceding remark about reduced labelling.)</li>
+          <li><strong>Objects</strong>: This is the lower label visualization mode. Here the user is given more possibilities to choose from:
           <ul>
-              <li><em>Don't show</em> - no object labels are shown;</li>
-              <li><em>Show labels</em> - shows object labels below the corresponding concepts;</li>
-              <li><em>Show own objects</em> - for concepts, that have some objects attached (has non empty object <em>contingent</em>) show number and percentage of objects, that belong exactly (i.e., their attribute set is equal to intent) to this concept;</li>
-              <li><em>Show object count</em> - this shows for every node the exact number (percentage) of objects belonging to the extent of the node's concept;</li>
-              <li><em>Stability</em> - this shows for every node the minimal number of objects that should be removed from context to wipe out the node from concept lattice.</li>
+              <li><strong>Don't show</strong> - no object labels are shown;</li>
+              <li><strong>Show labels</strong> - shows object labels below the corresponding concepts;</li>
+              <li><strong>Show own objects</strong> - for concepts, that have some objects attached (has non empty object <em>contingent</em>) show number and percentage of objects, that belong exactly (i.e., their attribute set is equal to intent) to this concept;</li>
+              <li><strong>Show object count</strong> - this shows for every node the exact number (percentage) of objects belonging to the extent of the node's concept;</li>
+              <li><strong>Stability</strong> - this shows for every node the minimal number of objects that should be removed from context to wipe out the node from concept lattice.</li>
           </ul></li>
-          <li><em>Draw node</em> - this option specifies how the radius of a node is calculated. The possiblities are:
+          <li><strong>Draw node</strong> - this option specifies how the radius of a node is calculated. The possiblities are:
           <ul>
-              <li><em>to own objects</em> - the radius of a node is calculated proportionally to the size of the contingent (the number of objects matching exactly the intent of this node),</li>
-              <li><em>fixed radius</em> - all nodes have a equal radius. The actual node radius is determined by option <em>Node radius</em>,</li>
-              <li><em>of object extent</em> - the node radius is calculated proportionally to size of its extent,</li>
-              <li><em>stability</em> - the node radius is calculated proportionally to its stability to dissolve (see description of stability above).</li>
+              <li><strong>to own objects</strong> - the radius of a node is calculated proportionally to the size of the contingent (the number of objects matching exactly the intent of this node),</li>
+              <li><strong>fixed radius</strong> - all nodes have a equal radius. The actual node radius is determined by option <em>Node radius</em>,</li>
+              <li><strong>of object extent</strong> - the node radius is calculated proportionally to size of its extent,</li>
+              <li><strong>stability</strong> - the node radius is calculated proportionally to its stability to dissolve (see description of stability above).</li>
           </ul></li>
-          <li><em>Draw edge</em> - specifies how an edge is drawn. The possible values are:
+          <li><strong>Draw edge</strong> - specifies how an edge is drawn. The possible values are:
           <ul>
-              <li><em>one pixel</em> - the edge width is fixed,</li>
-              <li><em>no</em> - edges are not drawn at all,</li>
-              <li><em>object</em> - proportionally to the number of objects, that <em>pass</em>  through this edge. Equivalent to the option for drawing nodes <em>of object extent</em>,</li>
-              <li><em>connection</em> - the size of an edge is proportional to the ratio between extent size of the lower and upper concept that are connected by this edge. This value is equal to confidence of the approximate association rule corresponding to this edge.</li>
+              <li><strong>one pixel</strong> - the edge width is fixed,</li>
+              <li><strong>no</strong> - edges are not drawn at all,</li>
+              <li><strong>object</strong> - proportionally to the number of objects, that <em>pass</em>  through this edge. Equivalent to the option for drawing nodes <em>of object extent</em>,</li>
+              <li><strong>connection</em> - the size of an edge is proportional to the ratio between extent size of the lower and upper concept that are connected by this edge. This value is equal to confidence of the approximate association rule corresponding to this edge.</li>
           </ul></li>
-          <li><em>Highlight</em> - specifies, which nodes are highlighted, except for selected edges. These options were created in order to make the exploration of the lattice easier. Possible values of this option are:
+          <li><strong>Highlight</strong> - specifies, which nodes are highlighted, except for selected edges. These options were created in order to make the exploration of the lattice easier. Possible values of this option are:
           <ul>
-              <li><em>Filter and ideal</em> - nodes of the filter (all nodes that are reachable by ascending paths from the selected node to top of the lattice) and the ideal (all nodes that can be reached by descending paths from the selected node to the bottom of the lattices) are highlighted,</li>
-              <li><em>Selected</em> - only the selected node is highlighted,</li>
-              <li><em>Neighbors</em> - the selected node and it's upper and lower neighbors are highlighted,</li>
-              <li><em>Ideal</em> - nodes of the ideal are highlighted,</li>
-              <li><em>Filter</em> - nodes of the filter are highlighted,</li>
-              <li><em>No</em> - no nodes are highlighted. This option may be useful befor saving the drawing of the lattice.</li>
+              <li><strong>Filter and ideal</strong> - nodes of the filter (all nodes that are reachable by ascending paths from the selected node to top of the lattice) and the ideal (all nodes that can be reached by descending paths from the selected node to the bottom of the lattices) are highlighted,</li>
+              <li><strong>Selected</strong> - only the selected node is highlighted,</li>
+              <li><strong>Neighbors</strong> - the selected node and it's upper and lower neighbors are highlighted,</li>
+              <li><strong>Ideal</strong> - nodes of the ideal are highlighted,</li>
+              <li><strong>Filter</strong> - nodes of the filter are highlighted,</li>
+              <li><strong>No</strong> - no nodes are highlighted. This option may be useful befor saving the drawing of the lattice.</li>
           </ul></li>
-          <li><em>Label font size</em> - specifies the size of the font that is used for the upper and lower labels.</li>
-          <li><em>Grid size x</em> - specifies the preferred distance between different nodes on one level of drawing by means of the x coordinate. It is used as a parameter for the lattice layout and changing this value leads to a rescaling of the coordinates of all nodes.</li>
-          <li><em>Grid size y</em> - specifies the preferred distance between nodes on adjacent levels of drawing by means of the y coordinate. Again, it is used as a parameter for the lattice layout and changing this value leads to a rescaling of the coordinates of all nodes.</li>
-          <li><em>Node radius</em> - this parameter specifies the largest radius used for drawing a concept node.</li>
+          <li><strong>Label font size</strong> - specifies the size of the font that is used for the upper and lower labels.</li>
+          <li><strong>Grid size x</strong> - specifies the preferred distance between different nodes on one level of drawing by means of the x coordinate. It is used as a parameter for the lattice layout and changing this value leads to a rescaling of the coordinates of all nodes.</li>
+          <li><strong>Grid size y</strong> - specifies the preferred distance between nodes on adjacent levels of drawing by means of the y coordinate. Again, it is used as a parameter for the lattice layout and changing this value leads to a rescaling of the coordinates of all nodes.</li>
+          <li><strong>Node radius</strong> - this parameter specifies the largest radius used for drawing a concept node.</li>
           </ul>
       </section>
       <section><title>Changing the layout of a lattice</title>
@@ -162,32 +162,32 @@ In the case of many changes the other option would cause a re-computation for ev
       <p><em>Warning</em>: Performing another layout algorithm destroys the previous drawing. If you do not want to loose work already done, make sure you saved the drawing before you select another algorithm.</p>
       <p>The algorithms implemented in ConExp have various options, that can be access through the <em>Layout options</em> tab in the properties panel. The following layout algorithms are provided:</p>
       <ul>
-      <li><em>Minimal intersections</em> - this is adapted to lattices version of algorithm for laying out hierarchical graphs. It tries to minimize number of intersections between edges. It has no parameters. Usually this algorithm provides best results, but it is pretty slow for the big lattices.</li>
-      <li><em>Chain decomposition</em> - it is an adapted version of the algorithm of by M.~Skorsky. The outcome are so called <em>additive lines diagrams</em>. It is recommended to use ideal node movement strategy when working with such line diagrams. This algorithm produces very good results for distributive lattices. Here the user can adjust the following options:</li>
+      <li><strong>Minimal intersections</strong> - this is adapted to lattices version of algorithm for laying out hierarchical graphs. It tries to minimize number of intersections between edges. It has no parameters. Usually this algorithm provides best results, but it is pretty slow for the big lattices.</li>
+      <li><strong>Chain decomposition</strong> - it is an adapted version of the algorithm of by M.~Skorsky. The outcome are so called <em>additive lines diagrams</em>. It is recommended to use ideal node movement strategy when working with such line diagrams. This algorithm produces very good results for distributive lattices. Here the user can adjust the following options:</li>
           <ul>
-          <li><em>Representation</em> - changes the kind of representation used for formal concepts when calculating its coordinates. The possibilities are attribute-based or object-based calculation.</li>
-          <li><em>Placement</em> - determines the assignment of values to the set of vectors. One can choose from three values - <em>exponential, straight}</em> or <em>angular</em>.</li>
-          <li><em>Rotate left, Rotate right</em> - performs a permutation on the set of vectors - it is used to select the best, if there are several possibilities.</li>
+          <li><strong>Representation</strong> - changes the kind of representation used for formal concepts when calculating its coordinates. The possibilities are attribute-based or object-based calculation.</li>
+          <li><strong>Placement</strong> - determines the assignment of values to the set of vectors. One can choose from three values - <em>exponential, straight}</em> or <em>angular</em>.</li>
+          <li><strong>Rotate left, Rotate right</strong> - performs a permutation on the set of vectors - it is used to select the best, if there are several possibilities.</li>
           </ul>
       </ul>
       <p>The following two algorithms belong to a family of so-called <em>force-directed</em>  layout algorithms. They are:</p>
       <ul>
-      <li><em>Freese layout</em> - It is an adaptation of the algorithm of Ralph Freese for drawing lattices. It can be found on the <link href="http://www.math.hawaii.edu/~ralph/LatDraw">homepage of R. Freese</link>. This algorithm has the following parameters:</li>
+      <li><strong>Freese layout</strong> - It is an adaptation of the algorithm of Ralph Freese for drawing lattices. It can be found on the <link href="http://www.math.hawaii.edu/~ralph/LatDraw">homepage of R. Freese</link>. This algorithm has the following parameters:</li>
           <ul>
-          <li><em>Attraction</em> - regulates the attraction force between nodes;</li>
-          <li><em>Repulsion</em> - regulates the repulsion force between nodes;</li>
-          <li><em>Angle</em> - this is not a parameter of the algorithm, but it has a vast influences on the outcome. Freese algorithm performs the layout in 3D space. The angle controls the projection from 3D space into the 2D surface of screen.</li>
+          <li><strong>Attraction</strong> - regulates the attraction force between nodes;</li>
+          <li><strong>Repulsion</strong> - regulates the repulsion force between nodes;</li>
+          <li><strong>Angle</strong> - this is not a parameter of the algorithm, but it has a vast influences on the outcome. Freese algorithm performs the layout in 3D space. The angle controls the projection from 3D space into the 2D surface of screen.</li>
           </ul>
-      <li><em>Force layout</em> - This force directed algorithm differs in the way the forces are calculated from previous one. The parameters of this algorithm are analogous to the parameters of the previous one.</li> 
+      <li><strong>Force layout</strong> - This force directed algorithm differs in the way the forces are calculated from previous one. The parameters of this algorithm are analogous to the parameters of the previous one.</li> 
       </ul>
       </section><section><title>Manually adjustment of a drawing</title>
       <p>Unfortunately for now there is no layout algorithm producing good results for all lattices. Therefore, the best way to produce good drawing is to perform the manual adjustment of the lattice, when all algorithms failed.</p>
       <p>Movements of lattice nodes are constrained in ConExp as far as they maintain a correct parent-child (successor-predecessor) relations between nodes.</p>
       <p>The following tools exists in ConExp in order to support manual adjustment of a lattice:</p>
       <ul>
-      <li><em>Ideal node movement mode</em> - when moving a node, the whole ideal of the node is moved as well. The switch between this mode and one node movement strategy is performed by pressing the <em>Toggle node move mode</em> button.</li>
-      <li><em>Align nodes to grid</em> - performs an alignment of the node coordinates to the invisible grid of size 8 on 8 pixels.</li> 
-      <li><em>Storing images of drawing</em> One of the most frequent uses of ConExp is to produce images of lattice drawings for some future usage. This task can be achieved by creating a good drawing of the lattice and pressing the <em>Save lattice image</em> button on lattice visualization pane toolbar afterwards. Currently the formats <em>gif</em> and <em>jpeg</em> are supported for saving images.</li>
+      <li><strong>Ideal node movement mode</strong> - when moving a node, the whole ideal of the node is moved as well. The switch between this mode and one node movement strategy is performed by pressing the <em>Toggle node move mode</em> button.</li>
+      <li><strong>Align nodes to grid</strong> - performs an alignment of the node coordinates to the invisible grid of size 8 on 8 pixels.</li> 
+      <li><strong>Storing images of drawing</strong> One of the most frequent uses of ConExp is to produce images of lattice drawings for some future usage. This task can be achieved by creating a good drawing of the lattice and pressing the <em>Save lattice image</em> button on lattice visualization pane toolbar afterwards. Currently the formats <em>gif</em> and <em>jpeg</em> are supported for saving images.</li>
       </ul>
       </section>
       <section><title>Building lattices of subcontexts</title>
