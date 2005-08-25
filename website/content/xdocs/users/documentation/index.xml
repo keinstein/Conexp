@@ -11,8 +11,8 @@
       <title>Working with Concept Explorer</title>
       <p>The ConExp user interface consists of the following parts:</p>
       <ul>
-      <li>The <em>Menu</em> which is self-explanatory.</li>
-      <li>The <em>Main toolbar</em> which contains buttons for global application operation as there are:
+      <li>The <strong>Menu</strong> which is self-explanatory.</li>
+      <li>The <strong>Main toolbar</strong> which contains buttons for global application operation as there are:
           <ul>
           <li>Create a new document;</li>
           <li>Open;</li>
