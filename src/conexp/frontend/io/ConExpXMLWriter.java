@@ -135,10 +135,52 @@ public class ConExpXMLWriter implements DocumentWriter {
         if (drawing.hasLabelsForObjects()) {
             latticeDrawingElement.addContent(storeObjectLabels(drawing));
         }
+        if(drawing.hasUpLabelsForConcepts()){
+            latticeDrawingElement.addContent(storeUpConceptLabels(drawing));
+        }
+        if(drawing.hasDownLabelsForConcepts()){
+            latticeDrawingElement.addContent(storeDownConceptLabels(drawing));
+        }
+/*
         if (drawing.hasLabelsForConcepts()) {
             latticeDrawingElement.addContent(storeConceptLabels(drawing));
         }
+*/
         return latticeDrawingElement;
+    }
+
+    private static Element storeDownConceptLabels(final LatticeDrawing drawing) {
+        final Element downConceptLabelFigures = new Element(ConExpXMLElements.DOWN_CONCEPT_LABELS_ELEMENT);
+        final Lattice lat = drawing.getLattice();
+        lat.forEach(new Lattice.LatticeElementVisitor() {
+            public void visitNode(LatticeElement conceptNode) {
+                IFigureWithCoords conceptLabelFigure = drawing.getDownLabelForConcept(conceptNode);
+                if (null != conceptLabelFigure) {
+                    downConceptLabelFigures.addContent(storeFigureForConcept(ConExpXMLElements.CONCEPT_LABEL_FIGURE_TYPE,
+                            conceptLabelFigure,
+                            conceptNode,
+                            lat.getContext()));
+                }
+            }
+        });
+        return downConceptLabelFigures;
+    }
+
+    private static Element storeUpConceptLabels(final LatticeDrawing drawing) {
+        final Element upConceptLabelFigures = new Element(ConExpXMLElements.UP_CONCEPT_LABELS_ELEMENT);
+        final Lattice lat = drawing.getLattice();
+        lat.forEach(new Lattice.LatticeElementVisitor() {
+            public void visitNode(LatticeElement conceptNode) {
+                IFigureWithCoords conceptLabelFigure = drawing.getUpLabelForConcept(conceptNode);
+                if (null != conceptLabelFigure) {
+                    upConceptLabelFigures.addContent(storeFigureForConcept(ConExpXMLElements.CONCEPT_LABEL_FIGURE_TYPE,
+                            conceptLabelFigure,
+                            conceptNode,
+                            lat.getContext()));
+                }
+            }
+        });
+        return upConceptLabelFigures;
     }
 
     private static Element storeSelection(FigureDrawingCanvas viewForLatticeComponent) {

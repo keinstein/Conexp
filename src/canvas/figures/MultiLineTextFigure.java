@@ -19,6 +19,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.List;
 
 public class MultiLineTextFigure extends BaseTextFigure {
+
     static class TextLine {
 
         double width;
@@ -37,6 +38,9 @@ public class MultiLineTextFigure extends BaseTextFigure {
         }
     }
 
+    public boolean isContentDirty() {
+        return contentDirty;
+    }
 
     protected boolean shouldHighlight(IHighlightStrategy highlightStrategy) {
         return highlightStrategy.highlightFigure(this);
@@ -45,10 +49,7 @@ public class MultiLineTextFigure extends BaseTextFigure {
 
     public void draw(Graphics g, CanvasScheme opt) {
         Graphics2D graphics2d = (Graphics2D) g;
-        if (contentDirty) {
-            newSize(graphics2d.getFontRenderContext());
-            contentDirty = false;
-        }
+        recalcSizeIfNeeded(graphics2d);
         if (!shouldDrawText()) {
             return;
         }
@@ -71,6 +72,12 @@ public class MultiLineTextFigure extends BaseTextFigure {
             y += textline.descent;
         }
 
+    }
+
+    private void recalcSizeIfNeeded(Graphics2D graphics2d) {
+        if (contentDirty) {
+            newSize(graphics2d.getFontRenderContext());
+        }
     }
 
     protected boolean shouldDrawText() {
@@ -105,35 +112,34 @@ public class MultiLineTextFigure extends BaseTextFigure {
 
     public void changeLayout(FontRenderContext fontrendercontext) {
         lines.clear();
-        String s = text;
-        for (int i = s.indexOf("\n"); i >= 0; i = s.indexOf("\n")) {
-            String s1 = s.substring(0, i);
-            if (s1.length() == 0) {
-                s1 = " ";
+        String textTail = text;
+        for (int i = textTail.indexOf("\n"); i >= 0; i = textTail.indexOf("\n")) {
+            String currentLine = textTail.substring(0, i);
+            if (currentLine.length() == 0) {
+                currentLine = " ";
             }
-            lines.add(new TextLine(s1, new TextLayout(s1, font, fontrendercontext)));
-            s = s.substring(i + 1);
+            lines.add(new TextLine(currentLine, new TextLayout(currentLine, font, fontrendercontext)));
+            textTail = textTail.substring(i + 1);
         }
-        if (s.length() == 0) {
-            s = " ";
+        if (textTail.length() == 0) {
+            textTail = " ";
         }
-        lines.add(new TextLine(s, new TextLayout(s, font, fontrendercontext)));
+        lines.add(new TextLine(textTail, new TextLayout(textTail, font, fontrendercontext)));
+
         textWidth = textHeight = 0.0D;
-        for (int j = lines.size() - 1; j >= 0; j--) {
+        for (int j = lines.size(); --j >= 0; ) {
             TextLine textline = getTextLine(j);
             if (textline.width > textWidth) {
                 textWidth = textline.width;
             }
             textHeight += textline.ascent + textline.descent;
         }
-
         calcDimensions();
     }
 
     protected void calcDimensions() {
         setWidth(Math.max(textWidth + xTextOffset, minimalWidth));
         setHeight(Math.max(textHeight + yTextOffset, minimalHeight));
-        System.out.println(getClass()+"["+getWidth()+"],["+getHeight()+"]");
     }
 
     private TextLine getTextLine(int j) {
@@ -146,6 +152,7 @@ public class MultiLineTextFigure extends BaseTextFigure {
         } else {
             changeLayout(fontrendercontext);
         }
+        contentDirty = false;
     }
 
     protected void setSizeOnEmptyText() {
@@ -162,7 +169,8 @@ public class MultiLineTextFigure extends BaseTextFigure {
         visible = flag;
     }
 
-    public void setText(String s) {
+    public void setText(String s)
+    {
         contentDirty = true;
         text = StringUtil.safeText(s);
     }
@@ -227,6 +235,7 @@ public class MultiLineTextFigure extends BaseTextFigure {
         font = new Font("Dialog", 0, 12);
         alignment = ALIGN_LEFT;
         lines = CollectionFactory.createDefaultList();
+        text = "";
         contentDirty = true;
         minimalWidth = 0;
         minimalHeight = 0;

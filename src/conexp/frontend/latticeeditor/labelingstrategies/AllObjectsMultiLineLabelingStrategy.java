@@ -1,9 +1,13 @@
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import conexp.frontend.latticeeditor.ConceptQuery;
+import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
+import conexp.core.LatticeElement;
 
 import java.util.Iterator;
+
+import canvas.figures.BorderCalculatingFigure;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
@@ -18,8 +22,9 @@ public class AllObjectsMultiLineLabelingStrategy extends MultiLineLabelingStrate
         super();
     }
 
-    boolean isUpper() {
-        return false;
+    //todo:sye - change to package local
+    public double getLabelLocationAngleInRadians() {
+        return 0.5*Math.PI;
     }
 
     protected MultiLineConceptEntityFigure makeLabelForConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {
@@ -29,5 +34,16 @@ public class AllObjectsMultiLineLabelingStrategy extends MultiLineLabelingStrate
 
     public boolean accept(ConceptQuery query) {
         return query.hasOwnObjects();
+    }
+
+    public void setLabelForConcept(ConceptSetDrawing drawing,
+                                   LatticeElement concept,
+                                   BorderCalculatingFigure labelFigure) {
+        drawing.setDownLabelForConcept(concept, labelFigure);
+    }
+
+    public void shutdown(ConceptSetDrawing drawing) {
+        drawing.clearDownLabelsForConcepts();
+        super.shutdown(drawing);
     }
 }

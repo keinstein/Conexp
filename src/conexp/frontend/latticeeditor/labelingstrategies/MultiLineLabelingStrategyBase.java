@@ -31,32 +31,32 @@ import java.util.Iterator;
 
 public abstract class MultiLineLabelingStrategyBase extends GenericLabelingStrategy {
     protected ExtendedContextEditingInterface cxt;
-    private static final FontRenderContext DEFAULT_FRC = new FontRenderContext(null, true, false);
+    private static final FontRenderContext DEFAULT_FONT_RENDER_CONTEXT = new FontRenderContext(null, true, false);
 
-    protected MultiLineLabelingStrategyBase() {
+    //todo:sye - change back to protected
+    public MultiLineLabelingStrategyBase() {
         super();
     }
 
-    public void setContext(ExtendedContextEditingInterface cxt) {
-        this.cxt = cxt;
+    public void setContext(ExtendedContextEditingInterface newCxt) {
+        this.cxt = newCxt;
     }
-
-    abstract boolean isUpper();
 
     protected Object makeConnectedObject(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure f, LayoutParameters opt) {
         LatticeElement concept = f.getConcept();
         MultiLineConceptEntityFigure labelFigure = makeLabelForConceptCorrespondingFigure(f);
-        labelFigure.newSize(DEFAULT_FRC);
+        labelFigure.newSize(DEFAULT_FONT_RENDER_CONTEXT);
+
         Rectangle2D rect = GraphicObjectsFactory.makeRectangle2D();
         labelFigure.boundingBox(rect);
-        double angle = (isUpper()? 1.5 :0.5 ) * Math.PI;
+        double angle = getLabelLocationAngleInRadians();
         double offX = opt.getGridSizeX() / 2 * Math.cos(angle);
 
         double offY = (1.5 * opt.getMaxNodeRadius()+rect.getHeight()/2) * Math.sin(angle);
         int newX = (int) (f.getCenterX() + offX);
         int newY = (int) (f.getCenterY() + offY);
         labelFigure.setCoords(newX, newY);
-        drawing.setLabelForConcept(concept, labelFigure);
+        setLabelForConcept(drawing, concept, labelFigure);
 
         Figure connected = makeConnectedFigure(f, labelFigure);
 
@@ -65,6 +65,8 @@ public abstract class MultiLineLabelingStrategyBase extends GenericLabelingStrat
 
         return connected;
     }
+
+    public abstract double getLabelLocationAngleInRadians();
 
     protected abstract MultiLineConceptEntityFigure makeLabelForConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f);
 
@@ -78,13 +80,10 @@ public abstract class MultiLineLabelingStrategyBase extends GenericLabelingStrat
         f.removeDependend((Figure) obj);
     }
 
-    public void shutdown(ConceptSetDrawing drawing) {
-        super.shutdown(drawing);
-        drawing.clearConceptLabels();
-    }
-
     protected static MultiLineConceptEntityFigure buildMultiLineFigureFromEntityIterator(Iterator iterator, final ConceptQuery conceptQuery, boolean isObject) {
         MultiLineConceptEntityFigure figure = new MultiLineConceptEntityFigure(conceptQuery, isObject);
+        System.out.println(
+                "settingText of figure");
         figure.setText(buildNamesStringFromEntityIterator(iterator));
         return figure;
     }
@@ -103,7 +102,8 @@ public abstract class MultiLineLabelingStrategyBase extends GenericLabelingStrat
         return names.toString();
     }
 
-    protected static class MultiLineConceptEntityFigure extends MultiLineTextFigure implements IConceptRelatedTextFigure{
+    //todo:sye - change to protected
+    public static class MultiLineConceptEntityFigure extends MultiLineTextFigure implements IConceptRelatedTextFigure{
         private final ConceptQuery conceptQuery;
         private final boolean isObject;
 
@@ -111,14 +111,20 @@ public abstract class MultiLineLabelingStrategyBase extends GenericLabelingStrat
             return isObject ? Color.white : Color.lightGray;
         }
 
-        public MultiLineConceptEntityFigure(ConceptQuery conceptQuery, boolean isObject) {
+        public MultiLineConceptEntityFigure(ConceptQuery newConceptQuery, boolean newIsObject) {
             setColorTransformer(ColorTransformerWithFadeOut.getInstance());
-            this.conceptQuery = conceptQuery;
-            this.isObject = isObject;
+            this.conceptQuery = newConceptQuery;
+            this.isObject = newIsObject;
         }
 
         public Set getIntentQuery() {
             return conceptQuery.getQueryIntent();
+        }
+
+        protected String getContentDescription() {
+            Rectangle2D rect = new Rectangle();
+            boundingBox(rect);
+            return super.getContentDescription()+" bounding box="+rect;
         }
     }
 }

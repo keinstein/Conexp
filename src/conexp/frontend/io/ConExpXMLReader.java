@@ -17,8 +17,8 @@ import conexp.frontend.DocumentLoader;
 import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.latticeeditor.LatticeDrawing;
-import conexp.util.valuemodels.BoundedIntValue;
 import conexp.util.gui.strategymodel.StrategyValueItem;
+import conexp.util.valuemodels.BoundedIntValue;
 import org.jdom.DataConversionException;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -81,11 +81,11 @@ public class ConExpXMLReader implements DocumentLoader {
                     ConExpXMLElements.VALUE_ATTRIBUTE);
             if (!ret.getContextDocumentModel().getRecalculationPolicy()
                     .setValueByKey(strategyKey)
-            ) {
+                    ) {
                 errorHandler.handleUncriticalError(
                         new DataFormatException(
                                 "Bad value of recalculation policy:" +
-                        strategyKey));
+                                        strategyKey));
             }
         }
 
@@ -107,7 +107,8 @@ public class ConExpXMLReader implements DocumentLoader {
         }
         try {
             for (Iterator iterator = children.iterator(); iterator.hasNext();) {
-                final LatticeComponent latticeComponent = doc.addLatticeComponent();
+                final LatticeComponent latticeComponent =
+                        doc.addLatticeComponent();
                 final Element latticeElement = (Element) iterator.next();
                 loadLatticeComponent(latticeComponent, latticeElement);
                 loadSelection(doc.getViewForLatticeComponent(latticeComponent),
@@ -142,8 +143,9 @@ public class ConExpXMLReader implements DocumentLoader {
         for (Iterator iterator = children.iterator(); iterator.hasNext();) {
             Element figureElement = (Element) iterator.next();
             Point2D point = readPoint2DFromCoords(figureElement);
-            final Figure figure = viewForLatticeComponent.findFigureInReverseOrderToDrawing(
-                    point.getX(), point.getY());
+            final Figure figure =
+                    viewForLatticeComponent.findFigureInReverseOrderToDrawing(
+                            point.getX(), point.getY());
             if (null != figure) {
                 newSelection.add(figure);
             }
@@ -205,11 +207,21 @@ public class ConExpXMLReader implements DocumentLoader {
     private static void loadConceptLabels(final LatticeDrawing drawing,
                                           Element lineDiagramElement)
             throws DataFormatException {
-        if (!drawing.hasLabelsForConcepts()) {
-            return;
-        }
+        loadDownConceptLabels(drawing, lineDiagramElement);
+        loadUpConceptLabels(drawing, lineDiagramElement);
+    }
+
+    private static void doLoadConceptLabels(final LatticeDrawing drawing,
+                                            Element lineDiagramElement,
+                                            String elementsLabel,
+                                            final FigureConceptMapper figureConceptMapper)
+            throws
+            DataFormatException {
         Element labelsCollection = lineDiagramElement.getChild(
-                ConExpXMLElements.CONCEPT_LABELS_ELEMENT);
+                elementsLabel);
+        assert labelsCollection !=
+                null:"If drawing has labels for concepts, then drawing should have non zero labels collection :"+elementsLabel;
+
         processLabelsFromCollectionWithType(labelsCollection,
                 ConExpXMLElements.CONCEPT_LABEL_FIGURE_TYPE,
                 new FigureElementsProcessor() {
@@ -217,15 +229,40 @@ public class ConExpXMLReader implements DocumentLoader {
                             throws DataFormatException {
                         readConceptFigure(drawing,
                                 figureElement,
-                                new FigureConceptMapper() {
-                                    public IFigureWithCoords getFigureForConcept(
-                                            ItemSet concept) {
-                                        return drawing.getLabelForConcept(
-                                                concept);
-                                    }
-                                });
+                                figureConceptMapper);
                     }
                 });
+    }
+
+    private static void loadUpConceptLabels(final LatticeDrawing drawing,
+                                            Element lineDiagramElement)
+            throws DataFormatException {
+        if (!drawing.hasUpLabelsForConcepts()) {
+            return;
+        }
+        doLoadConceptLabels(drawing, lineDiagramElement,
+                ConExpXMLElements.UP_CONCEPT_LABELS_ELEMENT,
+                new FigureConceptMapper(){
+                    public IFigureWithCoords getFigureForConcept(ItemSet concept) {
+                        return drawing.getUpLabelForConcept(concept);
+                    }
+                });
+    }
+
+    private static void loadDownConceptLabels(final LatticeDrawing drawing,
+                                              Element lineDiagramElement)
+            throws DataFormatException {
+        if (!drawing.hasDownLabelsForConcepts()) {
+            return;
+        }
+        doLoadConceptLabels(drawing, lineDiagramElement,
+                ConExpXMLElements.DOWN_CONCEPT_LABELS_ELEMENT,
+                new FigureConceptMapper(){
+                    public IFigureWithCoords getFigureForConcept(ItemSet concept) {
+                        return drawing.getDownLabelForConcept(concept);
+                    }
+                });
+
     }
 
     private static void loadObjectLabels(final LatticeDrawing drawing,
@@ -397,9 +434,9 @@ public class ConExpXMLReader implements DocumentLoader {
                 "Unspecified node radius mode:");
 
         readStrategyValueItem(lineDiagramSetting,
-               ConExpXMLElements.EDGE_DISPLAY_MODE,
-               drawing.getEdgeSizeCalcStrategyItem(),
-               "Unspecified edge display mode:");
+                ConExpXMLElements.EDGE_DISPLAY_MODE,
+                drawing.getEdgeSizeCalcStrategyItem(),
+                "Unspecified edge display mode:");
 
         readStrategyValueItem(lineDiagramSetting,
                 ConExpXMLElements.HIGHLIGHT_MODE,

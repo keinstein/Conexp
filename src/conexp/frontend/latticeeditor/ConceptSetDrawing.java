@@ -13,10 +13,7 @@ import canvas.figures.FigureWithCoords;
 import canvas.figures.FigureWithCoordsMap;
 import canvas.figures.IFigureWithCoords;
 import com.visibleworkings.trace.Trace;
-import conexp.core.ConceptsCollection;
-import conexp.core.ContextEntity;
-import conexp.core.ItemSet;
-import conexp.core.Lattice;
+import conexp.core.*;
 import conexp.frontend.latticeeditor.drawstrategies.DefaultLabelingStrategiesFactory;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.LineDiagramFigure;
@@ -93,6 +90,8 @@ public abstract class ConceptSetDrawing extends FigureDrawing {
         getLabelingStrategiesContextImpl().doStorePreferences();
     }
 
+
+
     class LabelingStrategiesEventHandler implements PropertyChangeListener {
         public void propertyChange(PropertyChangeEvent evt) {
             String propertyName = evt.getPropertyName();
@@ -127,7 +126,9 @@ public abstract class ConceptSetDrawing extends FigureDrawing {
 
     private FigureWithCoordsMap attributeLabels = new FigureWithCoordsMap();
     private FigureWithCoordsMap objectLabels = new FigureWithCoordsMap();
-    private FigureWithCoordsMap conceptLabels = new FigureWithCoordsMap();
+//    private FigureWithCoordsMap conceptLabels = new FigureWithCoordsMap();
+    private FigureWithCoordsMap upConceptLabels = new FigureWithCoordsMap();
+    private FigureWithCoordsMap downConceptLabels = new FigureWithCoordsMap();
 
     public void setFigureForContextObject(ContextEntity object, IFigureWithCoords figure) {
         if (object.isObject()) {
@@ -161,20 +162,52 @@ public abstract class ConceptSetDrawing extends FigureDrawing {
         objectLabels.clear();
     }
 
-    public FigureWithCoords getLabelForConcept(ItemSet concept) {
-        return conceptLabels.get(concept);
+    public IFigureWithCoords getLabelForConcept(ItemSet concept) {
+        return getDownLabelForConcept(concept);
     }
 
     public boolean hasLabelsForConcepts() {
-        return !conceptLabels.isEmpty();
+        return hasDownLabelsForConcepts() || hasUpLabelsForConcepts();
     }
 
-    public void setLabelForConcept(ItemSet concept, IFigureWithCoords label) {
-        conceptLabels.put(concept, label);
+    public void setUpLabelForConcept(ItemSet concept,
+                                     IFigureWithCoords label) {
+        upConceptLabels.put(concept, label);
+    }
+
+
+    public void setDownLabelForConcept(ItemSet concept, IFigureWithCoords label) {
+        downConceptLabels.put(concept, label);
     }
 
     public void clearConceptLabels() {
-        conceptLabels.clear();
+        clearDownLabelsForConcepts();
+    }
+
+    public void clearDownLabelsForConcepts() {
+        downConceptLabels.clear();
+    }
+
+
+    public void clearUpLabelsForConcepts() {
+       upConceptLabels.clear();
+    }
+
+
+    public boolean hasUpLabelsForConcepts() {
+        return !upConceptLabels.isEmpty();
+    }
+
+    public boolean hasDownLabelsForConcepts() {
+        return !downConceptLabels.isEmpty();
+    }
+
+    public IFigureWithCoords getDownLabelForConcept(ItemSet conceptNode) {
+        return downConceptLabels.get(conceptNode);
+    }
+
+    public IFigureWithCoords getUpLabelForConcept(ItemSet conceptNode) {
+        return upConceptLabels.get(conceptNode);
     }
 
     protected FigureDimensionCalcStrategyProvider getFigureDimensionProvider() {

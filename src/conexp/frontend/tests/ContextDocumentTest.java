@@ -18,8 +18,8 @@ import conexp.frontend.*;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.components.LatticeSupplier;
 import conexp.frontend.latticeeditor.LatticeDrawing;
-import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
+import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 import conexp.frontend.ui.ConExpViewManager;
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -43,8 +43,8 @@ public class ContextDocumentTest extends TestCase {
         return new SimpleLayoutTestSetup(new TestSuite(ContextDocumentTest.class));
     }
 
-    public static void performCommand(ContextDocument doc, String command) {
-        doc.getActionChain().get(command).actionPerformed(null);
+    public static void performCommand(ContextDocument document, String command) {
+        document.getActionChain().get(command).actionPerformed(null);
     }
 
 
@@ -363,7 +363,7 @@ public class ContextDocumentTest extends TestCase {
     }
     interface DocModifier{
         void modifyDoc(ContextDocument doc);
-    };
+    }
 
     public void testContextDocModification(){
         doTestDocModifiedAfterModification(new DocModifier(){
@@ -437,11 +437,13 @@ public class ContextDocumentTest extends TestCase {
                                                          {0,0}});
         doc = new ContextDocument(cxt);
         doc.calculateAndLayoutLattice();
-        doc.getLatticeComponent(0).getDrawing().
+        LatticeDrawing drawing = doc.getLatticeComponent(0).getDrawing();
+        drawing.
                 setObjectLabelingStrategyKey(LabelingStrategiesKeys.
                 OBJECTS_MULTI_LABELING_STRATEGY_KEY);
+        drawing.setAttributeLabelingStrategyKey(LabelingStrategiesKeys.ATTRIBS_MULTI_LABELING_STRATEGY_KEY);
+
         doc.makeLatticeSnapshot();
-        fail("TODO: reproduce error with labels size");
     }
 
     public void testSnapshotForMultiLabelsObjectAttr(){
@@ -450,12 +452,27 @@ public class ContextDocumentTest extends TestCase {
         doc = new ContextDocument(cxt);
         doc.calculateAndLayoutLattice();
         LatticeDrawing drawing = doc.getLatticeComponent(0).getDrawing();
-        drawing.
-                setAttributeLabelingStrategyKey(LabelingStrategiesKeys.
+        assertEquals(LabelingStrategiesKeys.NO_ATTRIBS_LABELING_STRATEGY,
+                drawing.getAttributeLabelingStrategyKey());
+        assertEquals(LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY,
+                drawing.getObjectLabelingStrategyKey());
+        assertEquals("labelsForConcepts should be true",true, drawing.hasDownLabelsForConcepts());
+        assertEquals("labelsForAttributes should be false", false,drawing.hasLabelsForAttributes());
+        assertEquals("labelsForObjects should be false", false, drawing.hasLabelsForObjects());
+        drawing.setAttributeLabelingStrategyKey(LabelingStrategiesKeys.
                 ATTRIBS_MULTI_LABELING_STRATEGY_KEY);
+        assertTrue("Expect that drawing has labels for concepts",drawing.hasUpLabelsForConcepts());
+
         drawing.setObjectLabelingStrategyKey(
                 LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY);
+        assertFalse("Expect that drawing has no labels for objects", drawing.hasLabelsForObjects());
+        assertTrue("Setting object labeling strategy should not affect concept labeling strategy",
+                drawing.hasUpLabelsForConcepts());
+
         doc.makeLatticeSnapshot();
     }
+
+
+
 
 }

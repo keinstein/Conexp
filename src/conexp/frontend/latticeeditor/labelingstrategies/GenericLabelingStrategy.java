@@ -11,6 +11,7 @@ import canvas.BaseFigureVisitor;
 import canvas.Figure;
 import canvas.figures.BorderCalculatingFigure;
 import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.LatticeElement;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
@@ -25,7 +26,9 @@ import java.util.Map;
 
 public abstract class GenericLabelingStrategy extends LabelingStrategy {
 
-    private Map conceptLabelsMap = new HashMap();
+    private Map/*<AbstractConceptCorrespondingFigure, Object>*/
+            figureToConnectedObjectMap = new HashMap();
+
 
     public class InitStrategyVisitor extends DefaultFigureVisitor {
         ConceptSetDrawing drawing;
@@ -83,24 +86,30 @@ public abstract class GenericLabelingStrategy extends LabelingStrategy {
      * @return java.lang.Object
      */
     private Object getConnectedObject(AbstractConceptCorrespondingFigure f) {
-        return conceptLabelsMap.get(f);
+        return figureToConnectedObjectMap.get(f);
     }
 
     public boolean hasConnectedObjects() {
-        return !conceptLabelsMap.isEmpty();
+        return !figureToConnectedObjectMap.isEmpty();
     }
 
     protected abstract Object makeConnectedObject(ConceptSetDrawing fd, AbstractConceptCorrespondingFigure f, LayoutParameters opt);
 
 
     private void removeConnectedObject(AbstractConceptCorrespondingFigure f) {
-        conceptLabelsMap.remove(f);
+        figureToConnectedObjectMap.remove(f);
     }
 
     protected abstract void removeConnectedObjectFromContainer(ConceptSetDrawing fd, AbstractConceptCorrespondingFigure f, Object obj);
 
     private void setConnectedObject(AbstractConceptCorrespondingFigure f, Object obj) {
-        conceptLabelsMap.put(f, obj);
+        figureToConnectedObjectMap.put(f, obj);
+    }
+
+    protected void setLabelForConcept(ConceptSetDrawing drawing,
+                                      LatticeElement concept,
+                                      BorderCalculatingFigure labelFigure) {
+        drawing.setDownLabelForConcept(concept, labelFigure);
     }
 
     public void setContext(ExtendedContextEditingInterface cxt) {

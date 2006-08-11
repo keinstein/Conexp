@@ -18,6 +18,7 @@ import java.util.Collection;
  * Please read license.txt for licensing issues.
  * Date: 30/7/2003
  * Time: 22:55:43
+ * todo:sye rename to OneLeablePerConcept
  */
 
 public abstract class OneLabelConceptLabelingStrategy extends GenericLabelingStrategy {
@@ -43,7 +44,7 @@ public abstract class OneLabelConceptLabelingStrategy extends GenericLabelingStr
         Rectangle2D rect = GraphicObjectsFactory.makeRectangle2D();
         labelFigure.boundingBox(rect);
         labelFigure.setCoords(newX, newY);
-        drawing.setLabelForConcept(concept, labelFigure);
+        setLabelForConcept(drawing, concept, labelFigure);
 
         Figure connected = makeConnectedFigure(f, labelFigure);
 

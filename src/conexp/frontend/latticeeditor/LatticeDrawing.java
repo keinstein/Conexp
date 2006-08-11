@@ -52,6 +52,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
     }
 
 
+
     private class DefaultLayouterProvider implements LayouterProvider {
         public Layouter getLayouter() {
             return getPainterOptions().getLayoutStrategy();
@@ -269,11 +270,16 @@ public class LatticeDrawing extends ConceptSetDrawing {
         elementFigureMap = new ConceptFigure[lattice.conceptsCount()];
         lattice.forEach(new Lattice.LatticeElementVisitor() {
             public void visitNode(LatticeElement node) {
-                ConceptFigure f = new ConceptFigure(new ConceptNodeQuery(lattice.getContext(), node, lattice.getAttributesMask()));
+                ConceptFigure f = new ConceptFigure(makeConceptQueryForElement(node));
                 elementFigureMap[node.getIndex()] = f;
                 addFigure(f);
             }
         });
+    }
+
+    //todo:sye - change to protected after restructuting tests
+    public ConceptNodeQuery makeConceptQueryForElement(LatticeElement node) {
+        return new ConceptNodeQuery(lattice.getContext(), node, lattice.getAttributesMask());
     }
 
     private void makeEdgeFigures() {

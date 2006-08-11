@@ -38,8 +38,12 @@ public class ContextDocManagerTest extends TestCase {
     }
 
     private static ContextDocManager makeDocManager() {
-        return new ContextDocManager(new JFrame(), new MockOptionPaneSupplier());
+        ContextDocManager docManager =
+                new ContextDocManager(new JFrame(), new MockOptionPaneSupplier());
+        docManager.setAppErrorHandler(new MockAppErrorHandler());
+        return docManager;
     }
+
 
     public void testLoadingOfDocumentWithAbsentLoader() {
         assertTrue(docManager.getStorageFormatManager().isEmpty());
@@ -56,8 +60,8 @@ public class ContextDocManagerTest extends TestCase {
     class MockDocument implements Document {
         boolean modified=false;
 
-        public void setModified(boolean modified) {
-            this.modified = modified;
+        public void setModified(boolean newModified) {
+            this.modified = newModified;
         }
 
         public void markDirty() {
@@ -100,7 +104,7 @@ public class ContextDocManagerTest extends TestCase {
         public boolean isModified() {
             return modified;
         }
-    };
+    }
 
     public void testMruList() {
         //MRU - when file should be added to MRU - after close with write;
@@ -289,8 +293,8 @@ public class ContextDocManagerTest extends TestCase {
 
         int response;
 
-        public void setResponse(int response) {
-            this.response = response;
+        public void setResponse(int newResponse) {
+            this.response = newResponse;
         }
 
         public int getSaveIfModifiedResponse(){
@@ -304,6 +308,22 @@ public class ContextDocManagerTest extends TestCase {
 
         public void verify() {
             counter.verify();
+        }
+    }
+
+    private static class MockAppErrorHandler implements AppErrorHandler {
+
+        private static void failWithException(Throwable exception) {
+            fail(exception.getMessage()+
+                    StringUtil.stackTraceToString(exception));
+        }
+
+        public void reportAppErrorMessage(String messageKey, Throwable exception) {
+            failWithException(exception);
+        }
+
+        public void reportInternalError(String messageKey, Throwable exception) {
+            failWithException(exception);
         }
     }
 }

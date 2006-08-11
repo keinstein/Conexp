@@ -14,9 +14,7 @@ import util.StringUtil;
 public class ObjectsCountLabelingStrategy extends SimpleConceptLabelingStrategy {
 
     /**
-     * ObjectsCountLabellingStrategy constructor comment.
-     *
-     * @param opt conexp.frontend.latticeeditor.LatticePainterDrawParams
+     * Constructor.
      */
     public ObjectsCountLabelingStrategy() {
         super();
@@ -33,7 +31,7 @@ public class ObjectsCountLabelingStrategy extends SimpleConceptLabelingStrategy 
      * Insert the method's description here.
      * Creation date: (26.12.00 0:57:50)
      *
-     * @param concept conexp.core.LatticeElement
+     * @param conceptQuery conexp.core.LatticeElement
      * @return java.lang.String
      */
     protected String getDescriptionString(ConceptQuery conceptQuery) {

@@ -1019,14 +1019,16 @@ public class ContextDocument implements ActionChainBearer, Document {
                 new IconData(DOMAIN_ICON, contextName));
         domain.add(getContextTreeRoot());
 
-/*
         if (hasAtLeastOneLattice()) {
             final int bound = contextDocumentModel.getLatticeComponents().size();
             for (int i = 0; i < bound; i++) {
-                getContextTreeRoot().add();
+                doAddDirectChildToTree(
+                  getViewInfoForLatticeComponent(
+                          contextDocumentModel.getLatticeComponent(i))
+                                .getViewTreeNode(), false
+                );
             }
         }
-*/
         if (implicationSetIsComputed()) {
             addImplicationsNodeToTree(false);
         }
@@ -1057,7 +1059,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     private void selectAndExpandViewNodeInTree(
             final MutableTreeNode childTreeNode) {
-        Object[] path = null;
+        Object[] path;
         if (childTreeNode == getContextTreeRoot()) {
             path =
                     new Object[]{getDocumentTreeModel().getRoot(),

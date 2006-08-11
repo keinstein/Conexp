@@ -14,6 +14,7 @@ import conexp.frontend.ui.MenuSite;
 import conexp.frontend.util.*;
 import util.*;
 import util.gui.MostRecentUrlListManager;
+import util.gui.dialogs.ErrorDialog;
 import util.gui.fileselector.FileSelectorService;
 import util.gui.fileselector.GenericFileFilter;
 
@@ -26,7 +27,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.MessageFormat;
 import java.util.ResourceBundle;
 
 
@@ -55,6 +55,31 @@ public class ContextDocManager extends BasePropertyChangeSupplier
     }
 
     private DocModifiedHandler docModifiedHandler = new DefaultDocModifiedHandler();
+
+    private AppErrorHandler errorHandler = new DefaultAppErrorHandler();
+
+    public void setAppErrorHandler(AppErrorHandler appErrorHandler) {
+        this.errorHandler = appErrorHandler;
+        assert null!=appErrorHandler : "Error Handler is null";
+    }
+
+    class DefaultAppErrorHandler implements AppErrorHandler{
+        public void reportAppErrorMessage(String messageKey, Throwable exception) {
+            JOptionPane.showMessageDialog(
+                    getMainAppWindow(),
+                    makeLocalizedMessageWithOneParam(messageKey,
+                        exception.getMessage()));
+        }
+
+        public void reportInternalError(String messageKey,
+                                        Throwable exception) {
+            new ErrorDialog(getMainAppWindow(),
+                    exception,
+                     getLocalizedMessage("InternalErrorTitle"),
+                     getLocalizedMessage(messageKey)).show();
+        }
+    }
+
 
     public void setDocModifiedHandler(DocModifiedHandler handler) {
         assert null != handler:"handler is expected to be not null";
@@ -179,10 +204,10 @@ public class ContextDocManager extends BasePropertyChangeSupplier
         try {
             getConfigManager().saveConfiguration();
         } catch (IOException e) {
-            showMessage("Failed to write configuration " +
-                    StringUtil.stackTraceToString(e));
+            handleInternalError("ConfigWriteErrorMsg", e);
         }
     }
+
 
 
     private MenuSite menuSite;
@@ -340,8 +365,12 @@ public class ContextDocManager extends BasePropertyChangeSupplier
             handleReadWriteException(e);
         } catch (DataFormatException e) {
             handleReadWriteException(e);
+        } catch(Exception e){
+            //some kind of runtime exception
+            handleInternalError(e);
         }
     }
+
 
 
     private boolean onSaveAs() {
@@ -379,8 +408,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier
             saveDocumentAndUpdateDocumentInfo(f);
             return true;
         } catch (Exception ex) {
-            showMessage(makeLocalizedMessageWithOneParam("FileSaveErrorMsg",
-                    ex.getMessage()));
+            handleReadWriteException("FileSaveErrorMsg", ex);
             return false;
         }
 
@@ -394,8 +422,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier
             saveDocument(new File(getDocPath()));
             return true;
         } catch (IOException ex) {
-            showMessage(makeLocalizedMessageWithOneParam("FileSaveErrorMsg",
-                    ex.getMessage()));
+            handleReadWriteException("FileSaveErrorMsg", ex);
             return false;
         }
     }
@@ -420,9 +447,22 @@ public class ContextDocManager extends BasePropertyChangeSupplier
         }
     }
 
-    private void handleReadWriteException(Throwable e) {
-        showMessage(e.getMessage());
+    private void handleReadWriteException(String messageKey, Throwable e){
+        errorHandler.reportAppErrorMessage(messageKey, e);
     }
+
+    private void handleReadWriteException(Throwable e) {
+        handleReadWriteException("DefaultErrorFormat", e);
+    }
+
+   private void handleInternalError(String msgKey, Throwable e) {
+       errorHandler.reportInternalError(msgKey, e);
+    }
+
+    private void handleInternalError(Exception e) {
+        handleInternalError("InternalErrorMsg", e);
+    }
+
 
 //-------------------------------------------
 
@@ -509,8 +549,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier
 
     private String makeLocalizedMessageWithOneParam(String messageKey,
                                                     String msgParam) {
-        return MessageFormat.format(getLocalizedMessage(messageKey),
-                new Object[]{msgParam});
+        return FormatUtil.format(getLocalizedMessage(messageKey), msgParam);
     }
 
 

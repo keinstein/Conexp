@@ -35,7 +35,6 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
     synchronized StrategyValueItem getAttrLabelingStrategyItem() {
         if (null == attrLabelingStrategy) {
             attrLabelingStrategy = makeStrategyValueItem("drawAttribs", factory.makeAttributeLabelingStrategiesModel());
-//            attrLabelingStrategy.restoreFromPreferences(getPreferences());
         }
         return attrLabelingStrategy;
     }
@@ -57,7 +56,6 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
             objLabelingStrategy =
                     makeStrategyValueItem("drawObjects",
                             factory.makeObjectsLabelingStrategiesModel());
-//            objLabelingStrategy.restoreFromPreferences(getPreferences());
         }
         return objLabelingStrategy;
     }

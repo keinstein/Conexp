@@ -18,6 +18,8 @@ public class PackageTest extends TestCase {
         TestSuite suite = new TestSuite();
         suite.addTestSuite(AllAttribsLabelingStrategyTest.class);
         suite.addTestSuite(AllObjectsLabelingStrategyTest.class);
+        suite.addTestSuite(AllAttribsMultiLineLabelingStrategyTest.class);
+        suite.addTestSuite(AllObjectsMultiLineLabelingStrategyTest.class);
 
         suite.addTestSuite(AttributesLabelingStrategyModelTest.class);
         suite.addTestSuite(ObjectsLabelingStrategyModelTest.class);

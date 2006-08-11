@@ -31,14 +31,14 @@ public class OwnObjectsCountLabelingStrategyTest extends GenericLabelingStrategy
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(lattice);
         assertTrue(drawing.setObjectLabelingStrategyKey(LabelingStrategiesKeys.ALL_OBJECTS_LABELING_STRATEGY));
-        assertEquals(false, drawing.hasLabelsForConcepts());
+        assertEquals(false, drawing.hasDownLabelsForConcepts());
         GenericLabelingStrategy ownObjectCountStrategy = makeStrategy();
 
         ownObjectCountStrategy.setContext(lattice.getContext());
         ownObjectCountStrategy.init(drawing, makeDrawParams());
-        assertEquals(true, drawing.hasLabelsForConcepts());
+        assertEquals(true, drawing.hasDownLabelsForConcepts());
         ownObjectCountStrategy.shutdown(drawing);
-        assertEquals(false, drawing.hasLabelsForConcepts());
+        assertEquals(false, drawing.hasDownLabelsForConcepts());
 
     }
 }

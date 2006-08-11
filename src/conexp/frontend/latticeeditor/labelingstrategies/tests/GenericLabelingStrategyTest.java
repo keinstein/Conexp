@@ -25,7 +25,7 @@ import java.awt.*;
 
 
 public abstract class GenericLabelingStrategyTest extends TestCase {
-    private GenericLabelingStrategy labelStrategy;
+    protected GenericLabelingStrategy labelStrategy;
     private Context cxt;
 
     protected abstract ConceptNodeQuery makeAcceptable();

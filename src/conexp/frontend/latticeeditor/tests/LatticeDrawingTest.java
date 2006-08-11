@@ -8,10 +8,12 @@
 package conexp.frontend.latticeeditor.tests;
 
 import conexp.core.Lattice;
+import conexp.core.LatticeElement;
 import conexp.core.layoutengines.SimpleLayoutEngine;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.LatticeDrawing;
+import conexp.frontend.latticeeditor.figures.SimpleTextFigure;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 
 
@@ -102,6 +104,70 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
         assertNotNull(other);
         assertNotSame(drawing, other);
         assertTrue(drawing.getOptions().isEqual(other.getOptions()));
+    }
+
+
+    public void testHasLabelsForConcept(){
+        final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0},
+                                                                              {0, 1}});
+        drawing.setLattice(lattice);
+//        drawing.layoutLattice();
+
+        assertEquals(LabelingStrategiesKeys.NO_ATTRIBS_LABELING_STRATEGY,
+                drawing.getAttributeLabelingStrategyKey());
+        assertEquals(LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY,
+                drawing.getObjectLabelingStrategyKey());
+        drawing.setObjectLabelingStrategyKey(LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY);
+
+        assertEquals(LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY,
+                drawing.getObjectLabelingStrategyKey());
+        assertEquals("labelsForConcepts should be true",true, drawing.hasDownLabelsForConcepts());
+        assertEquals("labelsForAttributes should be false", false,drawing.hasLabelsForAttributes());
+        assertEquals("labelsForObjects should be false", false, drawing.hasLabelsForObjects());
+        drawing.setAttributeLabelingStrategyKey(LabelingStrategiesKeys.
+                ATTRIBS_MULTI_LABELING_STRATEGY_KEY);
+        assertTrue("Expect that drawing has labels for concepts",drawing.hasUpLabelsForConcepts());
+
+        drawing.setObjectLabelingStrategyKey(
+                LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY);
+        assertFalse("Expect that drawing has no labels for objects", drawing.hasLabelsForObjects());
+        assertFalse("There should be no down concept labels", drawing.hasDownLabelsForConcepts());
+        assertTrue("Setting object labeling strategy should not affect concept labeling strategy",
+                drawing.hasUpLabelsForConcepts());
+
+    }
+
+
+    public void testSetUpLabelForConceptAndClearingLabels() {
+        final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0},
+                                                                              {0, 1}});
+        drawing.setLattice(lattice);
+
+        assertFalse(getDrawing().hasUpLabelsForConcepts());
+        LatticeElement zero = drawing.getLattice().getZero();
+        SimpleTextFigure figure =
+                new SimpleTextFigure(drawing.makeConceptQueryForElement(zero),
+                        "Test text");
+        drawing.setUpLabelForConcept(zero,
+                figure);
+        assertTrue(drawing.hasUpLabelsForConcepts());
+        assertSame(figure, drawing.getUpLabelForConcept(zero));
+        drawing.clearUpLabelsForConcepts();
+        assertFalse(drawing.hasUpLabelsForConcepts());
+    }
+
+
+
+    public void testLabelingStrategies(){
+
+        /*
+            There will be actually two types of lebelling strategies:
+            upper semisphere and lower semisphere
+            They can be divided on based on memory consumption on
+            object/attribute/ concept related
+            Actually they are mainly upper-concept-drawing or lower-concept-drawing
+        */
+
     }
 
 

@@ -15,9 +15,10 @@ import junit.framework.TestSuite;
 public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
-        suite.addTestSuite(LineFigureTest.class);
-        suite.addTestSuite(RectangularFigureTest.class);
         suite.addTestSuite(CompositeFigureTest.class);
+        suite.addTestSuite(LineFigureTest.class);
+        suite.addTestSuite(MultiLineTextFigureTest.class);
+        suite.addTestSuite(RectangularFigureTest.class);
         return suite;
     }
 }

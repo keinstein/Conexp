@@ -40,6 +40,9 @@ public interface ConExpXMLElements {
     String ATTRIBUTE_LABELS_ELEMENT = "AttributeLabels";
     String OBJECT_LABELS_ELEMENT = "ObjectLabels";
     String CONCEPT_LABELS_ELEMENT = "ConceptLabels";
+    //In order to preserbe backward compatibility
+    String DOWN_CONCEPT_LABELS_ELEMENT = CONCEPT_LABELS_ELEMENT; 
+    String UP_CONCEPT_LABELS_ELEMENT = "UpConceptLabels";
 
 
     String FIGURE = "LineDiagramFigure";
