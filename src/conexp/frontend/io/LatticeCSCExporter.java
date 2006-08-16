@@ -12,7 +12,7 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 import util.StringUtil;
 
-import java.awt.*;
+import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.io.BufferedWriter;
 import java.io.PrintWriter;

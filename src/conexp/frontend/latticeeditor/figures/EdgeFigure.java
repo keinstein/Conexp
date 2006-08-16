@@ -15,7 +15,7 @@ import conexp.core.Set;
 import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 import util.StringUtil;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class EdgeFigure extends LineFigure implements Collidable {
     public EdgeFigure(AbstractConceptCorrespondingFigure start, AbstractConceptCorrespondingFigure end) {

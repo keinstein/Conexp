@@ -12,7 +12,7 @@ import com.mockobjects.ExpectationCounter;
 import com.mockobjects.ExpectationList;
 import com.mockobjects.Verifiable;
 
-import java.awt.*;
+import java.awt.Dimension;
 
 
 public class MockFigureDrawingListener implements Verifiable, FigureDrawingListener {

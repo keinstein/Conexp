@@ -9,7 +9,8 @@ package conexp.frontend.tests;
 
 import conexp.frontend.OptionPaneSupplier;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 
 class MockOptionPaneSupplier implements OptionPaneSupplier {
     public JComponent getOptionsPane() {

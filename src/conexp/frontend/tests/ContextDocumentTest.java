@@ -31,7 +31,9 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import util.testing.SwingTestUtil;
 
-import javax.swing.*;
+import javax.swing.Action;
+import javax.swing.ImageIcon;
+import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 import java.util.Collection;
@@ -459,6 +461,9 @@ public class ContextDocumentTest extends TestCase {
         LatticeDrawing drawing = doc.getLatticeComponent(0).getDrawing();
         assertEquals(LabelingStrategiesKeys.NO_ATTRIBS_LABELING_STRATEGY,
                 drawing.getAttributeLabelingStrategyKey());
+        drawing.
+                setObjectLabelingStrategyKey(LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY);
+
         assertEquals(LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY,
                 drawing.getObjectLabelingStrategyKey());
         assertEquals("labelsForConcepts should be true",true, drawing.hasDownLabelsForConcepts());

@@ -18,7 +18,10 @@ import conexp.frontend.ui.ConExpViewManager;
 import conexp.frontend.ui.ViewInfo;
 import junit.framework.TestCase;
 
-import javax.swing.*;
+import javax.swing.ActionMap;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 
 public class ConExpViewManagerTest extends TestCase {

@@ -7,7 +7,7 @@
 
 package conexp.util.gui.paramseditor;
 
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 
 public class IntValueCellEditor extends javax.swing.DefaultCellEditor {

@@ -9,7 +9,8 @@ package conexp.util.gui.paramseditor;
 
 import conexp.util.valuemodels.BoundedIntValue;
 
-import javax.swing.*;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;

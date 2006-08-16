@@ -8,8 +8,8 @@ import util.gui.fileselector.ExtensionFileFilter;
 import util.gui.fileselector.FileSelectorService;
 import util.gui.fileselector.GenericFileFilter;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.AbstractAction;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 

@@ -11,7 +11,11 @@ import conexp.frontend.DependencySetSupplier;
 import conexp.frontend.ResourceLoader;
 import conexp.util.gui.paramseditor.ParamEditorTable;
 
-import javax.swing.*;
+import javax.swing.Action;
+import javax.swing.ActionMap;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 import java.util.ResourceBundle;
 

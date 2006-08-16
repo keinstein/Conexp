@@ -1,6 +1,6 @@
 package conexp.frontend.ui.tree;
 
-import javax.swing.*;
+import javax.swing.JPopupMenu;
 
 /**
  * User: sergey

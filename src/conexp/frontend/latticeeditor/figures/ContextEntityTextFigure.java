@@ -11,7 +11,7 @@ import canvas.CanvasScheme;
 import conexp.core.ContextEntity;
 import conexp.frontend.latticeeditor.ConceptQuery;
 
-import java.awt.*;
+import java.awt.Color;
 
 public class ContextEntityTextFigure extends ConceptRelatedTextFigure {
     protected ContextEntity obj;

@@ -9,7 +9,9 @@ package canvas;
 
 import canvas.highlightstrategies.NullHighlightStrategy;
 
-import java.awt.*;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
 
 
 public class DefaultCanvasScheme implements CanvasScheme {

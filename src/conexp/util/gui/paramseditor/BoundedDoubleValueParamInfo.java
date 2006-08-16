@@ -9,7 +9,9 @@ package conexp.util.gui.paramseditor;
 
 import conexp.util.valuemodels.BoundedDoubleValue;
 
-import javax.swing.*;
+import javax.swing.BoundedRangeModel;
+import javax.swing.DefaultBoundedRangeModel;
+import javax.swing.JSlider;
 
 public class BoundedDoubleValueParamInfo extends AbstractParamInfo {
     private final BoundedDoubleValue valueModel;

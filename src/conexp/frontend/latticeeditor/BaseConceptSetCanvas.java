@@ -12,7 +12,7 @@ import com.visibleworkings.trace.Trace;
 import conexp.frontend.latticeeditor.movestrategies.FigureIdealMoveStrategy;
 import conexp.frontend.latticeeditor.movestrategies.OneFigureMoveStrategy;
 
-import javax.swing.*;
+import javax.swing.JComponent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 

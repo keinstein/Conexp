@@ -7,7 +7,7 @@
 
 package conexp.frontend;
 
-import javax.swing.*;
+import javax.swing.JComponent;
 
 public interface OptionPaneSupplier {
     JComponent getOptionsPane();

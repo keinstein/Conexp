@@ -9,7 +9,8 @@ package conexp.frontend.io;
 
 import util.DataFormatException;
 
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 public class UIDataFormatErrorHandler extends DataFormatErrorHandlerBase {

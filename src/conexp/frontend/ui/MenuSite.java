@@ -7,7 +7,8 @@
 
 package conexp.frontend.ui;
 
-import javax.swing.*;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 
 public interface MenuSite {

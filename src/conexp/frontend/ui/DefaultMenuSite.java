@@ -9,7 +9,12 @@ package conexp.frontend.ui;
 
 import util.Assert;
 
-import javax.swing.*;
+import javax.swing.Box;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;

@@ -10,7 +10,7 @@ package canvas.tests;
 import canvas.Figure;
 import junit.framework.TestCase;
 
-import java.awt.*;
+import java.awt.Rectangle;
 
 
 public abstract class FigureTest extends TestCase {

@@ -1,15 +1,68 @@
 <?xml version="1.0" encoding="iso-8859-15"?>
 <!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
-<document> 
-  <header> 
-    <title>ConExp Template Page</title> 
-  </header> 
-  <body> 
-    <section>
-      <title>ConExp Template</title>
-      <p>We are currently working on creating a website for ConExp. For
-      now, please check the <link href="ext:project-page">Project Page</link> or go directly
-      to the <link href="ext:download-page">Download Page</link>.</p>
-    </section>
-  </body>
+<document>
+    <header>
+        <title>Acknowledgments</title>
+    </header>
+    <body>
+        <section>
+            <title>Acknowledgments</title>
+        <p>To the contributors that contribute source code to ConExp projects,
+ documentation team that helped to create web site, people,
+ who helped to develop ConExp and influenced its development, and also to all
+ users that use this software and provide feedback about it on ConExp user list.</p>
+        </section>
+
+        <section>
+            <title>Contributors</title>
+            <ul>
+                <li> Julien Tane </li>
+                <li> Tim Kaiser </li>
+                <li> Dr. Sergei Objedkov </li>
+            </ul>
+        </section>
+
+        <section>
+            <title>ConExp protege plugin developers</title>
+            <ul>
+                <li>Dr Guoqian Jiang, Department of Medical Informatics, Hokkaido University Graduate School of Medicine</li>
+            </ul>
+        </section>
+
+        <section>
+            <title>Documentation team </title>
+            <ul>
+                <li> Joachim Herreth-Correia </li>
+                <li> Heiko Reppe </li>
+            </ul>
+        </section>
+
+        <section>
+            <title> Special thanks to: </title>
+            <ul>
+                <li> Prof. Dr. Tatyina Taran (National Technical University of Ukraine "KPI", Department of Applied Mathematics)</li>
+                <li> Prof. Dr. Wolfgang Bibel (Technical University of Darmstadt, Computer Science Department, Intellectics group)</li>
+                <li> Prof. Dr. Bernhard Ganter (Technical University of Dresden, Institute of Applied Algebra)</li>
+                <li> Prof. Dr. Peter Burmeister (Technical University of Darmstadt, Mathematics Department) </li>
+                <li> Prof. Dr. Rudolf Wille (Technical University of Darmstadt, Mathematics Department) </li>
+                <li> Dr. Sergey Kuznetsov </li>
+                <li> Dr. Peter Grigoryev </li>
+                <li> Peter Becker</li>
+            </ul>
+        </section>
+
+        <section>
+            <title>ConExp users that reported bugs and asked for new features</title>
+            <ul>
+                <li>John Old, Faculty of Engineering and Computing, Napier University, Edinburgh</li>
+                <li>Steve Abrams</li>
+                <li>Monica H Ou</li>
+                <li>Francisco Valverde,  University Carlos III de Madrid</li>
+                <li>CC Kiu</li>
+                <li>Bastian Wormuth</li>
+            </ul>
+        </section>
+
+
+    </body>
 </document>

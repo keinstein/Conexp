@@ -3,7 +3,7 @@ package canvas.util;
 import canvas.Figure;
 import canvas.IFigurePopupMenuProvider;
 
-import javax.swing.*;
+import javax.swing.JPopupMenu;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

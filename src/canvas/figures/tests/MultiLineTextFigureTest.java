@@ -9,7 +9,7 @@ package canvas.figures.tests;
 import canvas.figures.MultiLineTextFigure;
 import junit.framework.TestCase;
 
-import java.awt.*;
+import java.awt.Font;
 import java.awt.font.FontRenderContext;
 
 public class MultiLineTextFigureTest extends TestCase {

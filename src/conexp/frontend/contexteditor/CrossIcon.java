@@ -7,8 +7,10 @@
 
 package conexp.frontend.contexteditor;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.Icon;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
 
 class CrossIcon implements Icon {
     private static final int height = 16;

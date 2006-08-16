@@ -10,7 +10,10 @@ package conexp.frontend.ruleview;
 import conexp.frontend.DependencySetSupplier;
 import conexp.frontend.ResourceLoader;
 
-import javax.swing.*;
+import javax.swing.Action;
+import javax.swing.ActionMap;
+import javax.swing.JComponent;
+import javax.swing.JPanel;
 import java.util.ResourceBundle;
 
 public class ImplicationsView extends GenericRuleView {

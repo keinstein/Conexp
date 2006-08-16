@@ -9,7 +9,7 @@ package conexp.util.gui.paramseditor;
 
 import conexp.util.gui.strategymodel.StrategyValueItem;
 
-import javax.swing.*;
+import javax.swing.JComboBox;
 
 public class StrategyValueItemParamInfo extends AbstractParamInfo {
     private final StrategyValueItem valueModel;

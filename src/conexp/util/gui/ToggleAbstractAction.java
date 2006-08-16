@@ -1,6 +1,7 @@
 package conexp.util.gui;
 
-import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.Icon;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

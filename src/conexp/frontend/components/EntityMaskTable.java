@@ -10,7 +10,7 @@ package conexp.frontend.components;
 import conexp.frontend.EntitiesMask;
 import util.gui.JTableX;
 
-import javax.swing.*;
+import javax.swing.UIManager;
 
 public class EntityMaskTable extends JTableX {
     public EntityMaskTable(EntitiesMask attributeMask) {

@@ -7,7 +7,7 @@
 
 package conexp.frontend.contexteditor;
 
-import javax.swing.*;
+import javax.swing.JPopupMenu;
 
 public class DefaultPopupMenuProvider implements PopupMenuProvider {
 

@@ -14,7 +14,8 @@ import com.mockobjects.beans.MockPropertyChangeListener;
 import junit.framework.TestCase;
 import util.testing.TestUtil;
 
-import java.awt.*;
+import java.awt.Point;
+import java.awt.Rectangle;
 
 
 public class FigureDrawingTest extends TestCase {

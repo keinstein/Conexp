@@ -13,7 +13,7 @@ import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.Set;
 import conexp.util.gui.Command;
 
-import javax.swing.*;
+import javax.swing.JScrollPane;
 import javax.swing.event.UndoableEditListener;
 
 public class ContextTablePane extends JScrollPane {

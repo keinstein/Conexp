@@ -9,7 +9,7 @@ package conexp.frontend.contexteditor;
 
 import conexp.core.ContextEditingInterface;
 
-import javax.swing.*;
+import javax.swing.Icon;
 
 
 public class SimpleContextDrawStrategy implements ContextRenderStrategy {

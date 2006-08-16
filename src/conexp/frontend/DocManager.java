@@ -7,7 +7,7 @@
 
 package conexp.frontend;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 public interface DocManager {
     JFrame getMainAppWindow();

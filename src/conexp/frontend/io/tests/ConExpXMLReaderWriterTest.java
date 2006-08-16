@@ -29,7 +29,7 @@ import conexp.util.gui.strategymodel.StrategyValueItem;
 import util.testing.SwingTestUtil;
 import util.testing.TestUtil;
 
-import javax.swing.*;
+import javax.swing.JTree;
 import java.awt.geom.Point2D;
 import java.beans.PropertyVetoException;
 

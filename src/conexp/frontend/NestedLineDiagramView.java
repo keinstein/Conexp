@@ -10,7 +10,8 @@ package conexp.frontend;
 import conexp.frontend.latticeeditor.NestedLineDiagramCanvas;
 import conexp.frontend.latticeeditor.NestedLineDiagramDrawing;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
 
 public class NestedLineDiagramView extends JScrollPane implements View, OptionPaneProvider {
     private NestedLineDiagramCanvas canvas;

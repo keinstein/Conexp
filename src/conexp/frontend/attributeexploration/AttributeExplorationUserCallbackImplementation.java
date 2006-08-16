@@ -19,8 +19,8 @@ import conexp.core.attrexplorationimpl.AttributeExplorerImplementation;
 import conexp.frontend.ResourceLoader;
 import util.Assert;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JOptionPane;
+import java.awt.Component;
 import java.text.MessageFormat;
 import java.util.ResourceBundle;
 

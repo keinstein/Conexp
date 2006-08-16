@@ -9,7 +9,8 @@ package conexp.frontend.components;
 
 import conexp.frontend.EntitiesMask;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 
 public class EntitiesMaskScrollPane extends JScrollPane {

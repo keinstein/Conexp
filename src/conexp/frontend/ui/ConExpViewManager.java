@@ -11,10 +11,11 @@ import conexp.frontend.View;
 import conexp.frontend.ViewChangeListener;
 import util.collection.CollectionFactory;
 
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.*;
+import java.awt.Container;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;

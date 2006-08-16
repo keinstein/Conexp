@@ -13,7 +13,8 @@ import util.collection.CollectionFactory;
 import util.collection.ReverseListIterator;
 import util.gui.GraphicObjectsFactory;
 
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeEvent;

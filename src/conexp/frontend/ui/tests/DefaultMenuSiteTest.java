@@ -10,8 +10,10 @@ package conexp.frontend.ui.tests;
 import conexp.frontend.ui.DefaultMenuSite;
 import junit.framework.TestCase;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import java.awt.HeadlessException;
 
 public class DefaultMenuSiteTest extends TestCase {
 

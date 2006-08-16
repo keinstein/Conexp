@@ -10,7 +10,7 @@ package conexp.frontend.contexteditor;
 import conexp.core.ContextEditingInterface;
 import conexp.util.GenericStrategy;
 
-import javax.swing.*;
+import javax.swing.Icon;
 
 
 public interface ContextRenderStrategy extends GenericStrategy {

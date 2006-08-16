@@ -13,7 +13,7 @@ import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.RectangularFigure;
 import canvas.tests.FigureTest;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.geom.Point2D;
 
 public class RectangularFigureTest extends FigureTest {

@@ -10,7 +10,8 @@
     <property name="libs.dirs" value="../libs"/>
     <property name="libs.dirs.testing" value="${libs.dirs}/testing"/>
     <property name="libs.dirs.distr" value="${libs.dirs}/distr"/>
-    <property name="jblanket.dir" location="${distr}/jblanketrep"/>
+    <property name="libs.dirs.testing" value="${libs.dirs}/reporting"/>
+
 
     <property name="scripts" value="../scripts"/>
 
@@ -23,17 +24,6 @@
             <include name="**/*.jar"/>
         </fileset>
     </path>
-
-    <path id="jblanket.classpath">
-        <fileset dir="${libs.dirs.testing}">
-            <include name="**/jblanket.jar"/>
-            <include name="**/xerces.jar"/>
-            <include name="**/jdom.jar"/>
-            <include name="**/bcel-5.1.jar"/>
-
-        </fileset>
-    </path>
-
 
     <property name="resources.dir" value="./conexp/frontend/resources"/>
     <property name="contexteditor.resources.dir" value="./conexp/frontend/contexteditor"/>
@@ -97,46 +87,6 @@
             </classpath>
         </java>
     </target>
-
-    <target name="compileInJBlanket" depends="init, makebuilddir" description="compile the source in jblanket">
-        <javac destdir="${build}" debug="on" source="1.4" >
-            <src>
-                <path location="${src}/${rootPackage}"/>
-                <path location="${src}/${canvasPackage}"/>
-                <path location="${src}/tests"/>
-            </src>
-            <classpath refid="project.classpath"/>
-        </javac>
-
-        <taskdef name="jblanket" classname="csdl.jblanket.ant.JBlanketModifyTask">
-            <classpath refid="jblanket.classpath"/>
-        </taskdef>
-
-
-        <jblanket testgrammar="*Test.class" verbose="true">
-            <sysproperty key="jblanket.dir" value="${jblanket.dir}"/>
-            <fileset dir="${build}" includes="**/*.class"/>
-        </jblanket>
-    </target>
-
-
-    <target name="runtestsWithJBlanket" depends="compileInJBlanket, copyresources">
-          <java fork="yes" classname="junit.textui.TestRunner" taskname="junit" failonerror="true">
-              <arg value="${mainTestClass}"/>
-              <sysproperty key="jblanket.dir" value="${jblanket.dir}" />
-                <classpath>
-                     <path refid="project.classpath"/>
-                     <pathelement location="${build}"/>
-                </classpath>
-           </java>
-           <taskdef name="jblanketreport" classname="csdl.jblanket.ant.JBlanketReportTask"/>
-
-
-           <jblanketreport/>
-    </target>
-
-
-
 
     <target name="ensureLibsDirExists">
         <mkdir dir="${distr.libs}"/>

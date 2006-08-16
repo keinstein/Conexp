@@ -22,7 +22,7 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.LineDiagramFigure;
 import conexp.util.gui.paramseditor.ParamInfo;
 
-import java.awt.*;
+import java.awt.Dimension;
 import java.awt.geom.Dimension2D;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

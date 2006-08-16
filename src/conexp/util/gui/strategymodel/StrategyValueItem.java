@@ -10,7 +10,7 @@ package conexp.util.gui.strategymodel;
 import com.visibleworkings.trace.Trace;
 import conexp.util.GenericStrategy;
 
-import javax.swing.*;
+import javax.swing.JComboBox;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeSupport;

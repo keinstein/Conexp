@@ -15,7 +15,9 @@ import conexp.util.gui.strategymodel.StrategyValueItem;
 import util.Assert;
 import util.gui.celleditors.MyDefaultCellRenderer;
 
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.table.TableModel;
 import java.beans.PropertyChangeListener;
 

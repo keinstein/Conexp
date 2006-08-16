@@ -28,8 +28,16 @@ import util.gui.dialogs.ErrorDialog;
 import util.gui.fileselector.FileSelectorService;
 import util.gui.fileselector.GenericFileFilter;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.ActionMap;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JOptionPane;
+import javax.swing.JToolBar;
+import javax.swing.JTree;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;

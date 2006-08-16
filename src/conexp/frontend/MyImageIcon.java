@@ -7,7 +7,7 @@
 
 package conexp.frontend;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
 import java.net.URL;
 
 

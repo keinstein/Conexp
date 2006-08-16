@@ -11,8 +11,9 @@ import canvas.CanvasTool;
 import canvas.Figure;
 import canvas.FigureDrawingCanvas;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPopupMenu;
+import javax.swing.SwingUtilities;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 

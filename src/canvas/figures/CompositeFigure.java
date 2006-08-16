@@ -16,7 +16,7 @@ import canvas.FigureListener;
 import util.collection.CollectionFactory;
 import util.collection.ReverseListIterator;
 
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.util.List;
 

@@ -10,7 +10,7 @@ package conexp.frontend;
 import conexp.util.exceptions.ConfigFatalError;
 import util.ResourceHelper;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 

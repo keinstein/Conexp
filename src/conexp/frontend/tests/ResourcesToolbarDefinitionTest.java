@@ -13,7 +13,12 @@ import conexp.frontend.util.ToolBuilder;
 import junit.framework.TestCase;
 import util.StringUtil;
 
-import javax.swing.*;
+import javax.swing.AbstractButton;
+import javax.swing.Action;
+import javax.swing.ActionMap;
+import javax.swing.Icon;
+import javax.swing.JMenuItem;
+import javax.swing.JToolBar;
 import java.util.ResourceBundle;
 
 public class ResourcesToolbarDefinitionTest extends TestCase {

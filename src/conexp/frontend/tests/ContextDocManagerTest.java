@@ -23,8 +23,12 @@ import util.gui.MostRecentUrlListManager;
 import util.gui.fileselector.MockFileSelectorService;
 import util.testing.SimpleMockPropertyChangeListener;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.ActionMap;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JToolBar;
+import javax.swing.JTree;
+import java.awt.Component;
 import java.io.File;
 import java.io.IOException;
 

@@ -12,9 +12,12 @@ import conexp.util.gui.paramseditor.ParamEditorTable;
 import conexp.util.gui.paramseditor.ParamInfo;
 import conexp.util.gui.paramseditor.ParamsTableModel;
 
-import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.border.BevelBorder;
-import java.awt.*;
+import java.awt.BorderLayout;
 import java.beans.PropertyChangeListener;
 
 public class PainterOptionsPaneEditor extends javax.swing.JPanel {

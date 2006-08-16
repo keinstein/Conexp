@@ -3,7 +3,9 @@ package conexp.util.gui.paramseditor;
 import conexp.util.valuemodels.BooleanValueModel;
 import util.BooleanUtil;
 
-import javax.swing.*;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import java.awt.event.ItemEvent;

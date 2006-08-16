@@ -11,7 +11,7 @@ import canvas.DefaultToolListener;
 import canvas.Tool;
 import canvas.ToolEvent;
 
-import javax.swing.*;
+import javax.swing.JToggleButton;
 
 
 public class ToolToggleButton extends JToggleButton {

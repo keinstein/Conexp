@@ -18,8 +18,8 @@ import canvas.util.ToolAction;
 import conexp.frontend.latticeeditor.figures.ConnectorEndFigure;
 import util.collection.CollectionFactory;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.Action;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 

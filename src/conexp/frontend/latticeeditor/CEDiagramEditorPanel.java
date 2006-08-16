@@ -19,7 +19,7 @@ import util.ArraysUtil;
 import util.collection.ObjectToIntMap;
 import util.gui.ActionWithKey;
 
-import javax.swing.*;
+import javax.swing.Action;
 import java.awt.event.ActionEvent;
 import java.awt.geom.Point2D;
 import java.util.Iterator;

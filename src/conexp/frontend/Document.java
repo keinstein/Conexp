@@ -7,8 +7,10 @@
 
 package conexp.frontend;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.ActionMap;
+import javax.swing.JToolBar;
+import javax.swing.JTree;
+import java.awt.Component;
 
 public interface Document {
     void addViewChangeListener(ViewChangeListener optionPaneViewChangeListener);

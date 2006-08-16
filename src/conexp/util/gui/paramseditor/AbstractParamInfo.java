@@ -8,7 +8,7 @@
 package conexp.util.gui.paramseditor;
 
 
-import javax.swing.*;
+import javax.swing.JComponent;
 import javax.swing.table.TableCellEditor;
 
 public abstract class AbstractParamInfo implements ParamInfo {

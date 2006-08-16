@@ -1,6 +1,6 @@
 package canvas;
 
-import javax.swing.*;
+import javax.swing.JPopupMenu;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

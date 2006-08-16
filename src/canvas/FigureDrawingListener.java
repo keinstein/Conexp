@@ -7,7 +7,7 @@
 
 package canvas;
 
-import java.awt.*;
+import java.awt.Dimension;
 import java.util.EventListener;
 
 

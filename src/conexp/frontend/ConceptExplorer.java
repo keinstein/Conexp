@@ -14,7 +14,7 @@ import util.errorhandling.AppErrorHandler;
 import util.errorhandling.ErrorDialogErrorHandler;
 import util.gui.WindowUtil;
 
-import javax.swing.*;
+import javax.swing.UIManager;
 import java.util.ResourceBundle;
 
 public class ConceptExplorer {

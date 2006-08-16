@@ -9,7 +9,7 @@ package conexp.frontend.latticeeditor;
 
 import canvas.FigureDrawingListener;
 
-import java.awt.*;
+import java.awt.Dimension;
 
 
 public class DefaulFigureDrawingListener implements FigureDrawingListener {

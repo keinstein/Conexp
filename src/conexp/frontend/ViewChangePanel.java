@@ -12,8 +12,9 @@ import conexp.frontend.util.IResourceManager;
 import conexp.frontend.util.ResourceManager;
 import util.Assert;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.Action;
+import javax.swing.ActionMap;
+import java.awt.Component;
 import java.util.ResourceBundle;
 
 

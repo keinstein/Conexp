@@ -12,8 +12,11 @@ import conexp.frontend.DependencySetConsumer;
 import conexp.frontend.DependencySetSupplier;
 import conexp.frontend.ViewChangePanel;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.AbstractAction;
+import javax.swing.ActionMap;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
+import java.awt.BorderLayout;
 import java.util.ResourceBundle;
 
 

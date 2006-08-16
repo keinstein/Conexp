@@ -1,8 +1,10 @@
 package conexp.util.gui.paramseditor;
 
-import javax.swing.*;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
-import java.awt.*;
+import java.awt.Component;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

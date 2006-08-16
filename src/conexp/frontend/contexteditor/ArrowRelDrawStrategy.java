@@ -11,7 +11,8 @@ import conexp.core.ContextEditingInterface;
 import conexp.core.ContextEditingInterfaceWithArrowRelations;
 import util.Assert;
 
-import javax.swing.*;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class ArrowRelDrawStrategy extends SimpleContextDrawStrategy {
     final static Class THIS = ArrowRelDrawStrategy.class;

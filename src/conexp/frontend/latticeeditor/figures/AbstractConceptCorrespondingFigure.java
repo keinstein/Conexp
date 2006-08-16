@@ -21,7 +21,11 @@ import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 import util.collection.CollectionFactory;
 import util.gui.ColorUtil;
 
-import java.awt.*;
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;

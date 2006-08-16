@@ -25,7 +25,7 @@ import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
 import util.testing.TestUtil;
 
-import java.awt.*;
+import java.awt.Dimension;
 
 public class LatticeCanvasTest extends junit.framework.TestCase {
 
