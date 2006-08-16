@@ -7,7 +7,11 @@
 
 package conexp.core.attrexplorationimpl;
 
-import conexp.core.*;
+import conexp.core.AttributeExplorationError;
+import conexp.core.AttributeInformationSupplier;
+import conexp.core.AttributeInformationSupplierUtil;
+import conexp.core.LocalizedMessageSupplier;
+import conexp.core.Set;
 
 public abstract class AbstractAttributeExplorationError implements AttributeExplorationError {
     protected AttributeInformationSupplier attrInfo;

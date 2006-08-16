@@ -7,7 +7,12 @@
 
 package conexp.frontend.latticeeditor.figures;
 
-import canvas.*;
+import canvas.BaseFigureVisitor;
+import canvas.CanvasColorScheme;
+import canvas.CanvasScheme;
+import canvas.Figure;
+import canvas.FigureWithDependentFigures;
+import canvas.IHighlightStrategy;
 import conexp.core.LatticeElement;
 import conexp.core.Set;
 import conexp.frontend.latticeeditor.ConceptQuery;

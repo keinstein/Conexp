@@ -7,7 +7,12 @@
 
 package canvas.tools;
 
-import canvas.*;
+import canvas.CanvasTool;
+import canvas.DefaultToolListener;
+import canvas.Figure;
+import canvas.FigureDrawingCanvas;
+import canvas.Tool;
+import canvas.ToolEvent;
 
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;

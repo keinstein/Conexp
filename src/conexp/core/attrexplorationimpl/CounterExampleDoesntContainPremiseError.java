@@ -7,7 +7,11 @@
 
 package conexp.core.attrexplorationimpl;
 
-import conexp.core.*;
+import conexp.core.AttributeInformationSupplier;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.LocalizedMessageSupplier;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import util.Assert;
 
 import java.text.MessageFormat;

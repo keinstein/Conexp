@@ -1,6 +1,12 @@
 package conexp.core.layout.layeredlayout;
 
-import conexp.core.*;
+import conexp.core.BinaryRelation;
+import conexp.core.Context;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.Lattice;
+import conexp.core.LatticeElement;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import conexp.core.layout.GenericLayouter;
 import conexp.core.layout.HeightInLatticeLayerAssignmentFunction;
 import conexp.core.layout.ILayerAssignmentFunction;

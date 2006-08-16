@@ -2,9 +2,9 @@ package conexp.frontend.components;
 
 import conexp.frontend.io.ConExpXMLReader;
 import conexp.frontend.io.ConExpXMLWriter;
+import org.jdom.Element;
 import util.DataFormatException;
 import util.XMLHelper;
-import org.jdom.Element;
 
 /**
  * User: sergey

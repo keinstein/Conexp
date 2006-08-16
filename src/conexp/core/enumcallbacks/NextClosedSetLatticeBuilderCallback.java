@@ -7,7 +7,13 @@
 
 package conexp.core.enumcallbacks;
 
-import conexp.core.*;
+import conexp.core.BinaryRelation;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.ItemSet;
+import conexp.core.Lattice;
+import conexp.core.LatticeElement;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import util.Assert;
 
 import java.util.Iterator;

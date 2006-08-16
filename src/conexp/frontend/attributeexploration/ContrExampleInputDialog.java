@@ -7,7 +7,16 @@
 
 package conexp.frontend.attributeexploration;
 
-import conexp.core.*;
+import conexp.core.AttributeInformationSupplier;
+import conexp.core.BinaryRelation;
+import conexp.core.ContextEditingInterface;
+import conexp.core.ContextEntity;
+import conexp.core.ContextListener;
+import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.FCAEngineRegistry;
+import conexp.core.LocalizedMessageSupplier;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import conexp.core.attrexplorationimpl.AttributeExplorerImplementation;
 import conexp.frontend.contexteditor.ContextTablePane;
 import util.Assert;

@@ -6,11 +6,11 @@ package canvas.figures.tests;
  * Time: 15:57:07
  */
 
-import junit.framework.*;
 import canvas.figures.MultiLineTextFigure;
+import junit.framework.TestCase;
 
-import java.awt.font.FontRenderContext;
 import java.awt.*;
+import java.awt.font.FontRenderContext;
 
 public class MultiLineTextFigureTest extends TestCase {
     MultiLineTextFigure figure;

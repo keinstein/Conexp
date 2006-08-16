@@ -8,7 +8,13 @@
 package conexp.core.layout.chaindecomposition;
 
 import com.visibleworkings.trace.Trace;
-import conexp.core.*;
+import conexp.core.BinaryRelation;
+import conexp.core.BinaryRelationUtils;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.LatticeElement;
+import conexp.core.ModifiableBinaryRelation;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import conexp.core.layout.NonIncrementalLayouter;
 import conexp.util.gui.paramseditor.ButtonParamInfo;
 import conexp.util.gui.paramseditor.ParamInfo;

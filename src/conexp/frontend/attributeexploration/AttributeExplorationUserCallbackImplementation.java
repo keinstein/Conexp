@@ -7,7 +7,14 @@
 
 package conexp.frontend.attributeexploration;
 
-import conexp.core.*;
+import conexp.core.AttributeExplorationError;
+import conexp.core.AttributeExplorer;
+import conexp.core.AttributeInformationSupplier;
+import conexp.core.AttributeInformationSupplierUtil;
+import conexp.core.ContextEntity;
+import conexp.core.LocalizedMessageSupplier;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import conexp.core.attrexplorationimpl.AttributeExplorerImplementation;
 import conexp.frontend.ResourceLoader;
 import util.Assert;

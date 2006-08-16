@@ -8,7 +8,14 @@
 package conexp.frontend.tests;
 
 import com.mockobjects.ExpectationCounter;
-import conexp.frontend.*;
+import conexp.frontend.AppErrorHandler;
+import conexp.frontend.ConExpStorageFormatManager;
+import conexp.frontend.ContextDocManager;
+import conexp.frontend.DocManagerMessages;
+import conexp.frontend.DocModifiedHandler;
+import conexp.frontend.Document;
+import conexp.frontend.DocumentRecord;
+import conexp.frontend.ViewChangeListener;
 import junit.framework.TestCase;
 import util.DataFormatException;
 import util.StringUtil;

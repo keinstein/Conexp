@@ -7,7 +7,13 @@
 
 package conexp.core.associations;
 
-import conexp.core.*;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.Dependency;
+import conexp.core.DependencySet;
+import conexp.core.ItemSet;
+import conexp.core.Lattice;
+import conexp.core.LatticeElement;
+import conexp.core.ModifiableSet;
 import conexp.core.enumerators.ConceptFilterIterator;
 import util.collection.CollectionFactory;
 

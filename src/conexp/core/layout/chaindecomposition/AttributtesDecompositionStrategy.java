@@ -7,7 +7,11 @@
 
 package conexp.core.layout.chaindecomposition;
 
-import conexp.core.*;
+import conexp.core.BinaryRelation;
+import conexp.core.BinaryRelationUtils;
+import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.LatticeElement;
+import conexp.core.Set;
 
 
 public class AttributtesDecompositionStrategy implements ChainDecompositionStrategy {

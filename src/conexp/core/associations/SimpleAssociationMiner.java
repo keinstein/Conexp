@@ -7,7 +7,12 @@
 
 package conexp.core.associations;
 
-import conexp.core.*;
+import conexp.core.Dependency;
+import conexp.core.DependencySet;
+import conexp.core.FCAEngineRegistry;
+import conexp.core.ImplicationCalcStrategy;
+import conexp.core.ImplicationSet;
+import conexp.core.Lattice;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import conexp.core.calculationstrategies.NextClosedSetImplicationCalculator;
 import util.Assert;

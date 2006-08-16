@@ -7,7 +7,11 @@
 
 package conexp.frontend.util.tests;
 
-import conexp.frontend.*;
+import conexp.frontend.ContextDocument;
+import conexp.frontend.DataFormatErrorHandler;
+import conexp.frontend.Document;
+import conexp.frontend.DocumentLoader;
+import conexp.frontend.DocumentWriter;
 import conexp.frontend.util.StorageFormatManager;
 import conexp.frontend.util.StorageFormatRecord;
 import junit.framework.TestCase;

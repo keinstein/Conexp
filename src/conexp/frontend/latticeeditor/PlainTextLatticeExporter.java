@@ -1,6 +1,11 @@
 package conexp.frontend.latticeeditor;
 
-import conexp.core.*;
+import conexp.core.Concept;
+import conexp.core.ConceptsCollection;
+import conexp.core.ContextEntity;
+import conexp.core.Edge;
+import conexp.core.Lattice;
+import conexp.core.LatticeElement;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import util.FileNameMangler;
 import util.IExporter;

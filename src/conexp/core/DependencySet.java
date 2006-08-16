@@ -11,7 +11,12 @@ import util.BasePropertyChangeSupplier;
 import util.StringUtil;
 import util.collection.CollectionFactory;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class DependencySet extends BasePropertyChangeSupplier {

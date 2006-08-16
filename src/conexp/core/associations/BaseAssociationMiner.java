@@ -7,7 +7,15 @@
 
 package conexp.core.associations;
 
-import conexp.core.*;
+import conexp.core.Context;
+import conexp.core.DependencySet;
+import conexp.core.Edge;
+import conexp.core.EdgeIterator;
+import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.ImplicationSet;
+import conexp.core.Lattice;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import conexp.core.enumerators.EdgeMinSupportSelector;
 import util.Assert;
 import util.collection.CollectionFactory;

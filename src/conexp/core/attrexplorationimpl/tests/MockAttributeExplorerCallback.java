@@ -7,7 +7,13 @@
 
 package conexp.core.attrexplorationimpl.tests;
 
-import conexp.core.*;
+import conexp.core.AttributeExplorationError;
+import conexp.core.AttributeExplorer;
+import conexp.core.AttributeInformationSupplier;
+import conexp.core.ContextEntity;
+import conexp.core.LocalizedMessageSupplier;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import conexp.core.tests.SetBuilder;
 import junit.framework.Assert;
 

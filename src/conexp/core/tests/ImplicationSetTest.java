@@ -7,7 +7,11 @@
 
 package conexp.core.tests;
 
-import conexp.core.*;
+import conexp.core.AttributeInformationSupplier;
+import conexp.core.Context;
+import conexp.core.Implication;
+import conexp.core.ImplicationSet;
+import conexp.core.ModifiableSet;
 import junit.framework.TestCase;
 
 import java.util.Iterator;

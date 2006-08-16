@@ -7,7 +7,15 @@
 
 package conexp.core.registries;
 
-import conexp.core.*;
+import conexp.core.ArrowCalculator;
+import conexp.core.ConceptEnumCallback;
+import conexp.core.ConceptsCollection;
+import conexp.core.Context;
+import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.FCAEngine;
+import conexp.core.Lattice;
+import conexp.core.ModifiableBinaryRelation;
+import conexp.core.Set;
 import conexp.core.calculationstrategies.DepthSearchArrowCalculator;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import conexp.core.calculationstrategies.DepthSearchCalculatorWithFeatureMask;

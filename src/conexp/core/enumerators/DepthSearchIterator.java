@@ -7,7 +7,11 @@
 
 package conexp.core.enumerators;
 
-import conexp.core.*;
+import conexp.core.ConceptIterator;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.LatticeElement;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 
 import java.util.ArrayList;
 import java.util.List;

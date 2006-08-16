@@ -7,7 +7,17 @@
 
 package conexp.core.tests;
 
-import conexp.core.*;
+import conexp.core.BinaryRelation;
+import conexp.core.ConceptsCollection;
+import conexp.core.Context;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.Edge;
+import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.FCAEngineRegistry;
+import conexp.core.Lattice;
+import conexp.core.LatticeElement;
+import conexp.core.ModifiableBinaryRelation;
+import conexp.core.ModifiableSet;
 import conexp.core.calculationstrategies.DepthSearchCalculator;
 import conexp.core.calculationstrategies.LatticeNeedingCalcStrategy;
 import conexp.core.calculationstrategies.NextClosedSetCalculator;

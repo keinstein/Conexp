@@ -10,7 +10,11 @@ import conexp.core.Set;
 import util.collection.CollectionFactory;
 import util.collection.mutimaps.ListMultiMap;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

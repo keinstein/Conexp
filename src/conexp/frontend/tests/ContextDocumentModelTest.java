@@ -7,8 +7,8 @@ package conexp.frontend.tests;
  */
 
 import conexp.core.Context;
-import conexp.core.DependencySet;
 import conexp.core.ContextListener;
+import conexp.core.DependencySet;
 import conexp.core.tests.SetBuilder;
 import conexp.frontend.ContextDocumentModel;
 import conexp.util.gui.strategymodel.StrategyValueItem;

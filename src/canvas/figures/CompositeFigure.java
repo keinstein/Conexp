@@ -7,7 +7,12 @@
 
 package canvas.figures;
 
-import canvas.*;
+import canvas.BaseFigureVisitor;
+import canvas.BoundsBlock;
+import canvas.CanvasScheme;
+import canvas.Figure;
+import canvas.FigureBlock;
+import canvas.FigureListener;
 import util.collection.CollectionFactory;
 import util.collection.ReverseListIterator;
 

@@ -7,7 +7,11 @@
 
 package conexp.frontend.latticeeditor;
 
-import canvas.*;
+import canvas.DefaultTool;
+import canvas.Figure;
+import canvas.FigureBlock;
+import canvas.FigureDrawingCanvas;
+import canvas.Tool;
 import canvas.figures.BorderCalculatingFigure;
 import canvas.figures.LineFigure;
 import canvas.util.ToolAction;

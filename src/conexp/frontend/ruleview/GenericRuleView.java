@@ -14,11 +14,14 @@ import conexp.frontend.ViewChangePanel;
 
 import javax.swing.*;
 import java.awt.*;
-
-import util.Assert;
+import java.util.ResourceBundle;
 
 
 public abstract class GenericRuleView extends ViewChangePanel implements DependencySetConsumer {
+
+    static final String RULE_SET_SHOULD_BE_RECOMPUTED_MESSAGE = "RuleSetShouldBeRecomputed";
+    static final String NO_RULES_IN_BASE_MESSAGE = "NoRulesInBaseMsg";
+
     protected class SortBySupportAction extends AbstractAction {
         SortBySupportAction() {
             super("sortBySupport");
@@ -36,6 +39,7 @@ public abstract class GenericRuleView extends ViewChangePanel implements Depende
 
     protected abstract JComponent makeViewOptions();
 
+    public abstract ResourceBundle getResources();
 
     protected DependencySetSupplier getDependencySetSupplier() {
         return dependencySetSupplier;
@@ -69,17 +73,28 @@ public abstract class GenericRuleView extends ViewChangePanel implements Depende
      * Creation date: (07.05.01 21:45:04)
      */
     protected RulePane makeRulePane() {
+        RulePaneMessages messages = makeRulePaneMessages();
+        return new RulePane(dependencySetSupplier, makeRenderer(),
+                messages);
+    }
+
+    /**
+     * todo:sye - change visibility to package local when the project will be
+     * refactored
+     *
+     * @return non-null implementation of RulePaneMessages
+     */
+    public RulePaneMessages makeRulePaneMessages() {
         RulePaneMessages messages = new RulePaneMessages(){
                             public String getEmptyRulesetMessage() {
-                                return getLocalizedString("NoRulesInBaseMsg");
+                                return getLocalizedString(NO_RULES_IN_BASE_MESSAGE);
                             }
 
                             public String getRuleSetShouldBeRecalculated() {
-                                return getLocalizedString("RuleSetShouldBeRecomputed");
+                                return getLocalizedString(RULE_SET_SHOULD_BE_RECOMPUTED_MESSAGE);
                             }
                         };
-        return new RulePane(dependencySetSupplier, makeRenderer(),
-                messages);
+        return messages;
     }
 
     // this two belongs to controller

@@ -1,6 +1,11 @@
 package conexp.core.stability;
 
-import conexp.core.*;
+import conexp.core.BinaryRelation;
+import conexp.core.BinaryRelationUtils;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.DefaultBinaryRelationProcessor;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import util.MathUtil;
 
 /**

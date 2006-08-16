@@ -1,6 +1,11 @@
 package conexp.core.calculationstrategies;
 
-import conexp.core.*;
+import conexp.core.BinaryRelation;
+import conexp.core.ConceptCalcStrategy;
+import conexp.core.ConceptEnumCallback;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko

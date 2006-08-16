@@ -14,7 +14,11 @@ import conexp.util.gui.paramseditor.ParamsProvider;
 import conexp.util.valuemodels.BooleanValueModel;
 import conexp.util.valuemodels.BoundedIntValue;
 
-import java.beans.*;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.beans.PropertyVetoException;
+import java.beans.VetoableChangeListener;
+import java.beans.VetoableChangeSupport;
 import java.util.prefs.Preferences;
 
 public class LatticePainterDrawParams extends BasicDrawParams implements ParamsProvider, DrawParamsProperties {

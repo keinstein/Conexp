@@ -7,7 +7,12 @@
 
 package conexp.core.calculationstrategies.tests;
 
-import conexp.core.*;
+import conexp.core.BinaryRelation;
+import conexp.core.ConceptCalcStrategy;
+import conexp.core.ConceptsCollection;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.Lattice;
+import conexp.core.ModifiableSet;
 import conexp.core.calculationstrategies.DepthSearchCalculatorWithFeatureMask;
 import conexp.core.enumcallbacks.ConceptSetCallback;
 import conexp.core.searchconstraints.MinSupportConstrainer;

@@ -8,7 +8,11 @@
 package conexp.core.calculationstrategies.tests;
 
 import com.mockobjects.ExpectationSet;
-import conexp.core.*;
+import conexp.core.BinaryRelation;
+import conexp.core.Concept;
+import conexp.core.ConceptCalcStrategy;
+import conexp.core.ConceptsCollection;
+import conexp.core.ModifiableSet;
 import conexp.core.compareutils.ConceptCollectionComparator;
 import conexp.core.tests.SetBuilder;
 import junit.framework.TestCase;

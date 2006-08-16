@@ -15,7 +15,11 @@ import conexp.core.Edge;
 import conexp.core.ItemSet;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
-import conexp.frontend.latticeeditor.*;
+import conexp.frontend.latticeeditor.ConceptQuery;
+import conexp.frontend.latticeeditor.ConceptSetDrawing;
+import conexp.frontend.latticeeditor.FigureDimensionCalcStrategy;
+import conexp.frontend.latticeeditor.FigureDimensionCalcStrategyProvider;
+import conexp.frontend.latticeeditor.LatticeCanvasScheme;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
 
 import java.awt.*;

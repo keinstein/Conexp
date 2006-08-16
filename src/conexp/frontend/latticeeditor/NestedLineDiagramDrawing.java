@@ -8,7 +8,11 @@
 package conexp.frontend.latticeeditor;
 
 import canvas.figures.ConnectionFigure;
-import conexp.core.*;
+import conexp.core.ConceptsCollection;
+import conexp.core.Edge;
+import conexp.core.ItemSet;
+import conexp.core.Lattice;
+import conexp.core.LatticeElement;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.EdgeFigure;
 import conexp.frontend.latticeeditor.figures.NestedDiagramNodeFigure;

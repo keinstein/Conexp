@@ -1,7 +1,12 @@
 package conexp.frontend.io;
 
 import canvas.figures.FigureWithCoords;
-import conexp.core.*;
+import conexp.core.BinaryRelation;
+import conexp.core.Context;
+import conexp.core.ContextEntity;
+import conexp.core.Lattice;
+import conexp.core.LatticeElement;
+import conexp.core.LatticeElementCollection;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;

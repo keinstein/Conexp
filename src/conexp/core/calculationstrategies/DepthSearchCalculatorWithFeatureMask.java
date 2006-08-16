@@ -7,7 +7,12 @@
 
 package conexp.core.calculationstrategies;
 
-import conexp.core.*;
+import conexp.core.ConceptLatticeCalcStrategyWithFeatureMask;
+import conexp.core.ConceptSpaceSearchEngine;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.ModifiableSet;
+import conexp.core.SearchConstraint;
+import conexp.core.Set;
 import conexp.core.searchconstraints.NullSearchConstraint;
 
 

@@ -7,12 +7,21 @@
 
 package conexp.core.layout;
 
-import conexp.core.*;
+import conexp.core.ConceptFactory;
+import conexp.core.ConceptIterator;
+import conexp.core.Edge;
+import conexp.core.Lattice;
+import conexp.core.LatticeElement;
+import conexp.core.LatticeElementCollection;
 import util.Assert;
 import util.collection.CollectionFactory;
 import util.comparators.ComparatorUtil;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 public class MinIntersectionLayout extends NonIncrementalLayouter {
     //todo:possibly - modify min intersection in order to perfrom swapping, taking into account consideration about strait lines

@@ -7,7 +7,11 @@
 
 package conexp.core.calculationstrategies.tests;
 
-import conexp.core.*;
+import conexp.core.Context;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.ImplicationCalcStrategy;
+import conexp.core.ImplicationSet;
+import conexp.core.ModifiableBinaryRelation;
 
 public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBaseTest {
 

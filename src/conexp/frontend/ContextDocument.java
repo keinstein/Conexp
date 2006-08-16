@@ -12,7 +12,11 @@ import canvas.FigureDrawingCanvas;
 import canvas.figures.IFigureWithCoords;
 import com.gargoylesoftware.base.collections.NotificationListEvent;
 import com.gargoylesoftware.base.collections.NotificationListListener;
-import conexp.core.*;
+import conexp.core.AttributeExplorer;
+import conexp.core.Context;
+import conexp.core.DependencySet;
+import conexp.core.FCAEngineRegistry;
+import conexp.core.LocalizedMessageSupplier;
 import conexp.core.attrexplorationimpl.AttributeExplorerImplementation;
 import conexp.frontend.attributeexploration.AttributeExplorationUserCallbackImplementation;
 import conexp.frontend.components.LatticeComponent;
@@ -38,14 +42,22 @@ import util.FormatUtil;
 import util.collection.CollectionFactory;
 
 import javax.swing.*;
-import javax.swing.tree.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.TooManyListenersException;
 
 
 public class ContextDocument implements ActionChainBearer, Document {

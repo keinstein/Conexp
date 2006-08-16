@@ -7,7 +7,11 @@
 
 package conexp.frontend.latticeeditor.queries;
 
-import conexp.core.*;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.ContextFunctions;
+import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import util.Assert;
 import util.collection.CollectionFactory;

@@ -2,8 +2,6 @@ package conexp.frontend.latticeeditor.tests;
 
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.LatticePainterOptions;
-import conexp.frontend.latticeeditor.figures.SimpleTextFigure;
-import conexp.core.LatticeElement;
 import junit.framework.TestCase;
 
 /**

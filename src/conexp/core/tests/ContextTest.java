@@ -7,7 +7,15 @@
 
 package conexp.core.tests;
 
-import conexp.core.*;
+import conexp.core.AttributeInformationSupplierUtil;
+import conexp.core.BinaryRelation;
+import conexp.core.Context;
+import conexp.core.ContextChangeEvent;
+import conexp.core.ContextEditingInterface;
+import conexp.core.ContextEditingInterfaceWithArrowRelations;
+import conexp.core.ContextEntity;
+import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.FCAEngineRegistry;
 import junit.framework.TestCase;
 
 import java.beans.PropertyChangeEvent;

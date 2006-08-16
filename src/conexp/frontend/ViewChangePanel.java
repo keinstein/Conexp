@@ -10,12 +10,11 @@ package conexp.frontend;
 import conexp.frontend.util.ActionChainUtil;
 import conexp.frontend.util.IResourceManager;
 import conexp.frontend.util.ResourceManager;
+import util.Assert;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ResourceBundle;
-
-import util.Assert;
 
 
 public abstract class ViewChangePanel extends javax.swing.JPanel implements ViewChangeInterfaceWithConfig {

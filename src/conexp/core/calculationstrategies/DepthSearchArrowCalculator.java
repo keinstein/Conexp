@@ -7,7 +7,12 @@
 
 package conexp.core.calculationstrategies;
 
-import conexp.core.*;
+import conexp.core.ArrowCalculator;
+import conexp.core.BinaryRelation;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.ModifiableBinaryRelation;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import util.Assert;
 import util.collection.IntStack;
 

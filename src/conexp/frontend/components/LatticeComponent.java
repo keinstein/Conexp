@@ -7,7 +7,11 @@
 
 package conexp.frontend.components;
 
-import conexp.core.*;
+import conexp.core.Context;
+import conexp.core.FCAEngineRegistry;
+import conexp.core.ItemSet;
+import conexp.core.Lattice;
+import conexp.core.Set;
 import conexp.core.layout.ConceptCoordinateMapper;
 import conexp.core.layout.LayouterProvider;
 import conexp.core.layoutengines.LayoutEngine;

@@ -1,6 +1,13 @@
 package conexp.core.stability;
 
-import conexp.core.*;
+import conexp.core.BinaryRelation;
+import conexp.core.Concept;
+import conexp.core.ConceptsCollection;
+import conexp.core.Context;
+import conexp.core.DefaultBinaryRelationProcessor;
+import conexp.core.FCAEngineRegistry;
+import conexp.core.ModifiableBinaryRelation;
+import conexp.core.Set;
 import conexp.core.utils.PowerSetIterator;
 import util.DoubleUtil;
 import util.MathUtil;

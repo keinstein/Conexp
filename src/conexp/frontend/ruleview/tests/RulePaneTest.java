@@ -7,7 +7,12 @@ package conexp.frontend.ruleview.tests;
  */
 
 import conexp.core.tests.SetBuilder;
-import conexp.frontend.ruleview.*;
+import conexp.frontend.ruleview.ImplicationBaseCalculator;
+import conexp.frontend.ruleview.ImplicationRenderer;
+import conexp.frontend.ruleview.NextClosedSetImplicationCalculatorFactory;
+import conexp.frontend.ruleview.RulePane;
+import conexp.frontend.ruleview.RulePaneMessages;
+import conexp.frontend.ruleview.RuleRenderer;
 import junit.framework.TestCase;
 
 public class RulePaneTest extends TestCase {

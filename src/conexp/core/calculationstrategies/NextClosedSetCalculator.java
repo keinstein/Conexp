@@ -7,7 +7,11 @@
 
 package conexp.core.calculationstrategies;
 
-import conexp.core.*;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.Lattice;
+import conexp.core.LatticeCalcStrategy;
+import conexp.core.ModifiableSet;
+import conexp.core.Set;
 import conexp.core.enumcallbacks.NextClosedSetLatticeBuilderCallback;
 import util.Assert;
 

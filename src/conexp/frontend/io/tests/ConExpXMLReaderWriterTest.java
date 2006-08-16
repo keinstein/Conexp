@@ -13,7 +13,11 @@ import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 import conexp.core.tests.SetBuilder;
-import conexp.frontend.*;
+import conexp.frontend.ContextDocument;
+import conexp.frontend.ContextDocumentModel;
+import conexp.frontend.DocumentLoader;
+import conexp.frontend.DocumentWriter;
+import conexp.frontend.SetProvidingEntitiesMask;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.io.ConExpXMLReader;
 import conexp.frontend.io.ConExpXMLWriter;
@@ -33,6 +37,8 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     private static final int[][] TEST_RELATION_2x3 = new int[][]{{0, 1},
             {1, 0},
             {1, 1}};
+    static final int[][] TWO_ELEMENT_CHAIN_CONTEXT = new int[][]{{0},
+           {1}};
 
     protected DocumentLoader makeDocumentLoader() {
         return new ConExpXMLReader();
@@ -46,8 +52,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     private ContextDocument doc;
 
     private void setUpFullLatticeCase() {
-        cxt = SetBuilder.makeContext(new int[][]{{0},
-                {1}});
+        cxt = SetBuilder.makeContext(TWO_ELEMENT_CHAIN_CONTEXT);
         doc = new ContextDocument(cxt);
         doc.addLatticeComponent().calculateLattice();
     }
@@ -309,8 +314,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
 
 
     public void testStoringRecalcPolicy() {
-        cxt = SetBuilder.makeContext(new int[][]{{0},
-                {1}});
+        cxt = SetBuilder.makeContext(TWO_ELEMENT_CHAIN_CONTEXT);
         doc = new ContextDocument(cxt);
         ContextDocumentModel contextDocumentModel =
                 doc.getContextDocumentModel();
@@ -322,8 +326,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     }
 
     public void testStoringLayoutMode() {
-        cxt = SetBuilder.makeContext(new int[][]{{0},
-                {1}});
+        cxt = SetBuilder.makeContext(TWO_ELEMENT_CHAIN_CONTEXT);
         doc = new ContextDocument(cxt);
         ContextDocumentModel documentModel = doc.getContextDocumentModel();
         documentModel.addLatticeComponent();
@@ -350,8 +353,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
 
 
     public void testStoringEdgeSizeMode() {
-        cxt = SetBuilder.makeContext(new int[][]{{0},
-                {1}});
+        cxt = SetBuilder.makeContext(TWO_ELEMENT_CHAIN_CONTEXT);
         doc = new ContextDocument(cxt);
         ContextDocumentModel documentModel = doc.getContextDocumentModel();
         documentModel.addLatticeComponent();
@@ -406,7 +408,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
 
 
     public void testRestoringLatticeStructureInTree() {
-        Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
+        cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
                 {1, 0, 1},
                 {1, 1, 0}});
         doc = new ContextDocument(cxt);
@@ -422,6 +424,16 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         ContextDocument loadedDoc = writeAndReadContextDoc(doc);
         assertEquals(1, loadedDoc.getLatticeCollection().size());
         assertEquals(3, SwingTestUtil.sizeOfTheTree(loadedDoc.getTree()));
+    }
+
+
+    public void testStoringImplication(){
+        cxt = SetBuilder.makeContext(TWO_ELEMENT_CHAIN_CONTEXT);
+        doc = new ContextDocument(cxt);
+        doc.calculateImplications();
+        System.out.println(doc.getImplications().dependencies().size());
+        ContextDocument loadedDoc = writeAndReadContextDoc(doc);
+        assertEquals(doc.getImplications(), loadedDoc.getImplications());
 
     }
 }

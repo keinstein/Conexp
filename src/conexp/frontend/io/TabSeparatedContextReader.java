@@ -7,7 +7,11 @@
 
 package conexp.frontend.io;
 
-import conexp.core.*;
+import conexp.core.Context;
+import conexp.core.ContextFactoryRegistry;
+import conexp.core.FCAEngineRegistry;
+import conexp.core.LocalizedMessageSupplier;
+import conexp.core.ModifiableSet;
 import util.DataFormatException;
 import util.FormatUtil;
 import util.collection.CollectionFactory;

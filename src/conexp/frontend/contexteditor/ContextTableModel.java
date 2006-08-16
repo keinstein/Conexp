@@ -7,7 +7,12 @@
 
 package conexp.frontend.contexteditor;
 
-import conexp.core.*;
+import conexp.core.ContextEditingInterface;
+import conexp.core.ContextEntity;
+import conexp.core.ContextListener;
+import conexp.core.DefaultContextListener;
+import conexp.core.ExtendedContextEditingInterface;
+import conexp.core.Set;
 import conexp.util.gui.Command;
 import conexp.util.gui.CommandBase;
 import conexp.util.gui.paramseditor.IntValueParamInfo;

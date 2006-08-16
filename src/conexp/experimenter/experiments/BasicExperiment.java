@@ -9,7 +9,12 @@
 package conexp.experimenter.experiments;
 
 import conexp.core.compareutils.IComparatorFactory;
-import conexp.experimenter.framework.*;
+import conexp.experimenter.framework.IExperiment;
+import conexp.experimenter.framework.IMeasurementDescription;
+import conexp.experimenter.framework.IMeasurementProtocol;
+import conexp.experimenter.framework.MeasurementDescription;
+import conexp.experimenter.framework.MeasurementProtocol;
+import conexp.experimenter.framework.MeasurementSet;
 import util.ReflectHelper;
 import util.StringUtil;
 
