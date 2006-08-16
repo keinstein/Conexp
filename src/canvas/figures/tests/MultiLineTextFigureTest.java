@@ -1,0 +1,52 @@
+package canvas.figures.tests;
+
+/**
+ * User: sergey
+ * Date: 8/8/2006
+ * Time: 15:57:07
+ */
+
+import junit.framework.*;
+import canvas.figures.MultiLineTextFigure;
+
+import java.awt.font.FontRenderContext;
+import java.awt.*;
+
+public class MultiLineTextFigureTest extends TestCase {
+    MultiLineTextFigure figure;
+    //todo:sye - remove duplication in font render context creation
+    public static final FontRenderContext DEFAULT_FONTRENDERCONTEXT = new FontRenderContext(null, true, false);
+
+    protected void setUp() throws Exception {
+        super.setUp();
+        figure = new MultiLineTextFigure();
+    }
+
+
+    public void testNewSize() {
+        assertTrue(figure.isContentDirty());
+        figure.newSize(DEFAULT_FONTRENDERCONTEXT);
+        assertFalse("recalculation size should clear the content dirty flag",
+                figure.isContentDirty());
+    }
+
+
+
+    public void testSettingTextMakesContentDirty(){
+        madeContentClear();
+        assertFalse(figure.isContentDirty());
+        figure.setText("Abc");
+        assertTrue("Setting text should make the content dirty", figure.isContentDirty());
+    }
+
+    private void madeContentClear() {
+        figure.newSize(DEFAULT_FONTRENDERCONTEXT);
+    }
+
+    public void testSettingFontMakesContentDirty(){
+        madeContentClear();
+        assertFalse(figure.isContentDirty());
+        figure.setFont(new Font("dialog",Font.PLAIN, 14));
+        assertTrue("Setting font should make content of the figure dirty", figure.isContentDirty());
+    }
+}
