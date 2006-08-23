@@ -21,7 +21,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
 import java.util.ResourceBundle;
 
-public class ResourcesToolbarDefinitionTest extends TestCase {
+public class ResourcesToolbarDefinitionTestHelper extends TestCase {
 
     public static void testMenuDefinitionInResource(IResourceManager resources, ActionMap actionMap, boolean helpMenu) {
         ToolBuilder toolBuilder = new ToolBuilder(resources, actionMap) {

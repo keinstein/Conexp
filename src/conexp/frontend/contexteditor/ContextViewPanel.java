@@ -32,6 +32,8 @@ import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.util.ResourceBundle;
 
+import com.visibleworkings.trace.Trace;
+
 
 public class ContextViewPanel extends ContextTablePane implements ViewChangeInterfaceWithConfig {
     //ActionChainBearer
@@ -56,8 +58,7 @@ public class ContextViewPanel extends ContextTablePane implements ViewChangeInte
             try {
                 undoManager.undo();
             } catch (CannotUndoException ex) {
-                System.out.println("Unable to undo: " + ex);
-                ex.printStackTrace();
+                Trace.trace.errorm("Unable to undo", ex);
             }
             update();
             redoAction.update();
@@ -87,8 +88,7 @@ public class ContextViewPanel extends ContextTablePane implements ViewChangeInte
             try {
                 undoManager.redo();
             } catch (CannotRedoException ex) {
-                System.out.println("Unable to redo: " + ex);
-                ex.printStackTrace();
+                Trace.trace.errorm("Unable to redo: ", ex);
             }
             update();
             undoAction.update();

@@ -27,7 +27,6 @@ public class LatticeComponentSerializationDuplicator implements ILatticeComponen
     public LatticeComponent duplicateContent(LatticeComponent toCopy, LatticeComponent copy) {
         try {
             Element latticeElement = ConExpXMLWriter.makeLatticeElement(toCopy);
-            System.out.println(XMLHelper.xmlElementDump(latticeElement));
             ConExpXMLReader.loadLatticeComponent(copy, latticeElement);
         } catch (DataFormatException e) {
 

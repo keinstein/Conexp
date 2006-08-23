@@ -21,6 +21,7 @@ public class UrlUtil {
     private UrlUtil() {
     }
 
+    //todo:sye - review and fix code
     public static Reader getReaderForFileOrURL(boolean debug1, String inputNameOrURL) {
         Reader reader = null;
         try {
