@@ -83,8 +83,6 @@ public abstract class MultiLineLabelingStrategyBase extends GenericLabelingStrat
 
     protected static MultiLineConceptEntityFigure buildMultiLineFigureFromEntityIterator(Iterator iterator, final ConceptQuery conceptQuery, boolean isObject) {
         MultiLineConceptEntityFigure figure = new MultiLineConceptEntityFigure(conceptQuery, isObject);
-        System.out.println(
-                "settingText of figure");
         figure.setText(buildNamesStringFromEntityIterator(iterator));
         return figure;
     }
