@@ -35,8 +35,8 @@ public class DiffMapTest extends TestCase {
     public static void testUnequal() {
         Lattice one = SetBuilder.makeLattice(new int[][]{{0, 0}, {1, 0}});
         Lattice two = SetBuilder.makeLattice(new int[][]{{0, 0}, {1, 1}});
-        compareConceptCollection(one, two, false, true, false, false);
-        compareConceptCollection(two, one, false, false, true, false);
+        compareConceptCollection(one, two, false, true, false, true);
+        compareConceptCollection(two, one, false, false, true, true);
 
         two = SetBuilder.makeLattice(new int[][]{{0, 0}, {0, 1}});
         compareConceptCollection(one, two, false, true, true, false);

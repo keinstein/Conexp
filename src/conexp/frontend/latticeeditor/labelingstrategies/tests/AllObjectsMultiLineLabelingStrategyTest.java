@@ -7,7 +7,7 @@ import conexp.frontend.latticeeditor.labelingstrategies.AllObjectsMultiLineLabel
 import conexp.frontend.latticeeditor.labelingstrategies.GenericLabelingStrategy;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
-import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
+import conexp.frontend.latticeeditor.queries.tests.ConceptNodeQueryFactory;
 
 public class AllObjectsMultiLineLabelingStrategyTest extends GenericLabelingStrategyTest {
     protected ConceptNodeQuery makeAcceptable() {
@@ -35,7 +35,7 @@ public class AllObjectsMultiLineLabelingStrategyTest extends GenericLabelingStra
     }
 
     public void testGetLabelLocationAngleInRadians() {
-        assertEquals(0.5*Math.PI,                                                     
+        assertEquals(0.5*Math.PI,
                 getNativeStrategy().getLabelLocationAngleInRadians(),
                 0.0001);
     }

@@ -184,9 +184,6 @@ public class LineFigure extends AbstractFigure implements ConnectionFigure {
         try {
             g2D.setStroke(getLineStroke(thickness));
             g2D.draw(new Line2D.Double(startPoint, endPoint));
-        } catch(RuntimeException ex){
-            System.out.println("startPoint "+startPoint+' '+endPoint+ " endPoint ");
-            throw ex;
         } finally {
             g2D.setStroke(oldStroke);
         }

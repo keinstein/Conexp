@@ -48,12 +48,17 @@ public class ConExpXMLWriter implements DocumentWriter {
         root.addContent(storeContexts(contextDocument));
         root.addContent(storeRecalculationPolicy(contextDocument));
         root.addContent(storeLattices(contextDocument));
+//        root.addContent(storeImplicationsSets(contextDocument));
 
         Document xmlDoc = new Document(root);
         XMLOutputter outputter = new XMLOutputter();
         outputter.output(xmlDoc, writer);
     }
 
+  /*  private static Element storeImplicationsSets(ContextDocument contextDocument) {
+        return null;
+    }
+*/
     private static Element storeRecalculationPolicy(ContextDocument contextDocument) {
         return makeSettingElementForStrategyValueItem(ConExpXMLElements.RECALCULATION_POLICY, contextDocument.getContextDocumentModel().
                 getRecalculationPolicy());

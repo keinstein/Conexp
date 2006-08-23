@@ -14,7 +14,7 @@ import conexp.frontend.latticeeditor.labelingstrategies.AllAttribsLabelingStrate
 import conexp.frontend.latticeeditor.labelingstrategies.GenericLabelingStrategy;
 import conexp.frontend.latticeeditor.labelingstrategies.LabelingStrategiesKeys;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
-import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
+import conexp.frontend.latticeeditor.queries.tests.ConceptNodeQueryFactory;
 
 public class AllAttribsLabelingStrategyTest extends GenericLabelingStrategyTest {
     protected ConceptNodeQuery makeAcceptable() {

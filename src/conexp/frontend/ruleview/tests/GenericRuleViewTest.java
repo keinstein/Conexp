@@ -15,7 +15,7 @@ package conexp.frontend.ruleview.tests;
 
 import conexp.frontend.ruleview.GenericRuleView;
 import conexp.frontend.ruleview.RulePaneMessages;
-import conexp.frontend.tests.ResourcesToolbarDefinitionTest;
+import conexp.frontend.tests.ResourcesToolbarDefinitionTestHelper;
 import junit.framework.TestCase;
 
 public abstract class GenericRuleViewTest extends TestCase {
@@ -35,6 +35,6 @@ public abstract class GenericRuleViewTest extends TestCase {
     protected abstract GenericRuleView makeRuleView();
 
     public void testResources() {
-        ResourcesToolbarDefinitionTest.testToolbarDefinitionInResources(ruleView.getResources(), ruleView.getActionChain());
+        ResourcesToolbarDefinitionTestHelper.testToolbarDefinitionInResources(ruleView.getResources(), ruleView.getActionChain());
     }
 }

@@ -37,6 +37,7 @@ public class AllTests extends TestCase {
         suite.addTest(conexp.core.associations.tests.AllTests.suite());
         suite.addTest(conexp.core.bitset.tests.AllTests.suite());
         suite.addTest(conexp.core.calculationstrategies.tests.AllTests.suite());
+        suite.addTest(conexp.core.compareutils.tests.AllTests.suite());
         suite.addTest(conexp.core.enumerators.tests.AllTests.suite());
         suite.addTest(conexp.core.layout.tests.AllTests.suite());
         suite.addTest(conexp.core.layoutengines.tests.AllTests.suite());

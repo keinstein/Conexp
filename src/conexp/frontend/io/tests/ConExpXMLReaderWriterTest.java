@@ -37,8 +37,8 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     private static final int[][] TEST_RELATION_2x3 = new int[][]{{0, 1},
             {1, 0},
             {1, 1}};
-    static final int[][] TWO_ELEMENT_CHAIN_CONTEXT = new int[][]{{0},
-           {1}};
+    static final int[][] TWO_ELEMENT_CHAIN_CONTEXT = new int[][]{{0}, {1}};
+    static final int[][] TWO_BY_TWO_CHAIN_CONTEXT = new int[][]{{0, 1}, {1, 1}};
 
     protected DocumentLoader makeDocumentLoader() {
         return new ConExpXMLReader();
@@ -427,11 +427,12 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     }
 
 
-    public void testStoringImplication(){
-        cxt = SetBuilder.makeContext(TWO_ELEMENT_CHAIN_CONTEXT);
+    /*This functionality is deferred to the next release */
+    public void XXXtestStoringImplication(){
+        cxt = SetBuilder.makeContext(TWO_BY_TWO_CHAIN_CONTEXT);
         doc = new ContextDocument(cxt);
         doc.calculateImplications();
-        System.out.println(doc.getImplications().dependencies().size());
+        assertEquals(1, doc.getImplications().dependencies().size());
         ContextDocument loadedDoc = writeAndReadContextDoc(doc);
         assertEquals(doc.getImplications(), loadedDoc.getImplications());
 

@@ -22,7 +22,7 @@ import conexp.frontend.latticeeditor.LatticeCanvas;
 import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
-import conexp.frontend.latticeeditor.queries.ConceptNodeQueryFactory;
+import conexp.frontend.latticeeditor.queries.tests.ConceptNodeQueryFactory;
 import util.testing.TestUtil;
 
 import java.awt.Dimension;

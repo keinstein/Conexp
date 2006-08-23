@@ -152,8 +152,8 @@ public class ContextDocManagerTest extends TestCase {
     }
 
     public void testMenuCreation() {
-        ResourcesToolbarDefinitionTest.testMenuDefinitionInResource(ContextDocManager.getResourceManager(), docManager.getActionChain(), false);
-        ResourcesToolbarDefinitionTest.testMenuDefinitionInResource(ContextDocManager.getResourceManager(), docManager.getActionChain(), true);
+        ResourcesToolbarDefinitionTestHelper.testMenuDefinitionInResource(ContextDocManager.getResourceManager(), docManager.getActionChain(), false);
+        ResourcesToolbarDefinitionTestHelper.testMenuDefinitionInResource(ContextDocManager.getResourceManager(), docManager.getActionChain(), true);
     }
 
 
