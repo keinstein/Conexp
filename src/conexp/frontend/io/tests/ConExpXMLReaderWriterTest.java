@@ -18,6 +18,7 @@ import conexp.frontend.ContextDocumentModel;
 import conexp.frontend.DocumentLoader;
 import conexp.frontend.DocumentWriter;
 import conexp.frontend.SetProvidingEntitiesMask;
+import conexp.frontend.tests.SimpleLayoutTestSetup;
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.io.ConExpXMLReader;
 import conexp.frontend.io.ConExpXMLWriter;
@@ -33,12 +34,19 @@ import javax.swing.JTree;
 import java.awt.geom.Point2D;
 import java.beans.PropertyVetoException;
 
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
 public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
     private static final int[][] TEST_RELATION_2x3 = new int[][]{{0, 1},
             {1, 0},
             {1, 1}};
     static final int[][] TWO_ELEMENT_CHAIN_CONTEXT = new int[][]{{0}, {1}};
     static final int[][] TWO_BY_TWO_CHAIN_CONTEXT = new int[][]{{0, 1}, {1, 1}};
+
+    public static Test suite(){
+          return new SimpleLayoutTestSetup(new TestSuite(ConExpXMLReaderWriterTest.class));
+    }
 
     protected DocumentLoader makeDocumentLoader() {
         return new ConExpXMLReader();

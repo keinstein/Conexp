@@ -9,7 +9,7 @@ package conexp.core;
 
 import conexp.core.registries.FCAEngineImplementation;
 
-public class FCAEngineRegistry {
+public final class FCAEngineRegistry {
 
     private static FCAEngine fcaEngine;
 
@@ -34,11 +34,6 @@ public class FCAEngineRegistry {
     public static Lattice buildPartialLattice(Context cxt, Set attributesMask, Set objectsMask) {
         return getFcaEngine().buildPartialLattice(cxt, attributesMask, objectsMask);
     }
-    
-    /*
-	public static Lattice buildPartialLattice(Context cxt, Set featureMask, Set featureMaskO) {
-		return getFcaEngine().buildPartialLattice(cxt, featureMask, featureMaskO);
-	}*/
 
     public static Lattice buildIcebergLattice(Context cxt, int minSupport) {
         return getFcaEngine().buildIcebergLattice(cxt, minSupport);
@@ -52,7 +47,8 @@ public class FCAEngineRegistry {
         return getFcaEngine().buildIcebergConceptSet(cxt, minSupport);
     }
 
-    public static void buildIcebergConceptSet(ExtendedContextEditingInterface cxt, int minSupport, ConceptEnumCallback callback) {
+    public static void buildIcebergConceptSet(ExtendedContextEditingInterface cxt, int minSupport,
+                                                                          ConceptEnumCallback callback) {
         getFcaEngine().buildIcebergConceptSet(cxt, minSupport, callback);
     }
 

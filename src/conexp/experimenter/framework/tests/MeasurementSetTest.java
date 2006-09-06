@@ -17,14 +17,6 @@ import junit.framework.TestSuite;
 public class MeasurementSetTest extends TestCase {
     private static final Class THIS = MeasurementSetTest.class;
 
-    public MeasurementSetTest(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
-
     public static void testSetMeasurement() {
         MeasurementSet res = new MeasurementSet();
         res.setMeasurementProtocol(

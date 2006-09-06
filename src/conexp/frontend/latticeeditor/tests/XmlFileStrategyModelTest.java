@@ -9,6 +9,7 @@ package conexp.frontend.latticeeditor.tests;
 
 import conexp.frontend.latticeeditor.XMLFileStrategyModel;
 import conexp.util.exceptions.ConfigFatalError;
+import conexp.tests.TestPathResolver;
 import junit.framework.TestCase;
 import util.testing.TestUtil;
 
@@ -36,11 +37,15 @@ public class XmlFileStrategyModelTest extends TestCase {
      */
     private static void expectClassCreationError(String testFileName) {
         try {
-            new XMLFileStrategyModel(testFileName, true);
+            makeTestXMLModel(testFileName, true);
             fail();
         } catch (ConfigFatalError expected) {
             assertTrue(true);
         }
+    }
+
+    private static XMLFileStrategyModel makeTestXMLModel(String testFileName, boolean doCreateStrategies) {
+        return new XMLFileStrategyModel(TestPathResolver.getTestPath(testFileName), doCreateStrategies);
     }
 
 
@@ -50,7 +55,7 @@ public class XmlFileStrategyModelTest extends TestCase {
      */
     private static void expectConfigurationError(String testFileName) {
         try {
-            new XMLFileStrategyModel(testFileName, false);
+            makeTestXMLModel(testFileName, false);
             fail();
         } catch (ConfigFatalError expected) {
             assertTrue(true);
@@ -89,13 +94,14 @@ public class XmlFileStrategyModelTest extends TestCase {
 
 
     public void testLoadNormalModel() {
-        XMLFileStrategyModel model = new XMLFileStrategyModel("conexp/frontend/resources/tests/xmlConfigTest.xml", false);
+        XMLFileStrategyModel model = makeTestXMLModel("conexp/frontend/resources/tests/xmlConfigTest.xml", false);
         compareExpectedAndActualArrays(new String[][]{{"one", "test", "one.test"}, {"two", "test", "two.test"}}, model.getCreateInfo());
     }
 
     public static void testEquals() {
-        XMLFileStrategyModel first = new XMLFileStrategyModel("conexp/frontend/resources/LayoutStrategyModel.xml", true);
-        XMLFileStrategyModel second = new XMLFileStrategyModel("conexp/frontend/resources/LayoutStrategyModel.xml", true);
+        String modelPath = TestPathResolver.getProductionPath("conexp/frontend/resources/LayoutStrategyModel.xml");
+        XMLFileStrategyModel first = new XMLFileStrategyModel(modelPath, true);
+        XMLFileStrategyModel second = new XMLFileStrategyModel(modelPath, true);
         TestUtil.testEqualsAndHashCode(first, second);
 
     }

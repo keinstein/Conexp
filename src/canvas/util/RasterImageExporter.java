@@ -39,9 +39,13 @@ public class RasterImageExporter implements IExporter {
     }
 
     public void performExportService(String path) throws IOException {
+        ImageCodec codec = getImageCodecsFactory().makeCodec(StringUtil.getExtension(path));
+        if(null==codec){
+
+        }
+
         BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(path));
         try {
-            ImageCodec codec = getImageCodecsFactory().makeCodec(StringUtil.getExtension(path));
             codec.saveToStream(screenImageProvider.getScreenImage(), out);
         } finally {
             out.flush();

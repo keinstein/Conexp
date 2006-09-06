@@ -23,19 +23,16 @@ public class AllTests extends TestCase {
         suite.addTest(ContextDocumentTest.suite());
         suite.addTestSuite(PropertyChangeSupplierBaseControllerTest.class);
 
+        suite.addTest(conexp.frontend.attributeexploration.tests.AllTests.suite());
+        suite.addTest(conexp.frontend.components.tests.AllTests.suite());
         suite.addTest(conexp.frontend.contexteditor.tests.AllTests.suite());
+        suite.addTest(conexp.frontend.io.tests.AllTests.suite());
         suite.addTest(conexp.frontend.latticeeditor.tests.AllTests.suite());
         suite.addTest(conexp.frontend.ruleview.tests.AllTests.suite());
-
-        suite.addTest(conexp.frontend.components.tests.AllTests.suite());
         suite.addTest(conexp.frontend.util.tests.AllTests.suite());
         suite.addTest(conexp.frontend.ui.tests.AllTests.suite());
-        suite.addTest(conexp.frontend.attributeexploration.tests.AllTests.suite());
-        suite.addTest(conexp.frontend.io.tests.AllTests.suite());
 
-        TestSetup testSetup = new SimpleLayoutTestSetup(suite);
-
-        return testSetup;
+        return new SimpleLayoutTestSetup(suite);
 
 
     }

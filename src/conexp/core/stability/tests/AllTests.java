@@ -10,6 +10,7 @@ public class AllTests extends TestCase {
         TestSuite test = new TestSuite();
         test.addTestSuite(BruteForceStabilityCalculatorTest.class);
         test.addTestSuite(OneConceptPointStabilityCalculatorTest.class);
+        test.addTestSuite(PointAndIntegralStabilityCalculatorTest.class);
         return test;
     }
 }

@@ -16,11 +16,6 @@ import junit.framework.TestSuite;
 
 
 public class AttributeIteratorTest extends TestCase {
-    private static final Class THIS = AttributeIteratorTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
 
     public static void testIterator() {

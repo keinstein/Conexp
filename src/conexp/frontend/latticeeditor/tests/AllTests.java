@@ -17,22 +17,23 @@ public class AllTests extends TestCase {
         TestSuite suite = new TestSuite();
 
         suite.addTestSuite(BaseLatticePainterPaneTest.class);
+        suite.addTestSuite(ConscriptLatticeExporterTest.class);
         suite.addTestSuite(LatticeCanvasDrawStrategiesContextTest.class);
+        suite.addTestSuite(LatticeCanvasTest.class);
         suite.addTestSuite(LatticeDrawingTest.class);
         suite.addTestSuite(LatticePainterDrawParamsTest.class);
         suite.addTestSuite(LatticePainterOptionsTest.class);
         suite.addTestSuite(LatticePainterPanelTest.class);
-        suite.addTestSuite(LatticeCanvasTest.class);
 
         suite.addTestSuite(NestedLineDiagramDrawingTest.class);
         suite.addTestSuite(RescaleByYFigureVisitorTest.class);
         suite.addTestSuite(XmlFileStrategyModelTest.class);
 
-        suite.addTest(conexp.frontend.latticeeditor.drawstrategies.tests.PackageTest.suite());
-        suite.addTest(conexp.frontend.latticeeditor.edgesizecalcstrategies.tests.PackageTest.suite());
+        suite.addTest(conexp.frontend.latticeeditor.drawstrategies.tests.AllTests.suite());
+        suite.addTest(conexp.frontend.latticeeditor.edgesizecalcstrategies.tests.AllTests.suite());
         suite.addTest(conexp.frontend.latticeeditor.figures.tests.AllTests.suite());
-        suite.addTest(conexp.frontend.latticeeditor.highlightstrategies.tests.PackageTest.suite());
-        suite.addTest(conexp.frontend.latticeeditor.labelingstrategies.tests.PackageTest.suite());
+        suite.addTest(conexp.frontend.latticeeditor.highlightstrategies.tests.AllTests.suite());
+        suite.addTest(conexp.frontend.latticeeditor.labelingstrategies.tests.AllTests.suite());
         suite.addTest(conexp.frontend.latticeeditor.movestrategies.tests.AllTests.suite());
         suite.addTest(conexp.frontend.latticeeditor.noderadiusstrategy.tests.AllTests.suite());
 

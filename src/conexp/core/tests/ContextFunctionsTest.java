@@ -15,11 +15,6 @@ import junit.framework.TestSuite;
 
 
 public class ContextFunctionsTest extends TestCase {
-    private static final Class THIS = ContextFunctionsTest.class;
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
 
     public static void testStability() {

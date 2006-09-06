@@ -85,6 +85,7 @@
                 <path refid="project.classpath"/>
                 <pathelement location="${build}"/>
             </classpath>
+            <jvmarg value="-DPRODUCTION_CLASSPATH=${build}/"/>
         </java>
     </target>
 

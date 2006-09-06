@@ -24,19 +24,12 @@ public class ConExpDependenciesTest extends TestCase {
 
     public static void testPackageDependencies() throws IOException {
         JDepend jdepend = new JDepend();
-        jdepend.addDirectory("./../../build");
+        jdepend.addDirectory(TestPathResolver.getProductionClassPath());
         jdepend.analyze();
 
         JavaPackage corePackage = jdepend.getPackage("conexp.core");
         JavaPackage frontEndPackage = jdepend.getPackage("conexp.frontend");
         JavaPackage canvasPackage = jdepend.getPackage("canvas");
-/*
-        System.out.println("Core has cycles:" + corePackage.containsCycle());
-        ArrayList cycle = new ArrayList();
-        corePackage.collectCycle(cycle);
-        printOutPackages("Cycles in core:",cycle);
-*/
-
 
 
         assertFalse("canvas does not depend on conexp.core", corePackage.getAfferents().contains(canvasPackage));

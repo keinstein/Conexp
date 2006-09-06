@@ -16,6 +16,7 @@ import conexp.frontend.DocModifiedHandler;
 import conexp.frontend.Document;
 import conexp.frontend.DocumentRecord;
 import conexp.frontend.ViewChangeListener;
+import conexp.tests.TestPathResolver;
 import junit.framework.TestCase;
 import util.DataFormatException;
 import util.StringUtil;
@@ -165,17 +166,18 @@ public class ContextDocManagerTest extends TestCase {
     }
 
     public void testDocLoading(){
+        checkJustOpenedDoc();
+    }
+
+    private void checkJustOpenedDoc() {
         docManager.setStorageFormatManager(new ConExpStorageFormatManager());
-        docManager.openUrl("conexp/frontend/resources/tests/docTest.cex");
+        docManager.openUrl(TestPathResolver.getTestPath("conexp/frontend/resources/tests/docTest.cex"));
         assertNotNull("document was not loaded",docManager.getActiveDoc());
         assertFalse(docManager.getActiveDoc().isModified());
     }
 
     public void testDocNotModifiedAfterSave(){
-        docManager.setStorageFormatManager(new ConExpStorageFormatManager());
-        docManager.openUrl("conexp/frontend/resources/tests/docTest.cex");
-        assertNotNull("document was not loaded",docManager.getActiveDoc());
-        assertFalse(docManager.getActiveDoc().isModified());
+        checkJustOpenedDoc();
         docManager.getActiveDoc().markDirty();
         assertTrue(docManager.getActiveDoc().isModified());
         docManager.onSave();
@@ -225,7 +227,7 @@ public class ContextDocManagerTest extends TestCase {
         docManager.setDocModifiedHandler(handler);
         final MockFileSelectorService fileSelectorService =
                 MockFileSelectorService.createSaveService(
-                       "conexp/frontend/resources/tests/docSaveTest.cex",
+                       TestPathResolver.getTestPath("conexp/frontend/resources/tests/docSaveTest.cex"),
                         true,
                         true);
 

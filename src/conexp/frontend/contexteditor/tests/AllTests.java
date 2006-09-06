@@ -16,6 +16,7 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
         suite.addTestSuite(ContextTableModelTest.class);
+        suite.addTestSuite(ContextTableTest.class);
         suite.addTestSuite(ContextViewPanelTest.class);
         return suite;
     }

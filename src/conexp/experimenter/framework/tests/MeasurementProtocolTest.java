@@ -20,15 +20,6 @@ import junit.framework.TestSuite;
 import java.util.Iterator;
 
 public class MeasurementProtocolTest extends TestCase {
-    private static final Class THIS = MeasurementProtocolTest.class;
-
-    public MeasurementProtocolTest(String name) {
-        super(name);
-    }
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
     public static void testAddMeasurement() {
         MeasurementProtocol protocol = new MeasurementProtocol();

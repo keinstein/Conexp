@@ -13,7 +13,6 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 public class ContextReductionTest extends TestCase {
-    private static final Class THIS = ContextReductionTest.class;
     public static final int[][] BURMEISTER__EXAMPLE = new int[][]{
         {0, 0, 0, 1, 0, 1, 1, 1, },
         {1, 1, 1, 1, 1, 1, 1, 1, },
@@ -43,10 +42,6 @@ public class ContextReductionTest extends TestCase {
         {0, 1, 0, 1, 0, 0, 0, 1, },
         {1, 0, 0, 1, 1, 0, 0, 1, },
     };
-
-    public static Test suite() {
-        return new TestSuite(THIS);
-    }
 
     public static void testReduceObjects() {
 /*
