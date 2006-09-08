@@ -1,12 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor.edgesizecalcstrategies.tests;
 
-/**
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: 17/4/2005
- * Time: 17:06:25
- * To change this template use File | Settings | File Templates.
- */
+
 
 import conexp.frontend.latticeeditor.BasicDrawParams;
 import conexp.frontend.latticeeditor.DefaultDimensionCalcStrategy;

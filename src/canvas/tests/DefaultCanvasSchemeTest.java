@@ -1,12 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package canvas.tests;
 
-/**
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: 16/4/2005
- * Time: 0:22:39
- * To change this template use File | Settings | File Templates.
- */
+
 
 import canvas.CanvasScheme;
 import canvas.DefaultCanvasScheme;

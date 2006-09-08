@@ -1,14 +1,15 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.layout;
 
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 import util.Assert;
 
-/**
- * Copyright (c) 2000-2003, Sergey Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 public class HeightInLatticeLayerAssignmentFunction implements ILayerAssignmentFunction {
     public void calculateLayersForLattice(Lattice lattice, final ILayerAssignmentFunction.ILayerAssignmentFunctionCallback callback) {
         Assert.isTrue(lattice.getHeight() >= 0);

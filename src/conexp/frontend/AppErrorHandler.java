@@ -1,10 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend;
 
-/**
- * User: sergey
- * Date: 8/8/2006
- * Time: 12:56:26
- */
+
 public interface AppErrorHandler {
     /**
      * This method is used for reporting expected ("usual") error situations

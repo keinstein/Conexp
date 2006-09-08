@@ -1,13 +1,12 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.ui;
 
 
-/**
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: 19/5/2005
- * Time: 11:59:51
- * To change this template use Options | File Templates.
- */
+
 public abstract class ViewInfo implements IViewInfo {
     final String viewPlace;
     final String viewCaption;

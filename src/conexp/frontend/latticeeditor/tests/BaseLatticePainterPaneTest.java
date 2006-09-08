@@ -1,10 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor.tests;
 
-/**
- * User: sergey
- * Date: 18/5/2005
- * Time: 11:03:15
- */
+
 
 import conexp.frontend.components.LatticeComponent;
 import conexp.frontend.components.tests.ComponentsObjectMother;

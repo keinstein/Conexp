@@ -1,12 +1,11 @@
-package conexp.util.valuemodels;
-
 /**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
  * All rights reserved.
  * Please read license.txt for licensing issues.
- * Date: 28/7/2003
- * Time: 16:06:47
- */
+ **/
+package conexp.util.valuemodels;
+
+
 
 public class BooleanValueModel extends ValueModelBase {
 

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.components;
 
 import conexp.frontend.io.ConExpXMLReader;
@@ -5,11 +10,7 @@ import conexp.frontend.io.ConExpXMLWriter;
 import org.jdom.Element;
 import util.DataFormatException;
 
-/**
- * User: sergey
- * Date: 23/5/2005
- * Time: 16:20:53
- */
+
 public class LatticeComponentSerializationDuplicator implements ILatticeComponentDuplicator {
     public LatticeComponent duplicate(LatticeComponent toCopy) {
 

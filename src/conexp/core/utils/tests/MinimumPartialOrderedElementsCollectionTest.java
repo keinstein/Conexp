@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.utils.tests;
 
 import conexp.core.IPartiallyOrdered;
@@ -6,11 +11,7 @@ import conexp.core.tests.SetBuilder;
 import conexp.core.utils.MinimumPartialOrderedElementsCollection;
 import junit.framework.TestCase;
 
-/**
- * Copyright (c) 2000-2003, Sergey Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 public class MinimumPartialOrderedElementsCollectionTest extends TestCase {
     public static void testAdditionOfMinimumPartialOrderedElements() {
         MinimumPartialOrderedElementsCollection collection = new MinimumPartialOrderedElementsCollection();

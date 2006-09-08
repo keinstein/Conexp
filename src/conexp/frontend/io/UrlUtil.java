@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.io;
 
 import java.io.FileNotFoundException;
@@ -9,13 +14,7 @@ import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 17/7/2003
- * Time: 11:19:36
- */
+
 
 public class UrlUtil {
     private UrlUtil() {

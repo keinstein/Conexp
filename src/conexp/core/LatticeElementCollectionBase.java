@@ -1,14 +1,15 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * User: sergey
- * Date: 29/4/2005
- * Time: 15:02:23
- */
+
 abstract class LatticeElementCollectionBase implements LatticeElementCollection {
     private List collection;
 

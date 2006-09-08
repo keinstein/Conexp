@@ -1,11 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor.tests;
 
-/**
- * User: sergey
- * Date: 17/4/2005
- * Time: 13:23:29
- *
- */
+
 
 import conexp.frontend.latticeeditor.BasicDrawParams;
 import conexp.frontend.latticeeditor.DrawStrategiesContext;

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.ui.tree;
 
 import javax.swing.Icon;
@@ -10,11 +15,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 
-/**
- * User: sergey
- * Date: 18/4/2005
- * Time: 16:15:02
- */
+
 public class IconCellRenderer extends JLabel implements TreeCellRenderer {
     protected Color textSelectionColor;
     protected Color textNonSelectionColor;

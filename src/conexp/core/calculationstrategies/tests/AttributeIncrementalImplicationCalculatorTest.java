@@ -1,10 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.calculationstrategies.tests;
 
-/**
- * User: sergey
- * Date: 12/5/2005
- * Time: 21:08:27
- */
+
 
 import conexp.core.Context;
 import conexp.core.ImplicationCalcStrategy;

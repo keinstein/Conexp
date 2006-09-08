@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor.tests;
 
 import conexp.core.Lattice;
@@ -7,11 +12,7 @@ import conexp.frontend.latticeeditor.LatticeDrawing;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-/**
- * User: sergey
- * Date: 6/5/2005
- * Time: 10:52:18
- */
+
 class MockLatticeDrawingProvider implements LatticeDrawingProvider {
     public MockLatticeDrawingProvider() {
 

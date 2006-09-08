@@ -1,14 +1,15 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.contexteditor;
 
 import javax.swing.table.TableCellEditor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 class FastEditingListener implements ActionListener {
     private Boolean value;
     private ContextTable contextTable;

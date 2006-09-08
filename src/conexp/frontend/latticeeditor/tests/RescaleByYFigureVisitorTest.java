@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor.tests;
 
 import conexp.core.Lattice;
@@ -7,11 +12,7 @@ import conexp.frontend.latticeeditor.LatticeDrawing;
 import conexp.frontend.latticeeditor.RescaleByYFigureVisitor;
 import junit.framework.TestCase;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 
 public class RescaleByYFigureVisitorTest extends TestCase {
     public static void testRescaleByY() {

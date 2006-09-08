@@ -1,10 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.tests;
 
-/**
- * User: sergey
- * Date: 11/5/2005
- * Time: 10:12:00
- */
+
 
 import conexp.core.Context;
 import conexp.core.ContextListener;

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor.highlightstrategies.tests;
 
 import canvas.IHighlightStrategy;
@@ -5,11 +10,7 @@ import conexp.frontend.latticeeditor.highlightstrategies.FilterIdealHighlightStr
 import conexp.frontend.latticeeditor.highlightstrategies.IdealHighlightStrategy;
 import conexp.frontend.latticeeditor.tests.HighlightStrategyTest;
 
-/**
- * User: sergey
- * Date: 18/4/2005
- * Time: 1:13:04
- */
+
 
 
 public class FilterIdealHighlightStrategyTest extends HighlightStrategyTest {

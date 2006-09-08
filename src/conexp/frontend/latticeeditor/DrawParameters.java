@@ -1,8 +1,9 @@
 /**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
  * All rights reserved.
  * Please read license.txt for licensing issues.
  **/
+
 
 
 package conexp.frontend.latticeeditor;
@@ -10,10 +11,7 @@ package conexp.frontend.latticeeditor;
 import conexp.core.layout.LayoutParameters;
 
 
-/**
- * todo: specify responsibilities division
- * between DrawParams, and CanvasScheme
- */
+
 
 public interface DrawParameters extends LayoutParameters {
 

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.experiments;
 
 import conexp.experimenter.framework.BaseExperimentSuite;
@@ -9,13 +14,7 @@ import conexp.experimenter.relationsequences.FixedIntentSizeRelationGenerationSt
 import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
 import conexp.experimenter.relationsequences.TransposeRelationSequenceDecorator;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 18/8/2003
- * Time: 16:34:46
- */
+
 
 public class ExperimentSuite extends BaseExperimentSuite {
 

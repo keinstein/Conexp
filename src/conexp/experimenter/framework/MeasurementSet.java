@@ -1,14 +1,14 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.framework;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Insert the type's description here.
- * Creation date: (17.07.01 19:50:09)
- *
- * @author
- */
+
 public class MeasurementSet {
     ValidityStatistics validityStatistics;
     Map resultDictionary = new HashMap();

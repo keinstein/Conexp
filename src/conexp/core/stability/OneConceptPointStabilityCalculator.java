@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.stability;
 
 import conexp.core.BinaryRelation;
@@ -8,11 +13,7 @@ import conexp.core.ModifiableSet;
 import conexp.core.Set;
 import util.MathUtil;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 
 public class OneConceptPointStabilityCalculator extends DefaultBinaryRelationProcessor implements PointStabilityCalculator {
     private ModifiableSet[] currentExtents;

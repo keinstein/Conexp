@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package canvas.util;
 
 import canvas.IScreenImageProvider;
@@ -11,13 +16,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 30/12/2003
- * Time: 16:07:30
- */
+
 public class RasterImageExporter implements IExporter {
     private final IScreenImageProvider screenImageProvider;
 

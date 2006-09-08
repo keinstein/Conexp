@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.util.gui.paramseditor;
 
 import javax.swing.JCheckBox;
@@ -6,13 +11,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
 import java.awt.Component;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 28/7/2003
- * Time: 16:31:33
- */
+
 
 
 public class BooleanCellRenderer extends JCheckBox implements TableCellRenderer {

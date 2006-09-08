@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.layout.layeredlayout;
 
 import conexp.core.BinaryRelation;
@@ -20,11 +25,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-/**
- * Copyright (c) 2000-2003, Sergey Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 public class LayeredLayoter extends NonIncrementalLayouter {
     ILayerAssignmentFunction layerAssignmentFunction;
     private LatticeElement[][] elementsByLayers;

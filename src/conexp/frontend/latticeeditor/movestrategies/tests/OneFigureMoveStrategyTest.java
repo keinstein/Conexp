@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor.movestrategies.tests;
 
 import canvas.figures.TrueFigurePredicate;
@@ -12,13 +17,7 @@ import conexp.frontend.latticeeditor.movestrategies.OneFigureMoveStrategy;
 import conexp.frontend.latticeeditor.tests.LatticeCanvasTest;
 import junit.framework.TestCase;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 14/7/2003
- * Time: 22:10:45
- */
+
 
 public class OneFigureMoveStrategyTest extends TestCase {
 

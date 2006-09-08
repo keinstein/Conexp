@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.tests;
 
 import conexp.frontend.ILatticeComponentFactory;
@@ -5,13 +10,7 @@ import conexp.frontend.LatticeComponentFactory;
 import junit.extensions.TestSetup;
 import junit.framework.TestSuite;
 
-/**
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: 20/5/2005
- * Time: 2:26:12
- * To change this template use Options | File Templates.
- */
+
 public class SimpleLayoutTestSetup extends TestSetup {
     public SimpleLayoutTestSetup(TestSuite suite) {
         super(suite);

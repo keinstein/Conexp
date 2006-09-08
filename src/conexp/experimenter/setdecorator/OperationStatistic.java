@@ -1,16 +1,15 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.setdecorator;
 
 import util.Assert;
 
 import java.util.Arrays;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 16/7/2003
- * Time: 2:27:06
- */
+
 
 public class OperationStatistic extends OperationCountHolder implements OperationCodes {
 

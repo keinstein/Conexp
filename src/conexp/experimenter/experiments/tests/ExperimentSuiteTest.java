@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.experiments.tests;
 
 import conexp.core.BinaryRelation;
@@ -10,9 +15,7 @@ import conexp.experimenter.framework.RelationSequence;
 import conexp.experimenter.framework.RelationSequenceSet;
 import junit.framework.TestCase;
 
-/**
- * JUnit test case for ConceptSetExperimentSuiteTest
- */
+
 
 public class ExperimentSuiteTest extends TestCase {
 

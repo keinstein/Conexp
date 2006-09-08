@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import canvas.CanvasScheme;
@@ -22,13 +27,7 @@ import java.awt.geom.Rectangle2D;
 import java.util.Collection;
 import java.util.Iterator;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 30/7/2003
- * Time: 22:55:43
- */
+
 
 public abstract class MultiLineLabelingStrategyBase extends GenericLabelingStrategy {
     protected ExtendedContextEditingInterface cxt;

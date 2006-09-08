@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package canvas.util;
 
 import util.IExporter;
@@ -13,13 +18,7 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 
-/**
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: 17/4/2005
- * Time: 14:33:10
- * To change this template use File | Settings | File Templates.
- */
+
 public abstract class SaveImageActionBase extends AbstractAction {
     private String title;
     private Frame parentFrame = null;

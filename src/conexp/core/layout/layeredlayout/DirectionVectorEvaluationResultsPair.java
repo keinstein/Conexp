@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.layout.layeredlayout;
 
 import conexp.core.IPartiallyOrdered;
@@ -6,11 +11,7 @@ import util.StringUtil;
 
 import java.util.Arrays;
 
-/**
- * Copyright (c) 2000-2003, Sergey Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 public class DirectionVectorEvaluationResultsPair implements IPartiallyOrdered {
     double[] directionVectors;
     double[] evaluation;

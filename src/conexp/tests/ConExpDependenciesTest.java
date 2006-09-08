@@ -1,12 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.tests;
 
-/**
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: 11/4/2005
- * Time: 13:44:28
- * To change this template use File | Settings | File Templates.
- */
+
 
 import jdepend.framework.JDepend;
 import jdepend.framework.JavaPackage;

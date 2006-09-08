@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.experiments;
 
 import conexp.experimenter.framework.ExperimentSet;
@@ -6,11 +11,7 @@ import util.DataFormatException;
 
 import java.io.IOException;
 
-/**
- * User: sergey
- * Date: 10/5/2005
- * Time: 8:00:22
- */
+
 public class ImplicationExperimentSuite extends ExperimentSuite {
     public static void implicationSetExperiment() throws DataFormatException, IOException {
         ExperimentSet set = createImplicationsExperiment();

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.components.tests;
 
 import conexp.core.Context;
@@ -9,11 +14,7 @@ import junit.framework.TestCase;
 import util.testing.SimpleMockPropertyChangeListener;
 import util.testing.TestUtil;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 
 public abstract class ContextMaskBaseTest extends TestCase {
     protected Context cxt;

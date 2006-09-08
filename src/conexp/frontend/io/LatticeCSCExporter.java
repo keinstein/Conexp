@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.io;
 
 import canvas.figures.FigureWithCoords;
@@ -20,13 +25,7 @@ import java.text.MessageFormat;
 import java.util.Iterator;
 import java.util.Locale;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 16/12/2003
- * Time: 15:27:52
- */
+
 
 public class LatticeCSCExporter {
     public static final String HEADER = "LINE_DIAGRAM";

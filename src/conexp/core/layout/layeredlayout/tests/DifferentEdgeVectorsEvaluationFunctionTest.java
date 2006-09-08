@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.layout.layeredlayout.tests;
 
 import conexp.core.Lattice;
@@ -7,11 +12,7 @@ import conexp.core.layout.layeredlayout.LatticeBasedEvaluationFunctionBase;
 import conexp.core.tests.SetBuilder;
 import junit.framework.TestCase;
 
-/**
- * Copyright (c) 2000-2003, Sergey Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 public class DifferentEdgeVectorsEvaluationFunctionTest extends TestCase {
 
     public static void testEvaluationFunction() {

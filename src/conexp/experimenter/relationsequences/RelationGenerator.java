@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.relationsequences;
 
 import conexp.core.ContextFactoryRegistry;
@@ -6,12 +11,7 @@ import conexp.core.ModifiableSet;
 
 import java.util.Random;
 
-/**
- * Insert the type's description here.
- * Creation date: (28.02.01 23:44:56)
- *
- * @author
- */
+
 public class RelationGenerator {
     private RelationGenerator() {
     }

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor;
 
 import conexp.frontend.io.LatticeCSCExporter;
@@ -8,13 +13,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 30/12/2003
- * Time: 15:17:46
- */
+
 public class ConscriptLatticeExporter implements IExporter {
     LatticePainterPanel panel;
     public static final String CONSCRIPT_EXTENSION = "csc";

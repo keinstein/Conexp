@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.calculationstrategies;
 
 import conexp.core.BinaryRelation;
@@ -7,13 +12,7 @@ import conexp.core.ContextFactoryRegistry;
 import conexp.core.ModifiableSet;
 import conexp.core.Set;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 30/8/2003
- * Time: 21:02:24
- */
+
 
 public class DepthSearchConceptCalcStrategy extends DepthSearchBinaryRelationAlgorithm implements ConceptCalcStrategy {
     protected ConceptEnumCallback callback;

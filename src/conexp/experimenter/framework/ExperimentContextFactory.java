@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.framework;
 
 import conexp.core.ContextFactory;
@@ -9,13 +14,7 @@ import conexp.experimenter.setdecorator.CountingSetDecorator;
 import conexp.experimenter.setdecorator.OperationCountHolder;
 import conexp.experimenter.setdecorator.OperationStatistic;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 26/8/2003
- * Time: 17:21:51
- */
+
 
 public class ExperimentContextFactory implements ContextFactory {
     private OperationStatistic statistic = new OperationStatistic();

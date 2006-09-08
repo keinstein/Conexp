@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend;
 
 import com.gargoylesoftware.base.collections.NotificationList;
@@ -33,11 +38,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * User: sergey
- * Date: 18/4/2005
- * Time: 21:10:14
- */
+
 public class ContextDocumentModel extends BasePropertyChangeSupplier {
     public static final String CLEAR_DEPENDENT_POLICY_KEY = "Clear";
     public static final String RECOMPUTE_DEPENDENT_POLICY_KEY = "Recompute";

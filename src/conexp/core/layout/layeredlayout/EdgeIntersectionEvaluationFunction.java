@@ -1,15 +1,14 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.layout.layeredlayout;
 
 import conexp.core.Lattice;
 import conexp.core.layout.ConceptCoordinateMapper;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 11/2/2004
- * Time: 23:20:35
- */
+
 
 public class EdgeIntersectionEvaluationFunction extends LatticeBasedEvaluationFunctionBase {
 

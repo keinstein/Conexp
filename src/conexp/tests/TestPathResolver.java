@@ -1,11 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.tests;
 
-/**
- * Class for resolving pathes of the files used in tests.
- * Was created in order to allow to build tests both in ant and maven
- *
- * @author Serhiy Yevtushenko
- */
+
 public class TestPathResolver {
     static final String TEST_CLASSPATH = "TEST_CLASSPATH";
     static final String PRODUCTION_CLASSPATH = "PRODUCTION_CLASSPATH";

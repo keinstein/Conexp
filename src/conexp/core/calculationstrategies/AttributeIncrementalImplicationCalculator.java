@@ -1,7 +1,9 @@
-/*
- * Created on Apr 26, 2005
- *
- */
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.core.calculationstrategies;
 
 import conexp.core.AttributeInformationSupplier;
@@ -15,9 +17,7 @@ import conexp.core.Set;
 
 import java.util.Comparator;
 
-/**
- * @author object
- */
+
 public class AttributeIncrementalImplicationCalculator
         extends DefaultBinaryRelationProcessor
         implements ImplicationCalcStrategy {

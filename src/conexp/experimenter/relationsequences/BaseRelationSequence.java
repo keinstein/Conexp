@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.relationsequences;
 
 import conexp.core.BinaryRelation;
@@ -7,13 +12,7 @@ import conexp.experimenter.framework.MeasurementProtocol;
 import conexp.experimenter.framework.MeasurementSet;
 import conexp.experimenter.framework.RelationSequence;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 26/8/2003
- * Time: 16:50:22
- */
+
 
 public abstract class BaseRelationSequence implements RelationSequence {
     protected BinaryRelation[] relations;

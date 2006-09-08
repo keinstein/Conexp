@@ -1,16 +1,15 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.relationsequences;
 
 import conexp.core.BinaryRelation;
 import conexp.core.Context;
 import util.Assert;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 22/11/2003
- * Time: 20:30:43
- */
+
 
 public class ContextBasedRelationSequence extends BaseRelationGenerationStrategy {
     protected Context context;

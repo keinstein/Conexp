@@ -1,16 +1,15 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.tests;
 
 import conexp.core.ConceptsCollection;
 import junit.framework.TestCase;
 import util.testing.TestUtil;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 5/8/2003
- * Time: 14:39:59
- */
+
 
 public class ConceptsCollectionTest extends TestCase {
     public static void testEquals() {

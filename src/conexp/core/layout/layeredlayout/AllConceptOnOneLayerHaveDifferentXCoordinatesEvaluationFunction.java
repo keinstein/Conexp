@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.layout.layeredlayout;
 
 import conexp.core.LatticeElement;
@@ -8,11 +13,7 @@ import util.gui.GraphicObjectsFactory;
 import java.awt.geom.Point2D;
 import java.util.SortedSet;
 
-/**
- * Copyright (c) 2000-2003, Sergey Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 public class AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunction implements IEvaluationFunction {
     private LatticeElement[][] elementsByLayers;
     ConceptCoordinateMapper conceptCoordinateMapper;

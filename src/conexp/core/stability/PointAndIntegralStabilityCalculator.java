@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.stability;
 
 import conexp.core.BinaryRelation;
@@ -11,11 +16,7 @@ import util.collection.CollectionFactory;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 
 public class PointAndIntegralStabilityCalculator extends DefaultBinaryRelationProcessor implements PointStabilityCalculator, IntegralStabilityCalculator {
     private int powerOfObjectCount;

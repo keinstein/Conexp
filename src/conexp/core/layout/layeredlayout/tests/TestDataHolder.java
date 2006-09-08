@@ -1,10 +1,11 @@
-package conexp.core.layout.layeredlayout.tests;
-
 /**
- * Copyright (c) 2000-2003, Sergey Yevtushenko
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
  * All rights reserved.
  * Please read license.txt for licensing issues.
- */
+ **/
+package conexp.core.layout.layeredlayout.tests;
+
+
 public class TestDataHolder {
     public static final int[][] FULL_RELATION_NOMINAL_3 = new int[][]{
             {0, 0, 0},

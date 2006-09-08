@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.layout;
 
 import conexp.core.ItemSet;
@@ -8,13 +13,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: 5/4/2005
- * Time: 12:32:45
- * To change this template use File | Settings | File Templates.
- */
+
 public abstract class FreezeBaseLayout extends SimpleForceLayout {
     /**
      * Insert the method's description here.

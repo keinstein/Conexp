@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.contexteditor.tests;
 
 import conexp.core.Context;
@@ -8,11 +13,7 @@ import junit.framework.TestCase;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 
 public class ContextTableTest extends TestCase {
     private ContextTable table;

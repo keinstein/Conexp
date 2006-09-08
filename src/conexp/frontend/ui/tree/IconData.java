@@ -1,12 +1,13 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.ui.tree;
 
 import javax.swing.Icon;
 
-/**
- * User: sergey
- * Date: 18/4/2005
- * Time: 16:13:37
- */
+
 public class IconData {
     protected Icon icon;
     protected Icon expandedIcon;

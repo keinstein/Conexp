@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor;
 
 import conexp.core.Concept;
@@ -17,13 +22,7 @@ import java.io.PrintWriter;
 import java.util.HashSet;
 import java.util.Iterator;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 10/2/2004
- * Time: 13:28:13
- */
+
 
 public class PlainTextLatticeExporter implements IExporter {
     LatticePainterPanel panel;

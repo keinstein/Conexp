@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.relationsequences;
 
 import conexp.experimenter.framework.RelationSequenceSet;
@@ -9,13 +14,7 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 16/10/2003
- * Time: 1:19:17
- */
+
 
 public class DirectoryRelationSequenceBuilder {
     private DirectoryRelationSequenceBuilder() {

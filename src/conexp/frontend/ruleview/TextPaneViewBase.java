@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.ruleview;
 
 import javax.swing.JTextPane;
@@ -5,13 +10,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyledDocument;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 2/8/2003
- * Time: 16:28:43
- */
+
 
 public class TextPaneViewBase extends JTextPane {
     protected static String NEW_LINE = System.getProperty("line.separator");//$NON-NLS-1$

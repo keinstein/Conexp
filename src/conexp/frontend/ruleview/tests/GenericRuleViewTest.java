@@ -1,17 +1,12 @@
-/*
- * $Id$
- * Copyright (c) 2005 realtime (http://www.realtime.dk),
- * All Rights Reserved.
- */
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.ruleview.tests;
 
-/**
- * Test suite for conexp.frontend.ruleview.GenericRuleView.
- *
- * @author Serhiy Yevtushenko sye@realtime.dk
- * @version $Revision $
- * @see conexp.frontend.ruleview.GenericRuleView
- */
+
 
 import conexp.frontend.ruleview.GenericRuleView;
 import conexp.frontend.ruleview.RulePaneMessages;

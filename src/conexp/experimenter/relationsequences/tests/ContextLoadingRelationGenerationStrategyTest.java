@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.relationsequences.tests;
 
 import conexp.core.tests.SetBuilder;
@@ -5,9 +10,7 @@ import conexp.experimenter.relationsequences.ContextLoadingRelationGenerationStr
 import junit.framework.TestCase;
 import util.testing.TestUtil;
 
-/**
- * JUnit test case for PercentFilledRelationGeneratorTest
- */
+
 
 public class ContextLoadingRelationGenerationStrategyTest extends TestCase {
     public static void testLoading() {

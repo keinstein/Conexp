@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import canvas.Figure;
@@ -12,14 +17,7 @@ import util.gui.GraphicObjectsFactory;
 import java.awt.geom.Rectangle2D;
 import java.util.Collection;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 30/7/2003
- * Time: 22:55:43
- * todo:sye rename to OneLeablePerConcept
- */
+
 
 public abstract class OneLabelConceptLabelingStrategy extends GenericLabelingStrategy {
     protected ExtendedContextEditingInterface cxt;

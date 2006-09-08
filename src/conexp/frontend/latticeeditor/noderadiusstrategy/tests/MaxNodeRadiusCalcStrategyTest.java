@@ -1,10 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.latticeeditor.noderadiusstrategy.tests;
 
-/**
- * User: sergey
- * Date: 17/4/2005
- * Time: 16:54:14
- */
+
 
 import conexp.frontend.latticeeditor.BasicDrawParams;
 import conexp.frontend.latticeeditor.DefaultDimensionCalcStrategy;

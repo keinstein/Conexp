@@ -1,12 +1,11 @@
-package conexp.experimenter.setdecorator;
-
 /**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
  * All rights reserved.
  * Please read license.txt for licensing issues.
- * Date: 16/7/2003
- * Time: 2:31:01
- */
+ **/
+package conexp.experimenter.setdecorator;
+
+
 
 public interface OperationCodes {
 

@@ -1,10 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.ui.tests;
 
-/**
- * User: sergey
- * Date: 19/5/2005
- * Time: 10:45:45
- */
+
 
 import com.mockobjects.ExpectationCounter;
 import conexp.frontend.LatticeAndEntitiesMaskSplitPane;

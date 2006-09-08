@@ -1,14 +1,13 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.ui;
 
 import conexp.frontend.View;
 
-/**
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: 19/5/2005
- * Time: 11:59:00
- * To change this template use Options | File Templates.
- */
+
 public interface IViewInfo {
     String getViewCaption();
 

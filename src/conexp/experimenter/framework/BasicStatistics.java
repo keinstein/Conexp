@@ -1,11 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.framework;
 
-/**
- * Insert the type's description here.
- * Creation date: (21.07.01 14:59:49)
- *
- * @author
- */
+
 public class BasicStatistics {
     /**
      * BasicStatistics constructor comment.

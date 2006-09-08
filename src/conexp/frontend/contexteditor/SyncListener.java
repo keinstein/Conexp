@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.contexteditor;
 
 import conexp.core.DefaultContextListener;
@@ -5,13 +10,7 @@ import conexp.core.DefaultContextListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- * Date: 16/12/2003
- * Time: 1:34:37
- */
+
 abstract class SyncListener extends DefaultContextListener implements TableModelListener {
     protected SyncListener() {
     }

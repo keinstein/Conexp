@@ -1,13 +1,14 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.layout.layeredlayout;
 
 import conexp.core.Lattice;
 import conexp.core.layout.ConceptCoordinateMapper;
 
-/**
- * Copyright (c) 2000-2003, Sergey Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 public abstract class LatticeBasedEvaluationFunctionBase implements IEvaluationFunction {
     protected Lattice lattice;
     protected ConceptCoordinateMapper conceptCoordinateMapper;

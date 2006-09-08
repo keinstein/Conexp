@@ -1,16 +1,15 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend;
 
 import conexp.core.Context;
 import conexp.core.layoutengines.SimpleLayoutEngine;
 import conexp.frontend.components.LatticeComponent;
 
-/**
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: 20/5/2005
- * Time: 1:43:37
- * To change this template use Options | File Templates.
- */
+
 public class LatticeComponentFactory {
     static ILatticeComponentFactory ourInstance;
 

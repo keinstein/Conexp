@@ -1,15 +1,15 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.relationsequences;
 
 import conexp.core.BinaryRelation;
 import conexp.core.BinaryRelationUtils;
 import conexp.experimenter.framework.RelationSequence;
 
-/**
- * Insert the type's description here.
- * Creation date: (28.07.01 23:47:21)
- *
- * @author
- */
+
 public class TransposeRelationSequenceDecorator extends BaseRelationGenerationStrategy {
     protected RelationSequence sourceSequence;
 

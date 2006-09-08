@@ -1,7 +1,9 @@
 /**
- * Copyright (c) 2000-2003, Tim Kaiser
- *  All rights reserved. Please read license.
- * txt for licensing issues. */
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 
 
 package conexp.frontend.components;

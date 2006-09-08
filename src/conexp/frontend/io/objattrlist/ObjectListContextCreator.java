@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.io.objattrlist;
 
 
@@ -23,8 +28,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-//todo: deprecate ContextCreator in case when if it is not used by Julian
-//or implement Adapter for making ContextCreator from ContextReader
 
 
 public class ObjectListContextCreator implements ContextCreator, DocumentLoader, ContextReader {

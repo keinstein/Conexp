@@ -1,10 +1,11 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend.components;
 
-/**
- * User: sergey
- * Date: 23/5/2005
- * Time: 16:30:28
- */
+
 public class LatticeComponentDuplicatorService {
     static ILatticeComponentDuplicator ourInstance = new LatticeComponentSerializationDuplicator();
 

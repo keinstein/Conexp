@@ -1,11 +1,14 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.relationsequences.tests;
 
 import conexp.experimenter.relationsequences.PercentFilledRelationGenerationStrategy;
 import junit.framework.TestCase;
 
-/**
- * JUnit test case for PercentFilledRelationGeneratorTest
- */
+
 
 public class PercentFilledRelationGeneratorTest extends TestCase {
     public static void testCalcRelationSize() {

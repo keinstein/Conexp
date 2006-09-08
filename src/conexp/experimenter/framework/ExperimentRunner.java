@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.framework;
 
 import conexp.core.BinaryRelation;
@@ -14,11 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Creation date: (06.07.01 12:00:23)
- *
- * @author
- */
+
 public class ExperimentRunner {
     List protocol;
 

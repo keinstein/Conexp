@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.frontend;
 
 import javax.swing.BorderFactory;
@@ -17,13 +22,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
 
-/**
- * Created by IntelliJ IDEA.
- * User: sergey
- * Date: 14/4/2005
- * Time: 0:12:22
- * To change this template use File | Settings | File Templates.
- */
+
 public class AboutConExpDialog extends JDialog {
     private JEditorPane copyrightTextArea;
 

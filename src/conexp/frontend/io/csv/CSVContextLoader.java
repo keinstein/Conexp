@@ -1,9 +1,9 @@
-/*
- * Created on May 22, 2003
- *
- * This software package is under copyright licence conditions
- * Please read the LICENCE File at the root of this Software package
- */
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
+
 package conexp.frontend.io.csv;
 
 import conexp.core.Context;
@@ -23,9 +23,7 @@ import java.io.Reader;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-/**
- * @author Julien Tane
- */
+
 public class CSVContextLoader implements DocumentLoader {
 
     private boolean debug = true;

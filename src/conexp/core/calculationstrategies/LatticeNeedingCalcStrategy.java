@@ -1,8 +1,9 @@
 /**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
  * All rights reserved.
  * Please read license.txt for licensing issues.
  **/
+
 
 
 package conexp.core.calculationstrategies;
@@ -13,9 +14,7 @@ import conexp.core.LatticeElement;
 import conexp.core.Set;
 
 
-/**
- * todo: refactor me: move to upper level, then depth-search concept calc strategy
- */
+
 
 public abstract class LatticeNeedingCalcStrategy extends DepthSearchConceptCalcStrategy implements LatticeCalcStrategy {
     protected Lattice lattice;

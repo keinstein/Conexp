@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.stability.tests;
 
 import conexp.core.BinaryRelation;
@@ -5,11 +10,7 @@ import conexp.core.stability.IntegralStabilityCalculator;
 import conexp.core.tests.SetBuilder;
 import junit.framework.TestCase;
 
-/**
- * Copyright (c) 2000-2003, Serhiy Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 
 public abstract class IntegralStabilityCalculatorBaseTest extends TestCase {
     private static final double PRECISION = 0.01;

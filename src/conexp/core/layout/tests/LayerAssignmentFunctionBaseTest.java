@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.core.layout.tests;
 
 import conexp.core.ItemSet;
@@ -10,11 +15,7 @@ import util.collection.CollectionFactory;
 
 import java.util.Map;
 
-/**
- * Copyright (c) 2000-2003, Sergey Yevtushenko
- * All rights reserved.
- * Please read license.txt for licensing issues.
- */
+
 public abstract class LayerAssignmentFunctionBaseTest extends TestCase {
     /**
      * Main requirement for layer assignment function - preservation of lattice order

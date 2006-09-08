@@ -1,14 +1,13 @@
+/**
+ * Copyright (c) 2000-2006, Serhiy Yevtushenko
+ * All rights reserved.
+ * Please read license.txt for licensing issues.
+ **/
 package conexp.experimenter.framework;
 
 import conexp.core.BinaryRelation;
 
-/**
- * Implements the interface, that provides sequence of relations,
- * on which testing of the algorithms are performed
- * Creation date: (21.07.01 11:46:20)
- *
- * @author Serhiy Yevtushenko
- */
+
 public interface RelationSequence {
 
     /**
