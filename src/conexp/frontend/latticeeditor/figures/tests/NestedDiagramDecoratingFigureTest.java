@@ -17,7 +17,7 @@ import junit.framework.TestCase;
 public class NestedDiagramDecoratingFigureTest extends TestCase {
     public static void testGetIntentQuery() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1},
-                                                         {1, 0}});
+                {1, 0}});
 
         Lattice outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 0}, new int[]{1, 1});
         LatticeDrawing outerDrawing = new LatticeDrawing();

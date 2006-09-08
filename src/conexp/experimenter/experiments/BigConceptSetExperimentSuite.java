@@ -44,23 +44,23 @@ public class BigConceptSetExperimentSuite extends ExperimentSuite {
     private static RelationSequenceSet makeContextsRelationSequence() throws IOException, DataFormatException {
         RelationSequenceSet relationSequenceSet = new RelationSequenceSet();
         String[] files = {
-            "zoo.cxt", //379
-            "post-operative.cxt", //2378
-            "dbdata0.cxt", //2692
-            "primary-tumor.cxt", //3743
-            "breast-w.cxt", //9824
-            "breast-cancer.cxt", //9918
-            "lymph.cxt", //15504
-            "SPECT_ALL.cxt", //21550
-            "MortonRolphRacialStats2.cxt", //32017
-            "flare.cxt",//28742
-            "tic-tac-toe.cxt", //59505
+                "zoo.cxt", //379
+                "post-operative.cxt", //2378
+                "dbdata0.cxt", //2692
+                "primary-tumor.cxt", //3743
+                "breast-w.cxt", //9824
+                "breast-cancer.cxt", //9918
+                "lymph.cxt", //15504
+                "SPECT_ALL.cxt", //21550
+                "MortonRolphRacialStats2.cxt", //32017
+                "flare.cxt",//28742
+                "tic-tac-toe.cxt", //59505
 /*
             "voegel6.cxt", //153385
             "kr-vs-kp.cxt", //101121
 */
 //            "mushroom_exp.cxt", //238710,
-            //"marketing3.cxt", //872118
+                //"marketing3.cxt", //872118
 /*            "dmc_2003-train.cxt",//
 */
         };
@@ -110,6 +110,7 @@ public class BigConceptSetExperimentSuite extends ExperimentSuite {
     /**
      * Insert the method's description here.
      * Creation date: (06.07.01 13:59:10)
+     *
      * @param args java.lang.String[]
      */
     public static void main(String[] args) {

@@ -8,6 +8,7 @@
 package conexp.frontend.contexteditor;
 
 
+import com.visibleworkings.trace.Trace;
 import conexp.core.Context;
 import conexp.frontend.ResourceLoader;
 import conexp.frontend.ViewChangeInterfaceWithConfig;
@@ -31,8 +32,6 @@ import javax.swing.undo.UndoManager;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.util.ResourceBundle;
-
-import com.visibleworkings.trace.Trace;
 
 
 public class ContextViewPanel extends ContextTablePane implements ViewChangeInterfaceWithConfig {
@@ -115,12 +114,12 @@ public class ContextViewPanel extends ContextTablePane implements ViewChangeInte
     };
 
     private Action[] actions = {
-        new AddRowAction(), new ClarifyObjectsAction(),
-        new AddAttribAction(), new ClarifyAttribsAction(),
-        new ReduceObjectsAction(), new ReduceAttribsAction(),
-        new ReduceAllAction(),
-        new TrasposeContextAction(),
-        undoAction, redoAction
+            new AddRowAction(), new ClarifyObjectsAction(),
+            new AddAttribAction(), new ClarifyAttribsAction(),
+            new ReduceObjectsAction(), new ReduceAttribsAction(),
+            new ReduceAllAction(),
+            new TrasposeContextAction(),
+            undoAction, redoAction
     };
 
     public Action[] getActions() {

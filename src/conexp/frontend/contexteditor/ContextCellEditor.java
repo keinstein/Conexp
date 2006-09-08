@@ -165,8 +165,9 @@ public class ContextCellEditor extends BaseCellEditor {
     // implements javax.swing.CellEditor
     public boolean isCellEditable(EventObject anEvent) {
         if (anEvent instanceof MouseEvent) {
-            if (((MouseEvent) anEvent).getClickCount() < clickCountToStart)
+            if (((MouseEvent) anEvent).getClickCount() < clickCountToStart) {
                 return false;
+            }
         }
         if (null != delegate) {
             return delegate.isCellEditable(anEvent);
@@ -279,10 +280,11 @@ public class ContextCellEditor extends BaseCellEditor {
 
         // Implementing ActionListener interface
         public void actionPerformed(ActionEvent e) {
-            if (stopCellEditing())
+            if (stopCellEditing()) {
                 fireEditingStopped();
-            else
+            } else {
                 fireEditingCanceled();
+            }
         }
 
         public String toString() {

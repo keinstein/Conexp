@@ -7,5 +7,6 @@ package conexp.frontend.ruleview;
  */
 public interface RulePaneMessages {
     String getEmptyRulesetMessage();
+
     String getRuleSetShouldBeRecalculated();
 }

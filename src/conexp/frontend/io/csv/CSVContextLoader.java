@@ -132,7 +132,9 @@ public class CSVContextLoader implements DocumentLoader {
             reader = new InputStreamReader(in);
             return reader;
         } catch (MalformedURLException e) {
-            if (debug) System.out.println(inputnameOrURL + " is not an URL");
+            if (debug) {
+                System.out.println(inputnameOrURL + " is not an URL");
+            }
         } catch (IOException e) {
             System.out.println("an exception Occured while trying to read " + inputnameOrURL);
         }
@@ -140,7 +142,9 @@ public class CSVContextLoader implements DocumentLoader {
         try {
             reader = new FileReader(inputnameOrURL);
         } catch (FileNotFoundException e) {
-            if (debug) System.out.println("File " + e + " couldn't be opened");
+            if (debug) {
+                System.out.println("File " + e + " couldn't be opened");
+            }
         }
 
         return reader;

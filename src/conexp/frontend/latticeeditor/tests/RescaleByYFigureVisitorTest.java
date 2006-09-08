@@ -17,9 +17,9 @@ public class RescaleByYFigureVisitorTest extends TestCase {
     public static void testRescaleByY() {
 
         LatticeComponent component = ComponentsObjectMother.makeLatticeComponentWithSimpleLayoutEngine(new int[][]{
-            {1, 0, 0},
-            {0, 1, 0},
-            {0, 0, 1}
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1}
         });
         component.calculateAndLayoutLattice();
         final LatticeDrawing drawing = component.getDrawing();

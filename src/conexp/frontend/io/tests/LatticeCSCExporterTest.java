@@ -41,8 +41,8 @@ public class LatticeCSCExporterTest extends TestCase {
 
     protected void setUp() {
         latticeComponent = ComponentsObjectMother.makeLatticeComponent(new int[][]{{0, 0, 1},
-                                                                                   {1, 0, 0},
-                                                                                   {0, 1, 1}});
+                {1, 0, 0},
+                {0, 1, 1}});
 
 
         latticeComponent.calculateAndLayoutLattice();

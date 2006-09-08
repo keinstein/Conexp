@@ -137,7 +137,7 @@ public class FigureDrawingTest extends TestCase {
         assertEquals(new Rectangle(), figureDrawing.getUserBoundsRect());
     }
 
-    public void testEquals(){
+    public void testEquals() {
         FigureDrawing fd1 = new FigureDrawing();
         TestUtil.testNotEquals(fd1, new Object());
         TestUtil.testNotEquals(fd1, null);

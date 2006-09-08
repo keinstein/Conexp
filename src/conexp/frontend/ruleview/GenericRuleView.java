@@ -88,15 +88,15 @@ public abstract class GenericRuleView extends ViewChangePanel implements Depende
      * @return non-null implementation of RulePaneMessages
      */
     public RulePaneMessages makeRulePaneMessages() {
-        RulePaneMessages messages = new RulePaneMessages(){
-                            public String getEmptyRulesetMessage() {
-                                return getLocalizedString(NO_RULES_IN_BASE_MESSAGE);
-                            }
+        RulePaneMessages messages = new RulePaneMessages() {
+            public String getEmptyRulesetMessage() {
+                return getLocalizedString(NO_RULES_IN_BASE_MESSAGE);
+            }
 
-                            public String getRuleSetShouldBeRecalculated() {
-                                return getLocalizedString(RULE_SET_SHOULD_BE_RECOMPUTED_MESSAGE);
-                            }
-                        };
+            public String getRuleSetShouldBeRecalculated() {
+                return getLocalizedString(RULE_SET_SHOULD_BE_RECOMPUTED_MESSAGE);
+            }
+        };
         return messages;
     }
 

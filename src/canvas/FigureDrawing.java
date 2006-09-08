@@ -132,15 +132,17 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
     //Search methods
     public Figure findFigureInReverseOrder(double x, double y) {
         Figure ret = findContainingFigure(new ReverseListIterator(foreground), x, y);
-        if (null != ret)
+        if (null != ret) {
             return ret;
+        }
         return findContainingFigure(new ReverseListIterator(figures), x, y);
     }
 
     public Figure findFigureInReverseOrderExceptFor(double x, double y, Figure toExclude) {
         Figure ret = findContainingFigureExceptFor(new ReverseListIterator(foreground), x, y, toExclude);
-        if (null != ret)
+        if (null != ret) {
             return ret;
+        }
         return findContainingFigureExceptFor(new ReverseListIterator(figures), x, y, toExclude);
     }
 
@@ -201,7 +203,6 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
         getUserBoundsRect();
     }
 
-
 //-------------------------------------------------------------------
 // Dimension calculation
     private boolean fBoundsRectDirty;
@@ -215,8 +216,8 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
     }
 
     /**
-     *  @test_public
-     * */
+     * @test_public
+     */
 
     public boolean isBoundsRectDirty() {
         return fBoundsRectDirty;
@@ -276,9 +277,9 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
     }
 
 
-    private Rectangle2D bounds=null;
+    private Rectangle2D bounds = null;
 
-    private Dimension2D fDimension=null;
+    private Dimension2D fDimension = null;
 
     private void setDimension(Dimension2D newFDimension) {
         if (null == fDimension || !fDimension.equals(newFDimension)) {
@@ -364,17 +365,17 @@ public class FigureDrawing extends BasePropertyChangeSupplier {
     }
 
     public boolean equals(Object obj) {
-        if(obj==this){
+        if (obj == this) {
             return true;
         }
-        if(!(obj instanceof FigureDrawing)){
+        if (!(obj instanceof FigureDrawing)) {
             return false;
         }
-        FigureDrawing other = (FigureDrawing)obj;
-        if(!figures.equals(other.figures)){
+        FigureDrawing other = (FigureDrawing) obj;
+        if (!figures.equals(other.figures)) {
             return false;
         }
-        if(!foreground.equals(other.foreground)){
+        if (!foreground.equals(other.foreground)) {
             return false;
         }
         return true;

@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Insert the type's description here.
  * Creation date: (21.07.01 13:47:52)
+ *
  * @author
  */
 public class ExperimentSet {
@@ -23,6 +24,7 @@ public class ExperimentSet {
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 13:48:42)
+     *
      * @param experiment conexp.core.experimenter.NewExperiment
      */
     public void addExperiment(IExperiment experiment) {
@@ -33,6 +35,7 @@ public class ExperimentSet {
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 13:50:50)
+     *
      * @param i int
      */
     public IExperiment experimentAt(int i) {
@@ -43,6 +46,7 @@ public class ExperimentSet {
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 13:49:53)
+     *
      * @return int
      */
     public int experimentCount() {

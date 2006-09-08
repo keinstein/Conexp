@@ -28,11 +28,11 @@ public class ExperimentContextFactory implements ContextFactory {
         return new CountingSetDecorator(new BitSet(size), statistic);
     }
 
-    public OperationCountHolder getSnapshot(){
+    public OperationCountHolder getSnapshot() {
         return statistic.makeCopy();
     }
 
-    public void resetStatictics(){
+    public void resetStatictics() {
         statistic.clear();
     }
 }

@@ -12,5 +12,6 @@ import javax.swing.JComponent;
 
 public interface OptionPaneProvider extends View {
 //----------------------------------------------
+
     JComponent getViewOptions();
 }

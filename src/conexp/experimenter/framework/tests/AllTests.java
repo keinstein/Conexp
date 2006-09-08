@@ -7,7 +7,7 @@ import junit.framework.TestSuite;
 
 public class AllTests extends TestCase {
     public static Test suite() {
-        TestSuite suite=new TestSuite();
+        TestSuite suite = new TestSuite();
         suite.addTestSuite(MeasurementSetTest.class);
         suite.addTestSuite(MeasurementProtocolTest.class);
         suite.addTestSuite(ExperimentRunnerTest.class);

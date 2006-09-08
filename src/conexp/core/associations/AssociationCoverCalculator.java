@@ -43,7 +43,8 @@ public class AssociationCoverCalculator {
             LatticeElement current = (LatticeElement) queue.removeFirst();
             ItemSet parentHavingMaximalSupportThatStillCreatesAssociationRule =
                     findParentWithMaximalSupportAndMinimalLengthCreatingAssociation(current, confidence);
-            if (thereAreNoRuleThatCoversCurrent(result, parentHavingMaximalSupportThatStillCreatesAssociationRule, current)) {
+            if (thereAreNoRuleThatCoversCurrent(result, parentHavingMaximalSupportThatStillCreatesAssociationRule, current))
+            {
                 result.addDependency(AssociationRule.makeFromItemsets(parentHavingMaximalSupportThatStillCreatesAssociationRule,
                         current));
             }

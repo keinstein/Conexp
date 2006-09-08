@@ -48,7 +48,7 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
     public void testNeedUpdateCollision() {
         assertFalse(drawing.hasNeedUpdateCollisions());
         final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0},
-                                                                              {0, 1}});
+                {0, 1}});
         drawing.setLattice(lattice);
         checkUpdateCycle(drawing);
 
@@ -70,7 +70,7 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
         assertFalse("Change in update collision option should not lead to update for empty drawing",
                 drawing.hasNeedUpdateCollisions());
         final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0},
-                                                                              {0, 1}});
+                {0, 1}});
         drawing.setLattice(lattice);
         assertFalse(drawing.hasNeedUpdateCollisions());
         drawing.setLayoutEngine(new SimpleLayoutEngine());
@@ -107,9 +107,9 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
     }
 
 
-    public void testHasLabelsForConcept(){
+    public void testHasLabelsForConcept() {
         final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0},
-                                                                              {0, 1}});
+                {0, 1}});
         drawing.setLattice(lattice);
 //        drawing.layoutLattice();
 
@@ -121,12 +121,12 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
 
         assertEquals(LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY,
                 drawing.getObjectLabelingStrategyKey());
-        assertEquals("labelsForConcepts should be true",true, drawing.hasDownLabelsForConcepts());
-        assertEquals("labelsForAttributes should be false", false,drawing.hasLabelsForAttributes());
+        assertEquals("labelsForConcepts should be true", true, drawing.hasDownLabelsForConcepts());
+        assertEquals("labelsForAttributes should be false", false, drawing.hasLabelsForAttributes());
         assertEquals("labelsForObjects should be false", false, drawing.hasLabelsForObjects());
         drawing.setAttributeLabelingStrategyKey(LabelingStrategiesKeys.
                 ATTRIBS_MULTI_LABELING_STRATEGY_KEY);
-        assertTrue("Expect that drawing has labels for concepts",drawing.hasUpLabelsForConcepts());
+        assertTrue("Expect that drawing has labels for concepts", drawing.hasUpLabelsForConcepts());
 
         drawing.setObjectLabelingStrategyKey(
                 LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY);
@@ -140,7 +140,7 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
 
     public void testSetUpLabelForConceptAndClearingLabels() {
         final Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0},
-                                                                              {0, 1}});
+                {0, 1}});
         drawing.setLattice(lattice);
 
         assertFalse(getDrawing().hasUpLabelsForConcepts());
@@ -157,8 +157,7 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
     }
 
 
-
-    public void testLabelingStrategies(){
+    public void testLabelingStrategies() {
 
         /*
             There will be actually two types of lebelling strategies:

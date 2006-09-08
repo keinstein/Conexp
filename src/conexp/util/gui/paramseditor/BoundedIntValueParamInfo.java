@@ -24,6 +24,7 @@ public class BoundedIntValueParamInfo extends IntValueParamInfo {
 
     /**
      * BoundedIntValueParamInfo constructor comment.
+     *
      * @param label java.lang.String
      */
     public BoundedIntValueParamInfo(String label, BoundedIntValue value) {
@@ -33,6 +34,7 @@ public class BoundedIntValueParamInfo extends IntValueParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (29.03.01 0:01:26)
+     *
      * @return javax.swing.table.TableCellEditor
      */
     protected javax.swing.table.TableCellEditor makeEditor() {

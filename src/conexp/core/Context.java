@@ -351,6 +351,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
 //----------------------------------------------------------------
+
     //todo: move from context, the only dependent part from context is addition of context entities
     public void locateElementsConcepts(Lattice lattice) {
         if (!lattice.isEmpty()) {
@@ -367,6 +368,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         }
     }
 //-----------------------------------------------------------------
+
     private void findAttributesConcepts(Lattice lattice) {
         Assert.isTrue(null != lattice);
         for (int j = getAttributeCount(); --j >= 0;) {
@@ -389,6 +391,7 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
     }
 
 //----------------------------------------------------------------
+
     /**
      * ***************************************************************
      * for objects from core find correpondent concepts
@@ -443,8 +446,8 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         contextListenersSupport.removeContextListener(lst);
     }
 
-    public synchronized int getContextListenersCount(){
-        if(null==contextListenersSupport){
+    public synchronized int getContextListenersCount() {
+        if (null == contextListenersSupport) {
             return 0;
         }
         return contextListenersSupport.getListeners().size();
@@ -457,8 +460,6 @@ public class Context implements AttributeInformationSupplier, ExtendedContextEdi
         }
         return contextListenersSupport.hasListener(lst);
     }
-
-
 
 
     public synchronized void transpose() {

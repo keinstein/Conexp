@@ -10,6 +10,7 @@ package conexp.core;
 public interface ConceptEnumCallback {
 
 //------------------------------------------
+
     /**
      * **************************************
      * this function is called for adding new
@@ -21,8 +22,8 @@ public interface ConceptEnumCallback {
      */
     void addConcept(Set obj, Set attr);
 
-
 //------------------------------------------
+
     /**
      * **************************************
      * this function is called at the end of
@@ -31,8 +32,8 @@ public interface ConceptEnumCallback {
      */
     void finishCalc();
 
-
 //-----------------------------------------
+
     /**
      * **************************************
      * this function is called at the beginning of

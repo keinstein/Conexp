@@ -5,7 +5,6 @@
  **/
 
 
-
 package canvas.figures;
 
 public interface CenterPointLocator {

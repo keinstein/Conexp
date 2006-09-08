@@ -6,6 +6,7 @@ import java.util.Map;
 /**
  * Insert the type's description here.
  * Creation date: (17.07.01 19:50:09)
+ *
  * @author
  */
 public class MeasurementSet {

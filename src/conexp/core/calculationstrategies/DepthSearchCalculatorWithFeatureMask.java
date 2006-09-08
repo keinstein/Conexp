@@ -192,7 +192,8 @@ public class DepthSearchCalculatorWithFeatureMask extends DepthSearchCalculator 
         conceptDescendantAttributesCopy.copy(conceptDescendantAttributes);
 
         ModifiableSet prohibitedSet = prohibitedSets[depth];
-        for (int j = conceptDescendantAttributesCopy.firstIn(); j != Set.NOT_IN_SET; j = conceptDescendantAttributesCopy.nextIn(j)) {
+        for (int j = conceptDescendantAttributesCopy.firstIn(); j != Set.NOT_IN_SET; j = conceptDescendantAttributesCopy.nextIn(j))
+        {
             if (isDirectDescendentForAttr(j, conceptDescendantAttributes, parentElement.getObjects())) {
                 conceptDescendantAttributesCopy.andNot(newIntent);
                 conceptDescendantAttributesCopy.and(outerSet);

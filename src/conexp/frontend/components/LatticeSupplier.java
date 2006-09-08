@@ -10,6 +10,8 @@ import conexp.frontend.SetProvidingEntitiesMask;
  */
 public interface LatticeSupplier extends LatticeDrawingProvider {
     SetProvidingEntitiesMask getAttributeMask();
+
     SetProvidingEntitiesMask getObjectMask();
+
     void cleanUp();
 }

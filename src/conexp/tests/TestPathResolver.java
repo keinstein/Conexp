@@ -11,7 +11,7 @@ public class TestPathResolver {
     static final String PRODUCTION_CLASSPATH = "PRODUCTION_CLASSPATH";
 
     public static String getTestPath(String relativePath) {
-        return getTestClassPath() +relativePath;
+        return getTestClassPath() + relativePath;
     }
 
     private static String getTestClassPath() {
@@ -19,7 +19,7 @@ public class TestPathResolver {
     }
 
     public static String getProductionPath(String relativePath) {
-        return getProductionClassPath() +relativePath;
+        return getProductionClassPath() + relativePath;
     }
 
     public static String getProductionClassPath() {

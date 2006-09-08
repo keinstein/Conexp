@@ -48,7 +48,7 @@
     </target>
 
     <target name="compile" depends="init, makebuilddir" description="compile the source">
-        <javac destdir="${build}" debug="on" source="1.4" verbose="true"> 
+        <javac destdir="${build}" debug="on" source="1.4" verbose="true">
             <src>
                 <path location="${src}/${rootPackage}"/>
                 <path location="${src}/${canvasPackage}"/>
@@ -57,8 +57,6 @@
             <classpath refid="project.classpath"/>
         </javac>
     </target>
-
-
 
 
     <target name="copyresources" depends="init, makebuilddir">
@@ -95,7 +93,7 @@
 
     <target name="makeJarWithTests" depends="ensureLibsDirExists, runtests">
         <jar jarfile="${distr.libs}/${rootPackage}-full.jar"
-            manifest="${src}/META-INF/ConExp/MANIFEST.MF">
+             manifest="${src}/META-INF/ConExp/MANIFEST.MF">
             <fileset dir="${build}">
                 <include name="${rootPackage}/**"/>
                 <include name="${canvasPackage}/**"/>
@@ -113,7 +111,7 @@
     </target>
 
     <target name="compileRelease" depends="init, makebuilddir, copyresources" description="compile the source">
-        <javac destdir="${build}" debug="off" optimize="true" source="1.4"  target="1.4">
+        <javac destdir="${build}" debug="off" optimize="true" source="1.4" target="1.4">
             <src>
                 <path location="${src}/${rootPackage}"/>
                 <path location="${src}/${canvasPackage}"/>
@@ -126,7 +124,7 @@
 
     <target name="makeReleaseJar" depends="ensureLibsDirExists, compileRelease">
         <jar jarfile="${distr.release}/${rootPackage}.jar"
-            manifest="${src}/META-INF/ConExp/MANIFEST.MF">
+             manifest="${src}/META-INF/ConExp/MANIFEST.MF">
             <fileset dir="${build}">
                 <include name="${rootPackage}/**"/>
                 <include name="${canvasPackage}/**"/>
@@ -143,7 +141,7 @@
     </target>
 
     <target name="compileFacade" depends="init, makebuilddir" description="compile the source">
-        <javac destdir="${build}" source="1.4" >
+        <javac destdir="${build}" source="1.4">
             <src>
                 <path location="${src}/${facadePackage}"/>
             </src>

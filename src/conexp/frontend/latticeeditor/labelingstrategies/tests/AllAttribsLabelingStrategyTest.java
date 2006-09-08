@@ -27,7 +27,7 @@ public class AllAttribsLabelingStrategyTest extends GenericLabelingStrategyTest 
 
     public void testAdditionOfAttributesAndCleanup() {
         Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{0, 1},
-                                                                        {1, 0}});
+                {1, 0}});
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(lattice);
         assertTrue(drawing.setAttributeLabelingStrategyKey(LabelingStrategiesKeys.NO_ATTRIBS_LABELING_STRATEGY));

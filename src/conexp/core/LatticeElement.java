@@ -54,10 +54,12 @@ public class LatticeElement extends Concept {
     private int height = -1;
 
 //--------------------------------------------
+
     public LatticeElement(ModifiableSet _obj, ModifiableSet _attr) {
         super(_obj, _attr);
     }
 //--------------------------------------------
+
     public void addPred(LatticeElement pred) {
         Edge edge = new Edge(pred, this);
         predessors.add(edge);
@@ -65,6 +67,7 @@ public class LatticeElement extends Concept {
         height = Math.max(height, pred.height + 1);
     }
 //--------------------------------------------
+
     public void addSucc(LatticeElement succ) {
         Edge edge = new Edge(this, succ);
         successors.add(edge);
@@ -107,10 +110,12 @@ public class LatticeElement extends Concept {
         return getPredCount() + getSuccCount();
     }
 //--------------------------------------------
+
     public int getHeight() {
         return height;
     }
 //-------------------------------------------
+
     public void setHeight(int h) {
         Assert.isTrue(h >= 0, "Height of lattice element should be greater or equal zero");
         height = h;
@@ -157,10 +162,12 @@ public class LatticeElement extends Concept {
         return successorsNodes.getSize();
     }
 //----------------------------------------------
+
     public boolean isVirtual() {
         return false;
     }
 //--------------------------------------------
+
     public Iterator predessorsEdges() {
         return predessors.iterator();
     }
@@ -185,6 +192,7 @@ public class LatticeElement extends Concept {
         successors.set(successors.indexOf(succ), newSucc);
     }
 //--------------------------------------------
+
     /**
      * not full equals;
      * compares only concepts, and don't compare in and out edge sets

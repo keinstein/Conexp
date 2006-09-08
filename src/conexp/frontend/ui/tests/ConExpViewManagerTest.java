@@ -28,7 +28,7 @@ public class ConExpViewManagerTest extends TestCase {
 
     class LatticeViewInfo extends ViewInfo {
         LatticeSupplier supplier;
-        ActionMap actionMap=new ActionMap();
+        ActionMap actionMap = new ActionMap();
 
         public LatticeViewInfo(LatticeSupplier latticeSupplier) {
             super("VIEW_LATTICE", "Lattice");
@@ -50,18 +50,18 @@ public class ConExpViewManagerTest extends TestCase {
         View activeView = viewManager.getActiveView();
         assertNotNull(activeView);
         LatticeComponent other = ComponentsObjectMother.makeLatticeComponent(new int[][]{
-            {0, 1}
+                {0, 1}
         });
         LatticeViewInfo otherDocModel = new LatticeViewInfo(other);
         viewManager.activateView(otherDocModel);
         View otherActiveView = viewManager.getActiveView();
         assertNotNull(otherActiveView);
-        assertNotSame("Different views should be created for two lattice components",activeView, otherActiveView);
+        assertNotSame("Different views should be created for two lattice components", activeView, otherActiveView);
         viewManager.activateView(docModel);
         assertSame(activeView, viewManager.getActiveView());
     }
 
-    public void testRemoveView(){
+    public void testRemoveView() {
         ConExpViewManager viewManager = new ConExpViewManager();
         LatticeComponent component = ComponentsObjectMother.makeLatticeComponent();
         LatticeViewInfo docModel = new LatticeViewInfo(component);
@@ -75,10 +75,10 @@ public class ConExpViewManagerTest extends TestCase {
         assertEquals(0, viewManager.getPlacesCount());
     }
 
-    public void testFiringViewChangeListener(){
+    public void testFiringViewChangeListener() {
         ConExpViewManager viewManager = new ConExpViewManager();
         final ExpectationCounter counter = new ExpectationCounter("Expected view changes");
-        viewManager.addViewChangeListener(new ViewChangeListener(){
+        viewManager.addViewChangeListener(new ViewChangeListener() {
             public void viewChanged(JComponent oldView, JComponent newView) {
                 counter.inc();
             }
@@ -94,32 +94,32 @@ public class ConExpViewManagerTest extends TestCase {
     }
 
 
-    static class TestViewInfo extends ViewInfo{
+    static class TestViewInfo extends ViewInfo {
         ExpectationCounter counter = new ExpectationCounter("Expected initialUpdate");
 
         public TestViewInfo() {
             super("TEST_PLACE", "TestCaption");
         }
 
-        public void setExpected(int i){
+        public void setExpected(int i) {
             counter.setExpected(i);
         }
 
-        public void verify(){
+        public void verify() {
             counter.verify();
         }
 
-       public View createView() {
-           class TestView extends JPanel implements View{
-               public void initialUpdate() {
-                   counter.inc();
-               }
-           }
-           return new TestView();
-       }
-   }
+        public View createView() {
+            class TestView extends JPanel implements View {
+                public void initialUpdate() {
+                    counter.inc();
+                }
+            }
+            return new TestView();
+        }
+    }
 
-    public void testInitialUpdate(){
+    public void testInitialUpdate() {
         TestViewInfo viewInfo = new TestViewInfo();
         viewInfo.setExpected(1);
         ConExpViewManager viewManager = new ConExpViewManager();
@@ -127,13 +127,15 @@ public class ConExpViewManagerTest extends TestCase {
         viewInfo.verify();
     }
 
-    static class TestConExpViewManager extends ConExpViewManager{
+    static class TestConExpViewManager extends ConExpViewManager {
         public JTabbedPane getTabPane() {
             return super.getTabPane();
         }
-    };
+    }
 
-    public void testOptionChangeOnActiveTabChange(){
+    ;
+
+    public void testOptionChangeOnActiveTabChange() {
         TestViewInfo testViewInfo = new TestViewInfo();
         testViewInfo.setExpected(1);
         LatticeComponent component = ComponentsObjectMother.makeLatticeComponent();
@@ -143,7 +145,7 @@ public class ConExpViewManagerTest extends TestCase {
         final ExpectationCounter counter = new ExpectationCounter("Expected view changes");
 
         TestConExpViewManager viewManager = new TestConExpViewManager();
-        viewManager.addViewChangeListener(new ViewChangeListener(){
+        viewManager.addViewChangeListener(new ViewChangeListener() {
             public void viewChanged(JComponent oldView, JComponent newView) {
                 counter.inc();
             }

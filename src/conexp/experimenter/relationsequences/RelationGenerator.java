@@ -9,6 +9,7 @@ import java.util.Random;
 /**
  * Insert the type's description here.
  * Creation date: (28.02.01 23:44:56)
+ *
  * @author
  */
 public class RelationGenerator {
@@ -18,8 +19,9 @@ public class RelationGenerator {
     /**
      * Insert the method's description here.
      * Creation date: (28.02.01 23:45:51)
-     * @return conexp.core.BinaryRelation
+     *
      * @param size int
+     * @return conexp.core.BinaryRelation
      */
     public static ModifiableBinaryRelation makeChain(int size) {
         ModifiableBinaryRelation ret = ContextFactoryRegistry.createRelation(size, size);
@@ -36,8 +38,9 @@ public class RelationGenerator {
     /**
      * Insert the method's description here.
      * Creation date: (28.02.01 23:45:51)
-     * @return conexp.core.BinaryRelation
+     *
      * @param size int
+     * @return conexp.core.BinaryRelation
      */
     public static ModifiableBinaryRelation makeEmpty(int size) {
         return ContextFactoryRegistry.createRelation(size, size);
@@ -47,8 +50,9 @@ public class RelationGenerator {
     /**
      * Insert the method's description here.
      * Creation date: (28.02.01 23:45:51)
-     * @return conexp.core.BinaryRelation
+     *
      * @param size int
+     * @return conexp.core.BinaryRelation
      */
     public static ModifiableBinaryRelation makeExponential(int size) {
         ModifiableBinaryRelation ret = ContextFactoryRegistry.createRelation(size, size);
@@ -66,9 +70,10 @@ public class RelationGenerator {
     /**
      * Insert the method's description here.
      * Creation date: (28.02.01 23:45:51)
-     * @return conexp.core.BinaryRelation
+     *
      * @param sizeX int
      * @param sizeY int
+     * @return conexp.core.BinaryRelation
      */
     public static ModifiableBinaryRelation makeFilledWithMaxIntent(int sizeX, int sizeY, int maxIntent) {
         ModifiableBinaryRelation ret = ContextFactoryRegistry.createRelation(sizeX, sizeY);
@@ -121,8 +126,9 @@ public class RelationGenerator {
     /**
      * Insert the method's description here.
      * Creation date: (28.02.01 23:45:51)
-     * @return conexp.core.BinaryRelation
+     *
      * @param size int
+     * @return conexp.core.BinaryRelation
      */
     public static ModifiableBinaryRelation makeFull(int size) {
         ModifiableBinaryRelation ret = ContextFactoryRegistry.createRelation(size, size);
@@ -139,8 +145,9 @@ public class RelationGenerator {
     /**
      * Insert the method's description here.
      * Creation date: (28.02.01 23:45:51)
-     * @return conexp.core.BinaryRelation
+     *
      * @param size int
+     * @return conexp.core.BinaryRelation
      */
     public static ModifiableBinaryRelation makeNominal(int size) {
         ModifiableBinaryRelation ret = ContextFactoryRegistry.createRelation(size, size);

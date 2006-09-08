@@ -15,9 +15,9 @@ import conexp.util.gui.strategymodel.StrategyValueItem;
 import junit.framework.TestCase;
 
 public class ContextDocumentModelTest extends TestCase {
-    public void testClearingLatticesAfterSettingContext(){
+    public void testClearingLatticesAfterSettingContext() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 0},
-                                                         {0, 1}});
+                {0, 1}});
         ContextDocumentModel model = new ContextDocumentModel(cxt);
         assertEquals(0, model.getLatticeComponents().size());
 
@@ -28,9 +28,9 @@ public class ContextDocumentModelTest extends TestCase {
         assertEquals(0, model.getLatticeComponents().size());
     }
 
-    public void testCorrectAdditionAndCleanUpOfContextListeners(){
+    public void testCorrectAdditionAndCleanUpOfContextListeners() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 0},
-                                                         {0, 1}});
+                {0, 1}});
         final int listenersCount = cxt.getContextListenersCount();
         ContextDocumentModel model = new ContextDocumentModel(cxt);
         model.addLatticeComponent();
@@ -40,9 +40,9 @@ public class ContextDocumentModelTest extends TestCase {
     }
 
 
-    public void testDependentComponentCleanUpWhenChangingContext(){
+    public void testDependentComponentCleanUpWhenChangingContext() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 0},
-                                                         {0, 1}});
+                {0, 1}});
 
         ContextDocumentModel model = new ContextDocumentModel(cxt);
         model.setClearDependentRecalcPolicy();
@@ -51,9 +51,9 @@ public class ContextDocumentModelTest extends TestCase {
         checkDependentComponentAreCleared(model);
     }
 
-    public void testDependentComponentCleanUpWhenContextTransposed(){
+    public void testDependentComponentCleanUpWhenContextTransposed() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 0},
-                                                         {0, 1}});
+                {0, 1}});
 
         ContextDocumentModel model = new ContextDocumentModel(cxt);
         model.setClearDependentRecalcPolicy();
@@ -62,9 +62,9 @@ public class ContextDocumentModelTest extends TestCase {
         checkDependentComponentAreCleared(model);
     }
 
-    public void testDependentComponentCleanUpWhenContextStructureChanged(){
+    public void testDependentComponentCleanUpWhenContextStructureChanged() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 1},
-                                                         {1, 1}});
+                {1, 1}});
 
         ContextDocumentModel model = new ContextDocumentModel(cxt);
         model.setClearDependentRecalcPolicy();
@@ -93,9 +93,9 @@ public class ContextDocumentModelTest extends TestCase {
         assertFalse(model.getImplicationBaseCalculator().isComputed());
     }
 
-    public void testSetRecomputeDependentRecalcPolicy(){
+    public void testSetRecomputeDependentRecalcPolicy() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 0},
-                                                         {0, 1}});
+                {0, 1}});
         ContextDocumentModel model = new ContextDocumentModel(cxt);
         model.setRecomputeDependentRecalcPolicy();
         StrategyValueItem recalculationPolicy = model.getRecalculationPolicy();
@@ -118,25 +118,25 @@ public class ContextDocumentModelTest extends TestCase {
                         recalcPolicyKey));
         assertTrue("The correspondent listener was not set",
                 cxt.hasContextListener(
-                        (ContextListener)recalculationPolicy.getStrategy()));
+                        (ContextListener) recalculationPolicy.getStrategy()));
     }
 
-    public void testEqualsOnRecalcPolicy(){
+    public void testEqualsOnRecalcPolicy() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 0},
-                                                         {0, 1}});
+                {0, 1}});
 
         ContextDocumentModel model = new ContextDocumentModel(cxt);
 
         ContextDocumentModel.RecomputeDependentRecalcPolicy recomputeDependentRecalcPolicy = model.new RecomputeDependentRecalcPolicy();
         assertEquals(recomputeDependentRecalcPolicy,
-                 recomputeDependentRecalcPolicy);
+                recomputeDependentRecalcPolicy);
         assertEquals(recomputeDependentRecalcPolicy, model.new RecomputeDependentRecalcPolicy());
         assertFalse(recomputeDependentRecalcPolicy.equals(model.new ClearDependentRecalcPolicy()));
     }
 
-    public void testDependentComponentRecalculationWhenChangingContext(){
+    public void testDependentComponentRecalculationWhenChangingContext() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 0},
-                                                         {0, 1}});
+                {0, 1}});
 
         ContextDocumentModel model = new ContextDocumentModel(cxt);
         model.setRecomputeDependentRecalcPolicy();
@@ -160,7 +160,6 @@ public class ContextDocumentModelTest extends TestCase {
         assertEquals(0, model.getImplications().getSize());
 
 
-
         cxt.setRelationAt(0, 0, false);
         assertEquals(3, model.getLatticeComponent(0).getLattice().conceptsCount());
         assertTrue("Associations are expected to be computed",
@@ -177,8 +176,8 @@ public class ContextDocumentModelTest extends TestCase {
     private static int calculateExactRules(DependencySet associationRules) {
         int size = associationRules.getSize();
         int countExact = 0;
-        for(int i=0; i<size; i++){
-            if(associationRules.getDependency(i).isExact()){
+        for (int i = 0; i < size; i++) {
+            if (associationRules.getDependency(i).isExact()) {
                 countExact++;
             }
         }

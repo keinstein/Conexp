@@ -8,10 +8,8 @@ import util.DataFormatException;
 import java.io.IOException;
 
 
-
-
 public class SpectExperimentSuite extends ExperimentSuite {
-    public static void conceptSetExperiment() throws IOException, DataFormatException{
+    public static void conceptSetExperiment() throws IOException, DataFormatException {
         doRunExperimentWithCountingOfSetOperations(createExperimentSet(), createRelationSequence());
     }
 
@@ -29,8 +27,8 @@ public class SpectExperimentSuite extends ExperimentSuite {
         //set.addExperiment(new CallbackBasedConceptSetExperiment("research.conexp.core.calculationstrategies.DepthSearchCalculator2"));
         set.addExperiment(new CallbackBasedConceptSetExperiment("research.conexp.core.calculationstrategies.SimpleDepthSearchCalculator"));
         set.addExperiment(new CallbackBasedConceptSetExperiment("research.conexp.core.calculationstrategies.SimpleDepthSearchCalculator2"));
-  //      set.addExperiment(new LatticeBuildExperiment("conexp.core.calculationstrategies.NextClosedSetCalculator"));
-  //      set.addExperiment(new LatticeBuildExperiment("conexp.core.calculationstrategies.DepthSearchCalculator"));
+        //      set.addExperiment(new LatticeBuildExperiment("conexp.core.calculationstrategies.NextClosedSetCalculator"));
+        //      set.addExperiment(new LatticeBuildExperiment("conexp.core.calculationstrategies.DepthSearchCalculator"));
         return set;
     }
 

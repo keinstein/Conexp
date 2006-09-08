@@ -70,8 +70,8 @@ public class LabelingStrategiesContextImpl extends BasicStrategiesContext implem
 
     protected ParamInfo[] makeParamInfo() {
         return new ParamInfo[]{
-            new StrategyValueItemParamInfo("Attribs", getAttrLabelingStrategyItem()),
-            new StrategyValueItemParamInfo("Objects", getObjectsLabelingStrategyItem())
+                new StrategyValueItemParamInfo("Attribs", getAttrLabelingStrategyItem()),
+                new StrategyValueItemParamInfo("Objects", getObjectsLabelingStrategyItem())
         };
     }
 

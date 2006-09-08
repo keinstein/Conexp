@@ -50,7 +50,8 @@ public class NextClosedSetLatticeBuilderCallback extends ConceptSetCallback {
             }
             while (!upperCovers.isEmpty()) {
                 Set curr = (Set) upperCovers.removeFirst();
-                outer : {
+                outer :
+                {
                     Iterator iter = upperCovers.iterator();
                     while (iter.hasNext()) {
                         Set otherSet = (Set) iter.next();

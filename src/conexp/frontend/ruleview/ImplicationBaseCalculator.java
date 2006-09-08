@@ -54,8 +54,8 @@ public class ImplicationBaseCalculator extends AbstractDependencySetCalculator {
                 success = true;
             } catch (OutOfMemoryError error) {
                 currentFactory++;
-                if(currentFactory>=factory.length){
-                    throw new OutOfMemoryError("Not enough memory "+error.getMessage());
+                if (currentFactory >= factory.length) {
+                    throw new OutOfMemoryError("Not enough memory " + error.getMessage());
                 }
                 getImplications().clear();
                 lastCalc = null;

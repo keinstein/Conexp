@@ -29,7 +29,7 @@ public class LineFigureTest extends FigureTest {
     }
 
     public void testContains() {
-        LineFigure lineFigure = (LineFigure)f;
+        LineFigure lineFigure = (LineFigure) f;
         assertFalse(lineFigure.isSelectable());
         assertFalse(lineFigure.contains(15, 20));
 

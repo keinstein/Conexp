@@ -6,6 +6,7 @@ import conexp.core.BinaryRelation;
 /**
  * Insert the type's description here.
  * Creation date: (21.07.01 18:02:47)
+ *
  * @author
  */
 public class ExponentialRelationGenerationStrategy extends BaseRelationGenerationStrategy {
@@ -14,6 +15,7 @@ public class ExponentialRelationGenerationStrategy extends BaseRelationGeneratio
 
     /**
      * ExponentialRelationGenerationStrategy constructor comment.
+     *
      * @param count int
      */
     public ExponentialRelationGenerationStrategy(int minSize, int maxSize, int count) {
@@ -27,6 +29,7 @@ public class ExponentialRelationGenerationStrategy extends BaseRelationGeneratio
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 18:20:28)
+     *
      * @return java.lang.String
      */
     public String describeStrategy() {
@@ -37,8 +40,9 @@ public class ExponentialRelationGenerationStrategy extends BaseRelationGeneratio
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 18:02:47)
-     * @return conexp.core.BinaryRelation
+     *
      * @param relNo int
+     * @return conexp.core.BinaryRelation
      */
     public BinaryRelation makeRelation(int relNo) {
         return RelationGenerator.makeExponential(interpolateSize(relNo, minSize, maxSize));

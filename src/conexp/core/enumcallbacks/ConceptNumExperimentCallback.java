@@ -18,6 +18,7 @@ public class ConceptNumExperimentCallback extends ConceptNumCallback {
     }
 
 //---------------------------------------
+
     public void addConcept(Set obj, Set attr) {
         conCnt++;
         if (conCnt % 100000 == 0) {

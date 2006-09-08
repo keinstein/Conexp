@@ -21,7 +21,6 @@ import java.util.List;
 public class ConExpDependenciesTest extends TestCase {
 
 
-
     public static void testPackageDependencies() throws IOException {
         JDepend jdepend = new JDepend();
         jdepend.addDirectory(TestPathResolver.getProductionClassPath());
@@ -38,7 +37,7 @@ public class ConExpDependenciesTest extends TestCase {
         assertTrue("conexp.core does not depend on canvas", packageAndChildrenDoesNotDependOnPackage(jdepend, "conexp.core", "canvas"));
         assertTrue("canvas should not depend on conexp", packageAndChildrenDoesNotDependOnPackage(jdepend, "canvas", "conexp"));
 
-        assertTrue("Front end depends on core",corePackage.getAfferents().contains(frontEndPackage));
+        assertTrue("Front end depends on core", corePackage.getAfferents().contains(frontEndPackage));
         assertFalse("Core does not depend on frontend", frontEndPackage.getAfferents().contains(corePackage));
         assertTrue("Core package should not depend on frontend", packageAndChildrenDoesNotDependOnPackage(jdepend,
                 "conexp.core", "conexp.frontend"));
@@ -50,34 +49,34 @@ public class ConExpDependenciesTest extends TestCase {
     }
 
 
-    private static boolean packageAndChildrenDoesNotDependOnPackage(JDepend jDepend, String packageName, String name){
+    private static boolean packageAndChildrenDoesNotDependOnPackage(JDepend jDepend, String packageName, String name) {
         List childPackages = collectPackagesStartingWithName(jDepend, packageName);
         for (Iterator iterator = childPackages.iterator(); iterator.hasNext();) {
             JavaPackage aPackage = (JavaPackage) iterator.next();
-            if(containsPackageWithPrefix(aPackage.getEfferents(), name)){
-                System.out.println(aPackage.getName()+" depends on "+name);
+            if (containsPackageWithPrefix(aPackage.getEfferents(), name)) {
+                System.out.println(aPackage.getName() + " depends on " + name);
                 return false;
             }
         }
         return true;
-   }
+    }
 
     private static List collectPackagesStartingWithName(JDepend jDepend, String packageName) {
         List childPackages = new ArrayList();
         Collection packages = jDepend.getPackages();
         for (Iterator iterator = packages.iterator(); iterator.hasNext();) {
             JavaPackage aPackage = (JavaPackage) iterator.next();
-            if(aPackage.getName().startsWith(packageName)){
+            if (aPackage.getName().startsWith(packageName)) {
                 childPackages.add(aPackage);
             }
         }
         return childPackages;
     }
 
-    private static boolean containsPackageWithPrefix(Collection javaPackages, String name){
+    private static boolean containsPackageWithPrefix(Collection javaPackages, String name) {
         for (Iterator iterator = javaPackages.iterator(); iterator.hasNext();) {
             JavaPackage javaPackage = (JavaPackage) iterator.next();
-            if(javaPackage.getName().startsWith(name)){
+            if (javaPackage.getName().startsWith(name)) {
                 return true;
             }
         }
@@ -85,7 +84,7 @@ public class ConExpDependenciesTest extends TestCase {
     }
 
     public static void printOutPackages(String prefix, Collection javaPackagesNames) {
-        System.out.print(prefix+ " : ");
+        System.out.print(prefix + " : ");
         boolean first = true;
         for (Iterator iterator = javaPackagesNames.iterator(); iterator.hasNext();) {
             if (first) {

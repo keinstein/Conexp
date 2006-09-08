@@ -30,30 +30,30 @@ public class CSVContextCreatorTest extends TestCase {
 
     public static void testReadingWithEmptyLine() {
         String[] data = {";A1;A2",
-                         "O1;z;a",
-                         "",
-                         "O2;1;1"};
+                "O1;z;a",
+                "",
+                "O2;1;1"};
         ExtendedContextEditingInterface expectedContext = SetBuilder.makeContext(new String[]{"O1", "O2"}, new String[]{"A1", "A2"}, new int[][]
-        {{0, 0},
-         {1, 1}});
+                {{0, 0},
+                        {1, 1}});
 
         doTestReading(data, expectedContext);
 
         String[] data2 = {";A1;A2",
-                          "O1;z;a",
-                          "                                             ",
-                          "O2;1;1"};
+                "O1;z;a",
+                "                                             ",
+                "O2;1;1"};
         doTestReading(data2, expectedContext);
     }
 
     public static void testReadingWithEmptyLastattribute() {
         String[] data = {";A1;A2",
-                         "",
-                         "O1;1;",
-                         "O2;0;1"};
+                "",
+                "O1;1;",
+                "O2;0;1"};
         ExtendedContextEditingInterface expectedContext = SetBuilder.makeContext(new String[]{"O1", "O2"}, new String[]{"A1", "A2"}, new int[][]
-        {{1, 0},
-         {0, 1}});
+                {{1, 0},
+                        {0, 1}});
 
         doTestReading(data, expectedContext);
     }
@@ -61,12 +61,12 @@ public class CSVContextCreatorTest extends TestCase {
 
     public static void testReadingWithComments() {
         String[] data = {";A1;A2",
-                         "O1;1;0",
-                         "%aaaaa;klklöklkök;äkkklölk",
-                         "O2;0;1"};
+                "O1;1;0",
+                "%aaaaa;klklöklkök;äkkklölk",
+                "O2;0;1"};
         ExtendedContextEditingInterface expectedContext = SetBuilder.makeContext(new String[]{"O1", "O2"}, new String[]{"A1", "A2"}, new int[][]
-        {{1, 0},
-         {0, 1}});
+                {{1, 0},
+                        {0, 1}});
 
         doTestReading(data, expectedContext);
     }
@@ -74,17 +74,17 @@ public class CSVContextCreatorTest extends TestCase {
 
     public static void testReadingWithComma() {
         String[] data = {",A1,A2",
-                         "O1,1,0",
-                         "%aaaaa,klklöklkök,äkkklölk",
-                         "O2,0,1"};
+                "O1,1,0",
+                "%aaaaa,klklöklkök,äkkklölk",
+                "O2,0,1"};
         ExtendedContextEditingInterface expectedContext = SetBuilder.makeContext(new String[]{"O1", "O2"}, new String[]{"A1", "A2"}, new int[][]
-        {{1, 0},
-         {0, 1}});
+                {{1, 0},
+                        {0, 1}});
 
         doTestReading(data, expectedContext);
     }
 
-    public static void testReadingOfEmptyString(){
+    public static void testReadingOfEmptyString() {
         String[] data = {""};
         StringReader reader = new StringReader(buildString(data));
         try {

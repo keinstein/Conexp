@@ -15,23 +15,23 @@ import java.io.IOException;
  * Time: 23:14:27
  */
 
-public class ContextLoadingRelation10IncreasingPartsGenerationStrategy extends ContextLoadingRelationGenerationStrategy{
+public class ContextLoadingRelation10IncreasingPartsGenerationStrategy extends ContextLoadingRelationGenerationStrategy {
 
 
-    public ContextLoadingRelation10IncreasingPartsGenerationStrategy(String url) throws IOException, DataFormatException{
+    public ContextLoadingRelation10IncreasingPartsGenerationStrategy(String url) throws IOException, DataFormatException {
         super(url, 10, new ConImpContextReaderFactory());
     }
 
 
     public BinaryRelation makeRelation(int relNo) {
         BinaryRelation baseRelation = getContext().getRelation();
-        if(relNo==count - 1){
+        if (relNo == count - 1) {
             return baseRelation;
         }
-        float part = (relNo+1f)/(float)count;
-        int size= Math.round(part*baseRelation.getRowCount());
+        float part = (relNo + 1f) / (float) count;
+        int size = Math.round(part * baseRelation.getRowCount());
 
-        return BinaryRelationUtils.createSlice(baseRelation, 0, size-1);
+        return BinaryRelationUtils.createSlice(baseRelation, 0, size - 1);
     }
 
 }

@@ -5,6 +5,7 @@ import conexp.core.BinaryRelation;
 /**
  * Insert the type's description here.
  * Creation date: (10.07.01 7:17:34)
+ *
  * @author
  */
 public interface IExperiment {

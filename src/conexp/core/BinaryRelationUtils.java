@@ -119,7 +119,9 @@ public class BinaryRelationUtils {
         double delta = index - lhs;
         double result;
 
-        if (n == 0) return 0.0;
+        if (n == 0) {
+            return 0.0;
+        }
 
         if (lhs == n - 1) {
             result = sortedElements[lhs];

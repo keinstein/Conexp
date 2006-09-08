@@ -130,7 +130,7 @@ public class MultiLineTextFigure extends BaseTextFigure {
         lines.add(new TextLine(textTail, new TextLayout(textTail, font, fontrendercontext)));
 
         textWidth = textHeight = 0.0D;
-        for (int j = lines.size(); --j >= 0; ) {
+        for (int j = lines.size(); --j >= 0;) {
             TextLine textline = getTextLine(j);
             if (textline.width > textWidth) {
                 textWidth = textline.width;
@@ -172,8 +172,7 @@ public class MultiLineTextFigure extends BaseTextFigure {
         visible = flag;
     }
 
-    public void setText(String s)
-    {
+    public void setText(String s) {
         contentDirty = true;
         text = StringUtil.safeText(s);
     }

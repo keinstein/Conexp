@@ -40,7 +40,7 @@ public class RasterImageExporter implements IExporter {
 
     public void performExportService(String path) throws IOException {
         ImageCodec codec = getImageCodecsFactory().makeCodec(StringUtil.getExtension(path));
-        if(null==codec){
+        if (null == codec) {
 
         }
 

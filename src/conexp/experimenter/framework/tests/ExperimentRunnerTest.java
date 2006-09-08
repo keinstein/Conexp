@@ -41,7 +41,7 @@ public class ExperimentRunnerTest extends TestCase {
         assertEquals(1, runner.getNumberOfExperimentsRuns());
         ExperimentRunResults runResults = runner.getRunResults(0);
         MeasurementSet measurementSet = runResults.getResultForExperiment(0);
-        OperationStatistic measurementValue = (OperationStatistic)measurementSet.getMeasurementValue(ExperimentRunner.OPERATION_COUNT);
+        OperationStatistic measurementValue = (OperationStatistic) measurementSet.getMeasurementValue(ExperimentRunner.OPERATION_COUNT);
         assertNotNull(measurementValue);
         assertEquals(9, measurementValue.getOperationCount(OperationCodes.IN));
         ContextFactoryRegistry.setContextFactory(BitSetFactory.getInstance());
@@ -59,16 +59,16 @@ public class ExperimentRunnerTest extends TestCase {
         assertEquals(1, runner.getNumberOfExperimentsRuns());
         ExperimentRunResults runResults = runner.getRunResults(0);
         MeasurementSet measurementSet = runResults.getResultForExperiment(0);
-        OperationStatistic measurementValue = (OperationStatistic)measurementSet.getMeasurementValue(ExperimentRunner.OPERATION_COUNT);
+        OperationStatistic measurementValue = (OperationStatistic) measurementSet.getMeasurementValue(ExperimentRunner.OPERATION_COUNT);
         assertNull(measurementValue);
     }
 
     private static BinaryRelationBasedRelationSequence makeRelationSequence() {
         return new BinaryRelationBasedRelationSequence(SetBuilder.makeRelation(new int[][]{
-                    {1, 1, 1},
-                    {0, 1, 1},
-                    {0, 0, 1}
-                }));
+                {1, 1, 1},
+                {0, 1, 1},
+                {0, 0, 1}
+        }));
     }
 
 

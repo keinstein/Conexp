@@ -19,9 +19,12 @@ public class BoundedDoubleValueParamInfo extends AbstractParamInfo {
     ;
     private javax.swing.JSlider fSlider;
     private static util.gui.celleditors.JComponentCellRenderer sCellRenderer = new util.gui.celleditors.JComponentCellRenderer();
-    private static util.gui.celleditors.JComponentCellEditor sCellEditor = new util.gui.celleditors.JComponentCellEditor();;
+    private static util.gui.celleditors.JComponentCellEditor sCellEditor = new util.gui.celleditors.JComponentCellEditor();
+    ;
+
     /**
      * BoundedIntValueParamInfo constructor comment.
+     *
      * @param label java.lang.String
      */
     public BoundedDoubleValueParamInfo(String label, BoundedDoubleValue value) {
@@ -32,6 +35,7 @@ public class BoundedDoubleValueParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (30.03.01 23:55:57)
+     *
      * @return javax.swing.JSlider
      */
     private javax.swing.JSlider getFSlider() {
@@ -64,6 +68,7 @@ public class BoundedDoubleValueParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (30.03.01 23:35:43)
+     *
      * @return javax.swing.table.TableCellRenderer
      */
     public javax.swing.table.TableCellRenderer getParamRenderer() {
@@ -73,6 +78,7 @@ public class BoundedDoubleValueParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (29.03.01 0:04:11)
+     *
      * @return java.lang.Object
      */
     public java.lang.Object getValue() {
@@ -82,6 +88,7 @@ public class BoundedDoubleValueParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (29.03.01 0:01:26)
+     *
      * @return javax.swing.table.TableCellEditor
      */
     protected javax.swing.table.TableCellEditor makeEditor() {

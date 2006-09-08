@@ -16,7 +16,9 @@ public class PrimeGenerator {
 
     public int nextPrime() {
         primePointer++;
-        if (primePointer == primes.length) primePointer = 0;
+        if (primePointer == primes.length) {
+            primePointer = 0;
+        }
         return primes[primePointer];
     }
 

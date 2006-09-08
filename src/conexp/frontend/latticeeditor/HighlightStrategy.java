@@ -85,16 +85,24 @@ public abstract class HighlightStrategy implements GenericStrategy, IHighlightSt
     protected abstract HighlightStrategy createNew();
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof HighlightStrategy)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof HighlightStrategy)) {
+            return false;
+        }
 
         final HighlightStrategy highlightStrategy = (HighlightStrategy) obj;
         if (!getClass().equals(highlightStrategy.getClass())) {
             return false;
         }
 
-        if (node != null ? !node.equals(highlightStrategy.node) : highlightStrategy.node != null) return false;
-        if (query != null ? !query.equals(highlightStrategy.query) : highlightStrategy.query != null) return false;
+        if (node != null ? !node.equals(highlightStrategy.node) : highlightStrategy.node != null) {
+            return false;
+        }
+        if (query != null ? !query.equals(highlightStrategy.query) : highlightStrategy.query != null) {
+            return false;
+        }
 
         return true;
     }

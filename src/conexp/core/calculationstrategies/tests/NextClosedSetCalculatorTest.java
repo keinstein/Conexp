@@ -24,8 +24,8 @@ public class NextClosedSetCalculatorTest extends EnumerativeCalcStrategyTest {
     public static void testOrder() {
         NextClosedSetCalculator calc = new NextClosedSetCalculator();
         calc.setRelation(SetBuilder.makeRelation(new int[][]{{1, 0, 0},
-                                                             {1, 1, 0},
-                                                             {0, 0, 1}}));
+                {1, 1, 0},
+                {0, 0, 1}}));
 
         ConceptsCollection col = new ConceptsCollection();
         ConceptSetCallback callback = new ConceptSetCallback(col);

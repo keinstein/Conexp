@@ -16,8 +16,8 @@ public class ConceptPlacementStrategyModel extends AbstractNonGrowingStrategyMod
 
     public String[][] getCreateInfo() {
         return new String[][]{{"Exponentional", "ExponentialPlacementStrategy", "conexp.core.layout.chaindecomposition.ExponentialPlacementStrategy"},
-                              {"Straight", "StraightPlacementStrategy", "conexp.core.layout.chaindecomposition.StraightPlacementStrategy"},
-                              {"Angular", "AngularPlacementStrategy", "conexp.core.layout.chaindecomposition.AngularPlacementStrategy"}
+                {"Straight", "StraightPlacementStrategy", "conexp.core.layout.chaindecomposition.StraightPlacementStrategy"},
+                {"Angular", "AngularPlacementStrategy", "conexp.core.layout.chaindecomposition.AngularPlacementStrategy"}
         };
 
     }

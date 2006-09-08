@@ -83,13 +83,15 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      * @param s a bit set.
      */
     public void and(Set s) {
-        if (this == s)
+        if (this == s) {
             return;
+        }
         BitSet2 set = (BitSet2) s;
         //*DBG*/util.Assert.isTrue(this.size ==set.size);
         //*DBG*/util.Assert.isTrue(this.unit.length==set.unit.length);
-        for (int i = 0; i < unit.length; i++)
+        for (int i = 0; i < unit.length; i++) {
             unit[i] &= set.unit[i];
+        }
     }
 
     /**
@@ -177,8 +179,9 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
 
     public int elementCount() {
         int sum = 0;
-        for (int i = 0; i < unit.length; i++)
+        for (int i = 0; i < unit.length; i++) {
             sum += bitCount(unit[i]);
+        }
         return sum;
     }
 
@@ -204,10 +207,12 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
     }
 
     public int compare(Set other) {
-        if (other == null || !(other instanceof BitSet2))
+        if (other == null || !(other instanceof BitSet2)) {
             return NOT_COMPARABLE;
-        if (this == other)
+        }
+        if (this == other) {
             return EQUAL;
+        }
 
         BitSet2 _other = (BitSet2) other;
         Assert.isTrue(this.size() == other.size());
@@ -370,32 +375,39 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
     private static int trailingZeroCnt(long val) {
         // Loop unrolled for performance
         int byteVal = (int) val & 0xff;
-        if (byteVal != 0)
+        if (byteVal != 0) {
             return trailingZeroTable[byteVal];
+        }
 
         byteVal = (int) (val >>> 8) & 0xff;
-        if (byteVal != 0)
+        if (byteVal != 0) {
             return trailingZeroTable[byteVal] + 8;
+        }
 
         byteVal = (int) (val >>> 16) & 0xff;
-        if (byteVal != 0)
+        if (byteVal != 0) {
             return trailingZeroTable[byteVal] + 16;
+        }
 
         byteVal = (int) (val >>> 24) & 0xff;
-        if (byteVal != 0)
+        if (byteVal != 0) {
             return trailingZeroTable[byteVal] + 24;
+        }
 
         byteVal = (int) (val >>> 32) & 0xff;
-        if (byteVal != 0)
+        if (byteVal != 0) {
             return trailingZeroTable[byteVal] + 32;
+        }
 
         byteVal = (int) (val >>> 40) & 0xff;
-        if (byteVal != 0)
+        if (byteVal != 0) {
             return trailingZeroTable[byteVal] + 40;
+        }
 
         byteVal = (int) (val >>> 48) & 0xff;
-        if (byteVal != 0)
+        if (byteVal != 0) {
             return trailingZeroTable[byteVal] + 48;
+        }
 
         byteVal = (int) (val >>> 56) & 0xff;
         return trailingZeroTable[byteVal] + 56;
@@ -406,22 +418,22 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      * representaion of i.
      */
     private final static byte[] trailingZeroTable = {
-        -25, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        7, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
-        4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0};
+            -25, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            7, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            6, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            5, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0,
+            4, 0, 1, 0, 2, 0, 1, 0, 3, 0, 1, 0, 2, 0, 1, 0};
 
 
     /* Used to shift left or right for a partial word mask */
@@ -437,26 +449,32 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      * @since 1.4
      */
     public int nextClearBit(int fromIndex) {
-        if (fromIndex < 0)
+        if (fromIndex < 0) {
             throw new IndexOutOfBoundsException("fromIndex < 0: " + fromIndex);
+        }
 
         int u = unitIndex(fromIndex);
-        if (u >= unit.length)
+        if (u >= unit.length) {
             return fromIndex;
+        }
         int testIndex = fromIndex & BIT_INDEX_MASK;
         long word = unit[u] >> testIndex;
 
-        if (word == WORD_MASK >> testIndex)
+        if (word == WORD_MASK >> testIndex) {
             testIndex = 0;
+        }
 
-        while (word == WORD_MASK && u < unit.length - 1)
+        while (word == WORD_MASK && u < unit.length - 1) {
             word = unit[++u];
+        }
 
-        if (word == WORD_MASK)
+        if (word == WORD_MASK) {
             return length();
+        }
 
-        if (word == 0)
+        if (word == 0) {
             return u * BITS_PER_UNIT + testIndex;
+        }
 
         testIndex += trailingZeroCnt(~word);
         return u * BITS_PER_UNIT + testIndex;
@@ -507,8 +525,9 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      */
     public int hashCode() {
         long h = 1234;
-        for (int i = unit.length; --i >= 0;)
+        for (int i = unit.length; --i >= 0;) {
             h ^= unit[i] * (i + 1);
+        }
 
         return (int) (h >> 32 ^ h);
     }
@@ -524,12 +543,14 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      * @throws IndexOutOfBoundsException if the specified index is negative.
      */
     public boolean in(int bitIndex) {
-        if (bitIndex < 0)
+        if (bitIndex < 0) {
             throw new IndexOutOfBoundsException(Integer.toString(bitIndex));
+        }
         Assert.isTrue(bitIndex < size, "Size is " + size + " index =" + bitIndex);
         int unitIndex = unitIndex(bitIndex);
-        if (unitIndex >= unit.length)
+        if (unitIndex >= unit.length) {
             return false;
+        }
         return (unit[unitIndex] & bit(bitIndex)) != 0;
     }
 
@@ -545,6 +566,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         return false;
     }
 //-------------------------------------------------------------------------
+
     /**
      * ******************************************************
      * very stupid implementation of isEmpty. Later will be changed
@@ -578,7 +600,6 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         return 0;
     }
 */
-
     public int length() {
         int k = unit.length;
         while (--k >= 0) {
@@ -587,7 +608,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
                 int highPart = (int) (highestUnit >>> 32);
                 return 64 * k +
                         (highPart == 0 ? bitLen((int) highestUnit)
-                        : 32 + bitLen((int) highPart));
+                                : 32 + bitLen((int) highPart));
             }
         }
         return 0;
@@ -612,8 +633,9 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
             return -1;
         }
         int u = unitIndex(i);
-        if (u >= unit.length)
+        if (u >= unit.length) {
             return -1;
+        }
         int testIndex = i & BIT_INDEX_MASK;
         long word = unit[u] >> testIndex;
 
@@ -693,14 +715,16 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      * @param set a bit set.
      */
     public void or(Set set) {
-        if (this == set)
+        if (this == set) {
             return;
+        }
         BitSet2 bitset = (BitSet2) set;
         //*DBG*/util.Assert.isTrue(this.size ==set.size);
         //*DBG*/util.Assert.isTrue(this.unit.length==set.unit.length);
 
-        for (int i = 0; i < unit.length; i++)
+        for (int i = 0; i < unit.length; i++) {
             unit[i] |= bitset.unit[i];
+        }
     }
 
     /**
@@ -711,8 +735,9 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      * @since JDK1.0
      */
     public void put(int bitIndex) {
-        if (bitIndex < 0)
+        if (bitIndex < 0) {
             throw new IndexOutOfBoundsException(Integer.toString(bitIndex));
+        }
         int unitIndex = unitIndex(bitIndex);
         unit[unitIndex] |= bit(bitIndex);
     }
@@ -725,8 +750,9 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      * @since JDK1.0
      */
     public void remove(int bitIndex) {
-        if (bitIndex < 0)
+        if (bitIndex < 0) {
             throw new IndexOutOfBoundsException(Integer.toString(bitIndex));
+        }
         int unitIndex = unitIndex(bitIndex);
         unit[unitIndex] &= ~bit(bitIndex);
     }
@@ -739,6 +765,7 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
     }
 
     //------------------------------------------------
+
     /**
      * ***********************************************
      * compares two sets in lexicographical order
@@ -818,10 +845,12 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      * @return boolean
      */
     public boolean isSubsetOf(Set other) {
-        if (other == null || !(other instanceof BitSet2))
+        if (other == null || !(other instanceof BitSet2)) {
             return false;
-        if (this == other)
+        }
+        if (this == other) {
             return true;
+        }
 
         BitSet2 set = (BitSet2) other;
         //*DBG*/util.Assert.isTrue(this.size ==set.size);
@@ -845,12 +874,14 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
      * @return boolean
      */
     public boolean out(int bitIndex) {
-        if (bitIndex < 0)
+        if (bitIndex < 0) {
             throw new IndexOutOfBoundsException(Integer.toString(bitIndex));
+        }
         Assert.isTrue(bitIndex < size(), "index bigger than size");
         int unitIndex = unitIndex(bitIndex);
-        if (unitIndex >= unit.length)
+        if (unitIndex >= unit.length) {
             return true;
+        }
         return (unit[unitIndex] & bit(bitIndex)) == 0;
     }
 
@@ -885,8 +916,9 @@ public class BitSet2 extends BasicBitSet implements Cloneable, Serializable {
         }
 
         for (int i = unit.length; --i >= 0;) {
-            if (unit[i] != set.unit[i])
+            if (unit[i] != set.unit[i]) {
                 return false;
+            }
         }
 
         return true;

@@ -34,7 +34,6 @@ public abstract class SaveImageActionBase extends AbstractAction {
     }
 
 
-
     private Frame getParentFrame() {
         return parentFrame;
     }

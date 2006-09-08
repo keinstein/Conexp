@@ -54,9 +54,9 @@ public class ContextDocManager extends BasePropertyChangeSupplier
     private ActionMap actionChain = new ActionMap();
 
     private Action[] actions = {
-        new ExitAppAction(), new OpenDocAction(),
-        new NewDocAction(), new SaveDocAction(),
-        new SaveDocAsAction(), new AboutAppAction()
+            new ExitAppAction(), new OpenDocAction(),
+            new NewDocAction(), new SaveDocAction(),
+            new SaveDocAsAction(), new AboutAppAction()
     };
 
     public ActionMap getActionChain() {
@@ -78,23 +78,23 @@ public class ContextDocManager extends BasePropertyChangeSupplier
 
     public void setAppErrorHandler(AppErrorHandler appErrorHandler) {
         this.errorHandler = appErrorHandler;
-        assert null!=appErrorHandler : "Error Handler is null";
+        assert null != appErrorHandler : "Error Handler is null";
     }
 
-    class DefaultAppErrorHandler implements AppErrorHandler{
+    class DefaultAppErrorHandler implements AppErrorHandler {
         public void reportAppErrorMessage(String messageKey, Throwable exception) {
             JOptionPane.showMessageDialog(
                     getMainAppWindow(),
                     makeLocalizedMessageWithOneParam(messageKey,
-                        exception.getMessage()));
+                            exception.getMessage()));
         }
 
         public void reportInternalError(String messageKey,
                                         Throwable exception) {
             new ErrorDialog(getMainAppWindow(),
                     exception,
-                     getLocalizedMessage("InternalErrorTitle"),
-                     getLocalizedMessage(messageKey)).show();
+                    getLocalizedMessage("InternalErrorTitle"),
+                    getLocalizedMessage(messageKey)).show();
         }
     }
 
@@ -212,7 +212,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier
                 DOCUMENT_MANAGER_SECTION,
                 MOST_RECENT_URLS_KEY,
                 MostRecentUrlListManager.
-                getMaximalNumberOfFilesInMRUList()));
+                        getMaximalNumberOfFilesInMRUList()));
 
     }
 
@@ -225,7 +225,6 @@ public class ContextDocManager extends BasePropertyChangeSupplier
             handleInternalError("ConfigWriteErrorMsg", e);
         }
     }
-
 
 
     private MenuSite menuSite;
@@ -361,6 +360,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier
     }
 
 //-----------------------------------------------------------
+
     private void onOpen() {
         FileSelectorService fileSelector =
                 getFileSelectorService();
@@ -383,12 +383,11 @@ public class ContextDocManager extends BasePropertyChangeSupplier
             handleReadWriteException(e);
         } catch (DataFormatException e) {
             handleReadWriteException(e);
-        } catch(Exception e){
+        } catch (Exception e) {
             //some kind of runtime exception
             handleInternalError(e);
         }
     }
-
 
 
     private boolean onSaveAs() {
@@ -465,7 +464,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier
         }
     }
 
-    private void handleReadWriteException(String messageKey, Throwable e){
+    private void handleReadWriteException(String messageKey, Throwable e) {
         errorHandler.reportAppErrorMessage(messageKey, e);
     }
 
@@ -473,14 +472,13 @@ public class ContextDocManager extends BasePropertyChangeSupplier
         handleReadWriteException("DefaultErrorFormat", e);
     }
 
-   private void handleInternalError(String msgKey, Throwable e) {
-       errorHandler.reportInternalError(msgKey, e);
+    private void handleInternalError(String msgKey, Throwable e) {
+        errorHandler.reportInternalError(msgKey, e);
     }
 
     private void handleInternalError(Exception e) {
         handleInternalError("InternalErrorMsg", e);
     }
-
 
 //-------------------------------------------
 
@@ -506,7 +504,7 @@ public class ContextDocManager extends BasePropertyChangeSupplier
                 default:
                     assert false:
                             "getSaveIfModifiedResponce returned illegal " +
-                            "code:" + saveIfModifiedResponse;
+                                    "code:" + saveIfModifiedResponse;
                     break;
 
             }

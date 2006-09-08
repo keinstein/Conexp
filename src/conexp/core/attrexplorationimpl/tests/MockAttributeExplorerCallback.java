@@ -108,7 +108,7 @@ public class MockAttributeExplorerCallback extends Assert implements AttributeEx
         for (int i = 0; i < contrExamples.length; i++) {
             ret[i] = new ContrExampleInfo(contrExamples[i][0][0],
                     contrExamples[i][0][0] == HAS_CONTREXAMPLE ?
-                    SetBuilder.makeSet(contrExamples[i][1]) : null);
+                            SetBuilder.makeSet(contrExamples[i][1]) : null);
         }
         return ret;
     }

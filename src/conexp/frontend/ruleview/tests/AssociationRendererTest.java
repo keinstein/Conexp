@@ -22,7 +22,6 @@ public class AssociationRendererTest extends ImplicationRendererTest {
     }
 
     /**
-     *
      * Creation date: (07.05.01 1:57:45)
      */
     protected conexp.frontend.ruleview.RuleRenderer makeRuleRenderer() {

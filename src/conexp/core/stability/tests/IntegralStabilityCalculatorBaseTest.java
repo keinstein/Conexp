@@ -17,7 +17,7 @@ public abstract class IntegralStabilityCalculatorBaseTest extends TestCase {
     public void testCalculateStabilityForLatticeCaseWithOneObject() {
 
         final int[][] arrRelation = new int[][]{
-            {1, 1, 1}
+                {1, 1, 1}
         };
 
         BinaryRelation relation = SetBuilder.makeRelation(arrRelation);
@@ -31,8 +31,8 @@ public abstract class IntegralStabilityCalculatorBaseTest extends TestCase {
     public void testCalculateStabilityForLatticeCaseWithTwoObjects() {
 
         int[][] arrRelation = new int[][]{
-            {0, 1},
-            {1, 0}
+                {0, 1},
+                {1, 0}
         };
 
         IntegralStabilityCalculator stabilityCalculator = buildStabilityCalculator(arrRelation);
@@ -51,9 +51,9 @@ public abstract class IntegralStabilityCalculatorBaseTest extends TestCase {
 
     public void testCase3() {
         int[][] arrRelation = new int[][]{
-            {1, 0, 1, 0},
-            {1, 1, 0, 0},
-            {0, 1, 0, 1}
+                {1, 0, 1, 0},
+                {1, 1, 0, 0},
+                {0, 1, 0, 1}
         };
         IntegralStabilityCalculator stabilityCalculator = buildStabilityCalculator(arrRelation);
         assertEquals(0.25, stabilityCalculator.getIntegralStabilityForSet(SetBuilder.makeSet(new int[]{0, 0, 0, 0})), PRECISION);

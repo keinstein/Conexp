@@ -290,7 +290,9 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
                 }
             }
         }
-    };
+    }
+
+    ;
 
 
     class LatticeDrawParamsEventHandler implements PropertyChangeListener {
@@ -318,6 +320,7 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
     private ActionMap actionChain = new ActionMap();
 
 //---------------------------------------------
+
     public Component getViewComponent() {
         return this;
     }
@@ -361,16 +364,16 @@ public class LatticePainterPanel extends BaseLatticePainterPane implements ViewC
     //---------------------------------------------------------------
     public Action[] getActions() {
         Action[] ret = {new AlignToGridAction(),
-                        new AssignYCoordsAccordingToWeigthAction(),
-                        new GrabAndDragAction(),
-                        new ExportLatticeInfoAction("saveImage", "Export diagram as", this, AppErrorHandler.getInstance()),
-                        new SelectMoveModeAction(),
-                        new SelectScaleToFitModeAction(),
-                        new AddZoomAction(),
-                        new ReduceZoomAction(),
-                        new NoZoomAction(),
-                        new StorePreferencesAction(),
-                        new ShowLatticeStatisticsAction()
+                new AssignYCoordsAccordingToWeigthAction(),
+                new GrabAndDragAction(),
+                new ExportLatticeInfoAction("saveImage", "Export diagram as", this, AppErrorHandler.getInstance()),
+                new SelectMoveModeAction(),
+                new SelectScaleToFitModeAction(),
+                new AddZoomAction(),
+                new ReduceZoomAction(),
+                new NoZoomAction(),
+                new StorePreferencesAction(),
+                new ShowLatticeStatisticsAction()
         };
         return ret;
 

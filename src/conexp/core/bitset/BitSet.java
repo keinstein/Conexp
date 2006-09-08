@@ -83,13 +83,15 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * @param s a bit set.
      */
     public void and(Set s) {
-        if (this == s)
+        if (this == s) {
             return;
+        }
         BitSet set = (BitSet) s;
         //*DBG*/util.Assert.isTrue(this.size ==set.size);
         //*DBG*/util.Assert.isTrue(this.unit.length==set.unit.length);
-        for (int i = 0; i < unit.length; i++)
+        for (int i = 0; i < unit.length; i++) {
             unit[i] &= set.unit[i];
+        }
     }
 
     /**
@@ -177,8 +179,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
 
     public int elementCount() {
         int sum = 0;
-        for (int i = 0; i < unit.length; i++)
+        for (int i = 0; i < unit.length; i++) {
             sum += bitCount(unit[i]);
+        }
         return sum;
     }
 
@@ -204,10 +207,12 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     }
 
     public int compare(Set other) {
-        if (other == null || !(other instanceof BitSet))
+        if (other == null || !(other instanceof BitSet)) {
             return NOT_COMPARABLE;
-        if (this == other)
+        }
+        if (this == other) {
             return EQUAL;
+        }
 
         BitSet _other = (BitSet) other;
         Assert.isTrue(this.size() == other.size());
@@ -410,8 +415,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      */
     public int hashCode() {
         long h = 1234;
-        for (int i = unit.length; --i >= 0;)
+        for (int i = unit.length; --i >= 0;) {
             h ^= unit[i] * (i + 1);
+        }
 
         return (int) (h >> 32 ^ h);
     }
@@ -427,12 +433,14 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * @throws IndexOutOfBoundsException if the specified index is negative.
      */
     public boolean in(int bitIndex) {
-        if (bitIndex < 0)
+        if (bitIndex < 0) {
             throw new IndexOutOfBoundsException(Integer.toString(bitIndex));
+        }
         Assert.isTrue(bitIndex < size, "Size is " + size + " index =" + bitIndex);
         int unitIndex = unitIndex(bitIndex);
-        if (unitIndex >= unit.length)
+        if (unitIndex >= unit.length) {
             return false;
+        }
         return (unit[unitIndex] & bit(bitIndex)) != 0;
     }
 
@@ -448,6 +456,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         return false;
     }
 //-------------------------------------------------------------------------
+
     /**
      * ******************************************************
      * very stupid implementation of isEmpty. Later will be changed
@@ -537,14 +546,16 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * @param set a bit set.
      */
     public void or(Set set) {
-        if (this == set)
+        if (this == set) {
             return;
+        }
         BitSet bitset = (BitSet) set;
         //*DBG*/util.Assert.isTrue(this.size ==set.size);
         //*DBG*/util.Assert.isTrue(this.unit.length==set.unit.length);
 
-        for (int i = 0; i < unit.length; i++)
+        for (int i = 0; i < unit.length; i++) {
             unit[i] |= bitset.unit[i];
+        }
     }
 
     /**
@@ -555,8 +566,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * @since JDK1.0
      */
     public void put(int bitIndex) {
-        if (bitIndex < 0)
+        if (bitIndex < 0) {
             throw new IndexOutOfBoundsException(Integer.toString(bitIndex));
+        }
         int unitIndex = unitIndex(bitIndex);
         unit[unitIndex] |= bit(bitIndex);
     }
@@ -569,8 +581,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * @since JDK1.0
      */
     public void remove(int bitIndex) {
-        if (bitIndex < 0)
+        if (bitIndex < 0) {
             throw new IndexOutOfBoundsException(Integer.toString(bitIndex));
+        }
         int unitIndex = unitIndex(bitIndex);
         unit[unitIndex] &= ~bit(bitIndex);
     }
@@ -583,6 +596,7 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
     }
 
     //------------------------------------------------
+
     /**
      * ***********************************************
      * compares two sets in lexicographical order
@@ -662,10 +676,12 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * @return boolean
      */
     public boolean isSubsetOf(Set other) {
-        if (other == null || !(other instanceof BitSet))
+        if (other == null || !(other instanceof BitSet)) {
             return false;
-        if (this == other)
+        }
+        if (this == other) {
             return true;
+        }
 
         BitSet set = (BitSet) other;
         //*DBG*/util.Assert.isTrue(this.size ==set.size);
@@ -689,12 +705,14 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
      * @return boolean
      */
     public boolean out(int bitIndex) {
-        if (bitIndex < 0)
+        if (bitIndex < 0) {
             throw new IndexOutOfBoundsException(Integer.toString(bitIndex));
+        }
         Assert.isTrue(bitIndex < size(), "index bigger than size");
         int unitIndex = unitIndex(bitIndex);
-        if (unitIndex >= unit.length)
+        if (unitIndex >= unit.length) {
             return true;
+        }
         return (unit[unitIndex] & bit(bitIndex)) == 0;
     }
 
@@ -729,8 +747,9 @@ public class BitSet extends BasicBitSet implements Cloneable, Serializable {
         }
 
         for (int i = unit.length; --i >= 0;) {
-            if (unit[i] != set.unit[i])
+            if (unit[i] != set.unit[i]) {
                 return false;
+            }
         }
 
         return true;

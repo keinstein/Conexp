@@ -19,7 +19,7 @@ public abstract class AbstractDependencySetCalculator extends BasePropertyChange
     public AbstractDependencySetCalculator(Context cxt) {
         super();
         setContext(cxt);
-        computed=false;
+        computed = false;
     }
 
     protected Context context;
@@ -43,7 +43,7 @@ public abstract class AbstractDependencySetCalculator extends BasePropertyChange
 
     public void clearDependencySet() {
         dependencySet = null;
-        computed=false;
+        computed = false;
         getPropertyChangeSupport().firePropertyChange(RULE_SET_CLEARED, null, null);
     }
 
@@ -61,7 +61,7 @@ public abstract class AbstractDependencySetCalculator extends BasePropertyChange
 
     public void findDependencies() {
         doFindDependencies();
-        computed=true;
+        computed = true;
         getPropertyChangeSupport().firePropertyChange(DependencySetSupplier.RULE_SET_PROPERTY, null, getDependencySet());
     }
 

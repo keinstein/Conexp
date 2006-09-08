@@ -9,6 +9,7 @@ package conexp.core;
 
 public interface ModifiableSet extends Set {
 //-------------------------
+
     /**
      * puts element in set
      */
@@ -16,6 +17,7 @@ public interface ModifiableSet extends Set {
     void put(int elId);
 
 //-------------------------
+
     /**
      * removes element from set
      */

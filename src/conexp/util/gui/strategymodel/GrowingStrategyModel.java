@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.util.gui.strategymodel;
 
 import conexp.util.GenericStrategy;
@@ -22,13 +21,15 @@ public class GrowingStrategyModel extends BasicStrategyModel {
 
         public StrategyInfo(String strategyKey, String strategyDescription, GenericStrategy strategy) {
             this.strategyKey = strategyKey;
-            assert null!=strategyKey:"Strategy key shouln't be null";
+            assert null != strategyKey:"Strategy key shouln't be null";
             this.strategyDescription = strategyDescription;
-            assert null!=strategyDescription:"Strategy description shouldn't be null";
+            assert null != strategyDescription:"Strategy description shouldn't be null";
             this.strategy = strategy;
-            assert null!=strategy:"Strategy is expected to be not null";
+            assert null != strategy:"Strategy is expected to be not null";
         }
-    };
+    }
+
+    ;
 
     private List strategies = new ArrayList();
 

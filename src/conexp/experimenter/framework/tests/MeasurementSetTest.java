@@ -10,9 +10,7 @@ package conexp.experimenter.framework.tests;
 
 import conexp.experimenter.framework.MeasurementProtocol;
 import conexp.experimenter.framework.MeasurementSet;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 public class MeasurementSetTest extends TestCase {
     private static final Class THIS = MeasurementSetTest.class;

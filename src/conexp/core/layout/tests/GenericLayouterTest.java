@@ -32,8 +32,8 @@ public abstract class GenericLayouterTest extends TestCase {
     public void testLayoutChangedListener() {
         GenericLayouter layouter = makeLayouter();
         Lattice lat = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0, 0},
-                                                                    {1, 1, 0},
-                                                                    {0, 0, 1}});
+                {1, 1, 0},
+                {0, 0, 1}});
         layouter.initLayout(lat, new DefaultLayoutParameters());
         SimpleMockPropertyChangeListener listener = new SimpleMockPropertyChangeListener(Layouter.LAYOUT_CHANGE);
         layouter.addLayoutChangeListener(listener);

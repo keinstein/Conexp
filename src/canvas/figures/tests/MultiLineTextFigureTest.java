@@ -31,8 +31,7 @@ public class MultiLineTextFigureTest extends TestCase {
     }
 
 
-
-    public void testSettingTextMakesContentDirty(){
+    public void testSettingTextMakesContentDirty() {
         madeContentClear();
         assertFalse(figure.isContentDirty());
         figure.setText("Abc");
@@ -43,10 +42,10 @@ public class MultiLineTextFigureTest extends TestCase {
         figure.newSize(DEFAULT_FONTRENDERCONTEXT);
     }
 
-    public void testSettingFontMakesContentDirty(){
+    public void testSettingFontMakesContentDirty() {
         madeContentClear();
         assertFalse(figure.isContentDirty());
-        figure.setFont(new Font("dialog",Font.PLAIN, 14));
+        figure.setFont(new Font("dialog", Font.PLAIN, 14));
         assertTrue("Setting font should make content of the figure dirty", figure.isContentDirty());
     }
 }

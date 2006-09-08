@@ -86,7 +86,8 @@ public class LatticeCSCExporter {
                     int id = attrConcept.getIndex();
                     double offsetX;
                     double offsetY;
-                    if (drawing.getAttributeLabelingStrategyKey().equals(LabelingStrategiesKeys.ALL_ATTRIBS_LABELING_STRATEGY_KEY)) {
+                    if (drawing.getAttributeLabelingStrategyKey().equals(LabelingStrategiesKeys.ALL_ATTRIBS_LABELING_STRATEGY_KEY))
+                    {
                         FigureWithCoords labelForAttributeFigure = drawing.getLabelForAttribute(attribute);
                         Rectangle boundingBox = new Rectangle();
                         labelForAttributeFigure.boundingBox(boundingBox);
@@ -99,11 +100,11 @@ public class LatticeCSCExporter {
                         offsetY = translateY(labelLocation.getY()) - translateY(conceptFigureCenter.getY());
                         //DecimalFormat
                         String s = format("{0} M{1} \"{2}\" \",,,,({3,number,0.##},{4,number,0.##}),l\"", new Object[]{
-                            new Integer(id),
-                            new Integer(attrIndex),
-                            name,
-                            new Double(offsetX),
-                            new Double(offsetY)
+                                new Integer(id),
+                                new Integer(attrIndex),
+                                name,
+                                new Double(offsetX),
+                                new Double(offsetY)
                         });
                         println(s);
                     }
@@ -141,7 +142,8 @@ public class LatticeCSCExporter {
                     int id = objectConcept.getIndex();
                     double offsetX = 0;
                     double offsetY = 0;
-                    if (drawing.getObjectLabelingStrategyKey().equals(LabelingStrategiesKeys.ALL_OBJECTS_LABELING_STRATEGY)) {
+                    if (drawing.getObjectLabelingStrategyKey().equals(LabelingStrategiesKeys.ALL_OBJECTS_LABELING_STRATEGY))
+                    {
                         FigureWithCoords labelForObjectFigure = drawing.getLabelForObject(object);
                         Rectangle boundingBox = new Rectangle();
                         labelForObjectFigure.boundingBox(boundingBox);
@@ -152,11 +154,11 @@ public class LatticeCSCExporter {
                         offsetY = translateY(labelLocation.getY()) - translateY(conceptFigureCenter.getY());
                     }
                     String s = format("{0} G{1} \"{2}\" \",,,,({3,number,0.##},{4,number,0.##}),l\"", new Object[]{
-                        new Integer(id),
-                        new Integer(objIndex),
-                        encodeName(name),
-                        new Double(offsetX),
-                        new Double(offsetY)
+                            new Integer(id),
+                            new Integer(objIndex),
+                            encodeName(name),
+                            new Double(offsetX),
+                            new Double(offsetY)
                     });
                     println(s);
                 }
@@ -183,8 +185,8 @@ public class LatticeCSCExporter {
                     for (Iterator iterator = children.iterator(); iterator.hasNext();) {
                         LatticeElement other = (LatticeElement) iterator.next();
                         String string = format("({0}, {1})", new Object[]{
-                            new Integer(current.getIndex()),
-                            new Integer(other.getIndex())
+                                new Integer(current.getIndex()),
+                                new Integer(other.getIndex())
                         });
                         println(string);
                     }
@@ -207,8 +209,8 @@ public class LatticeCSCExporter {
                 for (int i = 0; i < lattice.conceptsCount(); i++) {
                     final Point2D point = drawing.getFigureForConcept(lattice.elementAt(i)).getCenter();
                     String message = format("{0} {1, number, 0.#} {2, number, 0.#}", new Object[]{new Integer(i),
-                                                                                                  new Double(translateX(point.getX())),
-                                                                                                  new Double(translateY(point.getY()))});
+                            new Double(translateX(point.getX())),
+                            new Double(translateY(point.getY()))});
                     println(message);
                 }
             }

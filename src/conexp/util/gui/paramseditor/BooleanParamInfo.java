@@ -25,16 +25,16 @@ public class BooleanParamInfo extends AbstractParamInfo {
 
     public BooleanParamInfo(String label, BooleanValueModel valueModel) {
         super(label);
-        this.valueModel =valueModel;
+        this.valueModel = valueModel;
     }
 
     protected TableCellEditor makeEditor() {
         JCheckBox editor = new JCheckBox();
         editor.setHorizontalAlignment(JLabel.CENTER);
         editor.setSelected(valueModel.getValue());
-        editor.addItemListener(new ItemListener(){
+        editor.addItemListener(new ItemListener() {
             public void itemStateChanged(ItemEvent e) {
-                    valueModel.setValue(e.getStateChange()==ItemEvent.SELECTED);
+                valueModel.setValue(e.getStateChange() == ItemEvent.SELECTED);
             }
         });
         return new DefaultCellEditor(editor);

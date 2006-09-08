@@ -25,12 +25,11 @@ public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBas
 
     public void testFindImplicationsForOrderLattice() {
         int[][] relation = new int[][]{{0, 0, 1},
-                                       {0, 1, 1},
-                                       {1, 1, 1}}
-                ;
+                {0, 1, 1},
+                {1, 1, 1}};
         int[][][] expImplicationsDescriptions = new int[][][]{
-            {{0, 0, 0}, {0, 0, 1}, {3}},
-            {{1, 0, 1}, {0, 1, 0}, {1}},
+                {{0, 0, 0}, {0, 0, 1}, {3}},
+                {{1, 0, 1}, {0, 1, 0}, {1}},
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
     }
@@ -38,42 +37,40 @@ public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBas
 
     public void testFindImplicationsForLatticeWithEquivalentAttributes() {
         int[][] relation = new int[][]{{0, 0, 0, 1},
-                                       {0, 0, 1, 1},
-                                       {1, 1, 1, 1}}
-                ;
+                {0, 0, 1, 1},
+                {1, 1, 1, 1}};
         int[][][] expImplicationsDescriptions = new int[][][]{
-            {{0, 0, 0, 0}, {0, 0, 0, 1}, {3}},
-            {{0, 1, 0, 1}, {1, 0, 1, 0}, {1}},
-            {{1, 0, 0, 1}, {0, 1, 1, 0}, {1}}
+                {{0, 0, 0, 0}, {0, 0, 0, 1}, {3}},
+                {{0, 1, 0, 1}, {1, 0, 1, 0}, {1}},
+                {{1, 0, 0, 1}, {0, 1, 1, 0}, {1}}
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
     }
 
     public void testFindImplicationsWithSeveralEquivalentAttributes() {
         int[][] relation = new int[][]{{0, 0, 0, 0, 1},
-                                       {0, 0, 1, 1, 1},
-                                       {1, 1, 1, 1, 1}}
-                ;
+                {0, 0, 1, 1, 1},
+                {1, 1, 1, 1, 1}};
         int[][][] expImplicationsDescriptions = new int[][][]{
-            {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 1}, {3}},
-            {{0, 0, 0, 1, 1}, {0, 0, 1, 0, 0}, {2}},
-            {{0, 0, 1, 0, 1}, {0, 0, 0, 1, 0}, {2}},
-            {{0, 1, 0, 0, 1}, {1, 0, 1, 1, 0}, {1}},
-            {{1, 0, 0, 0, 1}, {0, 1, 1, 1, 0}, {1}}
+                {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 1}, {3}},
+                {{0, 0, 0, 1, 1}, {0, 0, 1, 0, 0}, {2}},
+                {{0, 0, 1, 0, 1}, {0, 0, 0, 1, 0}, {2}},
+                {{0, 1, 0, 0, 1}, {1, 0, 1, 1, 0}, {1}},
+                {{1, 0, 0, 0, 1}, {0, 1, 1, 1, 0}, {1}}
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
     }
 
     public void testFindImplicationForNominalCaseWithFullUnitElement() {
         int[][] relation = new int[][]{{0, 0, 1},
-                                       {0, 1, 0},
-                                       {1, 0, 0},
-                                       {1, 1, 1}
+                {0, 1, 0},
+                {1, 0, 0},
+                {1, 1, 1}
         };
         int[][][] expImplicationsDescriptions = new int[][][]{
-            {{0, 1, 1}, {1, 0, 0}, {1}},
-            {{1, 0, 1}, {0, 1, 0}, {1}},
-            {{1, 1, 0}, {0, 0, 1}, {1}}
+                {{0, 1, 1}, {1, 0, 0}, {1}},
+                {{1, 0, 1}, {0, 1, 0}, {1}},
+                {{1, 1, 0}, {0, 0, 1}, {1}}
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
     }
@@ -81,8 +78,8 @@ public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBas
 
     public void testFindImplicationsForBooleanLattice() {
         int[][] relation = new int[][]{{0, 1, 1},
-                                       {1, 0, 1},
-                                       {1, 1, 0}
+                {1, 0, 1},
+                {1, 1, 0}
         };
 
         int[][][] expImplicationsDescriptions = new int[0][0][0];
@@ -93,15 +90,15 @@ public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBas
 
     public void testForCaseOfTwoJoiningBranchesThatProduceInteractactionImplicationWithTheThirdBranch() {
         int[][] relation = new int[][]{
-            {1, 0, 0},
-            {0, 1, 0},
-            {0, 0, 1},
-            {0, 1, 1},
-            {1, 1, 1}
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1},
+                {0, 1, 1},
+                {1, 1, 1}
         };
         int[][][] expImplicationsDescriptions = new int[][][]{
-            {{1, 0, 1}, {0, 1, 0}, {1}},
-            {{1, 1, 0}, {0, 0, 1}, {1}}
+                {{1, 0, 1}, {0, 1, 0}, {1}},
+                {{1, 1, 0}, {0, 0, 1}, {1}}
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
     }
@@ -109,15 +106,15 @@ public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBas
 
     public void testImplicationCalculatorForFailing3() {
         int[][] relation = new int[][]{
-            {0, 0, 0, 0, 0},
-            {0, 0, 1, 1, 0}
+                {0, 0, 0, 0, 0},
+                {0, 0, 1, 1, 0}
         };
         int[][][] expImplicationsDescriptions = new int[][][]{
-            {{0, 0, 1, 0, 0}, {0, 0, 0, 1, 0}, {1}},
-            {{0, 0, 0, 1, 0}, {0, 0, 1, 0, 0}, {1}},
-            {{0, 0, 0, 0, 1}, {1, 1, 1, 1, 0}, {0}},
-            {{0, 1, 0, 0, 0}, {1, 0, 1, 1, 1}, {0}},
-            {{1, 0, 0, 0, 0}, {0, 1, 1, 1, 1}, {0}},
+                {{0, 0, 1, 0, 0}, {0, 0, 0, 1, 0}, {1}},
+                {{0, 0, 0, 1, 0}, {0, 0, 1, 0, 0}, {1}},
+                {{0, 0, 0, 0, 1}, {1, 1, 1, 1, 0}, {0}},
+                {{0, 1, 0, 0, 0}, {1, 0, 1, 1, 1}, {0}},
+                {{1, 0, 0, 0, 0}, {0, 1, 1, 1, 1}, {0}},
 
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
@@ -126,54 +123,54 @@ public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBas
 
     public void testImplicationCalculatorForFailing4() {
         int[][] relation = new int[][]{
-            {0, 0, 1, 0, 0},
-            {1, 0, 0, 0, 1},
-            {0, 0, 0, 0, 0},
-            {0, 0, 0, 1, 0},
-            {0, 0, 0, 0, 1}
+                {0, 0, 1, 0, 0},
+                {1, 0, 0, 0, 1},
+                {0, 0, 0, 0, 0},
+                {0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 1}
         };
         int[][][] expImplicationsDescriptions = new int[][][]{
-            {{0, 0, 0, 1, 1}, {1, 1, 1, 0, 0}, {0}},
-            {{0, 0, 1, 0, 1}, {1, 1, 0, 1, 0}, {0}},
-            {{0, 0, 1, 1, 0}, {1, 1, 0, 0, 1}, {0}},
-            {{0, 1, 0, 0, 0}, {1, 0, 1, 1, 1}, {0}},
-            {{1, 0, 0, 0, 0}, {0, 0, 0, 0, 1}, {1}}
+                {{0, 0, 0, 1, 1}, {1, 1, 1, 0, 0}, {0}},
+                {{0, 0, 1, 0, 1}, {1, 1, 0, 1, 0}, {0}},
+                {{0, 0, 1, 1, 0}, {1, 1, 0, 0, 1}, {0}},
+                {{0, 1, 0, 0, 0}, {1, 0, 1, 1, 1}, {0}},
+                {{1, 0, 0, 0, 0}, {0, 0, 0, 0, 1}, {1}}
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
     }
 
     public void testImplicationCalculatorGeneratingInteractingForCaseWhenNodesHasCommonPart() {
         int[][] relation = new int[][]{
-            {0, 0, 0, 0, 0},
-            {0, 0, 1, 0, 0},
-            {0, 0, 1, 1, 0},
-            {0, 0, 0, 1, 1},
-            {0, 0, 0, 1, 0},
-            {0, 0, 0, 0, 1}
+                {0, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0},
+                {0, 0, 1, 1, 0},
+                {0, 0, 0, 1, 1},
+                {0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 1}
         };
 
         int[][][] expImplicationsDescriptions = new int[][][]{
-            {{0, 0, 1, 0, 1}, {1, 1, 0, 1, 0}},
-            {{0, 1, 0, 0, 0}, {1, 0, 1, 1, 1}},
-            {{1, 0, 0, 0, 0}, {0, 1, 1, 1, 1}}
+                {{0, 0, 1, 0, 1}, {1, 1, 0, 1, 0}},
+                {{0, 1, 0, 0, 0}, {1, 0, 1, 1, 1}},
+                {{1, 0, 0, 0, 0}, {0, 1, 1, 1, 1}}
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
     }
 
     public void testImplicationCalculatorFailing6() {
         int[][] relation = new int[][]{
-            {0, 1, 0, 0, 0},
-            {0, 0, 1, 1, 0},
-            {0, 0, 1, 0, 1},
-            {1, 1, 0, 1, 0}
+                {0, 1, 0, 0, 0},
+                {0, 0, 1, 1, 0},
+                {0, 0, 1, 0, 1},
+                {1, 1, 0, 1, 0}
         };
 
         int[][][] expImplicationsDescriptions = new int[][][]{
-            {{0, 0, 0, 0, 1}, {0, 0, 1, 0, 0}, {1}},
-            {{0, 0, 1, 1, 1}, {1, 1, 0, 0, 0}, {0}},
-            {{0, 1, 0, 1, 0}, {1, 0, 0, 0, 0}, {1}},
-            {{0, 1, 1, 0, 0}, {1, 0, 0, 1, 1}, {0}},
-            {{1, 0, 0, 0, 0}, {0, 1, 0, 1, 0}, {1}}
+                {{0, 0, 0, 0, 1}, {0, 0, 1, 0, 0}, {1}},
+                {{0, 0, 1, 1, 1}, {1, 1, 0, 0, 0}, {0}},
+                {{0, 1, 0, 1, 0}, {1, 0, 0, 0, 0}, {1}},
+                {{0, 1, 1, 0, 0}, {1, 0, 0, 1, 1}, {0}},
+                {{1, 0, 0, 0, 0}, {0, 1, 0, 1, 0}, {1}}
 
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
@@ -181,24 +178,24 @@ public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBas
 
     public void testImplicationCalculatorRandomFailure7() {
         int[][] relation = new int[][]{
-            {0, 0, 0, 1, 1},
-            {0, 0, 0, 0, 0},
-            {1, 0, 0, 0, 0},
-            {1, 1, 0, 0, 0},
-            {1, 0, 1, 1, 0},
-            {0, 1, 0, 1, 0},
-            {0, 0, 1, 0, 0},
-            {1, 0, 0, 0, 0}
+                {0, 0, 0, 1, 1},
+                {0, 0, 0, 0, 0},
+                {1, 0, 0, 0, 0},
+                {1, 1, 0, 0, 0},
+                {1, 0, 1, 1, 0},
+                {0, 1, 0, 1, 0},
+                {0, 0, 1, 0, 0},
+                {1, 0, 0, 0, 0}
         };
 
         int[][][] expImplicationsDescriptions = new int[][][]{
-            {{0, 0, 0, 0, 1}, {0, 0, 0, 1, 0}, {1}},
-            {{0, 0, 1, 1, 0}, {1, 0, 0, 0, 0}, {1}},
-            {{0, 1, 0, 1, 1}, {1, 0, 1, 0, 0}, {0}},
-            {{0, 1, 1, 0, 0}, {1, 0, 0, 1, 1}, {0}},
-            {{1, 0, 0, 1, 0}, {0, 0, 1, 0, 0}, {1}},
-            {{1, 0, 1, 0, 0}, {0, 0, 0, 1, 0}, {1}},
-            {{1, 0, 1, 1, 1}, {0, 1, 0, 0, 0}, {0}}
+                {{0, 0, 0, 0, 1}, {0, 0, 0, 1, 0}, {1}},
+                {{0, 0, 1, 1, 0}, {1, 0, 0, 0, 0}, {1}},
+                {{0, 1, 0, 1, 1}, {1, 0, 1, 0, 0}, {0}},
+                {{0, 1, 1, 0, 0}, {1, 0, 0, 1, 1}, {0}},
+                {{1, 0, 0, 1, 0}, {0, 0, 1, 0, 0}, {1}},
+                {{1, 0, 1, 0, 0}, {0, 0, 0, 1, 0}, {1}},
+                {{1, 0, 1, 1, 1}, {0, 1, 0, 0, 0}, {0}}
 
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
@@ -223,15 +220,15 @@ public abstract class ImplicationCalculatorTest extends ImplicationCalculatorBas
 
     public void testFindImplicationsFailingRandomTest2() {
         int[][] relation = new int[][]{
-            {0, 0, 0, 0, 1},
-            {0, 0, 0, 1, 1},
-            {0, 0, 1, 0, 0},
+                {0, 0, 0, 0, 1},
+                {0, 0, 0, 1, 1},
+                {0, 0, 1, 0, 0},
         };
         int[][][] expImplicationsDescriptions = new int[][][]{
-            {{0, 0, 0, 1, 0}, {0, 0, 0, 0, 1}, {1}},
-            {{0, 0, 1, 0, 1}, {1, 1, 0, 1, 0}, {0}},
-            {{0, 1, 0, 0, 0}, {1, 0, 1, 1, 1}, {0}},
-            {{1, 0, 0, 0, 0}, {0, 1, 1, 1, 1}, {0}}
+                {{0, 0, 0, 1, 0}, {0, 0, 0, 0, 1}, {1}},
+                {{0, 0, 1, 0, 1}, {1, 1, 0, 1, 0}, {0}},
+                {{0, 1, 0, 0, 0}, {1, 0, 1, 1, 1}, {0}},
+                {{1, 0, 0, 0, 0}, {0, 1, 1, 1, 1}, {0}}
         };
         doTestImplicationCalculator(relation, expImplicationsDescriptions);
     }

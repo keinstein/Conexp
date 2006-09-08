@@ -16,7 +16,7 @@ public class ComponentsObjectMother {
         return new LatticeComponent(SetBuilder.makeContext(relation));
     }
 
-    public static LatticeComponent makeLatticeComponentWithSimpleLayoutEngine(int[][] relation){
+    public static LatticeComponent makeLatticeComponentWithSimpleLayoutEngine(int[][] relation) {
         LatticeComponent component = makeLatticeComponent(relation);
         component.setLayoutEngine(new SimpleLayoutEngine());
         return component;

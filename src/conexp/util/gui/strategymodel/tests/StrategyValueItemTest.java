@@ -17,7 +17,9 @@ public class StrategyValueItemTest extends TestCase {
     private GrowingStrategyModel model;
 
     static class MockGenericStrategy implements GenericStrategy {
-    };
+    }
+
+    ;
 
     private StrategyValueItem valueItem;
     private String FIRST_KEY = "one";
@@ -66,9 +68,9 @@ public class StrategyValueItemTest extends TestCase {
         assertEquals(1, valueItem.getValue());
     }
 
-    public void testEquals(){
-       StrategyValueItem other = new StrategyValueItem(valueItem.getPropertyName(),
-               model, null);
-       TestUtil.testEqualsAndHashCode(valueItem, other); 
+    public void testEquals() {
+        StrategyValueItem other = new StrategyValueItem(valueItem.getPropertyName(),
+                model, null);
+        TestUtil.testEqualsAndHashCode(valueItem, other);
     }
 }

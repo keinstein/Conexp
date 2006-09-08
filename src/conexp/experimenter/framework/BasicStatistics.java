@@ -3,6 +3,7 @@ package conexp.experimenter.framework;
 /**
  * Insert the type's description here.
  * Creation date: (21.07.01 14:59:49)
+ *
  * @author
  */
 public class BasicStatistics {
@@ -17,8 +18,9 @@ public class BasicStatistics {
     /**
      * Insert the method's description here.
      * Creation date: (06.07.01 12:27:04)
-     * @return double
+     *
      * @param timeData long[]
+     * @return double
      */
     public static double calculateAverage(long[] timeData) {
         if (null == timeData || timeData.length == 0) {
@@ -31,11 +33,12 @@ public class BasicStatistics {
     /**
      * Insert the method's description here.
      * Creation date: (06.07.01 12:36:19)
-     * @return double
+     *
      * @param timeOfExecution long
+     * @return double
      */
     public static double calcVariation(long[] timeOfExecution) {
-        if(null== timeOfExecution){
+        if (null == timeOfExecution) {
             return 0;
         }
         final int size = timeOfExecution.length;
@@ -57,8 +60,9 @@ public class BasicStatistics {
     /**
      * Insert the method's description here.
      * Creation date: (06.07.01 12:32:21)
-     * @return long
+     *
      * @param array long[]
+     * @return long
      */
     public static long sumOfArray(long[] array) {
         long totalSum = 0;

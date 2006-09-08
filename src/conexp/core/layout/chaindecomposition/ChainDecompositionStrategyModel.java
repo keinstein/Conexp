@@ -17,7 +17,7 @@ public class ChainDecompositionStrategyModel extends AbstractNonGrowingStrategyM
 
     public String[][] getCreateInfo() {
         return new String[][]{{"Attribute-based", "AttributtesDecompositionStrategy", "conexp.core.layout.chaindecomposition.AttributtesDecompositionStrategy"},
-                              {"Object-based", "ObjectsDecompositionStrategy", "conexp.core.layout.chaindecomposition.ObjectsDecompositionStrategy"}
+                {"Object-based", "ObjectsDecompositionStrategy", "conexp.core.layout.chaindecomposition.ObjectsDecompositionStrategy"}
         };
     }
 }

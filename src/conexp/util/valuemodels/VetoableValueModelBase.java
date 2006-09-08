@@ -44,6 +44,7 @@ public class VetoableValueModelBase extends ValueModelBase implements IVetoableV
     /**
      * Insert the method's description here.
      * Creation date: (02.02.01 21:58:41)
+     *
      * @param newVetoPropertyChange java.beans.VetoableChangeSupport
      */
     public void setVetoPropertyChange(VetoableChangeSupport newVetoPropertyChange) {

@@ -24,7 +24,7 @@ public class ExperimentRunResults {
         resultsOnExperimentSet[expNo] = results;
     }
 
-    public MeasurementSet getResultForExperiment(int expNo){
+    public MeasurementSet getResultForExperiment(int expNo) {
         return resultsOnExperimentSet[expNo];
     }
 }

@@ -16,7 +16,7 @@ public abstract class PointStabilityCalculatorBaseTest extends TestCase {
 
     public void testCalculateStabilityForSetThatIsNotInLattice() {
         int[][] arrRelation = new int[][]{
-            {0, 0, 1}
+                {0, 0, 1}
         };
         PointStabilityCalculator oneConceptStabilityCalculator = makePointStabilityCalculator();
         oneConceptStabilityCalculator.setRelation(SetBuilder.makeRelation(arrRelation));
@@ -27,8 +27,8 @@ public abstract class PointStabilityCalculatorBaseTest extends TestCase {
     public void testCalculateStabilityForConcept() {
         //formalization of the idea of algorithm:
         int[][] arrRelation = new int[][]{
-            {0, 1},
-            {1, 0}
+                {0, 1},
+                {1, 0}
         };
 
         BinaryRelation relation = SetBuilder.makeRelation(arrRelation);
@@ -45,8 +45,8 @@ public abstract class PointStabilityCalculatorBaseTest extends TestCase {
 
     public void testCalculateStabilityForCaseOfOnlyOneConcept() {
         int[][] arrRelation = new int[][]{
-            {1, 1},
-            {1, 1}
+                {1, 1},
+                {1, 1}
         };
 
         BinaryRelation relation = SetBuilder.makeRelation(arrRelation);

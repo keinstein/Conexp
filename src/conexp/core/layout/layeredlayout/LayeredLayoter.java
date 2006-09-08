@@ -163,7 +163,8 @@ public class LayeredLayoter extends NonIncrementalLayouter {
         algorithm.setRange(-5, 5);
         algorithm.setStep(1);
         int searchSteps = 0;
-        for (algorithm.firstPoint(directionVector); algorithm.hasMorePoints(directionVector); algorithm.nextPoint(directionVector)) {
+        for (algorithm.firstPoint(directionVector); algorithm.hasMorePoints(directionVector); algorithm.nextPoint(directionVector))
+        {
             assignXCoordinatesToLattice(directionVector);
             if (isLatticeSatisfactory()) {
                 evaluateLattice(currentEvaluation);
@@ -274,16 +275,16 @@ public class LayeredLayoter extends NonIncrementalLayouter {
 
     protected ParamInfo[] makeParams() {
         return new ParamInfo[]{
-            new ButtonParamInfo("Next layout", ">>", new ActionListener() {
-                public void actionPerformed(ActionEvent ev) {
-                    selectNextLayout();
-                }
-            }),
-            new ButtonParamInfo("Prev layout", "<<", new ActionListener() {
-                public void actionPerformed(ActionEvent ev) {
-                    selectPrevLayout();
-                }
-            }),
+                new ButtonParamInfo("Next layout", ">>", new ActionListener() {
+                    public void actionPerformed(ActionEvent ev) {
+                        selectNextLayout();
+                    }
+                }),
+                new ButtonParamInfo("Prev layout", "<<", new ActionListener() {
+                    public void actionPerformed(ActionEvent ev) {
+                        selectPrevLayout();
+                    }
+                }),
 
         };
     }

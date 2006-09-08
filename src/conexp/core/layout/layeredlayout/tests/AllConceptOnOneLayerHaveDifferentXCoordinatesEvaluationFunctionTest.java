@@ -17,9 +17,9 @@ import junit.framework.TestCase;
 public class AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunctionTest extends TestCase {
     public static void testEvaluationFunction() {
         int[][] arrRelation = new int[][]{
-            {1, 0, 0},
-            {0, 1, 0},
-            {0, 0, 1}
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1}
         };
         Lattice lattice = SetBuilder.makeLattice(arrRelation);
 
@@ -27,14 +27,14 @@ public class AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunctionTest
         LatticeElement second = lattice.findElementWithIntent(SetBuilder.makeSet(arrRelation[1]));
         LatticeElement third = lattice.findElementWithIntent(SetBuilder.makeSet(arrRelation[2]));
         LatticeElement[][] layer = new LatticeElement[][]{
-            {first, second, third}
+                {first, second, third}
         };
 
         ConceptCoordinateMapper mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(lattice, arrRelation,
                 new double[][]{
-                    {1, 2},
-                    {0, 2},
-                    {1, 2}
+                        {1, 2},
+                        {0, 2},
+                        {1, 2}
                 });
         AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunction evaluationFunction = new
                 AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunction(mapper, layer);
@@ -42,9 +42,9 @@ public class AllConceptOnOneLayerHaveDifferentXCoordinatesEvaluationFunctionTest
         assertEquals(-1, evaluationFunction.getEvaluationForLattice(), TestDataHolder.PRECISION);
         mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(lattice, arrRelation,
                 new double[][]{
-                    {1, 2},
-                    {2, 2},
-                    {3, 2}
+                        {1, 2},
+                        {2, 2},
+                        {3, 2}
                 });
         evaluationFunction.setConceptCoordinateMapper(mapper);
         assertEquals(0, evaluationFunction.getEvaluationForLattice(), TestDataHolder.PRECISION);

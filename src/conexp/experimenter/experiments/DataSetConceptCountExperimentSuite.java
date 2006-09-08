@@ -29,8 +29,8 @@ public class DataSetConceptCountExperimentSuite extends ExperimentSuite {
 
             "mushroom_exp.cxt",
 */
-            //"audiology.cxt",
-            "c73d10.cxt",
+                //"audiology.cxt",
+                "c73d10.cxt",
 /*
             "vote.cxt",
             "tic-tac-toe.cxt",
@@ -38,7 +38,6 @@ public class DataSetConceptCountExperimentSuite extends ExperimentSuite {
             "post-operative.cxt",
 */
 //            "vote-both.cxt",
-
 
 /*
             "kr-vs-kp.cxt",
@@ -51,7 +50,6 @@ public class DataSetConceptCountExperimentSuite extends ExperimentSuite {
             "lymph.cxt",
 */
 //            "zoo.cxt",
-
 
 //            "splice.cxt"
         };
@@ -70,19 +68,19 @@ public class DataSetConceptCountExperimentSuite extends ExperimentSuite {
         return set;
     }
 
-    public static ExperimentSet createScalingExperiment(){
+    public static ExperimentSet createScalingExperiment() {
         ExperimentSet set = new ExperimentSet();
         set.addExperiment(new ConceptCountWithMinSupportExperiment(0.05));
-        for(int i=1; i<10; i++){
-            set.addExperiment(new ConceptCountWithMinSupportExperiment(0.1*i));
+        for (int i = 1; i < 10; i++) {
+            set.addExperiment(new ConceptCountWithMinSupportExperiment(0.1 * i));
         }
         set.addExperiment(new ConceptCountExperiment("research.conexp.core.calculationstrategies.DepthSearchIntentsCalcStrategyWithFastObjectIndex"));
         return set;
     }
 
-    public static ExperimentSet createScalingExperiment2(){
+    public static ExperimentSet createScalingExperiment2() {
         ExperimentSet set = new ExperimentSet();
-        for(int i=1; i<10; i++){
+        for (int i = 1; i < 10; i++) {
             set.addExperiment(new ConceptCountWithMaxConceptSizeExperiment(i));
         }
         return set;

@@ -16,6 +16,7 @@ public class IntValueModel extends conexp.util.valuemodels.VetoableValueModelBas
     /**
      * Insert the method's description here.
      * Creation date: (02.02.01 0:18:53)
+     *
      * @return int
      */
     public int getValue() {
@@ -26,6 +27,7 @@ public class IntValueModel extends conexp.util.valuemodels.VetoableValueModelBas
     /**
      * Insert the method's description here.
      * Creation date: (02.02.01 0:18:53)
+     *
      * @param newValue int
      */
     public void setValue(int newValue) throws java.beans.PropertyVetoException {
@@ -48,6 +50,7 @@ public class IntValueModel extends conexp.util.valuemodels.VetoableValueModelBas
     /**
      * Insert the method's description here.
      * Creation date: (18.04.01 22:52:04)
+     *
      * @param newValue int
      */
     private void doSetValue(int newValue) throws PropertyVetoException {
@@ -59,12 +62,18 @@ public class IntValueModel extends conexp.util.valuemodels.VetoableValueModelBas
 
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof IntValueModel)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof IntValueModel)) {
+            return false;
+        }
 
         final IntValueModel intValueModel = (IntValueModel) obj;
 
-        if (value != intValueModel.value) return false;
+        if (value != intValueModel.value) {
+            return false;
+        }
 
         return true;
     }

@@ -25,6 +25,7 @@ public class ParamEditorTable extends JTableX {
     /**
      * Insert the method's description here.
      * Creation date: (26.03.01 22:41:50)
+     *
      * @return conexp.util.gui.paramseditor.ParamsTableModel
      */
     public ParamsTableModel getParamsModel() {

@@ -1,8 +1,6 @@
 package conexp.frontend.ui;
 
 
-
-
 /**
  * Created by IntelliJ IDEA.
  * User: sergey

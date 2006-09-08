@@ -51,18 +51,27 @@ public class DefaultCanvasScheme implements CanvasScheme {
     }
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof DefaultCanvasScheme)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof DefaultCanvasScheme)) {
+            return false;
+        }
         return isEqual((CanvasScheme) obj);
 
     }
 
     public boolean isEqual(CanvasScheme other) {
-        if(null==other){
+        if (null == other) {
             return false;
         }
-        if (colorScheme != null ? !colorScheme.equals(other.getColorScheme()) : other.getColorScheme() != null) return false;
-        if (highlightStrategy != null ? !highlightStrategy.equals(other.getHighlightStrategy()) : other.getHighlightStrategy() != null) return false;
+        if (colorScheme != null ? !colorScheme.equals(other.getColorScheme()) : other.getColorScheme() != null) {
+            return false;
+        }
+        if (highlightStrategy != null ? !highlightStrategy.equals(other.getHighlightStrategy()) : other.getHighlightStrategy() != null)
+        {
+            return false;
+        }
 
         return true;
     }

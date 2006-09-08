@@ -74,18 +74,43 @@ public class DefaultColorScheme implements CanvasColorScheme {
     }
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof DefaultColorScheme)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof DefaultColorScheme)) {
+            return false;
+        }
 
         final DefaultColorScheme defaultColorScheme = (DefaultColorScheme) obj;
 
-        if (collisionColor != null ? !collisionColor.equals(defaultColorScheme.collisionColor) : defaultColorScheme.collisionColor != null) return false;
-        if (edgeColor != null ? !edgeColor.equals(defaultColorScheme.edgeColor) : defaultColorScheme.edgeColor != null) return false;
-        if (highlightColor != null ? !highlightColor.equals(defaultColorScheme.highlightColor) : defaultColorScheme.highlightColor != null) return false;
-        if (nodeBorderColor != null ? !nodeBorderColor.equals(defaultColorScheme.nodeBorderColor) : defaultColorScheme.nodeBorderColor != null) return false;
-        if (nodeColor != null ? !nodeColor.equals(defaultColorScheme.nodeColor) : defaultColorScheme.nodeColor != null) return false;
-        if (nodeFillColor != null ? !nodeFillColor.equals(defaultColorScheme.nodeFillColor) : defaultColorScheme.nodeFillColor != null) return false;
-        if (textColor != null ? !textColor.equals(defaultColorScheme.textColor) : defaultColorScheme.textColor != null) return false;
+        if (collisionColor != null ? !collisionColor.equals(defaultColorScheme.collisionColor) : defaultColorScheme.collisionColor != null)
+        {
+            return false;
+        }
+        if (edgeColor != null ? !edgeColor.equals(defaultColorScheme.edgeColor) : defaultColorScheme.edgeColor != null)
+        {
+            return false;
+        }
+        if (highlightColor != null ? !highlightColor.equals(defaultColorScheme.highlightColor) : defaultColorScheme.highlightColor != null)
+        {
+            return false;
+        }
+        if (nodeBorderColor != null ? !nodeBorderColor.equals(defaultColorScheme.nodeBorderColor) : defaultColorScheme.nodeBorderColor != null)
+        {
+            return false;
+        }
+        if (nodeColor != null ? !nodeColor.equals(defaultColorScheme.nodeColor) : defaultColorScheme.nodeColor != null)
+        {
+            return false;
+        }
+        if (nodeFillColor != null ? !nodeFillColor.equals(defaultColorScheme.nodeFillColor) : defaultColorScheme.nodeFillColor != null)
+        {
+            return false;
+        }
+        if (textColor != null ? !textColor.equals(defaultColorScheme.textColor) : defaultColorScheme.textColor != null)
+        {
+            return false;
+        }
 
         return true;
     }

@@ -41,13 +41,14 @@ public class DependencySet extends BasePropertyChangeSupplier {
     }
 
 //---------------------------------------
+
     public void addDependency(Dependency dep) {
         dependencies.add(dep);
         firePropertyChange(DEPENDENCY_ADDED, null, dep);
     }
 
-
 //---------------------------------------
+
     public void clear() {
         dependencies.clear();
         firePropertyChange(DEPENDENCY_SET_CHANGED, null, null);
@@ -68,14 +69,14 @@ public class DependencySet extends BasePropertyChangeSupplier {
         return (Dependency) dependencies.get(i);
     }
 
-
 //---------------------------------------
+
     public Iterator iterator() {
         return dependencies.iterator();
     }
 
-
 //---------------------------------------
+
     public void removeDependency(Dependency impl) {
         dependencies.remove(impl);
 

@@ -8,7 +8,6 @@ public class ConceptSetExperimentSuite extends ExperimentSuite {
     }
 
 
-
     public static ExperimentSet createExperimentSet() {
         ExperimentSet set = new ExperimentSet();
         set.addExperiment(new CallbackBasedConceptSetExperiment("conexp.core.calculationstrategies.NextClosedSetCalculator"));
@@ -21,6 +20,7 @@ public class ConceptSetExperimentSuite extends ExperimentSuite {
     /**
      * Insert the method's description here.
      * Creation date: (06.07.01 13:59:10)
+     *
      * @param args java.lang.String[]
      */
     public static void main(String[] args) {

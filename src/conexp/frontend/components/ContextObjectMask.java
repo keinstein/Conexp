@@ -27,20 +27,18 @@ public class ContextObjectMask extends BasicMultiSelectionEntityMaskImplementati
     class ObjectMaskContextListener extends DefaultContextListener {
         public void objectChanged(ContextChangeEvent changeEvent) {
             switch (changeEvent.getType()) {
-                case ContextChangeEvent.OBJECT_REMOVED:
-                    {
-                        int oldValue = selectedEntities.size();
-                        selectedEntities.remove(changeEvent.getColumn());
-                        getPropertyChangeSupport().firePropertyChange(ENTITIES_COUNT_CHANGED, oldValue, selectedEntities.size());
-                        break;
-                    }
-                case ContextChangeEvent.OBJECT_ADDED:
-                    {
-                        int oldValue = selectedEntities.size();
-                        selectedEntities.add(Boolean.FALSE);
-                        getPropertyChangeSupport().firePropertyChange(ENTITIES_COUNT_CHANGED, oldValue, selectedEntities.size());
-                        break;
-                    }
+                case ContextChangeEvent.OBJECT_REMOVED: {
+                    int oldValue = selectedEntities.size();
+                    selectedEntities.remove(changeEvent.getColumn());
+                    getPropertyChangeSupport().firePropertyChange(ENTITIES_COUNT_CHANGED, oldValue, selectedEntities.size());
+                    break;
+                }
+                case ContextChangeEvent.OBJECT_ADDED: {
+                    int oldValue = selectedEntities.size();
+                    selectedEntities.add(Boolean.FALSE);
+                    getPropertyChangeSupport().firePropertyChange(ENTITIES_COUNT_CHANGED, oldValue, selectedEntities.size());
+                    break;
+                }
             }
         }
 

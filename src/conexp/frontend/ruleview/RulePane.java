@@ -24,7 +24,7 @@ public class RulePane extends TextPaneViewBase {
     public RulePane(DependencySetSupplier ruleSetSupplier, RuleRenderer renderer,
                     RulePaneMessages messages) {
         super(new DefaultStyledDocument());
-        this.messages=messages;
+        this.messages = messages;
         this.renderer = renderer;
         setDependencySetSupplier(ruleSetSupplier);
     }
@@ -33,9 +33,9 @@ public class RulePane extends TextPaneViewBase {
     public void generateContent() {
         clear();
         try {
-            if(!ruleSetSupplier.isComputed()){
-                appendString(messages.getRuleSetShouldBeRecalculated()+NEW_LINE,
-                            renderer.getBaseStyle());
+            if (!ruleSetSupplier.isComputed()) {
+                appendString(messages.getRuleSetShouldBeRecalculated() + NEW_LINE,
+                        renderer.getBaseStyle());
                 return;
             }
             if (getRuleSet().getSize() > 0) {

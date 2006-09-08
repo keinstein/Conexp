@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * Insert the type's description here.
  * Creation date: (21.07.01 17:41:16)
+ *
  * @author
  */
 public class RelationSequenceSet {
@@ -23,6 +24,7 @@ public class RelationSequenceSet {
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 17:42:36)
+     *
      * @param relSeq conexp.core.experimenter.framework.RelationSequence
      */
     public void addRelationSequence(RelationSequence relSeq) {
@@ -33,8 +35,9 @@ public class RelationSequenceSet {
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 17:41:16)
-     * @return conexp.core.BinaryRelation
+     *
      * @param i int
+     * @return conexp.core.BinaryRelation
      */
     public RelationSequence getRelationSequence(int i) {
         return (RelationSequence) relSequences.get(i);
@@ -44,6 +47,7 @@ public class RelationSequenceSet {
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 17:41:16)
+     *
      * @return int
      */
     public int getRelationSequenceCount() {

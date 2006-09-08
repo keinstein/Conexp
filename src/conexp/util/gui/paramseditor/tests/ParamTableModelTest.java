@@ -41,8 +41,8 @@ public class ParamTableModelTest extends TestCase {
     protected void setUp() {
         tableModel = new ParamsTableModel();
         tableModel.addParams(new ParamInfo[]{
-            new BoundedIntValueParamInfo("one", new conexp.util.valuemodels.BoundedIntValue("one", 1, 0, 2)),
-            new BoundedIntValueParamInfo("two", new conexp.util.valuemodels.BoundedIntValue("two", 1, -1, 3))});
+                new BoundedIntValueParamInfo("one", new conexp.util.valuemodels.BoundedIntValue("one", 1, 0, 2)),
+                new BoundedIntValueParamInfo("two", new conexp.util.valuemodels.BoundedIntValue("two", 1, -1, 3))});
     }
 
     public void testClear() {

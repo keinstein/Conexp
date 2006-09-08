@@ -21,43 +21,43 @@ import java.io.StringReader;
 public class ConImpContextReaderTest extends TestCase {
     public static void testReading() {
         String[] data = {
-            "B",
-            "Test cxt",
-            "2",
-            "2",
-            "O1",
-            "O2",
-            "A1",
-            "A2",
-            "..",
-            "xx",
+                "B",
+                "Test cxt",
+                "2",
+                "2",
+                "O1",
+                "O2",
+                "A1",
+                "A2",
+                "..",
+                "xx",
         };
 
         ExtendedContextEditingInterface expectedContext = SetBuilder.makeContext(new String[]{"O1", "O2"}, new String[]{"A1", "A2"}, new int[][]
-        {{0, 0},
-         {1, 1}});
+                {{0, 0},
+                        {1, 1}});
 
         doTestReading(data, expectedContext);
     }
 
     public static void testReadingWithEmptyLineAfterDimensions() {
         String[] data = {
-            "B",
-            "Test cxt",
-            "2",
-            "2",
-            " ",
-            "O1",
-            "O2",
-            "A1",
-            "A2",
-            "..",
-            "xx",
+                "B",
+                "Test cxt",
+                "2",
+                "2",
+                " ",
+                "O1",
+                "O2",
+                "A1",
+                "A2",
+                "..",
+                "xx",
         };
 
         ExtendedContextEditingInterface expectedContext = SetBuilder.makeContext(new String[]{"O1", "O2"}, new String[]{"A1", "A2"}, new int[][]
-        {{0, 0},
-         {1, 1}});
+                {{0, 0},
+                        {1, 1}});
 
         doTestReading(data, expectedContext);
     }

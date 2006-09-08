@@ -5,7 +5,6 @@
  **/
 
 
-
 package canvas.figures;
 
 import java.awt.Point;

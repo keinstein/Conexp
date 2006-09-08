@@ -74,6 +74,6 @@ public class EdgeFigure extends LineFigure implements Collidable {
     }
 
     public String toString() {
-        return StringUtil.extractClassName(getClass().getName())+"[ startConcept:"+getStartConcept()+", endConcept:"+getEndConcept()+"]";
+        return StringUtil.extractClassName(getClass().getName()) + "[ startConcept:" + getStartConcept() + ", endConcept:" + getEndConcept() + "]";
     }
 }

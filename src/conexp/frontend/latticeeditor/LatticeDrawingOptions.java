@@ -22,6 +22,7 @@ public class LatticeDrawingOptions extends BaseVetoablePropertyChangeSupplier im
     }
 
 */
+
     public synchronized DrawParameters getDrawParams() {
         if (null == drawParams) {
             drawParams = new LatticePainterDrawParams(getPropertyChangeSupport(), getVetoPropertyChange());

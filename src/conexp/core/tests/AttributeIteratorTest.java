@@ -10,9 +10,7 @@ package conexp.core.tests;
 import conexp.core.AttributeIterator;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.Set;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 
 public class AttributeIteratorTest extends TestCase {
@@ -20,7 +18,7 @@ public class AttributeIteratorTest extends TestCase {
 
     public static void testIterator() {
         ExtendedContextEditingInterface cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
-                                                                                 {1, 1, 0}});
+                {1, 1, 0}});
         Set attributes = SetBuilder.makeSet(new int[]{0, 0, 0});
         AttributeIterator iter = new AttributeIterator(cxt, attributes);
         assertEquals(false, iter.hasNext());

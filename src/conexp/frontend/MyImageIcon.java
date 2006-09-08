@@ -13,6 +13,7 @@ import java.net.URL;
 
 public class MyImageIcon extends ImageIcon {
 //	public float getAlignmentY() { return 0.5f; }
+
     public MyImageIcon(URL url) {
         super(url);
     }

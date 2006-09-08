@@ -13,7 +13,7 @@ import conexp.frontend.latticeeditor.LatticePainterOptions;
 import junit.framework.TestCase;
 
 public class BaseLatticePainterPaneTest extends TestCase {
-    static class TestableLatticePainterPane extends BaseLatticePainterPane{
+    static class TestableLatticePainterPane extends BaseLatticePainterPane {
         public TestableLatticePainterPane() {
             super();
         }
@@ -24,9 +24,9 @@ public class BaseLatticePainterPaneTest extends TestCase {
 
     }
 
-    public void testCorrectHandlingOfOptionsChangeListeners(){
+    public void testCorrectHandlingOfOptionsChangeListeners() {
         LatticeComponent component = ComponentsObjectMother.makeLatticeComponent(
-                new int[][]{{0,1}});
+                new int[][]{{0, 1}});
         final LatticePainterOptions latticeCanvasScheme = component.getDrawing().getPainterOptions();
         TestableLatticePainterPane canvas = new TestableLatticePainterPane();
         canvas.init();

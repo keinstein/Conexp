@@ -94,7 +94,6 @@ public abstract class ConceptSetDrawing extends FigureDrawing {
     }
 
 
-
     class LabelingStrategiesEventHandler implements PropertyChangeListener {
         public void propertyChange(PropertyChangeEvent evt) {
             String propertyName = evt.getPropertyName();
@@ -193,7 +192,7 @@ public abstract class ConceptSetDrawing extends FigureDrawing {
 
 
     public void clearUpLabelsForConcepts() {
-       upConceptLabels.clear();
+        upConceptLabels.clear();
     }
 
 

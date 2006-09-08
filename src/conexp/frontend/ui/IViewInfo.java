@@ -11,6 +11,7 @@ import conexp.frontend.View;
  */
 public interface IViewInfo {
     String getViewCaption();
+
     String getViewPlace();
 
     View createView();

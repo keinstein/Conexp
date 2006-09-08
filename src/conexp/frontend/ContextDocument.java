@@ -207,7 +207,7 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 
     private JComboBox getRecalculatePolicyCombo() {
-        if(null==recalculatePolicyCombo){
+        if (null == recalculatePolicyCombo) {
             recalculatePolicyCombo = makeRecalculationPolicyCombo();
 
         }
@@ -394,7 +394,6 @@ public class ContextDocument implements ActionChainBearer, Document {
         }
     }
 
-
 //    public static final String VIEW_NESTED = "NestedLineDiagram";
     private static final String VIEW_DIAGRAM_CREATOR = "DiagramCreator";
 
@@ -448,6 +447,7 @@ public class ContextDocument implements ActionChainBearer, Document {
 
     private ActionMap actionChain = new ActionMap();
     //------------------------------------------------------------
+
     /**
      * Gets the ActionMap attribute of the ContextDocument object
      *
@@ -460,14 +460,14 @@ public class ContextDocument implements ActionChainBearer, Document {
     //------------------------------------------------------------
     //------------------------------------------------------------
     private Action[] actions = {
-        new CalcConceptCountDS(),
-        new BuildLatticeDS(),
-        new AttributeExploration(),
-        new CalcImplicationsNCS(),
-        new CalcAssociationRules(),
+            new CalcConceptCountDS(),
+            new BuildLatticeDS(),
+            new AttributeExploration(),
+            new CalcImplicationsNCS(),
+            new CalcAssociationRules(),
 //        new BuildNestedLineDiagram(),
-        new ShowDiagramEditor(),
-        new CreateLatticeViewAction()
+            new ShowDiagramEditor(),
+            new CreateLatticeViewAction()
     };
 
     public Collection getLatticeCollection() {
@@ -676,8 +676,6 @@ public class ContextDocument implements ActionChainBearer, Document {
         contextDocumentModel.resetLatticeComponents();
     }
 
-
-
     //----------------------------------------------------------
 
 /*
@@ -760,7 +758,7 @@ public class ContextDocument implements ActionChainBearer, Document {
         contextDocumentModel.findImplications();
     }
 
-    public DependencySet getImplications(){
+    public DependencySet getImplications() {
         //todo: move to COntextDOcumentModel
         return getImplicationBaseCalculator().getImplications();
     }
@@ -909,7 +907,6 @@ public class ContextDocument implements ActionChainBearer, Document {
     }
 */
 
-
 //VIEW MANAGEMENT
 
 
@@ -923,8 +920,8 @@ public class ContextDocument implements ActionChainBearer, Document {
         return getLatticeComponentCount() > 0;
     }
 
-
 // document tree and connected actions
+
     class CreateLatticeViewAction extends AbstractAction {
 
         public CreateLatticeViewAction() {
@@ -1017,7 +1014,7 @@ public class ContextDocument implements ActionChainBearer, Document {
                         LatticeSupplier supplier = (LatticeSupplier) iterator.next();
                         doAddDirectChildToTree(
                                 getViewInfoForLatticeComponent(supplier)
-                                .getViewTreeNode(),
+                                        .getViewTreeNode(),
                                 true);
                     }
                 }
@@ -1052,8 +1049,8 @@ public class ContextDocument implements ActionChainBearer, Document {
             final int bound = contextDocumentModel.getLatticeComponents().size();
             for (int i = 0; i < bound; i++) {
                 doAddDirectChildToTree(
-                  getViewInfoForLatticeComponent(
-                          contextDocumentModel.getLatticeComponent(i))
+                        getViewInfoForLatticeComponent(
+                                contextDocumentModel.getLatticeComponent(i))
                                 .getViewTreeNode(), false
                 );
             }
@@ -1092,11 +1089,11 @@ public class ContextDocument implements ActionChainBearer, Document {
         if (childTreeNode == getContextTreeRoot()) {
             path =
                     new Object[]{getDocumentTreeModel().getRoot(),
-                                 childTreeNode};
+                            childTreeNode};
         } else {
             path =
                     new Object[]{getDocumentTreeModel().getRoot(),
-                                 getContextTreeRoot(), childTreeNode};
+                            getContextTreeRoot(), childTreeNode};
         }
         final TreePath treePath = new TreePath(path);
         getTree().setSelectionPath(treePath);
@@ -1165,7 +1162,6 @@ public class ContextDocument implements ActionChainBearer, Document {
         contextName.setName(fileName);
         getTree().invalidate();
     }
-
 
 // MENUS and TOOLBARS
     private JToolBar toolBar;

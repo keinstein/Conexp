@@ -11,7 +11,7 @@ import javax.swing.Icon;
  * Time: 15:08:53
  */
 
-public abstract class ToggleAbstractAction extends AbstractAction{
+public abstract class ToggleAbstractAction extends AbstractAction {
     public ToggleAbstractAction() {
     }
 

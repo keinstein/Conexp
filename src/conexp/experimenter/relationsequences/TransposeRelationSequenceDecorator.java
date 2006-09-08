@@ -7,6 +7,7 @@ import conexp.experimenter.framework.RelationSequence;
 /**
  * Insert the type's description here.
  * Creation date: (28.07.01 23:47:21)
+ *
  * @author
  */
 public class TransposeRelationSequenceDecorator extends BaseRelationGenerationStrategy {
@@ -15,6 +16,7 @@ public class TransposeRelationSequenceDecorator extends BaseRelationGenerationSt
     /**
      * Insert the method's description here.
      * Creation date: (28.07.01 23:50:39)
+     *
      * @param sourceSequence conexp.core.experimenter.framework.RelationSequence
      */
     public TransposeRelationSequenceDecorator(RelationSequence sourceSequence) {
@@ -27,6 +29,7 @@ public class TransposeRelationSequenceDecorator extends BaseRelationGenerationSt
     /**
      * Insert the method's description here.
      * Creation date: (28.07.01 23:47:21)
+     *
      * @return java.lang.String
      */
     public String describeStrategy() {
@@ -37,8 +40,9 @@ public class TransposeRelationSequenceDecorator extends BaseRelationGenerationSt
     /**
      * Insert the method's description here.
      * Creation date: (28.07.01 23:49:49)
-     * @return conexp.core.BinaryRelation
+     *
      * @param relNo int
+     * @return conexp.core.BinaryRelation
      */
     public BinaryRelation makeRelation(int relNo) {
         return BinaryRelationUtils.makeTransposedRelation(sourceSequence.getRelation(relNo));

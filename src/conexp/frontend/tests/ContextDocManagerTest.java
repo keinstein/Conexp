@@ -68,9 +68,8 @@ public class ContextDocManagerTest extends TestCase {
         }
     }
 
-    static
-    class MockDocument implements Document {
-        boolean modified=false;
+    static class MockDocument implements Document {
+        boolean modified = false;
 
         public void setModified(boolean newModified) {
             this.modified = newModified;
@@ -158,25 +157,25 @@ public class ContextDocManagerTest extends TestCase {
     }
 
 
-    public void testDocCreation(){
+    public void testDocCreation() {
         docManager.createNewDocument();
 
         assertFalse(docManager.getActiveDoc().isModified());
         assertFalse(docManager.getDocRecord().isPersistent());
     }
 
-    public void testDocLoading(){
+    public void testDocLoading() {
         checkJustOpenedDoc();
     }
 
     private void checkJustOpenedDoc() {
         docManager.setStorageFormatManager(new ConExpStorageFormatManager());
         docManager.openUrl(TestPathResolver.getTestPath("conexp/frontend/resources/tests/docTest.cex"));
-        assertNotNull("document was not loaded",docManager.getActiveDoc());
+        assertNotNull("document was not loaded", docManager.getActiveDoc());
         assertFalse(docManager.getActiveDoc().isModified());
     }
 
-    public void testDocNotModifiedAfterSave(){
+    public void testDocNotModifiedAfterSave() {
         checkJustOpenedDoc();
         docManager.getActiveDoc().markDirty();
         assertTrue(docManager.getActiveDoc().isModified());
@@ -186,7 +185,7 @@ public class ContextDocManagerTest extends TestCase {
     }
 
 
-    public void testDocProposedToSaveWhenModifiedAndCreatedNewCancelOption(){
+    public void testDocProposedToSaveWhenModifiedAndCreatedNewCancelOption() {
         commonDocCreatedAndNotSavedSetup();
         final Document activeDoc = docManager.getActiveDoc();
         MockDocModifiedHandler handler = createMockDocModifiedHandler(
@@ -198,7 +197,7 @@ public class ContextDocManagerTest extends TestCase {
         assertSame(activeDoc, docManager.getActiveDoc());
     }
 
-    public void testDocProposedToSaveWhenModifiedAndCreatedNewNoOption(){
+    public void testDocProposedToSaveWhenModifiedAndCreatedNewNoOption() {
         commonDocCreatedAndNotSavedSetup();
         final Document activeDoc = docManager.getActiveDoc();
 
@@ -217,7 +216,7 @@ public class ContextDocManagerTest extends TestCase {
         assertNotSame(activeDoc, docManager.getActiveDoc());
     }
 
-    public void testDocProposedToSaveWhenModifiedAndCreatedNewYesOption(){
+    public void testDocProposedToSaveWhenModifiedAndCreatedNewYesOption() {
         commonDocCreatedAndNotSavedSetup();
         final Document activeDoc = docManager.getActiveDoc();
 
@@ -227,7 +226,7 @@ public class ContextDocManagerTest extends TestCase {
         docManager.setDocModifiedHandler(handler);
         final MockFileSelectorService fileSelectorService =
                 MockFileSelectorService.createSaveService(
-                       TestPathResolver.getTestPath("conexp/frontend/resources/tests/docSaveTest.cex"),
+                        TestPathResolver.getTestPath("conexp/frontend/resources/tests/docSaveTest.cex"),
                         true,
                         true);
 
@@ -238,7 +237,7 @@ public class ContextDocManagerTest extends TestCase {
         assertNotSame(activeDoc, docManager.getActiveDoc());
     }
 
-    public void testDocProposedToSaveWhenModifiedAndCreatedNewYesOptionNoPathProvided(){
+    public void testDocProposedToSaveWhenModifiedAndCreatedNewYesOptionNoPathProvided() {
         commonDocCreatedAndNotSavedSetup();
         final Document activeDoc = docManager.getActiveDoc();
 
@@ -248,8 +247,8 @@ public class ContextDocManagerTest extends TestCase {
         docManager.setDocModifiedHandler(handler);
         final MockFileSelectorService fileSelectorService =
                 MockFileSelectorService.createSaveService(
-                       null,
-                       false,
+                        null,
+                        false,
                         false);
         docManager.setFileSelectorService(fileSelectorService);
         docManager.onNewDocument();
@@ -259,7 +258,7 @@ public class ContextDocManagerTest extends TestCase {
     }
 
 
-    public void testDocProposedToSaveWhenModifiedAndExitYesOptionNoPathProvided(){
+    public void testDocProposedToSaveWhenModifiedAndExitYesOptionNoPathProvided() {
         commonDocCreatedAndNotSavedSetup();
         final Document activeDoc = docManager.getActiveDoc();
 
@@ -269,8 +268,8 @@ public class ContextDocManagerTest extends TestCase {
         docManager.setDocModifiedHandler(handler);
         final MockFileSelectorService fileSelectorService =
                 MockFileSelectorService.createSaveService(
-                       null,
-                       false,
+                        null,
+                        false,
                         false);
         docManager.setFileSelectorService(fileSelectorService);
         docManager.onExit();
@@ -310,7 +309,7 @@ public class ContextDocManagerTest extends TestCase {
             this.response = newResponse;
         }
 
-        public int getSaveIfModifiedResponse(){
+        public int getSaveIfModifiedResponse() {
             counter.inc();
             return response;
         }
@@ -327,7 +326,7 @@ public class ContextDocManagerTest extends TestCase {
     private static class MockAppErrorHandler implements AppErrorHandler {
 
         private static void failWithException(Throwable exception) {
-            fail(exception.getMessage()+
+            fail(exception.getMessage() +
                     StringUtil.stackTraceToString(exception));
         }
 

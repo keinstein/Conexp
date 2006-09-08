@@ -5,6 +5,7 @@ import conexp.core.BinaryRelation;
 /**
  * Insert the type's description here.
  * Creation date: (06.07.01 13:50:59)
+ *
  * @author
  */
 public abstract class BaseRelationGenerationStrategy extends BaseRelationSequence {
@@ -15,8 +16,9 @@ public abstract class BaseRelationGenerationStrategy extends BaseRelationSequenc
     /**
      * Insert the method's description here.
      * Creation date: (06.07.01 13:50:59)
-     * @return conexp.core.BinaryRelation
+     *
      * @param relNo int
+     * @return conexp.core.BinaryRelation
      */
     public abstract BinaryRelation makeRelation(int relNo);
 
@@ -44,6 +46,7 @@ public abstract class BaseRelationGenerationStrategy extends BaseRelationSequenc
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 18:04:23)
+     *
      * @param relNo int
      */
     public int interpolateSize(int relNo, int min, int max) {

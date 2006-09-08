@@ -17,9 +17,9 @@ public class AttributesLabelingStrategyModel extends AbstractNonGrowingStrategyM
 
     public String[][] getCreateInfo() {
         return new String[][]{
-            {"Don't show", LabelingStrategiesKeys.NO_ATTRIBS_LABELING_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.NullLabellingStrategy"},
-            {"Show labels", LabelingStrategiesKeys.ALL_ATTRIBS_LABELING_STRATEGY_KEY, "conexp.frontend.latticeeditor.labelingstrategies.AllAttribsLabelingStrategy"},
-            {"Show multi-labels", LabelingStrategiesKeys.ATTRIBS_MULTI_LABELING_STRATEGY_KEY, "conexp.frontend.latticeeditor.labelingstrategies.AllAttribsMultiLineLabelingStrategy"}
+                {"Don't show", LabelingStrategiesKeys.NO_ATTRIBS_LABELING_STRATEGY, "conexp.frontend.latticeeditor.labelingstrategies.NullLabellingStrategy"},
+                {"Show labels", LabelingStrategiesKeys.ALL_ATTRIBS_LABELING_STRATEGY_KEY, "conexp.frontend.latticeeditor.labelingstrategies.AllAttribsLabelingStrategy"},
+                {"Show multi-labels", LabelingStrategiesKeys.ATTRIBS_MULTI_LABELING_STRATEGY_KEY, "conexp.frontend.latticeeditor.labelingstrategies.AllAttribsMultiLineLabelingStrategy"}
         };
     }
 }

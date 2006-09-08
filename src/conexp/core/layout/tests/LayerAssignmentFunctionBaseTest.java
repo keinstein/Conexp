@@ -22,9 +22,9 @@ public abstract class LayerAssignmentFunctionBaseTest extends TestCase {
      */
     public void testForChain() {
         int[][] threeElementChainContext = new int[][]{
-            {0, 0, 1},
-            {0, 1, 1},
-            {1, 1, 1}
+                {0, 0, 1},
+                {0, 1, 1},
+                {1, 1, 1}
         };
         checkLayerFunctionForLatticeFromContext(threeElementChainContext);
     }

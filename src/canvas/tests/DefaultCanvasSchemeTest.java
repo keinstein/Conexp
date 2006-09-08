@@ -20,12 +20,12 @@ public class DefaultCanvasSchemeTest extends TestCase {
         defaultCanvasScheme = new DefaultCanvasScheme();
     }
 
-    public void testMakeCopy(){
+    public void testMakeCopy() {
         CanvasScheme other = defaultCanvasScheme.makeCopy();
         assertEquals(defaultCanvasScheme, other);
     }
 
-    public void testEqualsAndHashCode(){
+    public void testEqualsAndHashCode() {
         DefaultCanvasScheme other = new DefaultCanvasScheme();
         TestUtil.testEqualsAndHashCode(defaultCanvasScheme, other);
     }

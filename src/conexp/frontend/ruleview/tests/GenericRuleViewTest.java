@@ -28,7 +28,7 @@ public abstract class GenericRuleViewTest extends TestCase {
 
     public void testMakeRulePaneMessages() throws Exception {
         RulePaneMessages rulePaneMessages = ruleView.makeRulePaneMessages();
-        assertNotNull("Empty rule pane message should not be null",rulePaneMessages.getEmptyRulesetMessage());
+        assertNotNull("Empty rule pane message should not be null", rulePaneMessages.getEmptyRulesetMessage());
         assertNotNull("RuleSet should be recalculated message should be not null", rulePaneMessages.getRuleSetShouldBeRecalculated());
     }
 

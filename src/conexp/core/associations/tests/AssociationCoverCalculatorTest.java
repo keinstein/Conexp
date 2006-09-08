@@ -39,14 +39,14 @@ public class AssociationCoverCalculatorTest extends TestCase {
 
     public static void testFindMaximalFrequentItemsetsForIcebergLattice() {
         Lattice lat = SetBuilder.makeIcebergLattice(new int[][]{
-            {1, 0},
-            {0, 1}
+                {1, 0},
+                {0, 1}
         }, 1);
         assertEquals(3, lat.conceptsCount());
 
         List expList = fillListWithElementWithSpecifiedIntents(lat, new int[][]{
-            {1, 0},
-            {0, 1}
+                {1, 0},
+                {0, 1}
         });
         List actual = (new AssociationCoverCalculator()).calculatePredTableAndInitQueueWithMaximalFrequentItemsets(lat);
         assertListContentEqual(expList, actual);
@@ -68,11 +68,11 @@ public class AssociationCoverCalculatorTest extends TestCase {
 
     public static void testFindParentWithMaximalSupportAndMinimalLengthCreatingAssociation() {
         Lattice lat = SetBuilder.makeIcebergLattice(new int[][]{
-            {1, 0, 1, 1, 0},
-            {0, 1, 1, 0, 1},
-            {1, 1, 1, 0, 1},
-            {0, 1, 0, 0, 1},
-            {1, 1, 1, 0, 1}
+                {1, 0, 1, 1, 0},
+                {0, 1, 1, 0, 1},
+                {1, 1, 1, 0, 1},
+                {0, 1, 0, 0, 1},
+                {1, 1, 1, 0, 1}
         }, 2);
         assertEquals(6, lat.conceptsCount());
 
@@ -89,9 +89,9 @@ public class AssociationCoverCalculatorTest extends TestCase {
         // size of context 4
         // size of support of current {1, 0, 0} - 2
         Lattice lat = SetBuilder.makeIcebergLattice(new int[][]{
-            {0},
-            {1},
-            {1}
+                {0},
+                {1},
+                {1}
         }, 0);
         assertEquals(2, lat.conceptsCount());
 
@@ -109,11 +109,11 @@ public class AssociationCoverCalculatorTest extends TestCase {
         final int[] C = new int[]{0, 0, 1, 0, 0};
 
         final int[][] relation = new int[][]{
-            {1, 0, 1, 1, 0},
-            {0, 1, 1, 0, 1},
-            ABCE,
-            BE,
-            ABCE
+                {1, 0, 1, 1, 0},
+                {0, 1, 1, 0, 1},
+                ABCE,
+                BE,
+                ABCE
         };
         Context cxt = SetBuilder.makeContext(relation);
         Lattice lat = SetBuilder.makeIcebergLattice(cxt, 2);
@@ -139,11 +139,11 @@ public class AssociationCoverCalculatorTest extends TestCase {
     public static void testFindCover() {
         final int[] ABCE = {1, 1, 1, 0, 1};
         final int[][] relation = new int[][]{
-            {1, 0, 1, 1, 0},
-            {0, 1, 1, 0, 1},
-            ABCE,
-            {0, 1, 0, 0, 1},
-            ABCE
+                {1, 0, 1, 1, 0},
+                {0, 1, 1, 0, 1},
+                ABCE,
+                {0, 1, 0, 0, 1},
+                ABCE
         };
 
         Context cxt = SetBuilder.makeContext(relation);

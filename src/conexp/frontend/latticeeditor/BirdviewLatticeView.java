@@ -1,7 +1,6 @@
 package conexp.frontend.latticeeditor;
 
 
-
 /**
  * Copyright (c) 2000-2003, Serhiy Yevtushenko
  * All rights reserved.

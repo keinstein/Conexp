@@ -5,13 +5,12 @@
  **/
 
 
-
 package canvas.figures;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 
-public abstract class RectangularFigure extends FigureWithCoords{
+public abstract class RectangularFigure extends FigureWithCoords {
     private double width;
     private double height;
 

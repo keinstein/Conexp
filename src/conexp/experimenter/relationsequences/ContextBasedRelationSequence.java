@@ -38,7 +38,7 @@ public class ContextBasedRelationSequence extends BaseRelationGenerationStrategy
     }
 
     public BinaryRelation makeRelation(int relNo) {
-        Assert.isTrue(relNo<=count);
+        Assert.isTrue(relNo <= count);
         return context.getRelation();
     }
 }

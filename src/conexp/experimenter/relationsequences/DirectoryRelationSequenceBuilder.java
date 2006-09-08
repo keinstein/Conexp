@@ -17,7 +17,7 @@ import java.io.IOException;
  * Time: 1:19:17
  */
 
-public class DirectoryRelationSequenceBuilder{
+public class DirectoryRelationSequenceBuilder {
     private DirectoryRelationSequenceBuilder() {
     }
 
@@ -46,7 +46,6 @@ public class DirectoryRelationSequenceBuilder{
         };
         return dir.list(filter);
     }
-
 
 
 }

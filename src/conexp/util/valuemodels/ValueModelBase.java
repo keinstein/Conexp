@@ -64,6 +64,7 @@ public class ValueModelBase implements IValueModel {
     /**
      * Insert the method's description here.
      * Creation date: (02.02.01 21:57:17)
+     *
      * @param newPropertyChange java.beans.PropertyChangeSupport
      */
     public void setPropertyChange(java.beans.PropertyChangeSupport newPropertyChange) {

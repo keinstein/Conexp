@@ -9,6 +9,8 @@ import javax.swing.JPopupMenu;
  */
 public interface ITreeObject {
     void fillPopupMenu(JPopupMenu popupMenu);
+
     void navigate();
+
     String toString();
 }

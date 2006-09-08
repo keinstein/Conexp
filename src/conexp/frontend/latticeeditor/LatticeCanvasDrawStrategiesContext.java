@@ -109,23 +109,23 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
         return getNodeRadiusStrategyItem().getStrategyKey();
     }
 
-    public boolean setFigureDimensionStrategyKey(String key){
+    public boolean setFigureDimensionStrategyKey(String key) {
         return getNodeRadiusStrategyItem().setValueByKey(key);
     }
 
-    public String getEdgeSizeStrategyKey(){
+    public String getEdgeSizeStrategyKey() {
         return getEdgeSizeCalcStrategyItem().getStrategyKey();
     }
 
-    public boolean setEdgeSizeStrategyKey(String key){
+    public boolean setEdgeSizeStrategyKey(String key) {
         return getEdgeSizeCalcStrategyItem().setValueByKey(key);
     }
 
-    public String getHighlightStrategyKey(){
+    public String getHighlightStrategyKey() {
         return getHighlightStrategyItem().getStrategyKey();
     }
 
-    public boolean setHighlightStrategyKey(String key){
+    public boolean setHighlightStrategyKey(String key) {
         return getHighlightStrategyItem().setValueByKey(key);
     }
 
@@ -146,10 +146,10 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
 
     protected ParamInfo[] makeParamInfo() {
         return new ParamInfo[]{
-            new StrategyValueItemParamInfo("Layout", getLayoutStrategyItem()),
-            new StrategyValueItemParamInfo("Draw node", getNodeRadiusStrategyItem()),
-            new StrategyValueItemParamInfo("Draw edge", getEdgeSizeCalcStrategyItem()),
-            new StrategyValueItemParamInfo("Highlight", getHighlightStrategyItem())
+                new StrategyValueItemParamInfo("Layout", getLayoutStrategyItem()),
+                new StrategyValueItemParamInfo("Draw node", getNodeRadiusStrategyItem()),
+                new StrategyValueItemParamInfo("Draw edge", getEdgeSizeCalcStrategyItem()),
+                new StrategyValueItemParamInfo("Highlight", getHighlightStrategyItem())
         };
     }
 
@@ -174,15 +174,30 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
     }
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof LatticeCanvasDrawStrategiesContext)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof LatticeCanvasDrawStrategiesContext)) {
+            return false;
+        }
 
         final LatticeCanvasDrawStrategiesContext other = (LatticeCanvasDrawStrategiesContext) obj;
 
-        if (edgeSizeCalcStrategy != null ? !edgeSizeCalcStrategy.equals(other.edgeSizeCalcStrategy) : other.edgeSizeCalcStrategy != null) return false;
-        if (highlightStrategy != null ? !highlightStrategy.equals(other.highlightStrategy) : other.highlightStrategy != null) return false;
-        if (layoutStrategy != null ? !layoutStrategy.equals(other.layoutStrategy) : other.layoutStrategy != null) return false;
-        if (nodeRadiusStrategy != null ? !nodeRadiusStrategy.equals(other.nodeRadiusStrategy) : other.nodeRadiusStrategy != null) return false;
+        if (edgeSizeCalcStrategy != null ? !edgeSizeCalcStrategy.equals(other.edgeSizeCalcStrategy) : other.edgeSizeCalcStrategy != null)
+        {
+            return false;
+        }
+        if (highlightStrategy != null ? !highlightStrategy.equals(other.highlightStrategy) : other.highlightStrategy != null)
+        {
+            return false;
+        }
+        if (layoutStrategy != null ? !layoutStrategy.equals(other.layoutStrategy) : other.layoutStrategy != null) {
+            return false;
+        }
+        if (nodeRadiusStrategy != null ? !nodeRadiusStrategy.equals(other.nodeRadiusStrategy) : other.nodeRadiusStrategy != null)
+        {
+            return false;
+        }
 
         return true;
     }

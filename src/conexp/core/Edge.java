@@ -16,6 +16,7 @@ public class Edge {
 //------------------------------------------------------------
     private LatticeElement end;
 //------------------------------------------------------------
+
     public Edge(LatticeElement _start, LatticeElement _end) {
         super();
         Assert.isTrue(null != _start, "Start element in edge can't be null");
@@ -32,17 +33,20 @@ public class Edge {
      * @return boolean
      */
     public boolean contains(final LatticeElement el) {
-        return start==el || end==el;
+        return start == el || end == el;
     }
 //------------------------------------------------------------
+
     public LatticeElement getEnd() {
         return end;
     }
 //------------------------------------------------------------
+
     public int getLength() {
         return end.getHeight() - start.getHeight();
     }
 //------------------------------------------------------------
+
     public LatticeElement getStart() {
         return start;
     }
@@ -99,8 +103,9 @@ public class Edge {
         if (null == end) {
             return false;
         }
-        if (start.getObjCnt() >= end.getObjCnt())
+        if (start.getObjCnt() >= end.getObjCnt()) {
             return false;
+        }
         //util.Assert.isTrue(getLength()>=1, "length should be greater or equals to one");
         return true;
     }

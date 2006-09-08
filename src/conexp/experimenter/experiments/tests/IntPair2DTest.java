@@ -19,10 +19,10 @@ public class IntPair2DTest extends TestCase {
         assertEquals(0, first.compareTo(second));
         TestUtil.testEqualsAndHashCode(first, second);
         IntPair2D bigger = new IntPair2D(2, 1);
-        assertTrue(first.compareTo(bigger)<0);
-        assertTrue(bigger.compareTo(first)>0);
+        assertTrue(first.compareTo(bigger) < 0);
+        assertTrue(bigger.compareTo(first) > 0);
         IntPair2D otherBigger = new IntPair2D(1, 2);
-        assertTrue(first.compareTo(otherBigger)<0);
-        assertTrue(otherBigger.compareTo(first)>0);
-   }
+        assertTrue(first.compareTo(otherBigger) < 0);
+        assertTrue(otherBigger.compareTo(first) > 0);
+    }
 }

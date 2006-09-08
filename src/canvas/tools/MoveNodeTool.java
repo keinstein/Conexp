@@ -33,7 +33,7 @@ public class MoveNodeTool extends CanvasTool {
             figureDrawingCanvas.selectFigure(figure);
         }
         //todo: think and clean based on experience
-        if(figure!=null && SwingUtilities.isRightMouseButton(e)){
+        if (figure != null && SwingUtilities.isRightMouseButton(e)) {
             JPopupMenu popupMenu = new JPopupMenu();
             figureDrawingCanvas.fillPopupMenu(popupMenu, figure);
             if (popupMenu.getComponentCount() != 0) {

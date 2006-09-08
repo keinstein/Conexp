@@ -112,9 +112,6 @@ public class ContextTable extends JTable implements ParamsProvider {
         });
 */
 
-
-
-
         //this line fix an issue with switching focus from window, containing table, when editing is in process
         putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
 
@@ -547,7 +544,7 @@ public class ContextTable extends JTable implements ParamsProvider {
     private ParamInfo[] getNativeParams() {
 
         return new ParamInfo[]{
-            new BooleanParamInfo("Compressed", compressView)
+                new BooleanParamInfo("Compressed", compressView)
         };
     }
 

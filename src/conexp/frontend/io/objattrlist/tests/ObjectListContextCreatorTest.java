@@ -27,29 +27,29 @@ public class ObjectListContextCreatorTest extends TestCase {
 
     public static void testReadingWithEmptyLine() {
         String[] data = {"O1:",
-                         "",
-                         "O2:A1;A2"
+                "",
+                "O2:A1;A2"
         };
         ExtendedContextEditingInterface expectedContext = SetBuilder.makeContext(new String[]{"O1", "O2"}, new String[]{"A1", "A2"}, new int[][]
-        {{0, 0},
-         {1, 1}});
+                {{0, 0},
+                        {1, 1}});
 
         doTestReading(data, expectedContext);
         String[] data2 = {"O1:",
-                          "                                             ",
-                          "O2:A1;A2"};
+                "                                             ",
+                "O2:A1;A2"};
 
         doTestReading(data2, expectedContext);
     }
 
     public static void testReadingWithComments() {
         String[] data = {
-            "O1:A1",
-            "%aaaaa;klklöklkök;äkkklölk",
-            "O2:A2"};
+                "O1:A1",
+                "%aaaaa;klklöklkök;äkkklölk",
+                "O2:A2"};
         ExtendedContextEditingInterface expectedContext = SetBuilder.makeContext(new String[]{"O1", "O2"}, new String[]{"A1", "A2"}, new int[][]
-        {{1, 0},
-         {0, 1}});
+                {{1, 0},
+                        {0, 1}});
 
         doTestReading(data, expectedContext);
     }

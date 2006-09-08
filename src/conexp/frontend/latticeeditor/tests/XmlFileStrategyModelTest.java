@@ -8,8 +8,8 @@
 package conexp.frontend.latticeeditor.tests;
 
 import conexp.frontend.latticeeditor.XMLFileStrategyModel;
-import conexp.util.exceptions.ConfigFatalError;
 import conexp.tests.TestPathResolver;
+import conexp.util.exceptions.ConfigFatalError;
 import junit.framework.TestCase;
 import util.testing.TestUtil;
 

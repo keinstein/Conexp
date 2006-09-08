@@ -24,6 +24,7 @@ public interface Set extends Cloneable, IPartiallyOrdered {
     int SUPERSET = 2;
     int NOT_COMPARABLE = 3;
 //-----------------------------
+
     /**
      * compares two sets
      *
@@ -36,13 +37,12 @@ public interface Set extends Cloneable, IPartiallyOrdered {
 
     int lexCompareGanter(Set set);
 
-
-
-
 //-------------------------
+
     /* return maximal number of elements in set*/
     int size();
 //-------------------------
+
     /**
      * *****************************************************
      * return number of elements in set

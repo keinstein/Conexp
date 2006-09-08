@@ -13,9 +13,7 @@ import conexp.experimenter.framework.IMeasurementDescription;
 import conexp.experimenter.framework.IMeasurementProtocol;
 import conexp.experimenter.framework.MeasurementDescription;
 import conexp.experimenter.framework.MeasurementProtocol;
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 import java.util.Iterator;
 
@@ -75,10 +73,10 @@ public class MeasurementProtocolTest extends TestCase {
 
     public static void testBuildFromStrings() {
         IMeasurementProtocol protocol = MeasurementProtocol.buildMeasurementProtocolFromStrings(new String[][]{
-            {"One", "false"},
-            {"Two", "true"},
-            {"Three", "false"},
-            {"Four", "true"},
+                {"One", "false"},
+                {"Two", "true"},
+                {"Three", "false"},
+                {"Four", "true"},
         });
 
         checkProtocolForExpectedTypesOfMeasures(protocol,

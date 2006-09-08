@@ -16,6 +16,7 @@ import java.util.Set;
 
 /**
  * Creation date: (06.07.01 12:00:23)
+ *
  * @author
  */
 public class ExperimentRunner {
@@ -38,18 +39,18 @@ public class ExperimentRunner {
         if (!isStoreOperationCount()) {
             return MeasurementProtocol.buildMeasurementProtocolFromStrings(
                     new String[][]{
-                        {RUNTIME, "false"},
-                        {MEMORY_USAGE, "false"}
+                            {RUNTIME, "false"},
+                            {MEMORY_USAGE, "false"}
                     }
             );
         } else {
-           return MeasurementProtocol.buildMeasurementProtocolFromStrings(
-                   new String[][]{
-                       {RUNTIME, "false"},
-                       {MEMORY_USAGE, "false"},
-                       {OPERATION_COUNT, "false"}
-                   }
-           );
+            return MeasurementProtocol.buildMeasurementProtocolFromStrings(
+                    new String[][]{
+                            {RUNTIME, "false"},
+                            {MEMORY_USAGE, "false"},
+                            {OPERATION_COUNT, "false"}
+                    }
+            );
         }
     }
 
@@ -115,7 +116,7 @@ public class ExperimentRunner {
         try {
             experiment.setUp(rel);
 
-            if(isStoreOperationCount()){
+            if (isStoreOperationCount()) {
                 setFactory.resetStatictics();
             }
             long startMemory = MemoryUtil.freeMemory();
@@ -131,7 +132,7 @@ public class ExperimentRunner {
             res.setMeasurementProtocol(getExpRunnerMeasurementProtocol());
             res.setMeasurement(RUNTIME, new Long(timeOfExecution));
             res.setMeasurement(MEMORY_USAGE, new Long(memoryUsed));
-            if(isStoreOperationCount()){
+            if (isStoreOperationCount()) {
                 res.setMeasurement(OPERATION_COUNT, setFactory.getSnapshot());
             }
 
@@ -284,7 +285,7 @@ public class ExperimentRunner {
     }
 
     private boolean parameterIsSupportedByExperiment(IMeasurementProtocol protocol, String paramName) {
-        if(getExpRunnerMeasurementProtocol().hasMeasurementWithName(paramName)){
+        if (getExpRunnerMeasurementProtocol().hasMeasurementWithName(paramName)) {
             return true;
         }
         return protocol.hasMeasurementWithName(paramName);
@@ -449,6 +450,6 @@ public class ExperimentRunner {
     }
 
     protected boolean isStoreOperationCount() {
-        return setFactory!=null;
+        return setFactory != null;
     }
 }

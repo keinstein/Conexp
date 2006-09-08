@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 public class OperationStatistic extends OperationCountHolder implements OperationCodes {
 
-    private OperationStatistic(long[] frequencies){
+    private OperationStatistic(long[] frequencies) {
         super(frequencies);
     }
 

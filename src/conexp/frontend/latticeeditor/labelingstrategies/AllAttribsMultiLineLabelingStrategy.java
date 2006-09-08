@@ -20,7 +20,7 @@ public class AllAttribsMultiLineLabelingStrategy extends MultiLineLabelingStrate
     }
 
     public double getLabelLocationAngleInRadians() {
-        return 1.5*Math.PI;
+        return 1.5 * Math.PI;
     }
 
     public void setLabelForConcept(ConceptSetDrawing drawing,

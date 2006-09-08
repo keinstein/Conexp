@@ -17,6 +17,7 @@ public class ButtonParamInfo extends AbstractParamInfo {
 
     /**
      * ButtonParamInfo constructor comment.
+     *
      * @param label java.lang.String
      */
     public ButtonParamInfo(String label, String buttonText, ActionListener actionListener) {
@@ -29,6 +30,7 @@ public class ButtonParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (17.06.01 0:53:05)
+     *
      * @return javax.swing.table.TableCellRenderer
      */
     public javax.swing.table.TableCellRenderer getParamRenderer() {
@@ -39,6 +41,7 @@ public class ButtonParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (17.06.01 0:53:05)
+     *
      * @return java.lang.Object
      */
     public Object getValue() {
@@ -49,6 +52,7 @@ public class ButtonParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (17.06.01 0:53:05)
+     *
      * @return javax.swing.table.TableCellEditor
      */
     protected javax.swing.table.TableCellEditor makeEditor() {

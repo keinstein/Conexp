@@ -14,15 +14,15 @@ public interface OperationCodes {
 
     int SIZE = 0;
 
-    int ELEMENT_COUNT =SIZE+1;
-    int LENGTH =ELEMENT_COUNT + 1;
-    int OUT_UPPER_BOUND = LENGTH +1;
+    int ELEMENT_COUNT = SIZE + 1;
+    int LENGTH = ELEMENT_COUNT + 1;
+    int OUT_UPPER_BOUND = LENGTH + 1;
 
-    int IS_EMPTY = OUT_UPPER_BOUND +1;
+    int IS_EMPTY = OUT_UPPER_BOUND + 1;
     int IN = IS_EMPTY + 1;
-    int OUT= IN+1;
+    int OUT = IN + 1;
 
-    int FIRST_IN = OUT +1;
+    int FIRST_IN = OUT + 1;
     int NEXT_IN = FIRST_IN + 1;
 
     int FIRST_OUT = NEXT_IN + 1;
@@ -43,25 +43,25 @@ public interface OperationCodes {
     int LAST_QUERY = IS_EQUAL_PART_ORDERED;
 
     //modifications
-    int PUT_OPERATION = LAST_QUERY+1;
+    int PUT_OPERATION = LAST_QUERY + 1;
     int REMOVE_OPERATION = PUT_OPERATION + 1;
     int AND_OPERATION = REMOVE_OPERATION + 1;
     int OR_OPERATION = AND_OPERATION + 1;
     int AND_NOT_OPERATION = OR_OPERATION + 1;
-    int CLEAR_SET_OPERATION = AND_NOT_OPERATION +1;
+    int CLEAR_SET_OPERATION = AND_NOT_OPERATION + 1;
     int FILL_OPERATION = CLEAR_SET_OPERATION + 1;
-    int COPY =FILL_OPERATION + 1;
+    int COPY = FILL_OPERATION + 1;
 
     //size modifications
     int RESIZE_OPERATION = COPY + 1;
-    int EXCLUDE_OPERATION = RESIZE_OPERATION +1;
+    int EXCLUDE_OPERATION = RESIZE_OPERATION + 1;
     int APPEND_OPERATION = EXCLUDE_OPERATION + 1;
 
     //java object interface
     int HASH_CODE_CALL = APPEND_OPERATION + 1;
 
     //copy creation
-    int MAKE_MODIFIABLE_COPY = HASH_CODE_CALL+1;
+    int MAKE_MODIFIABLE_COPY = HASH_CODE_CALL + 1;
     int CLONE = MAKE_MODIFIABLE_COPY + 1;
     int MAKE_MODIFIABLE_FRAGMENT = CLONE + 1;
 

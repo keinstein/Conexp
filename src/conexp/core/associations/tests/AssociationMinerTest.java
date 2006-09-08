@@ -21,9 +21,9 @@ public abstract class AssociationMinerTest extends TestCase {
     public void testAssociationMiner() {
         AssociationMiner miner = makeAssociationMiner();
         Context cxt = SetBuilder.makeContext(new int[][]{
-            {0, 1, 1},
-            {1, 0, 1},
-            {1, 1, 0}
+                {0, 1, 1},
+                {1, 0, 1},
+                {1, 1, 0}
         });
         DependencySet dependencySet = new DependencySet(cxt);
         miner.setContext(cxt);
@@ -42,8 +42,8 @@ public abstract class AssociationMinerTest extends TestCase {
     public void testGetSupportForSet() {
         AssociationMiner miner = makeAssociationMiner();
         Context cxt = SetBuilder.makeContext(new int[][]{
-            {0, 0, 0},
-            {0, 1, 1}
+                {0, 0, 0},
+                {0, 1, 1}
         });
         DependencySet dependencySet = new DependencySet(cxt);
         miner.setContext(cxt);

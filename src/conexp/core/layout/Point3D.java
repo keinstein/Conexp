@@ -15,8 +15,8 @@ public class Point3D extends Point2D.Double {
     private Point2D previousForce;
     private static float factor = (float) 0.5;
     Point2D proj2d;
-    float normalizedX;	// These will be x, y, z scaled so that they are
-    float normalizedY;	// between 0 and 1.
+    float normalizedX;    // These will be x, y, z scaled so that they are
+    float normalizedY;    // between 0 and 1.
     float normalizedZ;
 
     public Point3D() {

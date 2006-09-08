@@ -25,7 +25,7 @@ public class LatticeComponentTest extends TestCase {
 
     protected void setUp() {
         int[][] relation = new int[][]{{0, 1, 1},
-                                       {1, 0, 0}};
+                {1, 0, 0}};
         latticeComponent = ComponentsObjectMother.makeLatticeComponent(relation);
     }
 
@@ -48,7 +48,7 @@ public class LatticeComponentTest extends TestCase {
 
     public void testCalcLattice() {
         latticeComponent = ComponentsObjectMother.makeLatticeComponent(new int[][]{{1, 1, 1},
-                                                {0, 1, 1}});
+                {0, 1, 1}});
 
         latticeComponent.calculateLattice();
         assertTrue(latticeComponent.getLattice().isValid());
@@ -56,7 +56,7 @@ public class LatticeComponentTest extends TestCase {
 
     public void testCalcLattice2() {
         latticeComponent = ComponentsObjectMother.makeLatticeComponent(new int[][]{{1, 1, 1},
-                                                            {0, 1, 1}});
+                {0, 1, 1}});
         latticeComponent.calculateLattice();
         assertTrue(latticeComponent.getLattice().isValid());
         assertTrue(!latticeComponent.getDrawing().isEmpty());
@@ -64,8 +64,8 @@ public class LatticeComponentTest extends TestCase {
 
     public void testCalcPartialLattice() {
         latticeComponent = ComponentsObjectMother.makeLatticeComponent(new int[][]{{0, 1, 1},
-                                                                                   {1, 0, 1},
-                                                                                   {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         latticeComponent.calculateLattice();
         assertTrue(latticeComponent.getLattice().isValid());
         assertTrue(!latticeComponent.getDrawing().isEmpty());
@@ -79,9 +79,9 @@ public class LatticeComponentTest extends TestCase {
     public static void testCoordinatesAssignment() {
 
         LatticeComponent component = ComponentsObjectMother.makeLatticeComponentWithSimpleLayoutEngine(new int[][]{
-            {0, 1, 1},
-            {1, 0, 1},
-            {1, 1, 0}
+                {0, 1, 1},
+                {1, 0, 1},
+                {1, 1, 0}
         });
         component.calculateAndLayoutLattice();
         final LatticeDrawing drawing = component.getDrawing();
@@ -97,8 +97,8 @@ public class LatticeComponentTest extends TestCase {
 
     public void testMakeCopy() {
         latticeComponent = ComponentsObjectMother.makeLatticeComponent(new int[][]{{0, 1, 1},
-                                                                                   {1, 0, 1},
-                                                                                   {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         latticeComponent.calculateLattice();
         latticeComponent.setUpLatticeRecalcOnMasksChange();
         LatticeComponent other = latticeComponent.makeCopy();
@@ -116,8 +116,8 @@ public class LatticeComponentTest extends TestCase {
 
     public void testMakeCopy2() {
         latticeComponent = ComponentsObjectMother.makeLatticeComponentWithSimpleLayoutEngine(new int[][]{{0, 1, 1},
-                                                                                   {1, 0, 1},
-                                                                                   {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         latticeComponent.calculateAndLayoutLattice();
         final LatticeSupplier other = latticeComponent.makeCopy();
         assertNotSame(latticeComponent, other);

@@ -31,29 +31,29 @@ public class ConceptIdealIteratorTest extends TestCase {
 
     public static void testExp() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{1, 0},
-                                                         {0, 1}}, new DepthSearchCalculator());
+                {0, 1}}, new DepthSearchCalculator());
         testEnumerator(lat, new int[]{1, 1}, new int[][]{{1, 1}});
         testEnumerator(lat, new int[]{0, 1}, new int[][]{{1, 1},
-                                                         {0, 1}});
+                {0, 1}});
         testEnumerator(lat, new int[]{1, 0}, new int[][]{{1, 1},
-                                                         {1, 0}});
+                {1, 0}});
         testEnumerator(lat, new int[]{0, 0}, new int[][]{{0, 0},
-                                                         {1, 0},
-                                                         {0, 1},
-                                                         {1, 1}});
+                {1, 0},
+                {0, 1},
+                {1, 1}});
 
     }
 
     public static void testLinear() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{1, 0, 0},
-                                                         {1, 1, 0},
-                                                         {1, 1, 1}}, new DepthSearchCalculator());
+                {1, 1, 0},
+                {1, 1, 1}}, new DepthSearchCalculator());
         testEnumerator(lat, new int[]{1, 1, 1}, new int[][]{{1, 1, 1}});
         testEnumerator(lat, new int[]{1, 1, 0}, new int[][]{{1, 1, 0},
-                                                            {1, 1, 1}});
+                {1, 1, 1}});
         testEnumerator(lat, new int[]{1, 0, 0}, new int[][]{{1, 0, 0},
-                                                            {1, 1, 0},
-                                                            {1, 1, 1}});
+                {1, 1, 0},
+                {1, 1, 1}});
 
     }
 

@@ -31,7 +31,7 @@ public class NestedLineDiagramDrawingTest extends ConceptSetDrawingTest {
 
     protected void setUp() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1},
-                                                         {1, 0}});
+                {1, 0}});
 
         outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 0}, new int[]{1, 1});
         LatticeDrawing outerDrawing = new LatticeDrawing();
@@ -78,9 +78,9 @@ public class NestedLineDiagramDrawingTest extends ConceptSetDrawingTest {
     public void testGatherInnerQuerys() {
 
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1, 1},
-                                                         {1, 0, 1, 1},
-                                                         {1, 1, 0, 1},
-                                                         {1, 1, 1, 0}});
+                {1, 0, 1, 1},
+                {1, 1, 0, 1},
+                {1, 1, 1, 0}});
 
         outer = SetBuilder.makeLatticeWithContextAndFeatureMask(cxt, new int[]{1, 1, 0, 0}, new int[]{1, 1, 1, 1});
         LatticeDrawing outerDrawing = new LatticeDrawing();

@@ -11,22 +11,25 @@ import conexp.frontend.components.LatticeComponent;
  * Time: 1:43:37
  * To change this template use Options | File Templates.
  */
-public class LatticeComponentFactory{
+public class LatticeComponentFactory {
     static ILatticeComponentFactory ourInstance;
-    static{
+
+    static {
         configureDefault();
     }
-    private LatticeComponentFactory() {}
+
+    private LatticeComponentFactory() {
+    }
 
     public static void setOurInstance(ILatticeComponentFactory ourInstance) {
         LatticeComponentFactory.ourInstance = ourInstance;
     }
 
-    public static void configureDefault(){
+    public static void configureDefault() {
         setOurInstance(DefaultLatticeComponentFactory.getInstance());
     }
 
-    public static void configureTest(){
+    public static void configureTest() {
         setOurInstance(LatticeComponentFactoryWithSimpleLayout.getInstance());
     }
 
@@ -34,14 +37,14 @@ public class LatticeComponentFactory{
         return getInstance().makeLatticeComponent(cxt);
     }
 
-    public static ILatticeComponentFactory getInstance(){
+    public static ILatticeComponentFactory getInstance() {
         return ourInstance;
     }
 
     private static class LatticeComponentFactoryWithSimpleLayout implements ILatticeComponentFactory {
         private static final ILatticeComponentFactory ourInstance = new LatticeComponentFactoryWithSimpleLayout();
 
-        static ILatticeComponentFactory getInstance(){
+        static ILatticeComponentFactory getInstance() {
             return ourInstance;
         }
 
@@ -55,10 +58,10 @@ public class LatticeComponentFactory{
         }
     }
 
-    private static class DefaultLatticeComponentFactory implements ILatticeComponentFactory{
+    private static class DefaultLatticeComponentFactory implements ILatticeComponentFactory {
         private static final ILatticeComponentFactory ourInstance = new DefaultLatticeComponentFactory();
 
-        static ILatticeComponentFactory getInstance(){
+        static ILatticeComponentFactory getInstance() {
             return ourInstance;
         }
 

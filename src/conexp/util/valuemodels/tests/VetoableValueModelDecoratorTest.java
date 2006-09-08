@@ -14,13 +14,13 @@ import junit.framework.TestCase;
 import util.testing.TestUtil;
 
 public class VetoableValueModelDecoratorTest extends TestCase {
- 
+
     public static void testEquals() {
         IntValueModel one = new IntValueModel("prop", 2);
         VetoableValueModelDecorator first = new VetoableValueModelDecorator(one);
         VetoableValueModelDecorator second = new VetoableValueModelDecorator(one);
         TestUtil.testEqualsAndHashCode(first, second);
-        
+
         IntValueModel two = new IntValueModel("prop", 2);
         VetoableValueModelDecorator third = new VetoableValueModelDecorator(two);
 

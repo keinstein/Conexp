@@ -23,17 +23,17 @@ public class SetRelationTest extends TestCase {
 
     public void testEquals() {
         BinaryRelation rel = SetBuilder.makeRelation(new int[][]{{1, 0, 0},
-                                                                 {0, 1, 0}});
+                {0, 1, 0}});
         BinaryRelation relEquals = SetBuilder.makeRelation(new int[][]{{1, 0, 0},
-                                                                       {0, 1, 0}});
+                {0, 1, 0}});
 
         BinaryRelation sameSizeNotEquals = SetBuilder.makeRelation(new int[][]{{1, 0, 1},
-                                                                               {0, 1, 0}});
+                {0, 1, 0}});
 
         BinaryRelation relNotEquals = SetBuilder.makeRelation(new int[][]{{1, 0, 0},
-                                                                          {0, 1, 0},
-                                                                          {1, 0, 0},
-                                                                          {0, 1, 0}});
+                {0, 1, 0},
+                {1, 0, 0},
+                {0, 1, 0}});
 
         assertEquals(false, rel.equals(null));
         assertEquals(false, rel.equals(relNotEquals));

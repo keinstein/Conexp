@@ -26,8 +26,8 @@ public abstract class SimpleForceLayoutTest extends GenericLayouterTest {
 
     public void testAngleChange() {
         Lattice lat = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0, 0},
-                                                                    {1, 1, 0},
-                                                                    {0, 0, 1}});
+                {1, 1, 0},
+                {0, 0, 1}});
 
         SimpleForceLayout layouter = makeLayouterAndPerformLayout(lat);
         SimpleMockPropertyChangeListener listener = new SimpleMockPropertyChangeListener(Layouter.LAYOUT_CHANGE);
@@ -40,8 +40,8 @@ public abstract class SimpleForceLayoutTest extends GenericLayouterTest {
     public void testForceDistributionParamChange() {
 
         Lattice lat = SetBuilder.makeLatticeWithContext(new int[][]{{1, 0, 0},
-                                                                    {1, 1, 0},
-                                                                    {0, 0, 1}});
+                {1, 1, 0},
+                {0, 0, 1}});
 
         SimpleForceLayout layouter = makeLayouterAndPerformLayout(lat);
         SimpleMockPropertyChangeListener listener = new SimpleMockPropertyChangeListener(Layouter.LAYOUT_PARAMS_CHANGE);
@@ -65,7 +65,7 @@ public abstract class SimpleForceLayoutTest extends GenericLayouterTest {
 
     public void testLatticeCoordsWithMaximalAttraction() {
         final int[][] relation = new int[][]{{1, 0},
-                                             {0, 1}};
+                {0, 1}};
 
         Lattice lat = SetBuilder.makeLatticeWithContext(relation);
         final SimpleForceLayout layouter = (SimpleForceLayout) makeLayouter();

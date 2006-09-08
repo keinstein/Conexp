@@ -20,7 +20,7 @@ public class AllObjectsMultiLineLabelingStrategyTest extends GenericLabelingStra
 
     public void testAdditionOfAttributesAndCleanup() {
         Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{0, 1},
-                                                                        {1, 0}});
+                {1, 0}});
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(lattice);
         assertTrue(drawing.setObjectLabelingStrategyKey(LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY));
@@ -35,10 +35,12 @@ public class AllObjectsMultiLineLabelingStrategyTest extends GenericLabelingStra
     }
 
     public void testGetLabelLocationAngleInRadians() {
-        assertEquals(0.5*Math.PI,
+        assertEquals(0.5 * Math.PI,
                 getNativeStrategy().getLabelLocationAngleInRadians(),
                 0.0001);
     }
 
-    private AllObjectsMultiLineLabelingStrategy getNativeStrategy() {return ((AllObjectsMultiLineLabelingStrategy)labelStrategy);}
+    private AllObjectsMultiLineLabelingStrategy getNativeStrategy() {
+        return ((AllObjectsMultiLineLabelingStrategy) labelStrategy);
+    }
 }

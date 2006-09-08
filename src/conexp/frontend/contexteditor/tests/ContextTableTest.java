@@ -42,9 +42,9 @@ public class ContextTableTest extends TestCase {
 
     protected void setUp() {
         cxt = SetBuilder.makeContext(new int[][]{
-            {1, 0, 0},
-            {0, 1, 0},
-            {0, 0, 0}
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 0}
         });
         table = new ContextTable(cxt);
     }

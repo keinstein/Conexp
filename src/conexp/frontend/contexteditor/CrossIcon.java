@@ -13,18 +13,18 @@ import java.awt.Component;
 import java.awt.Graphics;
 
 class CrossIcon implements Icon {
-    private static final int height = 16;
-    private static final int width = 16;
+    private static final int HEIGHT = 16;
+    private static final int WIDTH = 16;
 
     private static Icon cross;
 
 
     public int getIconHeight() {
-        return height;
+        return HEIGHT;
     }
 
     public int getIconWidth() {
-        return width;
+        return WIDTH;
     }
 
     public void paintIcon(Component c, Graphics g, int x, int y) {
@@ -33,12 +33,12 @@ class CrossIcon implements Icon {
         } else {
             g.setColor(Color.gray);
         }
-        g.drawLine(x, y + 1, x + width - 1, y + height);
-        g.drawLine(x, y, x + width, y + height);
-        g.drawLine(x + 1, y, x + width, y + height - 1);
-        g.drawLine(x, y + height - 1, x + width - 1, y);
-        g.drawLine(x, y + height, x + width, y);
-        g.drawLine(x + 1, y + height, x + width, y + 1);
+        g.drawLine(x, y + 1, x + WIDTH - 1, y + HEIGHT);
+        g.drawLine(x, y, x + WIDTH, y + HEIGHT);
+        g.drawLine(x + 1, y, x + WIDTH, y + HEIGHT - 1);
+        g.drawLine(x, y + HEIGHT - 1, x + WIDTH - 1, y);
+        g.drawLine(x, y + HEIGHT, x + WIDTH, y);
+        g.drawLine(x + 1, y + HEIGHT, x + WIDTH, y + 1);
     }
 
 

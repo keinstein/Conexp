@@ -17,11 +17,10 @@ import java.util.Comparator;
 
 /**
  * @author object
- *
  */
 public class AttributeIncrementalImplicationCalculator
-    extends DefaultBinaryRelationProcessor
-    implements ImplicationCalcStrategy {
+        extends DefaultBinaryRelationProcessor
+        implements ImplicationCalcStrategy {
 
     public void setImplications(ImplicationSet implSet) {
         m_isBasis = implSet;
@@ -88,7 +87,7 @@ public class AttributeIncrementalImplicationCalculator
             } else {
                 if (ieItem.isConcept()) {
                     processStableConcept(sAttributeExtent, nAttributeNumber, ieItem);
-                } else  {
+                } else {
                     processStableImplication(ieItem);
                 }
             }
@@ -257,6 +256,7 @@ public class AttributeIncrementalImplicationCalculator
     private ImplicationSet m_isMinModImpl;
     private ImplicationSet m_isNonMinModImpl;
     private ImplicationSet m_isNonMinModElements;
+
     private static class ImplicationEx extends Implication {
         ImplicationEx(Set sExtent, Set sPremise, Set sConclusion) {
             super(sPremise, sConclusion, sExtent.elementCount());

@@ -66,6 +66,6 @@ public abstract class BasicMultiSelectionEntityMaskImplementation extends BasicE
     }
 
     public String toString() {
-        return StringUtil.extractClassName(getClass().getName())+toSet().toString();
+        return StringUtil.extractClassName(getClass().getName()) + toSet().toString();
     }
 }

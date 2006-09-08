@@ -20,7 +20,7 @@ public class AllAttribsMultiLineLabelingStrategyTest extends GenericLabelingStra
 
     public void testAdditionOfAttributesAndCleanup() {
         Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{0, 1},
-                                                                        {1, 0}});
+                {1, 0}});
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(lattice);
         assertTrue(drawing.setAttributeLabelingStrategyKey(LabelingStrategiesKeys.NO_ATTRIBS_LABELING_STRATEGY));
@@ -38,7 +38,7 @@ public class AllAttribsMultiLineLabelingStrategyTest extends GenericLabelingStra
     public void testGetLabelLocationAngleInRadians() {
         AllAttribsMultiLineLabelingStrategy strategy =
                 ((AllAttribsMultiLineLabelingStrategy) labelStrategy);
-        assertEquals(1.5*Math.PI, strategy.getLabelLocationAngleInRadians(), 0.0001);
+        assertEquals(1.5 * Math.PI, strategy.getLabelLocationAngleInRadians(), 0.0001);
 
     }
 

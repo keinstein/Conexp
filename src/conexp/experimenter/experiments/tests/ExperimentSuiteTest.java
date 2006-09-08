@@ -19,7 +19,7 @@ public class ExperimentSuiteTest extends TestCase {
     protected static void doTestCreateExperimentSet(ExperimentSet set) {
         assertNotNull(set);
         BinaryRelation rel = SetBuilder.makeRelation(new int[][]{{0, 0},
-                                                                                                       {0, 0}});
+                {0, 0}});
         for (int i = 0; i < set.experimentCount(); i++) {
             IExperiment exp = set.experimentAt(i);
             assertNotNull(exp);

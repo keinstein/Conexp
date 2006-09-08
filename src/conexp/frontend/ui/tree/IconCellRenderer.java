@@ -43,12 +43,14 @@ public class IconCellRenderer extends JLabel implements TreeCellRenderer {
 
         if (obj instanceof IconData) {
             IconData idata = (IconData) obj;
-            if (expanded)
+            if (expanded) {
                 setIcon(idata.getExpandedIcon());
-            else
+            } else {
                 setIcon(idata.getIcon());
-        } else
+            }
+        } else {
             setIcon(null);
+        }
 
         setFont(tree.getFont());
         setForeground(sel ? textSelectionColor :

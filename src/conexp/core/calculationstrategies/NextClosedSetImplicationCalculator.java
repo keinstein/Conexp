@@ -39,6 +39,7 @@ public class NextClosedSetImplicationCalculator extends NextClosedSetAlgorithmBa
         this.attributeExplorationCallback = attributeExplorationCallback;
     }
     //-----------------------------------------------------
+
     /**
      * Constructor for the NextClosedSetCalculator object
      */

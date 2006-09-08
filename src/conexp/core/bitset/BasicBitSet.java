@@ -14,8 +14,9 @@ public abstract class BasicBitSet implements ModifiableSet, Cloneable {
     protected int size;
 
     protected BasicBitSet(int nbits) {
-        if (nbits < 0)
+        if (nbits < 0) {
             throw new IndexOutOfBoundsException(Integer.toString(nbits));
+        }
         this.size = nbits;
     }
 
@@ -33,10 +34,12 @@ public abstract class BasicBitSet implements ModifiableSet, Cloneable {
     }
 
     public boolean equals(Object obj) {
-        if (obj == null || !this.getClass().isInstance(obj))
+        if (obj == null || !this.getClass().isInstance(obj)) {
             return false;
-        if (this == obj)
+        }
+        if (this == obj) {
             return true;
+        }
         return isEquals((Set) obj);
     }
 

@@ -217,14 +217,14 @@ public class DefaultMenuSite
         }
 
         private void doAddLineItemToContainer() {
-            if(container instanceof JMenuBar &&
-                    isHelpMenu){
+            if (container instanceof JMenuBar &&
+                    isHelpMenu) {
                 container.add(Box.createHorizontalGlue());
             }
             container.add(lineItem);
         }
 
-        private void addToNewContainer(JComponent container){
+        private void addToNewContainer(JComponent container) {
             setContainer(container);
             doAddLineItemToContainer();
         }
@@ -232,8 +232,8 @@ public class DefaultMenuSite
         private void setContainer(JComponent container) {
             Assert.isTrue(container instanceof JMenu ||
                     container instanceof JMenuBar);
-                Assert.isTrue(!isHelpMenu || container instanceof JMenuBar, "For help menu container should be a JMenuBar");
-            this.container=container;
+            Assert.isTrue(!isHelpMenu || container instanceof JMenuBar, "For help menu container should be a JMenuBar");
+            this.container = container;
 
         }
 

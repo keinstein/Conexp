@@ -16,8 +16,8 @@ public class VirtualLatticeElement extends LatticeElement {
         super(ContextFactoryRegistry.createSet(0), ContextFactoryRegistry.createSet(0));
     }
 
-
 //----------------------------------------------
+
     public boolean isVirtual() {
         return true;
     }

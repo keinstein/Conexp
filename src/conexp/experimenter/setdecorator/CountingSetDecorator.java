@@ -13,7 +13,7 @@ import util.Assert;
  * Time: 2:23:41
  */
 
-public class CountingSetDecorator implements ModifiableSet{
+public class CountingSetDecorator implements ModifiableSet {
 
     public CountingSetDecorator(ModifiableSet inner, OperationStatistic statistic) {
         Assert.isTrue(!(inner instanceof CountingSetDecorator));
@@ -71,8 +71,8 @@ public class CountingSetDecorator implements ModifiableSet{
 
     private Set getWorkingSet(Set set) {
         Set toOperateOn = set;
-        if(set instanceof CountingSetDecorator){
-            CountingSetDecorator decorator = (CountingSetDecorator)set;
+        if (set instanceof CountingSetDecorator) {
+            CountingSetDecorator decorator = (CountingSetDecorator) set;
             toOperateOn = decorator.getInner();
         }
         return toOperateOn;
@@ -128,6 +128,7 @@ public class CountingSetDecorator implements ModifiableSet{
         statistic.register(OperationCodes.FIRST_IN);
         return inner.firstIn();
     }
+
     public int nextIn(int prev) {
         statistic.register(OperationCodes.NEXT_IN);
         return inner.nextIn(prev);
@@ -185,7 +186,7 @@ public class CountingSetDecorator implements ModifiableSet{
     }
 
     private Set getWorkingPartiallyOrdered(IPartiallyOrdered other) {
-        return getWorkingSet((Set)other);
+        return getWorkingSet((Set) other);
     }
 
     public boolean isEqual(IPartiallyOrdered other) {
@@ -206,7 +207,7 @@ public class CountingSetDecorator implements ModifiableSet{
 
     public Object clone() {
         statistic.register(OperationCodes.CLONE);
-        return new CountingSetDecorator((ModifiableSet)inner.clone(), statistic);
+        return new CountingSetDecorator((ModifiableSet) inner.clone(), statistic);
     }
 
     //todo : check, that approach about approach avoids nested registration of operations
@@ -216,15 +217,15 @@ public class CountingSetDecorator implements ModifiableSet{
     }
 
     public boolean equals(Object obj) {
-        if (this == obj){
+        if (this == obj) {
             return true;
         }
-        if (!(obj instanceof CountingSetDecorator)){
+        if (!(obj instanceof CountingSetDecorator)) {
             return inner.equals(obj);
         }
 
         final CountingSetDecorator countingSetDecorator = (CountingSetDecorator) obj;
-        if (!inner.equals(countingSetDecorator.inner)){
+        if (!inner.equals(countingSetDecorator.inner)) {
             return false;
         }
         return true;

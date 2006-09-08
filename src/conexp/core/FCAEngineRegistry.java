@@ -48,7 +48,7 @@ public final class FCAEngineRegistry {
     }
 
     public static void buildIcebergConceptSet(ExtendedContextEditingInterface cxt, int minSupport,
-                                                                          ConceptEnumCallback callback) {
+                                              ConceptEnumCallback callback) {
         getFcaEngine().buildIcebergConceptSet(cxt, minSupport, callback);
     }
 

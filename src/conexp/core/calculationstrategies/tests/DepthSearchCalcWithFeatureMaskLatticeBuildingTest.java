@@ -49,17 +49,17 @@ public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBu
 
     public void testBuildConceptSetWithFeatureMask() {
         int[][] context = new int[][]{{0, 1},
-                                      {1, 0}};
+                {1, 0}};
 
         int[] attributeMask = new int[]{1, 0};
         int[] objectMask = new int[]{1, 1};
         getRealStrategy().setFeatureMasks(SetBuilder.makeSet(attributeMask), SetBuilder.makeSet(objectMask));
 
         int[][] expOutputIntent = new int[][]{{0, 0},
-                                              {1, 0}};
+                {1, 0}};
 
         final int[][] expOutputExtents = new int[][]{{1, 1},
-                                                     {0, 1}};
+                {0, 1}};
 
 
         doTestCalcStrategyWithFeatureMask(context, attributeMask, expOutputIntent,
@@ -83,8 +83,8 @@ public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBu
 
     public void testBuildLatticeForEmptyFeatureMaskCase() {
         int[][] context = new int[][]{{1, 1, 0},
-                                      {1, 0, 1},
-                                      {0, 1, 1}};
+                {1, 0, 1},
+                {0, 1, 1}};
 
         int[] featureMask = new int[]{0, 0, 0};
 
@@ -100,20 +100,20 @@ public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBu
 
     public void testBuildLatticeForBooleanCase() {
         int[][] context = new int[][]{{1, 1, 0},
-                                      {1, 0, 1},
-                                      {0, 1, 1}};
+                {1, 0, 1},
+                {0, 1, 1}};
 
         int[] featureMask = new int[]{1, 0, 1};
 
         int[][] expOutputIntent = new int[][]{{0, 0, 0},
-                                              {0, 0, 1},
-                                              {1, 0, 0},
-                                              {1, 0, 1}};
+                {0, 0, 1},
+                {1, 0, 0},
+                {1, 0, 1}};
 
         final int[][] expOutputExtents = new int[][]{{1, 1, 1},
-                                                     {0, 1, 1},
-                                                     {1, 1, 0},
-                                                     {0, 1, 0}};
+                {0, 1, 1},
+                {1, 1, 0},
+                {0, 1, 0}};
         final int expectedEdgeCount = 4;
 
         doTestCalcStrategyWithFeatureMask(context, featureMask, expOutputIntent, expOutputExtents, expectedEdgeCount);
@@ -123,11 +123,11 @@ public class DepthSearchCalcWithFeatureMaskLatticeBuildingTest extends LatticeBu
     public void testBuildIcebergLattice() {
         getRealStrategy().setSearchConstrainter(new MinSupportConstrainer(2));
         int[][] relation = new int[][]{
-            {1, 0, 1, 1, 0},
-            {0, 1, 1, 0, 1},
-            {1, 1, 1, 0, 1},
-            {0, 1, 0, 0, 1},
-            {1, 1, 1, 0, 1}
+                {1, 0, 1, 1, 0},
+                {0, 1, 1, 0, 1},
+                {1, 1, 1, 0, 1},
+                {0, 1, 0, 0, 1},
+                {1, 1, 1, 0, 1}
         };
         doTestCalcStrategyForExpectedSizeAndEdgeCount(relation, 6, 7);
         getRealStrategy().removeAllSearchConstraints();

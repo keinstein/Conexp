@@ -27,8 +27,8 @@ public class ContextTableModelTest extends TestCase {
 
     protected void setUp() {
         tableModel = new ContextTableModel(SetBuilder.makeContext(new int[][]{
-            {1, 0, 1},
-            {0, 1, 0},
+                {1, 0, 1},
+                {0, 1, 0},
         }));
     }
 
@@ -148,9 +148,9 @@ public class ContextTableModelTest extends TestCase {
 
     public void testDeleteRows() {
         tableModel = new ContextTableModel(SetBuilder.makeContext(new int[][]{
-            {0, 1},
-            {1, 0},
-            {0, 1}
+                {0, 1},
+                {1, 0},
+                {0, 1}
         }));
         assertEquals(3, tableModel.getObjectCountModel().getValue());
         tableModel.removeRows(new int[]{1, 3});
@@ -312,9 +312,9 @@ public class ContextTableModelTest extends TestCase {
 
     public void testUndoOnClarifyObjects() {
         tableModel = new ContextTableModel(SetBuilder.makeContext(new int[][]{
-            {1, 0, 1},
-            {0, 1, 0},
-            {0, 1, 0}
+                {1, 0, 1},
+                {0, 1, 0},
+                {0, 1, 0}
         }));
 
         doTestDoUndoCommand(new ContextTableModifier() {
@@ -342,9 +342,9 @@ public class ContextTableModelTest extends TestCase {
 
     public void testUndoOnReduceObjects() {
         tableModel = new ContextTableModel(SetBuilder.makeContext(new int[][]{
-            {1, 0, 1},
-            {0, 1, 0},
-            {0, 1, 0}
+                {1, 0, 1},
+                {0, 1, 0},
+                {0, 1, 0}
         }));
 
         doTestDoUndoCommand(new ContextTableModifier() {

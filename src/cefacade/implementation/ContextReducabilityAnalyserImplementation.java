@@ -97,7 +97,8 @@ public class ContextReducabilityAnalyserImplementation implements IContextReduca
             } else {
                 reducibleClasses.add(info);
             }
-            for (Iterator equivalentObjectIterator = equivalentObjects.iterator(); equivalentObjectIterator.hasNext();) {
+            for (Iterator equivalentObjectIterator = equivalentObjects.iterator(); equivalentObjectIterator.hasNext();)
+            {
                 Integer equiObjId = (Integer) equivalentObjectIterator.next();
                 objectIdToReducabilityInfoMap.put(equiObjId, info);
             }

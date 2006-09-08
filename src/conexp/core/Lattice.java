@@ -73,22 +73,22 @@ public class Lattice extends ConceptsCollection {
     public Lattice() {
     }
 
-
 //------------------------------------------
+
     public void addElementSetLinks(LatticeElement el) {
         addElement(el);
         Assert.isTrue(zero != null);
         setLinks(zero, el);
     }
 
-
 //------------------------------------------------
+
     public void calcHeight() {
         doTopSort(new CalcHeightTopSortBlock());
     }
 
-
 //------------------------------------------
+
     public LatticeElement elementAt(int index) {
         return (LatticeElement) conceptAt(index);
     }
@@ -106,15 +106,16 @@ public class Lattice extends ConceptsCollection {
         return (LatticeElement) findConceptWithIntent(intent);
     }
 
-
 //------------------------------------------
+
     public LatticeElement findLatticeElementForAttr(int attr) {
         LatticeElement curr = getZero();
         Assert.isTrue(null != curr, "Zero in findElement can't be null");
         boolean find = false;
         while (!find) {
             ConceptIterator iter = curr.getSuccessors().iterator();
-            outer:{
+            outer:
+            {
                 while (iter.hasNext()) {
                     LatticeElement succ = iter.nextConcept();
                     if (succ.getAttribs().in(attr)) {
@@ -128,8 +129,8 @@ public class Lattice extends ConceptsCollection {
         return curr.getAttribs().in(attr) ? curr : null;
     }
 
-
 //-----------------------------------------------------------------
+
     /**
      * *************************************************************
      * this function is strongly connected with used order, it should be used
@@ -152,7 +153,8 @@ public class Lattice extends ConceptsCollection {
         while (!find) {
             ConceptIterator iter = curr.getPredecessors().iterator();
             Assert.isTrue(curr.getPredCount() > 0);
-            outer:{
+            outer:
+            {
                 while (iter.hasNext()) {
                     LatticeElement pred = iter.nextConcept();
                     switch (attribs.compare(pred.getAttribs())) {
@@ -179,8 +181,8 @@ public class Lattice extends ConceptsCollection {
         return curr.getAttribs().equals(attribs) ? curr : null;
     }
 
-
 //------------------------------------------
+
     /**
      * This method returns height of lattice, if lattice is builded(one is set)
      * and -1 otherwise
@@ -189,14 +191,14 @@ public class Lattice extends ConceptsCollection {
         return null == one ? -1 : one.getHeight();
     }
 
-
 //------------------------------------------
+
     public LatticeElement getOne() {
         return one;
     }
 
-
 //------------------------------------------
+
     public LatticeElement getZero() {
         return zero;
     }
@@ -302,8 +304,8 @@ public class Lattice extends ConceptsCollection {
         setOne(top);
     }
 
-
 //------------------------------------------
+
     public void setOne(LatticeElement el) {
         Assert.isTrue(el.getIndex() != -1, "Before setting one add to elements");
         one = el;
@@ -313,8 +315,8 @@ public class Lattice extends ConceptsCollection {
         setZero(el);
     }
 
-
 //------------------------------------------
+
     public void setZero(LatticeElement el) {
         Assert.isTrue(el.getIndex() != -1, "Before setting zero add to elements");
         zero = el;

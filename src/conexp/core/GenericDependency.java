@@ -75,7 +75,7 @@ public class GenericDependency implements Dependency {
     }
 
     public String toString() {
-        return this.getClass().getName() + " : " + premise + "==>" + conclusion+":"+ruleCharacteristics;
+        return this.getClass().getName() + " : " + premise + "==>" + conclusion + ":" + ruleCharacteristics;
     }
 
     private int cachedPremiseLength = -1;

@@ -14,11 +14,12 @@ import conexp.experimenter.framework.MeasurementSet;
 /**
  * Insert the type's description here.
  * Creation date: (21.07.01 15:33:31)
+ *
  * @author Serhiy Yevtushenko
  */
 public class ConceptCountWithMinSupportExperiment extends BaseConceptCalcExperiment {
     public static final String ABSOLUTE_SUPPORT = "ABSOLUTE SUPPORT";
-    public static final  String RELATIVE_SUPPORT = "Relative Support";
+    public static final String RELATIVE_SUPPORT = "Relative Support";
 
     double minSupport = 0;
     int absoluteSupport = 0;
@@ -29,12 +30,12 @@ public class ConceptCountWithMinSupportExperiment extends BaseConceptCalcExperim
         this.minSupport = minSupport;
     }
 
-    DepthSearchCalculatorWithFeatureMask getNativeStrategy(){
-        return (DepthSearchCalculatorWithFeatureMask)strategy;
+    DepthSearchCalculatorWithFeatureMask getNativeStrategy() {
+        return (DepthSearchCalculatorWithFeatureMask) strategy;
     }
 
     protected void setRelationToStrategy(BinaryRelation rel) {
-        absoluteSupport = (int)Math.ceil(minSupport*rel.getRowCount());
+        absoluteSupport = (int) Math.ceil(minSupport * rel.getRowCount());
         super.setRelationToStrategy(rel);
     }
 
@@ -57,11 +58,11 @@ public class ConceptCountWithMinSupportExperiment extends BaseConceptCalcExperim
         super.saveResults(results);
         results.setMeasurement(ABSOLUTE_SUPPORT, absoluteSupport);
         results.setMeasurement(RELATIVE_SUPPORT, new Double(minSupport));
-        Long runTime = (Long)results.getMeasurementValue(ExperimentRunner.RUNTIME);
-        results.setMeasurement(TIME_PER_CONCEPT, new Double(runTime.doubleValue()/getConceptsCount()));
+        Long runTime = (Long) results.getMeasurementValue(ExperimentRunner.RUNTIME);
+        results.setMeasurement(TIME_PER_CONCEPT, new Double(runTime.doubleValue() / getConceptsCount()));
     }
 
     protected int getConceptsCount() {
-        return ((ConceptNumCallback)coll).getConceptCount();
+        return ((ConceptNumCallback) coll).getConceptCount();
     }
 }

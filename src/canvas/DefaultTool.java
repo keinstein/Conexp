@@ -14,9 +14,9 @@ import java.awt.event.MouseEvent;
 
 
 public class DefaultTool extends MouseAdapter implements Tool {
-    EventListenerList listenersList=null;
+    EventListenerList listenersList = null;
 
-    boolean active=false;
+    boolean active = false;
 
     protected EventListenerList getListenersList() {
         if (null == listenersList) {

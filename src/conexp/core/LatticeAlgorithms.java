@@ -26,7 +26,8 @@ public class LatticeAlgorithms {
         }
         LatticeElement current = startNode;
         while (true) {
-            outer:{
+            outer:
+            {
                 LatticeElementCollection parents = current.getParents();
                 for (Iterator iterator = parents.iterator(); iterator.hasNext();) {
                     LatticeElement parent = (LatticeElement) iterator.next();
@@ -49,9 +50,9 @@ public class LatticeAlgorithms {
         }
     }
 
-    public static int latticeWidthLowerBound(Lattice lattice){
+    public static int latticeWidthLowerBound(Lattice lattice) {
         int height = lattice.getHeight();
-        final int[] ranksMatrix = new int[height+1];
+        final int[] ranksMatrix = new int[height + 1];
         lattice.forEach(new Lattice.LatticeElementVisitor() {
             public void visitNode(LatticeElement node) {
                 ranksMatrix[node.getHeight()]++;
@@ -61,18 +62,18 @@ public class LatticeAlgorithms {
     }
 
     private static int maximum(final int[] anArray) {
-        final int lastIndex = anArray.length-1;
+        final int lastIndex = anArray.length - 1;
         int max = anArray[lastIndex];
-        for(int i=anArray.length; --i>=0;){
+        for (int i = anArray.length; --i >= 0;) {
             int value = anArray[i];
-            if(value>max){
+            if (value > max) {
                 max = value;
             }
         }
         return max;
     }
 
-    public static int latticeWidthUpperBound(Lattice lattice){
-        return lattice.conceptsCount()-lattice.getHeight();
+    public static int latticeWidthUpperBound(Lattice lattice) {
+        return lattice.conceptsCount() - lattice.getHeight();
     }
 }

@@ -81,6 +81,7 @@ public class ToolBuilder {
         return (isToggle ? (AbstractButton) new JToggleButton() : (AbstractButton) new JButton());
     }
     //----------------------------------------------
+
     /**
      * Create a menu for the app.  By default this pulls the
      * definition of the menu from the associated resource file.

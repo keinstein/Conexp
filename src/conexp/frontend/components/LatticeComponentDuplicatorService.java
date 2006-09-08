@@ -6,9 +6,9 @@ package conexp.frontend.components;
  * Time: 16:30:28
  */
 public class LatticeComponentDuplicatorService {
-    static ILatticeComponentDuplicator ourInstance=new LatticeComponentSerializationDuplicator();
+    static ILatticeComponentDuplicator ourInstance = new LatticeComponentSerializationDuplicator();
 
-    public static ILatticeComponentDuplicator getInstance(){
+    public static ILatticeComponentDuplicator getInstance() {
         return ourInstance;
     }
 

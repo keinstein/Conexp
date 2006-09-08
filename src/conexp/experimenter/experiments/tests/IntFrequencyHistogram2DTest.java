@@ -25,8 +25,8 @@ public class IntFrequencyHistogram2DTest extends TestCase {
         histogram.putValue(2, 0);
         histogram.putValue(-3, 1);
 
-        int[] values= histogram.getXValues();
-        assertTrue(Arrays.equals(new int[]{-3, -1,  0, 2}, values));
+        int[] values = histogram.getXValues();
+        assertTrue(Arrays.equals(new int[]{-3, -1, 0, 2}, values));
         System.out.println(histogram);
     }
 

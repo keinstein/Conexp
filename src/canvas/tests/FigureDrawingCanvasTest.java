@@ -51,7 +51,7 @@ public class FigureDrawingCanvasTest extends TestCase {
         canvas.deactivateTool();
 
         assertEquals(Arrays.asList(new String[]{"activate",
-                                                "deactivate"}), tool.getCallsList());
+                "deactivate"}), tool.getCallsList());
     }
 
     public static void testFiringOfSelectionEvent() {

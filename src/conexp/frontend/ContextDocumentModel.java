@@ -332,8 +332,8 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier {
 
     private static ImplicationCalcStrategyFactory[] getAvailableImplicationStrategiesFactory() {
         return new ImplicationCalcStrategyFactory[]{
-            AttributeIncrementalImplicationCalculatorFactory.getInstance(),
-            NextClosedSetImplicationCalculatorFactory.getInstance()};
+                AttributeIncrementalImplicationCalculatorFactory.getInstance(),
+                NextClosedSetImplicationCalculatorFactory.getInstance()};
     }
 
     public void findImplications() {
@@ -343,7 +343,9 @@ public class ContextDocumentModel extends BasePropertyChangeSupplier {
 
 
     interface RecalcPolicy extends GenericStrategy, ContextListener {
-    };
+    }
+
+    ;
 
     public abstract class AbstractRecalcPolicy extends DefaultContextListener
             implements RecalcPolicy {

@@ -15,7 +15,7 @@ import conexp.core.tests.MockAttributeInformationSupplier;
 import conexp.experimenter.framework.MeasurementProtocol;
 import conexp.experimenter.framework.MeasurementSet;
 
-public abstract class ImplicationSetExperiment extends BasicExperiment{
+public abstract class ImplicationSetExperiment extends BasicExperiment {
     protected ImplicationCalcStrategy implicationCalcStrategy;
     protected ImplicationSet implications;
 

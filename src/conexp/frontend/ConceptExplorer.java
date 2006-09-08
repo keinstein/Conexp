@@ -26,9 +26,9 @@ public class ConceptExplorer {
         setupTracer();
         setupLookAndFeel();
         setupErrorHandler();
-        ConceptFrame frame=null;
+        ConceptFrame frame = null;
         try {
-            frame=makeMainFrame();
+            frame = makeMainFrame();
         } catch (Exception ex) {
             //System.out.println(StringUtil.stackTraceToString(ex));
             Trace.gui.errorm(StringUtil.stackTraceToString(ex));
@@ -51,10 +51,11 @@ public class ConceptExplorer {
 
         //Validate frames that have preset sizes
         //Pack frames that have useful preferred size info, e.g. from their layout
-        if (packFrame)
+        if (packFrame) {
             frame.pack();
-        else
+        } else {
             frame.validate();
+        }
 
         WindowUtil.centerWindow(frame);
         frame.setVisible(true);

@@ -11,7 +11,7 @@ package conexp.experimenter.experiments;
 import conexp.core.ImplicationCalcStrategy;
 import conexp.core.calculationstrategies.NextClosedSetImplicationCalculator;
 
-public class NextClosedSetImplicationCalculatorExperiment extends ImplicationSetExperiment{
+public class NextClosedSetImplicationCalculatorExperiment extends ImplicationSetExperiment {
     protected ImplicationCalcStrategy makeImplicationsCalcStrategy() {
         return new NextClosedSetImplicationCalculator();
     }

@@ -29,7 +29,7 @@ public class AllObjectsLabelingStrategyTest extends GenericLabelingStrategyTest 
 
     public void testAdditionOfAttributesAndCleanup() {
         Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{0, 1},
-                                                                        {1, 0}});
+                {1, 0}});
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(lattice);
         assertTrue(drawing.setObjectLabelingStrategyKey(LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY));

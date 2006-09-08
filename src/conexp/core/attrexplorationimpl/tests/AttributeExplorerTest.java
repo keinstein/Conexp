@@ -58,14 +58,14 @@ public class AttributeExplorerTest extends TestCase {
 
         int[][] context = new int[][]{{1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 0}, {1, 1, 1}},
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 0}, {1, 1, 1}},
 
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 0}, {0, 1, 1}}
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 0}, {0, 1, 1}}
         };
         int[][][] contrExamples = new int[][][]{{{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 1}}};
         int[][][] expImplicationTheory = new int[][][]{{{0, 0, 0}, {0, 1, 1}, {2}}};
         int[][] expContext = new int[][]{{1, 1, 1},
-                                         {0, 1, 1}};
+                {0, 1, 1}};
 
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
@@ -74,19 +74,19 @@ public class AttributeExplorerTest extends TestCase {
 
         int[][] context = new int[][]{{1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 0}, {1, 1, 1}},
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 0}, {0, 1, 1}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 1}, {0, 1, 0}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 1, 0}, {0, 0, 1}}
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 0}, {1, 1, 1}},
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 0}, {0, 1, 1}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 1}, {0, 1, 0}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 1, 0}, {0, 0, 1}}
         };
         int[][][] contrExamples = new int[][][]{{{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 1}},
-                                                {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {1, 0, 0}}};
+                {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {1, 0, 0}}};
 
         int[][][] expImplicationTheory = new int[][][]{{{0, 0, 1}, {0, 1, 0}, {2}},
-                                                       {{0, 1, 0}, {0, 0, 1}, {2}}};
+                {{0, 1, 0}, {0, 0, 1}, {2}}};
         int[][] expContext = new int[][]{{1, 1, 1},
-                                         {0, 1, 1},
-                                         {1, 0, 0}};
+                {0, 1, 1},
+                {1, 0, 0}};
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
 
@@ -94,98 +94,98 @@ public class AttributeExplorerTest extends TestCase {
 
         int[][] context = new int[][]{{1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 0}, {1, 1, 1}},
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 0}, {0, 1, 1}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 1}, {0, 1, 0}},
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 1, 0}, {0, 0, 1}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {1, 1, 0}, {0, 0, 1}}
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 0}, {1, 1, 1}},
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 0}, {0, 1, 1}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 1}, {0, 1, 0}},
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 1, 0}, {0, 0, 1}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {1, 1, 0}, {0, 0, 1}}
         };
         int[][][] contrExamples = new int[][][]{
-            {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 1}},
-            {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {1, 0, 0}},
-            {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 0}}
+                {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 1}},
+                {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {1, 0, 0}},
+                {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 0}}
         };
 
         int[][][] expImplicationTheory = new int[][][]{{{0, 0, 1}, {0, 1, 0}, {2}},
-                                                       {{1, 1, 0}, {0, 0, 1}, {1}}};
+                {{1, 1, 0}, {0, 0, 1}, {1}}};
         int[][] expContext = new int[][]{{1, 1, 1},
-                                         {0, 1, 1},
-                                         {1, 0, 0},
-                                         {0, 1, 0}};
+                {0, 1, 1},
+                {1, 0, 0},
+                {0, 1, 0}};
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
 
     public static void testInteractionModeWithRejectionOfUsualClosure() {
 
         int[][] context = new int[][]{{0, 0, 0},
-                                      {1, 1, 1}};
+                {1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 1}, {1, 1, 0}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 1}, {0, 1, 0}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 1, 0}, {0, 0, 1}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {1, 0, 0}, {0, 1, 1}}
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 1}, {1, 1, 0}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 1}, {0, 1, 0}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 1, 0}, {0, 0, 1}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {1, 0, 0}, {0, 1, 1}}
         };
         int[][][] contrExamples = new int[][][]{{{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 1}}};
 
         int[][][] expImplicationTheory = new int[][][]{
-            {{0, 0, 1}, {0, 1, 0}, {2}},
-            {{0, 1, 0}, {0, 0, 1}, {2}},
-            {{1, 0, 0}, {0, 1, 1}, {1}}
+                {{0, 0, 1}, {0, 1, 0}, {2}},
+                {{0, 1, 0}, {0, 0, 1}, {2}},
+                {{1, 0, 0}, {0, 1, 1}, {1}}
         };
         int[][] expContext = new int[][]{{0, 0, 0},
-                                         {1, 1, 1},
-                                         {0, 1, 1}};
+                {1, 1, 1},
+                {0, 1, 1}};
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
 
     public static void testInteractionModeWithContrExampleNotContainingPremise() {
 
         int[][] context = new int[][]{{0, 0, 0},
-                                      {1, 1, 1}};
+                {1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 1}, {1, 1, 0}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 1}, {0, 1, 0}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 1, 0}, {0, 0, 1}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {1, 0, 0}, {0, 1, 1}}
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 1}, {1, 1, 0}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 1}, {0, 1, 0}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 1, 0}, {0, 0, 1}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {1, 0, 0}, {0, 1, 1}}
         };
         int[][][] contrExamples = new int[][][]{
-            {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {1, 0, 0}},
-            {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 1}}
+                {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {1, 0, 0}},
+                {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 1}}
         };
 
         int[][][] expImplicationTheory = new int[][][]{
-            {{0, 0, 1}, {0, 1, 0}, {2}},
-            {{0, 1, 0}, {0, 0, 1}, {2}},
-            {{1, 0, 0}, {0, 1, 1}, {1}}
+                {{0, 0, 1}, {0, 1, 0}, {2}},
+                {{0, 1, 0}, {0, 0, 1}, {2}},
+                {{1, 0, 0}, {0, 1, 1}, {1}}
         };
         int[][] expContext = new int[][]{{0, 0, 0},
-                                         {1, 1, 1},
-                                         {0, 1, 1}};
+                {1, 1, 1},
+                {0, 1, 1}};
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
 
     public static void testInteractionModeWithContrExampleThatIsNotARealContrExample() {
         int[][] context = new int[][]{{0, 0, 0},
-                                      {1, 1, 1}};
+                {1, 1, 1}};
         int[][][] expQuerySequence = new int[][][]{
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 1}, {1, 1, 0}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 1, 0}, {1, 0, 1}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {1, 0, 0}, {0, 1, 1}}
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 1}, {1, 1, 0}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 1, 0}, {1, 0, 1}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {1, 0, 0}, {0, 1, 1}}
         };
 
         int[][][] contrExamples = new int[][][]{
-            {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {1, 1, 1}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, null}
+                {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {1, 1, 1}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, null}
         };
 
         int[][][] expImplicationTheory = new int[][][]{
-            {{0, 0, 1}, {1, 1, 0}, {1}},
-            {{0, 1, 0}, {1, 0, 1}, {1}},
-            {{1, 0, 0}, {0, 1, 1}, {1}}
+                {{0, 0, 1}, {1, 1, 0}, {1}},
+                {{0, 1, 0}, {1, 0, 1}, {1}},
+                {{1, 0, 0}, {0, 1, 1}, {1}}
         };
 
         int[][] expContext = new int[][]{{0, 0, 0},
-                                         {1, 1, 1}};
+                {1, 1, 1}};
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
 
     }
@@ -194,28 +194,28 @@ public class AttributeExplorerTest extends TestCase {
 
 
         int[][] context = new int[][]{{0, 0, 1, 1},
-                                      {1, 1, 0, 0}};
+                {1, 1, 0, 0}};
 
         int[][][] expQuerySequence = new int[][][]{
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 0, 1}, {0, 0, 1, 0}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 1, 0}, {0, 0, 0, 1}},
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 1, 0, 0}, {1, 0, 0, 0}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {1, 0, 0, 0}, {0, 1, 0, 0}}
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 0, 1}, {0, 0, 1, 0}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {0, 0, 1, 0}, {0, 0, 0, 1}},
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 1, 0, 0}, {1, 0, 0, 0}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, {1, 0, 0, 0}, {0, 1, 0, 0}}
         };
 
         int[][][] contrExamples = new int[][][]{
-            {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 0, 1}},
-            {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, null}
+                {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 0, 1}},
+                {{MockAttributeExplorerCallback.ACCEPT_IMPLICATION}, null}
         };
 
         int[][][] expImplicationTheory = new int[][][]{
-            {{0, 0, 0, 1}, {0, 0, 1, 0}, {1}},
-            {{0, 0, 1, 0}, {0, 0, 0, 1}, {1}},
-            {{0, 1, 0, 0}, {1, 0, 0, 0}, {1}},
-            {{1, 0, 0, 0}, {0, 1, 0, 0}, {1}}
+                {{0, 0, 0, 1}, {0, 0, 1, 0}, {1}},
+                {{0, 0, 1, 0}, {0, 0, 0, 1}, {1}},
+                {{0, 1, 0, 0}, {1, 0, 0, 0}, {1}},
+                {{1, 0, 0, 0}, {0, 1, 0, 0}, {1}}
         };
         int[][] expContext = new int[][]{{0, 0, 1, 1},
-                                         {1, 1, 0, 0}};
+                {1, 1, 0, 0}};
 
         doTestAttributeExploration(context, expQuerySequence, contrExamples, expContext, expImplicationTheory);
     }
@@ -223,27 +223,27 @@ public class AttributeExplorerTest extends TestCase {
 
     public static void testAttributeExplorationSequence() {
         int[][] context = {{1, 0, 0, 0},
-                           {0, 1, 0, 0},
-                           {0, 0, 1, 0},
-                           {0, 0, 0, 1}};
+                {0, 1, 0, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 1}};
         int[][][] expQuerySequence = new int[][][]{
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 1, 1}, {1, 1, 0, 0}},
-            {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 1, 0, 1}, {1, 0, 1, 0}},
-            {{MockAttributeExplorerCallback.STOP}, {0, 1, 1, 0}, {1, 0, 0, 1}}
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 0, 1, 1}, {1, 1, 0, 0}},
+                {{MockAttributeExplorerCallback.REJECT_IMPLICATION}, {0, 1, 0, 1}, {1, 0, 1, 0}},
+                {{MockAttributeExplorerCallback.STOP}, {0, 1, 1, 0}, {1, 0, 0, 1}}
         };
 
         int[][][] contrExamples = new int[][][]{
-            {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 0, 1, 1}},
-            {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 0, 1}}
+                {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 0, 1, 1}},
+                {{MockAttributeExplorerCallback.HAS_CONTREXAMPLE}, {0, 1, 0, 1}}
         };
 
         int[][] expContext = new int[][]{
-            {1, 0, 0, 0},
-            {0, 1, 0, 0},
-            {0, 0, 1, 0},
-            {0, 0, 0, 1},
-            {0, 0, 1, 1},
-            {0, 1, 0, 1}};
+                {1, 0, 0, 0},
+                {0, 1, 0, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 1},
+                {0, 0, 1, 1},
+                {0, 1, 0, 1}};
 
         int[][][] expImplicationTheory = new int[][][]{
         };

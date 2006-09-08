@@ -55,10 +55,10 @@ public class ConExpXMLWriter implements DocumentWriter {
         outputter.output(xmlDoc, writer);
     }
 
-  /*  private static Element storeImplicationsSets(ContextDocument contextDocument) {
-        return null;
-    }
-*/
+    /*  private static Element storeImplicationsSets(ContextDocument contextDocument) {
+            return null;
+        }
+    */
     private static Element storeRecalculationPolicy(ContextDocument contextDocument) {
         return makeSettingElementForStrategyValueItem(ConExpXMLElements.RECALCULATION_POLICY, contextDocument.getContextDocumentModel().
                 getRecalculationPolicy());
@@ -109,7 +109,7 @@ public class ConExpXMLWriter implements DocumentWriter {
 
     private static void storeSelection(ContextDocument document, LatticeSupplier latticeComponent, Element latticeDrawingElement) {
         final FigureDrawingCanvas viewForLatticeComponent = document.getViewForLatticeComponent(latticeComponent);
-        if(viewForLatticeComponent.hasSelection()){
+        if (viewForLatticeComponent.hasSelection()) {
             latticeDrawingElement.addContent(storeSelection(viewForLatticeComponent));
         }
     }
@@ -119,8 +119,8 @@ public class ConExpXMLWriter implements DocumentWriter {
     }
 
     private static void storeFeatureMasks(LatticeSupplier latticeComponent, Element latticeElement) {
-       doStoreFeatureMask(latticeElement, latticeComponent.getAttributeMask(), ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT);
-       doStoreFeatureMask(latticeElement, latticeComponent.getObjectMask(), ConExpXMLElements.OBJECT_MASK_ELEMENT);
+        doStoreFeatureMask(latticeElement, latticeComponent.getAttributeMask(), ConExpXMLElements.ATTRIBUTE_MASK_ELEMENT);
+        doStoreFeatureMask(latticeElement, latticeComponent.getObjectMask(), ConExpXMLElements.OBJECT_MASK_ELEMENT);
     }
 
     private static void doStoreFeatureMask(Element latticeElement, final SetProvidingEntitiesMask entityMask, final String maskElementID) {
@@ -146,10 +146,10 @@ public class ConExpXMLWriter implements DocumentWriter {
         if (drawing.hasLabelsForObjects()) {
             latticeDrawingElement.addContent(storeObjectLabels(drawing));
         }
-        if(drawing.hasUpLabelsForConcepts()){
+        if (drawing.hasUpLabelsForConcepts()) {
             latticeDrawingElement.addContent(storeUpConceptLabels(drawing));
         }
-        if(drawing.hasDownLabelsForConcepts()){
+        if (drawing.hasDownLabelsForConcepts()) {
             latticeDrawingElement.addContent(storeDownConceptLabels(drawing));
         }
 /*
@@ -282,11 +282,11 @@ public class ConExpXMLWriter implements DocumentWriter {
                 drawing.getLayoutStrategyItem());
     }
 
-    private static Element storeGridSizeX(LatticeDrawing drawing){
+    private static Element storeGridSizeX(LatticeDrawing drawing) {
         return makeSettingElement(ConExpXMLElements.GRID_SIZE_X, String.valueOf(drawing.getDrawParams().getGridSizeX()));
     }
 
-    private static Element storeGridSizeY(LatticeDrawing drawing){
+    private static Element storeGridSizeY(LatticeDrawing drawing) {
         return makeSettingElement(ConExpXMLElements.GRID_SIZE_Y, String.valueOf(drawing.getDrawParams().getGridSizeY()));
     }
 

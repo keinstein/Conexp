@@ -4,6 +4,7 @@ package conexp.experimenter.relationsequences;
 /**
  * Insert the type's description here.
  * Creation date: (06.07.01 13:50:59)
+ *
  * @author
  */
 public abstract class ParametricRelationGenerationStrategy extends BaseRelationGenerationStrategy {
@@ -17,6 +18,7 @@ public abstract class ParametricRelationGenerationStrategy extends BaseRelationG
     /**
      * Insert the method's description here.
      * Creation date: (06.07.01 16:23:41)
+     *
      * @return java.lang.String
      */
     public String describeStrategy() {
@@ -40,6 +42,7 @@ public abstract class ParametricRelationGenerationStrategy extends BaseRelationG
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 17:28:47)
+     *
      * @param relNo int
      */
     public int calcRelationSizeX(int relNo) {
@@ -50,6 +53,7 @@ public abstract class ParametricRelationGenerationStrategy extends BaseRelationG
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 17:29:32)
+     *
      * @param relNo int
      */
     public int calcRelationSizeY(int relNo) {

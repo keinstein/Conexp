@@ -13,6 +13,7 @@ import conexp.experimenter.framework.MeasurementSet;
 /**
  * Insert the type's description here.
  * Creation date: (21.07.01 15:33:31)
+ *
  * @author Serhiy Yevtushenko
  */
 public class ConceptCountWithMaxConceptSizeExperiment extends BaseConceptCalcExperiment {
@@ -22,11 +23,11 @@ public class ConceptCountWithMaxConceptSizeExperiment extends BaseConceptCalcExp
 
     public ConceptCountWithMaxConceptSizeExperiment(int maxSize) {
         super("conexp.core.calculationstrategies.DepthSearchCalculatorWithFeatureMask");
-        this.maxSize= maxSize;
+        this.maxSize = maxSize;
     }
 
-    DepthSearchCalculatorWithFeatureMask getNativeStrategy(){
-        return (DepthSearchCalculatorWithFeatureMask)strategy;
+    DepthSearchCalculatorWithFeatureMask getNativeStrategy() {
+        return (DepthSearchCalculatorWithFeatureMask) strategy;
     }
 
     protected void doLocalSetup() {
@@ -46,11 +47,11 @@ public class ConceptCountWithMaxConceptSizeExperiment extends BaseConceptCalcExp
     public void saveResults(MeasurementSet results) {
         super.saveResults(results);
         results.setMeasurement(MAX_SIZE, maxSize);
-        Long runTime = (Long)results.getMeasurementValue(ExperimentRunner.RUNTIME);
-        results.setMeasurement(TIME_PER_CONCEPT, new Double(runTime.doubleValue()/getConceptsCount()));
+        Long runTime = (Long) results.getMeasurementValue(ExperimentRunner.RUNTIME);
+        results.setMeasurement(TIME_PER_CONCEPT, new Double(runTime.doubleValue() / getConceptsCount()));
     }
 
     protected int getConceptsCount() {
-        return ((ConceptNumCallback)coll).getConceptCount();
+        return ((ConceptNumCallback) coll).getConceptCount();
     }
 }

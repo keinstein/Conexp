@@ -51,14 +51,22 @@ public abstract class ConceptDependentRadiusCalcStrategy extends AbstractNodeRad
     }
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof ConceptDependentRadiusCalcStrategy)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof ConceptDependentRadiusCalcStrategy)) {
+            return false;
+        }
         if (!getClass().equals(obj.getClass())) {
             return false;
         }
         final ConceptDependentRadiusCalcStrategy conceptDependentRadiusCalcStrategy = (ConceptDependentRadiusCalcStrategy) obj;
-        if (deltaRadius != conceptDependentRadiusCalcStrategy.deltaRadius) return false;
-        if (maximalValue != conceptDependentRadiusCalcStrategy.maximalValue) return false;
+        if (deltaRadius != conceptDependentRadiusCalcStrategy.deltaRadius) {
+            return false;
+        }
+        if (maximalValue != conceptDependentRadiusCalcStrategy.maximalValue) {
+            return false;
+        }
         return super.equals(obj);
     }
 

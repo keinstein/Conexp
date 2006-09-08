@@ -39,12 +39,12 @@ public class ImplicationsBuilder {
             int[][] implicationDescription = implicationDescriptions[i];
             if (implicationDescription.length == 2) {
                 dep = makeImplication(implicationDescription[0],
-                                implicationDescription[1]);
+                        implicationDescription[1]);
             } else {
                 Assert.isTrue(implicationDescription.length == 3);
                 dep = makeImplication(implicationDescription[0],
-                                implicationDescription[1],
-                                implicationDescription[2][0]);
+                        implicationDescription[1],
+                        implicationDescription[2][0]);
             }
             ret.addImplication(dep);
         }

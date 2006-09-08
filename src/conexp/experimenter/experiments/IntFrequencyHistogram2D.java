@@ -38,7 +38,7 @@ public class IntFrequencyHistogram2D {
     public int[] getXValues() {
         ObjectIntConvertor objectIntConvertor = new ObjectIntConvertor() {
             public int objToInt(Object o) {
-                    return ((IntPair2D) o).getX();
+                return ((IntPair2D) o).getX();
             }
         };
         return getValueArray(objectIntConvertor);
@@ -48,7 +48,7 @@ public class IntFrequencyHistogram2D {
     public int[] getYValues() {
         ObjectIntConvertor objectIntConvertor = new ObjectIntConvertor() {
             public int objToInt(Object o) {
-                    return ((IntPair2D) o).getY();
+                return ((IntPair2D) o).getY();
             }
         };
         return getValueArray(objectIntConvertor);

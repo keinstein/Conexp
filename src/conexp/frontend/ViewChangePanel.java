@@ -22,6 +22,7 @@ public abstract class ViewChangePanel extends javax.swing.JPanel implements View
     private ActionMap actionChain = new ActionMap();
 
 //---------------------------------------------
+
     public Component getViewComponent() {
         return this;
     }
@@ -36,6 +37,7 @@ public abstract class ViewChangePanel extends javax.swing.JPanel implements View
         return actionChain;
     }
 //---------------------------------------------
+
     public Action[] getActions() {
         return null;
     }
@@ -48,7 +50,7 @@ public abstract class ViewChangePanel extends javax.swing.JPanel implements View
 
     protected String getLocalizedString(String key) {
         String string = getResources().getString(key);
-        Assert.isTrue(string!=null);
+        Assert.isTrue(string != null);
         return string;
     }
 }

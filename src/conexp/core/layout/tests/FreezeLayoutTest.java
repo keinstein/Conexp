@@ -65,8 +65,8 @@ public class FreezeLayoutTest extends SimpleForceLayoutTest {
     protected void setUp() {
         fLayout = new FreeseLayout();
         lat = SetBuilder.makeLattice(new int[][]{{1, 0, 0},
-                                                 {1, 1, 0},
-                                                 {0, 0, 1}});
+                {1, 1, 0},
+                {0, 0, 1}});
         fLayout.initLayout(lat, new DefaultLayoutParameters());
         fLayout.calcInitialPlacement();
     }

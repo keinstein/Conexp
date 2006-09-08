@@ -32,5 +32,5 @@ public class BoundsBlock implements FigureBlock {
             bounds.add(temp);
         }
     }
-    
+
 }

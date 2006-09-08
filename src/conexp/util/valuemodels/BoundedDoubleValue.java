@@ -49,6 +49,7 @@ public class BoundedDoubleValue extends conexp.util.valuemodels.ValueModelBase {
     /**
      * Insert the method's description here.
      * Creation date: (31.03.01 0:00:58)
+     *
      * @return int
      */
     public int getResolution() {
@@ -58,6 +59,7 @@ public class BoundedDoubleValue extends conexp.util.valuemodels.ValueModelBase {
     /**
      * Insert the method's description here.
      * Creation date: (02.02.01 0:18:53)
+     *
      * @return int
      */
     public double getValue() {
@@ -67,6 +69,7 @@ public class BoundedDoubleValue extends conexp.util.valuemodels.ValueModelBase {
     /**
      * Insert the method's description here.
      * Creation date: (31.03.01 0:00:58)
+     *
      * @param newResolution int
      */
     public void setResolution(int newResolution) {
@@ -78,6 +81,7 @@ public class BoundedDoubleValue extends conexp.util.valuemodels.ValueModelBase {
     /**
      * Insert the method's description here.
      * Creation date: (02.02.01 0:18:53)
+     *
      * @param newValue int
      */
     public void setValue(double newValue) {
@@ -94,6 +98,7 @@ public class BoundedDoubleValue extends conexp.util.valuemodels.ValueModelBase {
     /**
      * Insert the method's description here.
      * Creation date: (31.03.01 0:08:41)
+     *
      * @return double
      */
     public double tickVal() {

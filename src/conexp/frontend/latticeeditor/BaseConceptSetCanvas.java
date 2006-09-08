@@ -48,7 +48,6 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
     }
 
 
-
     protected void init() {
         setFigureMoveStrategyAccordingToOptions();
         addOptionsListener();
@@ -56,21 +55,20 @@ public class BaseConceptSetCanvas extends LatticeCanvas {
 
     private void addOptionsListener() {
         getPainterOptions().addPropertyChangeListener(eventHandler);
-        addPropertyChangeListener(CANVAS_SCHEME_PROPERTY, new PropertyChangeListener(){
+        addPropertyChangeListener(CANVAS_SCHEME_PROPERTY, new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent evt) {
                 //assert CANVAS_SCHEME_PROPERTY.equals(evt.getPropertyName());
-                LatticePainterOptions oldOptions = (LatticePainterOptions)evt.getOldValue();
-                if(oldOptions!=null){
+                LatticePainterOptions oldOptions = (LatticePainterOptions) evt.getOldValue();
+                if (oldOptions != null) {
                     oldOptions.removePropertyChangeListener(eventHandler);
                 }
-                LatticePainterOptions newOptions = (LatticePainterOptions)evt.getNewValue();
-                if(null!=newOptions){
+                LatticePainterOptions newOptions = (LatticePainterOptions) evt.getNewValue();
+                if (null != newOptions) {
                     newOptions.addPropertyChangeListener(eventHandler);
                 }
             }
         });
     }
-
 
 
     public void refresh() {

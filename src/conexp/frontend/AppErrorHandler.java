@@ -11,8 +11,7 @@ public interface AppErrorHandler {
      * to the user.
      *
      * @param messageKey Key of the message which includes format
-     * @param exception Exception, which has occured
-     *
+     * @param exception  Exception, which has occured
      */
     void reportAppErrorMessage(String messageKey, Throwable exception);
 

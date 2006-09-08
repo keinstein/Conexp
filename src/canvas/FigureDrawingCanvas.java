@@ -5,7 +5,6 @@
  **/
 
 
-
 package canvas;
 
 import canvas.tools.SelectionTool;
@@ -37,7 +36,7 @@ import java.util.Iterator;
 
 public class FigureDrawingCanvas extends ZoomableCanvas {
     public static final String SELECTION_PROPERTY = "Selection";
-    public static final String DRAWING="Drawing";
+    public static final String DRAWING = "Drawing";
 
 
     private CanvasFigureDrawingListener figureDrawingChangeListener = new CanvasFigureDrawingListener();
@@ -57,7 +56,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     }
 
     public CanvasScheme getOptions() {
-        if(null==options){
+        if (null == options) {
             options = makeDefaultCanvasScheme();
         }
         return options;
@@ -217,7 +216,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     protected void initPaint() {
     }
 
-    protected void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform) throws sun.dc.pr.PRException{
+    protected void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform) throws sun.dc.pr.PRException {
         initPaint();
         drawBlankImage(g, d);
         drawLineDiagram(g, scalingTransform);
@@ -350,8 +349,8 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     }
 
     protected AffineTransform getTranslatingTransform() {
-        if(null==translatingTransform){
-            translatingTransform=makeTranslatingTransform(viewPoint);
+        if (null == translatingTransform) {
+            translatingTransform = makeTranslatingTransform(viewPoint);
         }
         return translatingTransform;
     }

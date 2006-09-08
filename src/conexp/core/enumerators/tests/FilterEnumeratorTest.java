@@ -28,17 +28,17 @@ public class FilterEnumeratorTest extends TestCase {
 
     public static void testExp() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{1, 0},
-                                                         {0, 1}}, new DepthSearchCalculator());
+                {0, 1}}, new DepthSearchCalculator());
 
         testFilterEnumerator(lat, new int[]{0, 0}, new int[][]{{0, 0}});
         testFilterEnumerator(lat, new int[]{0, 1}, new int[][]{{0, 0},
-                                                               {0, 1}});
+                {0, 1}});
         testFilterEnumerator(lat, new int[]{1, 0}, new int[][]{{0, 0},
-                                                               {1, 0}});
+                {1, 0}});
         testFilterEnumerator(lat, new int[]{1, 1}, new int[][]{{0, 0},
-                                                               {1, 0},
-                                                               {0, 1},
-                                                               {1, 1}});
+                {1, 0},
+                {0, 1},
+                {1, 1}});
 
     }
 
@@ -56,14 +56,14 @@ public class FilterEnumeratorTest extends TestCase {
 
     public static void testLinear() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{1, 0, 0},
-                                                         {1, 1, 0},
-                                                         {1, 1, 1}}, new DepthSearchCalculator());
+                {1, 1, 0},
+                {1, 1, 1}}, new DepthSearchCalculator());
         testFilterEnumerator(lat, new int[]{1, 0, 0}, new int[][]{{1, 0, 0}});
         testFilterEnumerator(lat, new int[]{1, 1, 0}, new int[][]{{1, 0, 0},
-                                                                  {1, 1, 0}});
+                {1, 1, 0}});
         testFilterEnumerator(lat, new int[]{1, 1, 1}, new int[][]{{1, 0, 0},
-                                                                  {1, 1, 0},
-                                                                  {1, 1, 1}});
+                {1, 1, 0},
+                {1, 1, 1}});
 
     }
 

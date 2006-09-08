@@ -5,6 +5,7 @@ import conexp.core.ConceptsCollection;
 /**
  * Insert the type's description here.
  * Creation date: (21.07.01 13:46:49)
+ *
  * @author
  */
 public abstract class ConceptSetExperiment extends BaseConceptCalcExperiment {

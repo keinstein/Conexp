@@ -95,5 +95,4 @@ public class AttributtesDecompositionStrategy implements ChainDecompositionStrat
     }
 
 
-    
 }

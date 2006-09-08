@@ -32,14 +32,13 @@ public class ConceptsCollection {
         super();
     }
 
-
 //------------------------------------------
+
     public void addElement(Concept el) {
         Assert.isTrue(el.getIndex() == -1, "Element is already in lattice");
         el.setIndex(elements.size());
         elements.add(el);
     }
-
 
 //------------------------------------------
 
@@ -47,8 +46,8 @@ public class ConceptsCollection {
         elements.clear();
     }
 
-
 //------------------------------------------
+
     public Concept conceptAt(int index) {
         return (Concept) elements.get(index);
     }
@@ -57,8 +56,8 @@ public class ConceptsCollection {
         return elements.size();
     }
 
-
 //------------------------------------------
+
     public Iterator elements() {
         return elements.iterator();
     }
@@ -73,8 +72,8 @@ public class ConceptsCollection {
         return null;
     }
 
-
 //------------------------------------------
+
     public boolean isEmpty() {
         return elements.isEmpty();
     }

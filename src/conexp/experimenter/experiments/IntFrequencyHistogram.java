@@ -18,12 +18,12 @@ public class IntFrequencyHistogram {
     Map values;
 
     public IntFrequencyHistogram(String name) {
-        this.name= name;
+        this.name = name;
         values = new TreeMap();
     }
 
     public void putValue(int value) {
-        values.put(toObject(value), toObject(getFrequency(value)+1));
+        values.put(toObject(value), toObject(getFrequency(value) + 1));
     }
 
     private static Integer toObject(int value) {
@@ -31,16 +31,16 @@ public class IntFrequencyHistogram {
     }
 
     public int getFrequency(int value) {
-        Integer integer = (Integer)values.get(toObject(value));
-        return null==integer ? 0 :  integer.intValue();
+        Integer integer = (Integer) values.get(toObject(value));
+        return null == integer ? 0 : integer.intValue();
     }
 
     public int[] getValues() {
         Set c = values.keySet();
         int[] ret = new int[values.size()];
-        int i=0;
+        int i = 0;
         for (Iterator iterator = c.iterator(); iterator.hasNext();) {
-            ret[i++]= ((Integer) iterator.next()).intValue();
+            ret[i++] = ((Integer) iterator.next()).intValue();
 
         }
         return ret;

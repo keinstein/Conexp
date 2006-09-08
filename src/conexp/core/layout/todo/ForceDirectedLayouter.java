@@ -66,7 +66,7 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
                 pt.setLocation(drawParams.getGridSizeX() * j
                         * Math.cos(k * angle),
                         drawParams.getGridSizeY() *
-                        (getConceptInfo(lattice.getOne()).rank - rank));
+                                (getConceptInfo(lattice.getOne()).rank - rank));
             }
             i += j;
         }
@@ -117,8 +117,9 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
                 LatticeElement curr = lattice.elementAt(j);
                 ElementInfo v = getLocalConceptInfo(curr.getIndex());
                 double distance = Point3D.distance(u.coords, v.coords);
-                if (distance > 3 * k)
+                if (distance > 3 * k) {
                     continue;
+                }
                 if (distance == 0.0) {
                     distance = 0.0001;
                 }
@@ -142,8 +143,9 @@ public class ForceDirectedLayouter extends GenericForceDirectedLayouter {
             LatticeElement curr = lattice.elementAt(j);
             ElementInfo v = getLocalConceptInfo(curr.getIndex());
             double force = v.deltaMove.size();
-            if (force < 0.00001)
+            if (force < 0.00001) {
                 continue;
+            }
             v.addDeltaToCurrPosWithFactor(strategy.deltaMove(curr, force, temp));
         }
     }

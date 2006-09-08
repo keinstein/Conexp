@@ -95,30 +95,34 @@ public class StrategyValueItem implements ActionListener {
     }
 
     public String toString() {
-        return "StrategyValueItem["+getPropertyName()+":"+getValueDescription()+"]";
+        return "StrategyValueItem[" + getPropertyName() + ":" + getValueDescription() + "]";
     }
 
-    public void restoreFromPreferences(Preferences preferences){
+    public void restoreFromPreferences(Preferences preferences) {
         setValueByKey(preferences.get(getPropertyName(), ""));
     }
 
-    public void storeToPreferences(Preferences preferences){
+    public void storeToPreferences(Preferences preferences) {
         preferences.put(getPropertyName(), getStrategyKey());
     }
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof StrategyValueItem)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof StrategyValueItem)) {
+            return false;
+        }
 
         final StrategyValueItem strategyValueItem = (StrategyValueItem) obj;
 
-        if (value != strategyValueItem.value){
+        if (value != strategyValueItem.value) {
             return false;
         }
-        if (!model.equals(strategyValueItem.model)){
+        if (!model.equals(strategyValueItem.model)) {
             return false;
         }
-        if (!propertyName.equals(strategyValueItem.propertyName)){
+        if (!propertyName.equals(strategyValueItem.propertyName)) {
             return false;
         }
 

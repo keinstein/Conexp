@@ -18,8 +18,8 @@ public class ContextObjectMaskTest extends ContextMaskBaseTest {
 
     protected void setUp() throws Exception {
         cxt = SetBuilder.makeContext(new int[][]{{1},
-                                                 {0},
-                                                 {1}});
+                {0},
+                {1}});
         mask = makeInstance();
     }
 
@@ -50,7 +50,7 @@ public class ContextObjectMaskTest extends ContextMaskBaseTest {
 
     protected Context makeContenxtWithNotEqualMask() {
         return SetBuilder.makeContext(new int[][]{{0},
-                                                  {1}});
+                {1}});
     }
 
     protected void increaseOtherEntities(final int increment) {
@@ -73,7 +73,7 @@ public class ContextObjectMaskTest extends ContextMaskBaseTest {
     public void testCleanUp() {
         int contextListenerCount = cxt.getContextListenersCount();
         getMask().cleanUp();
-        assertEquals(contextListenerCount-1, cxt.getContextListenersCount());
+        assertEquals(contextListenerCount - 1, cxt.getContextListenersCount());
     }
 
 }

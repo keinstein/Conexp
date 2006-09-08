@@ -31,10 +31,10 @@ public abstract class DiagramEditorPanel extends FigureDrawingCanvas {
 
     public Action[] getActions() {
         return new Action[]{
-            new MoveNodeAction(),
-            new AddNewNodeAction(),
-            new DeleteFigureAction(),
-            new ConnectFigureAction(),
+                new MoveNodeAction(),
+                new AddNewNodeAction(),
+                new DeleteFigureAction(),
+                new ConnectFigureAction(),
         };
     }
 

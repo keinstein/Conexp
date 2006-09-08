@@ -12,7 +12,7 @@ import java.awt.Graphics2D;
 
 
 public class PaintBlock implements FigureBlock {
-    Graphics2D graphics=null;
+    Graphics2D graphics = null;
     private CanvasScheme opt;
 
     public PaintBlock(CanvasScheme opt) {

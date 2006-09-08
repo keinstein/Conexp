@@ -23,7 +23,7 @@ public class AllObjectsMultiLineLabelingStrategy extends MultiLineLabelingStrate
 
     //todo:sye - change to package local
     public double getLabelLocationAngleInRadians() {
-        return 0.5*Math.PI;
+        return 0.5 * Math.PI;
     }
 
     protected MultiLineConceptEntityFigure makeLabelForConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {

@@ -210,7 +210,7 @@ public class ConExpViewManager {
     public String getActiveViewId() {
         //actually return active view place
         final IViewInfo viewInfo = getViewInfo(activeView);
-        if(viewInfo!=null){
+        if (viewInfo != null) {
             return viewInfo.getViewPlace();
         }
         return "";
@@ -220,7 +220,7 @@ public class ConExpViewManager {
         return (View) viewMap.get(viewInfo);
     }
 
-    public IViewInfo getViewInfo(View view){
+    public IViewInfo getViewInfo(View view) {
         for (Iterator iterator = viewMap.entrySet().iterator();
              iterator.hasNext();) {
             Map.Entry entry = (Map.Entry) iterator.next();

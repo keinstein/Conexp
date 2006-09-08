@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.util.valuemodels;
 
 import java.beans.VetoableChangeListener;
@@ -25,6 +24,7 @@ public interface IVetoableValueModel extends IValueModel {
     /**
      * Insert the method's description here.
      * Creation date: (02.02.01 21:58:41)
+     *
      * @param newVetoPropertyChange java.beans.VetoableChangeSupport
      */
     void setVetoPropertyChange(VetoableChangeSupport newVetoPropertyChange);

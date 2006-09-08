@@ -36,7 +36,9 @@ class LayoutCommandQueue {
 
     public void put(LayoutEvent evt) throws InterruptedException {
         Assert.isTrue(null != evt);
-        if (Thread.interrupted()) throw new InterruptedException();
+        if (Thread.interrupted()) {
+            throw new InterruptedException();
+        }
         synchronized (this) {
             Trace.gui.debugm("processing post command");
             switch (evt.command) {

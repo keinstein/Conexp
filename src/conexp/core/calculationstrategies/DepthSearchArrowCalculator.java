@@ -166,8 +166,8 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
      *@param  attr  Description of Parameter
      */
 
-
     //-----------------------------------------------------
+
     /**
      * Description of the Method
      */
@@ -185,8 +185,8 @@ public class DepthSearchArrowCalculator extends DepthSearchBinaryRelationAlgorit
         }
     }
 
-
     //-----------------------------------------------------
+
     /**
      * Description of the Method
      */

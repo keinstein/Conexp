@@ -8,6 +8,7 @@ import conexp.experimenter.framework.MeasurementSet;
 /**
  * Insert the type's description here.
  * Creation date: (21.07.01 13:46:49)
+ *
  * @author
  */
 public class LatticeBuildExperiment extends ConceptSetExperiment {

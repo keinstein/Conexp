@@ -70,8 +70,8 @@ public class ContextTest extends TestCase {
         };
 
         cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
-                                                 {0, 1, 0},
-                                                 {0, 1, 0}});
+                {0, 1, 0},
+                {0, 1, 0}});
         int expectedNumberOfCalls = 1;
 
         expectStructureChangedCall(cxt, expectedNumberOfCalls, modification);
@@ -80,7 +80,7 @@ public class ContextTest extends TestCase {
 
     public void testTransposeChangingTypesOfObjectsAndAttributes() {
         cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
-                                                 {0, 1, 0}});
+                {0, 1, 0}});
         checkObjectAndAttributesIntegrity(cxt);
         cxt.transpose();
         checkObjectAndAttributesIntegrity(cxt);
@@ -144,12 +144,12 @@ public class ContextTest extends TestCase {
         };
 
         cxt = SetBuilder.makeContext(new int[][]{
-            {1, 1, 0, 0},
-            {0, 1, 0, 0},
-            {0, 1, 0, 1},
-            {0, 1, 0, 0},
-            {0, 1, 0, 1},
-            {0, 0, 0, 0}});
+                {1, 1, 0, 0},
+                {0, 1, 0, 0},
+                {0, 1, 0, 1},
+                {0, 1, 0, 0},
+                {0, 1, 0, 1},
+                {0, 0, 0, 0}});
         int expectedNumberOfCalls = 1;
 
         expectStructureChangedCall(cxt, expectedNumberOfCalls, modification);
@@ -348,7 +348,7 @@ public class ContextTest extends TestCase {
     public void testEquals() {
 
         final int[][] relation = new int[][]{{1, 0},
-                                             {0, 1}};
+                {0, 1}};
         ExtendedContextEditingInterface cxt1 = SetBuilder.makeContext(relation);
         ExtendedContextEditingInterface cxt2 = SetBuilder.makeContext(relation);
 
@@ -510,18 +510,18 @@ public class ContextTest extends TestCase {
 
     public void testUpDownArrowUpdateOnRelationChange() {
         cxt = SetBuilder.makeContext(new int[][]{{1, 0},
-                                                 {1, 1}});
+                {1, 1}});
         assertEquals(SetBuilder.makeRelation(new int[][]{{0, 1},
-                                                         {0, 0}}), cxt.getUpArrow());
+                {0, 0}}), cxt.getUpArrow());
         assertEquals(SetBuilder.makeRelation(new int[][]{{0, 1},
-                                                         {0, 0}}), cxt.getDownArrow());
+                {0, 0}}), cxt.getDownArrow());
 
         cxt.setRelationAt(0, 1, true);
         assertEquals(SetBuilder.makeRelation(new int[][]{{0, 0},
-                                                         {0, 0}}), cxt.getUpArrow());
+                {0, 0}}), cxt.getUpArrow());
 
         assertEquals(SetBuilder.makeRelation(new int[][]{{0, 0},
-                                                         {0, 0}}), cxt.getDownArrow());
+                {0, 0}}), cxt.getDownArrow());
     }
 
     public void testArrowRelationUpdateOnDimensionChange() {
@@ -553,27 +553,27 @@ public class ContextTest extends TestCase {
     public void testArrowRelationCalculation() {
 
         cxt = SetBuilder.makeContext(new int[][]{{0, 0, 0},
-                                                 {0, 0, 0}});
+                {0, 0, 0}});
         assertEquals(SetBuilder.makeRelation(new int[][]{{1, 1, 1},
-                                                         {1, 1, 1}}), cxt.getUpArrow());
+                {1, 1, 1}}), cxt.getUpArrow());
 
         cxt.setRelationAt(0, 0, true);
         assertEquals(SetBuilder.makeRelation(new int[][]{{0, 1, 1},
-                                                         {1, 0, 0}}), cxt.getUpArrow());
+                {1, 0, 0}}), cxt.getUpArrow());
 
         cxt.setRelationAt(0, 1, true);
         assertEquals(SetBuilder.makeRelation(new int[][]{{0, 0, 1},
-                                                         {1, 1, 0}}), cxt.getUpArrow());
+                {1, 1, 0}}), cxt.getUpArrow());
 
         cxt.setRelationAt(1, 0, true);
         assertEquals(SetBuilder.makeRelation(new int[][]{{0, 0, 1},
-                                                         {0, 1, 0}}), cxt.getUpArrow());
+                {0, 1, 0}}), cxt.getUpArrow());
     }
 
 
     public void testCopy() {
         final int[][] CONTEXT_DATA = new int[][]{{0, 0, 1},
-                                                 {1, 0, 0}};
+                {1, 0, 0}};
         cxt = SetBuilder.makeContext(CONTEXT_DATA);
         ContextEditingInterface other = cxt.makeCopy();
         assertEquals(SetBuilder.makeContext(CONTEXT_DATA), other);
@@ -596,7 +596,7 @@ public class ContextTest extends TestCase {
 
     public void testChangeOfTypeOnTranspose() {
         final int[][] CONTEXT_DATA = new int[][]{{0, 0, 1},
-                                                 {1, 0, 0}};
+                {1, 0, 0}};
         cxt = SetBuilder.makeContext(CONTEXT_DATA);
         cxt.transpose();
         for (int i = 0; i < cxt.getObjectCount(); i++) {
@@ -632,8 +632,8 @@ public class ContextTest extends TestCase {
         ContextStructureModification modification = new ContextStructureModification() {
             public void modifyContext(Context cxt) {
                 cxt.copyFrom(SetBuilder.makeContext(new int[][]{{0, 1, 0},
-                                                                {1, 0, 0},
-                                                                {0, 1, 0}}));
+                        {1, 0, 0},
+                        {0, 1, 0}}));
             }
         };
 
@@ -653,7 +653,7 @@ public class ContextTest extends TestCase {
 
     public void testUpdateOfArrowCalculatorOnTranspose() {
         cxt = SetBuilder.makeContext(new int[][]{{1, 0},
-                                                 {1, 0}});
+                {1, 0}});
         assertTrue(cxt.hasUpArrow(0, 1));
         cxt.transpose();
         assertFalse(cxt.hasUpArrow(0, 1));
@@ -682,7 +682,7 @@ public class ContextTest extends TestCase {
 
     public void testIndexOfAttribute() {
         cxt = SetBuilder.makeContextWithAttributeNames(new String[]{"One", "Two"}, new int[][]{
-            {1, 0}
+                {1, 0}
         });
         assertEquals(-1, cxt.indexOfAttribute("Three"));
         assertEquals(1, cxt.indexOfAttribute("Two"));

@@ -11,7 +11,7 @@ import java.io.IOException;
  * Date: 10/5/2005
  * Time: 8:00:22
  */
-public class ImplicationExperimentSuite extends ExperimentSuite  {
+public class ImplicationExperimentSuite extends ExperimentSuite {
     public static void implicationSetExperiment() throws DataFormatException, IOException {
         ExperimentSet set = createImplicationsExperiment();
         doRunTimeMeasurementExperiment(set, createRelationSequence());

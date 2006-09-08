@@ -19,6 +19,7 @@ public abstract class AbstractParamInfo implements ParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (28.03.01 23:29:48)
+     *
      * @param label java.lang.String
      */
     protected AbstractParamInfo(String label) {
@@ -28,6 +29,7 @@ public abstract class AbstractParamInfo implements ParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (28.03.01 23:27:48)
+     *
      * @return java.lang.String
      */
     public String getLabel() {
@@ -37,6 +39,7 @@ public abstract class AbstractParamInfo implements ParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (28.03.01 23:27:48)
+     *
      * @return javax.swing.table.TableCellEditor
      */
     public javax.swing.table.TableCellEditor getTableParamEditor() {
@@ -49,6 +52,7 @@ public abstract class AbstractParamInfo implements ParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (29.03.01 0:00:08)
+     *
      * @return javax.swing.table.TableCellEditor
      */
     protected abstract TableCellEditor makeEditor();
@@ -57,7 +61,6 @@ public abstract class AbstractParamInfo implements ParamInfo {
         util.Assert.isTrue(false, "Not supported yet");
         return null;
     }
-
 
 
 }

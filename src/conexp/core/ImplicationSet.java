@@ -117,7 +117,6 @@ public class ImplicationSet extends DependencySet {
         } // end of for ()
     }
 
-
     //---------------------------------------
 
     /**
@@ -182,7 +181,8 @@ public class ImplicationSet extends DependencySet {
 
     private boolean isAllImplicationsContainedInOtherImplicationSet(ImplicationSet other) {
         for (int i = 0; i < getSize(); i++) {
-            found:{
+            found:
+            {
                 Implication currImplication = getImplication(i);
                 for (int j = 0; j < other.getSize(); j++) {
                     if (currImplication.equals(other.getImplication(j))) {

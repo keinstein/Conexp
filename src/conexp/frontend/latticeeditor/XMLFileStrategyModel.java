@@ -71,9 +71,9 @@ public class XMLFileStrategyModel extends AbstractNonGrowingStrategyModel {
         Document doc;
         try {
             doc = builder.build(fileName);
-        } catch (JDOMException e ) {
+        } catch (JDOMException e) {
             throw new ConfigFatalError("Error while parsing " + fileName, e);
-        } catch(IOException  e){
+        } catch (IOException e) {
             throw new ConfigFatalError("Error while parsing " + fileName, e);
         }
         Element root = doc.getRootElement();

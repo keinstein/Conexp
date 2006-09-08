@@ -17,7 +17,7 @@ public abstract class BaseConceptCalcExperiment extends BaseConceptsExperiment {
     }
 
     public void perform() {
-        ((ConceptCalcStrategy)strategy).calculateConceptSet();
+        ((ConceptCalcStrategy) strategy).calculateConceptSet();
     }
 
     public BinaryRelationProcessor makeStrategy() {

@@ -178,7 +178,7 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
 
     private ParamInfo[] makeParamInfo() {
         return new ParamInfo[]{
-            new BoundedIntValueParamInfo("Label font size ", getLabelsFontSizeValue())
+                new BoundedIntValueParamInfo("Label font size ", getLabelsFontSizeValue())
         };
     }
 
@@ -232,17 +232,17 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
 
     public CanvasScheme makeCopy() {
         LatticePainterOptions ret = new LatticePainterOptions(factory.makeCopy());
-        synchronized(ret){
-        ret.colorScheme = colorScheme.makeCopy();
-        if (labelsFontSize != null) {
-            ret.labelsFontSize = ret.makeBoundedIntValue(getLabelsFontSizeValue());
-        }
-        if (smallGridSize != null) {
-            ret.smallGridSize = ret.makeBoundedIntValue(getSmallGridSizeValue());
-        }
-        if (drawStrategiesContext != null) {
-            ret.drawStrategiesContext = drawStrategiesContext.makeNativeCopy(ret.getPropertyChangeSupport());
-        }
+        synchronized (ret) {
+            ret.colorScheme = colorScheme.makeCopy();
+            if (labelsFontSize != null) {
+                ret.labelsFontSize = ret.makeBoundedIntValue(getLabelsFontSizeValue());
+            }
+            if (smallGridSize != null) {
+                ret.smallGridSize = ret.makeBoundedIntValue(getSmallGridSizeValue());
+            }
+            if (drawStrategiesContext != null) {
+                ret.drawStrategiesContext = drawStrategiesContext.makeNativeCopy(ret.getPropertyChangeSupport());
+            }
 
         }
         return ret;

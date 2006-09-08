@@ -14,10 +14,11 @@ import cefacade.implementation.ContextReducabilityAnalyserImplementation;
 public class CEFacadeFactory {
     /**
      * Creates context with specified number of object and attributes
+     *
      * @param objectCount
      * @param attributeCount
      * @return empty context with #objectCount objects and #attributeCount attributes
-     *        with default names
+     *         with default names
      */
 
     public static ISimpleContext makeContext(int objectCount, int attributeCount) {
@@ -26,6 +27,7 @@ public class CEFacadeFactory {
 
     /**
      * Creates empty context
+     *
      * @return empty context
      */
 

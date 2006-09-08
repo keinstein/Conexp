@@ -43,8 +43,8 @@ public abstract class ContextReaderWriterPairTest extends TestCase {
 
     public void testReaderWriterWithObjectsAndAttributes() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 0},
-                                                         {0, 0},
-                                                         {0, 0}
+                {0, 0},
+                {0, 0}
         });
         cxt.getAttribute(0).setName("First Attr");
         if (isPreserveObjectNames()) {
@@ -55,8 +55,8 @@ public abstract class ContextReaderWriterPairTest extends TestCase {
 
     public void testReaderWriterForFullContext() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1},
-                                                         {1, 0},
-                                                         {1, 1}
+                {1, 0},
+                {1, 1}
         });
         cxt.getAttribute(0).setName("First Attr");
         if (isPreserveObjectNames()) {
@@ -73,7 +73,7 @@ public abstract class ContextReaderWriterPairTest extends TestCase {
 
     protected ContextDocument writeAndReadContextDoc(ContextDocument doc) {
         StringWriter writer = new StringWriter() {
-            public void close(){
+            public void close() {
                 fail("It's responsibility of calling side to close writers");
             }
         };

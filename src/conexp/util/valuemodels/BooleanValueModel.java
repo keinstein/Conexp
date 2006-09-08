@@ -31,15 +31,19 @@ public class BooleanValueModel extends ValueModelBase {
     }
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof BooleanValueModel)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof BooleanValueModel)) {
+            return false;
+        }
 
         final BooleanValueModel other = (BooleanValueModel) obj;
 
-        if(!propertyName.equals(other.propertyName)){
+        if (!propertyName.equals(other.propertyName)) {
             return false;
         }
-        if (value != other.value){
+        if (value != other.value) {
             return false;
         }
 
@@ -47,12 +51,12 @@ public class BooleanValueModel extends ValueModelBase {
     }
 
     public int hashCode() {
-        return 29*propertyName.hashCode()+(value ? 1 : 0);
+        return 29 * propertyName.hashCode() + (value ? 1 : 0);
     }
 
     public String toString() {
         return "BooleanValueModel{" +
-                "["+propertyName+"]"+
+                "[" + propertyName + "]" +
                 "value=" + value +
                 "}";
     }

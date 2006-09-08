@@ -93,8 +93,8 @@ public class AttributeExplorationUserCallbackImplementation implements Attribute
 
     public int isTrue(Set premise, Set conclusion) {
         Object[] options = {getLocalizedMessage("Global.YesMessage"),
-                            getLocalizedMessage("Global.NoMessage"),
-                            getLocalizedMessage("AttributeExplorerUserCallbackImplementation.StopAttributeExplorationCaption")};
+                getLocalizedMessage("Global.NoMessage"),
+                getLocalizedMessage("AttributeExplorerUserCallbackImplementation.StopAttributeExplorationCaption")};
 
 
         int ret = JOptionPane.showOptionDialog(JOptionPane.getFrameForComponent(parentComponent),

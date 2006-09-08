@@ -22,9 +22,9 @@ public abstract class BaseRelationSequence implements RelationSequence {
     protected static MeasurementProtocol makeMeasurementProtocol() {
         return MeasurementProtocol.buildMeasurementProtocolFromStrings(
                 new String[][]{
-                    {"Rows", "false"},
-                    {"Cols", "false"},
-                    {"Filled cells", "false"}
+                        {"Rows", "false"},
+                        {"Cols", "false"},
+                        {"Filled cells", "false"}
                 }
         );
     }
@@ -46,8 +46,9 @@ public abstract class BaseRelationSequence implements RelationSequence {
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 12:25:29)
-     * @return conexp.core.BinaryRelation
+     *
      * @param i int
+     * @return conexp.core.BinaryRelation
      */
     public BinaryRelation getRelation(int i) {
         return relations[i];
@@ -56,6 +57,7 @@ public abstract class BaseRelationSequence implements RelationSequence {
     /**
      * Insert the method's description here.
      * Creation date: (21.07.01 12:25:29)
+     *
      * @return int
      */
     public int getRelationCount() {

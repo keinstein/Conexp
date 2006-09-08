@@ -16,6 +16,7 @@ public class StrategyValueItemParamInfo extends AbstractParamInfo {
 
     /**
      * StrategyValueItemParamInfo constructor comment.
+     *
      * @param label java.lang.String
      */
     public StrategyValueItemParamInfo(String label, StrategyValueItem value) {
@@ -26,6 +27,7 @@ public class StrategyValueItemParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (30.03.01 23:35:34)
+     *
      * @return javax.swing.table.TableCellRenderer
      */
     public javax.swing.table.TableCellRenderer getParamRenderer() {
@@ -35,6 +37,7 @@ public class StrategyValueItemParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (29.03.01 0:35:45)
+     *
      * @return java.lang.Object
      */
     public Object getValue() {
@@ -44,6 +47,7 @@ public class StrategyValueItemParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (29.03.01 0:35:45)
+     *
      * @return javax.swing.table.TableCellEditor
      */
     protected javax.swing.table.TableCellEditor makeEditor() {

@@ -21,16 +21,15 @@ public class ContextLoadingRelationGenerationStrategy extends ContextBasedRelati
     protected ContextReaderFactory contextReaderFactory;
 
 
-
-    public ContextLoadingRelationGenerationStrategy(String url) throws IOException, DataFormatException{
+    public ContextLoadingRelationGenerationStrategy(String url) throws IOException, DataFormatException {
         this(url, new ConImpContextReaderFactory());
     }
 
-    public ContextLoadingRelationGenerationStrategy(String url, ContextReaderFactory contextReaderFactory) throws IOException, DataFormatException{
+    public ContextLoadingRelationGenerationStrategy(String url, ContextReaderFactory contextReaderFactory) throws IOException, DataFormatException {
         this(url, 1, contextReaderFactory);
     }
 
-    protected ContextLoadingRelationGenerationStrategy(String url, int count, ContextReaderFactory contextReaderFactory) throws IOException, DataFormatException{
+    protected ContextLoadingRelationGenerationStrategy(String url, int count, ContextReaderFactory contextReaderFactory) throws IOException, DataFormatException {
         super(count);
         this.url = url;
         this.contextReaderFactory = contextReaderFactory;
@@ -40,12 +39,12 @@ public class ContextLoadingRelationGenerationStrategy extends ContextBasedRelati
 
     private void loadContext(String url) throws IOException, DataFormatException {
         ContextReader loader = makeContextReader();
-        FileReader fileReader=null;
+        FileReader fileReader = null;
         try {
             fileReader = new FileReader(url);
             setContext(loader.parseContext(fileReader));
         } finally {
-            if(null!=fileReader){
+            if (null != fileReader) {
                 fileReader.close();
             }
         }
@@ -56,6 +55,6 @@ public class ContextLoadingRelationGenerationStrategy extends ContextBasedRelati
     }
 
     public String describeStrategy() {
-        return "From file:"+url;
+        return "From file:" + url;
     }
 }

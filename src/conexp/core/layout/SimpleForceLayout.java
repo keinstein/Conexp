@@ -113,9 +113,9 @@ public abstract class SimpleForceLayout extends GenericForceDirectedLayouter {
 
     protected ParamInfo[] makeParams() {
         return new ParamInfo[]{
-            new BoundedDoubleValueParamInfo("Angle", getRotationAngle()),
-            new BoundedDoubleValueParamInfo("Attraction", getForceDistribution().getAttractionFactorModel()),
-            new BoundedDoubleValueParamInfo("Repulsion", getForceDistribution().getRepulsionFactorModel()),
+                new BoundedDoubleValueParamInfo("Angle", getRotationAngle()),
+                new BoundedDoubleValueParamInfo("Attraction", getForceDistribution().getAttractionFactorModel()),
+                new BoundedDoubleValueParamInfo("Repulsion", getForceDistribution().getRepulsionFactorModel()),
         };
     }
 

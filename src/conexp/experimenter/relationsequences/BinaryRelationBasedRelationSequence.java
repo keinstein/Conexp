@@ -14,7 +14,7 @@ public class BinaryRelationBasedRelationSequence extends BaseRelationSequence {
 
     public BinaryRelationBasedRelationSequence(BinaryRelation rel) {
         relations = new BinaryRelation[1];
-        relations[0]=rel;
+        relations[0] = rel;
     }
 
     public String describeStrategy() {

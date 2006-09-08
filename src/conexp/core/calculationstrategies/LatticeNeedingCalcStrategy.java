@@ -25,6 +25,7 @@ public abstract class LatticeNeedingCalcStrategy extends DepthSearchConceptCalcS
     //-----------------------------------------------------------------------
 
     //-----------------------------------------------------------------
+
     /**
      * creates new conexp lattice element with objects obj and attributes attr
      *
@@ -36,6 +37,7 @@ public abstract class LatticeNeedingCalcStrategy extends DepthSearchConceptCalcS
         return LatticeElement.makeFromSetsCopies(obj, attr);
     }
     //-----------------------------------------------------------------
+
     /**
      * Sets the Lattice attribute of the DepthSearchCalculator object
      *

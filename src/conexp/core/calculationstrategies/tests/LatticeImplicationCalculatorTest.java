@@ -25,8 +25,8 @@ public class LatticeImplicationCalculatorTest extends ImplicationCalculatorTest 
 
     public static void testIsUnionEqualsTo() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{0, 0, 1},
-                                                         {0, 1, 0},
-                                                         {1, 0, 0}});
+                {0, 1, 0},
+                {1, 0, 0}});
 
 
         LatticeImplicationCalculator calc = new LatticeImplicationCalculator();
@@ -44,11 +44,11 @@ public class LatticeImplicationCalculatorTest extends ImplicationCalculatorTest 
 
 
         lat = SetBuilder.makeLattice(new int[][]{
-            {1, 0, 0},
-            {0, 1, 0},
-            {0, 0, 1},
-            {0, 1, 1},
-            {1, 1, 1}
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1},
+                {0, 1, 1},
+                {1, 1, 1}
         });
 
 

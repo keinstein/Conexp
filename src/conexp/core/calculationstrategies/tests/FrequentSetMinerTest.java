@@ -15,9 +15,9 @@ public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeB
     public void testWithNoSearchConstraint() {
         getRealStrategy().setSearchConstrainter(new NoSearchConstraint());
         doTestCalcStrategyForExpectedIntentsAndExtents(new int[][]{
-            {0, 1, 1},
-            {1, 0, 1},
-            {1, 1, 0}
+                {0, 1, 1},
+                {1, 0, 1},
+                {1, 1, 0}
         },
                 new int[0][0],
                 new int[0][0],
@@ -27,16 +27,16 @@ public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeB
     public void testWithMinSupportSearchConstraint() {
         getRealStrategy().setSearchConstrainter(new MinSupportConstrainer(3));
         doTestCalcStrategyForExpectedIntentsAndExtents(new int[][]{
-            {0, 1, 1},
-            {1, 0, 1},
-            {1, 1, 0}
+                {0, 1, 1},
+                {1, 0, 1},
+                {1, 1, 0}
         },
                 new int[][]{{
-                    0, 0, 0
+                        0, 0, 0
                 }},
 
                 new int[][]{{
-                    1, 1, 1
+                        1, 1, 1
                 }},
                 0);
     }
@@ -44,22 +44,22 @@ public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeB
     public void testWithMinSupportSearchConstraintSecVariant() {
         getRealStrategy().setSearchConstrainter(new MinSupportConstrainer(2));
         doTestCalcStrategyForExpectedIntentsAndExtents(new int[][]{
-            {0, 1, 1},
-            {1, 0, 1},
-            {1, 1, 0}
+                {0, 1, 1},
+                {1, 0, 1},
+                {1, 1, 0}
         },
                 new int[][]{
-                    {0, 0, 0},
-                    {1, 0, 0},
-                    {0, 1, 0},
-                    {0, 0, 1}
+                        {0, 0, 0},
+                        {1, 0, 0},
+                        {0, 1, 0},
+                        {0, 0, 1}
                 },
 
                 new int[][]{
-                    {1, 1, 1},
-                    {0, 1, 1},
-                    {1, 0, 1},
-                    {1, 1, 0}
+                        {1, 1, 1},
+                        {0, 1, 1},
+                        {1, 0, 1},
+                        {1, 1, 0}
                 },
                 3);
     }
@@ -67,18 +67,18 @@ public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeB
     public void testWithMinSupportSearchConstraintLinearChain() {
         getRealStrategy().setSearchConstrainter(new MinSupportConstrainer(2));
         doTestCalcStrategyForExpectedIntentsAndExtents(new int[][]{
-            {1, 0, 0},
-            {1, 1, 0},
-            {1, 1, 1}
+                {1, 0, 0},
+                {1, 1, 0},
+                {1, 1, 1}
         },
                 new int[][]{
-                    {1, 0, 0},
-                    {1, 1, 0}
+                        {1, 0, 0},
+                        {1, 1, 0}
                 },
 
                 new int[][]{
-                    {1, 1, 1},
-                    {0, 1, 1}
+                        {1, 1, 1},
+                        {0, 1, 1}
                 },
                 1);
     }
@@ -86,22 +86,22 @@ public class FrequentSetMinerTest extends DepthSearchCalcWithFeatureMaskLatticeB
     public void testWhenZeroElementExtentIsEmpty() {
         getRealStrategy().setSearchConstrainter(new MinSupportConstrainer(1));
         doTestCalcStrategyForExpectedIntentsAndExtents(new int[][]{
-            {1, 0, 0},
-            {0, 1, 0},
-            {0, 0, 1}
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1}
         },
                 new int[][]{
-                    {0, 0, 0},
-                    {1, 0, 0},
-                    {0, 1, 0},
-                    {0, 0, 1}
+                        {0, 0, 0},
+                        {1, 0, 0},
+                        {0, 1, 0},
+                        {0, 0, 1}
                 },
 
                 new int[][]{
-                    {1, 1, 1},
-                    {1, 0, 0},
-                    {0, 1, 0},
-                    {0, 0, 1}
+                        {1, 1, 1},
+                        {1, 0, 0},
+                        {0, 1, 0},
+                        {0, 0, 1}
                 },
                 3);
 

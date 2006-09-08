@@ -20,6 +20,7 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
         super();
     }
     //--------------------------------------------------------------------
+
     /**
      * calculate attributes, that exist in at least one object from _objects and
      * don't belong to _attribs
@@ -42,6 +43,7 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
         return ret;
     }
     //-------------------------------------------------------------------------------
+
     /**
      * Description of the Method
      *
@@ -106,8 +108,8 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
         }
     }
 
-
     //-----------------------------------------------------------------
+
     /**
      * method finds a closure by addition of attr j to intent, having extent
      * _concObjects
@@ -134,6 +136,7 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
         }
     }
     //----------------------------------------------------------------
+
     /**
      * this function is strongly connected with used order !!! precodndition :
      * _attribs not equal one attribs
@@ -146,7 +149,8 @@ public class ReferenceDepthSearchCalculator extends BasicDepthSearchCalculator {
         Assert.isTrue(null != curr, "One in findElement can't be null");
         while (true) {
             ConceptIterator iter = curr.getPredecessors().iterator();
-            outer : {
+            outer :
+            {
                 while (iter.hasNext()) {
                     LatticeElement pred = iter.nextConcept();
                     //*DBG*/System.out.println("pred="+(BitSet)_pred.attribs);

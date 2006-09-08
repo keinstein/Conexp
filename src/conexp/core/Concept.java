@@ -85,8 +85,8 @@ public class Concept implements ItemSet {
         incrOwnObjCnt();
     }
 
-
 //--------------------------------------------
+
     public int compare(ItemSet that) {
         int cmp = getAttribs().compare(that.getAttribs());
         switch (cmp) {
@@ -180,8 +180,8 @@ public class Concept implements ItemSet {
         }
     }
 
-
 //----------------------------------------------
+
     public boolean hasOwnObjects() {
         return (conceptType & HAS_OBJECTS) != 0;
     }

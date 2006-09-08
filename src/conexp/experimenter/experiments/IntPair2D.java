@@ -7,7 +7,7 @@ package conexp.experimenter.experiments;
  * Date: 13/10/2003
  * Time: 2:10:51
  */
-public class IntPair2D implements Comparable{
+public class IntPair2D implements Comparable {
     final int x;
     final int y;
 
@@ -20,7 +20,7 @@ public class IntPair2D implements Comparable{
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof IntPair2D)){
+        if (!(obj instanceof IntPair2D)) {
             return false;
         }
 
@@ -29,7 +29,7 @@ public class IntPair2D implements Comparable{
         if (x != intPair2D.x) {
             return false;
         }
-        if (y != intPair2D.y){
+        if (y != intPair2D.y) {
             return false;
         }
         return true;
@@ -43,9 +43,9 @@ public class IntPair2D implements Comparable{
     }
 
     public int compareTo(Object o) {
-        IntPair2D other = (IntPair2D)o;
+        IntPair2D other = (IntPair2D) o;
         int diff = this.x - other.x;
-        if(diff!=0){
+        if (diff != 0) {
             return diff;
         }
         return this.y - other.y;

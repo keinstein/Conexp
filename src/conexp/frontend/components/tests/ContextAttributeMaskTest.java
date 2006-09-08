@@ -70,6 +70,6 @@ public class ContextAttributeMaskTest extends ContextMaskBaseTest {
     public void testCleanUp() {
         int contextListenerCount = cxt.getContextListenersCount();
         getMask().cleanUp();
-        assertEquals(contextListenerCount-1, cxt.getContextListenersCount());
+        assertEquals(contextListenerCount - 1, cxt.getContextListenersCount());
     }
 }

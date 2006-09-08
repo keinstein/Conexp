@@ -222,10 +222,10 @@ public class LatticePainterDrawParams extends BasicDrawParams implements ParamsP
     public ParamInfo[] getParams() {
         if (null == params) {
             params = new ParamInfo[]{
-                new BoundedIntValueParamInfo("Grid Size X", getGridSizeXValue()),
-                new BoundedIntValueParamInfo("Grid Size Y", getGridSizeYValue()),
-                new BoundedIntValueParamInfo("Node radius", getMaxNodeRadiusValue()),
-                new BooleanParamInfo("Show collisions", getShowCollisionsValue())
+                    new BoundedIntValueParamInfo("Grid Size X", getGridSizeXValue()),
+                    new BoundedIntValueParamInfo("Grid Size Y", getGridSizeYValue()),
+                    new BoundedIntValueParamInfo("Node radius", getMaxNodeRadiusValue()),
+                    new BooleanParamInfo("Show collisions", getShowCollisionsValue())
             };
         }
         return params;

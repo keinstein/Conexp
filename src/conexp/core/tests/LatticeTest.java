@@ -23,8 +23,8 @@ public class LatticeTest extends TestCase {
      */
     public void testTopologicallySorted() {
         lat = SetBuilder.makeLattice(new int[][]{{1, 0, 0},
-                                                 {1, 1, 0},
-                                                 {1, 1, 1}}, new DepthSearchCalculator());
+                {1, 1, 0},
+                {1, 1, 1}}, new DepthSearchCalculator());
         assertEquals(3, lat.conceptsCount());
 
         //special ordering because of calcHeight
@@ -51,8 +51,8 @@ public class LatticeTest extends TestCase {
 
     public void testFindLatticeElementFromOne() {
         lat = SetBuilder.makeLattice(new int[][]{
-            {0, 0, 0},
-            {0, 1, 1}
+                {0, 0, 0},
+                {0, 1, 1}
         });
         assertSame(lat.getOne(), lat.findLatticeElementFromOne(SetBuilder.makeSet(new int[]{0, 0, 0})));
         LatticeElement elem = SetBuilder.findLatticeElementWithIntent(lat,
@@ -61,7 +61,6 @@ public class LatticeTest extends TestCase {
         assertSame(elem, lat.findLatticeElementFromOne(SetBuilder.makeSet(new int[]{0, 1, 1})));
 
         assertSame(lat.getZero(), lat.findLatticeElementFromOne(SetBuilder.makeSet(new int[]{1, 1, 1})));
-
 
 /*
         assertSame(elem, lat.findLatticeElementFromOne(

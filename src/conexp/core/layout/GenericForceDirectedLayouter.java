@@ -110,8 +110,9 @@ public abstract class GenericForceDirectedLayouter extends GenericLayouter {
             LatticeElement curr = topSorted[i];
             for (int j = curr.getSuccCount(); --j >= 0;) {
                 int depth2 = 1 + depths[curr.getSucc(j).getIndex()];
-                if (depth2 > depth)
+                if (depth2 > depth) {
                     depth = depth2;
+                }
             }
             depths[curr.getIndex()] = depth;
         }

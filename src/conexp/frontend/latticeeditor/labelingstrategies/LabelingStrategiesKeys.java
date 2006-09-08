@@ -10,12 +10,12 @@ package conexp.frontend.latticeeditor.labelingstrategies;
 public interface LabelingStrategiesKeys {
     String NO_ATTRIBS_LABELING_STRATEGY = "NoAttribsLabelsStrategy";
     String ALL_ATTRIBS_LABELING_STRATEGY_KEY = "AllAttribsLabelsStrategy";
-    String ATTRIBS_MULTI_LABELING_STRATEGY_KEY="AllAttribsMultiLabelsStrategy";
+    String ATTRIBS_MULTI_LABELING_STRATEGY_KEY = "AllAttribsMultiLabelsStrategy";
 
     String NO_OBJECTS_LABELS_STRATEGY = "NoObjectsLabelsStrategy";
     String ALL_OBJECTS_LABELING_STRATEGY = "AllObjectsLabelsStrategy";
     String OWN_OBJECTS_COUNT_LABEL_STRATEGY = "OwnObjectsCountLabelsStrategy";
-    String OBJECTS_MULTI_LABELING_STRATEGY_KEY="AllObjectsMultiLabelsStrategy";
+    String OBJECTS_MULTI_LABELING_STRATEGY_KEY = "AllObjectsMultiLabelsStrategy";
 
     String OBJECTS_COUNT_LABEL_STRATEGY = "ObjectsCountLabelsStrategy";
     String STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY = "StabilityLabelsStrategy";

@@ -56,7 +56,6 @@ public class LatticeDrawing extends ConceptSetDrawing {
     }
 
 
-
     private class DefaultLayouterProvider implements LayouterProvider {
         public Layouter getLayouter() {
             return getPainterOptions().getLayoutStrategy();
@@ -254,8 +253,8 @@ public class LatticeDrawing extends ConceptSetDrawing {
 
     public StrategyValueItem getLayoutStrategyItem() {
         return getPainterOptions().
-                        getLatticePainterDrawStrategyContext().
-                        getLayoutStrategyItem();
+                getLatticePainterDrawStrategyContext().
+                getLayoutStrategyItem();
     }
 
 

@@ -27,7 +27,7 @@ public class OwnObjectsCountLabelingStrategyTest extends GenericLabelingStrategy
 
     public void testAdditionOfConceptLabelsAndCleanup() {
         Lattice lattice = SetBuilder.makeLatticeWithContext(new int[][]{{0, 1},
-                                                                        {1, 0}});
+                {1, 0}});
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(lattice);
         assertTrue(drawing.setObjectLabelingStrategyKey(LabelingStrategiesKeys.ALL_OBJECTS_LABELING_STRATEGY));

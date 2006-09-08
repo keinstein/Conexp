@@ -68,7 +68,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
 
     public static void testClearLatticeDrawing() {
         LatticeDrawing drawing = makePreparedLatticeDrawing(new int[][]{{0},
-                                                                        {1}});
+                {1}});
         LatticeCanvas canvas = makeCanvas();
         canvas.setConceptSetDrawing(drawing);
         canvas.selectFigure(canvas.getFigureForConcept(drawing.getLattice().getZero()));
@@ -79,7 +79,7 @@ public class LatticeCanvasTest extends junit.framework.TestCase {
 
     public static void testResetOfSelectionAfterChangingDrawing() {
         LatticeDrawing drawing = makePreparedLatticeDrawing(new int[][]{{0},
-                                                                        {1}});
+                {1}});
 
         LatticeCanvas canvas = makeCanvas();
         canvas.setConceptSetDrawing(drawing);

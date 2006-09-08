@@ -35,12 +35,12 @@ public class MeasurementSetChecker {
                 final IComparatorFactory comparatorFactory = paramDescription.getComparatorFactory();
                 if (comparatorFactory != null) {
                     BaseComparator comparator = comparatorFactory.createComparator(paramValue, experimentValue);
-                    if(!comparator.isEqual()){
+                    if (!comparator.isEqual()) {
                         StringWriter writer = new StringWriter();
                         final PrintWriter printWriter = new PrintWriter(writer);
                         comparator.writeReport(printWriter);
                         printWriter.close();
-                        throw new ExperimentException("For param " + paramDescription.getName() + " values of two runs are different "+
+                        throw new ExperimentException("For param " + paramDescription.getName() + " values of two runs are different " +
                                 writer.toString());
                     }
                 } else {

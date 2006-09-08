@@ -21,26 +21,26 @@ public class LayeredLayouterTest extends GenericLayouterTest {
 
     public static void testFindIrreducibleAttributes() {
         Context cxt = SetBuilder.makeContext(new int[][]{
-            {1, 0, 0},
-            {0, 1, 0},
-            {0, 0, 1}
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1}
         });
         Set expectedIrreducible = SetBuilder.makeSet(new int[]{1, 1, 1});
         assertEquals(expectedIrreducible, LayeredLayoter.findIrreducibleAttributes(cxt));
         cxt = SetBuilder.makeContext(new int[][]{
-            {1, 1, 1},
-            {0, 1, 1},
-            {0, 0, 0}
+                {1, 1, 1},
+                {0, 1, 1},
+                {0, 0, 0}
         });
         expectedIrreducible = SetBuilder.makeSet(new int[]{1, 1, 0});
         assertEquals(expectedIrreducible, LayeredLayoter.findIrreducibleAttributes(cxt));
 
         cxt = SetBuilder.makeContext(new int[][]{
-            {1, 0, 0, 0, 0},
-            {1, 1, 0, 0, 0},
-            {1, 0, 1, 0, 0},
-            {1, 1, 0, 1, 0},
-            {1, 1, 1, 1, 1}
+                {1, 0, 0, 0, 0},
+                {1, 1, 0, 0, 0},
+                {1, 0, 1, 0, 0},
+                {1, 1, 0, 1, 0},
+                {1, 1, 1, 1, 1}
         });
         expectedIrreducible = SetBuilder.makeSet(new int[]{0, 1, 1, 1, 0});
         assertEquals(expectedIrreducible, LayeredLayoter.findIrreducibleAttributes(cxt));

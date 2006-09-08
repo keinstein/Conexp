@@ -25,11 +25,11 @@ public class DifferentEdgeVectorsEvaluationFunctionTest extends TestCase {
         assertEquals(-3, evaluationFunction.getEvaluationForLattice(), TestDataHolder.PRECISION);
         mapper = MapBasedConceptCoordinateMapper.buildMapperForLattice(lattice, TestDataHolder.FULL_RELATION_NOMINAL_3,
                 new double[][]{
-                    {0, 0},
-                    {-1, 1},
-                    {0, 1},
-                    {1, 1},
-                    {1.5, 2}
+                        {0, 0},
+                        {-1, 1},
+                        {0, 1},
+                        {1, 1},
+                        {1.5, 2}
                 });
         evaluationFunction.setConceptCoordinateMapper(mapper);
         assertEquals(-6, evaluationFunction.getEvaluationForLattice(), TestDataHolder.PRECISION);

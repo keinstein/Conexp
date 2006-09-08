@@ -34,7 +34,7 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
 
     private LatticePainterPanel latticePanel;
 
-    public LatticePainterPanel getInnerComponent(){
+    public LatticePainterPanel getInnerComponent() {
         return latticePanel;
     }
 
@@ -61,7 +61,7 @@ public class LatticeAndEntitiesMaskSplitPane extends JSplitPaneWithFixedRightPan
     }
 
     public String toString() {
-        return StringUtil.extractClassName(getClass().getName())+"[latticePanel.Id="+System.identityHashCode(latticePanel)+"]";
+        return StringUtil.extractClassName(getClass().getName()) + "[latticePanel.Id=" + System.identityHashCode(latticePanel) + "]";
     }
 
     private JComponent makeEntitiesSelectionPane(LatticeSupplier latticeSupplier) {

@@ -53,7 +53,7 @@ public abstract class MultiLineLabelingStrategyBase extends GenericLabelingStrat
         double angle = getLabelLocationAngleInRadians();
         double offX = opt.getGridSizeX() / 2 * Math.cos(angle);
 
-        double offY = (1.5 * opt.getMaxNodeRadius()+rect.getHeight()/2) * Math.sin(angle);
+        double offY = (1.5 * opt.getMaxNodeRadius() + rect.getHeight() / 2) * Math.sin(angle);
         int newX = (int) (f.getCenterX() + offX);
         int newY = (int) (f.getCenterY() + offY);
         labelFigure.setCoords(newX, newY);
@@ -102,7 +102,7 @@ public abstract class MultiLineLabelingStrategyBase extends GenericLabelingStrat
     }
 
     //todo:sye - change to protected
-    public static class MultiLineConceptEntityFigure extends MultiLineTextFigure implements IConceptRelatedTextFigure{
+    public static class MultiLineConceptEntityFigure extends MultiLineTextFigure implements IConceptRelatedTextFigure {
         private final ConceptQuery conceptQuery;
         private final boolean isObject;
 
@@ -123,7 +123,7 @@ public abstract class MultiLineLabelingStrategyBase extends GenericLabelingStrat
         protected String getContentDescription() {
             Rectangle2D rect = new Rectangle();
             boundingBox(rect);
-            return super.getContentDescription()+" bounding box="+rect;
+            return super.getContentDescription() + " bounding box=" + rect;
         }
     }
 }

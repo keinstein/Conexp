@@ -99,7 +99,7 @@ public class ConceptFigure extends ConceptCorrespondingFigure implements Selecta
     }
 
     protected String getContentDescription() {
-        return super.getContentDescription()+" Concept:"+getConcept();
+        return super.getContentDescription() + " Concept:" + getConcept();
     }
 
     boolean selected;

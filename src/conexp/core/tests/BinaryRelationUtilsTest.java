@@ -28,19 +28,19 @@ public class BinaryRelationUtilsTest extends TestCase {
 
     public static void testLexSort() {
         int[][] relToSort = new int[][]{
-            {1, 0, 0, 1},
-            {1, 1, 0, 0},
-            {0, 0, 0, 0},
-            {0, 1, 1, 0},
-            {0, 0, 0, 1}
+                {1, 0, 0, 1},
+                {1, 1, 0, 0},
+                {0, 0, 0, 0},
+                {0, 1, 1, 0},
+                {0, 0, 0, 1}
         };
 
         int[][] sortedRel = new int[][]{
-            {0, 0, 0, 0},
-            {0, 0, 0, 1},
-            {0, 1, 1, 0},
-            {1, 0, 0, 1},
-            {1, 1, 0, 0}
+                {0, 0, 0, 0},
+                {0, 0, 0, 1},
+                {0, 1, 1, 0},
+                {1, 0, 0, 1},
+                {1, 1, 0, 0}
         };
 
         doTestLexSort(relToSort, sortedRel);
@@ -49,19 +49,19 @@ public class BinaryRelationUtilsTest extends TestCase {
 
     public static void testOneColSort() {
         int[][] relToSort = new int[][]{
-            {1},
-            {1},
-            {0},
-            {0},
-            {0}
+                {1},
+                {1},
+                {0},
+                {0},
+                {0}
         };
 
         int[][] sortedRel = new int[][]{
-            {0},
-            {0},
-            {0},
-            {1},
-            {1}
+                {0},
+                {0},
+                {0},
+                {1},
+                {1}
         };
 
         doTestLexSort(relToSort, sortedRel);
@@ -69,24 +69,24 @@ public class BinaryRelationUtilsTest extends TestCase {
 
     public static void testTransitiveClosure() {
         int[][] relationToCloseDescr = {
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {1, 0, 0, 0, 0, 0, 0, 0},
-            {1, 0, 0, 0, 0, 0, 0, 0},
-            {0, 1, 1, 0, 0, 0, 0, 0},
-            {0, 0, 1, 0, 0, 0, 0, 0},
-            {0, 0, 0, 1, 1, 0, 1, 0},
-            {0, 0, 0, 0, 0, 0, 0, 1},
-            {0, 1, 0, 0, 0, 0, 0, 0}
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0},
+                {0, 1, 1, 0, 0, 0, 0, 0},
+                {0, 0, 1, 0, 0, 0, 0, 0},
+                {0, 0, 0, 1, 1, 0, 1, 0},
+                {0, 0, 0, 0, 0, 0, 0, 1},
+                {0, 1, 0, 0, 0, 0, 0, 0}
         };
         int[][] expClosedRelationDescr = {
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {1, 0, 0, 0, 0, 0, 0, 0},
-            {1, 0, 0, 0, 0, 0, 0, 0},
-            {1, 1, 1, 0, 0, 0, 0, 0},
-            {1, 0, 1, 0, 0, 0, 0, 0},
-            {1, 1, 1, 1, 1, 0, 1, 1},
-            {1, 1, 0, 0, 0, 0, 0, 1},
-            {1, 1, 0, 0, 0, 0, 0, 0}
+                {0, 0, 0, 0, 0, 0, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0},
+                {1, 0, 0, 0, 0, 0, 0, 0},
+                {1, 1, 1, 0, 0, 0, 0, 0},
+                {1, 0, 1, 0, 0, 0, 0, 0},
+                {1, 1, 1, 1, 1, 0, 1, 1},
+                {1, 1, 0, 0, 0, 0, 0, 1},
+                {1, 1, 0, 0, 0, 0, 0, 0}
         };
 
         doTestTransitiveClosure(relationToCloseDescr, expClosedRelationDescr);
@@ -101,14 +101,14 @@ public class BinaryRelationUtilsTest extends TestCase {
 
     public static void testTransitiveClosureForTheWorstCase() {
         int[][] relationToCloseDescr = {{0, 0, 0, 1},
-                                        {0, 0, 0, 0},
-                                        {0, 1, 0, 0},
-                                        {0, 0, 1, 0}};
+                {0, 0, 0, 0},
+                {0, 1, 0, 0},
+                {0, 0, 1, 0}};
         int[][] expClosedRelationDescr = {
-            {0, 1, 1, 1},
-            {0, 0, 0, 0},
-            {0, 1, 0, 0},
-            {0, 1, 1, 0}
+                {0, 1, 1, 1},
+                {0, 0, 0, 0},
+                {0, 1, 0, 0},
+                {0, 1, 1, 0}
         };
 
         doTestTransitiveClosure(relationToCloseDescr, expClosedRelationDescr);
@@ -121,15 +121,15 @@ public class BinaryRelationUtilsTest extends TestCase {
         assertEquals(0, average, PRECISION);
 
         relationDescr = new int[][]{
-            {1, 0},
-            {0, 1}
+                {1, 0},
+                {0, 1}
         };
         relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(1, BinaryRelationUtils.averageNumberOfAttributesPerObject(relation), PRECISION);
 
         relationDescr = new int[][]{
-            {1, 1},
-            {0, 1}
+                {1, 1},
+                {0, 1}
         };
         relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(1.5, BinaryRelationUtils.averageNumberOfAttributesPerObject(relation), PRECISION);
@@ -141,8 +141,8 @@ public class BinaryRelationUtilsTest extends TestCase {
         assertEquals(0, BinaryRelationUtils.averageNumberOfObjectsPerAttribute(relation), PRECISION);
 
         relationDescr = new int[][]{
-            {1, 0, 1},
-            {0, 0, 1}
+                {1, 0, 1},
+                {0, 0, 1}
         };
         relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(1, BinaryRelationUtils.averageNumberOfObjectsPerAttribute(relation), PRECISION);
@@ -153,8 +153,8 @@ public class BinaryRelationUtilsTest extends TestCase {
         BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(0, BinaryRelationUtils.varianceOfObjectPerAttribute(relation), PRECISION);
         relationDescr = new int[][]{
-            {1, 0, 1},
-            {0, 0, 1}
+                {1, 0, 1},
+                {0, 0, 1}
         };
         relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(0.6666, BinaryRelationUtils.varianceOfObjectPerAttribute(relation), PRECISION);
@@ -165,8 +165,8 @@ public class BinaryRelationUtilsTest extends TestCase {
         BinaryRelation relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(0, BinaryRelationUtils.varianceOfAttributesPerObjects(relation), PRECISION);
         relationDescr = new int[][]{
-            {1, 0, 1},
-            {0, 0, 1}
+                {1, 0, 1},
+                {0, 0, 1}
         };
         relation = SetBuilder.makeRelation(relationDescr);
         assertEquals(0.25, BinaryRelationUtils.varianceOfAttributesPerObjects(relation), PRECISION);

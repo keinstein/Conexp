@@ -5,7 +5,6 @@
  **/
 
 
-
 package canvas;
 
 import java.util.EventObject;

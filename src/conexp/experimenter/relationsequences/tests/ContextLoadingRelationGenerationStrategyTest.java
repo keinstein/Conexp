@@ -16,9 +16,9 @@ public class ContextLoadingRelationGenerationStrategyTest extends TestCase {
             ContextLoadingRelationGenerationStrategy strategy = new ContextLoadingRelationGenerationStrategy(url);
             assertEquals(1, strategy.getRelationCount());
             assertEquals(SetBuilder.makeRelation(new int[][]{{1, 1},
-                                                             {1,0}}), strategy.getRelation(0));
+                    {1, 0}}), strategy.getRelation(0));
         } catch (Exception e) {
-             TestUtil.reportUnexpectedException(e);
+            TestUtil.reportUnexpectedException(e);
         }
 
 

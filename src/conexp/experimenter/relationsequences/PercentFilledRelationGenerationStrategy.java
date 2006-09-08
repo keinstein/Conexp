@@ -6,6 +6,7 @@ import conexp.core.BinaryRelation;
 /**
  * Insert the type's description here.
  * Creation date: (06.07.01 13:50:59)
+ *
  * @author
  */
 public class PercentFilledRelationGenerationStrategy extends ParametricRelationGenerationStrategy {
@@ -27,6 +28,7 @@ public class PercentFilledRelationGenerationStrategy extends ParametricRelationG
     /**
      * Insert the method's description here.
      * Creation date: (06.07.01 16:23:41)
+     *
      * @return java.lang.String
      */
     public String describeStrategy() {
@@ -37,8 +39,9 @@ public class PercentFilledRelationGenerationStrategy extends ParametricRelationG
     /**
      * Insert the method's description here.
      * Creation date: (06.07.01 13:50:59)
-     * @return conexp.core.BinaryRelation
+     *
      * @param relNo int
+     * @return conexp.core.BinaryRelation
      */
     public BinaryRelation makeRelation(int relNo) {
         return RelationGenerator.makeFilledWithPercent(calcRelationSizeX(relNo), calcRelationSizeY(relNo), (float) fillPercent);

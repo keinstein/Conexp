@@ -24,7 +24,7 @@ public class TrueFigurePredicate implements IFigurePredicate {
 
     static final IFigurePredicate g_Instance = new TrueFigurePredicate();
 
-    public static IFigurePredicate getInstance(){
+    public static IFigurePredicate getInstance() {
         return g_Instance;
     }
 

@@ -36,6 +36,7 @@ public class ContextTooltipTableCellRenderer extends MyDefaultCellRenderer imple
     }
 
 //---------------------------------------------------------
+
     private void processTooltip(ContextEditingInterface cxt, int row, int col) {
         String msg = "";
         if (row > 0 && row <= cxt.getObjectCount()) {
@@ -122,7 +123,7 @@ public class ContextTooltipTableCellRenderer extends MyDefaultCellRenderer imple
     public ParamInfo[] getParams() {
         if (null == params) {
             params = new ParamInfo[]{
-                new StrategyValueItemParamInfo("Show arrow relation", getDrawStrategy())
+                    new StrategyValueItemParamInfo("Show arrow relation", getDrawStrategy())
             };
         }
         return params;

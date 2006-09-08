@@ -23,6 +23,7 @@ public class ParamsTableModel extends AbstractTableModel implements util.gui.Tab
     /**
      * Insert the method's description here.
      * Creation date: (26.03.01 21:57:42)
+     *
      * @param param conexp.util.gui.paramseditor.ParamInfo[]
      */
     public void addParam(ParamInfo param) {
@@ -34,6 +35,7 @@ public class ParamsTableModel extends AbstractTableModel implements util.gui.Tab
     /**
      * Insert the method's description here.
      * Creation date: (26.03.01 21:57:42)
+     *
      * @param paramArr conexp.util.gui.paramseditor.ParamInfo[]
      */
     public void addParams(ParamInfo[] paramArr) {
@@ -52,9 +54,10 @@ public class ParamsTableModel extends AbstractTableModel implements util.gui.Tab
     /**
      * Insert the method's description here.
      * Creation date: (28.03.01 22:12:15)
-     * @return javax.swing.table.TableCellEditor
+     *
      * @param row int
      * @param col int
+     * @return javax.swing.table.TableCellEditor
      */
     public javax.swing.table.TableCellEditor getCellEditor(javax.swing.JTable table, int row, int col) {
         if (col == 1) {

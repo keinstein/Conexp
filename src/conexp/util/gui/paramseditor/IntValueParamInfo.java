@@ -15,6 +15,7 @@ public class IntValueParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (30.03.01 23:35:43)
+     *
      * @return javax.swing.table.TableCellRenderer
      */
     public javax.swing.table.TableCellRenderer getParamRenderer() {
@@ -24,6 +25,7 @@ public class IntValueParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (29.03.01 0:04:11)
+     *
      * @return java.lang.Object
      */
     public java.lang.Object getValue() {
@@ -33,6 +35,7 @@ public class IntValueParamInfo extends AbstractParamInfo {
     /**
      * Insert the method's description here.
      * Creation date: (29.03.01 0:01:26)
+     *
      * @return javax.swing.table.TableCellEditor
      */
     protected javax.swing.table.TableCellEditor makeEditor() {
@@ -41,6 +44,7 @@ public class IntValueParamInfo extends AbstractParamInfo {
 
     /**
      * BoundedIntValueParamInfo constructor comment.
+     *
      * @param label java.lang.String
      */
     public IntValueParamInfo(String label, IIntValueModel value) {

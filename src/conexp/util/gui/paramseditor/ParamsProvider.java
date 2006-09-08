@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.util.gui.paramseditor;
 
 public interface ParamsProvider {

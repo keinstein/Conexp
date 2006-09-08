@@ -28,20 +28,18 @@ public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplement
     class AttributeMaskContextListener extends DefaultContextListener {
         public void attributeChanged(ContextChangeEvent changeEvent) {
             switch (changeEvent.getType()) {
-                case ContextChangeEvent.ATTRIBUTE_REMOVED:
-                    {
-                        int oldValue = selectedEntities.size();
-                        selectedEntities.remove(changeEvent.getColumn());
-                        getPropertyChangeSupport().firePropertyChange(ENTITIES_COUNT_CHANGED, oldValue, selectedEntities.size());
-                        break;
-                    }
-                case ContextChangeEvent.ATTRIBUTE_ADDED:
-                    {
-                        int oldValue = selectedEntities.size();
-                        selectedEntities.add(Boolean.FALSE);
-                        getPropertyChangeSupport().firePropertyChange(ENTITIES_COUNT_CHANGED, oldValue, selectedEntities.size());
-                        break;
-                    }
+                case ContextChangeEvent.ATTRIBUTE_REMOVED: {
+                    int oldValue = selectedEntities.size();
+                    selectedEntities.remove(changeEvent.getColumn());
+                    getPropertyChangeSupport().firePropertyChange(ENTITIES_COUNT_CHANGED, oldValue, selectedEntities.size());
+                    break;
+                }
+                case ContextChangeEvent.ATTRIBUTE_ADDED: {
+                    int oldValue = selectedEntities.size();
+                    selectedEntities.add(Boolean.FALSE);
+                    getPropertyChangeSupport().firePropertyChange(ENTITIES_COUNT_CHANGED, oldValue, selectedEntities.size());
+                    break;
+                }
             }
         }
 
@@ -85,10 +83,10 @@ public class ContextAttributeMask extends BasicMultiSelectionEntityMaskImplement
         return context.getAttribute(index).getName();
     }
 
-    public void cleanUp(){
+    public void cleanUp() {
         this.context.removeContextListener(maskContextListener);
-        maskContextListener=null;
-        context=null;
+        maskContextListener = null;
+        context = null;
     }
 
     public boolean equals(Object other) {

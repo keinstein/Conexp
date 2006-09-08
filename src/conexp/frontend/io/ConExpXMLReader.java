@@ -231,7 +231,7 @@ public class ConExpXMLReader implements DocumentLoader {
         Element labelsCollection = lineDiagramElement.getChild(
                 elementsLabel);
         assert labelsCollection !=
-                null:"If drawing has labels for concepts, then drawing should have non zero labels collection :"+elementsLabel;
+                null:"If drawing has labels for concepts, then drawing should have non zero labels collection :" + elementsLabel;
 
         processLabelsFromCollectionWithType(labelsCollection,
                 ConExpXMLElements.CONCEPT_LABEL_FIGURE_TYPE,
@@ -253,7 +253,7 @@ public class ConExpXMLReader implements DocumentLoader {
         }
         doLoadConceptLabels(drawing, lineDiagramElement,
                 ConExpXMLElements.UP_CONCEPT_LABELS_ELEMENT,
-                new FigureConceptMapper(){
+                new FigureConceptMapper() {
                     public IFigureWithCoords getFigureForConcept(ItemSet concept) {
                         return drawing.getUpLabelForConcept(concept);
                     }
@@ -268,7 +268,7 @@ public class ConExpXMLReader implements DocumentLoader {
         }
         doLoadConceptLabels(drawing, lineDiagramElement,
                 ConExpXMLElements.DOWN_CONCEPT_LABELS_ELEMENT,
-                new FigureConceptMapper(){
+                new FigureConceptMapper() {
                     public IFigureWithCoords getFigureForConcept(ItemSet concept) {
                         return drawing.getDownLabelForConcept(concept);
                     }

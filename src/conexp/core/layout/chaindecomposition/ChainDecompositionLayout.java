@@ -114,18 +114,18 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
     protected ParamInfo[] makeParams() {
 
         return new ParamInfo[]{
-            new StrategyValueItemParamInfo("Representation", getDecompositionStrategyItem()),
-            new StrategyValueItemParamInfo("Placement", getConceptPlacementStrategyItem()),
-            new ButtonParamInfo("Rotate left", "<<", new ActionListener() {
-                public void actionPerformed(ActionEvent ev) {
-                    rotateChainsLeft();
-                }
-            }),
-            new ButtonParamInfo("Rotate right", ">>", new ActionListener() {
-                public void actionPerformed(ActionEvent ev) {
-                    rotateChainsRight();
-                }
-            })
+                new StrategyValueItemParamInfo("Representation", getDecompositionStrategyItem()),
+                new StrategyValueItemParamInfo("Placement", getConceptPlacementStrategyItem()),
+                new ButtonParamInfo("Rotate left", "<<", new ActionListener() {
+                    public void actionPerformed(ActionEvent ev) {
+                        rotateChainsLeft();
+                    }
+                }),
+                new ButtonParamInfo("Rotate right", ">>", new ActionListener() {
+                    public void actionPerformed(ActionEvent ev) {
+                        rotateChainsRight();
+                    }
+                })
 
         };
     }
@@ -251,7 +251,6 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
 
         int[] label = new int[size];
 
-
 // Edges, that's start in entities, that are already in matching,
         // end ends in entities, that are not in matching
         int[] exposed = new int[size];
@@ -306,7 +305,8 @@ public class ChainDecompositionLayout extends NonIncrementalLayouter {
                 // v, by definition, isn't in matching
                 // width - is a start of one edges in matching
                 //searching edges, which can be in matching
-                for (int w = notInStartOfEdgesOfMatching.firstOut(); w >= 0; w = notInStartOfEdgesOfMatching.nextOut(w)) {
+                for (int w = notInStartOfEdgesOfMatching.firstOut(); w >= 0; w = notInStartOfEdgesOfMatching.nextOut(w))
+                {
                     //if(v == matching[width]) ==> edges.getRelationAt(v, matching[width]) == false);
                     //if(v==width) ==> edges.getRelationAt(v, matching[width]) == false
                     if (label[w] == unlabelled

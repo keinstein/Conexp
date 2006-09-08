@@ -36,7 +36,7 @@ public abstract class GenericRuleRendererTest extends TestCase {
      */
     protected void setUp() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
-                                                         {0, 0, 1}});
+                {0, 0, 1}});
         depSet = new DependencySet(cxt);
         addRepresentableDependencies();
         renderer = makeRuleRenderer();

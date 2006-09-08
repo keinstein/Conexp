@@ -89,9 +89,9 @@ public class LatticePainterPanelTest extends TestCase {
 
     public static void testCorrectWorkingOfOptionsChanges() {
         LatticeComponent component = ComponentsObjectMother.makeLatticeComponentWithSimpleLayoutEngine(new int[][]{
-            {1, 0, 0},
-            {0, 1, 0},
-            {0, 0, 1}
+                {1, 0, 0},
+                {0, 1, 0},
+                {0, 0, 1}
         });
         component.calculateAndLayoutLattice();
 

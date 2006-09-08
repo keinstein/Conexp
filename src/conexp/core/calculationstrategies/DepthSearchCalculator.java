@@ -29,6 +29,7 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
     }
 
     //-----------------------------------------------------------------
+
     /**
      * Constructor for the DepthSearchCalculator object
      */
@@ -36,6 +37,7 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
         super();
     }
     //--------------------------------------------------------------------
+
     /**
      * calculate attributes, that exist in at least one object from _objects and
      * don't belong to _attribs
@@ -56,6 +58,7 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
         return ret;
     }
     //-----------------------------------------------------------------
+
     /**
      * from here starts version for attributes
      */
@@ -77,6 +80,7 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
     }
 
     //----------------------------------------------------------------
+
     /**
      * this function is strongly connected with used order !!! precondition :
      * _attribs not equal one attribs
@@ -86,7 +90,8 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
         for (; ;) {
             Set firstTime = curr.firstTimePredecessors;
             int i = firstTime.firstIn();
-            outer : {
+            outer :
+            {
                 while (i >= 0) {
                     DepthSearchLatticeElement pred = (DepthSearchLatticeElement) curr.getPred(i);
                     if (attribs.isSupersetOf(pred.getAttribs())) {
@@ -103,6 +108,7 @@ public class DepthSearchCalculator extends BasicDepthSearchCalculator {
     }
 
     //-------------------------------------------------------------------------------
+
     /**
      * Description of the Method
      *

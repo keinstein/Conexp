@@ -36,6 +36,7 @@ public class ResourceManager implements IResourceManager {
         return str;
     }
     //----------------------------------------------
+
     /**
      * Take the given string and chop it up into a series
      * of strings on whitespace boundries.  This is useful
@@ -47,11 +48,13 @@ public class ResourceManager implements IResourceManager {
         StringTokenizer t = new StringTokenizer(input);
         String cmd[];
 
-        while (t.hasMoreTokens())
+        while (t.hasMoreTokens()) {
             v.add(t.nextToken());
+        }
         cmd = new String[v.size()];
-        for (int i = 0; i < cmd.length; i++)
+        for (int i = 0; i < cmd.length; i++) {
             cmd[i] = (String) v.get(i);
+        }
 
         return cmd;
     }

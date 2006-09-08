@@ -22,32 +22,32 @@ public class ConceptFilterIteratorTest extends TestCase {
 
     public static void testExp() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{1, 0},
-                                                         {0, 1}}, new DepthSearchCalculator());
+                {0, 1}}, new DepthSearchCalculator());
         testFilterEnumerator(lat, new int[]{0, 0}, new int[][]{{0, 0}});
         testFilterEnumerator(lat, new int[]{0, 1}, new int[][]{{0, 0},
-                                                               {0, 1}});
+                {0, 1}});
         testFilterEnumerator(lat, new int[]{1, 0}, new int[][]{{0, 0},
-                                                               {1, 0}});
+                {1, 0}});
         testFilterEnumerator(lat, new int[]{1, 1}, new int[][]{{0, 0},
-                                                               {1, 0},
-                                                               {0, 1},
-                                                               {1, 1}});
+                {1, 0},
+                {0, 1},
+                {1, 1}});
     }
 
 
     public static void testExp3() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{0, 1, 1},
-                                                         {1, 0, 1},
-                                                         {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         int count = calculateElementsInFilterIterator(lat.getBottom());
         assertEquals(8, count);
     }
 
     public static void testExp4() {
         final int[][] relation = new int[][]{{0, 1, 1, 1},
-                                             {1, 0, 1, 1},
-                                             {1, 1, 0, 1},
-                                             {1, 1, 1, 0}};
+                {1, 0, 1, 1},
+                {1, 1, 0, 1},
+                {1, 1, 1, 0}};
         Lattice lat = SetBuilder.makeLattice(relation);
         int count = calculateElementsInFilterIterator(lat.getBottom());
         assertEquals(16, count);
@@ -55,18 +55,18 @@ public class ConceptFilterIteratorTest extends TestCase {
 
     public static void testSpecialCaseForIncALgorithm() {
         int[][] rel = {
-            {1, 0, 1, 0, 0},
-            {0, 1, 1, 1, 0},
-            //{1, 0, 1, 1, 0},
-            // {0, 1, 0, 0, 1},
-            // {1, 0, 1, 0, 0},
-            // {0, 0, 1, 0, 0},
-            // {1, 0, 0, 1, 0},
-            //{0, 1, 0, 1, 1},
-            //{0, 0, 1, 0, 1},
-            // {0, 1, 1, 0, 0},
-            //  {0, 0, 0, 0, 1},
-            //  {1, 1, 1, 1, 1},
+                {1, 0, 1, 0, 0},
+                {0, 1, 1, 1, 0},
+                //{1, 0, 1, 1, 0},
+                // {0, 1, 0, 0, 1},
+                // {1, 0, 1, 0, 0},
+                // {0, 0, 1, 0, 0},
+                // {1, 0, 0, 1, 0},
+                //{0, 1, 0, 1, 1},
+                //{0, 0, 1, 0, 1},
+                // {0, 1, 1, 0, 0},
+                //  {0, 0, 0, 0, 1},
+                //  {1, 1, 1, 1, 1},
         };
         Lattice lat = SetBuilder.makeLattice(rel);
         int count = calculateElementsInFilterIterator(lat.getBottom());
@@ -98,14 +98,14 @@ public class ConceptFilterIteratorTest extends TestCase {
 
     public static void testLinear() {
         Lattice lat = SetBuilder.makeLattice(new int[][]{{1, 0, 0},
-                                                         {1, 1, 0},
-                                                         {1, 1, 1}}, new DepthSearchCalculator());
+                {1, 1, 0},
+                {1, 1, 1}}, new DepthSearchCalculator());
         testFilterEnumerator(lat, new int[]{1, 0, 0}, new int[][]{{1, 0, 0}});
         testFilterEnumerator(lat, new int[]{1, 1, 0}, new int[][]{{1, 0, 0},
-                                                                  {1, 1, 0}});
+                {1, 1, 0}});
         testFilterEnumerator(lat, new int[]{1, 1, 1}, new int[][]{{1, 0, 0},
-                                                                  {1, 1, 0},
-                                                                  {1, 1, 1}});
+                {1, 1, 0},
+                {1, 1, 1}});
 
     }
 

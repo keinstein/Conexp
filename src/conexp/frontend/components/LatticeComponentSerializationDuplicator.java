@@ -4,7 +4,6 @@ import conexp.frontend.io.ConExpXMLReader;
 import conexp.frontend.io.ConExpXMLWriter;
 import org.jdom.Element;
 import util.DataFormatException;
-import util.XMLHelper;
 
 /**
  * User: sergey
@@ -16,7 +15,7 @@ public class LatticeComponentSerializationDuplicator implements ILatticeComponen
 
         LatticeComponent copy = new LatticeComponent(toCopy.getContext(), toCopy.attributeMask.makeCopy(),
                 toCopy.objectMask.makeCopy());
-        if(toCopy.isRecalcLatticeOnMaskChange()){
+        if (toCopy.isRecalcLatticeOnMaskChange()) {
             copy.setUpLatticeRecalcOnMasksChange();
         }
 

@@ -50,22 +50,22 @@ public abstract class BasicStrategyModel implements StrategyModel {
             return false;
         }
         StrategyModel other = (StrategyModel) obj;
-        if(!this.getClass().equals(other.getClass())){
+        if (!this.getClass().equals(other.getClass())) {
             return false;
         }
         final int strategiesCount = getStrategiesCount();
-        if(strategiesCount!=other.getStrategiesCount()){
+        if (strategiesCount != other.getStrategiesCount()) {
             return false;
         }
-        for(int i=strategiesCount; --i>=0; ){
-           if(!getStrategy(i).equals(other.getStrategy(i))){
-               return false;
-           }
-           if(!getStrategyName(i).equals(other.getStrategyName(i))){
-               return false;
-           }
+        for (int i = strategiesCount; --i >= 0;) {
+            if (!getStrategy(i).equals(other.getStrategy(i))) {
+                return false;
+            }
+            if (!getStrategyName(i).equals(other.getStrategyName(i))) {
+                return false;
+            }
         }
-        if(!Arrays.equals(getStrategyDescription(), other.getStrategyDescription())){
+        if (!Arrays.equals(getStrategyDescription(), other.getStrategyDescription())) {
             return false;
         }
         return true;

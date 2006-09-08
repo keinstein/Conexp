@@ -51,10 +51,10 @@ public class VetoableValueModelDecorator implements IVetoableValueModel {
     }
 
     public boolean equals(Object obj) {
-        if (this == obj){
+        if (this == obj) {
             return true;
         }
-        if (!(obj instanceof VetoableValueModelDecorator)){
+        if (!(obj instanceof VetoableValueModelDecorator)) {
             return false;
         }
         return doEquals((VetoableValueModelDecorator) obj);

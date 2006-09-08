@@ -5,7 +5,6 @@
  **/
 
 
-
 package canvas.figures;
 
 import util.gui.ColorUtil;

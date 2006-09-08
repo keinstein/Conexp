@@ -87,8 +87,8 @@ public class AssociationRuleCalculator extends AbstractDependencySetCalculator i
     public ParamInfo[] getParams() {
         if (null == params) {
             params = new ParamInfo[]{
-                new IntValueParamInfo("Minimal support", getMinSupportValueModel()),
-                new BoundedDoubleValueParamInfo("Confidence", getConfidenceValueModel())
+                    new IntValueParamInfo("Minimal support", getMinSupportValueModel()),
+                    new BoundedDoubleValueParamInfo("Confidence", getConfidenceValueModel())
             };
         }
         return params;

@@ -37,7 +37,6 @@ public class BoundedIntValue extends conexp.util.valuemodels.VetoableValueModelD
     }
 
 
-
     public void setValue(int newValue) throws java.beans.PropertyVetoException {
         try {
             checkValue(newValue);
@@ -84,13 +83,21 @@ public class BoundedIntValue extends conexp.util.valuemodels.VetoableValueModelD
     }
 
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof BoundedIntValue)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof BoundedIntValue)) {
+            return false;
+        }
 
         final BoundedIntValue boundedIntValue = (BoundedIntValue) obj;
 
-        if (maxVal != boundedIntValue.maxVal) return false;
-        if (minVal != boundedIntValue.minVal) return false;
+        if (maxVal != boundedIntValue.maxVal) {
+            return false;
+        }
+        if (minVal != boundedIntValue.minVal) {
+            return false;
+        }
 
         return doEquals(boundedIntValue);
     }
@@ -106,7 +113,7 @@ public class BoundedIntValue extends conexp.util.valuemodels.VetoableValueModelD
         return "BoundedIntValue{" +
                 "minVal=" + minVal +
                 ", maxVal=" + maxVal +
-                ", value ="+getValue()+
+                ", value =" + getValue() +
                 "}";
     }
 }

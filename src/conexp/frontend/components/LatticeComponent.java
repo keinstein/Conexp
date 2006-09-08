@@ -194,10 +194,12 @@ public class LatticeComponent extends BasePropertyChangeSupplier implements Latt
         if (lattice != null ? !lattice.equals(latticeComponent.lattice) : latticeComponent.lattice != null) {
             return false;
         }
-        if (objectMask != null ? !objectMask.equals(latticeComponent.objectMask) : latticeComponent.objectMask != null) {
+        if (objectMask != null ? !objectMask.equals(latticeComponent.objectMask) : latticeComponent.objectMask != null)
+        {
             return false;
         }
-        if (attributeMask != null ? !attributeMask.equals(latticeComponent.attributeMask) : latticeComponent.attributeMask != null) {
+        if (attributeMask != null ? !attributeMask.equals(latticeComponent.attributeMask) : latticeComponent.attributeMask != null)
+        {
             return false;
         }
         if (recalcLatticeOnMaskChange != latticeComponent.recalcLatticeOnMaskChange) {

@@ -11,7 +11,7 @@ import conexp.experimenter.framework.ExperimentException;
  * Time: 18:06:28
  */
 
-public class HypothesisCharacteristicsExperiment extends BasicExperiment{
+public class HypothesisCharacteristicsExperiment extends BasicExperiment {
     protected Object getActionObject() {
         return "HypothesisCharacteristicsExperiment";
     }

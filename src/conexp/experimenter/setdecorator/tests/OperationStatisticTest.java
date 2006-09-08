@@ -28,7 +28,7 @@ public class OperationStatisticTest extends TestCase {
     }
 
     public static void testClear() {
-       OperationStatistic statistic =new OperationStatistic();
+        OperationStatistic statistic = new OperationStatistic();
         statistic.register(OperationCodes.IN);
         assertEquals(1, statistic.getOperationCount(OperationCodes.IN));
         statistic.clear();

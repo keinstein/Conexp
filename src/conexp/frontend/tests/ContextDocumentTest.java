@@ -46,7 +46,7 @@ public class ContextDocumentTest extends TestCase {
         doc = new ContextDocument();
     }
 
-    public static Test suite(){
+    public static Test suite() {
         return new SimpleLayoutTestSetup(new TestSuite(ContextDocumentTest.class));
     }
 
@@ -57,14 +57,13 @@ public class ContextDocumentTest extends TestCase {
 
     public void testFindAssociations() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 1, 1},
-                                                         {0, 1, 1}});
+                {0, 1, 1}});
         doc = new ContextDocument(cxt);
         doc.getAssociationRules(); //initialization
         doc.getContext().removeAttribute(0);
         doc.findAssociations();
         assertSame(cxt, doc.getAssociationRules().getAttributesInformation());
     }
-
 
 
     static interface DependencySetSupplier {
@@ -86,7 +85,7 @@ public class ContextDocumentTest extends TestCase {
         };
 
         int[][] rel = new int[][]{{1, 1, 0},
-                                  {1, 0, 1}};
+                {1, 0, 1}};
 
         testDependencySetUpdateOnRelation(rel, supplier);
     }
@@ -106,7 +105,7 @@ public class ContextDocumentTest extends TestCase {
 
     public void testChangeOfAssociationRulesAfterContextModification() {
         int[][] rel = new int[][]{{1, 1, 0},
-                                  {1, 0, 1}};
+                {1, 0, 1}};
 
         DependencySetSupplier supplier = new DependencySetSupplier() {
             public void calcDependencySet(ContextDocument doc) {
@@ -145,8 +144,8 @@ public class ContextDocumentTest extends TestCase {
 
     public void testViewsOptions() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
-                                                         {1, 0, 1},
-                                                         {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         doc = new ContextDocument(cxt);
 
         //createAllViews
@@ -175,8 +174,8 @@ public class ContextDocumentTest extends TestCase {
 
     public void testBuildLattice() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
-                                                         {1, 0, 1},
-                                                         {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         doc = new ContextDocument(cxt);
 
         doc.calculateAndLayoutLattice();
@@ -217,8 +216,8 @@ public class ContextDocumentTest extends TestCase {
     public void testSnapshotLattice() {
         LatticeComponentFactory.configureTest();
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
-                                                         {1, 0, 1},
-                                                         {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         doc = new ContextDocument(cxt);
 
         assertEquals(true, doc.getLatticeCollection().isEmpty());
@@ -253,8 +252,8 @@ public class ContextDocumentTest extends TestCase {
 
     public void testTreeAddingLatticeNodeAfterLatticeBuilding() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
-                                                         {1, 0, 1},
-                                                         {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         doc = new ContextDocument(cxt);
 
         assertEquals(true, doc.getLatticeCollection().isEmpty());
@@ -269,10 +268,10 @@ public class ContextDocumentTest extends TestCase {
         assertEquals(4, SwingTestUtil.sizeOfTheTree(tree));
     }
 
-    public void testTreeNavigation(){
+    public void testTreeNavigation() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 1},
-                                                         {1, 0, 1},
-                                                         {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         doc = new ContextDocument(cxt);
         doc.activateViews();
 
@@ -291,17 +290,17 @@ public class ContextDocumentTest extends TestCase {
         assertEquals(1, doc.getActiveLatticeComponentID());
     }
 
-    public void testOneNodeInTreeForImplications(){
+    public void testOneNodeInTreeForImplications() {
         testOneNodeInTree(ContextDocument.CALCULATE_IMPLICATIONS_COMMAND, ContextDocument.IMPLICATIONS_NODE_NAME);
     }
 
-    public void testOneNodeInTreeForAssociations(){
+    public void testOneNodeInTreeForAssociations() {
         testOneNodeInTree(ContextDocument.CALCULATE_ASSOCIATIONS_COMMAND, ContextDocument.AssociationViewInfo.ASSOCIATIONS_NODE_NAME);
     }
 
     public void testRemoveLatticeComponent() {
         Context cxt = SetBuilder.makeContext(new int[][]{{1, 1, 1},
-                                                         {0, 1, 1}});
+                {0, 1, 1}});
         doc = new ContextDocument(cxt);
         doc.activateViews();
         JTree tree = doc.getTree();
@@ -321,8 +320,8 @@ public class ContextDocumentTest extends TestCase {
 
     private void testOneNodeInTree(final String command, final String nodeName) {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
-                                                         {1, 0, 1},
-                                                         {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         doc = new ContextDocument(cxt);
         doc.activateViews();
         JTree tree = doc.getTree();
@@ -333,10 +332,10 @@ public class ContextDocumentTest extends TestCase {
         assertEquals(1, SwingTestUtil.nodeOccurenceInTree(tree, nodeName));
     }
 
-    public void testSelectionAndExpansionOfTree(){
+    public void testSelectionAndExpansionOfTree() {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
-                                                         {1, 0, 1},
-                                                         {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         doc = new ContextDocument(cxt);
 
 
@@ -368,60 +367,61 @@ public class ContextDocumentTest extends TestCase {
         assertTrue(SwingTestUtil.isSelectedAndExpanded(tree, doc.getContextTreeRoot()));
 
     }
-    interface DocModifier{
+
+    interface DocModifier {
         void modifyDoc(ContextDocument doc);
     }
 
-    public void testContextDocModification(){
-        doTestDocModifiedAfterModification(new DocModifier(){
+    public void testContextDocModification() {
+        doTestDocModifiedAfterModification(new DocModifier() {
             public void modifyDoc(ContextDocument doc) {
                 doc.getContext().setRelationAt(0, 0, true);
             }
         });
-        doTestDocModifiedAfterModification(new DocModifier(){
+        doTestDocModifiedAfterModification(new DocModifier() {
             public void modifyDoc(ContextDocument doc) {
                 doc.getContext().getAttribute(0).setName("New attribute name");
             }
         });
-        doTestDocModifiedAfterModification(new DocModifier(){
+        doTestDocModifiedAfterModification(new DocModifier() {
             public void modifyDoc(ContextDocument doc) {
                 doc.getContext().getObject(0).setName("New object name");
             }
         });
-        doTestDocModifiedAfterModification(new DocModifier(){
+        doTestDocModifiedAfterModification(new DocModifier() {
             public void modifyDoc(ContextDocument doc) {
                 doc.getContext().removeAttribute(0);
             }
         });
-        doTestDocModifiedAfterModification(new DocModifier(){
+        doTestDocModifiedAfterModification(new DocModifier() {
             public void modifyDoc(ContextDocument doc) {
                 doc.getContext().removeObject(0);
             }
         });
-        doTestDocModifiedAfterModification(new DocModifier(){
+        doTestDocModifiedAfterModification(new DocModifier() {
             public void modifyDoc(ContextDocument doc) {
                 doc.getContext().transpose();
             }
         });
 
-        doTestDocModifiedAfterModification(new DocModifier(){
+        doTestDocModifiedAfterModification(new DocModifier() {
             public void modifyDoc(ContextDocument doc) {
                 performCommand(doc, ContextDocument.BUILD_LATTICE_COMMAND);
             }
         });
-        doTestDocModifiedAfterModification(new DocModifier(){
+        doTestDocModifiedAfterModification(new DocModifier() {
             public void modifyDoc(ContextDocument doc) {
                 performCommand(doc, ContextDocument.BUILD_LATTICE_COMMAND);
                 doc.markClean();
                 performCommand(doc, ContextDocument.MAKE_LATTICE_SNAPSHOT_COMMAND);
             }
         });
-        doTestDocModifiedAfterModification(new DocModifier(){
+        doTestDocModifiedAfterModification(new DocModifier() {
             public void modifyDoc(ContextDocument doc) {
                 performCommand(doc, ContextDocument.CALCULATE_ASSOCIATIONS_COMMAND);
             }
         });
-        doTestDocModifiedAfterModification(new DocModifier(){
+        doTestDocModifiedAfterModification(new DocModifier() {
             public void modifyDoc(ContextDocument doc) {
                 performCommand(doc, ContextDocument.CALCULATE_IMPLICATIONS_COMMAND);
             }
@@ -430,8 +430,8 @@ public class ContextDocumentTest extends TestCase {
 
     private void doTestDocModifiedAfterModification(DocModifier modifier) {
         Context cxt = SetBuilder.makeContext(new int[][]{{0, 1, 0},
-                                                         {1, 0, 1},
-                                                         {1, 1, 0}});
+                {1, 0, 1},
+                {1, 1, 0}});
         doc = new ContextDocument(cxt);
         assertFalse(doc.isModified());
         modifier.modifyDoc(doc);
@@ -439,23 +439,23 @@ public class ContextDocumentTest extends TestCase {
     }
 
 
-    public void testSnapshotForMultiLabelsObject(){
-        Context cxt = SetBuilder.makeContext(new int[][]{{0,0},
-                                                         {0,0}});
+    public void testSnapshotForMultiLabelsObject() {
+        Context cxt = SetBuilder.makeContext(new int[][]{{0, 0},
+                {0, 0}});
         doc = new ContextDocument(cxt);
         doc.calculateAndLayoutLattice();
         LatticeDrawing drawing = doc.getLatticeComponent(0).getDrawing();
         drawing.
                 setObjectLabelingStrategyKey(LabelingStrategiesKeys.
-                OBJECTS_MULTI_LABELING_STRATEGY_KEY);
+                        OBJECTS_MULTI_LABELING_STRATEGY_KEY);
         drawing.setAttributeLabelingStrategyKey(LabelingStrategiesKeys.ATTRIBS_MULTI_LABELING_STRATEGY_KEY);
 
         doc.makeLatticeSnapshot();
     }
 
-    public void testSnapshotForMultiLabelsObjectAttr(){
-        Context cxt = SetBuilder.makeContext(new int[][]{{0,0},
-                                                         {0,0}});
+    public void testSnapshotForMultiLabelsObjectAttr() {
+        Context cxt = SetBuilder.makeContext(new int[][]{{0, 0},
+                {0, 0}});
         doc = new ContextDocument(cxt);
         doc.calculateAndLayoutLattice();
         LatticeDrawing drawing = doc.getLatticeComponent(0).getDrawing();
@@ -466,12 +466,12 @@ public class ContextDocumentTest extends TestCase {
 
         assertEquals(LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY,
                 drawing.getObjectLabelingStrategyKey());
-        assertEquals("labelsForConcepts should be true",true, drawing.hasDownLabelsForConcepts());
-        assertEquals("labelsForAttributes should be false", false,drawing.hasLabelsForAttributes());
+        assertEquals("labelsForConcepts should be true", true, drawing.hasDownLabelsForConcepts());
+        assertEquals("labelsForAttributes should be false", false, drawing.hasLabelsForAttributes());
         assertEquals("labelsForObjects should be false", false, drawing.hasLabelsForObjects());
         drawing.setAttributeLabelingStrategyKey(LabelingStrategiesKeys.
                 ATTRIBS_MULTI_LABELING_STRATEGY_KEY);
-        assertTrue("Expect that drawing has labels for concepts",drawing.hasUpLabelsForConcepts());
+        assertTrue("Expect that drawing has labels for concepts", drawing.hasUpLabelsForConcepts());
 
         drawing.setObjectLabelingStrategyKey(
                 LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY);
@@ -481,8 +481,6 @@ public class ContextDocumentTest extends TestCase {
 
         doc.makeLatticeSnapshot();
     }
-
-
 
 
 }

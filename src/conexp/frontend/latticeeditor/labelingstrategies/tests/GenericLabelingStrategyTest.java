@@ -45,7 +45,7 @@ public abstract class GenericLabelingStrategyTest extends TestCase {
     protected void setUp() {
         labelStrategy = makeStrategy();
         cxt = SetBuilder.makeContext(new int[][]{{0, 0},
-                                                 {0, 0}});
+                {0, 0}});
         labelStrategy.setContext(cxt);
     }
 

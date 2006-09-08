@@ -277,11 +277,11 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
         return BooleanUtil.valueOf(context.getRelationAt(rowToObjectIndex(row), colToAttributeIndex(col)));
     }
 
-
     /*
-	 * Don't need to implement this method unless your table's
-	 * editable.
-	 */
+      * Don't need to implement this method unless your table's
+      * editable.
+      */
+
     /**
      * Gets the CellEditable attribute of the ContextTableModel object
      *
@@ -299,13 +299,13 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     }
 
     public void setContext(ContextEditingInterface cxt) {
-        synchronized(this){
-        if (null != context) {
-            cxt.removeContextListener(listener);
-        }
-        Assert.isTrue(null != cxt, "Context can't be null");
-        context = cxt;
-        context.addContextListener(listener);
+        synchronized (this) {
+            if (null != context) {
+                cxt.removeContextListener(listener);
+            }
+            Assert.isTrue(null != cxt, "Context can't be null");
+            context = cxt;
+            context.addContextListener(listener);
         }
         fireTableStructureChanged();
         fireTableDataChanged();
@@ -416,8 +416,8 @@ public class ContextTableModel extends AbstractTableModel implements ParamsProvi
     public ParamInfo[] getParams() {
         if (null == params) {
             params = new ParamInfo[]{
-                new IntValueParamInfo("Object count", getObjectCountModel()),
-                new IntValueParamInfo("Attribute count", getAttribCountModel())
+                    new IntValueParamInfo("Object count", getObjectCountModel()),
+                    new IntValueParamInfo("Attribute count", getAttribCountModel())
             };
         }
         return params;

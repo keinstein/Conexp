@@ -160,8 +160,9 @@ public class SetRelation implements ModifiableBinaryRelation {
         if (obj == null) {
             return false;
         }
-        if (obj == this)
+        if (obj == this) {
             return true;
+        }
         if (!(obj instanceof BinaryRelation)) {
             return false;
         }

@@ -19,7 +19,7 @@ public class DependencySetTest extends TestCase {
         DependencySet two = new DependencySet(supplier);
         assertEquals(one, two);
 
-        assertEquals("Object one should not be equal to null",false, one.equals(null));
+        assertEquals("Object one should not be equal to null", false, one.equals(null));
         assertEquals("DependencySet can be equal only to objects of class DependencySet",
                 false, one.equals(new Object()));
         MockAttributeInformationSupplier otherSupplier = new MockAttributeInformationSupplier(2);
