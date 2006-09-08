@@ -67,8 +67,10 @@ public class CEDiagramEditorPanel extends DiagramEditorPanel implements View {
     private void convertDrawingAndCheckIsDrawingOfLattice() {
         List nodes = collectNodes();
         LatticeDiagramChecker checker = buildDiagramChecker(nodes);
+/*
         System.out.println("Check lattice returned: " + checker.isDiagramOfLattice());
         System.out.println("Check is semilattice returned: " + checker.isDiagramOfSemilattice());
+*/
     }
 
     private LatticeDiagramChecker buildDiagramChecker(List nodes) {

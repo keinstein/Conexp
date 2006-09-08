@@ -812,15 +812,6 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         return checkIsElementsOfIteratorOrderedByPosition(el.getSuccessors().iterator());
     }
 
-    //--------------------------------------------
-    private void printPredPos(LatticeElement el) {
-        printElementsFromIteratorWithPositions("Predessors: ", el.getPredecessors().iterator());
-    }
-
-    private void printSuccPos(LatticeElement el) {
-        printElementsFromIteratorWithPositions("Successors: ", el.getSuccessors().iterator());
-    }
-
     private boolean checkIsElementsOfIteratorOrderedByPosition(ConceptIterator iter) {
         double prevPos = -1;
         while (iter.hasNext()) {
@@ -833,6 +824,18 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         return true;
     }
 
+/*
+    //--------------------------------------------
+    private void printPredPos(LatticeElement el) {
+        printElementsFromIteratorWithPositions("Predessors: ", el.getPredecessors().iterator());
+    }
+
+    private void printSuccPos(LatticeElement el) {
+        printElementsFromIteratorWithPositions("Successors: ", el.getSuccessors().iterator());
+    }
+
+
+
     private void printElementsFromIteratorWithPositions(String name, ConceptIterator iter) {
         System.out.print(name);
         System.out.print("{ ");
@@ -843,6 +846,7 @@ public class MinIntersectionLayout extends NonIncrementalLayouter {
         System.out.println(" } ");
     }
 
+*/
     //--------------------------------------------
 
     interface ElementInfoProcessor {

@@ -52,14 +52,4 @@ public class BasicStrategiesContext extends BasePropertyChangeSupplier implement
         return params;
     }
 
-    public void printPreferences() {
-        try {
-            getPreferences().exportNode(System.out);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (BackingStoreException e) {
-            e.printStackTrace();
-        }
-    }
-
 }
