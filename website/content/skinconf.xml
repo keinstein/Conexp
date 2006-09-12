@@ -381,13 +381,13 @@ which will be used to configure the chosen Forrest skin.
     Comment out the whole <credit>-element if you want no credits in the
     web pages  
    -->
-   <credits><!--
-      <credit>
-	 <name>Built with Apache Forrest</name>
-	 <url>http://forrest.apache.org/</url>
-         <image>images/built-with-forrest-button.png</image>
-         <width>88</width>
-         <height>31</height>
+   <credits>
+      <credit box-location="alt">
+	 <name>SourceForge.net Logo</name>
+	 <url>http://sourceforge.net</url>
+         <image>http://sflogo.sourceforge.net/sflogo.php?group_id=72262&amp;type=4</image>
+         <width>125</width>
+         <height>37</height>
          </credit>
-    --></credits>
+    </credits>
 </skinconfig>

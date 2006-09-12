@@ -2,14 +2,15 @@
 <!DOCTYPE document PUBLIC "-//APACHE//DTD Documentation V1.2//EN" "http://apache.org/forrest/dtd/document-v12.dtd">
 <document> 
   <header> 
-    <title>ConExp Template Page</title> 
+    <title>Download Concept Explorer</title> 
   </header> 
   <body> 
     <section>
-      <title>ConExp Template</title>
-      <p>We are currently working on creating a website for ConExp. For
-      now, please check the <link href="ext:project-page">Project Page</link> or go directly
-      to the <link href="ext:download-page">Download Page</link>.</p>
+      <title>Download Concept Explorer</title>
+      <ul>
+      <li><link href="ext:download-page">Release 1.3</link></li>
+      </ul>
+      
     </section>
   </body>
 </document>
