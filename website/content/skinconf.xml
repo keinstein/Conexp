@@ -66,7 +66,7 @@ which will be used to configure the chosen Forrest skin.
 
   <!-- mandatory project logo
        default skin: renders it at the top -->
-  <project-name>ConExp</project-name>
+  <project-name>Concept Explorer</project-name>
   <project-description>Concept Explorer</project-description>
   <project-url>http://conexp.sourceforge.net/</project-url>
   <project-logo></project-logo>
@@ -75,9 +75,8 @@ which will be used to configure the chosen Forrest skin.
 
   <!-- optional host logo (e.g. sourceforge logo)
        default skin: renders it at the bottom-left corner -->
-  <host-url>http://sourceforge.net</host-url>
-  <host-logo>
-  </host-logo>
+  <host-url>http://www.sourceforge.net</host-url>
+  <host-logo>http://sflogo.sourceforge.net/sflogo.php?group_id=72262&amp;type=4</host-logo>
 
   <!-- relative url of a favicon file, normally favicon.ico -->
   <favicon-url></favicon-url>
@@ -116,7 +115,7 @@ which will be used to configure the chosen Forrest skin.
   @location ("page","menu","page,menu", "none")
    Where to show the TOC.
   -->
-  <toc max-depth="2" min-sections="3" location="menu"/>
+  <toc max-depth="2" min-sections="3" location="page"/>
 
   <!-- Heading types can be clean|underlined|boxed  -->
   <headings type="boxed"/>
@@ -383,12 +382,12 @@ which will be used to configure the chosen Forrest skin.
     web pages  
    -->
   <credits>
-      <credit box-location="alt">
+ <!--     <credit box-location="alt">
 	 <name>SourceForge.net Logo</name>
 	 <url></url>
          <image>http://sflogo.sourceforge.net/sflogo.php?group_id=72262&amp;type=4</image>
          <width>125</width>
          <height>37</height>
-         </credit>
+         </credit>-->
     </credits> 
 </skinconfig>
