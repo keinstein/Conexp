@@ -5,7 +5,7 @@
     <title>Documentation</title> 
   </header> 
   <body> 
-    <p>For downloading ConExp and hint for installation use the menue item Download.
+    <p>For downloading ConExp and hint for installation use the menu item Download.
          </p>
     <section>
       <title>Working with Concept Explorer</title>
@@ -23,7 +23,7 @@
           <li>Calculate the Duquenne-Guigues set of implications;</li>
           <li>Calculate association rules;</li>
           </ul>
-additionally we have to mention the combo box which allows to select the update mode for the document components that are computed from the formal context (concept lattice, set of implications and association rules). Currently two update modes are supported. Those are <em>re-computation</em> of the affected components or <em>clear</em> them. The latter mode is recommended when changing the context reasonably. After realisation of those changes the appropriate operations can be reoptained for the new context.
+additionally we have to mention the combo box which allows to select the update mode for the document components that are computed from the formal context (concept lattice, set of implications and association rules). Currently two update modes are supported. Those are <em>re-computation</em> of the affected components or <em>clear</em> them. The latter mode is recommended when changing the context reasonably. After realisation of those changes the appropriate operations can be re-obtained for the new context.
 In the case of many changes the other option would cause a re-computation for every single alteration of the context and may lead to computational expenses if the context is big or dense.</li>
       <li>The <strong>main pane</strong> consists of the following items: </li>
           <ul>
@@ -96,13 +96,13 @@ In the case of many changes the other option would cause a re-computation for ev
       <p>Remark: Lattice-layout tools are time consuming. That is why drawings consisting of only one node can appear. After some time the whole structure will follow.</p> 
       </section>
       <section><title>Interpreting a drawing</title>
-      <p>ConExp can represent the structure of a finite formal context in form of a concept lattice. This is not only a graph with nodes and edges connecting them, but an ordered structur with a bottom and a top element. </p>
+      <p>ConExp can represent the structure of a finite formal context in form of a concept lattice. This is not only a graph with nodes and edges connecting them, but an ordered structure with a bottom and a top element. </p>
       <p>Each node of lattice corresponds to a so called <em>formal concept</em>. This is a pair <em>(O, A)</em>, where <em>O</em> is a subset of the object set, <em>A</em> is a subset of the attribute set and some additional properties are satisfied. </p>
       <p>The context contains more information on how objects and attributes should be related. From this we can derive the set containing all attributes common to all objects from the set <em>O</em> and only these attributes. For a formal concept this equal to <em>A</em>. Vice versa <em>O</em> contains all objects from context having all attributes of <em>A</em> among their attributes. The set of objects <em>O</em> is called <em>extent</em> of the formal concept <em>(O, A)</em> and set of attributes <em>A</em> is called <em>intent</em>. For exact definitions we refer again to the <link href="site:relatedprojects">book by Ganter and Wille</link>.</p>
-      <p>Hence, the intent of the bottom element contains all attributes of the context and its extent is the set of objects having all attributes. This set can be empty, if no such object has been spezified. Vice versa contains the extent of the top element of the lattice all objects. The intent of this contains of all attributes common to all objects. If no such attibute has been defined, then this set is empty.</p>
+      <p>Hence, the intent of the bottom element contains all attributes of the context and its extent is the set of objects having all attributes. This set can be empty, if no such object has been specified. Vice versa contains the extent of the top element of the lattice all objects. The intent of this contains of all attributes common to all objects. If no such attribute has been defined, then this set is empty.</p>
       <p>For the drawing of the lattice, we use the so called reduced labelling in order to present information about intents and extents of formal context in a concise way. Each node <em>x</em> of the structure represents a formal concept <em>(O,A)</em>. The extent <em>O</em> of this concept can be received collecting all objects attached to nodes reachable by descending paths from this node <em>x</em> to the bottom element of this lattice. </p>
       <p>In the opposite direction works the reading of the intent. The intent <em>A</em> of this concept can be received collecting all attributes attached to nodes reachable by ascending paths from this node <em>x</em> to the top element of this lattice.</p>
-      <p>If a node is marked by a blue filled upper semicircle, then there is an attribute attached to this concept. If a node is marked by a black filled lower semicircle then there is a object attached to this concept. The label of an attributes is always above the node that it is attached to and  within a mouse-coloured box. The label of an object is always underneath the node it is attached to within a white box.</p>
+      <p>If a node is marked by a blue filled upper semi-circle, then there is an attribute attached to this concept. If a node is marked by a black filled lower semi-circle then there is a object attached to this concept. The label of an attributes is always above the node that it is attached to and  within a mouse-coloured box. The label of an object is always underneath the node it is attached to within a white box.</p>
       <p>Sometimes a node or an edge in a line diagrams is displayed by ConExp in red colour. This means, that the node or edge is placed very close to or even overlapping with some other node. In order to improve the layout, please try manually an adjustment of this layout or use some other layout-tool. </p> 
       </section><section><title>Visualization modes</title>
       <p>Basically, there are two visualization modes, that behave differently, when the drawn lattice does not fit into the existing screen estate. Those are:</p>
@@ -128,7 +128,7 @@ In the case of many changes the other option would cause a re-computation for ev
               <li><strong>Show object count</strong> - this shows for every node the exact number (percentage) of objects belonging to the extent of the node's concept;</li>
               <li><strong>Stability</strong> - this shows for every node the minimal number of objects that should be removed from context to wipe out the node from concept lattice.</li>
           </ul></li>
-          <li><strong>Draw node</strong> - this option specifies how the radius of a node is calculated. The possiblities are:
+          <li><strong>Draw node</strong> - this option specifies how the radius of a node is calculated. The possibilities are:
           <ul>
               <li><strong>to own objects</strong> - the radius of a node is calculated proportionally to the size of the contingent (the number of objects matching exactly the intent of this node),</li>
               <li><strong>fixed radius</strong> - all nodes have a equal radius. The actual node radius is determined by option <em>Node radius</em>,</li>
@@ -149,7 +149,7 @@ In the case of many changes the other option would cause a re-computation for ev
               <li><strong>Neighbors</strong> - the selected node and it's upper and lower neighbors are highlighted,</li>
               <li><strong>Ideal</strong> - nodes of the ideal are highlighted,</li>
               <li><strong>Filter</strong> - nodes of the filter are highlighted,</li>
-              <li><strong>No</strong> - no nodes are highlighted. This option may be useful befor saving the drawing of the lattice.</li>
+              <li><strong>No</strong> - no nodes are highlighted. This option may be useful before saving the drawing of the lattice.</li>
           </ul></li>
           <li><strong>Label font size</strong> - specifies the size of the font that is used for the upper and lower labels.</li>
           <li><strong>Grid size x</strong> - specifies the preferred distance between different nodes on one level of drawing by means of the x coordinate. It is used as a parameter for the lattice layout and changing this value leads to a rescaling of the coordinates of all nodes.</li>
@@ -172,7 +172,7 @@ In the case of many changes the other option would cause a re-computation for ev
       </ul>
       <p>The following two algorithms belong to a family of so-called <em>force-directed</em>  layout algorithms. They are:</p>
       <ul>
-      <li><strong>Freese layout</strong> - It is an adaptation of the algorithm of Ralph Freese for drawing lattices. It can be found on the <link href="http://www.math.hawaii.edu/~ralph/LatDraw">homepage of R. Freese</link>. This algorithm has the following parameters:</li>
+      <li><strong>Freese layout</strong> - It is an adaptation of the algorithm of Ralph Freese for drawing lattices. It can be found on the <link href="http://www.math.hawaii.edu/~ralph/LatDraw">home page of R. Freese</link>. This algorithm has the following parameters:</li>
           <ul>
           <li><strong>Attraction</strong> - regulates the attraction force between nodes;</li>
           <li><strong>Repulsion</strong> - regulates the repulsion force between nodes;</li>
@@ -187,7 +187,7 @@ In the case of many changes the other option would cause a re-computation for ev
       <ul>
       <li><strong>Ideal node movement mode</strong> - when moving a node, the whole ideal of the node is moved as well. The switch between this mode and one node movement strategy is performed by pressing the <em>Toggle node move mode</em> button.</li>
       <li><strong>Align nodes to grid</strong> - performs an alignment of the node coordinates to the invisible grid of size 8 on 8 pixels.</li> 
-      <li><strong>Storing images of drawing</strong> One of the most frequent uses of ConExp is to produce images of lattice drawings for some future usage. This task can be achieved by creating a good drawing of the lattice and pressing the <em>Save lattice image</em> button on lattice visualization pane toolbar afterwards. Currently the formats <em>gif</em> and <em>jpeg</em> are supported for saving images.</li>
+      <li><strong>Storing images of drawing</strong> One of the most frequent uses of ConExp is to produce images of lattice drawings for some future usage. This task can be achieved by creating a good drawing of the lattice and pressing the <em>Save lattice image</em> button on lattice visualization pane toolbar afterwards. Currently the formats <em>png</em> and <em>jpeg</em> are supported for saving images.</li>
       </ul>
       </section>
       <section><title>Building lattices of subcontexts</title>

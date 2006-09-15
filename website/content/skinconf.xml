@@ -75,21 +75,22 @@ which will be used to configure the chosen Forrest skin.
 
   <!-- optional host logo (e.g. sourceforge logo)
        default skin: renders it at the bottom-left corner -->
-  <host-url></host-url>
-  <host-logo></host-logo>
+  <host-url>http://sourceforge.net</host-url>
+  <host-logo>
+  </host-logo>
 
   <!-- relative url of a favicon file, normally favicon.ico -->
   <favicon-url></favicon-url>
 
   <!-- The following are used to construct a copyright statement -->
-  <year>2005</year>
+  <year>2006</year>
   <vendor></vendor>
   <!-- The optional copyright-link URL will be used as a link in the
     copyright statement
   <copyright-link>http://www.apache.org/licenses/</copyright-link>
   -->
 
-  <!-- Some skins use this to form a 'breadcrumb trail' of links.
+  <!-- Somes use this to form a 'breadcrumb trail' of links.
     Use location="alt" to move the trail to an alternate location
     (if the skin supports it).
     Omit the location attribute to display the trail in the default location.
@@ -115,7 +116,7 @@ which will be used to configure the chosen Forrest skin.
   @location ("page","menu","page,menu", "none")
    Where to show the TOC.
   -->
-  <toc max-depth="2" min-sections="3" location="page"/>
+  <toc max-depth="2" min-sections="3" location="menu"/>
 
   <!-- Heading types can be clean|underlined|boxed  -->
   <headings type="boxed"/>
@@ -381,13 +382,13 @@ which will be used to configure the chosen Forrest skin.
     Comment out the whole <credit>-element if you want no credits in the
     web pages  
    -->
-   <credits>
+  <credits>
       <credit box-location="alt">
 	 <name>SourceForge.net Logo</name>
-	 <url>http://sourceforge.net</url>
+	 <url></url>
          <image>http://sflogo.sourceforge.net/sflogo.php?group_id=72262&amp;type=4</image>
          <width>125</width>
          <height>37</height>
          </credit>
-    </credits>
+    </credits> 
 </skinconfig>
