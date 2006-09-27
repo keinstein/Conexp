@@ -12,7 +12,7 @@ import conexp.core.ContextFunctions;
 import conexp.frontend.latticeeditor.ConceptQuery;
 
 
-public class StabilityToDesctructionLabelingStrategy extends SimpleConceptLabelingStrategy {
+public class StabilityToDesctructionLabelingStrategy extends OneLabelConceptLabelingStrategy {
     public StabilityToDesctructionLabelingStrategy() {
         super();
     }

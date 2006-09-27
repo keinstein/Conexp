@@ -5,7 +5,6 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import canvas.Figure;
@@ -28,21 +27,22 @@ public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericL
         super();
     }
 
-    protected void removeConnectedObjectFromContainer(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure f, Object obj) {
-        List arr = (List) obj;
-        Iterator iter = arr.iterator();
+    protected void removeConnectedObjectFromContainer(ConceptSetDrawing drawing,
+                                                      AbstractConceptCorrespondingFigure figure, Object obj) {
+        List list = (List) obj;
+        Iterator iter = list.iterator();
         while (iter.hasNext()) {
-            Figure curr = (Figure) iter.next();
-            drawing.removeForegroundFigure(curr);
-            f.removeDependend(curr);
+            Figure current = (Figure) iter.next();
+            drawing.removeForegroundFigure(current);
+            figure.removeDependend(current);
         }
     }
 
     protected static Object addObjectsFromIteratorToDrawingAccordingToDistributor(ConceptSetDrawing drawing,
-                                                                                  AbstractConceptCorrespondingFigure f,
-                                                                                  Iterator iter,
-                                                                                  int attrCount,
-                                                                                  PointDistributionStrategy distributor) {
+                                                         AbstractConceptCorrespondingFigure figure,
+                                                         Iterator iter,
+                                                         int attrCount,
+                                                         PointDistributionStrategy distributor) {
         List objectLabels = new ArrayList(attrCount);
 
         Point2D coords = new Point2D.Double();
@@ -50,19 +50,20 @@ public abstract class OneToManyConnectedFiguresLabelingStrategy extends GenericL
         while (iter.hasNext()) {
             distributor.setNextCoords(coords);
             ContextEntity object = (ContextEntity) iter.next();
-            TextFigure tf = new ContextEntityTextFigure(f.getConceptQuery(), object);
-            tf.setCoords(coords);
-            drawing.setFigureForContextObject(object, tf);
+            TextFigure textFigure = new ContextEntityTextFigure(figure.getConceptQuery(), object);
+            textFigure.setCoords(coords);
+            drawing.setFigureForContextObject(object, textFigure);
 
-            Figure cf = makeConnectedFigure(f, tf);
-            f.addDependend(cf);
-            drawing.addForegroundFigure(cf);
-            objectLabels.add(cf);
+            Figure connectedFigure = makeConnectedFigure(figure, textFigure);
+            figure.addDependend(connectedFigure);
+            drawing.addForegroundFigure(connectedFigure);
+            objectLabels.add(connectedFigure);
         }
 
         return objectLabels;
     }
 
-    protected abstract PointDistributionStrategy makeCoordsDistributor(AbstractConceptCorrespondingFigure f, int numPoints, LayoutParameters opt);
+    protected abstract PointDistributionStrategy makeCoordsDistributor(AbstractConceptCorrespondingFigure figure,
+                                                                       int numPoints, LayoutParameters opt);
 
 }

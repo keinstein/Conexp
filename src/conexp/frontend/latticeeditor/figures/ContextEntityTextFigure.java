@@ -23,7 +23,7 @@ public class ContextEntityTextFigure extends ConceptRelatedTextFigure {
     }
 
     protected Color getBackground(CanvasScheme opt) {
-        return obj.isObject() ? Color.white : Color.lightGray;
+        return ColorUtil.getLabelBackgroungColor(obj.isObject());
     }
 
     protected String getString() {

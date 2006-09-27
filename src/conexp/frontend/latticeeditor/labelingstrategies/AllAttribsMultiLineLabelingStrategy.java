@@ -5,39 +5,22 @@
  **/
 package conexp.frontend.latticeeditor.labelingstrategies;
 
-import canvas.figures.BorderCalculatingFigure;
-import conexp.core.LatticeElement;
 import conexp.frontend.latticeeditor.ConceptQuery;
-import conexp.frontend.latticeeditor.ConceptSetDrawing;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
-
+import canvas.figures.BorderCalculatingFigure;
 
 
 public class AllAttribsMultiLineLabelingStrategy extends MultiLineLabelingStrategyBase {
     public AllAttribsMultiLineLabelingStrategy() {
-        super();
-    }
-
-    public double getLabelLocationAngleInRadians() {
-        return 1.5 * Math.PI;
-    }
-
-    public void setLabelForConcept(ConceptSetDrawing drawing,
-                                   LatticeElement concept,
-                                   BorderCalculatingFigure labelFigure) {
-        drawing.setUpLabelForConcept(concept, labelFigure);
-    }
-
-    public void shutdown(ConceptSetDrawing drawing) {
-        super.shutdown(drawing);
-        drawing.clearUpLabelsForConcepts();
-    }
-
-    protected MultiLineConceptEntityFigure makeLabelForConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {
-        return buildMultiLineFigureFromEntityIterator(f.getConcept().ownAttribsIterator(), f.getConceptQuery(), false);
+        super(UP_LABEL_LOCATION_STRATEGY);
     }
 
     public boolean accept(ConceptQuery query) {
         return query.hasOwnAttribs();
     }
+
+    protected BorderCalculatingFigure makeLabelForConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {
+        return buildMultiLineFigureFromEntityIterator(f.getConcept().ownAttribsIterator(), f.getConceptQuery(), false);
+    }
+
 }

@@ -5,67 +5,35 @@
  **/
 package conexp.frontend.latticeeditor.labelingstrategies;
 
-import canvas.Figure;
 import canvas.figures.BorderCalculatingFigure;
-import conexp.core.ExtendedContextEditingInterface;
-import conexp.core.LatticeElement;
 import conexp.core.layout.LayoutParameters;
-import conexp.frontend.latticeeditor.ConceptSetDrawing;
+import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
-import util.gui.GraphicObjectsFactory;
+import conexp.frontend.latticeeditor.figures.SimpleTextFigure;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Collection;
 
 
 
-public abstract class OneLabelConceptLabelingStrategy extends GenericLabelingStrategy {
-    protected ExtendedContextEditingInterface cxt;
-
+public abstract class OneLabelConceptLabelingStrategy extends GenericConceptLabelingStrategy {
     protected OneLabelConceptLabelingStrategy() {
         super();
     }
 
-    public void setContext(ExtendedContextEditingInterface cxt) {
-        this.cxt = cxt;
+    protected OneLabelConceptLabelingStrategy(LabelLocationStrategy labelLocationStrategy) {
+        super(labelLocationStrategy);
     }
 
-    protected Object makeConnectedObject(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure f, LayoutParameters opt) {
-        double angle = 0.5 * Math.PI;
-        double offX = opt.getGridSizeX() / 2 * Math.cos(angle);
-        double offY = opt.getGridSizeY() / 3 * Math.sin(angle);
-        int newX = (int) (f.getCenterX() + offX);
-        int newY = (int) (f.getCenterY() + offY);
-
-        LatticeElement concept = f.getConcept();
-        BorderCalculatingFigure labelFigure = makeLabelForConceptCorrespondingFigure(f);
-        Rectangle2D rect = GraphicObjectsFactory.makeRectangle2D();
-        labelFigure.boundingBox(rect);
-        labelFigure.setCoords(newX, newY);
-        setLabelForConcept(drawing, concept, labelFigure);
-
-        Figure connected = makeConnectedFigure(f, labelFigure);
-
-        f.addDependend(connected);
-        drawing.addForegroundFigure(connected);
-
-        return connected;
+    protected double calculateVerticalOffset(LayoutParameters options, Rectangle2D rect, double angle) {
+        return options.getGridSizeY() / 3 * Math.sin(angle);
     }
 
-    protected abstract BorderCalculatingFigure makeLabelForConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f);
-
-    protected void removeConnectedObjectFromContainer(ConceptSetDrawing drawing, AbstractConceptCorrespondingFigure f, Object obj) {
-        drawing.removeForegroundFigure((Figure) obj);
-        f.removeDependend((Figure) obj);
+    protected BorderCalculatingFigure makeLabelForConceptCorrespondingFigure(AbstractConceptCorrespondingFigure figure) {
+        return new SimpleTextFigure(figure.getConceptQuery(),
+                getDescriptionString(figure.getConceptQuery()),
+                labelLocationStrategy==DOWN_LABEL_LOCATION_STRATEGY);
     }
 
-    protected static void removeConnectedObjectFromContainer(Collection foreground, AbstractConceptCorrespondingFigure f, Object obj) {
-        foreground.remove(obj);
-        f.removeDependend((Figure) obj);
-    }
 
-    public void shutdown(ConceptSetDrawing drawing) {
-        super.shutdown(drawing);
-        drawing.clearConceptLabels();
-    }
+    protected abstract String getDescriptionString(ConceptQuery conceptQuery);
 }

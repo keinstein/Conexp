@@ -45,8 +45,7 @@ public class AllObjectsLabelingStrategy extends OneToManyConnectedFiguresLabelin
                 opt, new Ellipse2D.Double());
     }
 
-    public void shutdown(ConceptSetDrawing drawing) {
-        super.shutdown(drawing);
+    protected void clearLabels(ConceptSetDrawing drawing) {
         drawing.clearObjectLabels();
     }
 }

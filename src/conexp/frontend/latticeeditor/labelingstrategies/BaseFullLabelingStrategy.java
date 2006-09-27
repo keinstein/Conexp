@@ -14,7 +14,7 @@ import conexp.frontend.latticeeditor.ConceptQuery;
 import java.util.Iterator;
 
 
-public abstract class BaseFullLabelingStrategy extends SimpleConceptLabelingStrategy {
+public abstract class BaseFullLabelingStrategy extends OneLabelConceptLabelingStrategy {
     protected BaseFullLabelingStrategy() {
         super();
     }

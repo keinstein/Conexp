@@ -12,7 +12,7 @@ import conexp.frontend.latticeeditor.ConceptQuery;
 import util.StringUtil;
 
 
-public class ObjectsCountLabelingStrategy extends SimpleConceptLabelingStrategy {
+public class ObjectsCountLabelingStrategy extends OneLabelConceptLabelingStrategy {
 
     /**
      * Constructor.

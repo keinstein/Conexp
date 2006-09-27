@@ -13,7 +13,7 @@ import util.StringUtil;
 
 
 
-public abstract class SubcontextStabilityLabelingStrategyBase extends SimpleConceptLabelingStrategy {
+public abstract class SubcontextStabilityLabelingStrategyBase extends OneLabelConceptLabelingStrategy {
     BinaryRelationProcessor stabilityCalculator;
 
     protected abstract BinaryRelationProcessor makeStabilityCalculator();

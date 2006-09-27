@@ -37,15 +37,17 @@ public class AllAttribsLabelingStrategy extends OneToManyConnectedFiguresLabelin
 
     }
 
-    protected PointDistributionStrategy makeCoordsDistributor(AbstractConceptCorrespondingFigure f, int numPoints, LayoutParameters opt) {
-        return new UpperHemisphereUniformPointDistributionStrategy(f.getCenterX(),
-                f.getCenterY(),
+    protected PointDistributionStrategy makeCoordsDistributor(AbstractConceptCorrespondingFigure figure,
+                                                              int numPoints,
+                                                              LayoutParameters options) {
+        return new UpperHemisphereUniformPointDistributionStrategy(figure.getCenterX(),
+                figure.getCenterY(),
                 numPoints,
-                opt, new Ellipse2D.Double());
+                options, new Ellipse2D.Double());
     }
 
-    public void shutdown(ConceptSetDrawing drawing) {
-        super.shutdown(drawing);
+    protected void clearLabels(ConceptSetDrawing drawing) {
         drawing.clearAttributeLabels();
     }
+
 }

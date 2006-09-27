@@ -116,11 +116,11 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
 
         assertEquals(LabelingStrategiesKeys.NO_ATTRIBS_LABELING_STRATEGY,
                 drawing.getAttributeLabelingStrategyKey());
-        assertEquals(LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY,
+        assertEquals(LabelingStrategiesKeys.NO_OBJECTS_LABELING_STRATEGY,
                 drawing.getObjectLabelingStrategyKey());
-        drawing.setObjectLabelingStrategyKey(LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY);
+        drawing.setObjectLabelingStrategyKey(LabelingStrategiesKeys.OBJECTS_COUNT_LABELING_STRATEGY);
 
-        assertEquals(LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY,
+        assertEquals(LabelingStrategiesKeys.OBJECTS_COUNT_LABELING_STRATEGY,
                 drawing.getObjectLabelingStrategyKey());
         assertEquals("labelsForConcepts should be true", true, drawing.hasDownLabelsForConcepts());
         assertEquals("labelsForAttributes should be false", false, drawing.hasLabelsForAttributes());
@@ -130,7 +130,7 @@ public class LatticeDrawingTest extends ConceptSetDrawingTest {
         assertTrue("Expect that drawing has labels for concepts", drawing.hasUpLabelsForConcepts());
 
         drawing.setObjectLabelingStrategyKey(
-                LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY);
+                LabelingStrategiesKeys.NO_OBJECTS_LABELING_STRATEGY);
         assertFalse("Expect that drawing has no labels for objects", drawing.hasLabelsForObjects());
         assertFalse("There should be no down concept labels", drawing.hasDownLabelsForConcepts());
         assertTrue("Setting object labeling strategy should not affect concept labeling strategy",

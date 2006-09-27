@@ -12,15 +12,17 @@ public interface LabelingStrategiesKeys {
     String NO_ATTRIBS_LABELING_STRATEGY = "NoAttribsLabelsStrategy";
     String ALL_ATTRIBS_LABELING_STRATEGY_KEY = "AllAttribsLabelsStrategy";
     String ATTRIBS_MULTI_LABELING_STRATEGY_KEY = "AllAttribsMultiLabelsStrategy";
+    String OWN_ATTRIBS_COUNT_LABELING_STRATEGY
+            = "OwnAttribsCountLabelsStrategy";
 
-    String NO_OBJECTS_LABELS_STRATEGY = "NoObjectsLabelsStrategy";
+    String NO_OBJECTS_LABELING_STRATEGY = "NoObjectsLabelsStrategy";
     String ALL_OBJECTS_LABELING_STRATEGY = "AllObjectsLabelsStrategy";
-    String OWN_OBJECTS_COUNT_LABEL_STRATEGY = "OwnObjectsCountLabelsStrategy";
+    String OWN_OBJECTS_COUNT_LABELING_STRATEGY = "OwnObjectsCountLabelsStrategy";
     String OBJECTS_MULTI_LABELING_STRATEGY_KEY = "AllObjectsMultiLabelsStrategy";
 
-    String OBJECTS_COUNT_LABEL_STRATEGY = "ObjectsCountLabelsStrategy";
-    String STABILITY_TO_DESCTRUCTION_LABEL_STRATEGY = "StabilityLabelsStrategy";
+    String OBJECTS_COUNT_LABELING_STRATEGY = "ObjectsCountLabelsStrategy";
+    String STABILITY_TO_DESCTRUCTION_LABELING_STRATEGY = "StabilityLabelsStrategy";
 
-    String POINT_STABILITY_LABEL_STRATEGY = "PointStabilityLabelsStrategy";
-    String INTEGRAL_STABILITY_LABEL_STRATEGY = "IntegralStabilityLabelsStrategy";
+    String POINT_STABILITY_LABELING_STRATEGY = "PointStabilityLabelsStrategy";
+    String INTEGRAL_STABILITY_LABELING_STRATEGY = "IntegralStabilityLabelsStrategy";
 }

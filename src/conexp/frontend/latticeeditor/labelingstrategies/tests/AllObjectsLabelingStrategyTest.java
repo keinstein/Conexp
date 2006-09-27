@@ -33,7 +33,7 @@ public class AllObjectsLabelingStrategyTest extends GenericLabelingStrategyTest 
                 {1, 0}});
         LatticeDrawing drawing = new LatticeDrawing();
         drawing.setLattice(lattice);
-        assertTrue(drawing.setObjectLabelingStrategyKey(LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY));
+        assertTrue(drawing.setObjectLabelingStrategyKey(LabelingStrategiesKeys.NO_OBJECTS_LABELING_STRATEGY));
         assertEquals(false, drawing.hasLabelsForObjects());
         GenericLabelingStrategy alObjectsLabelingStrategy = makeStrategy();
         alObjectsLabelingStrategy.setContext(lattice.getContext());

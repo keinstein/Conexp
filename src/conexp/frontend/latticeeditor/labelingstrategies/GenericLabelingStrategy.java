@@ -5,14 +5,12 @@
  **/
 
 
-
 package conexp.frontend.latticeeditor.labelingstrategies;
 
 import canvas.BaseFigureVisitor;
 import canvas.Figure;
 import canvas.figures.BorderCalculatingFigure;
 import conexp.core.ExtendedContextEditingInterface;
-import conexp.core.LatticeElement;
 import conexp.core.layout.LayoutParameters;
 import conexp.frontend.latticeeditor.ConceptQuery;
 import conexp.frontend.latticeeditor.ConceptSetDrawing;
@@ -33,18 +31,18 @@ public abstract class GenericLabelingStrategy extends LabelingStrategy {
 
     public class InitStrategyVisitor extends DefaultFigureVisitor {
         ConceptSetDrawing drawing;
-        LayoutParameters opt;
+        LayoutParameters options;
 
-        InitStrategyVisitor(ConceptSetDrawing drawing, LayoutParameters opt) {
-            this.drawing = drawing;
-            this.opt = opt;
+        InitStrategyVisitor(ConceptSetDrawing aDrawing, LayoutParameters aOptions) {
+            this.drawing = aDrawing;
+            this.options = aOptions;
         }
 
-        public void visitConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {
-            if (!accept(f.getConceptQuery())) {
+        public void visitConceptCorrespondingFigure(AbstractConceptCorrespondingFigure figure) {
+            if (!accept(figure.getConceptQuery())) {
                 return;
             }
-            setConnectedObject(f, makeConnectedObject(drawing, f, opt));
+            setConnectedObject(figure, makeConnectedObject(drawing, figure, options));
         }
     }
 
@@ -56,16 +54,16 @@ public abstract class GenericLabelingStrategy extends LabelingStrategy {
             this.drawing = drawing;
         }
 
-        public void visitConceptCorrespondingFigure(AbstractConceptCorrespondingFigure f) {
-            if (!accept(f.getConceptQuery())) {
+        public void visitConceptCorrespondingFigure(AbstractConceptCorrespondingFigure figure) {
+            if (!accept(figure.getConceptQuery())) {
                 return;
             }
-            Object obj = getConnectedObject(f);
-            if (null == obj) {
+            Object connectedObject = getConnectedObject(figure);
+            if (null == connectedObject) {
                 return;
             }
-            removeConnectedObjectFromContainer(drawing, f, obj);
-            removeConnectedObject(f);
+            removeConnectedObjectFromContainer(drawing, figure, connectedObject);
+            removeConnectedObject(figure);
         }
     }
 
@@ -73,45 +71,48 @@ public abstract class GenericLabelingStrategy extends LabelingStrategy {
     /**
      * GenericLabelingStrategy constructor comment.
      */
+
     protected GenericLabelingStrategy() {
         super();
     }
 
+
     public abstract boolean accept(ConceptQuery query);
+
+    private void setConnectedObject(AbstractConceptCorrespondingFigure figure, Object object) {
+        figureToConnectedObjectMap.put(figure, object);
+    }
 
     /**
      * Insert the method's description here.
      * Creation date: (25.12.00 0:01:27)
      *
-     * @param f conexp.frontend.latticeeditor.Figures.ConceptFigure
+     * @param figure conexp.frontend.latticeeditor.Figures.ConceptFigure
      * @return java.lang.Object
      */
-    private Object getConnectedObject(AbstractConceptCorrespondingFigure f) {
-        return figureToConnectedObjectMap.get(f);
+    private Object getConnectedObject(AbstractConceptCorrespondingFigure figure) {
+        return figureToConnectedObjectMap.get(figure);
     }
 
     public boolean hasConnectedObjects() {
         return !figureToConnectedObjectMap.isEmpty();
     }
 
-    protected abstract Object makeConnectedObject(ConceptSetDrawing fd, AbstractConceptCorrespondingFigure f, LayoutParameters opt);
+    protected abstract Object makeConnectedObject(ConceptSetDrawing drawing,
+                                                  AbstractConceptCorrespondingFigure figure,
+                                                  LayoutParameters options);
 
 
-    private void removeConnectedObject(AbstractConceptCorrespondingFigure f) {
-        figureToConnectedObjectMap.remove(f);
+    private void removeConnectedObject(AbstractConceptCorrespondingFigure figure) {
+        figureToConnectedObjectMap.remove(figure);
     }
 
-    protected abstract void removeConnectedObjectFromContainer(ConceptSetDrawing fd, AbstractConceptCorrespondingFigure f, Object obj);
+    protected abstract void removeConnectedObjectFromContainer(ConceptSetDrawing drawing,
+                                                               AbstractConceptCorrespondingFigure figure,
+                                                               Object obj);
 
-    private void setConnectedObject(AbstractConceptCorrespondingFigure f, Object obj) {
-        figureToConnectedObjectMap.put(f, obj);
-    }
 
-    protected void setLabelForConcept(ConceptSetDrawing drawing,
-                                      LatticeElement concept,
-                                      BorderCalculatingFigure labelFigure) {
-        drawing.setDownLabelForConcept(concept, labelFigure);
-    }
+    protected abstract void clearLabels(ConceptSetDrawing drawing);
 
     public void setContext(ExtendedContextEditingInterface cxt) {
         //DEFAULT EMPTY IMPLEMENTATION
@@ -125,12 +126,20 @@ public abstract class GenericLabelingStrategy extends LabelingStrategy {
         return new ShutDownStrategyVisitor(drawing);
     }
 
-    protected static Figure makeConnectedFigure(AbstractConceptCorrespondingFigure f, BorderCalculatingFigure tf) {
-        NodeObjectConnectionFigure connector = new NodeObjectConnectionFigure(f, tf);
-        CompositeFigureWithFigureDimensionCalcStrategyProvider cf = new CompositeFigureWithFigureDimensionCalcStrategyProvider();
-        cf.addFigure(tf);
-        cf.addFigure(connector);
-        return cf;
+    public void shutdown(ConceptSetDrawing drawing) {
+        super.shutdown(drawing);
+        clearLabels(drawing);
+    }
+
+
+    protected static Figure makeConnectedFigure(AbstractConceptCorrespondingFigure figure,
+                                                BorderCalculatingFigure textFigure) {
+        NodeObjectConnectionFigure connector = new NodeObjectConnectionFigure(figure, textFigure);
+        CompositeFigureWithFigureDimensionCalcStrategyProvider compositeFigure =
+                new CompositeFigureWithFigureDimensionCalcStrategyProvider();
+        compositeFigure.addFigure(textFigure);
+        compositeFigure.addFigure(connector);
+        return compositeFigure;
     }
 
 }

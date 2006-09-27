@@ -22,6 +22,7 @@ public class AllTests extends TestCase {
 
         suite.addTestSuite(AttributesLabelingStrategyModelTest.class);
         suite.addTestSuite(ObjectsLabelingStrategyModelTest.class);
+        suite.addTestSuite(OwnAttribsCountLabelingStrategyTest.class);
         suite.addTestSuite(OwnObjectsCountLabelingStrategyTest.class);
         suite.addTestSuite(ObjectsCountLabelingStrategyTest.class);
 
