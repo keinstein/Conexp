@@ -259,7 +259,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         assertTrue(drawing.setAttributeLabelingStrategyKey(
                 LabelingStrategiesKeys.NO_ATTRIBS_LABELING_STRATEGY));
         assertTrue(drawing.setObjectLabelingStrategyKey(
-                LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY));
+                LabelingStrategiesKeys.OBJECTS_COUNT_LABELING_STRATEGY));
 
         drawing.getLabelForConcept(lattice.getZero()).setCoords(15, 20);
 
@@ -393,7 +393,7 @@ public class ConExpXMLReaderWriterTest extends ContextReaderWriterPairTest {
         upLabelForConcept.moveBy(3, 4);
 
         drawing.setObjectLabelingStrategyKey(
-                LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY);
+                LabelingStrategiesKeys.NO_OBJECTS_LABELING_STRATEGY);
 
         ContextDocument loadedDoc = writeAndReadContextDoc(doc);
         LatticeDrawing loadedDrawing =

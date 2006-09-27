@@ -463,9 +463,9 @@ public class ContextDocumentTest extends TestCase {
         assertEquals(LabelingStrategiesKeys.NO_ATTRIBS_LABELING_STRATEGY,
                 drawing.getAttributeLabelingStrategyKey());
         drawing.
-                setObjectLabelingStrategyKey(LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY);
+                setObjectLabelingStrategyKey(LabelingStrategiesKeys.OBJECTS_COUNT_LABELING_STRATEGY);
 
-        assertEquals(LabelingStrategiesKeys.OBJECTS_COUNT_LABEL_STRATEGY,
+        assertEquals(LabelingStrategiesKeys.OBJECTS_COUNT_LABELING_STRATEGY,
                 drawing.getObjectLabelingStrategyKey());
         assertEquals("labelsForConcepts should be true", true, drawing.hasDownLabelsForConcepts());
         assertEquals("labelsForAttributes should be false", false, drawing.hasLabelsForAttributes());
@@ -475,7 +475,7 @@ public class ContextDocumentTest extends TestCase {
         assertTrue("Expect that drawing has labels for concepts", drawing.hasUpLabelsForConcepts());
 
         drawing.setObjectLabelingStrategyKey(
-                LabelingStrategiesKeys.NO_OBJECTS_LABELS_STRATEGY);
+                LabelingStrategiesKeys.NO_OBJECTS_LABELING_STRATEGY);
         assertFalse("Expect that drawing has no labels for objects", drawing.hasLabelsForObjects());
         assertTrue("Setting object labeling strategy should not affect concept labeling strategy",
                 drawing.hasUpLabelsForConcepts());
