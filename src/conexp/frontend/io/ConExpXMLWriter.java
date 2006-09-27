@@ -298,8 +298,8 @@ public class ConExpXMLWriter implements DocumentWriter {
     }
 
     private static Element makeSettingElementForStrategyValueItem(
-            String highlightMode, StrategyValueItem highlightStrategyItem) {
-        return makeSettingElement(highlightMode, highlightStrategyItem.getStrategyKey());
+            String highlightMode, StrategyValueItem strategyValueItem) {
+        return makeSettingElement(highlightMode, strategyValueItem.getStrategyKey());
     }
 
     private static Element storeEdgeSizeMode(LatticeDrawing drawing) {

@@ -18,7 +18,7 @@ public class ObjectVolumeNodeRadiusCalcStrategy extends ConceptDependentRadiusCa
         super(opt);
     }
 
-    protected double calculatePercents(ConceptQuery query) {
+    public double calculateRatio(ConceptQuery query) {
         return query.getExtentSize() / getMaximalValue();
     }
 

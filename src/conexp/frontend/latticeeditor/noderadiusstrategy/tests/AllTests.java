@@ -22,6 +22,7 @@ public class AllTests extends TestCase {
         suite.addTestSuite(MaxNodeRadiusCalcStrategyTest.class);
         suite.addTestSuite(NodeRadiusStrategyModelTest.class);
         suite.addTestSuite(ObjectVolumeNodeRadiusCalcStrategyTest.class);
+        suite.addTestSuite(OwnAttributesVolumeNodeRadiusCalcStrategyTest.class);
         suite.addTestSuite(OwnObjectsVolumeNodeRadiusCalcStrategyTest.class);
         return suite;
     }

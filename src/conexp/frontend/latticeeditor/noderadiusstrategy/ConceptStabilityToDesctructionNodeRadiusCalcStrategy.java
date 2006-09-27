@@ -19,7 +19,7 @@ public class ConceptStabilityToDesctructionNodeRadiusCalcStrategy extends Concep
         super(opt);
     }
 
-    protected double calculatePercents(ConceptQuery query) {
+    public double calculateRatio(ConceptQuery query) {
         return ((double) query.getStability()) / getMaximalValue();
     }
 

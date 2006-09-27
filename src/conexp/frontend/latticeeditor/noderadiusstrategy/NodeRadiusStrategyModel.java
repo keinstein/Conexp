@@ -13,7 +13,8 @@ import conexp.frontend.latticeeditor.DrawParameters;
 
 public class NodeRadiusStrategyModel extends AbstractDrawingStrategyModel {
     private final static int OWN_OBJECTS_VOLUME = 0;
-    private final static int MAX_NODE_RADIUS_STRATEGY = OWN_OBJECTS_VOLUME + 1;
+    private static final int OWN_ATTRIBUTE_VOLUME = OWN_OBJECTS_VOLUME + 1;
+    private final static int MAX_NODE_RADIUS_STRATEGY = OWN_ATTRIBUTE_VOLUME + 1;
     private final static int EXTENT_VOLUME = MAX_NODE_RADIUS_STRATEGY + 1;
     private final static int STABILITY_TO_DESTR_STRATEGY = EXTENT_VOLUME + 1;
     private final static int LAST_STRATEGY = STABILITY_TO_DESTR_STRATEGY;
@@ -31,6 +32,7 @@ public class NodeRadiusStrategyModel extends AbstractDrawingStrategyModel {
     protected void createStrategies(DrawParameters opt) {
         allocateStrategies(STRATEGY_COUNT);
         setStrategy(OWN_OBJECTS_VOLUME, "~ to own objects", new OwnObjectsVolumeNodeRadiusCalcStrategy(opt));
+        setStrategy(OWN_ATTRIBUTE_VOLUME, "~ to own attributes", new OwnAttributesVolumeNodeRadiusCalcStrategy(opt));
         setStrategy(MAX_NODE_RADIUS_STRATEGY, "Fixed radius", new MaxNodeRadiusCalcStrategy(opt));
         setStrategy(EXTENT_VOLUME, "~ of object extent", new ObjectVolumeNodeRadiusCalcStrategy(opt));
         setStrategy(STABILITY_TO_DESTR_STRATEGY, "~ stability", new ConceptStabilityToDesctructionNodeRadiusCalcStrategy(opt));

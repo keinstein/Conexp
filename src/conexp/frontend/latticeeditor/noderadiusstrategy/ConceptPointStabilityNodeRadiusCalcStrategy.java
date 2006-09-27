@@ -20,7 +20,7 @@ public class ConceptPointStabilityNodeRadiusCalcStrategy extends ConceptDependen
         super(opt);
     }
 
-    protected double calculatePercents(ConceptQuery query) {
+    public double calculateRatio(ConceptQuery query) {
         return stabilityCalculator.getPointStabilityOfSet(query.getQueryIntent());
     }
 

@@ -15,7 +15,6 @@ import util.Assert;
 
 public abstract class ConceptDependentRadiusCalcStrategy extends AbstractNodeRadiusCalcStrategy {
     private int deltaRadius;
-    //   private double pixelPerObject;
     private double maximalValue;
 
     public ConceptDependentRadiusCalcStrategy(DrawParameters opt) {
@@ -26,14 +25,16 @@ public abstract class ConceptDependentRadiusCalcStrategy extends AbstractNodeRad
      * calcNodeRadius method comment.
      */
     public int calcNodeRadius(ConceptQuery query) {
-        return calculateRadius(calculatePercents(query));
-        //return options.getMinNodeRadius() + Math.round((float)pixelPerObject * el.getOwnObjCnt());
+        return calculateRadius(calculateRatio(query));
     }
 
-    protected abstract double calculatePercents(ConceptQuery query);
+    /**
+     * Todo:sye - change back to protected after restructuring
+     */
+    public abstract double calculateRatio(ConceptQuery query);
 
-    private int calculateRadius(double percent) {
-        return options.getMinNodeRadius() + Math.round((float) Math.sqrt(percent) * deltaRadius);
+    private int calculateRadius(double ratio) {
+        return options.getMinNodeRadius() + Math.round((float) Math.sqrt(ratio) * deltaRadius);
     }
 
     public void initCalc() {
