@@ -12,10 +12,11 @@ import conexp.core.LatticeElement;
 import conexp.core.LatticeElementCollection;
 import conexp.core.Set;
 import conexp.frontend.latticeeditor.ConceptHighlightStrategy;
+import conexp.frontend.latticeeditor.ConceptHighlightAtomicStrategy;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 
 
-public class NeigboursHighlightStrategy implements ConceptHighlightStrategy{
+public class NeigboursHighlightStrategy implements ConceptHighlightAtomicStrategy {
 
     LatticeElement node;
 

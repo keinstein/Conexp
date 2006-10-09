@@ -9,11 +9,12 @@
 package conexp.frontend.latticeeditor.highlightstrategies;
 
 import conexp.core.Set;
+import conexp.frontend.latticeeditor.ConceptHighlightAtomicStrategy;
 import conexp.frontend.latticeeditor.ConceptHighlightStrategy;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 
 
-public class NoHighlightStrategy implements ConceptHighlightStrategy {
+public class NoHighlightStrategy implements ConceptHighlightAtomicStrategy {
 
     static NoHighlightStrategy INSTANCE = new NoHighlightStrategy();
 
@@ -42,5 +43,5 @@ public class NoHighlightStrategy implements ConceptHighlightStrategy {
         return INSTANCE;
     }
 
-    
+
 }

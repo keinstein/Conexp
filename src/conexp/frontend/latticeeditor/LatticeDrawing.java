@@ -283,7 +283,7 @@ public class LatticeDrawing extends ConceptSetDrawing {
 
     //todo:sye - change to protected after restructuting tests
     public ConceptNodeQuery makeConceptQueryForElement(LatticeElement node) {
-        return new ConceptNodeQuery(lattice.getContext(), node, lattice.getAttributesMask());
+        return ConceptNodeQuery.createNodeQuery(lattice, node);
     }
 
     private void makeEdgeFigures() {

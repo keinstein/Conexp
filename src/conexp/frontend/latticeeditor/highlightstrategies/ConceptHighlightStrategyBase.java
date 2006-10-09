@@ -2,11 +2,12 @@ package conexp.frontend.latticeeditor.highlightstrategies;
 
 import conexp.frontend.latticeeditor.Highlighter;
 import conexp.frontend.latticeeditor.ConceptHighlightStrategy;
+import conexp.frontend.latticeeditor.ConceptHighlightAtomicStrategy;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.core.LatticeElement;
 import conexp.core.Set;
 
-public abstract class ConceptHighlightStrategyBase implements ConceptHighlightStrategy {
+public abstract class ConceptHighlightStrategyBase implements ConceptHighlightAtomicStrategy {
     protected Set query=null;
 
     public void initFromFigure(AbstractConceptCorrespondingFigure figure) {

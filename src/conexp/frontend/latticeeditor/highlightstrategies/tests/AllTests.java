@@ -17,6 +17,9 @@ public class AllTests extends TestCase {
     public static Test suite() {
         TestSuite suite = new TestSuite();
 
+        suite.addTestSuite(AndSelectionHighlightStrategyTest.class);
+        suite.addTestSuite(OrSelectionHighlightStrategyTest.class);
+
         suite.addTestSuite(FilterHighlightStrategyTest.class);
         suite.addTestSuite(FilterIdealHighlightStrategyTest.class);
         suite.addTestSuite(IdealHighlightStrategyTest.class);

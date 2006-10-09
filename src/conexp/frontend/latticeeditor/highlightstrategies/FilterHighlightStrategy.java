@@ -12,7 +12,7 @@ import conexp.core.Set;
 import conexp.frontend.latticeeditor.ConceptHighlightStrategy;
 
 
-public class FilterHighlightStrategy extends ConceptHighlightStrategyBase  implements ConceptHighlightStrategy {
+public class FilterHighlightStrategy extends ConceptHighlightStrategyBase  {
 
 
     public ConceptHighlightStrategy createNew() {

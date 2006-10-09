@@ -4,8 +4,6 @@
  * Please read license.txt for licensing issues.
  **/
 
-
-
 package conexp.frontend.latticeeditor;
 
 import canvas.Figure;
@@ -15,13 +13,20 @@ import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.EdgeFigure;
 import conexp.frontend.latticeeditor.figures.IConceptRelatedTextFigure;
 import conexp.frontend.latticeeditor.figures.NodeObjectConnectionFigure;
+import conexp.frontend.latticeeditor.highlightstrategies.OrSelectionHighlightStrategy;
 
-import java.util.Iterator;
 import java.util.Collections;
+import java.util.Iterator;
 
 
 public class Highlighter implements IHighlightStrategy{
-    private ConceptHighlightStrategy conceptHighlightStrategy;
+    private ConceptHighlightAtomicStrategy conceptHighlightStrategyPrototype;
+    private ConceptHighlightStrategyCombination selectionCombination = new OrSelectionHighlightStrategy();
+
+
+    public void setSelectionCombination(ConceptHighlightStrategyCombination selectionCombination) {
+        this.selectionCombination = selectionCombination;
+    }
 
     public boolean highlightFigure(Figure figure) {
         if (figure instanceof AbstractConceptCorrespondingFigure) {
@@ -49,7 +54,7 @@ public class Highlighter implements IHighlightStrategy{
     }
 
     public boolean highlightQuery(Set attribs){
-        return conceptHighlightStrategy.highlightQuery(attribs);
+        return selectionCombination.highlightQuery(attribs);
     }
 
     public final boolean highlightEdge(Set startAttribs, Set endAttribs) {
@@ -57,7 +62,7 @@ public class Highlighter implements IHighlightStrategy{
     }
 
     public boolean doHighlightEdge(Set startAttribs, Set endAttribs){
-        return conceptHighlightStrategy.highlightEdge(startAttribs, endAttribs);
+        return selectionCombination.highlightEdge(startAttribs, endAttribs);
     }
 
 
@@ -69,25 +74,18 @@ public class Highlighter implements IHighlightStrategy{
      * @param aSelection
      */
     public void setSelectedConcepts(java.util.Set/*<AbstractConceptCorrespondingFigure>*/ aSelection) {
-        //todo:sye - fix selection building logic
         this.selection = aSelection;
-        updateSelection(aSelection);
+        updateSelection();
     }
 
-    private void updateSelection(java.util.Set aSelection) {
-        if(selection.size()>1){
-            //todo: implement and/or building logic here
-//            throw new IllegalArgumentException("Not yet implemented");
-        }
-        if(selection.size()==1){
+    private void updateSelection() {
+            selectionCombination.clear();
             for (Iterator iterator = selection.iterator(); iterator.hasNext();) {
                 AbstractConceptCorrespondingFigure figure = (AbstractConceptCorrespondingFigure) iterator.next();
-                conceptHighlightStrategy.initFromFigure(figure);
+                ConceptHighlightAtomicStrategy aNew = (ConceptHighlightAtomicStrategy)conceptHighlightStrategyPrototype.createNew();
+                aNew.initFromFigure(figure);
+                selectionCombination.addNode(aNew);
             }
-        }else{
-            assert aSelection.size()==0;
-            conceptHighlightStrategy.initFromFigure(null);
-        }
     }
 
     public boolean isActive() {
@@ -98,14 +96,13 @@ public class Highlighter implements IHighlightStrategy{
         super();
     }
 
-    public void setConceptHighlightStrategy(ConceptHighlightStrategy conceptHighlightStrategy) {
-        this.conceptHighlightStrategy = conceptHighlightStrategy;
-        updateSelection(selection);
+    public void setConceptHighlightStrategy(ConceptHighlightAtomicStrategy conceptHighlightStrategy) {
+        this.conceptHighlightStrategyPrototype = conceptHighlightStrategy;
     }
 
     public IHighlightStrategy makeCopy() {
         Highlighter ret = new Highlighter();
-        ret.setConceptHighlightStrategy(conceptHighlightStrategy.createNew());
+        ret.setConceptHighlightStrategy((ConceptHighlightAtomicStrategy)conceptHighlightStrategyPrototype.createNew());
         return ret;
     }
 
@@ -122,7 +119,7 @@ public class Highlighter implements IHighlightStrategy{
             return false;
         }
 
-        if (conceptHighlightStrategy != null ? !conceptHighlightStrategy.equals(highlighter.conceptHighlightStrategy) : highlighter.conceptHighlightStrategy != null) {
+        if (conceptHighlightStrategyPrototype != null ? !conceptHighlightStrategyPrototype.equals(highlighter.conceptHighlightStrategyPrototype) : highlighter.conceptHighlightStrategyPrototype != null) {
             return false;
         }
         return true;
@@ -130,7 +127,7 @@ public class Highlighter implements IHighlightStrategy{
 
     public int hashCode() {
         int result;
-        result = conceptHighlightStrategy != null ? conceptHighlightStrategy.hashCode() : 0;
+        result = conceptHighlightStrategyPrototype != null ? conceptHighlightStrategyPrototype.hashCode() : 0;
         return result;
     }
 
@@ -140,6 +137,6 @@ public class Highlighter implements IHighlightStrategy{
     }
 
     public boolean hasConceptHighlighStrategy() {
-        return conceptHighlightStrategy!=null;
+        return conceptHighlightStrategyPrototype !=null;
     }
 }

@@ -15,7 +15,9 @@ import conexp.core.tests.SetBuilder;
 import conexp.frontend.latticeeditor.DrawParameters;
 import conexp.frontend.latticeeditor.Highlighter;
 import conexp.frontend.latticeeditor.ConceptHighlightStrategy;
+import conexp.frontend.latticeeditor.ConceptHighlightAtomicStrategy;
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
+import conexp.frontend.latticeeditor.queries.tests.ConceptNodeQueryFactory;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.highlightstrategies.HighlightStrategyModel;
 import conexp.frontend.latticeeditor.tests.StrategyModelTest;
@@ -33,14 +35,15 @@ public class HighlightStrategyModelTest extends StrategyModelTest {
         for (int i = model.getStrategiesCount(); --i >= 0;) {
             Highlighter highlighter = new Highlighter();
             highlighter.setConceptHighlightStrategy(
-                    (ConceptHighlightStrategy) model.getStrategy(i));
+                    (ConceptHighlightAtomicStrategy) model.getStrategy(i));
 
             highlighter.highlightEdge(el1.getAttribs(), el2.getAttribs());
             highlighter.highlightNodeWithQuery(el1.getAttribs());
 
-            highlighter.setSelectedConcepts(new LinkedHashSet(Arrays.asList(new Object[]{new ConceptFigure(
-                    new ConceptNodeQuery(new Context(0,0), el1, SetBuilder.makeSet(new int[0])))}))
-            );
+            highlighter.setSelectedConcepts(new LinkedHashSet(Arrays.asList(new Object[]{
+                    new ConceptFigure(
+                    ConceptNodeQueryFactory.makeEmpty())}
+            )));
             highlighter.highlightEdge(el1.getAttribs(), el2.getAttribs());
             highlighter.highlightNodeWithQuery(el1.getAttribs());
         }

@@ -54,6 +54,6 @@ public class NeigboursHighlightStrategyTest extends HighlightStrategyTest {
     }
 
     private static ConceptFigure buildFigureForConcept(Lattice lattice, LatticeElement middle) {
-        return new ConceptFigure(new ConceptNodeQuery(lattice.getContext(), middle, lattice.getAttributesMask()));
+        return new ConceptFigure(ConceptNodeQuery.createNodeQuery(lattice, middle));
     }
 }

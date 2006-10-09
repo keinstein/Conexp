@@ -5,8 +5,6 @@ import conexp.util.GenericStrategy;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 
 public interface ConceptHighlightStrategy extends GenericStrategy {
-    ConceptHighlightStrategy createNew();
-
     /**
      * Determines whether figure corresponid to specific attributes
      * should be highlighted.
@@ -24,5 +22,6 @@ public interface ConceptHighlightStrategy extends GenericStrategy {
 
     boolean highlightEdge(Set startAttribs, Set endAttribs);
 
-    void initFromFigure(AbstractConceptCorrespondingFigure figure);
+    ConceptHighlightStrategy createNew();
+
 }

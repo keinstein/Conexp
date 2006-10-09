@@ -1,8 +1,3 @@
-/*
- * $Id$
- * Copyright (c) 2005 realtime (http://www.realtime.dk),
- * All Rights Reserved.
- */
 package conexp.frontend.latticeeditor.labelingstrategies.tests;
 
 import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;

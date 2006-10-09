@@ -11,7 +11,7 @@ package conexp.frontend.latticeeditor.highlightstrategies;
 import conexp.core.Set;
 import conexp.frontend.latticeeditor.ConceptHighlightStrategy;
 
-public class OneNodeHighlightStrategy extends ConceptHighlightStrategyBase  implements ConceptHighlightStrategy {
+public class OneNodeHighlightStrategy extends ConceptHighlightStrategyBase {
 
     public ConceptHighlightStrategy createNew() {
         return new OneNodeHighlightStrategy();

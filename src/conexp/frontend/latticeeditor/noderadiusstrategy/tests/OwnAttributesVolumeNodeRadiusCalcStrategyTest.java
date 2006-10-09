@@ -1,8 +1,3 @@
-/*
- * $Id$
- * Copyright (c) 2005 realtime (http://www.realtime.dk),
- * All Rights Reserved.
- */
 package conexp.frontend.latticeeditor.noderadiusstrategy.tests;
 
 import conexp.frontend.latticeeditor.tests.DefaultDimensionCalcStrategyTest;
@@ -51,6 +46,6 @@ public class OwnAttributesVolumeNodeRadiusCalcStrategyTest extends DefaultDimens
     }
 
     private ConceptNodeQuery makeConceptNodeQuery(Lattice lattice, LatticeElement element) {
-        return new ConceptNodeQuery(lattice.getContext(), element, lattice.getAttributesMask());
+        return ConceptNodeQuery.createNodeQuery(lattice, element);
     }
 }

@@ -75,7 +75,7 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
 
     public Highlighter getHighlighter() {
         //todo:sye - think about better way to handle setting of concept highlight strategy (in reaction on selection change);
-        highlighter.setConceptHighlightStrategy((ConceptHighlightStrategy)getHighlightStrategyItem().getStrategy());
+        highlighter.setConceptHighlightStrategy((ConceptHighlightAtomicStrategy)getHighlightStrategyItem().getStrategy());
         return highlighter;
     }
 

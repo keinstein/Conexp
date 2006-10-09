@@ -11,12 +11,17 @@ package conexp.frontend.latticeeditor.queries;
 import conexp.core.ExtendedContextEditingInterface;
 import conexp.core.LatticeElement;
 import conexp.core.Set;
+import conexp.core.Lattice;
 
 import java.util.Iterator;
 
 public class ConceptNodeQuery extends QueryBase {
     LatticeElement concept;
     boolean innermost;
+
+    public static ConceptNodeQuery createNodeQuery(Lattice lattice, LatticeElement concept){
+        return new ConceptNodeQuery(lattice.getContext(), concept, lattice.getAttributesMask());
+    }
 
     public ConceptNodeQuery(ExtendedContextEditingInterface cxt, LatticeElement concept, Set attributeMask) {
         this(cxt, concept, true, attributeMask);
