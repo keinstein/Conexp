@@ -119,7 +119,9 @@ public class Highlighter implements IHighlightStrategy{
             return false;
         }
 
-        if (conceptHighlightStrategyPrototype != null ? !conceptHighlightStrategyPrototype.equals(highlighter.conceptHighlightStrategyPrototype) : highlighter.conceptHighlightStrategyPrototype != null) {
+        if (conceptHighlightStrategyPrototype != null ?
+                !conceptHighlightStrategyPrototype.equals(highlighter.conceptHighlightStrategyPrototype) :
+                highlighter.conceptHighlightStrategyPrototype != null) {
             return false;
         }
         return true;
