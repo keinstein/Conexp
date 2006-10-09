@@ -9,19 +9,24 @@
 package conexp.frontend.latticeeditor.highlightstrategies;
 
 import conexp.core.Set;
-import conexp.frontend.latticeeditor.HighlightStrategy;
+import conexp.frontend.latticeeditor.ConceptHighlightStrategy;
 
-public class OneNodeHighlightStrategy extends HighlightStrategy {
+public class OneNodeHighlightStrategy extends ConceptHighlightStrategyBase  implements ConceptHighlightStrategy {
 
-    protected HighlightStrategy createNew() {
+    public ConceptHighlightStrategy createNew() {
         return new OneNodeHighlightStrategy();
     }
 
-    protected boolean highlightQuery(Set attribs) {
+    public boolean highlightQuery(Set attribs) {
+        return isQueryAttributes(attribs);
+    }
+
+    protected boolean isQueryAttributes(Set attribs) {
         return query.equals(attribs);
     }
 
-    protected boolean doHighlightEdge(Set startAttribs, Set endAttribs) {
+
+    public boolean highlightEdge(Set startAttribs, Set endAttribs) {
         return false;
     }
 

@@ -9,30 +9,38 @@
 package conexp.frontend.latticeeditor.highlightstrategies;
 
 import conexp.core.Set;
-import conexp.frontend.latticeeditor.HighlightStrategy;
+import conexp.frontend.latticeeditor.ConceptHighlightStrategy;
+import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 
 
-public class NoHighlightStrategy extends HighlightStrategy {
+public class NoHighlightStrategy implements ConceptHighlightStrategy {
 
+    static NoHighlightStrategy INSTANCE = new NoHighlightStrategy();
 
-    protected boolean doHighlightEdge(Set startAttribs, Set endAttribs) {
+    private NoHighlightStrategy() {
+    }
+
+    public void initFromFigure(AbstractConceptCorrespondingFigure figure) {
+
+    }
+
+    public boolean highlightEdge(Set startAttribs, Set endAttribs) {
         return false;
     }
 
-    protected boolean highlightQuery(Set attribs) {
+    public boolean highlightQuery(Set attribs) {
         return false;
     }
 
-    public boolean isActive() {
-        return false;
-    }
 
-    public NoHighlightStrategy() {
-    }
-
-    protected HighlightStrategy createNew() {
-        return new NoHighlightStrategy();
+    public ConceptHighlightStrategy createNew() {
+        return getInstance();
     }
 
 
+    public static NoHighlightStrategy getInstance() {
+        return INSTANCE;
+    }
+
+    
 }

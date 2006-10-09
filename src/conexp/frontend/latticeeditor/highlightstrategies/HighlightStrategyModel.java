@@ -36,7 +36,7 @@ public class HighlightStrategyModel extends AbstractDrawingStrategyModel {
      */
     protected void createStrategies(DrawParameters opt) {
         allocateStrategies(STRATEGY_COUNT);
-        setStrategy(NO_HIGHLIGHT_STRATEGY, "No ", new NoHighlightStrategy());
+        setStrategy(NO_HIGHLIGHT_STRATEGY, "No ", NoHighlightStrategy.getInstance());
         setStrategy(ONE_NODE_HIGHLIGHT_STRATEGY, "Selected", new OneNodeHighlightStrategy());
         setStrategy(NEIGHBOURS_HIGHLIGHT_STRATEGY, "Neighbours", new NeigboursHighlightStrategy());
         setStrategy(IDEAL_HIGHLIGHT_STRATEGY, "Ideal", new IdealHighlightStrategy());

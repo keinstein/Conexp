@@ -25,6 +25,8 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
     public LatticeCanvasDrawStrategiesContext(DrawStrategiesModelsFactory factory, PropertyChangeSupport propertyChange) {
         super(propertyChange);
         this.factory = factory;
+        highlighter = new Highlighter();
+
         setPreferences(Preferences.userNodeForPackage(LatticeCanvasDrawStrategiesContext.class));
 /*
         printPreferences();
@@ -69,8 +71,12 @@ public class LatticeCanvasDrawStrategiesContext extends BasicStrategiesContext i
         return edgeSizeCalcStrategy;
     }
 
-    public HighlightStrategy getHighlightStrategy() {
-        return (HighlightStrategy) getHighlightStrategyItem().getStrategy();
+    Highlighter highlighter;
+
+    public Highlighter getHighlighter() {
+        //todo:sye - think about better way to handle setting of concept highlight strategy (in reaction on selection change);
+        highlighter.setConceptHighlightStrategy((ConceptHighlightStrategy)getHighlightStrategyItem().getStrategy());
+        return highlighter;
     }
 
     public synchronized StrategyValueItem getHighlightStrategyItem() {

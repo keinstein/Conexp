@@ -10,18 +10,19 @@ package conexp.frontend.latticeeditor.tests;
 import canvas.IHighlightStrategy;
 import junit.framework.TestCase;
 import util.testing.TestUtil;
+import conexp.frontend.latticeeditor.ConceptHighlightStrategy;
 
 public abstract class HighlightStrategyTest extends TestCase {
     public void testEqualsAndHashCode() {
-        IHighlightStrategy first = makeEqualInstance();
-        IHighlightStrategy second = makeEqualInstance();
-        IHighlightStrategy third = makeNotEqualInstance();
+        ConceptHighlightStrategy first = makeEqualInstance();
+        ConceptHighlightStrategy second = makeEqualInstance();
+        ConceptHighlightStrategy third = makeNotEqualInstance();
 
         TestUtil.testEqualsAndHashCode(first, second);
         TestUtil.testNotEquals(first, third);
     }
 
-    protected abstract IHighlightStrategy makeNotEqualInstance();
+    protected abstract ConceptHighlightStrategy makeNotEqualInstance();
 
-    protected abstract IHighlightStrategy makeEqualInstance();
+    protected abstract ConceptHighlightStrategy makeEqualInstance();
 }

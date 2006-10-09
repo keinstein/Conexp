@@ -22,10 +22,14 @@ import conexp.frontend.ConceptSetDrawingConsumer;
 import conexp.frontend.latticeeditor.figures.AbstractConceptCorrespondingFigure;
 import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import util.Assert;
+import util.collection.IndexedSet;
+import util.collection.CollectionFactory;
 
 import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDrawingConsumer {
 
@@ -167,10 +171,22 @@ public class LatticeCanvas extends FigureDrawingCanvas implements ConceptSetDraw
 
     public void initPaint() {
         DrawStrategiesContext drawContext = getLatticeCanvasSchema().getDrawStrategiesContext();
-        drawContext.getHighlightStrategy().setQuery(getCurrentQuery());
+        drawContext.getHighlighter().setSelectedConcepts(getSelectedConceptsFigure());
         if (null != getConceptSet()) {
             drawContext.setupStrategiesParams(getConceptSet());
         }
+    }
+
+    private IndexedSet getSelectedConceptsFigure() {
+        Collection selection = getSelection();
+        IndexedSet result = CollectionFactory.createIndexedSet();
+        for (Iterator iterator = selection.iterator(); iterator.hasNext();) {
+            Object figure = iterator.next();
+            if(figure instanceof AbstractConceptCorrespondingFigure){
+                result.add(figure);
+            }
+        }
+        return result;
     }
 
     public LatticePainterOptions getPainterOptions() {

@@ -20,7 +20,7 @@ public interface DrawStrategiesContext extends FigureDimensionCalcStrategyProvid
 
     EdgeSizeCalcStrategy getEdgeSizeCalcStrategy();
 
-    HighlightStrategy getHighlightStrategy();
+    Highlighter getHighlighter();
 
     DrawStrategiesContext makeCopy(PropertyChangeSupport propertyChange);
 

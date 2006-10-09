@@ -25,6 +25,7 @@ public class AllTests extends TestCase {
         suite.addTestSuite(LatticePainterDrawParamsTest.class);
         suite.addTestSuite(LatticePainterOptionsTest.class);
         suite.addTestSuite(LatticePainterPanelTest.class);
+        suite.addTestSuite(HighlighterTest.class);
 
         suite.addTestSuite(NestedLineDiagramDrawingTest.class);
         suite.addTestSuite(RescaleByYFigureVisitorTest.class);

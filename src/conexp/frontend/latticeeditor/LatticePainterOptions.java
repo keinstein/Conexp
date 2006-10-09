@@ -62,7 +62,7 @@ public class LatticePainterOptions extends BaseVetoablePropertyChangeSupplier im
     }
 
     public IHighlightStrategy getHighlightStrategy() {
-        return getDrawStrategiesContext().getHighlightStrategy();
+        return getDrawStrategiesContext().getHighlighter();
     }
 
     public synchronized DrawStrategiesContext getDrawStrategiesContext() {

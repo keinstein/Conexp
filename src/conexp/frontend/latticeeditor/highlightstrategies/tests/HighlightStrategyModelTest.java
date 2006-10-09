@@ -10,32 +10,40 @@ package conexp.frontend.latticeeditor.highlightstrategies.tests;
 
 import conexp.core.ConceptFactory;
 import conexp.core.LatticeElement;
+import conexp.core.Context;
+import conexp.core.tests.SetBuilder;
 import conexp.frontend.latticeeditor.DrawParameters;
-import conexp.frontend.latticeeditor.HighlightStrategy;
+import conexp.frontend.latticeeditor.Highlighter;
+import conexp.frontend.latticeeditor.ConceptHighlightStrategy;
+import conexp.frontend.latticeeditor.queries.ConceptNodeQuery;
+import conexp.frontend.latticeeditor.figures.ConceptFigure;
 import conexp.frontend.latticeeditor.highlightstrategies.HighlightStrategyModel;
 import conexp.frontend.latticeeditor.tests.StrategyModelTest;
 import conexp.util.gui.strategymodel.StrategyModel;
 
+import java.util.LinkedHashSet;
+import java.util.Arrays;
+
 public class HighlightStrategyModelTest extends StrategyModelTest {
-    /**
-     * Insert the method's description here.
-     * Creation date: (02.12.00 0:56:09)
-     */
-    public void testStrategiesWithAndWithoutNode() {
+    public void testStrategiesWithAndWithoutSelection() {
         LatticeElement el1 = ConceptFactory.makeEmptyLatticeElement();
         LatticeElement el2 = ConceptFactory.makeEmptyLatticeElement();
 
+
         for (int i = model.getStrategiesCount(); --i >= 0;) {
-            HighlightStrategy strategy =
-                    (HighlightStrategy) model.getStrategy(i);
-            strategy.highlightEdge(el1.getAttribs(), el2.getAttribs());
-            strategy.highlightNodeWithQuery(el1.getAttribs());
+            Highlighter highlighter = new Highlighter();
+            highlighter.setConceptHighlightStrategy(
+                    (ConceptHighlightStrategy) model.getStrategy(i));
 
-            strategy.setNode(el1);
-            strategy.highlightEdge(el1.getAttribs(), el2.getAttribs());
-            strategy.highlightNodeWithQuery(el1.getAttribs());
+            highlighter.highlightEdge(el1.getAttribs(), el2.getAttribs());
+            highlighter.highlightNodeWithQuery(el1.getAttribs());
+
+            highlighter.setSelectedConcepts(new LinkedHashSet(Arrays.asList(new Object[]{new ConceptFigure(
+                    new ConceptNodeQuery(new Context(0,0), el1, SetBuilder.makeSet(new int[0])))}))
+            );
+            highlighter.highlightEdge(el1.getAttribs(), el2.getAttribs());
+            highlighter.highlightNodeWithQuery(el1.getAttribs());
         }
-
     }
 
     /**

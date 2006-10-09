@@ -9,19 +9,19 @@
 package conexp.frontend.latticeeditor.highlightstrategies;
 
 import conexp.core.Set;
-import conexp.frontend.latticeeditor.HighlightStrategy;
+import conexp.frontend.latticeeditor.ConceptHighlightStrategy;
 
-public class FilterIdealHighlightStrategy extends HighlightStrategy {
+public class FilterIdealHighlightStrategy extends ConceptHighlightStrategyBase implements ConceptHighlightStrategy {
 
-    protected HighlightStrategy createNew() {
+    public ConceptHighlightStrategy createNew() {
         return new FilterIdealHighlightStrategy();
     }
 
-    protected boolean highlightQuery(Set attribs) {
+    public boolean highlightQuery(Set attribs) {
         return query.isSubsetOf(attribs) || query.isSupersetOf(attribs);
     }
 
-    protected boolean doHighlightEdge(Set startAttribs, Set endAttribs) {
+    public boolean highlightEdge(Set startAttribs, Set endAttribs) {
         return query.isSubsetOf(startAttribs) && query.isSubsetOf(endAttribs) ||
                 query.isSupersetOf(startAttribs) && query.isSupersetOf(endAttribs);
     }
