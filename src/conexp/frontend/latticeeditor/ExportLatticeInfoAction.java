@@ -23,7 +23,8 @@ public class ExportLatticeInfoAction extends SaveImageActionBase {
         return new IExporter[]{
                 new RasterImageExporter(latticePainterPanel),
                 new ConscriptLatticeExporter(latticePainterPanel),
-                new PlainTextLatticeExporter(latticePainterPanel)
+                new PlainTextLatticeExporter(latticePainterPanel),
+                new DotExporter(latticePainterPanel)
         };
     }
 

@@ -19,6 +19,7 @@ public class AllTests extends TestCase {
 
         suite.addTestSuite(BaseLatticePainterPaneTest.class);
         suite.addTestSuite(ConscriptLatticeExporterTest.class);
+        suite.addTestSuite(DotExporterTest.class);
         suite.addTestSuite(LatticeCanvasDrawStrategiesContextTest.class);
         suite.addTestSuite(LatticeCanvasTest.class);
         suite.addTestSuite(LatticeDrawingTest.class);
