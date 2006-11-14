@@ -12,10 +12,10 @@ public class DotExporterTest extends TestCase {
            "\tratio=fill;\n" +
            "\tsize=\"7.5,10\";\n" +
            "\n" +
-           "\tnode_1 [label=\"{1, 0, 0}\\n{1, 1}\"];\n" +
-           "\tnode_2 [label=\"{1, 0, 1}\\n{1, 0}\"];\n" +
-           "\tnode_3 [label=\"{1, 1, 1}\\n{0, 0}\"];\n" +
-           "\tnode_4 [label=\"{1, 1, 0}\\n{0, 1}\"];\n" +
+           "\tnode_1 [label=\"Attr 1\\n\"];\n" +
+           "\tnode_2 [label=\"Attr 3\\nObj 1\"];\n" +
+           "\tnode_3 [label=\"\\n\"];\n" +
+           "\tnode_4 [label=\"Attr 2\\nObj 2\"];\n" +
            "\n" +
            "\t{\n" +
            "\tnode_2;\n" +
@@ -33,8 +33,8 @@ public class DotExporterTest extends TestCase {
            "\tratio=fill;\n" +
            "\tsize=\"7.5,10\";\n" +
            "\n" +
-           "\tnode_1 [label=\"{1, 0, 0}\\n{1, 1}\"];\n" +
-           "\tnode_2 [label=\"{1, 1, 0}\\n{0, 1}\"];\n" +
+           "\tnode_1 [label=\"Attr 1\\nObj 1\"];\n" +
+           "\tnode_2 [label=\"Attr 2\\nObj 2\"];\n"+
            "\n" +
            "\t{\n" +
            "\tnode_2;\n" +
@@ -66,4 +66,8 @@ public class DotExporterTest extends TestCase {
     }
 
 
+    public void testEscapeString() throws Exception {
+        assertEquals("abc", DotExporter.escapeString("abc"));
+        assertEquals("a\\\"b", DotExporter.escapeString("a\"b"));
+    }
 }

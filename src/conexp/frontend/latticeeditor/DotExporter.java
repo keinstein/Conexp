@@ -1,5 +1,6 @@
 package conexp.frontend.latticeeditor;
 
+import conexp.core.ContextEntity;
 import conexp.core.Lattice;
 import conexp.core.LatticeElement;
 import util.FileNameMangler;
@@ -9,6 +10,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -139,15 +141,31 @@ public class DotExporter implements IExporter {
 
     // ------------------------------------------------------------------------
 
+
     public static final String asStringNodeDot(LatticeElement latticeElement) {
         StringBuffer string = new StringBuffer();
-
-        string.append(latticeElement.getAttribs());
-
+        writeContextEntities(latticeElement.ownAttribsIterator(), string);
         string.append("\\n");
-
-        string.append(latticeElement.getObjects());
+        writeContextEntities(latticeElement.ownObjectsIterator(), string);
         return string.toString();
+    }
+
+    private static void writeContextEntities(Iterator entityIterator, StringBuffer string) {
+        boolean first = true;
+        for (Iterator iterator = entityIterator; iterator.hasNext();) {
+            ContextEntity entity = (ContextEntity) iterator.next();
+            if (first) {
+                first = false;
+            } else {
+                string.append(",");
+            }
+            string.append(escapeString(entity.getName()));
+
+        }
+    }
+
+    public static String escapeString(String name) {
+        return name.replaceAll("\"", "\\\\\"");
     }
 
 }
