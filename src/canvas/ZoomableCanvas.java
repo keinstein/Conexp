@@ -219,10 +219,10 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
         }
     }
 
-    protected abstract void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform) throws sun.dc.pr.PRException;
+    protected abstract void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform);
 
     protected void drawOnGraphicsWithDimension(Graphics g, Dimension dimension, AffineTransform scalingTransform) {
-        try {
+	    //   try {
 
 
             if (g instanceof Graphics2D) {
@@ -238,17 +238,17 @@ public abstract class ZoomableCanvas extends JComponent implements IScreenImageP
                 doDrawOnGraphicsWithDimension(g, dimension, scalingTransform);
             }
 
-        } catch (sun.dc.pr.PRError er) {
+	    //} catch (sun.dc.pr.PRError er) {
             //do nothing
             /**
              * this code is here to handle bug in JDK
              */
-        } catch (sun.dc.pr.PRException ex) {
+	    //} catch (sun.dc.pr.PRException ex) {
             //do nothing
             /**
              * this code is here to handle bug in JDK
              */
-        }
+	    // }
     }
 
 

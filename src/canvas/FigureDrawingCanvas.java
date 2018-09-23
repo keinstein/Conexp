@@ -217,7 +217,7 @@ public class FigureDrawingCanvas extends ZoomableCanvas {
     protected void initPaint() {
     }
 
-    protected void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform) throws sun.dc.pr.PRException {
+    protected void doDrawOnGraphicsWithDimension(Graphics g, Dimension d, AffineTransform scalingTransform) {
         initPaint();
         drawBlankImage(g, d);
         drawLineDiagram(g, scalingTransform);
